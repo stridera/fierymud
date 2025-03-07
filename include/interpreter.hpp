@@ -12,45 +12,49 @@
 
 #pragma once
 
+#include "arguments.hpp"
+#include "directions.hpp"
 #include "structs.hpp"
 #include "sysdep.hpp"
 
 #define ACMD(name)                                                                                                     \
-    void(name)(CharData * ch, [[maybe_unused]] char *argument, [[maybe_unused]] int cmd, [[maybe_unused]] int subcmd)
+    void(name)(CharData * ch, [[maybe_unused]] Arguments argument, [[maybe_unused]] int cmd,                           \
+               [[maybe_unused]] int subcmd)
 
 #define CMD_NAME (cmd_info[cmd].command)
-#define CMD_IS(cmd_name) (!strcasecmp(cmd_name, cmd_info[cmd].command))
+#define CMD_IS(cmd_name) (matches(cmd_name, cmd_info[cmd].command))
 #define IS_MOVE(cmdnum) (cmdnum >= 1 && cmdnum <= 6)
 
-void command_interpreter(CharData *ch, char *argument);
-void list_similar_commands(CharData *ch, char *arg);
-int searchblock(char *arg, const char **list, bool exact);
-int search_block(const char *arg, const char **list, bool exact);
-#define parse_direction(arg) (search_block(arg, dirs, false))
-char lower(char c);
-char *one_argument(char *argument, char *first_arg);
-char *one_word(char *argument, char *first_arg);
-char *any_one_arg(char *argument, char *first_arg);
-char *two_arguments(char *argument, char *first_arg, char *second_arg);
-char *delimited_arg(char *argument, char *quoted_arg, char delimiter);
-char *delimited_arg_case(char *argument, char *quoted_arg, char delimiter);
-char *delimited_arg_all(char *argument, char *quoted_arg, char delimiter);
-int fill_word(char *argument);
-void half_chop(char *string, char *arg1, char *arg2);
-void nanny(DescriptorData *d, char *arg);
-int is_abbrev(const char *arg1, const char *arg2);
-bool is_integer(const char *str);
-bool is_positive_integer(const char *str);
-bool is_negative_integer(const char *str);
-bool is_number(const char *str);
-int find_command(const char *command);
-int parse_command(char *command);
-void skip_slash(char **string);
-void skip_spaces(char **string);
-char *delete_doubledollar(char *string);
+/*
+ * searches an array of strings for a target string.  "exact" can be
+ * 0 or non-0, depending on whether or not the match must be exact for
+ * it to be returned.  Returns -1 if not found; 0..n otherwise.  Array
+ * must be terminated with a '\n' so it knows to stop searching.
+ *
+ * search_block follows a similar naming convention to strcasecmp:
+ * search_block is case-sensitive, search_block is case-insensitive.
+ * Often, which one you use only depends on the case of items in your
+ * list, because any_one_arg and one_argument always return lower case
+ * arguments.
+ */
+template <typename T, size_t N>
+int search_block(const std::string_view needle, const std::array<T, N> &haystack, bool exact) {
+    for (const T &val : haystack) {
+        if (exact ? matches(needle, val) : matches_start(needle, val)) {
+            return true;
+        }
+    }
+    return false;
+}
 
-/* for compatibility with 2.20: */
-#define argument_interpreter(a, b, c) two_arguments(a, b, c)
+void command_interpreter(CharData *ch, std::string_view argument);
+void list_similar_commands(CharData *ch, std::string_view arg);
+inline int parse_direction(std::string_view arg) { return search_block(arg, dirs, false); }
+int fill_word(std::string_view argument);
+void nanny(DescriptorData *d, std::string_view arg);
+int find_command(const std::string_view command);
+int parse_command(std::string_view command);
+void skip_slash(std::string_view string);
 
 #define CMD_NONE 0
 #define CMD_MEDITATE (1 << 0)
@@ -64,10 +68,10 @@ char *delete_doubledollar(char *string);
 #define CMD_ANY ((1 << 8) - 1 - CMD_NOFIGHT)
 
 struct CommandInfo {
-    const char *command;
+    const std::string_view command;
     byte minimum_position;
     byte minimum_stance;
-    void (*command_pointer)(CharData *ch, char *argument, int cmd, int subcmd);
+    void (*command_pointer)(CharData *ch, Arguments argument, int cmd, int subcmd);
     sh_int minimum_level;
     int subcmd;
     long flags;
@@ -80,19 +84,12 @@ struct SortStruct {
 
 /* necessary for CMD_IS macro */
 extern const CommandInfo cmd_info[];
-extern const char *command_flags[];
+extern const std::string_view command_flags[];
 extern int num_of_cmds;
 extern SortStruct *cmd_sort_info;
 
-/* this is the new xnames structure --Gurlaek 6/9/1999 */
-struct XName {
-    /* the +3 is for the # \n and NULL chars */
-    char name[MAX_NAME_LENGTH + 3];
-    XName *next;
-};
 #define NAME_TIMEOUT 1 * (30 RL_SEC) /* 5 minutes */
 
-void free_alias(AliasData *alias);
 void free_aliases(AliasData *alias_list);
 
 #define ALIAS_SIMPLE 0

@@ -37,7 +37,6 @@
 
 /* extern functions */
 EVENTFUNC(recall_event);
-void money_convert(CharData *ch, int amount);
 int room_recall_check(CharData *ch, CharData *victim, ObjData *obj);
 void apply_cost(int cost, CharData *ch);
 
@@ -47,7 +46,7 @@ int blue_recall_room(CharData *ch);
 int gray_recall_room(CharData *ch);
 
 struct social_type {
-    char *cmd;
+    std::string_view cmd;
     int next_line;
 };
 
@@ -62,7 +61,7 @@ SPECIAL(guild) {
         return 0;
 
     if (CMD_IS("level")) {
-        skip_spaces(&argument);
+        skip_spaces(argument);
 
         if (getbaseclass(GET_CLASS((CharData *)(me))) != getbaseclass(GET_CLASS(ch))) {
             act("$N tells you \"I can't raise you!  Find your own guildmaster.\"", false, ch, 0, (CharData *)me,
@@ -288,38 +287,6 @@ void copper_to_coins(CharData *ch) {
     return;
 }
 
-void money_convert(CharData *ch, int amount) {
-    if (GET_CASH(ch) < 1) {
-        if (GET_LEVEL(ch) < 100)
-            char_printf(ch, "You don't have enough!\n");
-        else
-            return;
-        return;
-    }
-    if (amount < GET_COPPER(ch)) {
-        return;
-    }
-    do {
-        if (GET_SILVER(ch) > 0) {
-            (GET_SILVER(ch) = (GET_SILVER(ch) - (1)));
-            (GET_COPPER(ch) = (GET_COPPER(ch) + (10)));
-        }
-        if ((GET_SILVER(ch) < 1) && (GET_GOLD(ch) > 0)) {
-            if (GET_COPPER(ch) < amount) {
-                (GET_GOLD(ch) = (GET_GOLD(ch) - (1)));
-                (GET_SILVER(ch) = (GET_SILVER(ch) + (10)));
-            }
-        }
-        if ((GET_SILVER(ch) < 1) && (GET_GOLD(ch) < 1)) {
-            if (((GET_COPPER(ch) + GET_SILVER(ch)) < amount) && (GET_PLATINUM(ch) > 0)) {
-                (GET_PLATINUM(ch) = (GET_PLATINUM(ch) - (1)));
-                (GET_GOLD(ch) = (GET_GOLD(ch) + (10)));
-            }
-        }
-    } while (amount > GET_COPPER(ch));
-    return;
-}
-
 #define PET_PRICE(pet) ((GET_LEVEL(pet) * GET_LEVEL(pet)) + (3 * GET_LEVEL(pet)))
 #define PET_INSPECT_PRICE(pet) (((GET_LEVEL(pet) * GET_LEVEL(pet)) + (3 * GET_LEVEL(pet))) / 10)
 
@@ -328,7 +295,6 @@ SPECIAL(pet_shop) {
     int mountlevel(CharData * ch);
     int found = 0;
 
-    char buf[MAX_STRING_LENGTH], pet_name[256];
     int pet_room, bp, temp, temp2, temp3, temp4, mountdiff;
     CharData *pet;
     FollowType *flw;
@@ -356,10 +322,10 @@ SPECIAL(pet_shop) {
         }
         return (true);
     } else if (CMD_IS("buy")) {
-        argument = one_argument(argument, buf);
-        argument = one_argument(argument, pet_name);
+        auto what = argument.shift();
+        auto pet_name = argument.shift();
 
-        if (!*buf) {
+        if (what.empty()) {
             char_printf(ch, "What do you want to buy?\n");
             return (true);
         }
@@ -370,7 +336,7 @@ SPECIAL(pet_shop) {
             }
         }
 
-        if (!(pet = find_char_in_room(&world[pet_room], find_by_name(buf)))) {
+        if (!(pet = find_char_in_room(&world[pet_room], find_by_name(what)))) {
             char_printf(ch, "There is no such pet!\n");
             return (true);
         }
@@ -389,13 +355,11 @@ SPECIAL(pet_shop) {
         SET_FLAG(EFF_FLAGS(pet), EFF_CHARM);
         SET_FLAG(MOB_FLAGS(pet), MOB_PET);
 
-        if (*pet_name) {
-            sprintf(buf, "%s %s", GET_NAMELIST(pet), pet_name);
-            GET_NAMELIST(pet) = strdup(buf);
+        if (!pet_name.empty()) {
+            GET_NAMELIST(pet) = fmt::format("{} {}", GET_NAMELIST(pet), pet_name);
 
-            sprintf(buf, "%sA small sign on a chain around the neck says 'My name is %s'\n", pet->player.description,
-                    pet_name);
-            pet->player.description = strdup(buf);
+            pet->player.description = fmt::format("{}A small sign on a chain around the neck says 'My name is {}'\n",
+                                                  pet->player.description, pet_name);
         }
         char_to_room(pet, ch->in_room);
         add_follower(pet, ch);
@@ -405,10 +369,9 @@ SPECIAL(pet_shop) {
 
         return 1;
     } else if (CMD_IS("inspect")) {
-        argument = one_argument(argument, buf);
-        argument = one_argument(argument, pet_name);
+        auto buf = argument.shift();
 
-        if (!*buf) {
+        if (buf.empty()) {
             char_printf(ch, "Inspection Services                                              \n");
             char_printf(ch, "Pet                                     Cost           Ridability\n");
             char_printf(ch, "--------------------------------------  -------------  ----------\n");
@@ -450,15 +413,15 @@ SPECIAL(pet_shop) {
         SET_FLAG(EFF_FLAGS(pet), EFF_CHARM);
         SET_FLAG(MOB_FLAGS(pet), MOB_PET);
 
-        sprintf(buf, "Name: %s\n", GET_NAME(pet));
-        sprintf(buf, "%sLevel: %d, Hit Points: %d, Movement Points: %d\n", buf, GET_LEVEL(pet), GET_HIT(pet),
-                GET_MAX_MOVE(pet));
-        sprintf(buf, "%sAC: %d, Hitroll: %d, Damroll: %d\n", buf, GET_AC(pet), GET_HITROLL(pet), GET_DAMROLL(pet));
-        sprintf(buf, "%sStr: %d, Int: %d, Wis: %d, Dex: %d, Con: %d, Cha: %d\n", buf, GET_STR(pet), GET_INT(pet),
-                GET_WIS(pet), GET_DEX(pet), GET_CON(pet), GET_CHA(pet));
-        sprintf(buf, "%s$E is composed of %s%s&0, and $S nature is %s%s.", buf, COMPOSITION_COLOR(pet),
-                COMPOSITION_NAME(pet), LIFEFORCE_COLOR(pet), LIFEFORCE_NAME(pet));
-        act(buf, false, ch, 0, pet, TO_CHAR);
+        std::string output = fmt::format("Name: {}\n", GET_NAME(pet));
+        output += fmt::format("Level: {}, Hit Points: {}, Movement Points: {}\n", GET_LEVEL(pet), GET_HIT(pet),
+                              GET_MAX_MOVE(pet));
+        output += fmt::format("AC: {}, Hitroll: {}, Damroll: {}\n", GET_AC(pet), GET_HITROLL(pet), GET_DAMROLL(pet));
+        output += fmt::format("Str: {}, Int: {}, Wis: {}, Dex: {}, Con: {}, Cha: {}\n", GET_STR(pet), GET_INT(pet),
+                              GET_WIS(pet), GET_DEX(pet), GET_CON(pet), GET_CHA(pet));
+        output += fmt::format("$E is composed of {}, and $S nature is {}.", COMPOSITION_COLOR(pet),
+                              COMPOSITION_NAME(pet), LIFEFORCE_COLOR(pet), LIFEFORCE_NAME(pet));
+        act(output, false, ch, 0, pet, TO_CHAR);
 
         return (true);
     }
@@ -471,32 +434,27 @@ SPECIAL(pet_shop) {
  ********************************************************************/
 
 SPECIAL(bank) {
-    int coins[NUM_COIN_TYPES], i;
+    Money coins;
 
     if (CMD_IS("balance")) {
-        statemoney(buf, GET_COINS(ch));
-        char_printf(ch, "Coins carried:   {}\n", buf);
-        statemoney(buf, GET_BANK_COINS(ch));
-        char_printf(ch, "Coins in bank:   {}\n", buf);
+        char_printf(ch, "Coins carried:   {}\n", statemoney(GET_COINS(ch)));
+        char_printf(ch, "Coins in bank:   {}\n", statemoney(GET_BANK_COINS(ch)));
         return true;
-    }
-
-    else if (CMD_IS("deposit")) {
-
-        if (!parse_money(&argument, coins)) {
+    } else if (CMD_IS("deposit")) {
+        auto coins = parse_money(argument.get());
+        if (!coins) {
             char_printf(ch, "You can only deposit platinum, gold, silver, and copper coins.\n");
             return true;
         }
 
-        for (i = 0; i < NUM_COIN_TYPES; ++i)
+        for (int i = 0; i < NUM_COIN_TYPES; ++i)
             if (coins[i] > GET_COINS(ch)[i]) {
                 char_printf(ch, "You don't have enough {}!\n", COIN_NAME(i));
                 return true;
             }
 
         act("$n makes a bank transaction.", true, ch, 0, 0, TO_ROOM);
-        statemoney(buf, coins);
-        char_printf(ch, "You deposit {}.\n", buf);
+        char_printf(ch, "You deposit {}.\n", *coins.to_string());
 
         for (i = 0; i < NUM_COIN_TYPES; ++i) {
             GET_COINS(ch)[i] -= coins[i];
@@ -504,230 +462,126 @@ SPECIAL(bank) {
         }
 
         return true;
-    }
-
-    else if (CMD_IS("dump")) {
+    } else if (CMD_IS("dump")) {
         if (GET_CASH(ch) <= 0)
             char_printf(ch, "You don't have any coins to deposit!\n");
         else {
             char_printf(ch, "You dump all your coins on the counter to be deposited.\n");
-            for (i = 0; i < NUM_COIN_TYPES; ++i) {
+            for (int i = 0; i < NUM_COIN_TYPES; ++i) {
                 GET_BANK_COINS(ch)[i] += GET_COINS(ch)[i];
                 coins[i] = GET_COINS(ch)[i];
                 GET_COINS(ch)[i] = 0;
             }
-            statemoney(buf, coins);
-            char_printf(ch, "You were carrying {}.\n", buf);
+            char_printf(ch, "You were carrying {}.\n", statemoney(coins));
         }
         return true;
-    }
-
-    else if (CMD_IS("withdraw")) {
-        if (!parse_money(&argument, coins)) {
+    } else if (CMD_IS("withdraw")) {
+        auto coin_opt = parse_money(argument.get());
+        if (!coin_opt) {
             char_printf(ch, "You can only withdraw platinum, gold, silver, and copper coins.\n");
             return true;
         }
-
-        for (i = 0; i < NUM_COIN_TYPES; ++i)
+        auto coins = *coin_opt;
+        for (int i = 0; i < NUM_COIN_TYPES; ++i)
             if (coins[i] > GET_BANK_COINS(ch)[i]) {
                 char_printf(ch, "You don't have enough {} in the bank!\n", COIN_NAME(i));
                 return true;
             }
 
         act("$n makes a bank transaction.", true, ch, 0, 0, TO_ROOM);
-        statemoney(buf, coins);
-        char_printf(ch, "You withdraw {}.\n", buf);
+        char_printf(ch, "You withdraw {}.\n", statemoney(coins));
 
-        for (i = 0; i < NUM_COIN_TYPES; ++i) {
+        for (int i = 0; i < NUM_COIN_TYPES; ++i) {
             GET_BANK_COINS(ch)[i] -= coins[i];
             GET_COINS(ch)[i] += coins[i];
         }
 
         return true;
-    }
-
-    else if (CMD_IS("exchange")) {
-        int amount, ok = 0;
-        char arg1[MAX_INPUT_LENGTH];
-        char arg2[MAX_INPUT_LENGTH];
-        char arg3[MAX_INPUT_LENGTH];
-        char arg4[MAX_INPUT_LENGTH];
-        char ctype2[10];
+    } else if (CMD_IS("exchange")) {
+        int amount;
         double exchange_rate;
         int copper, charge;
-        int multto, multfrom;
-        int type1, type2;
 
-        half_chop(argument, arg1, arg2);
-        if (is_number(arg1)) {
-            amount = atoi(arg1);
-            if (!*arg2) {
-                char_printf(ch, "Exchange {} of what? Platinum?Gold?Silver?Copper?\n", arg1);
-                return 1;
-            }
-            half_chop(arg2, arg3, arg2);
-            if (!*arg3) {
-                char_printf(ch, "Exchange {} to what? Platinum? Gold? Silver? Copper?\n", arg2);
-                return 1;
-            }
-            half_chop(arg2, arg4, arg2);
-            if (!*arg4) {
-                char_printf(ch, "Exchange {} to what? Platinum? Gold? Silver? Copper?\n", arg3);
-                return 1;
-            }
-            if (is_abbrev(arg3, "copper")) {
-                type1 = 1;
-                multfrom = 1;
-            } else if (is_abbrev(arg3, "silver")) {
-                type1 = 2;
-                multfrom = 10;
-            } else if (is_abbrev(arg3, "gold")) {
-                type1 = 3;
-                multfrom = 100;
-            } else if (is_abbrev(arg3, "platinum")) {
-                type1 = 4;
-                multfrom = 1000;
-            } else {
-                char_printf(ch, "What kind of currency is that?\n");
-                return 1;
-            }
-            if (is_abbrev(arg4, "copper")) {
-                type2 = 1;
-            } else if (is_abbrev(arg4, "silver")) {
-                type2 = 2;
-            } else if (is_abbrev(arg4, "gold")) {
-                type2 = 3;
-            } else if (is_abbrev(arg4, "platinum")) {
-                type2 = 4;
-            } else {
-                char_printf(ch, "What kind of currency is that?\n");
+        auto amount_opt = argument.try_shift_number();
+        if (amount_opt) {
+            amount = *amount_opt;
+
+            if (amount < 1) {
+                char_printf(ch, "You can't exchange a negative amount!\n");
                 return 1;
             }
 
-            if (type1 == type2) {
+            auto from = argument.shift();
+            auto to = argument.shift();
+
+            if (from.empty()) {
+                char_printf(ch, "Exchange {} of what? Platinum? Gold? Silver? Copper?\n", amount);
+                return 1;
+            }
+            auto from_type = parse_coin_type(from);
+            if (!from_type) {
+                char_printf(ch, "What kind of currency is {}?\n", from);
+                return 1;
+            }
+
+            if (to.empty()) {
+                char_printf(ch, "Exchange {} {} to what? Platinum? Gold? Silver? Copper?\n", amount, from);
+                return 1;
+            }
+            auto to_type = parse_coin_type(to);
+            if (!to_type) {
+                char_printf(ch, "What kind of currency is {}?\n", to);
+                return 1;
+            }
+
+            if (from_type == to_type) {
                 char_printf(ch, "That would be pointless, try using two different types of currency.\n");
                 return 1;
             }
 
-            if (amount <= 0) {
-                char_printf(ch, "The bank doesn't make money because it's dumb! Try a positive value.\n");
+            if (GET_COINS(ch)[from_type] < amount) {
+                char_printf(ch, "You don't have that many {}!\n", COIN_NAME(from_type));
                 return 1;
             }
 
-            switch (type1) {
-            case 1:
-                if (GET_COPPER(ch) >= amount)
-                    ok = 1;
-                break;
-            case 2:
-                if (GET_SILVER(ch) >= amount)
-                    ok = 1;
-                break;
-            case 3:
-                if (GET_GOLD(ch) >= amount)
-                    ok = 1;
-                break;
-            case 4:
-                if (GET_PLATINUM(ch) >= amount)
-                    ok = 1;
-                break;
+            auto to_amount = amount / COIN_SCALE(to_type);
+
+            if (GET_LEVEL(ch) > LVL_IMMORT) {
+                charge = 0;
+            } else {
+                exchange_rate = (17 - (GET_CHA(ch) / 6.0) + random_number(0, 2) - (random_number(0, 4) / 10.0) +
+                                 (random_number(0, 9) / 10.0)) /
+                                100.0;
+                amount = amount * COIN_SCALE(from_type);
+                charge = (int)(ceil(exchange_rate * amount));
             }
 
-            if (ok == 0) {
-                char_printf(ch, "You don't have that many coins of that type!\n");
+            if (to_amount < 1) {
+                char_printf(ch, "That's not enough to exchange!\n");
                 return 1;
-            }
-
-            ok = 0;
-            exchange_rate = ((17 - (GET_CHA(ch) / 6.0) + random_number(0, 2) - (random_number(0, 4) / 10.0) +
-                              (random_number(0, 9) / 10.0)) /
-                             100.0);
-            amount = amount * multfrom;
-            charge = (int)(ceil(exchange_rate * amount));
-
-            switch (type2) {
-            case 1:
-                strcpy(ctype2, "copper");
-                multto = 1;
-                if ((amount / 1 >= 1) && (amount % 1 == 0))
-                    ok = 1;
-                break;
-            case 2:
-                strcpy(ctype2, "silver");
-                multto = 10;
-                if ((amount / 10 >= 1) && (amount % 10 == 0))
-                    ok = 1;
-                break;
-            case 3:
-                strcpy(ctype2, "gold");
-                multto = 100;
-                if ((amount / 100 >= 1) && (amount % 100 == 0))
-                    ok = 1;
-                break;
-            case 4:
-                strcpy(ctype2, "platinum");
-                multto = 1000;
-                if ((amount / 1000 >= 1) && (amount % 1000 == 0))
-                    ok = 1;
-                break;
-            default:
-                log("SYSERR: bank error: invalid type2 in spec proc");
-                char_printf(ch, "Bank error.\n");
-                return 1;
-            }
-
-            if ((ok == 0) && type2 > type1) {
+            } else if (amount % COIN_SCALE(to_type) != 0) {
                 char_printf(ch, "That's not the right multiple to convert to that type!\n");
                 return 1;
             }
 
-            if (GET_CASH(ch) < (amount + charge)) {
+            if (!charge_char(ch, amount + charge)) {
                 char_printf(ch, "You don't have enough money!\n");
                 char_printf(ch, "The fee for that transaction would be {:d} copper.\n", charge);
                 return 1;
             }
 
-            switch (type1) {
-            case 1:
-                GET_COPPER(ch) -= amount / multfrom;
-                break;
-            case 2:
-                GET_SILVER(ch) -= amount / multfrom;
-                break;
-            case 3:
-                GET_GOLD(ch) -= amount / multfrom;
-                break;
-            case 4:
-                GET_PLATINUM(ch) -= amount / multfrom;
-                break;
-            }
-
-            money_convert(ch, charge);
-            GET_COPPER(ch) -= charge;
-            copper = amount / multto;
-            char_printf(ch, "You receive {:d} {}.\n", copper, ctype2);
-            char_printf(ch, "You pay {:d} copper for the transaction.\n", charge);
-
-            switch (type2) {
-            case 1:
-                GET_COPPER(ch) += copper;
-                break;
-            case 2:
-                GET_SILVER(ch) += copper;
-                break;
-            case 3:
-                GET_GOLD(ch) += copper;
-                break;
-            case 4:
-                GET_PLATINUM(ch) += copper;
-                break;
+            char_printf(ch, "You receive {:d} {}.\n", to_amount, COIN_NAME(to_type));
+            if (charge > 0) {
+                char_printf(ch, "You pay {:d} copper for the transaction.\n", charge);
+            } else {
+                char_printf(ch, "There is no charge for this transaction.\n");
             }
 
             return 1;
         } else {
             char_printf(ch,
                         "Format: exchange <quantity> <from type> <to type>\n      "
-                        "  exchange 10 copper silver\n");
+                        "  example: exchange 10 copper silver\n");
             return 1;
         }
     } else {
@@ -737,7 +591,8 @@ SPECIAL(bank) {
 }
 
 /* weapon_spell() function and special procedures -dak */
-void weapon_spell(char *to_ch, char *to_vict, char *to_room, CharData *ch, CharData *vict, ObjData *obj, int spl) {
+void weapon_spell(std::string_view to_ch, std::string_view to_vict, std::string_view to_room, CharData *ch,
+                  CharData *vict, ObjData *obj, int spl) {
     int level = LVL_IMPL + 1, i;
 
     for (i = 0; i < NUM_CLASSES; i++)
@@ -836,10 +691,7 @@ SPECIAL(frost_weapon) {
  *  by adding additional colors and indices.
  */
 
-int do_recall(CharData *ch, ObjData *obj, int cmd, char *argument) {
-    char arg_1[MAX_INPUT_LENGTH];
-    char target[MAX_INPUT_LENGTH];
-    char *tmp;
+int do_recall(CharData *ch, ObjData *obj, int cmd, Arguments argument) {
     CharData *targ;
     RecallEventObj *recall;
     int room;
@@ -848,34 +700,30 @@ int do_recall(CharData *ch, ObjData *obj, int cmd, char *argument) {
         return false;
 
     /* Make sure an object was supplied, or else the script will automatically run. */
-
-    if (!argument || !*argument) {
+    if (argument.empty()) {
         return false;
     }
 
-    tmp = one_argument(argument, arg_1);
-    one_argument(tmp, target);
+    auto location = argument.shift();
+    auto target = argument.shift();
 
     /* Make sure the player specified one of the scroll names. */
-
-    if (obj != find_obj_in_list(ch->carrying, find_vis_by_name(ch, arg_1))) {
+    if (obj != find_obj_in_list(ch->carrying, find_vis_by_name(ch, location))) {
         return false;
     }
 
     /* Identify the target (who will be recalled). */
-
-    if (strlen(target) < 1) {
+    if (target.empty()) {
         targ = ch;
     } else {
         targ = find_char_in_room(&world[ch->in_room], find_vis_by_name(ch, target));
     }
 
-    if (!strcasecmp(target, "self") || !strcasecmp(target, "me")) {
+    if (matches(target, "self") || matches(target, "me")) {
         targ = ch;
     }
 
     /* Make sure the target is valid. */
-
     if (!targ) {
         char_printf(ch, "You do not see that person here!\n");
         return true;
@@ -1247,11 +1095,13 @@ SPECIAL(summon_dragon) {
 
         if (GET_COOLDOWN(ch, CD_SUMMON_MOUNT)) {
             int i = GET_COOLDOWN(ch, CD_SUMMON_MOUNT) / (1 MUD_HR) + 1;
-            if (i == 1)
-                strcpy(buf1, "hour");
-            else
-                sprintf(buf1, "%d hours", i);
-            char_printf(ch, "You must wait another {} before you can summon your mount.\n", buf1);
+            auto time_str = [](int i) -> std::string {
+                if (i == 1)
+                    return "hour";
+                else
+                    return fmt::format("{} hours", i);
+            };
+            char_printf(ch, "You must wait another {} before you can summon your mount.\n", time_str(i));
             return true;
         }
 

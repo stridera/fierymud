@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.14)
 
 project(fierymud)
 
-set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 add_compile_options(-Werror -Wno-format-overflow -Wno-format-truncation -Wno-write-strings -Wno-unused-variable)
@@ -11,8 +11,11 @@ add_compile_options(-Werror -Wno-format-overflow -Wno-format-truncation -Wno-wri
 # Load Third Party libraries.
 include(cmake/CPM.cmake)
 
-CPMAddPackage("gh:fmtlib/fmt#9.1.0")
-CPMAddPackage("gh:nlohmann/json@3.11.2")
+CPMAddPackage("gh:fmtlib/fmt#11.1.3")
+CPMAddPackage("gh:Neargye/magic_enum@0.9.7")
+CPMAddPackage("gh:nlohmann/json@3.11.3")
+
+
 # CPMAddPackage("gh:catchorg/Catch2@3.2.1")
 # CPMAddPackage("gh:OlivierLDff/asio.cmake#asio-1-24-0")
 

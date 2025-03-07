@@ -31,40 +31,40 @@
 #define PULSES_PER_MUD_HOUR (SECS_PER_MUD_HOUR * PASSES_PER_SEC)
 
 /* mob trigger types */
-const char *trig_types[] = {"Global",    "Random", "Command", "Speech", "Act",      "Death", "Greet",
-                            "Greet-All", "Entry",  "Receive", "Fight",  "HitPrcnt", "Bribe", "SpeechTo*",
-                            "Load",      "Cast",   "Leave",   "Door",   "Look",     "Time",  "\n"};
+constexpr std::string_view trig_types[] = {"Global",    "Random", "Command", "Speech", "Act",      "Death", "Greet",
+                                           "Greet-All", "Entry",  "Receive", "Fight",  "HitPrcnt", "Bribe", "SpeechTo*",
+                                           "Load",      "Cast",   "Leave",   "Door",   "Look",     "Time",  "\n"};
 
 /* obj trigger types */
-const char *otrig_types[] = {"Global", "Random", "Command", "Attack", "Defense", "Timer", "Get",
-                             "Drop",   "Give",   "Wear",    "Death",  "Remove",  "Look",  "Use",
-                             "Load",   "Cast",   "Leave",   "UNUSED", "Consume", "Time",  "\n"};
+constexpr std::string_view otrig_types[] = {"Global", "Random", "Command", "Attack", "Defense", "Timer", "Get",
+                                            "Drop",   "Give",   "Wear",    "Death",  "Remove",  "Look",  "Use",
+                                            "Load",   "Cast",   "Leave",   "UNUSED", "Consume", "Time",  "\n"};
 
 /* wld trigger types */
-const char *wtrig_types[] = {"Global", "Random",    "Command", "Speech", "UNUSED", "Reset",  "Preentry",
-                             "Drop",   "Postentry", "UNUSED",  "UNUSED", "UNUSED", "UNUSED", "UNUSED",
-                             "UNUSED", "Cast",      "Leave",   "Door",   "UNUSED", "Time",   "\n"};
+constexpr std::string_view wtrig_types[] = {"Global", "Random",    "Command", "Speech", "UNUSED", "Reset",  "Preentry",
+                                            "Drop",   "Postentry", "UNUSED",  "UNUSED", "UNUSED", "UNUSED", "UNUSED",
+                                            "UNUSED", "Cast",      "Leave",   "Door",   "UNUSED", "Time",   "\n"};
 
 TrigData *trigger_list = nullptr; /* all attached triggers */
 
 /* external functions */
-int find_target_room(CharData *ch, char *rawroomstr);
+int find_target_room(CharData *ch, std::string_view rawroomstr);
 int obj_room(ObjData *obj);
 int is_empty(int zone_nr);
-int find_target_room(CharData *ch, char *rawroomstr);
 TrigData *read_trigger(int nr);
 void extract_trigger(TrigData *trig);
-int eval_lhs_op_rhs(char *expr, char *result, void *go, ScriptData *sc, TrigData *trig, int type);
+int eval_lhs_op_rhs(std::string_view expr, std::string_view result, void *go, ScriptData *sc, TrigData *trig, int type);
 int find_zone(int num);
-int vnumargs(CharData *ch, char *argument, int *first, int *second);
-int find_talent_num(char *name, int should_restrict);
+int vnumargs(CharData *ch, std::string_view argument, int *first, int *second);
+int find_talent_num(std::string_view name, int should_restrict);
 
 /* function protos from this file */
 int script_driver(void *go_address, TrigData *trig, int type, int mode);
-void script_log(TrigData *t, char *msg);
+void script_log(TrigData *t, std::string_view msg);
 CmdlistElement *find_done(CmdlistElement *cl);
-CmdlistElement *find_case(TrigData *trig, CmdlistElement *cl, void *go, ScriptData *sc, int type, char *cond);
-void var_subst(void *go, ScriptData *sc, TrigData *trig, int type, char *line, char *buf);
+CmdlistElement *find_case(TrigData *trig, CmdlistElement *cl, void *go, ScriptData *sc, int type,
+                          std::string_view cond);
+void var_subst(void *go, ScriptData *sc, TrigData *trig, int type, std::string_view line, std::string_view buf);
 
 /* local structures */
 struct WaitEventData {
@@ -150,27 +150,27 @@ RoomData *find_room(int n) {
  ************************************************************/
 
 /* finds room by with name.  returns NULL if not found */
-RoomData *get_room(char *name) {
+RoomData *get_room(std::string_view name) {
     int nr;
 
-    if (*name == UID_CHAR)
-        return find_room(atoi(name + 1));
-    else if (isdigit(*name) && (nr = real_room(atoi(name))) != NOWHERE)
+    if (name[0] == UID_CHAR)
+        return find_room(svtoi(name.substr(1)));
+    else if (is_integer(name) && (nr = real_room(svtoi(name))) != NOWHERE)
         return &world[nr];
     else
         return nullptr;
 }
 
 /* finds room rnum by name.  returns NOWHERE if not found */
-int get_room_location(char *name) {
-    if (*name == UID_CHAR) {
-        int num = atoi(name + 1) - ROOM_ID_BASE;
+int get_room_location(std::string_view name) {
+    if (name[0] == UID_CHAR) {
+        int num = svtoi(name.substr(1)) - ROOM_ID_BASE;
         if (num >= 0 && num <= top_of_world)
             return num;
     }
 
-    if (isdigit(*name) && !strchr(name, '.'))
-        return real_room(atoi(name));
+    if (is_integer(name) && !name.contains('.'))
+        return real_room(svtoi(name));
 
     return NOWHERE;
 }
@@ -185,9 +185,9 @@ static MATCH_CHAR_FUNC(match_dg_vis_char_by_name) {
     return false;
 }
 
-FindContext find_dg_by_name(char *name) {
+FindContext find_dg_by_name(std::string_view name) {
     FindContext context = find_by_name(name);
-    if (*name == UID_CHAR)
+    if (name[0] == UID_CHAR)
         context.char_func = match_dg_vis_char_by_id;
     else
         context.char_func = match_dg_vis_char_by_name;
@@ -296,7 +296,7 @@ void do_stat_trigger(CharData *ch, TrigData *trig) {
     cmd_list = trig->cmdlist;
     while (cmd_list) {
         if (cmd_list->cmd) {
-            strcat(sb, escape_ansi(cmd_list->cmd).c_str());
+            strcat(sb, escape_ansi(cmd_list->cmd));
             strcat(sb, "\n");
         }
         cmd_list = cmd_list->next;
@@ -305,7 +305,7 @@ void do_stat_trigger(CharData *ch, TrigData *trig) {
 }
 
 /* find the name of what the uid points to */
-void find_uid_name(char *uid, char *name) {
+void find_uid_name(std::string_view uid, std::string_view name) {
     CharData *ch;
     ObjData *obj;
 
@@ -318,12 +318,12 @@ void find_uid_name(char *uid, char *name) {
 }
 
 /* general function to display stats on script sc */
-void script_stat(CharData *ch, char *buf, ScriptData *sc) {
+std::string script_stat(CharData *ch, ScriptData *sc) {
     TriggerVariableData *tv;
     TrigData *t;
     char name[MAX_INPUT_LENGTH];
     int found = 0;
-    extern char *t_listdisplay(int nr, int index);
+    extern std::string_view t_listdisplay(int nr, int index);
 
     get_char_cols(ch);
 
@@ -359,32 +359,28 @@ void script_stat(CharData *ch, char *buf, ScriptData *sc) {
     }
 }
 
-void do_sstat_room(CharData *ch, char *buf, RoomData *rm) {
-    strcpy(buf, "Script information:\n");
-    if (SCRIPT(rm))
-        script_stat(ch, buf + strlen(buf), SCRIPT(rm));
-    else
-        strcat(buf, "  None.\n");
+std::string do_sstat_room(CharData *ch, RoomData *rm) {
+    std::string output{"Script information:\n"};
+    if (!SCRIPT(rm))
+        return output + "  None.\n";
+
+    return output + script_stat(ch, SCRIPT(rm));
 }
 
-void do_sstat_object(CharData *ch, char *buf, ObjData *j) {
-    strcpy(buf, "Script information:\n");
-    if (!SCRIPT(j)) {
-        strcat(buf, "  None.\n");
-        return;
-    }
+std::string do_sstat_object(CharData *ch, ObjData *j) {
+    std::string output{"Script information:\n"};
+    if (!SCRIPT(j))
+        return output + "  None.\n";
 
-    script_stat(ch, buf + strlen(buf), SCRIPT(j));
+    return output + script_stat(ch, SCRIPT(j));
 }
 
-void do_sstat_character(CharData *ch, char *buf, CharData *k) {
-    strcpy(buf, "Script information:\n");
-    if (!SCRIPT(k)) {
-        strcat(buf, "  None.\n");
-        return;
-    }
+std::string do_sstat_character(CharData *ch, CharData *k) {
+    std::string output{"Script information:\n"};
+    if (!SCRIPT(k))
+        return output + "  None.\n";
 
-    script_stat(ch, buf + strlen(buf), SCRIPT(k));
+    return output + script_stat(ch, SCRIPT(k));
 }
 
 /*
@@ -418,22 +414,22 @@ ACMD(do_attach) {
     CharData *victim;
     ObjData *obj;
     TrigData *trig;
-    char targ_name[MAX_INPUT_LENGTH], trig_name[MAX_INPUT_LENGTH];
-    char loc_name[MAX_INPUT_LENGTH];
     int loc, room, tn, rn;
 
-    argument = two_arguments(argument, arg, trig_name);
-    two_arguments(argument, targ_name, loc_name);
+    auto arg = argument.shift();
+    auto trig_name = argument.shift();
+    auto targ_name = argument.shift();
+    auto loc_name = argument.shift();
 
-    if (!*arg || !*targ_name || !*trig_name) {
+    if (arg.empty() || targ_name.empty() || trig_name.empty()) {
         char_printf(ch, "Usage: attach { mtr | otr | wtr } { trigger } { name } [ location ]\n");
         return;
     }
 
-    tn = atoi(trig_name);
-    loc = (*loc_name) ? atoi(loc_name) : -1;
+    tn = svtoi(trig_name);
+    loc = loc_name.empty() ? -1 : svtoi(loc_name);
 
-    if (is_abbrev(arg, "mtr")) {
+    if (matches_start(arg, "mtr")) {
         if ((victim = find_char_around_char(ch, find_vis_by_name(ch, targ_name)))) {
             if (IS_NPC(victim)) {
 
@@ -454,7 +450,7 @@ ACMD(do_attach) {
             char_printf(ch, "That mob does not exist.\n");
     }
 
-    else if (is_abbrev(arg, "otr")) {
+    else if (matches_start(arg, "otr")) {
         if ((obj = find_obj_around_char(ch, find_vis_by_name(ch, targ_name)))) {
 
             /* have a valid obj, now get trigger */
@@ -466,15 +462,15 @@ ACMD(do_attach) {
                 add_trigger(SCRIPT(obj), trig, loc);
 
                 char_printf(ch, "Trigger {:d} ({}) attached to {}.\n", tn, GET_TRIG_NAME(trig),
-                            (obj->short_description ? obj->short_description : obj->name));
+                            (obj->short_description.empty() ? obj->name : obj->short_description));
             } else
                 char_printf(ch, "That trigger does not exist.\n");
         } else
             char_printf(ch, "That object does not exist.\n");
     }
 
-    else if (is_abbrev(arg, "wtr")) {
-        if (isdigit(*targ_name) && !strchr(targ_name, '.')) {
+    else if (matches_start(arg, "wtr")) {
+        if (is_integer(targ_name) && targ_name.find('.') == std::string_view::npos) {
             if ((room = find_target_room(ch, targ_name)) != NOWHERE) {
 
                 /* have a valid room, now get trigger */
@@ -499,26 +495,19 @@ ACMD(do_attach) {
 }
 
 /* adds a variable with given name and value to trigger */
-void add_var(TriggerVariableData **var_list, const char *name, const char *value) {
+void add_var(TriggerVariableData **var_list, const std::string_view name, const std::string_view value) {
     TriggerVariableData *vd;
 
-    for (vd = *var_list; vd && strcasecmp(vd->name, name); vd = vd->next)
+    for (vd = *var_list; vd && !matches(vd->name, name); vd = vd->next)
         ;
 
     if (vd) {
-        free(vd->value);
-        CREATE(vd->value, char, strlen(value) + 1);
-        strcpy(vd->value, value);
-    }
-
-    else {
+        vd->value = value;
+    } else {
         CREATE(vd, TriggerVariableData, 1);
 
-        CREATE(vd->name, char, strlen(name) + 1);
-        strcpy(vd->name, name);
-
-        CREATE(vd->value, char, strlen(value) + 1);
-        strcpy(vd->value, value);
+        vd->name = name;
+        vd->value = value;
 
         vd->next = *var_list;
         *var_list = vd;
@@ -533,23 +522,24 @@ void add_var(TriggerVariableData **var_list, const char *name, const char *value
  *  you might need to check to see if all the triggers were removed after
  *  this function returns, in order to remove the script.
  */
-int remove_trigger(ScriptData *sc, char *name) {
+int remove_trigger(ScriptData *sc, std::string_view name) {
     TrigData *i, *j;
     int num = 0, string = false, n;
-    char *cname;
+    std::string_view cname;
 
     if (!sc)
         return 0;
 
-    if ((cname = strcasestr(name, ".")) || (!isdigit(*name))) {
+    std::size_t pos = name.find('.');
+    if (pos != std::string::npos || (!is_integer(name))) {
         string = true;
-        if (cname) {
-            *cname = '\0';
-            num = atoi(name);
-            name = ++cname;
+        if (pos != std::string::npos) {
+            std::string cname(name.substr(0, pos));
+            num = svtoi(cname);
+            name = name.substr(pos + 1);
         }
     } else
-        num = atoi(name);
+        num = svtoi(name);
 
     for (n = 0, j = nullptr, i = TRIGGERS(sc); i; j = i, i = i->next) {
         if (string) {
@@ -588,22 +578,22 @@ ACMD(do_detach) {
     CharData *victim = nullptr;
     ObjData *obj = nullptr;
     RoomData *room;
-    char arg1[MAX_INPUT_LENGTH], arg2[MAX_INPUT_LENGTH], arg3[MAX_INPUT_LENGTH];
-    char *trigger = 0;
+    std::string_view trigger = 0;
 
-    argument = two_arguments(argument, arg1, arg2);
-    one_argument(argument, arg3);
+    auto arg1 = argument.shift();
+    auto arg2 = argument.shift();
+    auto arg3 = argument.shift();
 
-    if (!*arg1 || !*arg2) {
+    if (arg1.empty() || arg2.empty()) {
         char_printf(ch, "Usage: detach [ mob | object ] { target } { trigger | 'all' }\n");
         return;
     }
 
-    if (!strcasecmp(arg1, "room")) {
+    if (matches(arg1, "room")) {
         room = &world[IN_ROOM(ch)];
         if (!SCRIPT(room))
             char_printf(ch, "This room does not have any triggers.\n");
-        else if (!strcasecmp(arg2, "all")) {
+        else if (matches(arg2, "all")) {
             extract_script(SCRIPT(room));
             SCRIPT(room) = nullptr;
             char_printf(ch, "All triggers removed from room.\n");
@@ -620,19 +610,19 @@ ACMD(do_detach) {
     }
 
     else {
-        if (is_abbrev(arg1, "mob")) {
+        if (matches_start(arg1, "mob")) {
             if (!(victim = find_char_around_char(ch, find_vis_by_name(ch, arg2))))
                 char_printf(ch, "No such mobile around.\n");
-            else if (!*arg3)
+            else if (arg3.empty())
                 char_printf(ch, "You must specify a trigger to remove.\n");
             else
                 trigger = arg3;
         }
 
-        else if (is_abbrev(arg1, "object")) {
+        else if (matches_start(arg1, "object")) {
             if (!(obj = find_obj_around_char(ch, find_vis_by_name(ch, arg2))))
                 char_printf(ch, "No such object around.\n");
-            else if (!*arg3)
+            else if (arg3.empty())
                 char_printf(ch, "You must specify a trigger to remove.\n");
             else
                 trigger = arg3;
@@ -661,7 +651,7 @@ ACMD(do_detach) {
 
             else if (!SCRIPT(victim))
                 char_printf(ch, "That mob doesn't have any triggers.\n");
-            else if (!strcasecmp(arg2, "all")) {
+            else if (matches(arg2, "all")) {
                 extract_script(SCRIPT(victim));
                 SCRIPT(victim) = nullptr;
                 char_printf(ch, "All triggers removed from {}.\n", GET_SHORT(victim));
@@ -681,11 +671,11 @@ ACMD(do_detach) {
             if (!SCRIPT(obj))
                 char_printf(ch, "That object doesn't have any triggers.\n");
 
-            else if (!strcasecmp(arg2, "all")) {
+            else if (matches(arg2, "all")) {
                 extract_script(SCRIPT(obj));
                 SCRIPT(obj) = nullptr;
                 char_printf(ch, "All triggers removed from {}.\n",
-                            obj->short_description ? obj->short_description : obj->name);
+                            obj->short_description.empty() ? obj->name : obj->short_description);
             }
 
             else if (remove_trigger(SCRIPT(obj), trigger)) {
@@ -701,20 +691,16 @@ ACMD(do_detach) {
 }
 
 /* frees memory associated with var */
-void free_var_el(TriggerVariableData *var) {
-    free(var->name);
-    free(var->value);
-    free(var);
-}
+void free_var_el(TriggerVariableData *var) { free(var); }
 
 /*
  * remove var name from var_list
  * returns 1 if found, else 0
  */
-int remove_var(TriggerVariableData **var_list, const char *name) {
+int remove_var(TriggerVariableData **var_list, const std::string_view name) {
     TriggerVariableData *i, *j;
 
-    for (j = nullptr, i = *var_list; i && strcasecmp(name, i->name); j = i, i = i->next)
+    for (j = nullptr, i = *var_list; i && !matches(name, i->name); j = i, i = i->next)
         ;
 
     if (i) {
@@ -736,7 +722,7 @@ int remove_var(TriggerVariableData **var_list, const char *name) {
  *  Logs any errors caused by scripts to the system log.
  *  Will eventually allow on-line view of script errors.
  */
-void script_log(TrigData *t, char *msg) {
+void script_log(TrigData *t, std::string_view msg) {
     char buf[256];
 
     if (t)
@@ -772,21 +758,19 @@ int get_random_room_in_zone(int znum) {
     return to_room;
 }
 
-#define UID_VAR(str, i) ((i) ? sprintf((str), "%c%ld", UID_CHAR, GET_ID(i)) : sprintf((str), "0"))
-#define ROOM_UID_VAR(str, r) sprintf((str), "%c%ld", UID_CHAR, (long)r + ROOM_ID_BASE)
+#define UID_VAR(str, i)                                                                                                \
+    ((i) ? std::snprintf((str), sizeof(str), "%c%ld", UID_CHAR, GET_ID(i)) : std::snprintf((str), sizeof(str), "0"))
+#define ROOM_UID_VAR(str, r) std::snprintf((str), sizeof(str), "%c%ld", UID_CHAR, (long)r + ROOM_ID_BASE)
 
 /* sets str to be the value of var.field */
-void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *var, char *field, char *value,
-                      char *str) {
+void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, std::string_view var, std::string_view field,
+                      std::string_view value, std::string_view str) {
     TriggerVariableData *vd;
     CharData *ch, *c = nullptr;
     ObjData *obj, *o = nullptr;
     RoomData *room, *r = nullptr;
-    char *name;
+    std::string_view name;
     int num;
-
-    if (!value)
-        value = "";
 
     /*
      * First see if there is a local variable with the specified name.
@@ -794,7 +778,7 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
      * globals and static variables.
      */
     for (vd = GET_TRIG_VARS(trig); vd; vd = vd->next)
-        if (!strcasecmp(vd->name, var))
+        if (matches(vd->name, var))
             break;
 
     /*
@@ -805,7 +789,7 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
      */
     if (!vd && sc)
         for (vd = sc->global_vars; vd; vd = vd->next)
-            if (!strcasecmp(vd->name, var))
+            if (matches(vd->name, var))
                 break;
 
     /*
@@ -831,7 +815,6 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
         break;
     default:
         log("SYSERR: find_replacement encountered invalid trig type ({:d}) in trig {:d}", type, GET_TRIG_VNUM(trig));
-        *str = '\0';
         return;
     }
 
@@ -839,11 +822,11 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
      * If no variable field is given, we can simply drop in the variable's
      * value.
      */
-    if (!*field) {
+    if (field.empty()) {
         if (vd)
-            strcpy(str, vd->value);
+            str = vd->value;
         else {
-            if (!strcasecmp(var, "self")) {
+            if (matches(var, "self")) {
                 switch (type) {
                 case MOB_TRIGGER:
                     UID_VAR(str, ch);
@@ -858,7 +841,7 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
             }
             /* General scripting variable "damdone", which is the amount of damage
              * that was done by a wdamage, mdamage, or odamage command. */
-            else if (!strcasecmp(var, "damdone")) {
+            else if (matches(var, "damdone")) {
                 sprintf(str, "%d", trig->damdone);
             } else
                 *str = '\0';
@@ -912,7 +895,7 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
      * If no local or global variable named self was found above,
      * then we must be referring to the runner of the trigger.
      */
-    else if (!strcasecmp(var, "self")) {
+    else if (matches(var, "self")) {
         c = ch;
         o = obj;
         r = room;
@@ -924,16 +907,16 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
      */
     else {
 
-        if (!strcasecmp(var, "time")) {
-            if (!strcasecmp(field, "hour"))
+        if (matches(var, "time")) {
+            if (matches(field, "hour"))
                 sprintf(str, "%d", time_info.hours);
-            else if (!strcasecmp(field, "day"))
+            else if (matches(field, "day"))
                 sprintf(str, "%d", time_info.day);
-            else if (!strcasecmp(field, "month"))
+            else if (matches(field, "month"))
                 sprintf(str, "%d", time_info.month);
-            else if (!strcasecmp(field, "year"))
+            else if (matches(field, "year"))
                 sprintf(str, "%d", time_info.year);
-            else if (!strcasecmp(field, "stamp")) {
+            else if (matches(field, "stamp")) {
                 num = time_info.year * SECS_PER_MUD_YEAR + time_info.month * SECS_PER_MUD_MONTH +
                       time_info.day * SECS_PER_MUD_DAY + time_info.hours * SECS_PER_MUD_HOUR;
                 /* Only game-hour granularity is available in triggers. */
@@ -946,10 +929,10 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
             }
         }
 
-        else if (!strcasecmp(var, "random")) {
+        else if (matches(var, "random")) {
 
             /* Pick a random character in the room */
-            if (!strcasecmp(field, "char")) {
+            if (matches(field, "char")) {
                 if (type == MOB_TRIGGER)
                     c = get_random_char_around(ch, RAND_DG_MOB);
                 else if (type == OBJ_TRIGGER)
@@ -961,7 +944,7 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
             }
 
             /* Locate a random room globally */
-            else if (!strcasecmp(field, "room")) {
+            else if (matches(field, "room")) {
                 do {
                     num = random_number(0, top_of_world);
                 } while (ROOM_FLAGGED(num, ROOM_PRIVATE) || ROOM_FLAGGED(num, ROOM_DEATH) ||
@@ -970,7 +953,7 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
             }
 
             /* Pick a random room in the zone */
-            else if (!strcasecmp(field, "room_in_zone")) {
+            else if (matches(field, "room_in_zone")) {
                 if (type == MOB_TRIGGER && ch->in_room != NOWHERE)
                     num = world[ch->in_room].zone;
                 else if (type == OBJ_TRIGGER && (num = obj_room(obj)) != NOWHERE)
@@ -987,60 +970,60 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
 
             /* Generate a random number */
             else
-                sprintf(str, "%d", ((num = atoi(field)) > 0) ? random_number(1, num) : 0);
+                sprintf(str, "%d", ((num = svtoi(field)) > 0) ? random_number(1, num) : 0);
         }
 
         /* Static functions */
-        else if (!strcasecmp(var, "get")) {
+        else if (matches(var, "get")) {
             /* %get.obj_shortdesc[VNUM]% */
-            if (!strcasecmp(field, "obj_shortdesc")) {
-                if (is_positive_integer(value) && (num = real_object(atoi(value))) >= 0)
+            if (matches(field, "obj_shortdesc")) {
+                if (is_positive_integer(value) && (num = real_object(svtoi(value))) >= 0)
                     strcpy(str, obj_proto[num].short_description);
                 else
                     sprintf(str, "[no description for object %s]", value);
 
-            } else if (!strcasecmp(field, "obj_noadesc")) {
+            } else if (matches(field, "obj_noadesc")) {
                 /* %get.obj_noadesc[VNUM]% */
-                if (is_positive_integer(value) && (num = real_object(atoi(value))) >= 0)
+                if (is_positive_integer(value) && (num = real_object(svtoi(value))) >= 0)
                     strcpy(str, without_article(obj_proto[num].short_description));
                 else
                     sprintf(str, "[no description for object %s]", value);
 
-            } else if (!strcasecmp(field, "obj_pldesc")) {
+            } else if (matches(field, "obj_pldesc")) {
                 /* %get.obj_pldesc[VNUM]% */
-                if (is_positive_integer(value) && (num = real_object(atoi(value))) >= 0)
+                if (is_positive_integer(value) && (num = real_object(svtoi(value))) >= 0)
                     strcpy(str, pluralize(obj_proto[num].short_description));
                 else
                     sprintf(str, "[no description for object %s]", value);
 
                 /* %get.mob_shortdesc[VNUM]% */
-            } else if (!strcasecmp(field, "mob_shortdesc")) {
-                if (is_positive_integer(value) && (num = real_mobile(atoi(value))) >= 0)
+            } else if (matches(field, "mob_shortdesc")) {
+                if (is_positive_integer(value) && (num = real_mobile(svtoi(value))) >= 0)
                     strcpy(str, mob_proto[num].player.short_descr);
                 else
                     sprintf(str, "[no description for mobile %s]", value);
 
                 /* %get.obj_count[VNUM]% is the number of objects with VNUM in game */
-            } else if (!strcasecmp(field, "obj_count")) {
-                if ((num = real_object(atoi(value))) >= 0)
+            } else if (matches(field, "obj_count")) {
+                if ((num = real_object(svtoi(value))) >= 0)
                     sprintf(str, "%d", obj_index[num].number);
                 else
                     strcpy(str, "0");
                 /* %get.mob_count[VNUM]% is the number of mobiles with VNUM in game */
-            } else if (!strcasecmp(field, "mob_count")) {
-                if ((num = real_mobile(atoi(value))) >= 0)
+            } else if (matches(field, "mob_count")) {
+                if ((num = real_mobile(svtoi(value))) >= 0)
                     sprintf(str, "%d", mob_index[num].number);
                 else
                     strcpy(str, "0");
                 /* %get.room[VNUM]% returns a UID variable pointing to that room */
-            } else if (!strcasecmp(field, "room")) {
-                if ((num = real_room(atoi(value))) >= 0)
+            } else if (matches(field, "room")) {
+                if ((num = real_room(svtoi(value))) >= 0)
                     ROOM_UID_VAR(str, num);
                 else
                     strcpy(str, "0");
                 /* %get.people[VNUM]% is the number of people in room */
-            } else if (!strcasecmp(field, "people")) {
-                if (is_positive_integer(value) && (num = real_room(atoi(value))) >= 0) {
+            } else if (matches(field, "people")) {
+                if (is_positive_integer(value) && (num = real_room(svtoi(value))) >= 0) {
                     ch = world[num].people;
                     for (num = 0; ch; ch = ch->next_in_room)
                         if (!GET_INVIS_LEV(ch))
@@ -1051,7 +1034,7 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
                     sprintf(buf2, "get.people[%s]: room '-1' does not exist", value);
                     script_log(trig, buf2);
                 }
-            } else if (!strcasecmp(field, "opposite_dir")) {
+            } else if (matches(field, "opposite_dir")) {
                 if ((num = search_block(value, dirs, false)) >= 0)
                     strcpy(str, dirs[rev_dir[num]]);
                 else {
@@ -1063,7 +1046,7 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
                         *(str++) = *(value + num);
                     *str = '\0';
                 }
-            } else if (!strcasecmp(field, "uidchar"))
+            } else if (matches(field, "uidchar"))
                 sprintf(str, "%c", UID_CHAR);
             else {
                 *str = '\0';
@@ -1073,35 +1056,35 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
         }
 
         /* String functions */
-        else if (!strcasecmp(var, "string")) {
+        else if (matches(var, "string")) {
 
-            if (!strcasecmp(field, "reverse")) {
+            if (matches(field, "reverse")) {
                 for (num = strlen(value) - 1; num >= 0; --num)
                     *(str++) = *(value + num);
                 *str = '\0';
             }
 
-            else if (!strcasecmp(field, "length"))
+            else if (matches(field, "length"))
                 sprintf(str, "%zu", strlen(value));
 
-            else if (!strcasecmp(field, "tolower")) {
+            else if (matches(field, "tolower")) {
                 do {
                     *(str++) = LOWER(*(value++));
                 } while (*value);
             }
 
-            else if (!strcasecmp(field, "toupper")) {
+            else if (matches(field, "toupper")) {
                 do {
                     *(str++) = UPPER(*(value++));
                 } while (*value);
             }
 
-            else if (!strcasecmp(field, "cap") || !strcasecmp(field, "capitalize")) {
+            else if (matches(field, "cap") || matches(field, "capitalize_first")) {
                 strcpy(str, value);
-                cap_by_color(str);
+                capitalize_first(str);
             }
 
-            else if (!strcasecmp(field, "firstword"))
+            else if (matches(field, "firstword"))
                 any_one_arg(value, str);
 
             else {
@@ -1125,94 +1108,94 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
      */
     if (c) {
         /* String identifiers */
-        if (!strcasecmp(field, "name"))
+        if (matches(field, "name"))
             strcpy(str, GET_SHORT(c) ? GET_SHORT(c) : GET_NAME(c));
-        else if (!strcasecmp(field, "p") || !strcasecmp(field, "hisher"))
+        else if (matches(field, "p") || matches(field, "hisher"))
             strcpy(str, HSHR(c)); /* Possessive pronoun */
-        else if (!strcasecmp(field, "o") || !strcasecmp(field, "himher"))
+        else if (matches(field, "o") || matches(field, "himher"))
             strcpy(str, HMHR(c)); /* Objective pronoun */
-        else if (!strcasecmp(field, "n") || !strcasecmp(field, "heshe"))
+        else if (matches(field, "n") || matches(field, "heshe"))
             strcpy(str, HSSH(c)); /* Nominative pronoun */
-        else if (!strcasecmp(field, "alias"))
+        else if (matches(field, "alias"))
             strcpy(str, GET_NAME(c));
-        else if (!strcasecmp(field, "title"))
+        else if (matches(field, "title"))
             strcpy(str, GET_TITLE(c) ? GET_TITLE(c) : "");
 
         /* Identifying numbers */
-        else if (!strcasecmp(field, "vnum"))
+        else if (matches(field, "vnum"))
             sprintf(str, "%d", GET_MOB_VNUM(c));
-        else if (!strcasecmp(field, "id"))
+        else if (matches(field, "id"))
             sprintf(str, "%ld", GET_ID(c));
 
         /* Attributes */
-        else if (!strcasecmp(field, "sex") || !strcasecmp(field, "gender"))
+        else if (matches(field, "sex") || matches(field, "gender"))
             strcpy(str, genders[(int)GET_SEX(c)]);
-        else if (!strcasecmp(field, "class")) {
+        else if (matches(field, "class")) {
             strcpy(str, CLASS_PLAINNAME(c));
-            cap_by_color(str);
-        } else if (!strcasecmp(field, "race"))
+            capitalize_first(str);
+        } else if (matches(field, "race"))
             strcpy(str, races[(int)GET_RACE(c)].name);
-        else if (!strcasecmp(field, "level"))
+        else if (matches(field, "level"))
             sprintf(str, "%d", GET_LEVEL(c));
 
-        else if (!strcasecmp(field, "weight"))
+        else if (matches(field, "weight"))
             sprintf(str, "%d", GET_WEIGHT(c));
-        else if (!strcasecmp(field, "height"))
+        else if (matches(field, "height"))
             sprintf(str, "%d", GET_HEIGHT(c));
-        else if (!strcasecmp(field, "size"))
+        else if (matches(field, "size"))
             sprintf(str, "%s", SIZE_DESC(c));
 
-        else if (!strcasecmp(field, "cha"))
+        else if (matches(field, "cha"))
             sprintf(str, "%d", GET_VIEWED_CHA(c));
-        else if (!strcasecmp(field, "str"))
+        else if (matches(field, "str"))
             sprintf(str, "%d", GET_VIEWED_STR(c));
-        else if (!strcasecmp(field, "int"))
+        else if (matches(field, "int"))
             sprintf(str, "%d", GET_VIEWED_INT(c));
-        else if (!strcasecmp(field, "wis"))
+        else if (matches(field, "wis"))
             sprintf(str, "%d", GET_VIEWED_WIS(c));
-        else if (!strcasecmp(field, "con"))
+        else if (matches(field, "con"))
             sprintf(str, "%d", GET_VIEWED_CON(c));
-        else if (!strcasecmp(field, "dex"))
+        else if (matches(field, "dex"))
             sprintf(str, "%d", GET_VIEWED_DEX(c));
 
-        else if (!strcasecmp(field, "real_cha"))
+        else if (matches(field, "real_cha"))
             sprintf(str, "%d", GET_CHA(c));
-        else if (!strcasecmp(field, "real_str"))
+        else if (matches(field, "real_str"))
             sprintf(str, "%d", GET_STR(c));
-        else if (!strcasecmp(field, "real_int"))
+        else if (matches(field, "real_int"))
             sprintf(str, "%d", GET_INT(c));
-        else if (!strcasecmp(field, "real_wis"))
+        else if (matches(field, "real_wis"))
             sprintf(str, "%d", GET_WIS(c));
-        else if (!strcasecmp(field, "real_con"))
+        else if (matches(field, "real_con"))
             sprintf(str, "%d", GET_CON(c));
-        else if (!strcasecmp(field, "real_dex"))
+        else if (matches(field, "real_dex"))
             sprintf(str, "%d", GET_DEX(c));
 
-        else if (!strcasecmp(field, "hit"))
+        else if (matches(field, "hit"))
             sprintf(str, "%d", GET_HIT(c));
-        else if (!strcasecmp(field, "maxhit"))
+        else if (matches(field, "maxhit"))
             sprintf(str, "%d", GET_MAX_HIT(c));
-        else if (!strcasecmp(field, "move"))
+        else if (matches(field, "move"))
             sprintf(str, "%d", GET_MOVE(c));
-        else if (!strcasecmp(field, "maxmove"))
+        else if (matches(field, "maxmove"))
             sprintf(str, "%d", GET_MAX_MOVE(c));
-        else if (!strcasecmp(field, "armor"))
+        else if (matches(field, "armor"))
             sprintf(str, "%d", GET_AC(c));
-        else if (!strcasecmp(field, "hitroll"))
+        else if (matches(field, "hitroll"))
             sprintf(str, "%d", GET_HITROLL(c));
-        else if (!strcasecmp(field, "damroll"))
+        else if (matches(field, "damroll"))
             sprintf(str, "%d", GET_DAMROLL(c));
-        else if (!strcasecmp(field, "exp"))
+        else if (matches(field, "exp"))
             sprintf(str, "%ld", GET_EXP(c));
-        else if (!strcasecmp(field, "perception"))
+        else if (matches(field, "perception"))
             sprintf(str, "%ld", GET_PERCEPTION(c));
-        else if (!strcasecmp(field, "hiddenness"))
+        else if (matches(field, "hiddenness"))
             sprintf(str, "%ld", GET_HIDDENNESS(c));
-        else if (!strcasecmp(field, "align") || !strcasecmp(field, "alignment"))
+        else if (matches(field, "align") || matches(field, "alignment"))
             sprintf(str, "%d", GET_ALIGNMENT(c));
-        else if (!strcasecmp(field, "composition"))
+        else if (matches(field, "composition"))
             strcpy(str, compositions[(int)GET_COMPOSITION(c)].name);
-        else if (!strcasecmp(field, "lifeforce"))
+        else if (matches(field, "lifeforce"))
             strcpy(str, lifeforces[(int)GET_LIFEFORCE(c)].name);
 
         else if (is_coin_name(field, PLATINUM))
@@ -1225,7 +1208,7 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
             sprintf(str, "%d", GET_COPPER(c));
 
         /* Flags */
-        else if (!strcasecmp(field, "flags")) {
+        else if (matches(field, "flags")) {
             *str = '\0';
             if (IS_NPC(c)) /* ACT flags */
                 sprintflag(str, MOB_FLAGS(c), NUM_MOB_FLAGS, action_bits);
@@ -1235,7 +1218,7 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
                 if (HAS_FLAGS(PRF_FLAGS(c), NUM_PRF_FLAGS))
                     sprintflag(str + strlen(str), PRF_FLAGS(c), NUM_PRF_FLAGS, preference_bits);
             }
-        } else if (!strcasecmp(field, "flagged")) {
+        } else if (matches(field, "flagged")) {
             if (IS_NPC(c)) {
                 if ((num = search_block(value, action_bits, false)) >= 0)
                     strcpy(str, MOB_FLAGGED(c, num) ? "1" : "0");
@@ -1255,10 +1238,10 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
                     script_log(trig, buf2);
                 }
             }
-        } else if (!strcasecmp(field, "aff_flags") || !strcasecmp(field, "eff_flags"))
+        } else if (matches(field, "aff_flags") || matches(field, "eff_flags"))
             sprintflag(str, EFF_FLAGS(c), NUM_EFF_FLAGS, effect_flags);
 
-        else if (!strcasecmp(field, "aff_flagged") || !strcasecmp(field, "eff_flagged")) {
+        else if (matches(field, "aff_flagged") || matches(field, "eff_flagged")) {
             if ((num = search_block(value, effect_flags, false)) >= 0)
                 strcpy(str, EFF_FLAGGED(c, num) ? "1" : "0");
             else {
@@ -1267,7 +1250,7 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
                 script_log(trig, buf2);
             }
 
-        } else if (!strcasecmp(field, "spells")) {
+        } else if (matches(field, "spells")) {
             effect *eff;
             *str = '\0';
             for (eff = c->effects; eff; eff = eff->next)
@@ -1275,7 +1258,7 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
                     strcat(str, skills[eff->type].name);
                     strcat(str, " ");
                 }
-        } else if (!strcasecmp(field, "has_spell")) {
+        } else if (matches(field, "has_spell")) {
             if ((num = find_talent_num(value, 0)) >= 0)
                 strcpy(str, affected_by_spell(c, num) ? "1" : "0");
             else {
@@ -1286,34 +1269,34 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
         }
 
         /* Character relationships */
-        else if (!strcasecmp(field, "fighting"))
+        else if (matches(field, "fighting"))
             UID_VAR(str, FIGHTING(c));
-        else if (!strcasecmp(field, "hunting"))
+        else if (matches(field, "hunting"))
             UID_VAR(str, HUNTING(c));
-        else if (!strcasecmp(field, "riding"))
+        else if (matches(field, "riding"))
             UID_VAR(str, RIDING(c));
-        else if (!strcasecmp(field, "ridden_by"))
+        else if (matches(field, "ridden_by"))
             UID_VAR(str, RIDDEN_BY(c));
-        else if (!strcasecmp(field, "consented"))
+        else if (matches(field, "consented"))
             UID_VAR(str, CONSENT(c));
-        else if (!strcasecmp(field, "master"))
+        else if (matches(field, "master"))
             UID_VAR(str, c->master);
-        else if (!strcasecmp(field, "next_in_room")) {
+        else if (matches(field, "next_in_room")) {
             /* Skip any wiz-invis folks */
             while (c->next_in_room && GET_INVIS_LEV(c->next_in_room))
                 c = c->next_in_room;
             UID_VAR(str, c->next_in_room);
-        } else if (!strcasecmp(field, "group_size"))
+        } else if (matches(field, "group_size"))
             sprintf(str, "%d", group_size(c, false));
-        else if (!strcasecmp(field, "group_size_in_room"))
+        else if (matches(field, "group_size_in_room"))
             sprintf(str, "%d", group_size(c, true));
-        else if (!strcasecmp(field, "group_leader")) {
+        else if (matches(field, "group_leader")) {
             ch = c->group_master ? c->group_master : c;
             UID_VAR(str, ch);
-        } else if (!strcasecmp(field, "group_member")) {
+        } else if (matches(field, "group_member")) {
             ch = c->group_master ? c->group_master : c;
 
-            num = atoi(value);
+            num = svtoi(value);
 
             if (!IS_GROUPED(ch) || num <= 0)
                 UID_VAR(str, c);
@@ -1333,18 +1316,18 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
         }
 
         /* Quests */
-        else if (!strcasecmp(field, "quest_variable")) {
-            if (!*value) {
+        else if (matches(field, "quest_variable")) {
+            if (value.empty()) {
                 script_log(trig, "quest_variable called without specifying a quest");
                 strcpy(str, "0");
             } else if (IS_NPC(c))
                 strcpy(str, "0");
             else {
-                char *varptr;
+                std::string_view varptr;
                 for (varptr = value; *varptr && *varptr != ':'; ++varptr)
                     ;
                 *(varptr++) = '\0';
-                if (!*varptr) {
+                if (varptr.empty()) {
                     script_log(trig, "quest_variable called without specifying a variable");
                     strcpy(str, "0");
                 } else
@@ -1352,8 +1335,8 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
             }
         }
 
-        else if (!strcasecmp(field, "quest_stage")) {
-            if (!*value) {
+        else if (matches(field, "quest_stage")) {
+            if (value.empty()) {
                 script_log(trig, "quest_stage called without specifying a quest");
                 strcpy(str, "0");
             } else if (IS_NPC(c))
@@ -1362,8 +1345,8 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
                 sprintf(str, "%d", quest_stage(c, value));
         }
 
-        else if (!strcasecmp(field, "has_completed")) {
-            if (!*value) {
+        else if (matches(field, "has_completed")) {
+            if (value.empty()) {
                 script_log(trig, "has_completed called without specifying a quest");
                 strcpy(str, "0");
             } else if (IS_NPC(c))
@@ -1372,8 +1355,8 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
                 strcpy(str, has_completed_quest(value, c) ? "1" : "0");
         }
 
-        else if (!strcasecmp(field, "has_failed")) {
-            if (!*value) {
+        else if (matches(field, "has_failed")) {
+            if (value.empty()) {
                 script_log(trig, "has_failed called without specifying a quest");
                 strcpy(str, "0");
             } else if (IS_NPC(c))
@@ -1383,12 +1366,12 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
         }
 
         /* Object relationships */
-        else if (!strcasecmp(field, "inventory")) {
-            if (!strcasecmp(value, "count"))
+        else if (matches(field, "inventory")) {
+            if (matches(value, "count"))
                 sprintf(str, "%d", IS_CARRYING_N(c));
             else if (*value) {
                 /* An argument was given: find a specific object. */
-                num = atoi(value);
+                num = svtoi(value);
                 for (obj = c->carrying; obj; obj = obj->next_content)
                     if (GET_OBJ_VNUM(obj) == num) {
                         UID_VAR(str, obj);
@@ -1399,9 +1382,9 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
             } else
                 /* No argument given: return the first inventory item */
                 UID_VAR(str, c->carrying);
-        } else if (!strcasecmp(field, "worn")) {
+        } else if (matches(field, "worn")) {
             int pos;
-            if (!strcasecmp(value, "count")) {
+            if (matches(value, "count")) {
                 for (num = pos = 0; pos < NUM_WEARS; ++pos)
                     if (GET_EQ(c, pos))
                         ++num;
@@ -1410,10 +1393,10 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
                 UID_VAR(str, GET_EQ(c, pos));
             else
                 strcpy(str, "0");
-        } else if (!strcasecmp(field, "wearing")) {
+        } else if (matches(field, "wearing")) {
             if (is_positive_integer(value)) {
                 int pos;
-                num = atoi(value);
+                num = svtoi(value);
                 for (pos = 0; pos < NUM_WEARS; ++pos)
                     if (GET_EQ(c, pos) && GET_OBJ_VNUM(GET_EQ(c, pos)) == num) {
                         UID_VAR(str, GET_EQ(c, pos));
@@ -1426,19 +1409,19 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
                 strcpy(str, "0");
         }
 
-        else if (!strcasecmp(field, "position")) {
+        else if (matches(field, "position")) {
             strcpy(str, position_types[(int)GET_POS(c)]);
-        } else if (!strcasecmp(field, "stance"))
+        } else if (matches(field, "stance"))
             strcpy(str, stance_types[(int)GET_STANCE(c)]);
 
-        else if (!strcasecmp(field, "room")) {
+        else if (matches(field, "room")) {
             if (IN_ROOM(c) >= 0 && IN_ROOM(c) <= top_of_world)
                 sprintf(str, "%d", world[IN_ROOM(c)].vnum);
             else
                 strcpy(str, "-1");
         }
 
-        else if (!strcasecmp(field, "talent") || !strcasecmp(field, "skill")) {
+        else if (matches(field, "talent") || matches(field, "skill")) {
             int talent = find_talent_num(value, 0);
             if (talent < 0)
                 strcpy(str, "0");
@@ -1446,23 +1429,23 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
                 sprintf(str, "%d", GET_SKILL(c, talent));
         }
 
-        else if (!strcasecmp(field, "clan")) {
+        else if (matches(field, "clan")) {
             if (!IS_NPC(c) && GET_CLAN(c))
                 strcpy(str, GET_CLAN(c)->name);
             else
                 *str = '\0';
-        } else if (!strcasecmp(field, "clan_rank"))
+        } else if (matches(field, "clan_rank"))
             sprintf(str, "%d", IS_NPC(c) ? 0 : GET_CLAN_RANK(c));
 
-        else if (!strcasecmp(field, "can_be_seen"))
+        else if (matches(field, "can_be_seen"))
             strcpy(str, type == MOB_TRIGGER && !CAN_SEE(ch, c) ? "0" : "1");
 
-        else if (!strcasecmp(field, "trophy")) {
+        else if (matches(field, "trophy")) {
             if (IS_NPC(c))
                 *str = '\0';
             else {
                 TrophyNode *node;
-                num = value && *value ? atoi(value) : -1;
+                num = value && *value ? svtoi(value) : -1;
                 *str = '\0';
                 for (node = GET_TROPHY(c); node; node = node->next) {
                     /* Getting list of kills */
@@ -1491,56 +1474,56 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
 
     else if (o) {
         /* String identifiers */
-        if (!strcasecmp(field, "name"))
+        if (matches(field, "name"))
             strcpy(str, o->name);
-        else if (!strcasecmp(field, "shortdesc"))
+        else if (matches(field, "shortdesc"))
             strcpy(str, o->short_description);
-        else if (!strcasecmp(field, "description"))
+        else if (matches(field, "description"))
             strcpy(str, o->description);
 
         /* Identifying numbers */
-        else if (!strcasecmp(field, "vnum"))
+        else if (matches(field, "vnum"))
             sprintf(str, "%d", GET_OBJ_VNUM(o));
-        else if (!strcasecmp(field, "type"))
+        else if (matches(field, "type"))
             strcpy(str, OBJ_TYPE_NAME(o));
-        else if (!strcasecmp(field, "id"))
+        else if (matches(field, "id"))
             sprintf(str, "%ld", GET_ID(o));
 
         /* Numerical attributes */
-        else if (!strcasecmp(field, "weight"))
+        else if (matches(field, "weight"))
             sprintf(str, "%.2f", o->obj_flags.weight);
-        else if (!strcasecmp(field, "cost"))
+        else if (matches(field, "cost"))
             sprintf(str, "%d", GET_OBJ_COST(o));
-        else if (!strcasecmp(field, "cost_per_day") || !strcasecmp(field, "rent"))
+        else if (matches(field, "cost_per_day") || matches(field, "rent"))
             strcpy(str, "0");
-        else if (!strcasecmp(field, "level"))
+        else if (matches(field, "level"))
             sprintf(str, "%d", GET_OBJ_LEVEL(o));
-        else if (!strcasecmp(field, "val0"))
+        else if (matches(field, "val0"))
             sprintf(str, "%d", GET_OBJ_VAL(o, 0));
-        else if (!strcasecmp(field, "val1"))
+        else if (matches(field, "val1"))
             sprintf(str, "%d", GET_OBJ_VAL(o, 1));
-        else if (!strcasecmp(field, "val2"))
+        else if (matches(field, "val2"))
             sprintf(str, "%d", GET_OBJ_VAL(o, 2));
-        else if (!strcasecmp(field, "val3"))
+        else if (matches(field, "val3"))
             sprintf(str, "%d", GET_OBJ_VAL(o, 3));
-        else if (!strcasecmp(field, "timer"))
+        else if (matches(field, "timer"))
             sprintf(str, "%d", GET_OBJ_TIMER(o));
-        else if (!strcasecmp(field, "decomp"))
+        else if (matches(field, "decomp"))
             sprintf(str, "%d", GET_OBJ_DECOMP(o));
-        else if (!strcasecmp(field, "hiddenness"))
+        else if (matches(field, "hiddenness"))
             sprintf(str, "%ld", GET_OBJ_HIDDENNESS(o));
-        else if (!strcasecmp(field, "affect") || !strcasecmp(field, "effect")) {
-            if (!is_positive_integer(value) || (num = atoi(value)) > 5)
+        else if (matches(field, "affect") || matches(field, "effect")) {
+            if (!is_positive_integer(value) || (num = svtoi(value)) > 5)
                 *str = '\0';
             else
                 sprintf(str, "%+d %s", o->applies[num].modifier, apply_types[(int)o->applies[num].location]);
-        } else if (!strcasecmp(field, "affect_value") || !strcasecmp(field, "effect_value"))
-            sprintf(str, "%d", is_positive_integer(value) && (num = atoi(value) <= 5) ? o->applies[num].modifier : 0);
+        } else if (matches(field, "affect_value") || matches(field, "effect_value"))
+            sprintf(str, "%d", is_positive_integer(value) && (num = svtoi(value) <= 5) ? o->applies[num].modifier : 0);
 
         /* Flags */
-        else if (!strcasecmp(field, "flags"))
+        else if (matches(field, "flags"))
             sprintflag(str, GET_OBJ_FLAGS(o), NUM_ITEM_FLAGS, extra_bits);
-        else if (!strcasecmp(field, "flagged")) {
+        else if (matches(field, "flagged")) {
             if ((num = search_block(value, extra_bits, false)) >= 0)
                 strcpy(str, OBJ_FLAGGED(o, num) ? "1" : "0");
             else {
@@ -1548,10 +1531,10 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
                 sprintf(buf2, "unrecognized object extra bit '%s' to %%%s.flagged[]%%", value, var);
                 script_log(trig, buf2);
             }
-        } else if (!strcasecmp(field, "spells"))
+        } else if (matches(field, "spells"))
             sprintflag(str, GET_OBJ_EFF_FLAGS(o), NUM_EFF_FLAGS, effect_flags);
 
-        else if (!strcasecmp(field, "has_spell")) {
+        else if (matches(field, "has_spell")) {
             if ((num = search_block(value, effect_flags, false)) >= 0)
                 strcpy(str, OBJ_EFF_FLAGGED(o, num) ? "1" : "0");
             else {
@@ -1562,29 +1545,29 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
         }
 
         /* Location */
-        else if (!strcasecmp(field, "room")) {
+        else if (matches(field, "room")) {
             num = obj_room(o);
             if (num != NOWHERE)
                 sprintf(str, "%d", world[num].vnum);
             else
                 strcpy(str, "-1");
-        } else if (!strcasecmp(field, "carried_by"))
+        } else if (matches(field, "carried_by"))
             UID_VAR(str, o->carried_by);
-        else if (!strcasecmp(field, "worn_by"))
+        else if (matches(field, "worn_by"))
             UID_VAR(str, o->worn_by);
-        else if (!strcasecmp(field, "worn_on")) {
+        else if (matches(field, "worn_on")) {
             if (o->worn_by)
                 sprinttype(o->worn_on, wear_positions, str);
             else
                 *str = '\0';
-        } else if (!strcasecmp(field, "contents")) {
-            if (!strcasecmp(value, "count")) {
+        } else if (matches(field, "contents")) {
+            if (matches(value, "count")) {
                 for (num = 0, o = o->contains; o; o = o->next_content)
                     ++num;
                 sprintf(str, "%d", num);
             } else if (*value) {
                 /* An argument was given: find a specific object. */
-                num = atoi(value);
+                num = svtoi(value);
                 for (obj = o->contains; obj; obj = obj->next_content)
                     if (GET_OBJ_VNUM(obj) == num) {
                         UID_VAR(str, obj);
@@ -1594,7 +1577,7 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
                     strcpy(str, "0");
             } else
                 UID_VAR(str, o->contains);
-        } else if (!strcasecmp(field, "next_in_list"))
+        } else if (matches(field, "next_in_list"))
             UID_VAR(str, o->next_content);
 
         else {
@@ -1608,19 +1591,19 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
      * Room variables
      */
     else if (r) {
-        if (!strcasecmp(field, "name"))
+        if (matches(field, "name"))
             strcpy(str, r->name);
 
-        else if (!strcasecmp(field, "vnum"))
+        else if (matches(field, "vnum"))
             sprintf(str, "%d", r->vnum);
-        else if (!strncasecmp(field, "sector", 6))
+        else if (matches(field, "sector"))
             sprintf(str, "%s", sectors[r->sector_type].name);
-        else if (!strcasecmp(field, "is_dark"))
+        else if (matches(field, "is_dark"))
             strcpy(str, r->light > 0 ? "1" : "0");
 
-        else if (!strcasecmp(field, "flags"))
+        else if (matches(field, "flags"))
             sprintflag(str, r->room_flags, NUM_ROOM_FLAGS, room_bits);
-        else if (!strcasecmp(field, "flagged")) {
+        else if (matches(field, "flagged")) {
             if ((num = search_block(value, room_bits, false)) >= 0)
                 strcpy(str, IS_FLAGGED(r->room_flags, num) ? "1" : "0");
             else {
@@ -1628,9 +1611,9 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
                 sprintf(buf2, "unrecognized room flag '%s' to %%%s.flagged%%", value, var);
                 script_log(trig, buf2);
             }
-        } else if (!strcasecmp(field, "effects") || !strcasecmp(field, "affects"))
+        } else if (matches(field, "effects") || matches(field, "affects"))
             sprintflag(str, r->room_effects, NUM_ROOM_EFF_FLAGS, room_effects);
-        else if (!strcasecmp(field, "has_effect") || !strcasecmp(field, "has_affect")) {
+        else if (matches(field, "has_effect") || matches(field, "has_affect")) {
             if ((num = search_block(value, room_effects, false)) >= 0)
                 strcpy(str, IS_FLAGGED(r->room_effects, num) ? "1" : "0");
             else {
@@ -1640,14 +1623,14 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
             }
         }
 
-        else if (!strcasecmp(field, "objects")) {
-            if (!strcasecmp(value, "count")) {
+        else if (matches(field, "objects")) {
+            if (matches(value, "count")) {
                 for (num = 0, o = r->contents; o; o = o->next_content)
                     ++num;
                 sprintf(str, "%d", num);
             } else if (*value) {
                 /* An argument was given: find a specific object. */
-                num = atoi(value);
+                num = svtoi(value);
                 for (obj = r->contents; obj; obj = obj->next_content)
                     if (GET_OBJ_VNUM(obj) == num) {
                         UID_VAR(str, obj);
@@ -1657,15 +1640,15 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
                     strcpy(str, "0");
             } else
                 UID_VAR(str, r->contents);
-        } else if (!strcasecmp(field, "people")) {
-            if (!strcasecmp(value, "count")) {
+        } else if (matches(field, "people")) {
+            if (matches(value, "count")) {
                 for (num = 0, c = r->people; c; c = c->next_in_room)
                     if (!GET_INVIS_LEV(c))
                         ++num;
                 sprintf(str, "%d", num);
             } else if (*value) {
                 /* An argument was given: find a specific vnum. */
-                num = atoi(value);
+                num = svtoi(value);
                 for (ch = r->people; ch; ch = ch->next_in_room)
                     if (GET_MOB_VNUM(ch) == num) {
                         UID_VAR(str, ch);
@@ -1686,16 +1669,16 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
         else if ((num = search_block(field, dirs, true)) >= 0) {
             if (!r->exits[num])
                 strcpy(str, "-1");
-            else if (!*value) /* %room.DIR% is a vnum */
+            else if (value.empty()) /* %room.DIR% is a vnum */
                 sprintf(str, "%d", r->exits[num]->to_room != NOWHERE ? world[r->exits[num]->to_room].vnum : -1);
-            else if (!strcasecmp(value, "room")) { /* %room.DIR[room]% */
+            else if (matches(value, "room")) { /* %room.DIR[room]% */
                 if (r->exits[num]->to_room != NOWHERE)
                     ROOM_UID_VAR(str, r->exits[num]->to_room);
                 else
                     strcpy(str, "0");
-            } else if (!strcasecmp(value, "key")) /* %room.DIR[key]% */
+            } else if (matches(value, "key")) /* %room.DIR[key]% */
                 sprintf(str, "%d", r->exits[num]->key);
-            else if (!strcasecmp(value, "bits")) /* %room.DIR[bits]% */
+            else if (matches(value, "bits")) /* %room.DIR[bits]% */
                 sprintbit(r->exits[num]->exit_info, exit_bits, str);
             else
                 *str = '\0';
@@ -1717,16 +1700,17 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
          */
         if (vd && vd->value) {
             sprintf(buf2, "attempt to access field '%s' on %s variable '%s'", field,
-                    !*vd->value ? "empty" : (*vd->value == UID_CHAR ? "previously extracted UID" : "non-UID"), var);
+                    vd.empty()->value ? "empty" : (*vd->value == UID_CHAR ? "previously extracted UID" : "non-UID"),
+                    var);
             script_log(trig, buf2);
         }
     }
 }
 
 /* substitutes any variables into line and returns it as buf */
-void var_subst(void *go, ScriptData *sc, TrigData *trig, int type, char *line, char *buf) {
+void var_subst(void *go, ScriptData *sc, TrigData *trig, int type, std::string_view line, std::string_view buf) {
     char tmp[MAX_INPUT_LENGTH], repl_str[MAX_INPUT_LENGTH], value[MAX_INPUT_LENGTH];
-    char *var, *field, *subfield, *p;
+    std::string_view var, *field, *subfield, *p;
     int left, len;
 
     /* Skip if no %'s */
@@ -1802,7 +1786,7 @@ void var_subst(void *go, ScriptData *sc, TrigData *trig, int type, char *line, c
 }
 
 /* returns 1 if string is all digits, else 0 */
-int is_num(char *num) {
+int is_num(std::string_view num) {
     if (*num == '\0')
         return false;
 
@@ -1810,15 +1794,16 @@ int is_num(char *num) {
         ++num;
 
     for (; *num != '\0'; ++num)
-        if (!isdigit(*num))
+        if (!is_integer(num))
             return false;
 
     return true;
 }
 
 /* evaluates 'lhs op rhs', and copies to result */
-void eval_op(char *op, char *lhs, char *rhs, char *result, void *go, ScriptData *sc, TrigData *trig) {
-    char *p;
+void eval_op(std::string_view op, std::string_view lhs, std::string_view rhs, std::string_view result, void *go,
+             ScriptData *sc, TrigData *trig) {
+    std::string_view p;
     int n;
 
     /* strip off extra spaces at begin and end */
@@ -1837,82 +1822,82 @@ void eval_op(char *op, char *lhs, char *rhs, char *result, void *go, ScriptData 
         ;
 
     /* find the op, and figure out the value */
-    if (!strcasecmp("||", op)) {
-        if ((!*lhs || (*lhs == '0')) && (!*rhs || (*rhs == '0')))
+    if (matches("||", op)) {
+        if ((lhs.empty() || (*lhs == '0')) && (rhs.empty() || (*rhs == '0')))
             strcpy(result, "0");
         else
             strcpy(result, "1");
     }
 
-    else if (!strcasecmp("&&", op)) {
-        if (!*lhs || (*lhs == '0') || !*rhs || (*rhs == '0'))
+    else if (matches("&&", op)) {
+        if (lhs.empty() || (*lhs == '0') || rhs.empty() || (*rhs == '0'))
             strcpy(result, "0");
         else
             strcpy(result, "1");
     }
 
-    else if (!strcasecmp("==", op)) {
+    else if (matches("==", op)) {
         if (is_num(lhs) && is_num(rhs))
-            sprintf(result, "%d", atoi(lhs) == atoi(rhs));
+            sprintf(result, "%d", svtoi(lhs) == svtoi(rhs));
         else
-            sprintf(result, "%d", !strcasecmp(lhs, rhs));
+            sprintf(result, "%d", matches(lhs, rhs));
     }
 
-    else if (!strcasecmp("!=", op)) {
+    else if (matches("!=", op)) {
         if (is_num(lhs) && is_num(rhs))
-            sprintf(result, "%d", atoi(lhs) != atoi(rhs));
+            sprintf(result, "%d", svtoi(lhs) != svtoi(rhs));
         else
             sprintf(result, "%d", strcasecmp(lhs, rhs));
     }
 
-    else if (!strcasecmp("<=", op)) {
+    else if (matches("<=", op)) {
         if (is_num(lhs) && is_num(rhs))
-            sprintf(result, "%d", atoi(lhs) <= atoi(rhs));
+            sprintf(result, "%d", svtoi(lhs) <= svtoi(rhs));
         else
             sprintf(result, "%d", strcasecmp(lhs, rhs) <= 0);
     }
 
-    else if (!strcasecmp(">=", op)) {
+    else if (matches(">=", op)) {
         if (is_num(lhs) && is_num(rhs))
-            sprintf(result, "%d", atoi(lhs) >= atoi(rhs));
+            sprintf(result, "%d", svtoi(lhs) >= svtoi(rhs));
         else
             sprintf(result, "%d", strcasecmp(lhs, rhs) <= 0);
     }
 
-    else if (!strcasecmp("<", op)) {
+    else if (matches("<", op)) {
         if (is_num(lhs) && is_num(rhs))
-            sprintf(result, "%d", atoi(lhs) < atoi(rhs));
+            sprintf(result, "%d", svtoi(lhs) < svtoi(rhs));
         else
             sprintf(result, "%d", strcasecmp(lhs, rhs) < 0);
     }
 
-    else if (!strcasecmp(">", op)) {
+    else if (matches(">", op)) {
         if (is_num(lhs) && is_num(rhs))
-            sprintf(result, "%d", atoi(lhs) > atoi(rhs));
+            sprintf(result, "%d", svtoi(lhs) > svtoi(rhs));
         else
             sprintf(result, "%d", strcasecmp(lhs, rhs) > 0);
     }
 
-    else if (!strcasecmp("/=", op))
+    else if (matches("/=", op))
         sprintf(result, "%c", strcasestr(lhs, rhs) ? '1' : '0');
 
-    else if (!strcasecmp("*", op))
-        sprintf(result, "%d", atoi(lhs) * atoi(rhs));
+    else if (matches("*", op))
+        sprintf(result, "%d", svtoi(lhs) * svtoi(rhs));
 
-    else if (!strcasecmp("/", op))
-        sprintf(result, "%d", (n = atoi(rhs)) ? (atoi(lhs) / n) : 0);
+    else if (matches("/", op))
+        sprintf(result, "%d", (n = svtoi(rhs)) ? (svtoi(lhs) / n) : 0);
 
-    else if (!strcasecmp("+", op))
-        sprintf(result, "%d", atoi(lhs) + atoi(rhs));
+    else if (matches("+", op))
+        sprintf(result, "%d", svtoi(lhs) + svtoi(rhs));
 
-    else if (!strcasecmp("-", op))
-        sprintf(result, "%d", atoi(lhs) - atoi(rhs));
+    else if (matches("-", op))
+        sprintf(result, "%d", svtoi(lhs) - svtoi(rhs));
 
-    else if (!strcasecmp("!", op)) {
+    else if (matches("!", op)) {
         if (is_num(rhs))
-            sprintf(result, "%d", !atoi(rhs));
+            sprintf(result, "%d", !svtoi(rhs));
         else
-            sprintf(result, "%d", !*rhs);
+            sprintf(result, "%d", rhs.empty());
     }
 }
 
@@ -1920,13 +1905,13 @@ void eval_op(char *op, char *lhs, char *rhs, char *result, void *go, ScriptData 
  * p points to the first quote, returns the matching
  * end quote, or the last non-null char in p.
  */
-char *matching_quote(char *p) {
+std::string_view matching_quote(std::string_view p) {
     for (p++; *p && (*p != '"'); p++) {
         if (*p == '\\')
             p++;
     }
 
-    if (!*p)
+    if (p.empty())
         p--;
 
     return p;
@@ -1936,7 +1921,7 @@ char *matching_quote(char *p) {
  * p points to the first paren.  returns a pointer to the
  * matching closing paren, or the last non-null char in p.
  */
-char *matching_paren(char *p) {
+std::string_view matching_paren(std::string_view p) {
     int i;
 
     for (p++, i = 1; *p && i; p++) {
@@ -1952,7 +1937,7 @@ char *matching_paren(char *p) {
 }
 
 /* evaluates line, and returns answer in result */
-void eval_expr(char *line, char *result, void *go, ScriptData *sc, TrigData *trig, int type) {
+void eval_expr(std::string_view line, std::string_view result, void *go, ScriptData *sc, TrigData *trig, int type) {
     char expr[MAX_INPUT_LENGTH], *p;
 
     while (*line && isspace(*line))
@@ -1976,8 +1961,9 @@ void eval_expr(char *line, char *result, void *go, ScriptData *sc, TrigData *tri
  * evaluates expr if it is in the form lhs op rhs, and copies
  * answer in result.  returns 1 if expr is evaluated, else 0
  */
-int eval_lhs_op_rhs(char *expr, char *result, void *go, ScriptData *sc, TrigData *trig, int type) {
-    char *p, *tokens[MAX_INPUT_LENGTH];
+int eval_lhs_op_rhs(std::string_view expr, std::string_view result, void *go, ScriptData *sc, TrigData *trig,
+                    int type) {
+    std::string_view p, *tokens[MAX_INPUT_LENGTH];
     char line[MAX_INPUT_LENGTH], lhr[MAX_INPUT_LENGTH], rhr[MAX_INPUT_LENGTH];
     int i, j;
 
@@ -1985,7 +1971,7 @@ int eval_lhs_op_rhs(char *expr, char *result, void *go, ScriptData *sc, TrigData
      * valid operands, in order of priority
      * each must also be defined in eval_op()
      */
-    static char *ops[] = {"||", "&&", "==", "!=", "<=", ">=", "<", ">", "/=", "-", "+", "/", "*", "!", "\n"};
+    static std::string_view ops[] = {"||", "&&", "==", "!=", "<=", ">=", "<", ">", "/=", "-", "+", "/", "*", "!", "\n"};
 
     p = strcpy(line, expr);
 
@@ -2009,7 +1995,7 @@ int eval_lhs_op_rhs(char *expr, char *result, void *go, ScriptData *sc, TrigData
 
     for (i = 0; *ops[i] != '\n'; i++)
         for (j = 0; tokens[j]; j++)
-            if (!strncasecmp(ops[i], tokens[j], strlen(ops[i]))) {
+            if (matches(ops[i], tokens[j]){
                 *tokens[j] = '\0';
                 p = tokens[j] + strlen(ops[i]);
 
@@ -2024,15 +2010,15 @@ int eval_lhs_op_rhs(char *expr, char *result, void *go, ScriptData *sc, TrigData
 }
 
 /* returns 1 if cond is true, else 0 */
-int process_if(char *cond, void *go, ScriptData *sc, TrigData *trig, int type) {
+int process_if(std::string_view cond, void *go, ScriptData *sc, TrigData *trig, int type) {
     char result[MAX_INPUT_LENGTH], *p;
 
     eval_expr(cond, result, go, sc, trig, type);
 
     p = result;
-    skip_spaces(&p);
+    skip_spaces(p);
 
-    if (!*p || *p == '0')
+    if (p.empty() || *p == '0')
         return 0;
     else
         return 1;
@@ -2045,7 +2031,7 @@ int process_if(char *cond, void *go, ScriptData *sc, TrigData *trig, int type) {
  */
 CmdlistElement *find_end(TrigData *trig, CmdlistElement *cl) {
     CmdlistElement *c;
-    char *p;
+    std::string_view p;
 
     if (!(cl->next)) {
         script_log(trig, "'if' without 'end'. (error 1)");
@@ -2056,9 +2042,9 @@ CmdlistElement *find_end(TrigData *trig, CmdlistElement *cl) {
         for (p = c->cmd; *p && isspace(*p); p++)
             ;
 
-        if (!strncasecmp("if ", p, 3))
+        if (matches("if ", p))
             c = find_end(trig, c);
-        else if (!strncasecmp("end", p, 3))
+        else if (matches("end", p))
             return c;
 
         if (!c->next) {
@@ -2077,7 +2063,7 @@ CmdlistElement *find_end(TrigData *trig, CmdlistElement *cl) {
  */
 CmdlistElement *find_else_end(TrigData *trig, CmdlistElement *cl, void *go, ScriptData *sc, int type) {
     CmdlistElement *c;
-    char *p;
+    std::string_view p;
 
     if (!(cl->next))
         return cl;
@@ -2086,22 +2072,22 @@ CmdlistElement *find_else_end(TrigData *trig, CmdlistElement *cl, void *go, Scri
         for (p = c->cmd; *p && isspace(*p); p++)
             ; /* skip spaces */
 
-        if (!strncasecmp("if ", p, 3))
+        if (matches("if ", p))
             c = find_end(trig, c);
 
-        else if (!strncasecmp("elseif ", p, 7)) {
+        else if (matches("elseif ", p){
             if (process_if(p + 7, go, sc, trig, type)) {
                 GET_TRIG_DEPTH(trig)++;
                 return c;
             }
         }
 
-        else if (!strncasecmp("else", p, 4)) {
+        else if (matches("else", p){
             GET_TRIG_DEPTH(trig)++;
             return c;
         }
 
-        else if (!strncasecmp("end", p, 3))
+        else if (matches("end", p))
             return c;
 
         if (!c->next) {
@@ -2120,23 +2106,22 @@ CmdlistElement *find_else_end(TrigData *trig, CmdlistElement *cl, void *go, Scri
 }
 
 /* processes any 'wait' commands in a trigger */
-void process_wait(void *go, TrigData *trig, int type, char *cmd, CmdlistElement *cl) {
+void process_wait(void *go, TrigData *trig, int type, std::string_view cmd, CmdlistElement *cl) {
     char buf[MAX_INPUT_LENGTH], *arg;
     WaitEventData *wait_event_obj;
     long time, hr, min, ntime;
     char c;
 
     arg = any_one_arg(cmd, buf);
-    skip_spaces(&arg);
+    skip_spaces(arg);
 
-    if (!*arg) {
+    if (arg.empty()) {
         sprintf(buf2, "Wait w/o an arg: '%s'", cl->cmd);
         script_log(trig, buf2);
         return;
     }
 
-    else if (!strncasecmp(arg, "until ", 6)) {
-
+    else if (matches(arg, "until "){
         /* valid forms of time are 14:30 and 1430 */
         if (sscanf(arg, "until %ld:%ld", &hr, &min) == 2)
             min += (hr * 60);
@@ -2175,14 +2160,12 @@ void process_wait(void *go, TrigData *trig, int type, char *cmd, CmdlistElement 
 }
 
 /* processes a script set command */
-void process_set(ScriptData *sc, TrigData *trig, char *cmd) {
-    char arg[MAX_INPUT_LENGTH], name[MAX_INPUT_LENGTH], *value;
-
+void process_set(ScriptData *sc, TrigData *trig, std::string_view cmd) {
     value = two_arguments(cmd, arg, name);
 
-    skip_spaces(&value);
+    skip_spaces(value);
 
-    if (!*name) {
+    if (name.empty()) {
         sprintf(buf2, "Set w/o an arg: '%s'", cmd);
         script_log(trig, buf2);
         return;
@@ -2192,15 +2175,12 @@ void process_set(ScriptData *sc, TrigData *trig, char *cmd) {
 }
 
 /* processes a script eval command */
-void process_eval(void *go, ScriptData *sc, TrigData *trig, int type, char *cmd) {
-    char arg[MAX_INPUT_LENGTH], name[MAX_INPUT_LENGTH];
-    char result[MAX_INPUT_LENGTH], *expr;
-
+void process_eval(void *go, ScriptData *sc, TrigData *trig, int type, std::string_view cmd) {
     expr = two_arguments(cmd, arg, name);
 
-    skip_spaces(&expr);
+    skip_spaces(expr);
 
-    if (!*name) {
+    if (name.empty()) {
         sprintf(buf2, "Eval w/o an arg: '%s'", cmd);
         script_log(trig, buf2);
         return;
@@ -2214,32 +2194,30 @@ void process_eval(void *go, ScriptData *sc, TrigData *trig, int type, char *cmd)
  * processes a script return command.
  * returns the new value for the script to return.
  */
-int process_return(TrigData *trig, char *cmd) {
+int process_return(TrigData *trig, std::string_view cmd) {
     char arg1[MAX_INPUT_LENGTH], arg2[MAX_INPUT_LENGTH];
 
     two_arguments(cmd, arg1, arg2);
 
-    if (!*arg2) {
+    if (arg2.empty()) {
         sprintf(buf2, "Return w/o an arg: '%s'", cmd);
         script_log(trig, buf2);
         return 1;
     }
 
-    return atoi(arg2);
+    return svtoi(arg2);
 }
 
 /*
  * removes a variable from the global vars of sc,
  * or the local vars of trig if not found in global list.
  */
-void process_unset(ScriptData *sc, TrigData *trig, char *cmd) {
-    char arg[MAX_INPUT_LENGTH], *var;
-
+void process_unset(ScriptData *sc, TrigData *trig, std::string_view cmd) {
     var = any_one_arg(cmd, arg);
 
-    skip_spaces(&var);
+    skip_spaces(var);
 
-    if (!*var) {
+    if (var.empty()) {
         sprintf(buf2, "Unset w/o an arg: '%s'", cmd);
         script_log(trig, buf2);
         return;
@@ -2252,15 +2230,13 @@ void process_unset(ScriptData *sc, TrigData *trig, char *cmd) {
 /*
  * makes a local variable into a global variable
  */
-void process_global(ScriptData *sc, TrigData *trig, char *cmd) {
+void process_global(ScriptData *sc, TrigData *trig, std::string_view cmd) {
     TriggerVariableData *vd;
-    char arg[MAX_INPUT_LENGTH], *varlist;
-
     varlist = any_one_arg(cmd, arg);
 
-    skip_spaces(&varlist);
+    skip_spaces(varlist);
 
-    if (!*varlist) {
+    if (varlist.empty()) {
         sprintf(buf2, "Global w/o an arg: '%s'", cmd);
         script_log(trig, buf2);
         return;
@@ -2268,10 +2244,10 @@ void process_global(ScriptData *sc, TrigData *trig, char *cmd) {
 
     while (*varlist) {
         varlist = any_one_arg(varlist, arg);
-        skip_spaces(&varlist);
+        skip_spaces(varlist);
 
         for (vd = GET_TRIG_VARS(trig); vd; vd = vd->next)
-            if (!strcasecmp(vd->name, arg))
+            if (matches(vd->name, arg))
                 break;
 
         if (!vd) {
@@ -2311,8 +2287,8 @@ int script_driver(void *go_address, TrigData *trig, int type, int mode) {
     unsigned long loops = 0;
     void *go = nullptr;
 
-    void obj_command_interpreter(ObjData * obj, TrigData * t, char *argument);
-    void wld_command_interpreter(RoomData * room, TrigData * t, char *argument);
+    void obj_command_interpreter(ObjData * obj, TrigData * t, std::string_view argument);
+    void wld_command_interpreter(RoomData * room, TrigData * t, std::string_view argument);
 
     if (depth > MAX_SCRIPT_DEPTH) {
         switch (type) {
@@ -2378,14 +2354,14 @@ int script_driver(void *go_address, TrigData *trig, int type, int mode) {
         if (*p == '*')
             continue;
 
-        else if (!strncasecmp(p, "if ", 3)) {
+        else if (matches(p, "if "){
             if (process_if(p + 3, go, sc, trig, type))
                 GET_TRIG_DEPTH(trig)++;
             else
                 cl = find_else_end(trig, cl, go, sc, type);
         }
 
-        else if (!strncasecmp("elseif ", p, 7) || !strncasecmp("else", p, 4)) {
+        else if (matches("elseif ", p)|| matches("else", p){
             /* If not in an if-block, ignore the extra 'else[if]' and warn about it.
              */
             if (GET_TRIG_DEPTH(trig) == 1) {
@@ -2394,7 +2370,7 @@ int script_driver(void *go_address, TrigData *trig, int type, int mode) {
             }
             cl = find_end(trig, cl);
             GET_TRIG_DEPTH(trig)--;
-        } else if (!strncasecmp("while ", p, 6)) {
+        } else if (matches("while ", p){
             temp = find_done(cl);
             if (!temp) {
                 script_log(trig, "'while' without 'done'.");
@@ -2405,18 +2381,18 @@ int script_driver(void *go_address, TrigData *trig, int type, int mode) {
                 cl = temp;
                 loops = 0;
             }
-        } else if (!strncasecmp("switch ", p, 7)) {
+        } else if (matches("switch ", p){
             cl = find_case(trig, cl, go, sc, type, p + 7);
-        } else if (!strncasecmp("end", p, 3)) {
+        } else if (matches("end", p){
             if (GET_TRIG_DEPTH(trig) == 1) {
                 script_log(trig, "'end' without 'if'.");
                 continue;
             }
             GET_TRIG_DEPTH(trig)--;
-        } else if (!strncasecmp("done", p, 4)) {
+        } else if (matches("done", p){
             /* if in a while loop, cl->original is non-NULL */
             if (cl->original) {
-                char *orig_cmd = cl->original->cmd;
+                std::string_view orig_cmd = cl->original->cmd;
                 while (*orig_cmd && isspace(*orig_cmd))
                     orig_cmd++;
 
@@ -2436,35 +2412,34 @@ int script_driver(void *go_address, TrigData *trig, int type, int mode) {
                     }
                 }
             }
-        } else if (!strncasecmp("break", p, 5)) {
+        } else if (matches("break", p){
             cl = find_done(cl);
-        } else if (!strncasecmp("case", p, 4)) {
+        } else if (matches("case", p){
             /* Do nothing, this allows multiple cases to a single instance */
         }
 
         else {
-
             var_subst(go, sc, trig, type, p, cmd);
 
-            if (!strncasecmp(cmd, "eval ", 5))
+            if (matches(cmd, "eval "))
                 process_eval(go, sc, trig, type, cmd);
 
-            else if (!strncasecmp(cmd, "halt", 4))
+            else if (matches(cmd, "halt"))
                 break;
 
-            else if (!strncasecmp(cmd, "global ", 7))
+            else if (matches(cmd, "global "))
                 process_global(sc, trig, cmd);
 
-            else if (!strncasecmp(cmd, "return ", 7))
+            else if (matches(cmd, "return "))
                 ret_val = process_return(trig, cmd);
 
-            else if (!strncasecmp(cmd, "set ", 4))
+            else if (matches(cmd, "set "))
                 process_set(sc, trig, cmd);
 
-            else if (!strncasecmp(cmd, "unset ", 6))
+            else if (matches(cmd, "unset "))
                 process_unset(sc, trig, cmd);
 
-            else if (!strncasecmp(cmd, "wait ", 5)) {
+            else if (matches(cmd, "wait "){
                 process_wait(go, trig, type, cmd, cl);
                 depth--;
                 return ret_val;
@@ -2472,15 +2447,15 @@ int script_driver(void *go_address, TrigData *trig, int type, int mode) {
 
             else
                 switch (type) {
-                case MOB_TRIGGER:
-                    command_interpreter((CharData *)go, cmd);
-                    break;
-                case OBJ_TRIGGER:
-                    obj_command_interpreter((ObjData *)go, trig, cmd);
-                    break;
-                case WLD_TRIGGER:
-                    wld_command_interpreter((RoomData *)go, trig, cmd);
-                    break;
+            case MOB_TRIGGER:
+                command_interpreter((CharData *)go, cmd);
+                break;
+            case OBJ_TRIGGER:
+                obj_command_interpreter((ObjData *)go, trig, cmd);
+                break;
+            case WLD_TRIGGER:
+                wld_command_interpreter((RoomData *)go, trig, cmd);
+                break;
                 }
         }
     }
@@ -2518,7 +2493,7 @@ ACMD(do_tstat) {
 
     half_chop(argument, str, argument);
     if (*str) {
-        vnum = atoi(str);
+        vnum = svtoi(str);
         rnum = real_trigger(vnum);
         if (rnum < 0) {
             char_printf(ch, "That vnum does not exist.\n");
@@ -2535,7 +2510,8 @@ ACMD(do_tstat) {
  * returns the line containg the correct case instance, or the last
  * line of the trigger if not found.
  */
-CmdlistElement *find_case(TrigData *trig, CmdlistElement *cl, void *go, ScriptData *sc, int type, char *cond) {
+CmdlistElement *find_case(TrigData *trig, CmdlistElement *cl, void *go, ScriptData *sc, int type,
+                          std::string_view cond) {
     char cond_expr[MAX_INPUT_LENGTH], *p;
     CmdlistElement *c;
 
@@ -2548,18 +2524,18 @@ CmdlistElement *find_case(TrigData *trig, CmdlistElement *cl, void *go, ScriptDa
         for (p = c->cmd; *p && isspace(*p); p++)
             ;
 
-        if (!strncasecmp("while ", p, 6) || !strncasecmp("switch", p, 6))
+        if (matches("while ", p) || matches("switch", p))
             c = find_done(c);
-        else if (!strncasecmp("case ", p, 5)) {
+        else if (matches("case ", p){
             char case_expr[MAX_STRING_LENGTH];
             char result[16]; /* == always returns an integer, so it shouuld be safe */
             eval_expr(p + 5, case_expr, go, sc, trig, type);
             eval_op("==", cond_expr, case_expr, result, go, sc, trig);
             if (*result && *result != '0')
                 return c;
-        } else if (!strncasecmp("default", p, 7))
+        } else if (matches("default", p))
             return c;
-        else if (!strncasecmp("done", p, 3))
+        else if (matches("done", p))
             return c;
     }
     return c;
@@ -2572,7 +2548,7 @@ CmdlistElement *find_case(TrigData *trig, CmdlistElement *cl, void *go, ScriptDa
  */
 CmdlistElement *find_done(CmdlistElement *cl) {
     CmdlistElement *c;
-    char *p;
+    std::string_view p;
 
     if (!cl || !(cl->next))
         return cl;
@@ -2581,9 +2557,9 @@ CmdlistElement *find_done(CmdlistElement *cl) {
         for (p = c->cmd; *p && isspace(*p); p++)
             ;
 
-        if (!strncasecmp("while ", p, 6) || !strncasecmp("switch ", p, 7))
+        if (matches("while ", p) || matches("switch ", p))
             c = find_done(c);
-        else if (!strncasecmp("done", p, 3))
+        else if (matches("done", p))
             return c;
     }
 

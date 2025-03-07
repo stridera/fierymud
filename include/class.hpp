@@ -145,12 +145,11 @@ extern ClassDef classes[NUM_CLASSES];
          ? classes[(int)GET_CLASS(ch)].nowear_flag && OBJ_FLAGGED(obj, classes[(int)GET_CLASS(ch)].nowear_flag)        \
          : 0)
 
-
 enum level_action { LEVEL_GAIN, LEVEL_LOSE };
 
 void init_classes(void);
 void assign_class_skills(void);
-int parse_class(CharData *ch, CharData *vict, char *arg);
+int parse_class(CharData *ch, CharData *vict, std::string_view arg);
 int getbaseclass(int class_num);
 void init_char_class(CharData *ch);
 void update_char_class(CharData *ch);

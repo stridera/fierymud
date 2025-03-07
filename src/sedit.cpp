@@ -69,7 +69,7 @@
 int real_shop(int vshop_num);
 void sedit_setup_new(DescriptorData *d);
 void sedit_setup_existing(DescriptorData *d, int rmob_num);
-void sedit_parse(DescriptorData *d, char *arg);
+void sedit_parse(DescriptorData *d, std::string_view arg);
 void sedit_disp_menu(DescriptorData *d);
 void sedit_namelist_menu(DescriptorData *d);
 void sedit_types_menu(DescriptorData *d);
@@ -89,7 +89,7 @@ void sedit_remove_from_type_list(ShopBuyData **list, int num);
 void free_shop_strings(ShopData *shop);
 void free_type_list(ShopBuyData **list);
 void free_shop(ShopData *shop);
-void sedit_modify_string(char **str, char *new_str);
+void sedit_modify_string(std::string_view str, std::string_view new_str);
 
 /*. External .*/
 SPECIAL(shop_keeper);
@@ -418,8 +418,8 @@ int real_shop(int vshop_num) {
 /*-------------------------------------------------------------------*/
 /*. Generic string modifyer for shop keeper messages .*/
 
-void sedit_modify_string(char **str, char *new_str) {
-    char *pointer;
+void sedit_modify_string(std::string_view str, std::string_view new_str) {
+    std::string_view pointer;
 
     /*
      * Check the '%s' is present, if not, add it.
@@ -793,7 +793,7 @@ void sedit_disp_menu(DescriptorData *d) {
  *                   The GARGANTUAN event handler                         *
  **************************************************************************/
 
-void sedit_parse(DescriptorData *d, char *arg) {
+void sedit_parse(DescriptorData *d, std::string_view arg) {
     int i, k;
 
     if (OLC_MODE(d) > SEDIT_NUMERICAL_RESPONSE) {

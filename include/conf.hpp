@@ -12,6 +12,7 @@
 
 #include "defines.hpp"
 
+#include <string_view>
 #include <time.h>
 
 /* Define to empty if the keyword does not work.  */
@@ -96,32 +97,31 @@
 /* #undef HAVE_LIBSOCKET */
 
 // Extern declarations for the global variables in conf.cpp
-extern int pk_allowed;
-extern int summon_allowed;
-extern int charm_allowed;
-extern int sleep_allowed;
-extern int roomeffect_allowed;
-extern int races_allowed;
-extern int evil_races_allowed;
-extern int races_allowed;
-extern int evil_races_allowed;
-extern int level_gain;
-extern int damage_amounts;
-extern int pt_allowed;
+extern bool pk_allowed;
+extern bool summon_allowed;
+extern bool charm_allowed;
+extern bool sleep_allowed;
+extern bool roomeffect_allowed;
+extern bool races_allowed;
+extern bool evil_races_allowed;
+extern bool races_allowed;
+extern bool evil_races_allowed;
+extern bool level_gain;
+extern bool damage_amounts;
+extern bool pt_allowed;
 extern int level_can_shout;
-extern int max_group_difference;
+extern bool max_group_difference;
 extern int holler_move_cost;
 extern int max_npc_corpse_time;
 extern int max_pc_corpse_time;
 extern int short_pc_corpse_time;
-extern int approve_names;
-extern int napprove_pause;
-extern int dts_are_dumps;
+extern bool approve_names;
+extern bool napprove_pause;
+extern bool dts_are_dumps;
 extern int reboot_hours_base;
 extern int reboot_hours_deviation;
 extern int reboot_warning_minutes;
-extern int reboot_auto;
-extern int reboot_auto;
+extern bool reboot_auto;
 extern long reboot_pulse;
 extern int reboot_warning;
 extern int last_reboot_warning;
@@ -137,31 +137,21 @@ extern int num_hotboots;
 extern int should_restrict;
 extern int restrict_reason;
 extern int environment;
-extern const char *environments[];
+extern const std::string_view environments[];
 extern int DFLT_PORT;
-extern const char *DFLT_DIR;
-extern const char *DFLT_ENV;
+extern const std::string_view DFLT_DIR;
+extern const std::string_view DFLT_ENV;
 extern int MAX_PLAYERS;
 extern int max_filesize;
 extern int max_bad_pws;
-extern int nameserver_is_slow;
-extern const char *MENU;
-extern const char *GREETINGS;
-extern const char *GREETINGS2;
-extern const char *GREETINGS3;
-extern const char *GREETINGS4;
-extern const char *TEST_GREETING;
-extern const char *TEST_GREETING2;
-extern const char *TEST_GREETING3;
-extern const char *DEV_GREETING;
-extern const char *DEV_GREETING2;
-extern const char *DEV_GREETING3;
-extern const char *WHOAREYOU;
-extern const char *WELC_MESSG;
-extern const char *START_MESSG;
-extern const char *NAMES_EXPLANATION;
-extern const char *BANNEDINTHEUSA;
-extern const char *BANNEDINTHEUSA2;
-extern const char *BANNEDINTHEUSA3;
-extern const char *NEWSUPDATED1;
-extern const char *NEWSUPDATED2;
+extern bool nameserver_is_slow;
+extern const std::string_view MENU;
+extern const std::string_view GREETINGS;
+extern const std::string_view TEST_GREETING;
+extern const std::string_view DEV_GREETING;
+extern const std::string_view WHOAREYOU;
+extern const std::string_view WELC_MESSG;
+extern const std::string_view START_MESSG;
+extern const std::string_view NAMES_EXPLANATION;
+extern const std::string_view BANNEDINTHEUSA;
+extern const std::string_view NEWSUPDATED;

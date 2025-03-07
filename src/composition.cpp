@@ -40,24 +40,25 @@
  *   Name, Mass noun, Adjective, Color, default_dtype, phase
  *   SUSCEPTIBILITY: slash, pierce, crush, shock, fire, water, cold, acid, poison
  */
-struct CompositionDef compositions[NUM_COMPOSITIONS] = { 
-  /* name     mass noun         adjective   color   dam type    phase          slash,  pierce, crush,  shock,  fire, water,  cold, acid, poison */
-    {"flesh", "flesh",          "fleshy",   "&1",   DAM_CRUSH,  PHASE_SOLID,   100,    100,    100,    100,    100,  100,    100,  100,  100},
-    {"earth", "earth",          "earthy",   "&3",   DAM_CRUSH,  PHASE_SOLID,   90,     120,    50,     75,     75,   120,    40,   80,   0},
-    {"air",   "air",            "gaseous",  "&6",   DAM_SHOCK,  PHASE_GAS,     20,     20,     20,     0,      120,  75,     0,    0,    0},
-    {"fire",  "fire",           "fiery",    "&1&b", DAM_FIRE,   PHASE_PLASMA,  30,     30,     30,     75,     0,    120,    100,  0,    0},
-    {"water", "water",          "watery",   "&4&b", DAM_WATER,  PHASE_LIQUID,  120,    60,     40,     100,    50,   0,      120,  0,    0},
-    {"ice",   "ice",            "icy",      "&4",   DAM_CRUSH,  PHASE_SOLID,   75,     90,     120,    100,    75,   0,      0,    0,    0},
-    {"mist",  "mist",           "misty",    "&6&b", DAM_CRUSH,  PHASE_GAS,     30,     30,     30,     80,     50,   100,    120,  0,    0},
-    {"ether", "nothing",        "ethereal", "&5",   DAM_SLASH,  PHASE_ETHER,   0,      0,      0,      75,     75,   50,     25,   0,    0},
-    {"metal", "metal",          "metallic", "&9&b", DAM_CRUSH,  PHASE_SOLID,   25,     40,     75,     100,    25,   30,     50,   120,  0},
-    {"stone", "stone",          "stony",    "",     DAM_CRUSH,  PHASE_SOLID,   50,     75,     90,     0,      50,   75,     50,   100,  0},
-    {"bone",  "bone",           "bony",     "&7&b", DAM_CRUSH,  PHASE_SOLID,   80,     50,     120,    25,     120,  100,    25,   100,  0},
-    {"lava",  "lava",           "fluid",    "&1",   DAM_FIRE,   PHASE_SOLID,   40,     40,     40,     50,     25,   120,    100,  50,   0},
-    {"plant", "plant material", "woody",    "&2",   DAM_SLASH,  PHASE_SOLID,   120,    70,     60,     75,     120,  50,     75,   100,  50}};
+struct CompositionDef compositions[NUM_COMPOSITIONS] = {
+    /* name     mass noun         adjective   color   dam type    phase          slash,  pierce, crush,  shock,  fire,
+       water,  cold, acid, poison */
+    {"flesh", "flesh", "fleshy", "&1", DAM_CRUSH, PHASE_SOLID, 100, 100, 100, 100, 100, 100, 100, 100, 100},
+    {"earth", "earth", "earthy", "&3", DAM_CRUSH, PHASE_SOLID, 90, 120, 50, 75, 75, 120, 40, 80, 0},
+    {"air", "air", "gaseous", "&6", DAM_SHOCK, PHASE_GAS, 20, 20, 20, 0, 120, 75, 0, 0, 0},
+    {"fire", "fire", "fiery", "&1&b", DAM_FIRE, PHASE_PLASMA, 30, 30, 30, 75, 0, 120, 100, 0, 0},
+    {"water", "water", "watery", "&4&b", DAM_WATER, PHASE_LIQUID, 120, 60, 40, 100, 50, 0, 120, 0, 0},
+    {"ice", "ice", "icy", "&4", DAM_CRUSH, PHASE_SOLID, 75, 90, 120, 100, 75, 0, 0, 0, 0},
+    {"mist", "mist", "misty", "&6&b", DAM_CRUSH, PHASE_GAS, 30, 30, 30, 80, 50, 100, 120, 0, 0},
+    {"ether", "nothing", "ethereal", "&5", DAM_SLASH, PHASE_ETHER, 0, 0, 0, 75, 75, 50, 25, 0, 0},
+    {"metal", "metal", "metallic", "&9&b", DAM_CRUSH, PHASE_SOLID, 25, 40, 75, 100, 25, 30, 50, 120, 0},
+    {"stone", "stone", "stony", "", DAM_CRUSH, PHASE_SOLID, 50, 75, 90, 0, 50, 75, 50, 100, 0},
+    {"bone", "bone", "bony", "&7&b", DAM_CRUSH, PHASE_SOLID, 80, 50, 120, 25, 120, 100, 25, 100, 0},
+    {"lava", "lava", "fluid", "&1", DAM_FIRE, PHASE_SOLID, 40, 40, 40, 50, 25, 120, 100, 50, 0},
+    {"plant", "plant material", "woody", "&2", DAM_SLASH, PHASE_SOLID, 120, 70, 60, 75, 120, 50, 75, 100, 50}};
 
-int parse_composition(CharData *ch, char *arg) {
-    const char *comp_name = "composition";
+int parse_composition(CharData *ch, std::string_view arg) {
+    const std::string_view comp_name = "composition";
     return parse_obj_name(ch, arg, comp_name, NUM_COMPOSITIONS, compositions, sizeof(CompositionDef));
 }
 
@@ -74,6 +75,6 @@ void list_olc_compositions(CharData *ch) {
     int i;
 
     for (i = 0; i < NUM_COMPOSITIONS; i++) {
-        char_printf(ch, "&2{: 2d}&0) {}{}&0\n", i, compositions[i].color, capitalize(compositions[i].name));
+        char_printf(ch, "&2{: 2d}&0) {}{}&0\n", i, compositions[i].color, capitalize_first(compositions[i].name));
     }
 }

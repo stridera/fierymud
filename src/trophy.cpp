@@ -139,7 +139,7 @@ void free_trophy(CharData *ch) {
 void show_trophy(CharData *ch, CharData *vict) {
     TrophyNode *node;
     int id;
-    char *name;
+    std::string_view name;
 
     if (IS_NPC(vict)) {
         char_printf(ch, "Mobs don't have trophies, genius!\n");
@@ -169,8 +169,10 @@ void show_trophy(CharData *ch, CharData *vict) {
                 continue;
             name = mob_proto[id].player.short_descr;
         } else if (node->kill_type == TROPHY_PLAYER) {
-            if (!(name = get_name_by_id(node->id)))
+            auto name_opt = get_name_by_id(node->id);
+            if (!name_opt)
                 continue;
+            name = *name_opt;
         } else
             continue;
         char_printf(ch, "{}{:6.2f}     {}{}{}\n",

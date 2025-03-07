@@ -33,7 +33,7 @@
 
 struct CommNode {
     time_t time; /* time of msg */
-    char *msg;
+    std::string_view msg;
     CommNode *next;
 };
 
@@ -43,7 +43,7 @@ struct RetainedComms {
 };
 
 void init_retained_comms(CharData *ch);
-void add_retained_comms(CharData *ch, int type, const char *msg);
+void add_retained_comms(CharData *ch, int type, const std::string_view msg);
 void load_retained_comms(FILE *file, CharData *ch, int type);
 void save_retained_comms(FILE *file, CharData *ch, int type);
 void free_comms_node_list(CommNode *root);

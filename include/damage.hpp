@@ -40,11 +40,11 @@
 #define NUM_DAMTYPES 14 /* keep updated */
 
 struct DamageDef {
-    const char *name;
-    const char *color;
-    const char *verb1st;
-    const char *verb2nd;
-    const char *action;
+    const std::string_view name;
+    const std::string_view color;
+    const std::string_view verb1st;
+    const std::string_view verb2nd;
+    const std::string_view action;
 };
 extern DamageDef damtypes[NUM_DAMTYPES];
 
@@ -52,7 +52,7 @@ extern DamageDef damtypes[NUM_DAMTYPES];
 
 /* name, color, verb1st, verb2nd, action */
 
-int parse_damtype(CharData *ch, char *arg);
+int parse_damtype(CharData *ch, std::string_view arg);
 
 int skill_to_dtype(int skill);
 int convert_weapon_damage(ObjData *weapon);

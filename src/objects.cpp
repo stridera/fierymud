@@ -26,6 +26,7 @@
 #include "olc.hpp"
 #include "shop.hpp"
 #include "skills.hpp"
+#include "string_utils.hpp"
 #include "structs.hpp"
 #include "sysdep.hpp"
 #include "utils.hpp"
@@ -40,10 +41,10 @@ void init_objtypes(void) {
 
     for (i = 0; i < NUM_ITEM_TYPES; ++i) {
         type = &item_types[i];
-        if (!type->name || !*type->name) {
+        if (type->name.empty()) {
             log("SYSERR: No name for object type {:d} in obj_type_def in objects.c", i);
         }
-        if (!type->desc || !*type->desc) {
+        if (type->desc.empty()) {
             log("SYSERR: No description for object type {:d} in obj_type_def in objects.c", i);
         }
         for (j = 0; j < NUM_VALUES; ++j)
@@ -79,19 +80,15 @@ static int max_value(ObjData *obj, int val) {
     case ITEM_PORTAL:
         switch (val) {
         case VAL_PORTAL_ENTRY_MSG:
-            for (max = 0; *portal_entry_messages[max] != '\n'; ++max)
-                ;
+            max = portal_entry_messages.size();
             break;
         case VAL_PORTAL_CHAR_MSG:
-            for (max = 0; *portal_character_messages[max] != '\n'; ++max)
-                ;
+            max = portal_character_messages.size();
             break;
         case VAL_PORTAL_EXIT_MSG:
-            for (max = 0; *portal_exit_messages[max] != '\n'; ++max)
-                ;
+            max = portal_exit_messages.size();
             break;
         }
-        --max;
         break;
     case ITEM_WAND:
     case ITEM_STAFF:
@@ -139,11 +136,11 @@ void limit_obj_values(ObjData *obj) {
         GET_OBJ_VAL(obj, i) = std::clamp(GET_OBJ_VAL(obj, i), min_value(obj, i), max_value(obj, i));
 }
 
-int parse_obj_type(CharData *ch, char *arg) {
+int parse_obj_type(CharData *ch, std::string_view arg) {
     return parse_obj_name(ch, arg, "obj type", NUM_ITEM_TYPES, (void *)item_types, sizeof(ObjectTypeDef));
 }
 
-int parse_liquid(CharData *ch, char *arg) {
+int parse_liquid(CharData *ch, std::string_view arg) {
     return parse_obj_name(ch, arg, "liquid", NUM_LIQ_TYPES, (void *)liquid_types, sizeof(LiquidDef));
 }
 
@@ -260,87 +257,17 @@ bool delete_object(obj_num rnum) {
 }
 
 void copy_object(ObjData *to, ObjData *from) {
-    free_obj_strings(to);
     *to = *from;
-    to->name = from->name ? strdup(from->name) : nullptr;
-    to->description = from->description ? strdup(from->description) : nullptr;
-    to->short_description = from->short_description ? strdup(from->short_description) : nullptr;
-    to->action_description = from->action_description ? strdup(from->action_description) : nullptr;
+    to->name = from->name;
+    to->description = from->description;
+    to->short_description = from->short_description;
+    to->action_description = from->action_description;
 
     if (from->ex_description)
         copy_extra_descriptions(&to->ex_description, from->ex_description);
     else
         to->ex_description = nullptr;
 }
-
-#define FREE(var)                                                                                                      \
-    do {                                                                                                               \
-        free(var);                                                                                                     \
-        var = nullptr;                                                                                                 \
-    } while (0)
-
-void free_obj_strings_absolutely(ObjData *obj) {
-    extern void free_extra_descriptions(ExtraDescriptionData * edesc);
-
-    if (obj->name)
-        FREE(obj->name);
-    if (obj->description)
-        FREE(obj->description);
-    if (obj->short_description)
-        FREE(obj->short_description);
-    if (obj->action_description)
-        FREE(obj->action_description);
-    if (obj->ex_description) {
-        free_extra_descriptions(obj->ex_description);
-        obj->ex_description = nullptr;
-    }
-}
-
-void free_prototyped_obj_strings(ObjData *obj) {
-    ObjData *proto = &obj_proto[GET_OBJ_RNUM(obj)];
-
-    if (obj->name && obj->name != proto->name)
-        FREE(obj->name);
-    if (obj->description && obj->description != proto->description)
-        FREE(obj->description);
-    if (obj->short_description && obj->short_description != proto->short_description)
-        FREE(obj->short_description);
-    if (obj->action_description && obj->action_description != proto->action_description)
-        FREE(obj->action_description);
-    if (obj->ex_description) {
-        ExtraDescriptionData *obj_ed, *proto_ed, *next_ed;
-        bool ok_key, ok_desc, ok_item;
-        /* O(horrible) */
-        for (obj_ed = obj->ex_description; obj_ed; obj_ed = next_ed) {
-            next_ed = obj_ed->next;
-            /* If this obj_ed is in the proto's ex_desc list, don't free */
-            for (ok_item = ok_key = ok_desc = true, proto_ed = proto->ex_description; proto_ed;
-                 proto_ed = proto_ed->next) {
-                if (proto_ed->keyword == obj_ed->keyword)
-                    ok_key = false;
-                if (proto_ed->description == obj_ed->description)
-                    ok_desc = false;
-                if (proto_ed == obj_ed)
-                    ok_item = false;
-            }
-            if (obj_ed->keyword && ok_key)
-                FREE(obj_ed->keyword);
-            if (obj_ed->description && ok_desc)
-                FREE(obj_ed->description);
-            if (ok_item)
-                FREE(obj_ed);
-        }
-    }
-}
-
-void free_obj_strings(ObjData *obj) {
-    if (GET_OBJ_RNUM(obj) == NOTHING)
-        free_obj_strings_absolutely(obj);
-    else
-        free_prototyped_obj_strings(obj);
-}
-
-#undef FREE
 
 void weight_change_object(ObjData *obj, float weight) {
     ObjData *tmp_obj;
@@ -366,40 +293,36 @@ void weight_change_object(ObjData *obj, float weight) {
  *
  * Called when a liquid container becomes empty.
  *
- * It will remove the first name from the object's aliases, if it is
- * the same as the name of the liquid.
+ * It will remove the first name from the object's aliases, if it is the same as the name of the liquid.
  */
 
 void name_from_drinkcon(ObjData *obj, int type) {
     int aliaslen;
-    char *new_name;
+    std::string_view new_name;
 
     if (!VALID_LIQ_TYPE(type))
         return;
 
-    aliaslen = strlen(LIQ_ALIAS(type));
+    aliaslen = LIQ_ALIAS(type).length();
 
-    if (strlen(obj->name) > aliaslen + 1 &&
+    if (obj->name.length() > aliaslen + 1 &&
         /* The aliases are long enough to have more than just the drink name */
         (obj->name)[aliaslen] == ' ' &&
         /* An alias terminates just where the drink name should */
-        !strncasecmp(LIQ_ALIAS(type), obj->name, aliaslen))
+        matches(LIQ_ALIAS(type), obj->name))
     /* Same string: we are go for removal */
     {
-        new_name = strdup((obj->name) + aliaslen + 1);
-        REPLACE_OBJ_STR(obj, name, new_name);
+        new_name = obj->name.substr(aliaslen + 1);
+        obj->name = new_name;
     }
 }
 
 void name_to_drinkcon(ObjData *obj, int type) {
-    char *new_name;
 
     if (!VALID_LIQ_TYPE(type) || isname(LIQ_ALIAS(type), obj->name))
         return;
 
-    CREATE(new_name, char, strlen(obj->name) + strlen(LIQ_ALIAS(type)) + 2);
-    sprintf(new_name, "%s %s", LIQ_ALIAS(type), obj->name);
-    REPLACE_OBJ_STR(obj, name, new_name);
+    obj->name = fmt::format("{} {}", LIQ_ALIAS(type), obj->name);
 }
 
 #define POUNDS_PER_OZ_WATER 0.0651984721
@@ -446,7 +369,7 @@ void name_to_drinkcon(ObjData *obj, int type) {
  */
 
 void setup_drinkcon(ObjData *obj, int newliq) {
-    char *line, *adesc, *newtext;
+    std::string_view line, adesc, newtext;
 
     /* A brand new liquid container. */
     if (newliq < 0) {
@@ -475,16 +398,26 @@ void setup_drinkcon(ObjData *obj, int newliq) {
 
     /* Get ready to process the action description. */
     adesc = obj->action_description;
-    if (!adesc || !*adesc)
+    if (adesc.empty())
         return;
 
     /* Loop to process each line of text in the action description */
-    while (*adesc) {
-        if (!(line = next_line(&adesc)))
-            break;
-        /* We must subsequently free line else cause a memory leak. */
+    auto next_line = [&adesc]() -> std::string_view {
+        auto pos = adesc.find('\n');
+        if (pos == std::string_view::npos) {
+            auto line = adesc;
+            adesc = "";
+            return line;
+        } else {
+            auto line = adesc.substr(0, pos);
+            adesc = adesc.substr(pos + 1);
+            return line;
+        }
+    };
+    while (adesc.length() > 0) {
+        line = next_line();
 
-        if (strlen(line) > 4 && line[0] == '*' && line[3] == ' ') {
+        if (line.length() > 4 && line[0] == '*' && line[3] == ' ') {
             if (line[2] != 'e' && line[2] != 'l') {
                 log(LogSeverity::Warn, LVL_IMMORT,
                     "Error setting up drinkcon {:d}: expected 'l' or 'e' in adesc, but got #{:d}", GET_OBJ_VNUM(obj),
@@ -492,43 +425,38 @@ void setup_drinkcon(ObjData *obj, int newliq) {
             } else {
                 if (line[2] == 'l' && GET_OBJ_VAL(obj, VAL_DRINKCON_REMAINING) > 0) {
                     /* Processing input line with liquid present */
-                    newtext = strdup(line + 4);
+                    newtext = line.substr(4);
 
-                    /* Ignore the return value of replace_str, because it's ok
-                     * for no replacements to occur. */
-                    replace_str(&newtext, "$l", LIQ_NAME(GET_OBJ_VAL(obj, VAL_DRINKCON_LIQUID)), 1, 190);
+                    /* Ignore the return value of replace_str, because it's ok for no replacements to occur. */
+                    newtext = replace_string(newtext, "$l", LIQ_NAME(GET_OBJ_VAL(obj, VAL_DRINKCON_LIQUID)));
                 } else if (line[2] == 'e' && GET_OBJ_VAL(obj, VAL_DRINKCON_REMAINING) == 0) {
                     /* Processing input line when empty */
-                    newtext = strdup(line + 4);
+                    newtext = line.substr(4);
 
                     /* Just a copy, nothing else to do */
                 } else {
                     /* Since l/e doesn't match current fill state, ignore this line */
-                    goto ADESC_LINE;
                 }
 
                 /* newtext now contains the processed string. It is ready for
                  * insertion into the object. */
                 switch (line[1]) {
                 case 'n':
-                    REPLACE_OBJ_STR(obj, name, newtext);
+                    obj->name = newtext;
                     break;
                 case 's':
-                    REPLACE_OBJ_STR(obj, short_description, newtext);
+                    obj->short_description = newtext;
                     break;
                 case 'l':
-                    REPLACE_OBJ_STR(obj, description, newtext);
+                    obj->description = newtext;
                     break;
                 default:
                     log(LogSeverity::Warn, LVL_IMMORT,
                         "Error setting up drinkcon {:d}: expected 'n', 's', or 'l' in adesc, but got #{:d}",
                         GET_OBJ_VNUM(obj), line[1]);
-                    free(newtext);
                 }
             }
         }
-    ADESC_LINE:
-        free(line);
     }
 }
 

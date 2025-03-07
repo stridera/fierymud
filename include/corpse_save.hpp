@@ -21,4 +21,4 @@ void save_corpse(ObjData *corpse);
 void update_corpse(ObjData *corpse);
 void destroy_corpse(ObjData *corpse);
 int corpse_count(void);
-void show_corpses(CharData *ch, char *argument);
+void show_corpses(CharData *ch, Arguments argument);

@@ -44,21 +44,21 @@ int top_shop;
 ShopData *shop_index;
 
 /* Constant list for printing out who we sell to */
-const char *trade_letters[] = {"Good",                            /* First, the alignment based ones */
-                               "Evil",   "Neutral", "Magic User", /* Then the class based ones */
-                               "Cleric", "Thief",   "Warrior",    "\n"};
-const char *operator_str[] = {"[({", "])}", "|+", "&*", "^'"};
-const char *shop_bits[] = {"WILL_FIGHT", "USES_BANK", "\n"};
+const std::string_view trade_letters[] = {"Good",                            /* First, the alignment based ones */
+                                          "Evil",   "Neutral", "Magic User", /* Then the class based ones */
+                                          "Cleric", "Thief",   "Warrior",    "\n"};
+const std::string_view operator_str[] = {"[({", "])}", "|+", "&*", "^'"};
+const std::string_view shop_bits[] = {"WILL_FIGHT", "USES_BANK", "\n"};
 
-const char *msg_not_open_yet = "Come back later!";
-const char *msg_not_reopen_yet = "Sorry, we have closed, but come back later.";
-const char *msg_closed_for_day = "Sorry, come back tomorrow.";
-const char *msg_no_steal_here = "$n is a bloody thief!";
-const char *msg_no_see_char = "I don't trade with someone I can't see!";
-const char *msg_no_sell_align = "Get out of here before I call the guards!";
-const char *msg_no_sell_class = "We don't serve your kind here!";
-const char *msg_no_used_wandstaff = "I don't buy used up wands or staves!";
-const char *msg_cant_kill_keeper = "Get out of here before I call the guards!";
+const std::string_view msg_not_open_yet = "Come back later!";
+const std::string_view msg_not_reopen_yet = "Sorry, we have closed, but come back later.";
+const std::string_view msg_closed_for_day = "Sorry, come back tomorrow.";
+const std::string_view msg_no_steal_here = "$n is a bloody thief!";
+const std::string_view msg_no_see_char = "I don't trade with someone I can't see!";
+const std::string_view msg_no_sell_align = "Get out of here before I call the guards!";
+const std::string_view msg_no_sell_class = "We don't serve your kind here!";
+const std::string_view msg_no_used_wandstaff = "I don't buy used up wands or staves!";
+const std::string_view msg_cant_kill_keeper = "Get out of here before I call the guards!";
 
 /* Forward/External function declarations */
 ACMD(do_tell);
@@ -71,10 +71,8 @@ void sort_keeper_objs(CharData *keeper, int shop_nr);
 int cmd_say, cmd_tell, cmd_emote, cmd_slap, cmd_snicker;
 
 int is_ok_char(CharData *keeper, CharData *ch, int shop_nr) {
-    char buf[200];
-
     if (!(CAN_SEE(keeper, ch))) {
-        do_say(keeper, strdup(msg_no_see_char), cmd_say, 0);
+        do_say(keeper, {msg_no_see_char}, cmd_say, 0);
         return (false);
     }
     if (IS_GOD(ch))
@@ -82,8 +80,8 @@ int is_ok_char(CharData *keeper, CharData *ch, int shop_nr) {
 
     if ((IS_GOOD(ch) && NOTRADE_GOOD(shop_nr)) || (IS_EVIL(ch) && NOTRADE_EVIL(shop_nr)) ||
         (IS_NEUTRAL(ch) && NOTRADE_NEUTRAL(shop_nr))) {
-        sprintf(buf, "%s %s", GET_NAME(ch), msg_no_sell_align);
-        do_tell(keeper, buf, cmd_tell, 0);
+        auto buf = fmt::format("{} {}", GET_NAME(ch), msg_no_sell_align);
+        do_tell(keeper, {buf}, cmd_tell, 0);
         return (false);
     }
     if (IS_NPC(ch))
@@ -91,29 +89,29 @@ int is_ok_char(CharData *keeper, CharData *ch, int shop_nr) {
 
     if ((IS_MAGIC_USER(ch) && NOTRADE_MAGIC_USER(shop_nr)) || (IS_CLERIC(ch) && NOTRADE_CLERIC(shop_nr)) ||
         (IS_ROGUE(ch) && NOTRADE_THIEF(shop_nr)) || (IS_WARRIOR(ch) && NOTRADE_WARRIOR(shop_nr))) {
-        sprintf(buf, "%s %s", GET_NAME(ch), msg_no_sell_class);
-        do_tell(keeper, buf, cmd_tell, 0);
+        auto buf = fmt::format("{} {}", GET_NAME(ch), msg_no_sell_class);
+        do_tell(keeper, {buf}, cmd_tell, 0);
         return (false);
     }
     return (true);
 }
 
 int is_open(CharData *keeper, int shop_nr, int msg) {
-    char buf[200];
+    std::string buf;
 
     *buf = 0;
     if (SHOP_OPEN1(shop_nr) > time_info.hours)
-        strcpy(buf, msg_not_open_yet);
+        buf = msg_not_open_yet;
     else if (SHOP_CLOSE1(shop_nr) < time_info.hours) {
         if (SHOP_OPEN2(shop_nr) > time_info.hours)
-            strcpy(buf, msg_not_reopen_yet);
+            buf = msg_not_reopen_yet;
         else if (SHOP_CLOSE2(shop_nr) < time_info.hours)
-            strcpy(buf, msg_closed_for_day);
+            buf = msg_closed_for_day;
     }
-    if (!(*buf))
+    if (buf.empty())
         return (true);
     if (msg)
-        do_say(keeper, buf, cmd_tell, 0);
+        do_say(keeper, {buf}, cmd_tell, 0);
     return (false);
 }
 
@@ -165,9 +163,9 @@ int find_oper_num(char token) {
     return (NOTHING);
 }
 
-int evaluate_expression(ObjData *obj, char *expr) {
+int evaluate_expression(ObjData *obj, std::string_view expr) {
     StackData ops, vals;
-    char *ptr, *end, name[200];
+    std::string_view ptr, *end, name[200];
     int temp, index;
 
     if (!expr)
@@ -189,7 +187,7 @@ int evaluate_expression(ObjData *obj, char *expr) {
                 strncpy(name, end, ptr - end);
                 name[ptr - end] = 0;
                 for (index = 0; *extra_bits[index] != '\n'; index++)
-                    if (!strcasecmp(name, extra_bits[index])) {
+                    if (matches(name, extra_bits[index])) {
                         push(&vals, OBJ_FLAGGED(obj, index));
                         break;
                     }
@@ -246,7 +244,8 @@ int trade_with(ObjData *item, int shop_nr) {
     for (counter = 0; SHOP_BUYTYPE(shop_nr, counter) != NOTHING; counter++)
         if (SHOP_BUYTYPE(shop_nr, counter) == GET_OBJ_TYPE(item)) {
             if ((GET_OBJ_VAL(item, VAL_WAND_CHARGES_LEFT) == 0) &&
-                ((GET_OBJ_TYPE(item) == ITEM_WAND) || (GET_OBJ_TYPE(item) == ITEM_STAFF) || (GET_OBJ_TYPE(item) == ITEM_INSTRUMENT)))
+                ((GET_OBJ_TYPE(item) == ITEM_WAND) || (GET_OBJ_TYPE(item) == ITEM_STAFF) ||
+                 (GET_OBJ_TYPE(item) == ITEM_INSTRUMENT)))
                 return OBJECT_DEAD;
             else if (evaluate_expression(item, SHOP_BUYWORD(shop_nr, counter)))
                 return OBJECT_OK;
@@ -288,11 +287,11 @@ int shop_producing(ObjData *item, int shop_nr) {
     return (false);
 }
 
-int transaction_amt(char *arg) {
+int transaction_amt(std::string_view arg) {
     int num;
     one_argument(arg, buf);
-    if (*buf)
-        if ((is_number(buf))) {
+    if (!buf.empty())
+        if ((is_integer(buf))) {
             num = atoi(buf);
             if ((strlen(arg)) > 3)
                 strcpy(arg, arg + strlen(buf) + 1);
@@ -303,9 +302,9 @@ int transaction_amt(char *arg) {
     return (1);
 }
 
-char *times_message(ObjData *obj, char *name, int num) {
+std::string_view times_message(ObjData *obj, std::string_view name, int num) {
     static char buf[256];
-    char *ptr;
+    std::string_view ptr;
 
     if (obj)
         strcpy(buf, obj->short_description);
@@ -323,11 +322,11 @@ char *times_message(ObjData *obj, char *name, int num) {
     return buf;
 }
 
-ObjData *get_slide_obj_vis(CharData *ch, char *name, ObjData *list) {
+ObjData *get_slide_obj_vis(CharData *ch, std::string_view name, ObjData *list) {
     ObjData *i, *last_match = 0;
     int j, number;
     char tmpname[MAX_INPUT_LENGTH];
-    char *tmp;
+    std::string_view tmp;
 
     strcpy(tmpname, name);
     tmp = tmpname;
@@ -345,11 +344,11 @@ ObjData *get_slide_obj_vis(CharData *ch, char *name, ObjData *list) {
     return (0);
 }
 
-ObjData *get_hash_obj_vis(CharData *ch, char *name, ObjData *list) {
+ObjData *get_hash_obj_vis(CharData *ch, std::string_view name, ObjData *list) {
     ObjData *loop, *last_obj = 0;
     int index;
 
-    if ((is_number(name + 1)))
+    if ((is_integer(name + 1)))
         index = atoi(name + 1);
     else
         return (0);
@@ -364,13 +363,12 @@ ObjData *get_hash_obj_vis(CharData *ch, char *name, ObjData *list) {
     return (0);
 }
 
-ObjData *get_purchase_obj(CharData *ch, char *arg, CharData *keeper, int shop_nr, int msg) {
-    char buf[MAX_STRING_LENGTH], name[MAX_INPUT_LENGTH];
+ObjData *get_purchase_obj(CharData *ch, std::string_view arg, CharData *keeper, int shop_nr, int msg) {
     ObjData *obj;
 
     one_argument(arg, name);
     do {
-        if (is_number(name)) {
+        if (is_integer(name)) {
             strcpy(buf, name);
             strcpy(name, "#\0");
             strcat(name, buf);
@@ -453,7 +451,6 @@ int inspect_price(CharData *ch, CharData *keeper, ObjData *obj, int shop_nr) {
     return (price);
 }
 
-
 void apply_getcash(CharData *ch, int cash) {
     GET_PLATINUM(ch) += PLATINUM_PART(cash);
     GET_GOLD(ch) += GOLD_PART(cash);
@@ -473,7 +470,8 @@ void apply_cost(int cost, CharData *ch) {
     int haveP, haveG, haveS, haveC;
 
     if (cost > GET_CASH(ch)) {
-        log(LogSeverity::Warn, LVL_GOD, "ERR: {} being charged {} but doesn't have that much money", GET_NAME(ch), cost);
+        log(LogSeverity::Warn, LVL_GOD, "ERR: {} being charged {} but doesn't have that much money", GET_NAME(ch),
+            cost);
         return;
     }
 
@@ -520,7 +518,7 @@ void apply_cost(int cost, CharData *ch) {
     GET_COPPER(ch) = haveC;
 }
 
-void shopping_buy(char *arg, CharData *ch, CharData *keeper, int shop_nr) {
+void shopping_buy(std::string_view arg, CharData *ch, CharData *keeper, int shop_nr) {
     char tempstr[200], buf[MAX_STRING_LENGTH], name[MAX_INPUT_LENGTH];
     ObjData *obj, *last_obj = nullptr;
     int copperamt = 0, buynum, bought = 0;
@@ -540,7 +538,7 @@ void shopping_buy(char *arg, CharData *ch, CharData *keeper, int shop_nr) {
     }
 
     /* Did buyer specify anything to buy? */
-    if (!*arg) {
+    if (arg.empty()) {
         sprintf(buf, "%s What do you want to buy?", GET_NAME(ch));
         do_tell(keeper, buf, cmd_tell, 0);
         return;
@@ -670,7 +668,7 @@ void shopping_buy(char *arg, CharData *ch, CharData *keeper, int shop_nr) {
         }
 }
 
-ObjData *get_selling_obj(CharData *ch, char *name, CharData *keeper, int shop_nr, int msg) {
+ObjData *get_selling_obj(CharData *ch, std::string_view name, CharData *keeper, int shop_nr, int msg) {
     char buf[MAX_STRING_LENGTH];
     ObjData *obj;
     int result;
@@ -801,7 +799,7 @@ void apply_removecash(CharData *ch, int cash) {
     adjust_cash(ch);
 }
 
-void shopping_sell(char *arg, CharData *ch, CharData *keeper, int shop_nr) {
+void shopping_sell(std::string_view arg, CharData *ch, CharData *keeper, int shop_nr) {
     char tempstr[200], buf[MAX_STRING_LENGTH], name[200], sdesc[200];
     ObjData *obj;
     int sellnum, sold = 0, cashamt = 0, cnt = 0;
@@ -899,7 +897,7 @@ void shopping_sell(char *arg, CharData *ch, CharData *keeper, int shop_nr) {
     }
 }
 
-void shopping_value(char *arg, CharData *ch, CharData *keeper, int shop_nr) {
+void shopping_value(std::string_view arg, CharData *ch, CharData *keeper, int shop_nr) {
     char buf[MAX_STRING_LENGTH];
     ObjData *obj;
     char name[MAX_INPUT_LENGTH];
@@ -964,12 +962,12 @@ std::string list_object(CharData *keeper, ObjData *obj, CharData *ch, int cnt, i
         bp = ((int)(buy_price(ch, keeper, obj, shop_nr)));
     else if (service == SERVICE_PRICE)
         bp = ((int)(inspect_price(ch, keeper, obj, shop_nr)));
-        
-    return (fmt::format("{:<56}  &0&b&6{:3d}&0p,&b&3{:d}&0g,&0{:d}s,&0&3{:d}&0c\n", strip_ansi(buf.c_str()),
-                        PLATINUM_PART(bp), GOLD_PART(bp), SILVER_PART(bp), COPPER_PART(bp)));
+
+    return (fmt::format("{:<56}  &0&b&6{:3d}&0p,&b&3{:d}&0g,&0{:d}s,&0&3{:d}&0c\n", strip_ansi(buf), PLATINUM_PART(bp),
+                        GOLD_PART(bp), SILVER_PART(bp), COPPER_PART(bp)));
 }
 
-void shopping_list(char *arg, CharData *ch, CharData *keeper, int shop_nr) {
+void shopping_list(std::string_view arg, CharData *ch, CharData *keeper, int shop_nr) {
     char name[200];
     ObjData *obj, *last_obj = 0;
     int cnt = 0, index = 0;
@@ -1017,10 +1015,11 @@ void shopping_list(char *arg, CharData *ch, CharData *keeper, int shop_nr) {
     start_paging(ch);
 }
 
-void shopping_inspect(char *arg, CharData *ch, CharData *keeper, int shop_nr) {
+void shopping_inspect(std::string_view arg, CharData *ch, CharData *keeper, int shop_nr) {
     char tempstr[200], buf[MAX_STRING_LENGTH], name[MAX_INPUT_LENGTH];
     ObjData *obj, *last_obj = 0;
-    int copperamt = 0, cnt = 0, index = 0;;
+    int copperamt = 0, cnt = 0, index = 0;
+    ;
     bool amount = 0, any = false;
     int counter;
 
@@ -1031,14 +1030,15 @@ void shopping_inspect(char *arg, CharData *ch, CharData *keeper, int shop_nr) {
         sort_keeper_objs(keeper, shop_nr);
 
     /* Did player specify anything to inspect? */
-    if (!*arg) {
+    if (arg.empty()) {
         if (keeper->carrying)
             for (obj = keeper->carrying; obj; obj = obj->next_content)
                 if ((!(*name) || isname(name, obj->name)) && CAN_SEE_OBJ(ch, obj) && (obj->obj_flags.cost > 0)) {
                     if (!any) {
                         any = true;
                         paging_printf(ch, " ##  Lvl  Item                                              Cost\n");
-                        paging_printf(ch, "---  ---  ------------------------------------------------  -------------\n");
+                        paging_printf(ch,
+                                      "---  ---  ------------------------------------------------  -------------\n");
                     }
                     if (!last_obj) {
                         last_obj = obj;
@@ -1073,15 +1073,15 @@ void shopping_inspect(char *arg, CharData *ch, CharData *keeper, int shop_nr) {
 
     /* Can the buyer afford the item? */
     if ((inspect_price(ch, keeper, obj, shop_nr) > GET_CASH(ch)) && !IS_GOD(ch)) {
-        sprintf(buf, shop_index[shop_nr].missing_cash2, GET_NAME(ch));
-        do_tell(keeper, buf, cmd_tell, 0);
+        do_tell(keeper, {fmt::vformat(shop_index[shop_nr].missing_cash2, fmt::make_format_args(GET_NAME(ch)))},
+                cmd_tell, 0);
 
         switch (SHOP_BROKE_TEMPER(shop_nr)) {
         case 0:
-            do_action(keeper, GET_NAME(ch), cmd_snicker, 0);
+            do_action(keeper, {GET_NAME(ch)}, cmd_snicker, 0);
             return;
         case 1:
-            do_echo(keeper, strdup("smokes on his joint."), cmd_emote, SCMD_EMOTE);
+            do_echo(keeper, {"smokes on his joint."}, cmd_emote, SCMD_EMOTE);
             return;
         default:
             return;
@@ -1189,9 +1189,9 @@ SPECIAL(shop_keeper) {
         return (false);
 
     if (CMD_IS("steal")) {
-        sprintf(argm, "$N shouts '%s'", msg_no_steal_here);
-        do_action(keeper, GET_NAME(ch), cmd_slap, 0);
-        act(argm, false, ch, 0, keeper, TO_CHAR);
+        sprintf(argm, );
+        do_action(keeper, {GET_NAME(ch)}, cmd_slap, 0);
+        act(fmt::format("$N shouts '{}'", msg_no_steal_here), false, ch, 0, keeper, TO_CHAR);
         return (true);
     }
 
@@ -1300,7 +1300,7 @@ int read_list(FILE *shop_f, ShopBuyData *list, int new_format, int max, int type
 
 int read_type_list(FILE *shop_f, ShopBuyData *list, int new_format, int max) {
     int index, num, len = 0, error = 0, spare = -10;
-    char *ptr;
+    std::string_view ptr;
 
     if (!new_format)
         return (read_list(shop_f, list, 0, max, LIST_TRADE));
@@ -1311,18 +1311,18 @@ int read_type_list(FILE *shop_f, ShopBuyData *list, int new_format, int max) {
         else
             *(END_OF(buf) - 1) = 0;
         for (index = 0, num = NOTHING; index < NUM_ITEM_TYPES; ++index)
-            if (!strncasecmp(item_types[index].name, buf, strlen(item_types[index].name))) {
+            if (matches(item_types[index].name, buf){
                 num = index;
                 strcpy(buf, buf + strlen(item_types[index].name));
                 break;
             }
         ptr = buf;
         if (num == NOTHING) {
-            sscanf(buf, "%d", &num);
-            while (!isdigit(*ptr))
-                ptr++;
-            while (isdigit(*ptr))
-                ptr++;
+                sscanf(buf, "%d", &num);
+                while (!isdigit(*ptr))
+                    ptr++;
+                while (isdigit(*ptr))
+                    ptr++;
         }
         while (isspace(*ptr))
             ptr++;
@@ -1335,20 +1335,19 @@ int read_type_list(FILE *shop_f, ShopBuyData *list, int new_format, int max) {
     return (end_read_list(list, len, error));
 }
 
-void boot_the_shops(FILE *shop_f, char *filename, int rec_count) {
-    char *buf, buf2[150];
+void boot_the_shops(FILE *shop_f, std::string_view filename, int rec_count) {
+    std::string_view buf, buf2;
     int temp, count, new_format = 0;
     ShopBuyData list[MAX_SHOP_OBJ + 1];
     int done = 0;
 
-    sprintf(buf2, "beginning of shop file %s", filename);
+    (buf2 = fmt::format("beginning of shop file {}", filename);
 
     while (!done) {
         buf = fread_string(shop_f, buf2);
-        if (*buf == '#') { /* New shop */
-            sscanf(buf, "#%d\n", &temp);
-            sprintf(buf2, "shop #%d in shop file %s", temp, filename);
-            free(buf); /* Plug memory leak! */
+        if (buf.front() == '#') { /* New shop */
+            sscanf(buf.data(), "#%d\n", &temp);
+            buf2 = fmt::format("shop #{} in shop file {}", temp, filename);
             if (!top_shop)
                 CREATE(shop_index, ShopData, rec_count);
 
@@ -1371,13 +1370,13 @@ void boot_the_shops(FILE *shop_f, char *filename, int rec_count) {
                 SHOP_BUYWORD(top_shop, count) = BUY_WORD(list[count]);
             }
 
-            shop_index[top_shop].no_such_item1 = fread_string(shop_f, buf2);
-            shop_index[top_shop].no_such_item2 = fread_string(shop_f, buf2);
-            shop_index[top_shop].do_not_buy = fread_string(shop_f, buf2);
-            shop_index[top_shop].missing_cash1 = fread_string(shop_f, buf2);
-            shop_index[top_shop].missing_cash2 = fread_string(shop_f, buf2);
-            shop_index[top_shop].message_buy = fread_string(shop_f, buf2);
-            shop_index[top_shop].message_sell = fread_string(shop_f, buf2);
+            shop_index[top_shop].no_such_item1 = fread_string(shop_f);
+            shop_index[top_shop].no_such_item2 = fread_string(shop_f);
+            shop_index[top_shop].do_not_buy = fread_string(shop_f);
+            shop_index[top_shop].missing_cash1 = fread_string(shop_f);
+            shop_index[top_shop].missing_cash2 = fread_string(shop_f);
+            shop_index[top_shop].message_buy = fread_string(shop_f);
+            shop_index[top_shop].message_sell = fread_string(shop_f);
             read_int_line(shop_f, &SHOP_BROKE_TEMPER(top_shop));
             read_int_line(shop_f, &SHOP_BITVECTOR(top_shop));
             read_int_line(shop_f, &SHOP_KEEPER(top_shop));
@@ -1400,11 +1399,10 @@ void boot_the_shops(FILE *shop_f, char *filename, int rec_count) {
             SHOP_FUNC(top_shop) = 0;
             top_shop++;
         } else {
-            if (*buf == '$') /* EOF */
+            if (buf.front() == '$') /* EOF */
                 done = true;
-            else if (strcasestr(buf, VERSION3_TAG)) /* New format marker */
+            else if (matches(buf, VERSION3_TAG)) /* New format marker */
                 new_format = 1;
-            free(buf); /* Plug memory leak! */
         }
     }
 }
@@ -1426,7 +1424,7 @@ void assign_the_shopkeepers(void) {
     }
 }
 
-char *customer_string(int shop_nr, int detailed) {
+std::string_view customer_string(int shop_nr, int detailed) {
     int index, cnt = 1;
     static char buf[256];
 
@@ -1434,7 +1432,7 @@ char *customer_string(int shop_nr, int detailed) {
     for (index = 0; *trade_letters[index] != '\n'; index++, cnt *= 2)
         if (!(SHOP_TRADE_WITH(shop_nr) & cnt))
             if (detailed) {
-                if (*buf)
+                if (!buf.empty())
                     strcat(buf, ", ");
                 strcat(buf, trade_letters[index]);
             } else
@@ -1445,7 +1443,7 @@ char *customer_string(int shop_nr, int detailed) {
     return (buf);
 }
 
-void handle_detailed_list(char *buf, char *buf1, CharData *ch) {
+void handle_detailed_list(std::string_view buf, std::string_view buf1, CharData *ch) {
     if ((strlen(buf1) + strlen(buf) < 78) || (strlen(buf) < 20))
         strcat(buf, buf1);
     else {
@@ -1532,10 +1530,10 @@ void list_detailed_shop(CharData *ch, int shop_nr) {
     char_printf(ch, "Bits:       {}\n", buf1);
 }
 
-void do_stat_shop(CharData *ch, char *arg) {
+void do_stat_shop(CharData *ch, std::string_view arg) {
     int shop_nr, sh_virt;
 
-    if (*arg) {
+    if (!arg.empty()) {
         if (isdigit(arg[0])) {
             sh_virt = atoi(arg);
             for (shop_nr = 0; shop_nr < top_shop; shop_nr++)
@@ -1594,7 +1592,7 @@ void list_shops(CharData *ch, int start, int end) {
         char_printf(ch, "No shops found.\n");
 }
 
-int vnum_shop(char *searchname, CharData *ch) {
+int vnum_shop(std::string_view searchname, CharData *ch) {
     int nr, found = 0, room;
 
     for (nr = 0; nr < top_shop; nr++) {
@@ -1606,16 +1604,18 @@ int vnum_shop(char *searchname, CharData *ch) {
     return found;
 }
 
-void show_shops(CharData *ch, char *arg) {
+void show_shops(CharData *ch, Arguments argument) {
     int shop_nr;
 
-    if (!*arg) {
+    std::string arg = argument.shift()
+
+                          if (arg.empty()) {
         list_shops(ch, 0, MAX_VNUM);
         return;
     }
 
     else {
-        if (!strcasecmp(arg, ".")) {
+        if (matches(arg, ".")) {
             for (shop_nr = 0; shop_nr < top_shop; shop_nr++)
                 if (ok_shop_room(shop_nr, world[ch->in_room].vnum))
                     break;
@@ -1624,8 +1624,8 @@ void show_shops(CharData *ch, char *arg) {
                 char_printf(ch, "This isn't a shop!\n");
                 return;
             }
-        } else if (is_number(arg))
-            shop_nr = atoi(arg) - 1;
+        } else if (is_integer(arg))
+            shop_nr = svtoi(arg) - 1;
         else
             shop_nr = -1;
 

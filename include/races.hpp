@@ -79,7 +79,7 @@
 #define RACE_FULL(ch) (VALID_RACE(ch) ? races[(int)GET_RACE(ch)].fullname : "--")
 #define RACE_PLAINNAME(ch) (VALID_RACE(ch) ? races[(int)GET_RACE(ch)].plainname : "unknown")
 
-#define RACE_ALIGN_ABBR(ch) (GET_RACE_ALIGN(ch) <= RACE_ALIGN_EVIL ? race_align_abbrevs[(int)GET_RACE_ALIGN(ch)] : 0)
+#define RACE_ALIGN_ABBR(ch) (GET_RACE_ALIGN(ch) <= RACE_ALIGN_EVIL ? race_align_abbrevs[(int)GET_RACE_ALIGN(ch)] : "")
 #define IS_HUMANOID(ch) (VALID_RACE(ch) ? races[(int)GET_RACE(ch)].humanoid : false)
 
 #define ALIGN_OF_RACE(race) (VALID_RACENUM(race) ? races[race].racealign : RACE_ALIGN_GOOD)
@@ -95,17 +95,17 @@
 #define IS_SPELLCASTER_RACE(ch) (VALID_RACE(ch) ? races[(int)GET_RACE(ch)].magical : false)
 
 struct RaceDef {
-    const char *name;        /* The basic name, uncapitalized and uncolored. */
-    const char *names;       /* Additional names for searching purposes. */
-    const char *displayname; /* The name with colors and strategic capitalization. */
-    const char *fullname;    /* The long name with colors and capitalization */
-    const char *plainname;   /* The name with capitalization but no colors. */
-    bool playable;           /* Available to mortals? */
-    bool humanoid;           /* Is it humanoid? */
-    bool magical;            /* Does it have racial spells? */
-    int racealign;           /* Is it considered a good or evil race? */
-    int def_size;            /* The default size for a member of this race. */
-    int def_align;           /* Default alignment */
+    const std::string_view name;        /* The basic name, uncapitalize_firstd and uncolored. */
+    const std::string_view names;       /* Additional names for searching purposes. */
+    const std::string_view displayname; /* The name with colors and strategic capitalization. */
+    const std::string_view fullname;    /* The long name with colors and capitalization */
+    const std::string_view plainname;   /* The name with capitalization but no colors. */
+    bool playable;                      /* Available to mortals? */
+    bool humanoid;                      /* Is it humanoid? */
+    bool magical;                       /* Does it have racial spells? */
+    int racealign;                      /* Is it considered a good or evil race? */
+    int def_size;                       /* The default size for a member of this race. */
+    int def_align;                      /* Default alignment */
     int bonus_damroll;
     int bonus_hitroll;
     int bonus_focus;     /* Bonus to focus */
@@ -133,8 +133,8 @@ struct RaceDef {
 
     /* These may be NULL so that the default values of "enters" and "leaves"
      * will be used. */
-    const char *enter_verb;
-    const char *leave_verb;
+    const std::string_view enter_verb;
+    const std::string_view leave_verb;
 
     /*
      * The following data members should come last in the struct so
@@ -150,11 +150,11 @@ struct RaceDef {
     } skills[NUM_RACE_SKILLS]; /* List of racial skills */
 };
 extern RaceDef races[NUM_RACES];
-extern const char *race_align_abbrevs[];
+extern const std::string_view race_align_abbrevs[];
 
 void init_races(void);
 void assign_race_skills(void);
-int parse_race(CharData *ch, CharData *vict, char *arg);
+int parse_race(CharData *ch, CharData *vict, std::string_view arg);
 int race_by_menu(char arg);
 void send_race_menu(DescriptorData *d);
 int interpret_race_selection(char arg);

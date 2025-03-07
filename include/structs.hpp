@@ -12,16 +12,21 @@
 
 #pragma once
 
+#include "arguments.hpp"
 #include "defines.hpp"
 #include "sysdep.hpp"
 
+#include <array>
 #include <list>
+#include <memory>
 #include <string>
 #include <vector>
 
 typedef int room_num;
 typedef int obj_num;
 typedef int zone_vnum;
+
+typedef std::array<int, NUM_COIN_TYPES> Money;
 
 #define DAMAGE_WILL_KILL(ch, dmg) (GET_HIT(ch) - dmg <= HIT_DEAD)
 
@@ -46,12 +51,12 @@ typedef unsigned short int ush_int;
 typedef unsigned long int flagvector;
 #define FLAGBLOCK_SIZE (flagvector)32
 //((flagvector)8 * sizeof(flagvector)) /* 8 bits = 1 byte */
-#define FLAGVECTOR_SIZE(flags) (((flags)-1) / FLAGBLOCK_SIZE + 1)
+#define FLAGVECTOR_SIZE(flags) (((flags) - 1) / FLAGBLOCK_SIZE + 1)
 
 /* Extra description: used in objects, mobiles, and rooms */
 struct ExtraDescriptionData {
-    char *keyword;              /* Keyword in look/examine          */
-    char *description;          /* What to see                      */
+    std::string keyword;        /* Keyword in look/examine          */
+    std::string description;    /* What to see                      */
     ExtraDescriptionData *next; /* Next in list                     */
 };
 
@@ -66,7 +71,7 @@ struct Casting {
     int casting_time;
     CharData *tch; /* set up the targets */
     ObjData *obj;
-    char *misc;
+    std::string misc;
     int target_status;
     int circle;
 };
@@ -78,7 +83,7 @@ struct SpellPair {
 };
 
 struct SpellDamage {
-    char *note;
+    std::string_view note;
     sh_int spell;
     sh_int intern_dam;
     sh_int npc_static;
@@ -120,19 +125,19 @@ struct TimeData {
 
 /* general player-related info, usually PC's and NPC's */
 struct CharPlayerData {
-    char passwd[MAX_PWD_LENGTH + 1]; /* character's password      */
-    char *namelist;                  /* PC / NPC s name (kill ...  )         */
-    char *short_descr;               /* for NPC 'actions'                    */
-    char *long_descr;                /* for NPC 'look'                       */
-    char *description;               /* Extra descriptions                   */
-    char *title;                     /* PC / NPC's title                     */
-    char *prompt;                    /* Player prompt                        */
-    ush_int sex;                     /* PC / NPC's sex                       */
-    ush_int class_num;               /* PC / NPC's class                     */
-    ush_int race;                    /* PC / NPC's race                      */
-    ush_int race_align;              /* PC / NPC's race_align                */
-    ush_int level;                   /* PC / NPC's level                     */
-    int lifeforce;                   /* What empowers it - see LIFE_* in chars.h */
+    std::string passwd;      /* character's password      */
+    std::string namelist;    /* PC / NPC s name (kill ...  )         */
+    std::string short_descr; /* for NPC 'actions'                    */
+    std::string long_descr;  /* for NPC 'look'                       */
+    std::string description; /* Extra descriptions                   */
+    std::string title;       /* PC / NPC's title                     */
+    std::string prompt;      /* Player prompt                        */
+    ush_int sex;             /* PC / NPC's sex                       */
+    ush_int class_num;       /* PC / NPC's class                     */
+    ush_int race;            /* PC / NPC's race                      */
+    ush_int race_align;      /* PC / NPC's race_align                */
+    ush_int level;           /* PC / NPC's level                     */
+    int lifeforce;           /* What empowers it - see LIFE_* in chars.h */
     int base_composition;
     int composition;   /* What its body is made of - see COMP_* in chars.h */
     room_num homeroom; /* PC s Homeroom                        */
@@ -169,8 +174,8 @@ struct CharPointData {
     int move;
     int max_move; /* Max move for PC/NPC                     */
     int armor;    /* Internal -100..100, external -10..10 AC */
-    int coins[NUM_COIN_TYPES];
-    int bank[NUM_COIN_TYPES];
+    Money coins;
+    Money bank;
     long exp; /* The experience of the player            */
 
     int base_hitroll; /* Any bonus or penalty to the hit roll    */
@@ -180,8 +185,8 @@ struct CharPointData {
 };
 
 struct AliasData {
-    char *alias;
-    char *replacement;
+    std::string_view alias;
+    std::string_view replacement;
     int type;
     AliasData *next;
 };
@@ -277,18 +282,17 @@ struct PlayerSpecialData {
     GrantType *revoke_groups;
 
     ubyte page_length;
-    ClanMembership *clan;
-    ClanSnoop *clan_snoop;
+    std::shared_ptr<ClanMembership> clan_memberships;
     OLCZoneList *olc_zones;
     int lastlevel;
     int base_hit;
     int log_view; /* Level of syslog displayed              */
-    char *poofin;
-    char *poofout;
-    char **perm_titles;
-    char *long_descr;
-    char *wiz_title;
-    char *host;
+    std::string poofin;
+    std::string poofout;
+    std::vector<std::string> perm_titles;
+    std::string long_descr;
+    std::string wiz_title;
+    std::string host;
     std::string client{"Unknown"};
 };
 
@@ -350,11 +354,6 @@ struct FollowType {
     FollowType *next;
 };
 
-struct KnowSpell {
-    CharData *sch;
-    KnowSpell *next;
-};
-
 /* ================== Structure for player/non-player ===================== */
 // TODO: Break CharData out so we don't require these.
 struct Casting;
@@ -367,36 +366,36 @@ struct TriggerPrototypeList;
 
 struct CharData {
     /* Character stuff */
-    long id;                        /* Global unique ID used by DG triggers */
-    room_num in_room;               /* Location (real room number) */
-    room_num was_in_room;           /* location for linkdead people */
-    CharAbilityData natural_abils;  /* natural rolls */
-    CharAbilityData actual_abils;   /* natural_abils + effects */
-    CharAbilityData affected_abils; /* viewed_abils * racial percentage */
-    CharPointData points;           /* Points */
-    effect *effects;                /* effected by what spells */
-    ObjData *equipment[NUM_WEARS];  /* Equipment array */
-    ObjData *carrying;              /* Head of list */
-    KnowSpell *see_spell;           /* list of chars that guessed caster's spell */
-                                    /* Other characters */
-    CharData *forward;              /* for shapechange/switch */
-    CharData *next_in_room;         /* For room->people - list */
-    CharData *next;                 /* For either monster or ppl-list */
-    CharData *guarded_by;           /* Character guarding this char */
-    CharData *guarding;             /* Char this char is guarding */
-    CharData *cornered_by;          /* Char preventing this char from fleeing */
-    CharData *cornering;            /* Char this char is preventing from fleeing*/
-    FollowType *followers;          /* List of chars followers */
-    CharData *master;               /* Who is char following? */
-    GroupType *groupees;            /* list of chars grouped */
-    CharData *group_master;         /* group master */
-    CharData *next_caster;          /* A list of casters I'm in */
-    CharData *casters;              /* Chars who are casting spells at me */
-                                    /* Battling */
-    CharData *next_fighting;        /* Part of list of all fighting characters in mud */
-    CharData *target;               /* Who I'm fighting */
-    CharData *attackers;            /* List of characters who are fighting me */
-    CharData *next_attacker;        /* List of fighting characters I'm in */
+    long id;                                          /* Global unique ID used by DG triggers */
+    room_num in_room;                                 /* Location (real room number) */
+    room_num was_in_room;                             /* location for linkdead people */
+    CharAbilityData natural_abils;                    /* natural rolls */
+    CharAbilityData actual_abils;                     /* natural_abils + effects */
+    CharAbilityData affected_abils;                   /* viewed_abils * racial percentage */
+    CharPointData points;                             /* Points */
+    effect *effects;                                  /* effected by what spells */
+    ObjData *equipment[NUM_WEARS];                    /* Equipment array */
+    ObjData *carrying;                                /* Head of list */
+    std::vector<std::shared_ptr<CharData>> see_spell; /* list of chars that guessed caster's spell */
+                                                      /* Other characters */
+    CharData *forward;                                /* for shapechange/switch */
+    CharData *next_in_room;                           /* For room->people - list */
+    CharData *next;                                   /* For either monster or ppl-list */
+    CharData *guarded_by;                             /* Character guarding this std::string_view */
+    CharData *guarding;                               /* Char this char is guarding */
+    CharData *cornered_by;                            /* Char preventing this char from fleeing */
+    CharData *cornering;                              /* Char this char is preventing from fleeing*/
+    FollowType *followers;                            /* List of chars followers */
+    CharData *master;                                 /* Who is char following? */
+    GroupType *groupees;                              /* list of chars grouped */
+    CharData *group_master;                           /* group master */
+    CharData *next_caster;                            /* A list of casters I'm in */
+    CharData *casters;                                /* Chars who are casting spells at me */
+                                                      /* Battling */
+    CharData *next_fighting;                          /* Part of list of all fighting characters in mud */
+    CharData *target;                                 /* Who I'm fighting */
+    CharData *attackers;                              /* List of characters who are fighting me */
+    CharData *next_attacker;                          /* List of fighting characters I'm in */
     /* Player stuff */
     int pfilepos; /* playerfile pos */
     QuestList *quests;
@@ -422,7 +421,7 @@ struct CharData {
 /* descriptor-related structures ******************************************/
 
 struct txt_block {
-    char *text;
+    std::string_view text;
     int aliased;
     txt_block *next;
 };
@@ -433,7 +432,7 @@ struct txt_q {
 };
 
 struct paging_line {
-    char *line;
+    std::string_view line;
     paging_line *next;
 };
 
@@ -462,14 +461,14 @@ struct DescriptorData {
     DescriptorData *snoop_by;          /* And who is snooping this char         */
     DescriptorData *next;              /* link to next descriptor               */
     OLCData *olc;
-    char *storage;
+    std::string_view storage;
 
     /* Editing a buffer */
-    char **str;           /* for the modify-str system             */
-    char *backstr;        /* added for handling abort buffers      */
-    size_t max_str;       /*                -                      */
-    long mail_to;         /* name for mail system                  */
-    int max_buffer_lines; /* limitation on the number of lines     */
+    std::string_view str;     /* for the modify-str system             */
+    std::string_view backstr; /* added for handling abort buffers      */
+    size_t max_str;           /*                -                      */
+    long mail_to;             /* name for mail system                  */
+    int max_buffer_lines;     /* limitation on the number of lines     */
 
     EditorData *editor;
 
@@ -477,21 +476,21 @@ struct DescriptorData {
     int paging_curpage;                  /* The page which is currently showing   */
 
     /* The pager */
-    paging_line *paging_lines; /* The text that is to be paged through  */
-    paging_line *paging_tail;  /* End of the list of lines              */
-    char *paging_fragment;     /* Intermediate leftover string          */
-    int paging_numlines;       /* Number of lines in the list           */
-    int paging_numpages;       /* Number of pages to be paged through   */
-    int paging_bufsize;        /* Amount of memory currently used       */
-    int paging_skipped;        /* Number of lines discarded due to overflow */
+    paging_line *paging_lines;        /* The text that is to be paged through  */
+    paging_line *paging_tail;         /* End of the list of lines              */
+    std::string_view paging_fragment; /* Intermediate leftover string          */
+    int paging_numlines;              /* Number of lines in the list           */
+    int paging_numpages;              /* Number of pages to be paged through   */
+    int paging_bufsize;               /* Amount of memory currently used       */
+    int paging_skipped;               /* Number of lines discarded due to overflow */
 };
 
 /* other miscellaneous structures ***************************************/
 
 struct msg_type {
-    char *attacker_msg; /* message to attacker */
-    char *victim_msg;   /* message to victim   */
-    char *room_msg;     /* message to room     */
+    std::string_view attacker_msg; /* message to attacker */
+    std::string_view victim_msg;   /* message to victim   */
+    std::string_view room_msg;     /* message to room     */
 };
 
 struct message_type {
@@ -510,17 +509,17 @@ struct message_list {
 };
 
 struct stat_bonus_type {
-    sh_int tohit;         /* To Hit (THAC0) Bonus/Penalty        */
-    sh_int todam;         /* Damage Bonus/Penalty                */
-    sh_int defense;       /* Armor Class Bonus/Penalty           */
-    sh_int carry;         /* Maximum weight that can be carrried */
-    sh_int wield;         /* Maximum weight that can be wielded  */
-    sh_int magic;         /* Stat bonus to spells                */
-    sh_int hpgain;        /* Bonus to HP gained at level         */
-    sh_int skill_small;         /* Range -7 to 5 bonus to skills       */
-    sh_int skill_medium;        /* Range -7 to 10 bonus to skills      */
-    sh_int skill_large;         /* Range -7 to 15 bonus to skills      */
-    sh_int rogue_skills;  /* Bonus range for rogue-type skills   */
+    sh_int tohit;        /* To Hit (THAC0) Bonus/Penalty        */
+    sh_int todam;        /* Damage Bonus/Penalty                */
+    sh_int defense;      /* Armor Class Bonus/Penalty           */
+    sh_int carry;        /* Maximum weight that can be carrried */
+    sh_int wield;        /* Maximum weight that can be wielded  */
+    sh_int magic;        /* Stat bonus to spells                */
+    sh_int hpgain;       /* Bonus to HP gained at level         */
+    sh_int skill_small;  /* Range -7 to 5 bonus to skills       */
+    sh_int skill_medium; /* Range -7 to 10 bonus to skills      */
+    sh_int skill_large;  /* Range -7 to 15 bonus to skills      */
+    sh_int rogue_skills; /* Bonus range for rogue-type skills   */
 };
 
 struct weather_data {
@@ -536,9 +535,9 @@ struct IndexData {
     int vnum;   /* vnum of this mob/obj           */
     int number; /* number of existing units of this mob/obj        */
     // SPECIAL(*func);
-    int (*func)(CharData *ch, void *me, int cmd, char *argument);
-    char *farg;      /* string argument for special function     */
-    TrigData *proto; /* for triggers... the trigger     */
+    int (*func)(CharData *ch, void *me, int cmd, Arguments argument);
+    std::string_view farg; /* string argument for special function     */
+    TrigData *proto;       /* for triggers... the trigger     */
 };
 
 /* linked list for mob/object prototype trigger lists */

@@ -50,6 +50,7 @@
 #include "weather.hpp"
 
 #include <fmt/format.h>
+#include <iostream>
 #include <netdb.h>
 #include <netinet/in.h>
 #include <signal.h>
@@ -62,6 +63,7 @@
 #else
 #include "telnet.h"
 #endif
+#include <bitflags.hpp>
 
 #ifndef INVALID_SOCKET
 #define INVALID_SOCKET -1
@@ -92,21 +94,21 @@ unsigned long pulse = 0;                   /* number of pulses since game starte
 
 /* local globals */
 char comm_buf[MAX_STRING_LENGTH] = {'\0'};
-txt_block *bufpool = 0;        /* pool of large output buffers */
-int buf_largecount = 0;        /* # of large buffers which exist */
-int buf_overflows = 0;         /* # of overflows of output */
-int buf_switches = 0;          /* # of switches from small to large buf */
-int circle_shutdown = 0;       /* clean shutdown */
-int circle_reboot = 0;         /* reboot the game after a shutdown */
-int no_specials = 0;           /* Suppress ass. of special routines */
-int max_players = 0;           /* max descriptors available */
-int tics = 0;                  /* for extern checkpointing */
-int scheck = 0;                /* for syntax checking mode */
-int dg_act_check;              /* toggle for act_trigger */
-int gossip_channel_active = 1; /* Flag for turning on or off gossip for the whole MUD */
+txt_block *bufpool = 0;            /* pool of large output buffers */
+int buf_largecount = 0;            /* # of large buffers which exist */
+int buf_overflows = 0;             /* # of overflows of output */
+int buf_switches = 0;              /* # of switches from small to large buf */
+int circle_shutdown = 0;           /* clean shutdown */
+int circle_reboot = 0;             /* reboot the game after a shutdown */
+int no_specials = 0;               /* Suppress ass. of special routines */
+int max_players = 0;               /* max descriptors available */
+int tics = 0;                      /* for extern checkpointing */
+int scheck = 0;                    /* for syntax checking mode */
+int dg_act_check;                  /* toggle for act_trigger */
+bool gossip_channel_active = true; /* Flag for turning on or off gossip for the whole MUD */
 
 /* functions in this file */
-int get_from_q(txt_q *queue, char *dest, int *aliased);
+int get_from_q(txt_q *queue, std::string_view dest, int *aliased);
 void init_game(int port);
 void signal_setup(void);
 void game_loop(int mother_desc);
@@ -120,14 +122,13 @@ timeval timediff(timeval a, timeval b);
 timeval timeadd(timeval a, timeval b);
 void flush_queues(DescriptorData *d);
 void nonblock(socket_t s);
-int perform_subst(DescriptorData *t, char *orig, char *subst);
-int perform_alias(DescriptorData *d, char *orig);
+int perform_alias(DescriptorData *d, std::string_view orig);
 void record_usage(void);
 void send_gmcp_char_info(DescriptorData *d);
 void make_prompt(DescriptorData *d);
 void check_idle_passwords(void);
 void heartbeat(int pulse);
-char *new_txt;
+std::string_view new_txt;
 void init_descriptor(DescriptorData *newd, int desc);
 int enter_player_game(DescriptorData *d);
 void free_bufpools(void);
@@ -141,9 +142,9 @@ void point_update(void);  /* In limits.c */
 void sick_update(void);   /* In limits.c */
 void mobile_activity(void);
 void mobile_spec_activity(void);
-void string_add(DescriptorData *d, char *str);
+void string_add(DescriptorData *d, std::string_view str);
 void perform_mob_violence(void);
-int isbanned(char *hostname);
+int isbanned(std::string_view hostname);
 void redit_save_to_disk(int zone_num);
 void oedit_save_to_disk(int zone_num);
 void medit_save_to_disk(int zone_num);
@@ -160,18 +161,17 @@ void free_invalid_list(void);
  *  main game loop and related stuff                                    *
  ********************************************************************* */
 
-int main(int argc, char **argv) {
+int main(int argc, char *argv[]) {
     int pos = 1;
-    const char *dir, *env;
+    std::string dir{DFLT_DIR};
+    std::string env{DFLT_ENV};
 
     port = DFLT_PORT;
-    dir = DFLT_DIR;
-    env = DFLT_ENV;
 
-    while ((pos < argc) && (*(argv[pos]) == '-')) {
-        switch (*(argv[pos] + 1)) {
+    while ((pos < argc) && (argv[pos][0] == '-')) {
+        switch (argv[pos][1]) {
         case 'd':
-            if (*(argv[pos] + 2))
+            if (argv[pos][2])
                 dir = argv[pos] + 2;
             else if (++pos < argc)
                 dir = argv[pos];
@@ -181,7 +181,7 @@ int main(int argc, char **argv) {
             }
             break;
         case 'e':
-            if (*(argv[pos] + 2))
+            if (argv[pos][2])
                 env = argv[pos] + 2;
             else if (++pos < argc)
                 env = argv[pos];
@@ -192,7 +192,7 @@ int main(int argc, char **argv) {
             break;
         case 'H': /* -H<socket number> recover from hotboot, this is the control socket */
             num_hotboots = 1;
-            mother_desc = atoi(argv[pos] + 2);
+            mother_desc = std::stoi(argv[pos] + 2);
             break;
         case 'c':
             scheck = 1;
@@ -211,35 +211,35 @@ int main(int argc, char **argv) {
             log("Suppressing assignment of special routines.");
             break;
         default:
-            log("SYSERR: Unknown option -{:c} in argument string.", *(argv[pos] + 1));
+            log("SYSERR: Unknown option -{:c} in argument string.", argv[pos][1]);
             break;
         }
         pos++;
     }
 
     if (pos < argc) {
-        if (!isdigit(*argv[pos])) {
+        if (!isdigit(argv[pos][0])) {
             fprintf(stderr, "Usage: %s [-c] [-m] [-q] [-r] [-s] [-d pathname] [port #]\n", argv[0]);
             exit(1);
-        } else if ((port = atoi(argv[pos])) <= 1024) {
+        } else if ((port = std::stoi(argv[pos])) <= 1024) {
             fprintf(stderr, "Illegal port number.\n");
             exit(1);
         }
     }
 
-    if (chdir(dir) < 0) {
+    if (chdir(dir.c_str()) < 0) {
         perror("Fatal error changing to data directory");
         exit(1);
     }
     log("Using {} as data directory.", dir);
 
-    if (strcasecmp(env, "test") == 0) {
+    if (env == "test") {
         environment = ENV_TEST;
         log("Running in test mode.");
-    } else if (strcasecmp(env, "dev") == 0) {
+    } else if (env == "dev") {
         environment = ENV_DEV;
         log("Running in dev mode.");
-    } else if (strcasecmp(env, "prod") == 0) {
+    } else if (env == "prod") {
         environment = ENV_PROD;
         log("Running in production mode.");
     } else {
@@ -269,60 +269,61 @@ int main(int argc, char **argv) {
 }
 
 void hotboot_recover() {
-    DescriptorData *d;
     FILE *fp;
     char host[1024];
     int desc, player_i;
     bool fOld;
     char name[MAX_INPUT_LENGTH];
     int count;
-    char *p;
+    std::string buf;
 
     extern time_t *boot_time;
 
     log("Hotboot recovery initiated.");
 
     fp = fopen(HOTBOOT_FILE, "r");
-    /* There are some descriptors open which will hang forever then? */
     if (!fp) {
         perror("hotboot_recover:fopen");
-        log("Hotboot file not found.  Exiting.\n");
+        log("Hotboot file not found. Exiting.");
         exit(1);
     }
 
-    /* In case something crashes - doesn't prevent reading */
     unlink(HOTBOOT_FILE);
 
-    /* read boot_time - first line in file */
     if (boot_time)
         free(boot_time);
-    fgets(p = buf, MAX_STRING_LENGTH, fp);
-    p = any_one_arg(p, name);
-    num_hotboots = atoi(name); /* actually the total number of boots */
+
+    if (fgets(buf.data(), buf.size(), fp) == nullptr) {
+        perror("fgets");
+        exit(1);
+    }
+    std::istringstream iss(buf);
+    iss >> name;
+    num_hotboots = std::stoi(name);
     CREATE(boot_time, time_t, num_hotboots + 1);
     for (count = 0; count < num_hotboots; ++count) {
-        p = any_one_arg(p, name);
-        boot_time[count] = atol(name);
+        iss >> name;
+        boot_time[count] = std::stol(name);
     }
     boot_time[num_hotboots] = time(0);
 
-    /* More than 1000 iterations means something is pretty wrong. */
     for (count = 0; count <= 1000; ++count) {
         fOld = true;
-        fscanf(fp, "%d %s %s\n", &desc, name, host);
+        if (fscanf(fp, "%d %s %s\n", &desc, name, host) != 3)
+            break;
+
         if (desc == -1)
             break;
 
-        /* Write something, and check if it goes error-free */
         if (write_to_descriptor(desc, "\nRestoring from hotboot...\n") < 0) {
-            close(desc); /* nope */
+            close(desc);
             continue;
         }
 
-        /* Create a new descriptor */
+        DescriptorData *d;
         CREATE(d, DescriptorData, 1);
         memset((char *)d, 0, sizeof(DescriptorData));
-        init_descriptor(d, desc); /* set up various stuff */
+        init_descriptor(d, desc);
 
         strcpy(d->host, host);
         d->next = descriptor_list;
@@ -345,11 +346,12 @@ void hotboot_recover() {
             fOld = false;
 
         if (!fOld) {
-            write_to_descriptor(desc, "\nSomehow, your character was lost in the hotboot.  Sorry.\n");
+            write_to_descriptor(desc, "\nSomehow, your character was lost in the hotboot. Sorry.\n");
             close_socket(d);
         } else {
-            sprintf(buf, "\n%sHotboot recovery complete.%s\n", CLR(d->character, HGRN), CLR(d->character, ANRM));
-            write_to_descriptor(desc, buf);
+            std::string recovery_message =
+                fmt::format("\n{}Hotboot recovery complete.{}\n", CLR(d->character, HGRN), CLR(d->character, ANRM));
+            write_to_descriptor(desc, recovery_message);
             enter_player_game(d);
             d->connected = CON_PLAYING;
             look_at_room(d->character, false);
@@ -514,7 +516,7 @@ int init_socket(int port) {
 
 int get_max_players(void) {
     int max_descs = 0;
-    char *method;
+    std::string_view method;
 
     /*
      * First, we'll try using getrlimit/setrlimit.  This will probably work
@@ -867,7 +869,7 @@ void game_loop(int mother_desc) {
                     get_paging_input(d, comm);
                 else if (EDITING(d))
                     editor_interpreter(d, comm);
-                else if (d->str) /* writing boards, mail, etc.     */
+                else if (!d->str.empty()) /* writing boards, mail, etc.     */
                     string_add(d, comm);
                 else if (d->connected != CON_PLAYING) /* in menus, etc. */
                     nanny(d, comm);
@@ -1122,7 +1124,7 @@ void handle_gmcp_request(DescriptorData *d, std::string_view txt) {
                 int skill = skill_sort_info[i];
                 if (!IS_SKILL(i))
                     continue;
-                if (*skills[i].name == '!')
+                if (skills[i].name[0] == '!')
                     continue;
                 if (GET_SKILL(d->character, i) <= 0)
                     continue;
@@ -1137,7 +1139,7 @@ void handle_gmcp_request(DescriptorData *d, std::string_view txt) {
                 int skill = skill_sort_info[i];
                 if (!IS_SPELL(i))
                     continue;
-                if (*skills[i].name == '!')
+                if (skills[i].name[0] == '!')
                     continue;
                 if (GET_SKILL(d->character, i) <= 0)
                     continue;
@@ -1158,7 +1160,7 @@ static bool supports_ansi(std::string_view detected_term) {
     return false;
 }
 
-void handle_telopt_request(DescriptorData *d, char *txt) {
+void handle_telopt_request(DescriptorData *d, std::string_view txt) {
     char bcbuf[15] = "0";
 
     d->character->player_specials->client = txt;
@@ -1177,17 +1179,10 @@ void handle_telopt_request(DescriptorData *d, char *txt) {
 
     if (environment == ENV_PROD) {
         string_to_output(d, GREETINGS);
-        string_to_output(d, GREETINGS2);
-        string_to_output(d, GREETINGS3);
-        string_to_output(d, GREETINGS4);
     } else if (environment == ENV_TEST) {
         string_to_output(d, TEST_GREETING);
-        string_to_output(d, TEST_GREETING2);
-        string_to_output(d, TEST_GREETING3);
     } else if (environment == ENV_DEV) {
         string_to_output(d, DEV_GREETING);
-        string_to_output(d, DEV_GREETING2);
-        string_to_output(d, DEV_GREETING3);
     }
     string_to_output(d, bcbuf);
     string_to_output(d, WHOAREYOU);
@@ -1209,7 +1204,6 @@ void echo_off(DescriptorData *d) {
 
 void send_gmcp_prompt(DescriptorData *d) {
     CharData *ch = d->character, *vict = FIGHTING(ch), *tank;
-    char position[MAX_STRING_LENGTH];
     effect *eff;
 
     if (!d->gmcp_enabled) {
@@ -1230,12 +1224,15 @@ void send_gmcp_prompt(DescriptorData *d) {
         combat["opponent"] = {{"name", PERS(vict, ch)}, {"hp_percent", 100 * GET_HIT(vict) / GET_MAX_HIT(vict)}};
     }
 
-    /* Need to construct a json string.  Would be nice to get a module to do it
-       for us, but the code base is too old to rely on something like that. */
-    if (d->original)
-        sprinttype(GET_POS(d->original), position_types, position);
-    else
-        sprinttype(GET_POS(d->character), position_types, position);
+    /* Need to construct a json string.  Would be nice to get a module to do it for us, but the code base is too old to
+     * rely on something like that. */
+    auto position = [&]() {
+        if (d->original)
+            return sprinttype(GET_POS(d->original), position_types);
+
+        else
+            return sprinttype(GET_POS(d->character), position_types);
+    }();
 
     json gmcp_data = {
         {"name", strip_ansi(GET_NAME(ch))},
@@ -1264,8 +1261,8 @@ void send_gmcp_prompt(DescriptorData *d) {
 
     send_gmcp(d, "Char", gmcp_data);
     write_to_descriptor(d->descriptor, ga_string);
-    std::string details =
-        fmt::format("Character: {}  Class: {}  Level: {}", GET_NAME(ch), capitalize(CLASS_NAME(ch)), GET_LEVEL(ch));
+    std::string details = fmt::format("Character: {}  Class: {}  Level: {}", GET_NAME(ch),
+                                      capitalize_first(CLASS_NAME(ch)), GET_LEVEL(ch));
     auto login = std::chrono::system_clock::from_time_t(ch->player.time.logon);
     send_gmcp(d, "External.Discord.Status",
               {
@@ -1280,7 +1277,7 @@ void send_gmcp_prompt(DescriptorData *d) {
 
 void send_gmcp_room(CharData *ch) {
     static char response[MAX_STRING_LENGTH];
-    char *cur = response;
+    std::string_view cur = response;
 
     int roomnum = IN_ROOM(ch);
     RoomData *room = &world[roomnum];
@@ -1295,15 +1292,22 @@ void send_gmcp_room(CharData *ch) {
         return;
     }
 
+    auto door_name = [](Exit *exit) {
+        if (!exit) {
+            return std::string_view{"door"};
+        }
+        if (exit->keyword.empty()) {
+            return exit->general_description.empty() ? "door" : exit->general_description;
+        }
+        return exit->keyword;
+    };
     json exits = json::object();
     for (int dir = 0; dir < NUM_OF_DIRS; dir++) {
         if ((exit = world[roomnum].exits[dir]) && EXIT_DEST(exit) && can_see_exit(ch, roomnum, exit)) {
             json exit_json = {{"to_room", EXIT_DEST(exit)->vnum}};
             if (EXIT_IS_DOOR(exit)) {
                 exit_json["is_door"] = true;
-                exit_json["door_name"] = exit->keyword               ? exit->keyword
-                                         : exit->general_description ? exit->general_description
-                                                                     : "door";
+                exit_json["door_name"] = door_name(exit);
                 exit_json["door"] = EXIT_IS_CLOSED(exit) ? EXIT_IS_LOCKED(exit) ? "locked" : "closed" : "open";
             } else {
                 exit_json["is_door"] = false;
@@ -1351,7 +1355,7 @@ void send_mssp(DescriptorData *d) {
     mssp_data += fmt::format("{:c}{}{:c}{}", MSSP_VAR, "GENRE", MSSP_VAL, "Fantasy");
 
     mssp_data += fmt::format("{:c}{:c}", IAC, SE);
-    write_to_descriptor(d->descriptor, mssp_data.c_str());
+    write_to_descriptor(d->descriptor, mssp_data);
 }
 
 /*
@@ -1365,37 +1369,34 @@ void echo_on(DescriptorData *d) {
     string_to_output(d, on_string);
 }
 
-char *prompt_str(CharData *ch) {
-    enum token {
-        TOK_UNKNOWN, /* Default, not expecting anything in particular */
-        TOK_CONTROL, /* Last char was a %, next one is a control code */
-        TOK_PERCENT, /* Last two chars were %p, next one is percent code */
-        TOK_COIN,    /* Last two chars were %c, next one is coins code */
-        TOK_COOLDOWN /* Last two chars were %d, next one is cooldown code */
+std::string prompt_str(CharData *ch) {
+    enum class Token {
+        UNKNOWN, /* Default, not expecting anything in particular */
+        CONTROL, /* Last char was a %, next one is a control code */
+        PERCENT, /* Last two chars were %p, next one is percent code */
+        COIN,    /* Last two chars were %c, next one is coins code */
+        COOLDOWN /* Last two chars were %d, next one is cooldown code */
     };
 
     CharData *vict = FIGHTING(ch), *tank;
-    static char prompt[MAX_STRING_LENGTH];
-    char *cur, *raw = GET_PROMPT(ch);
-    int color, temp, pre_length = 0;
-    enum token expecting = TOK_UNKNOWN;
+    std::string prompt;
+    std::string_view raw = GET_PROMPT(ch);
+    int color, temp;
+    Token expecting = Token::UNKNOWN;
     bool found_x = false;
     effect *eff;
 
     /* No prompt?  Use the default! */
-    if (!raw || !*raw)
-        raw = "&0FieryMUD: Set your prompt (see 'help prompt')>";
+    if (raw.empty())
+        return "&0FieryMUD: Set your prompt (see 'help prompt')>";
 
     /* Use color? */
     color = (PRF_FLAGGED(ch, PRF_COLOR_1) || PRF_FLAGGED(ch, PRF_COLOR_2) ? 1 : 0);
 
     /* No need to parse if there aren't % symbols */
-    if (!strchr(raw, '%')) {
-        sprintf(prompt, "%s&0", raw);
-        return prompt;
+    if (raw.find('%') == std::string_view::npos) {
+        return fmt::format("{}&0", raw);
     }
-
-    cur = prompt;
 
     /*
      * Insert wizinvis and AFK flags at the beginning.  If we DON'T find the
@@ -1404,82 +1405,80 @@ char *prompt_str(CharData *ch) {
      */
     if (!IS_NPC(ch)) {
         if (GET_INVIS_LEV(ch) > 0)
-            pre_length += sprintf(cur + pre_length, "<wizi %03d> ", GET_INVIS_LEV(ch));
+            prompt += fmt::format("<wizi {:03d}> ", GET_INVIS_LEV(ch));
         if (PRF_FLAGGED(ch, PRF_ROOMVIS) && GET_INVIS_LEV(ch))
-            pre_length += sprintf(cur + pre_length, "<rmvis> ");
+            prompt += "<rmvis> ";
         if (PRF_FLAGGED(ch, PRF_AFK))
-            pre_length += sprintf(cur + pre_length, "<AFK> ");
+            prompt += "<AFK> ";
         /* If any flags above, insert newline. */
-        if (pre_length) {
-            pre_length += sprintf(cur + pre_length, "\n");
-            /* Advance cursor. */
-            cur += pre_length;
+        if (!prompt.empty()) {
+            prompt += "\n";
         }
     }
 
-    for (; *raw; ++raw) {
-        if (expecting == TOK_UNKNOWN) {
-            if (*raw == '%')
+    for (char c : raw) {
+        if (expecting == Token::UNKNOWN) {
+            if (c == '%')
                 /* Next character will be a control code. */
-                expecting = TOK_CONTROL;
+                expecting = Token::CONTROL;
             else
                 /* Not a control code starter...just copy the character. */
-                *(cur++) = *raw;
-        } else if (expecting == TOK_CONTROL) {
+                prompt += c;
+        } else if (expecting == Token::CONTROL) {
             /* Reset what we are expecting for the next char. */
-            expecting = TOK_UNKNOWN;
-            switch (*raw) {
+            expecting = Token::UNKNOWN;
+            switch (c) {
             case 'h':
-                cur += sprintf(cur, "%d", GET_HIT(ch));
+                prompt += std::to_string(GET_HIT(ch));
                 break;
             case 'H':
-                cur += sprintf(cur, "%d", GET_MAX_HIT(ch));
+                prompt += std::to_string(GET_MAX_HIT(ch));
                 break;
                 /* Mana isn't available...
                         case 'm':
-                          cur += sprintf(cur, "%d", GET_MANA(ch));
+                          prompt += std::to_string(GET_MANA(ch));
                           break;
                         case 'M':
-                          cur += sprintf(cur, "%d", GET_MAX_MANA(ch));
+                          prompt += std::to_string(GET_MAX_MANA(ch));
                           break;
                 */
             case 'v':
-                cur += sprintf(cur, "%d", GET_MOVE(ch));
+                prompt += std::to_string(GET_MOVE(ch));
                 break;
             case 'V':
-                cur += sprintf(cur, "%d", GET_MAX_MOVE(ch));
+                prompt += std::to_string(GET_MAX_MOVE(ch));
                 break;
             case 'i':
             case 'I':
-                cur += sprintf(cur, "%ld", GET_HIDDENNESS(ch));
+                prompt += std::to_string(GET_HIDDENNESS(ch));
                 break;
             case 'a':
             case 'A':
-                cur += sprintf(cur, "%d", GET_ALIGNMENT(ch));
+                prompt += std::to_string(GET_ALIGNMENT(ch));
                 break;
             case 'n':
                 /* Current character's name. */
-                cur += sprintf(cur, "%s", GET_NAME(ch));
+                prompt += GET_NAME(ch);
                 break;
             case 'k':
                 /* Current Character's Class */
-                cur += sprintf(cur, "%s", CLASS_FULL(ch));
+                prompt += CLASS_FULL(ch);
                 break;
             case 'N':
                 /* If switched, show original char's name. */
-                cur += sprintf(cur, "%s", GET_NAME(REAL_CHAR(ch)));
+                prompt += GET_NAME(REAL_CHAR(ch));
                 break;
             case 'd':
                 /* Cooldown bar: next char will be control code */
-                expecting = TOK_COOLDOWN;
+                expecting = Token::COOLDOWN;
                 break;
             case 'e':
                 /* Show current to-next-level exp status */
-                cur += sprintf(cur, "%s", exp_bar(REAL_CHAR(ch), 20, 20, 20, color));
+                prompt += exp_bar(REAL_CHAR(ch), 20, 20, 20, color);
                 break;
             case 'E':
                 /* Show current to-next-level exp status */
-                cur += sprintf(cur, "%s", exp_message(REAL_CHAR(ch)));
+                prompt += exp_message(REAL_CHAR(ch));
                 break;
             case 'l':
             case 'L':
@@ -1488,104 +1487,98 @@ char *prompt_str(CharData *ch) {
                     if (eff->duration >= 0 && (!eff->next || eff->next->type != eff->type)) {
                         if (color && EFF_FLAGGED(ch, EFF_DETECT_MAGIC)) {
                             if (eff->duration <= 1)
-                                cur += sprintf(cur, "%s", CLR(ch, FRED));
+                                prompt += CLR(ch, FRED);
                             else if (eff->duration <= 3)
-                                cur += sprintf(cur, "%s", CLR(ch, HRED));
+                                prompt += CLR(ch, HRED);
                         }
-                        cur += sprintf(cur, "%s%s", skills[eff->type].name, eff->next ? ", " : "");
+                        prompt += skills[eff->type].name;
+                        if (eff->next)
+                            prompt += ", ";
                         if (color && EFF_FLAGGED(ch, EFF_DETECT_MAGIC))
-                            cur += sprintf(cur, "%s", CLR(ch, ANRM));
+                            prompt += CLR(ch, ANRM);
                     }
                 break;
             case 'p':
             case 'P':
                 /* Percent of x remaining: next char will be a control code. */
-                expecting = TOK_PERCENT;
+                expecting = Token::PERCENT;
                 break;
             case 'c':
             case 'C':
                 /* Amount of gold held/in bank: next char will be a control code. */
-                expecting = TOK_COIN;
+                expecting = Token::COIN;
                 break;
             case 'w':
                 /* All money held. */
-                cur += sprintf(cur, "&0%d&6p&0 %d&3g&0 %ds %d&3c&0", GET_PLATINUM(ch), GET_GOLD(ch), GET_SILVER(ch),
-                               GET_COPPER(ch));
+                prompt += fmt::format("&0{}&6p&0 {}&3g&0 {}s {}&3c&0", GET_PLATINUM(ch), GET_GOLD(ch), GET_SILVER(ch),
+                                      GET_COPPER(ch));
                 break;
             case 'W':
                 /* All money in bank. */
-                cur += sprintf(cur, "&0%d&6p&0 %d&3g&0 %ds %d&3c&0", GET_BANK_PLATINUM(ch), GET_BANK_GOLD(ch),
-                               GET_BANK_SILVER(ch), GET_BANK_COPPER(ch));
+                prompt += fmt::format("&0{}&6p&0 {}&3g&0 {}s {}&3c&0", GET_BANK_PLATINUM(ch), GET_BANK_GOLD(ch),
+                                      GET_BANK_SILVER(ch), GET_BANK_COPPER(ch));
                 break;
             case 'o':
                 /* Show the victim's name and status. */
                 if (vict)
-                    cur += snprintf(cur, 255, "%s &0(%s)", PERS(vict, ch),
-                                    status_string(GET_HIT(vict), GET_MAX_HIT(vict), STATUS_ALIAS));
+                    prompt += fmt::format("{} &0({})", PERS(vict, ch),
+                                          status_string(GET_HIT(vict), GET_MAX_HIT(vict), STATUS_ALIAS));
                 break;
             case 'O':
                 /* Just victim's name. */
                 if (vict)
-                    cur += snprintf(cur, 255, "%s", PERS(vict, ch));
+                    prompt += PERS(vict, ch);
                 break;
             case 't':
                 /* Show the tank's name and status. */
                 if (vict && (tank = FIGHTING(vict)))
-                    cur += sprintf(cur, "%s &0(%s&0)", PERS(tank, ch),
-                                   status_string(GET_HIT(tank), GET_MAX_HIT(tank), STATUS_ALIAS));
+                    prompt += fmt::format("{} &0({}&0)", PERS(tank, ch),
+                                          status_string(GET_HIT(tank), GET_MAX_HIT(tank), STATUS_ALIAS));
                 break;
             case 'T':
                 /* Just the tank's name. */
                 if (vict && (tank = FIGHTING(vict)))
-                    cur += sprintf(cur, "%s", PERS(tank, ch));
+                    prompt += PERS(tank, ch);
                 break;
             case 'g':
                 if (ch->group_master)
-                    cur +=
-                        sprintf(cur, "%s &0(%s&0)", PERS(ch->group_master, ch),
-                                status_string(GET_HIT(ch->group_master), GET_MAX_HIT(ch->group_master), STATUS_ALIAS));
+                    prompt += fmt::format(
+                        "{} &0({}&0)", PERS(ch->group_master, ch),
+                        status_string(GET_HIT(ch->group_master), GET_MAX_HIT(ch->group_master), STATUS_ALIAS));
                 break;
             case 'G':
                 if (ch->group_master)
-                    cur += sprintf(cur, "%s", PERS(ch->group_master, ch));
+                    prompt += PERS(ch->group_master, ch);
                 break;
             case 'r':
-                cur += sprintf(cur, "%d", GET_RAGE(ch));
+                prompt += std::to_string(GET_RAGE(ch));
                 break;
             case 'x':
             case 'X':
                 /* Flags like wizinvis and AFK. */
                 found_x = true;
-                /* If any flags were inserted above, copy them here instead. */
-                if (pre_length >= 3) {
-                    /* We don't want to keep the extra space or newline. */
-                    snprintf(cur, pre_length - 2, "%s", prompt);
-                    /* snprintf returns the number of chars it WOULD have printed
-                     * if it didn't truncate, so we add to the pointer manually. */
-                    cur += pre_length - 3;
-                }
                 break;
             case 'z':
             case 'Z':
                 /* Show the zone */
-                cur += sprintf(cur, "%s", zone_table[world[IN_ROOM(ch)].zone].name);
+                prompt += zone_table[world[IN_ROOM(ch)].zone].name;
                 break;
             case '#':
-                cur += sprintf(cur, "%d", GET_LEVEL(ch));
+                prompt += std::to_string(GET_LEVEL(ch));
                 break;
             case '_':
-                cur += sprintf(cur, "\n");
+                prompt += "\n";
                 break;
             case '-':
-                cur += sprintf(cur, " ");
+                prompt += " ";
                 break;
             case '%':
-                cur += sprintf(cur, "%%");
+                prompt += "%";
                 break;
             }
-        } else if (expecting == TOK_PERCENT) {
-            expecting = TOK_UNKNOWN;
-            switch (*raw) {
+        } else if (expecting == Token::PERCENT) {
+            expecting = Token::UNKNOWN;
+            switch (c) {
             case 'h':
             case 'H':
                 temp = (100 * GET_HIT(ch)) / std::max(1, GET_MAX_HIT(ch));
@@ -1601,14 +1594,12 @@ char *prompt_str(CharData *ch) {
                 temp = (100 * GET_MOVE(ch)) / std::max(1, GET_MAX_MOVE(ch));
                 break;
             default:
-                /* If we set expecting to 0 ahead of time up here, we'll skip
-                   the percent sprintf below. */
-                continue;
+                continue; /* don't print anything */
             }
-            cur += sprintf(cur, "%d%%", temp);
-        } else if (expecting == TOK_COIN) {
-            expecting = TOK_UNKNOWN;
-            switch (*raw) {
+            prompt += fmt::format("{}%", temp);
+        } else if (expecting == Token::COIN) {
+            expecting = Token::UNKNOWN;
+            switch (c) {
             case 'p':
                 temp = GET_PLATINUM(ch);
                 break;
@@ -1636,11 +1627,11 @@ char *prompt_str(CharData *ch) {
             default:
                 continue; /* don't print anything */
             }
-            cur += sprintf(cur, "%d", temp);
-        } else if (expecting == TOK_COOLDOWN) {
-            expecting = TOK_UNKNOWN;
+            prompt += std::to_string(temp);
+        } else if (expecting == Token::COOLDOWN) {
+            expecting = Token::UNKNOWN;
             /* Show time left for particular cooldown */
-            switch (*raw) {
+            switch (c) {
             case 'a':
                 temp = CD_INNATE_ASCEN;
                 break;
@@ -1743,15 +1734,12 @@ char *prompt_str(CharData *ch) {
             default:
                 continue; /* don't print anything */
             }
-            cur += sprintf(cur, "%s", cooldown_bar(ch, temp, 20, 20, color));
+            prompt += cooldown_bar(ch, temp, 20, 20, color);
         }
     }
 
-    sprintf(cur, "&0");
-    cur = prompt;
-    if (found_x)
-        cur += pre_length;
-    return cur;
+    prompt += "&0";
+    return prompt;
 }
 
 void make_prompt(DescriptorData *d) {
@@ -1762,15 +1750,14 @@ void make_prompt(DescriptorData *d) {
      */
 
     if (!d->page_outbuf->empty()) {
-        char prompt[MAX_INPUT_LENGTH];
 
-        sprintf(prompt, "\r[ Return to continue, (q)uit, (r)efresh,%s or page number (%d/%d) ]\n",
-                PAGING_PAGE(d) == 0 ? "" : " (b)ack,", PAGING_PAGE(d) + 1, PAGING_NUMPAGES(d));
+        auto prompt = fmt::format("\r[ Return to continue, (q)uit, (r)efresh,{} or page number ({}/{}) ]\n",
+                                  PAGING_PAGE(d) == 0 ? "" : " (b)ack,", PAGING_PAGE(d) + 1, PAGING_NUMPAGES(d));
         write_to_descriptor(d->descriptor, prompt);
-    } else if (EDITING(d) || d->str)
+    } else if (EDITING(d) || !d->str.empty())
         write_to_descriptor(d->descriptor, "] ");
     else if (!d->connected) {
-        char *prompt = prompt_str(d->character);
+        std::string_view prompt = prompt_str(d->character);
 
         write_to_descriptor(d->descriptor,
                             process_colors(prompt, COLOR_LEV(d->character) >= C_NRM ? CLR_PARSE : CLR_STRIP));
@@ -1787,7 +1774,7 @@ void make_prompt(DescriptorData *d) {
  * and the command is ok while casting, then it's handled
  * immediately here.
  */
-bool casting_command(DescriptorData *d, char *txt) {
+bool casting_command(DescriptorData *d, Arguments argument) {
     int cmd;
 
     /*
@@ -1801,24 +1788,24 @@ bool casting_command(DescriptorData *d, char *txt) {
      * A hack-within-a-hack to enable usage of paging while casting.
      */
     if (!d->page_outbuf->empty()) {
-        get_paging_input(d, txt);
+        get_paging_input(d, argument.get());
         return true;
     } else if (EDITING(d)) {
-        editor_interpreter(d, txt);
+        editor_interpreter(d, argument.get());
         return true;
-    } else if (d->str) {
-        string_add(d, txt);
+    } else if (!d->str.empty()) {
+        string_add(d, argument.get());
         return true;
     }
 
-    any_one_arg(txt, arg);
+    auto command = argument.shift();
 
-    for (cmd = 0; *cmd_info[cmd].command != '\n'; ++cmd)
-        if (!strncasecmp(cmd_info[cmd].command, arg, strlen(arg)))
+    for (cmd = 0; cmd_info[cmd].command[0] != '\n'; ++cmd)
+        if (matches(cmd_info[cmd].command, command))
             if (can_use_command(d->character, cmd))
                 break;
 
-    if (*cmd_info[cmd].command == '\n')
+    if (cmd_info[cmd].command[0] == '\n')
         return false;
 
     /*
@@ -1829,16 +1816,15 @@ bool casting_command(DescriptorData *d, char *txt) {
 
     /* Handle the casting-ok command immediately. */
     desc_printf(d, "\n");
-    command_interpreter(d->character, txt);
+    command_interpreter(d->character, argument.get());
     return true;
 }
 
-void write_to_q(char *txt, txt_q *queue, int aliased, DescriptorData *d) {
+void write_to_q(std::string_view txt, txt_q *queue, int aliased, DescriptorData *d) {
     txt_block *new_msg;
 
     CREATE(new_msg, txt_block, 1);
-    CREATE(new_msg->text, char, strlen(txt) + 1);
-    strcpy(new_msg->text, txt);
+    new_msg->text = txt;
     new_msg->aliased = aliased;
 
     /* queue empty? */
@@ -1852,7 +1838,7 @@ void write_to_q(char *txt, txt_q *queue, int aliased, DescriptorData *d) {
     }
 }
 
-int get_from_q(txt_q *queue, char *dest, int *aliased) {
+int get_from_q(txt_q *queue, std::string_view dest, int *aliased) {
     txt_block *tmp;
 
     /* queue empty? */
@@ -1860,22 +1846,22 @@ int get_from_q(txt_q *queue, char *dest, int *aliased) {
         return 0;
 
     tmp = queue->head;
-    strcpy(dest, queue->head->text);
+    dest = queue->head->text;
     *aliased = queue->head->aliased;
     queue->head = queue->head->next;
 
-    free(tmp->text);
     free(tmp);
-
     return 1;
 }
 
 /* Empty the queues before closing connection */
 void flush_queues(DescriptorData *d) {
-    int dummy;
-
-    while (get_from_q(&d->input, buf2, &dummy))
-        ;
+    txt_block *tmp;
+    while (d->input.head) {
+        tmp = d->input.head;
+        d->input.head = d->input.head->next;
+        free(tmp);
+    }
 }
 
 /* Add a new string to a player's output queue */
@@ -1892,8 +1878,6 @@ void free_bufpools(void) {
 
     while (bufpool) {
         tmp = bufpool->next;
-        if (bufpool->text)
-            free(bufpool->text);
         free(bufpool);
         bufpool = tmp;
     }
@@ -1977,8 +1961,6 @@ int new_descriptor(int s) {
     /* determine if the site is banned */
     if (isbanned(newd->host) == BAN_ALL) {
         write_to_descriptor(desc, BANNEDINTHEUSA);
-        write_to_descriptor(desc, BANNEDINTHEUSA2);
-        write_to_descriptor(desc, BANNEDINTHEUSA3);
         write_to_descriptor(desc, "\n Connection logged from: {}\n\n", newd->host);
         CLOSE_SOCKET(desc);
         log(LogSeverity::Stat, LVL_GOD, "BANNED: Connection attempt denied from [{}]", newd->host);
@@ -2038,227 +2020,81 @@ int write_to_descriptor(socket_t desc, std::string_view txt) {
 }
 
 /*
- * ASSUMPTION: There will be no newlines in the raw input buffer when this
- * function is called.  We must maintain that before returning.
+ * ASSUMPTION: There will be no newlines in the raw input buffer when this function is called.  We must maintain that
+ * before returning.
  */
 int process_input(DescriptorData *t) {
-    int buf_length, bytes_read, space_left, command_space_left, failed_subst, telopt = 0;
-    char *ptr, *read_point, *write_point = nullptr, *write_cmd_point = nullptr;
-    char tmp[MAX_INPUT_LENGTH + 8], telnet_opts[MAX_INPUT_LENGTH + 8], telcmd = 0;
+    if (!t)
+        return -1;
+
+    std::string input_buffer(t->inbuf);
+    char tmp[MAX_INPUT_LENGTH + 8] = {0};
+    std::string telnet_opts;
+
+    size_t buf_length = input_buffer.length();
+    size_t space_left = MAX_RAW_INPUT_LENGTH - buf_length - 1;
+    size_t command_space_left = MAX_INPUT_LENGTH - 1;
+
+    if (space_left <= 0) {
+        log("process_input: closing connection due to input overflow [{}]", t->host);
+        return -1;
+    }
+
+    ssize_t bytes_read = read(t->descriptor, &input_buffer[buf_length], space_left);
+    if (bytes_read < 0) {
+        if (errno != EAGAIN) {
+            log("process_input: connection lost [{}]", t->host);
+            return -1;
+        }
+    } else if (bytes_read == 0) {
+        log("EOF on socket read (connection closed by peer) [{}]", t->host);
+        return -1;
+    }
+
+    input_buffer.resize(buf_length + bytes_read);
+
+    bool in_telnet_negotiation = false;
+    char telcmd = 0;
     int data_mode = 0;
+    std::string processed_input;
+    std::string telnet_command;
 
-    buf_length = strlen(t->inbuf);
-    read_point = t->inbuf + buf_length;
-    space_left = MAX_RAW_INPUT_LENGTH - buf_length - 1;
-    command_space_left = MAX_INPUT_LENGTH - 1;
+    for (size_t i = 0; i < input_buffer.length(); ++i) {
+        char c = input_buffer[i];
 
-    do {
-        if (space_left <= 0) {
-            log("process_input: about to close connection: input overflow [{}]", t->host);
-            return -1;
-        }
-        if ((bytes_read = read(t->descriptor, read_point, space_left)) < 0) {
-#ifdef EWOULDBLOCK
-            if (errno == EWOULDBLOCK)
-                errno = EAGAIN;
-#endif /* EWOULDBLOCK */
-            if (errno != EAGAIN) {
-                log("process_input: about to lose connection [{}]", t->host);
-                return -1; /* some error condition was encountered on read */
-            } else {
-                break; /* the read would have blocked: just means no data there but everything's okay */
+        if (c == (char)IAC) {
+            in_telnet_negotiation = true;
+        } else if (in_telnet_negotiation && c == (char)SE) {
+            if (data_mode == 1) {
+                handle_gmcp_request(t, telnet_opts);
+            } else if (data_mode == 2) {
+                handle_telopt_request(t, telnet_opts);
             }
-        } else if (bytes_read == 0) {
-            log("EOF on socket read (connection broken by peer) [{}]", t->host);
-            return -1;
-        }
-
-        *(read_point + bytes_read) = '\0'; /* terminate the string */
-        read_point += bytes_read;
-        space_left -= bytes_read;
-    } while (true);
-
-    /* All data read, lets process it. */
-    write_point = tmp;
-    *write_point = '\0';
-    space_left = MAX_INPUT_LENGTH - 1;
-    /* search for a newline or control codes in the data we just read */
-    for (ptr = t->inbuf; *ptr; ++ptr) {
-        if (*ptr == (char)IAC) { /* Telnet Control Option Starting */
-            telopt = 1;
-        } else if (telopt == 1 && *ptr == (char)SE) {
-            /* End of negotiations */
-            if (data_mode == 0) {
-                log("Error, attempting to end a telnet negotiation we never started!");
-            } else {
-                telopt = 0;
-                *write_cmd_point = '\0';
-                if (data_mode == 1)
-                    handle_gmcp_request(t, telnet_opts);
-                else if (data_mode == 2)
-                    handle_telopt_request(t, telnet_opts);
-                data_mode = 0;
-            }
-        } else if (telopt == 1) {
-            telopt = 2;
-            telcmd = *ptr;
-        } else if (telopt == 2) {
-            if (*ptr == (char)GMCP) { /* Ready to handle GMCP data */
-                if (telcmd == (char)DO) {
-                    telopt = 0;
-                    t->gmcp_enabled = true;
-                    offer_gmcp_services(t);
-                } else if (telcmd == (char)DONT) {
-                    telopt = 0;
-                    t->gmcp_enabled = false;
-                } else if (telcmd == (char)SB) {
-                    /* Start listening to new GMCP command. */
-                    write_cmd_point = telnet_opts;
-                    *write_cmd_point = '\0';
-                    command_space_left = MAX_INPUT_LENGTH - 1;
-                    telopt = 0;
-                    data_mode = 1;
-                } else {
-                    telopt = 0;
-                    /* ERROR */
-                    log("Invalid GMCP code {}", (unsigned char)telcmd);
-                }
-                /* Responding to terminal type. */
-            } else if (*ptr == TELOPT_TTYPE) {
-                if (telcmd == (char)WILL)
-                    send_opt(t, (char)TELOPT_TTYPE);
-                else if (telcmd == (char)SB) {
-                    (void)*ptr++; // Step past the null IS
-                    /* Start listening for the terminal type. */
-                    write_cmd_point = telnet_opts;
-                    *write_cmd_point = '\0';
-                    command_space_left = MAX_INPUT_LENGTH - 1;
-                    telopt = 0;
-                    data_mode = 2;
-                }
-            } else if (*ptr == (char)MSSP) {
-                if (telcmd == (char)DO)
-                    send_mssp(t);
-            } else if (*ptr != (char)TELOPT_ECHO) {
-                /* Ignore echo requests for new. */
-            }
-
-        } else if (telopt > 0) { /* If we are here, there is an error */
-            log("Invalid telnet IAC code {:d}", (int)*ptr);
+            data_mode = 0;
+            in_telnet_negotiation = false;
+        } else if (in_telnet_negotiation) {
+            telcmd = c;
+            in_telnet_negotiation = false;
         } else if (data_mode) {
-            /* In telnet data negotiation mode.  Log data to the command buffer. */
-            *(write_cmd_point++) = *ptr;
-            command_space_left--;
+            telnet_command += c;
         } else {
-            /* If we are here, it's normal text input. */
-            if (IS_NEWLINE(*ptr) || space_left <= 0) { /* End of command, process it */
-                *write_point = '\0';
-                if (t->snoop_by)
-                    desc_printf(t->snoop_by, "&6>>&b {} &0\n", tmp);
-
-                failed_subst = 0;
-
-                if (*tmp == '!')
-                    strcpy(tmp, t->last_input);
-                else if (*tmp == '^') {
-                    if (!(failed_subst = perform_subst(t, t->last_input, tmp)))
-                        strcpy(t->last_input, tmp);
-                } else
-                    strcpy(t->last_input, tmp);
-                /*
-                 * If the user is casting, and the command is ok
-                 * when casting, then it gets processed immediately
-                 * by the command interpreter within casting_command().
-                 * Otherwise, the command is queued up and handled by
-                 * the game loop normally.  Oh, and this is a hack.
-                 */
-                if (!failed_subst && !casting_command(t, tmp)) {
-                    write_to_q(tmp, &t->input, 0, t);
+            if (c == '\n' || c == '\r' || processed_input.length() >= MAX_INPUT_LENGTH - 1) {
+                if (!processed_input.empty()) {
+                    if (t->snoop_by) {
+                        desc_printf(t->snoop_by, "&6>>&b {} &0\n", processed_input);
+                    }
+                    write_to_q(processed_input.c_str(), &t->input, 0, t);
                 }
-
-                if (space_left <= 0) {
-                    char buffer[MAX_INPUT_LENGTH + 64];
-                    if (write_to_descriptor(t->descriptor, "Line too long.  Truncated to:\n{}\n", tmp) < 0)
-                        return -1;
-                    while (*ptr && !IS_NEWLINE(*ptr)) /* Find next newline */
-                        ++ptr;
-                }
-                while (*(ptr + 1) && IS_NEWLINE(*(ptr + 1))) /* Find start of next command. */
-                    ++ptr;
-
-                write_point = tmp;
-                *write_point = '\0';
-                space_left = MAX_INPUT_LENGTH - 1;
-            } else if (*ptr == '\b') { /* handle backspacing */
-                if (write_point > tmp) {
-                    if (*(--write_point) == '$') {
-                        write_point--;
-                        space_left += 2;
-                    } else
-                        space_left++;
-                }
-            } else if (isascii(*ptr) && isprint(*ptr)) {
-                if ((*(write_point++) = *ptr) == '$') { /* copy one character */
-                    *(write_point++) = '$';             /* if it's a $, double it */
-                    space_left -= 2;
-                } else
-                    space_left--;
-
-                *write_point = '\0';
+                processed_input.clear();
+            } else if (c == '\b' && !processed_input.empty()) {
+                processed_input.pop_back();
+            } else if (isprint(c)) {
+                processed_input += c;
             }
         }
     }
-    strcpy(t->inbuf, tmp);
-    return 0;
-}
 
-/*
- * perform substitution for the '^..^' csh-esque syntax
- * orig is the orig string (i.e. the one being modified.
- * subst contains the substition string, i.e. "^telm^tell"
- */
-int perform_subst(DescriptorData *t, char *orig, char *subst) {
-    char new_str[MAX_INPUT_LENGTH + 5];
-    char *first, *second, *strpos;
-
-    /*
-     * first is the position of the beginning of the first string (the one
-     * to be replaced
-     */
-    first = subst + 1;
-
-    /* now find the second '^' */
-    if (!(second = strchr(first, '^'))) {
-        desc_printf(t, "Invalid substitution.\n");
-        return 1;
-    }
-    /* terminate "first" at the position of the '^' and make 'second' point
-     * to the beginning of the second string */
-    *(second++) = '\0';
-
-    /* now, see if the contents of the first string appear in the original */
-    if (!(strpos = strcasestr(orig, first))) {
-        desc_printf(t, "Invalid substitution.\n");
-        return 1;
-    }
-    /* now, we construct the new_str string for output. */
-
-    /* first, everything in the original, up to the string to be replaced */
-    strncpy(new_str, orig, (strpos - orig));
-    new_str[(strpos - orig)] = '\0';
-
-    /* now, the replacement string */
-    strncat(new_str, second, (MAX_INPUT_LENGTH - strlen(new_str) - 1));
-
-    /* now, if there's anything left in the original after the string to
-     * replaced, copy that too. */
-    if (((strpos - orig) + strlen(first)) < strlen(orig))
-        strncat(new_str, strpos + strlen(first), (MAX_INPUT_LENGTH - strlen(new_str) - 1));
-
-    /* terminate the string in case of an overflow from strncat */
-    new_str[MAX_INPUT_LENGTH - 1] = '\0';
-    strcpy(subst, new_str);
-
+    strncpy(t->inbuf, processed_input.c_str(), MAX_INPUT_LENGTH);
     return 0;
 }
 
@@ -2280,7 +2116,7 @@ void close_socket(DescriptorData *d) {
     /* Shapechange a player back to normal form */
     if (d->character) {
         if (POSSESSED(d->character))
-            do_shapechange(d->character, "me", 0, 1);
+            do_shapechange(d->character, {"me"}, 0, 1);
     }
 
     /*. Kill any OLC stuff . */
@@ -2295,13 +2131,6 @@ void close_socket(DescriptorData *d) {
         break;
     case CON_EXDESC:
         /* I apologize for this, but seriously, look at the editing code here */
-        free(*d->str);
-        if (d->backstr) {
-            *d->str = d->backstr;
-        } else
-            *d->str = nullptr;
-        d->backstr = nullptr;
-        d->str = nullptr;
         if (d->character)
             REMOVE_FLAG(PLR_FLAGS(d->character), PLR_WRITING);
         d->connected = CON_PLAYING;
@@ -2314,14 +2143,6 @@ void close_socket(DescriptorData *d) {
         editor_cleanup(d);
 
     if (d->character) {
-        /*
-         * Plug memory leak, from Eric Green.
-         */
-        if (PLR_FLAGGED(d->character, PLR_MAILING) && d->str) {
-            if (*(d->str))
-                free(*(d->str));
-            free(d->str);
-        }
         if (IS_PLAYING(d)) {
             save_player_char(d->character);
             act("$n has lost $s link.", true, d->character, 0, 0, TO_ROOM);
@@ -2329,7 +2150,7 @@ void close_socket(DescriptorData *d) {
                 GET_NAME(d->character));
             d->character->desc = nullptr;
         } else {
-            if (GET_NAME(d->character))
+            if (!GET_NAME(d->character).empty())
                 log(LogSeverity::Stat, std::max<int>(LVL_IMMORT, GET_INVIS_LEV(d->character)), "Losing player: {}.",
                     GET_NAME(d->character));
             /*else
@@ -2346,9 +2167,6 @@ void close_socket(DescriptorData *d) {
         d->original->desc = nullptr;
 
     REMOVE_FROM_LIST(d, descriptor_list, next);
-
-    if (d->storage)
-        free(d->storage);
 
     if (d->page_outbuf)
         free(d->page_outbuf);
@@ -2697,7 +2515,7 @@ void cure_laryngitis(CharData *ch) {
 }
 
 /* higher-level communication: the act() function */
-const char *ACTNULL = "<NULL>";
+const std::string_view ACTNULL = "<NULL>";
 std::string format_act(std::string_view format, const CharData *ch, ActArg obj, ActArg vict_obj, const CharData *to) {
     std::string rtn;
     bool code = false;

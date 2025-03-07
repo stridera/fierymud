@@ -5,6 +5,8 @@ log/
 cmake-build-debug/*
 .vscode/
 build/
+cbuild/
 .build
 .venv
 __pycache__
+.aider*

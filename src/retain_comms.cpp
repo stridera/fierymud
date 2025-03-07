@@ -34,7 +34,7 @@ void init_retained_comms(CharData *ch) {
     GET_RETAINED_COMMS(ch) = comms;
 }
 
-void add_retained_comms(CharData *ch, int type, const char *msg) {
+void add_retained_comms(CharData *ch, int type, const std::string_view msg) {
     CharData *tch;
     CommNode *node, *new_node;
     int i = 0;
@@ -64,14 +64,14 @@ void add_retained_comms(CharData *ch, int type, const char *msg) {
 void load_retained_comms(FILE *file, CharData *ch, int type) {
     CommNode *node, *new_node;
     time_t timestamp;
-    char *msg;
+    std::string_view msg;
 
     node = GET_RETAINED_COMM_TYPE(ch, type);
     get_line(file, buf);
     while (*buf != '$') {
         msg = any_one_arg(buf, buf1);
         sscanf(buf1, "%ld", &timestamp);
-        skip_spaces(&msg);
+        skip_spaces(msg);
         CREATE(new_node, CommNode, 1);
         new_node->time = timestamp;
         new_node->msg = strdup(msg);
@@ -119,7 +119,7 @@ void free_comms_node_list(CommNode *root) {
 
 void show_retained_comms(CharData *ch, CharData *vict, int type) {
     CommNode *node;
-    char *comm_name;
+    std::string_view comm_name;
 
     if (IS_MOB(REAL_CHAR(ch))) {
         char_printf(ch, "Nobody talks to mobs.  Such a sad life.\n");

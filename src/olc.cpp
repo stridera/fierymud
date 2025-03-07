@@ -30,9 +30,9 @@
 #include "sysdep.hpp"
 #include "utils.hpp"
 
-const char *nrm, *grn, *cyn, *yel, *blk, *red;
+std::string_view nrm, grn, cyn, yel, blk, red;
 OLCSaveInfo *olc_save_list;
-const char *save_info_msg[5] = {"Rooms", "Objects", "Zone info", "Mobiles", "Shops"};
+const std::string_view save_info_msg[5] = {"Rooms", "Objects", "Zone info", "Mobiles", "Shops"};
 OLCSCommandData olc_scmd_info[] = {{"room", CON_REDIT},      {"room", CON_ZEDIT}, {"object", CON_OEDIT},
                                    {"mobile", CON_MEDIT},    {"shop", CON_SEDIT}, {"help", CON_HEDIT},
                                    {"trigger", CON_TRIGEDIT}};
@@ -63,7 +63,7 @@ void free_shop(ShopData *shop);
 void free_room(RoomData *room);
 void medit_free_mobile(CharData *mob);
 void free_help(HelpIndexElement *help);
-int find_help(char *keyword);
+int find_help(std::string_view keyword);
 void trigedit_setup_new(DescriptorData *d);
 void trigedit_setup_existing(DescriptorData *d, int rtrg_num);
 int real_trigger(int vnum);
@@ -90,7 +90,7 @@ void free_olc_zone_list(CharData *ch) {
 }
 
 void olc_delete(CharData *ch, int subcmd, int vnum) {
-    char *ename;
+    std::string_view ename;
     int rnum;
 
     switch (subcmd) {
@@ -106,7 +106,7 @@ void olc_delete(CharData *ch, int subcmd, int vnum) {
             char_printf(ch, "There is no such mobile.\n");
             return;
         }
-        sprintf(buf, "OLC: %s deletes mobile #%d.", GET_NAME(ch), vnum);
+        log("OLC: {} deletes mobile #{}.", GET_NAME(ch), vnum);
         if (delete_mobile(rnum)) {
             char_printf(ch, "Mobile {:d} deleted.\n", vnum);
         } else {
@@ -120,7 +120,7 @@ void olc_delete(CharData *ch, int subcmd, int vnum) {
             char_printf(ch, "There is no such object.\n");
             return;
         }
-        sprintf(buf, "OLC: %s deletes object #%d.", GET_NAME(ch), vnum);
+        log("OLC: {} deletes object #{}.", GET_NAME(ch), vnum);
         if (delete_object(rnum)) {
             char_printf(ch, "Object {:d} deleted.\n", vnum);
         } else {
@@ -163,8 +163,10 @@ ACMD(do_olc) {
     }
 
     /*. Parse any arguments . */
-    two_arguments(argument, buf1, buf2);
-    if (!*buf1) { /* No argument given. */
+    auto buf1 = argument.shift();
+    auto buf2 = argument.shift();
+
+    if (buf1.empty()) { /* No argument given. */
         switch (subcmd) {
         case SCMD_OLC_ZEDIT:
         case SCMD_OLC_REDIT:
@@ -192,7 +194,7 @@ ACMD(do_olc) {
         }
     }
 
-    if (!*buf1) { /* No argument given. */
+    if (buf2.empty()) { /* No argument given. */
         switch (subcmd) {
         case SCMD_OLC_REDIT:
         case SCMD_OLC_OCOPY:
@@ -205,9 +207,9 @@ ACMD(do_olc) {
         }
     }
 
-    if (!isdigit(*buf1)) {
-        if (strncasecmp("save", buf1, 4) == 0) {
-            if (!*buf2) {
+    if (!is_integer(buf1)) {
+        if (matches("save", buf1) == 0) {
+            if (buf2.empty()) {
                 if (subcmd == SCMD_OLC_HEDIT) {
                     action = OLC_ACTION_SAVE;
                     number = 0;
@@ -220,22 +222,22 @@ ACMD(do_olc) {
                 }
             } else {
                 action = OLC_ACTION_SAVE;
-                number = atoi(buf2) * 100;
+                number = svtoi(buf2) * 100;
             }
-        } else if (!strncasecmp("del", buf1, 4)) {
+        } else if (matches("del", buf1)) {
             if (environment == ENV_PROD) {
                 char_printf(ch, "Don't delete things in the production mud please!\n");
                 return;
             }
 
-            if (!*buf2) {
+            if (buf2.empty()) {
                 char_printf(ch, "Delete which entity?\n");
                 return;
-            } else if (!isdigit(*buf2)) {
+            } else if (!is_integer(buf2)) {
                 char_printf(ch, "Please supply the vnum of the entity to be deleted.\n");
                 return;
             }
-            number = atoi(buf2);
+            number = svtoi(buf2);
             olc_delete(ch, subcmd, number);
             return;
         } else if (subcmd == SCMD_OLC_HEDIT) {
@@ -246,13 +248,13 @@ ACMD(do_olc) {
              *             on objects that got reversed on load by now-supplanted code
              *             in db.c */
 
-        } else if (subcmd == SCMD_OLC_OEDIT && strncasecmp("revex", buf1, 5) == 0) {
-            if (!*buf2) {
+        } else if (subcmd == SCMD_OLC_OEDIT && matches("revex", buf1)) {
+            if (buf2.empty()) {
                 char_printf(ch, "Reverse extra descs for which object?\n");
                 return;
             }
 
-            number = atoi(buf2);
+            number = svtoi(buf2);
             if ((real_num = real_object(number)) < 0) {
                 char_printf(ch, "There is no such object.\n");
                 return;
@@ -264,13 +266,13 @@ ACMD(do_olc) {
             oedit_reverse_exdesc(real_num, nullptr);
             return;
 
-        } else if (subcmd == SCMD_OLC_OEDIT && strncasecmp("zrevex", buf1, 6) == 0) {
-            if (!*buf2) {
+        } else if (subcmd == SCMD_OLC_OEDIT && matches("zrevex", buf1)) {
+            if (buf2.empty()) {
                 char_printf(ch, "Reverse object extra descs in which zone?\n");
                 return;
             }
 
-            number = atoi(buf2) * 100;
+            number = svtoi(buf2) * 100;
             if ((real_num = find_real_zone_by_room(number)) == -1) {
                 char_printf(ch, "Sorry, there is no zone for that number!\n");
                 return;
@@ -281,9 +283,9 @@ ACMD(do_olc) {
             oedit_reverse_exdescs(real_num, ch);
             return;
 
-        } else if (subcmd == SCMD_OLC_ZEDIT && GET_LEVEL(ch) >= LVL_HEAD_B && *buf1) {
-            if ((strncasecmp("new", buf1, 3) == 0) && *buf2)
-                zedit_new_zone(ch, atoi(buf2));
+        } else if (subcmd == SCMD_OLC_ZEDIT && GET_LEVEL(ch) >= LVL_HEAD_B && !buf1.empty()) {
+            if ((matches("new", buf1)) && !buf2.empty())
+                zedit_new_zone(ch, svtoi(buf2));
             else
                 char_printf(ch, "Specify a zone number.\n");
             return;
@@ -297,7 +299,7 @@ ACMD(do_olc) {
     if (subcmd == SCMD_OLC_HEDIT)
         number = HEDIT_PERMISSION;
     else if (number == -1)
-        number = atoi(buf1);
+        number = svtoi(buf1);
 
     /*. Check whatever it is isn't already being edited . */
     for (d = descriptor_list; d; d = d->next)
@@ -339,7 +341,7 @@ ACMD(do_olc) {
         return;
     }
     if (action == OLC_ACTION_SAVE) {
-        const char *type = nullptr;
+        std::string_view type;
 
         switch (subcmd) {
         case SCMD_OLC_REDIT:
@@ -361,7 +363,7 @@ ACMD(do_olc) {
             type = "help";
             break;
         }
-        if (!type) {
+        if (type.empty()) {
             char_printf(ch, "Oops, I forgot what you wanted to save.\n");
             return;
         }
@@ -397,9 +399,9 @@ ACMD(do_olc) {
         OLC_NUM(d) = number;
     else {
         OLC_NUM(d) = HEDIT_PERMISSION;
-        OLC_STORAGE(d) = strdup(buf1);
+        OLC_STORAGE(d) = buf1;
         for (OLC_ZNUM(d) = 0; (OLC_ZNUM(d) <= top_of_helpt); OLC_ZNUM(d)++) {
-            if (is_abbrev(OLC_STORAGE(d), help_table[OLC_ZNUM(d)].keyword))
+            if (matches_start(OLC_STORAGE(d), help_table[OLC_ZNUM(d)].keyword))
                 break;
         }
         if (OLC_ZNUM(d) > top_of_helpt) {
@@ -428,8 +430,8 @@ ACMD(do_olc) {
         STATE(d) = CON_TRIGEDIT;
         break;
     case SCMD_OLC_SDEDIT:
-        real_num = find_spell_num(argument);
-        if ((real_num < 0) || (real_num > TOP_SKILL) || (!strcasecmp("!UNUSED!", skills[real_num].name))) {
+        real_num = find_spell_num(argument.get());
+        if ((real_num < 0) || (real_num > TOP_SKILL) || (matches("!UNUSED!", skills[real_num].name))) {
             char_printf(ch, "Your spell could not be found.\n");
             return;
         }
@@ -482,7 +484,7 @@ ACMD(do_olc) {
             return;
         }
 
-        number = atoi(buf2);
+        number = svtoi(buf2);
         if ((real_room(number)) >= 0) {
             char_printf(ch, "The target room already exists.\r\n");
             return;
@@ -498,7 +500,7 @@ ACMD(do_olc) {
             return;
         }
 
-        number = atoi(buf2);
+        number = svtoi(buf2);
         if ((real_object(number)) >= 0) {
             char_printf(ch, "The target object already exists.\r\n");
             return;
@@ -514,7 +516,7 @@ ACMD(do_olc) {
             return;
         }
 
-        number = atoi(buf2);
+        number = svtoi(buf2);
         if ((real_mobile(number)) >= 0) {
             char_printf(ch, "The target mobile already exists.\r\n");
             return;
@@ -530,7 +532,7 @@ ACMD(do_olc) {
             return;
         }
 
-        number = atoi(buf2);
+        number = svtoi(buf2);
         if ((real_trigger(number)) >= 0) {
             char_printf(ch, "The target trigger already exists.\r\n");
             return;
@@ -616,24 +618,6 @@ void get_char_cols(CharData *ch) {
     red = CLR(ch, FRED);
 }
 
-/*. This procedure removes the '\n' from a string so that it may be
-   saved to a file.   Use it only on buffers, not on the oringinal
-   strings.*/
-
-void strip_string(char *buffer) {
-    char *ptr, *str;
-
-    ptr = buffer;
-    str = ptr;
-
-    while ((*str = *ptr)) {
-        str++;
-        ptr++;
-        if (*ptr == '\r')
-            ptr++;
-    }
-}
-
 /*. This procdure frees up the strings and/or the structures
    attatched to a descriptor, sets all flags back to how they
    should be .*/
@@ -696,7 +680,6 @@ void cleanup_olc(DescriptorData *d, byte cleanup_type) {
             /*
              * cleanup_type is irrelevant here, free() everything.
              */
-            free(OLC_ZONE(d)->name);
             free(OLC_ZONE(d)->cmd);
             free(OLC_ZONE(d));
         }
@@ -734,17 +717,12 @@ void cleanup_olc(DescriptorData *d, byte cleanup_type) {
             }
         }
         if (OLC_SD(d)) {
-            if (OLC_SD(d)->note)
-                free(OLC_SD(d)->note);
             free(OLC_SD(d));
         }
 
         if (OLC_GROUP(d)) {
             if (OLC_GROUP(d)->commands)
                 free(OLC_GROUP(d)->commands);
-            free(OLC_GROUP(d)->alias);
-            free(OLC_GROUP(d)->name);
-            free(OLC_GROUP(d)->description);
             free(OLC_GROUP(d));
         }
 

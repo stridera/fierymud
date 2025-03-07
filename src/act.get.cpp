@@ -29,10 +29,7 @@
 #include "sysdep.hpp"
 #include "utils.hpp"
 
-#define NULL_GCONTEXT                                                                                                  \
-    {                                                                                                                  \
-        nullptr, nullptr, { 0, 0, 0, 0 }                                                                               \
-    }
+#define NULL_GCONTEXT {nullptr, nullptr, {0, 0, 0, 0}}
 #define INIT_GCONTEXT(ctx, ch) (ctx).c##h = (ch);
 
 static const size_t MAX_POOL_SIZE = 25;
@@ -61,25 +58,24 @@ static void release_get_node(StackNode *node) {
     }
 }
 
-static bool messages_match(StackNode *node, ObjData *obj, const char *to_char, const char *to_room) {
+static bool messages_match(StackNode *node, ObjData *obj, std::string_view to_char, std::string_view to_room) {
     ObjData *incumbent = node->obj;
 
 #define BOTH_OBJ_TYPES_MATCH(a, b, type) (GET_OBJ_TYPE(a) == (type) && GET_OBJ_TYPE(b) == (type))
 
     if (incumbent->item_number == obj->item_number || BOTH_OBJ_TYPES_MATCH(incumbent, obj, ITEM_MONEY))
-        if (BOTH_OBJ_TYPES_MATCH(incumbent, obj, ITEM_MONEY) ||
-            incumbent->short_description == obj->short_description ||
-            !strcasecmp(incumbent->short_description, obj->short_description))
-            if (node->to_char == to_char || !node->to_char || !strcasecmp(node->to_char, to_char))
-                if (node->to_room == to_room || !node->to_room || !strcasecmp(node->to_room, to_room))
+        if (BOTH_OBJ_TYPES_MATCH(incumbent, obj, ITEM_MONEY) || matches(incumbent->name, obj->name) ||
+            matches(incumbent->short_description, obj->short_description))
+            if (node->to_char.empty() || matches(node->to_char, to_char))
+                if (node->to_room.empty() || matches(node->to_room, to_room))
                     return true;
     return false;
 
 #undef BOTH_OBJ_TYPES_MATCH
 }
 
-static void queue_message(GetContext *context, ObjData *obj, bool keep_count, const char *to_char,
-                          const char *to_room) {
+static void queue_message(GetContext *context, ObjData *obj, bool keep_count, const std::string_view to_char,
+                          const std::string_view to_room) {
     StackNode *node = context->stack;
     while (node) {
         if (messages_match(node, obj, to_char, to_room)) {
@@ -99,7 +95,6 @@ static void queue_message(GetContext *context, ObjData *obj, bool keep_count, co
 }
 
 static void process_get_context(GetContext *context, ObjData *vict_obj) {
-    char buf[MAX_INPUT_LENGTH * 3];
     StackNode *node, *next, *reverse = nullptr;
 
     /* Reverse the order of the stack */
@@ -114,16 +109,14 @@ static void process_get_context(GetContext *context, ObjData *vict_obj) {
     node = reverse;
     while (node) {
         if (node->obj) {
-            if (node->to_char) {
-                if (node->count > 1)
-                    sprintf(buf, "%s (x%d)", node->to_char, node->count);
-                act(node->count <= 1 ? node->to_char : buf, false, context->ch, node->obj, vict_obj, TO_CHAR);
+            if (!node->to_char.empty()) {
+                act(node->count <= 1 ? node->to_char : fmt::format("{} (x{})", node->to_char, node->count), false,
+                    context->ch, node->obj, vict_obj, TO_CHAR);
             }
-            if (node->to_room) {
-                if (node->count > 1)
-                    sprintf(buf, "%s (multiple)", node->to_room);
-                act(node->count <= 1 ? node->to_room : buf, !HIGHLY_VISIBLE(node->obj) || GET_INVIS_LEV(context->ch),
-                    context->ch, node->obj, vict_obj, TO_ROOM);
+            if (!node->to_room.empty()) {
+                act(node->count <= 1 ? node->to_room : fmt::format("{} (x{})", node->to_room, node->count),
+                    !HIGHLY_VISIBLE(node->obj) || GET_INVIS_LEV(context->ch), context->ch, node->obj, vict_obj,
+                    TO_ROOM);
             }
         }
         next = node->next;
@@ -163,15 +156,13 @@ bool has_corpse_consent(CharData *ch, ObjData *cont) {
         return true;
     }
 
-    sprintf(buf, "corpse %s", GET_NAME(ch));
-    if (!strcasecmp(buf, cont->name)) {
+    if (matches("corpse " + GET_NAME(ch), cont->name)) {
         /* if it's your own corpse then you have consent */
         return true;
     }
 
     if (REAL_CHAR(ch) != ch) {
-        sprintf(buf, "corpse %s", GET_NAME(REAL_CHAR(ch)));
-        if (!strcasecmp(buf, cont->name)) {
+        if (matches("corpse " + GET_NAME(REAL_CHAR(ch)), cont->name)) {
             /* if you're shapeshifted and it's your own corpse */
             return true;
         }
@@ -182,8 +173,7 @@ bool has_corpse_consent(CharData *ch, ObjData *cont) {
                 /* compare the name of the corpse to the current d->character  */
                 /* if the d->character is consented to the person who's acting */
                 /* on the corpse then the act is allowed.                      */
-                sprintf(buf, "corpse %s", GET_NAME(d->character));
-                if (!strcasecmp(buf, cont->name) && CONSENT(d->character) == ch) {
+                if (matches("corpse " + GET_NAME(d->character), cont->name) && CONSENT(d->character) == ch) {
                     return true;
                 }
             }
@@ -201,13 +191,13 @@ static bool can_get_obj(GetContext *context, ObjData *obj) {
     if (GET_LEVEL(ch) >= LVL_GOD)
         return true;
     if (IS_CARRYING_N(ch) >= CAN_CARRY_N(ch))
-        queue_message(context, obj, true, "$p: you can't carry that many items.", nullptr);
+        queue_message(context, obj, true, "$p: you can't carry that many items.", "");
     else if (!ADDED_WEIGHT_OK(ch, obj))
-        queue_message(context, obj, true, "$p: you can't carry that much weight.", nullptr);
+        queue_message(context, obj, true, "$p: you can't carry that much weight.", "");
     else if (!CAN_WEAR(obj, ITEM_WEAR_TAKE))
-        queue_message(context, obj, true, "$p: you can't take that!", nullptr);
+        queue_message(context, obj, true, "$p: you can't take that!", "");
     else if ((GET_OBJ_LEVEL(obj) > GET_LEVEL(ch) + 15) || (GET_OBJ_LEVEL(obj) > 99 && GET_LEVEL(ch) < 100))
-        queue_message(context, obj, true, "You need more experience to lift the awesome might of $p!", nullptr);
+        queue_message(context, obj, true, "You need more experience to lift the awesome might of $p!", "");
     else
         return true;
     return false;
@@ -240,7 +230,7 @@ static EVENTFUNC(get_money_event) {
 }
 
 static void perform_get_check_money(GetContext *context, ObjData *obj) {
-    static char buf[MAX_INPUT_LENGTH] = {0};
+    std::string buf;
     bool prior_value = false;
     CharData *ch = context->ch;
 
@@ -248,14 +238,10 @@ static void perform_get_check_money(GetContext *context, ObjData *obj) {
         return;
 
     /* Check for negative values */
-    if (GET_OBJ_VAL(obj, VAL_MONEY_PLATINUM) < 0)
-        GET_OBJ_VAL(obj, VAL_MONEY_PLATINUM) = 0;
-    if (GET_OBJ_VAL(obj, VAL_MONEY_GOLD) < 0)
-        GET_OBJ_VAL(obj, VAL_MONEY_GOLD) = 0;
-    if (GET_OBJ_VAL(obj, VAL_MONEY_SILVER) < 0)
-        GET_OBJ_VAL(obj, VAL_MONEY_SILVER) = 0;
-    if (GET_OBJ_VAL(obj, VAL_MONEY_COPPER) < 0)
-        GET_OBJ_VAL(obj, VAL_MONEY_COPPER) = 0;
+    GET_OBJ_VAL(obj, VAL_MONEY_PLATINUM) = std::max(0, GET_OBJ_VAL(obj, VAL_MONEY_PLATINUM));
+    GET_OBJ_VAL(obj, VAL_MONEY_GOLD) = std::max(0, GET_OBJ_VAL(obj, VAL_MONEY_GOLD));
+    GET_OBJ_VAL(obj, VAL_MONEY_SILVER) = std::max(0, GET_OBJ_VAL(obj, VAL_MONEY_SILVER));
+    GET_OBJ_VAL(obj, VAL_MONEY_COPPER) = std::max(0, GET_OBJ_VAL(obj, VAL_MONEY_COPPER));
 
     obj_from_char(obj);
     if (CASH_VALUE(context->coins))
@@ -264,16 +250,15 @@ static void perform_get_check_money(GetContext *context, ObjData *obj) {
     context->coins[VAL_MONEY_GOLD] += GET_OBJ_VAL(obj, VAL_MONEY_GOLD);
     context->coins[VAL_MONEY_SILVER] += GET_OBJ_VAL(obj, VAL_MONEY_SILVER);
     context->coins[VAL_MONEY_COPPER] += GET_OBJ_VAL(obj, VAL_MONEY_COPPER);
+
     if (CASH_VALUE(context->coins) == 0)
-        strcpy(buf,
-               "There were 0 coins.\n"
-               "Must have been an illusion!");
+        buf = "There were 0 coins.\nMust have been an illusion!";
     else {
-        strcpy(buf, prior_value ? "There was a total of " : "There were ");
-        statemoney(buf + strlen(buf), context->coins);
-        strcat(buf, ".");
+        buf = prior_value ? "There was a total of " : "There were ";
+        buf += statemoney(context->coins);
+        buf += ".";
     }
-    queue_message(context, obj, false, buf, nullptr);
+    queue_message(context, obj, false, buf, "");
     GET_PLATINUM(ch) += GET_OBJ_VAL(obj, VAL_MONEY_PLATINUM);
     GET_GOLD(ch) += GET_OBJ_VAL(obj, VAL_MONEY_GOLD);
     GET_SILVER(ch) += GET_OBJ_VAL(obj, VAL_MONEY_SILVER);
@@ -299,7 +284,7 @@ void perform_get_from_container(GetContext *context, ObjData *obj, ObjData *cont
     CharData *ch = context->ch;
     if (cont->carried_by == ch || cont->worn_by == ch || can_get_obj(context, obj)) {
         if (IS_CARRYING_N(ch) >= CAN_CARRY_N(ch))
-            queue_message(context, obj, true, "$p: you can't hold any more items.", nullptr);
+            queue_message(context, obj, true, "$p: you can't hold any more items.", "");
         else if (get_otrigger(obj, ch, cont)) {
             queue_message(context, obj, true, "You get $p from $P.", "$n gets $p from $P.");
             if (!MOB_FLAGGED(ch, MOB_ILLUSORY)) {
@@ -315,7 +300,7 @@ void perform_get_from_container(GetContext *context, ObjData *obj, ObjData *cont
     }
 }
 
-void get_from_container(CharData *ch, ObjData *cont, char *name, int *amount) {
+void get_from_container(CharData *ch, ObjData *cont, std::string_view name, int *amount) {
     ObjData *obj;
     int obj_dotmode, found = 0;
     GetContext context = NULL_GCONTEXT;
@@ -323,7 +308,7 @@ void get_from_container(CharData *ch, ObjData *cont, char *name, int *amount) {
 
     INIT_GCONTEXT(context, ch);
 
-    obj_dotmode = find_all_dots(&name);
+    obj_dotmode = find_all_dots(name);
 
     if (IS_SET(GET_OBJ_VAL(cont, VAL_CONTAINER_BITS), CONT_CLOSED))
         act("$p is closed.", false, ch, cont, nullptr, TO_CHAR);
@@ -346,8 +331,8 @@ void get_from_container(CharData *ch, ObjData *cont, char *name, int *amount) {
             if (obj_dotmode == FIND_ALL)
                 act("$p seems to be empty.", false, ch, cont, nullptr, TO_CHAR);
             else {
-                sprintf(buf, "You can't seem to find any %s%s in $p.", name, isplural(name) ? "" : "s");
-                act(buf, false, ch, cont, nullptr, TO_CHAR);
+                auto msg = fmt::format("You can't seem to find any {}{} in $p.", name, isplural(name) ? "" : "s");
+                act(msg, false, ch, cont, nullptr, TO_CHAR);
             }
         }
     }
@@ -386,7 +371,7 @@ void get_random_object(GetContext *context) {
         perform_get_from_room(context, chosen);
 }
 
-void get_from_room(CharData *ch, char *name, int amount) {
+void get_from_room(CharData *ch, std::string_view name, int amount) {
     ObjData *obj;
     int dotmode, found = 0;
     bool confused = false;
@@ -403,7 +388,7 @@ void get_from_room(CharData *ch, char *name, int amount) {
     if (CONFUSED(ch) && random_number(0, 1) == 0)
         confused = true;
 
-    dotmode = find_all_dots(&name);
+    dotmode = find_all_dots(name);
     iter =
         find_objs_in_list(world[ch->in_room].contents, dotmode == FIND_ALL ? find_vis(ch) : find_vis_by_name(ch, name));
     while ((obj = NEXT_FUNC(iter))) {
@@ -436,32 +421,30 @@ void get_from_room(CharData *ch, char *name, int amount) {
 }
 
 ACMD(do_get) {
-    char buf1[MAX_INPUT_LENGTH], *obj_name = buf1;
-    char buf2[MAX_INPUT_LENGTH], *cont_name = buf2;
     ObjData *cont;
     obj_iterator iter;
     int amount = -1, orig_amt, found = 0, cont_dotmode;
 
-    argument = one_argument(argument, obj_name);
-    if (is_number(obj_name)) {
-        amount = atoi(obj_name);
-        argument = one_argument(argument, obj_name);
+    auto obj_name = argument.shift();
+    if (is_integer(obj_name)) {
+        amount = svtoi(obj_name);
+        obj_name = argument.shift();
     }
-    one_argument(argument, cont_name);
+    auto cont_name = argument.shift();
 
-    if (!*obj_name)
+    if (obj_name.empty())
         char_printf(ch, "Get what?\n");
     else if (IS_CARRYING_N(ch) >= CAN_CARRY_N(ch) && GET_LEVEL(ch) < LVL_IMMORT)
         char_printf(ch, "Your arms are already full!\n");
     else if (!amount)
         char_printf(ch, "So you don't want to get anything?\n");
-    else if (!strcasecmp(obj_name, "all."))
+    else if (matches(obj_name, "all."))
         char_printf(ch, "Get all of what?\n");
-    else if (!*cont_name)
+    else if (cont_name.empty())
         get_from_room(ch, obj_name, amount);
     else if (CONFUSED(ch))
         char_printf(ch, "You're too confused!\n");
-    else if ((cont_dotmode = find_all_dots(&cont_name)) == FIND_ALLDOT && !*cont_name)
+    else if ((cont_dotmode = find_all_dots(cont_name)) == FIND_ALLDOT && cont_name.empty())
         char_printf(ch, "Get from all of what?\n");
     else {
         iter = find_objs(cont_dotmode == FIND_ALL ? find_vis(ch) : find_vis_by_name(ch, cont_name),
@@ -496,8 +479,6 @@ ACMD(do_get) {
 }
 
 ACMD(do_palm) {
-    char argbuf1[MAX_INPUT_LENGTH], *arg1 = argbuf1;
-    char argbuf2[MAX_INPUT_LENGTH], *arg2 = argbuf2;
     int obj_dotmode, cont_dotmode, cont_mode, roll = 100;
     ObjData *cont, *obj;
     CharData *tch;
@@ -507,23 +488,24 @@ ACMD(do_palm) {
         return;
     }
 
-    two_arguments(argument, arg1, arg2);
+    auto arg1 = argument.shift();
+    auto arg2 = argument.shift();
 
-    obj_dotmode = find_all_dots(&arg1);
-    cont_dotmode = find_all_dots(&arg2);
+    obj_dotmode = find_all_dots(arg1);
+    cont_dotmode = find_all_dots(arg2);
 
     if (!GET_SKILL(ch, SKILL_CONCEAL))
         do_get(ch, argument, cmd, 0);
     if (IS_CARRYING_N(ch) >= CAN_CARRY_N(ch) && GET_LEVEL(ch) < LVL_GOD)
         char_printf(ch, "Your arms are already full!\n");
-    else if (!*arg1)
+    else if (arg1.empty())
         char_printf(ch, "Palm what?\n");
     else if (obj_dotmode != FIND_INDIV)
         char_printf(ch, "You can only palm one item at a time!\n");
     else if (cont_dotmode != FIND_INDIV)
         char_printf(ch, "You can only palm an item from one container at a time!\n");
     /* No container - palm from room */
-    else if (!*arg2) {
+    else if (arg2.empty()) {
         if (!(obj = find_obj_in_list(world[ch->in_room].contents, find_vis_by_name(ch, arg1))))
             char_printf(ch, "You don't see {} {} here.\n", AN(arg1), arg1);
         else if (!check_get_disarmed_obj(ch, obj->last_to_hold, obj) && can_take_obj(ch, obj) &&
@@ -533,13 +515,12 @@ ACMD(do_palm) {
             obj_from_room(obj);
             obj_to_char(obj, ch);
 
+            std::string buf;
             if (!SOLIDCHAR(ch) && GET_LEVEL(ch) < LVL_IMMORT)
-                sprintf(buf,
-                        "%s tries to snatch $p off the ground, but seems to be having "
-                        "difficulty.",
-                        GET_NAME(ch));
+                buf = fmt::format("{} tries to snatch $p off the ground, but seems to be having difficulty.",
+                                  GET_NAME(ch));
             else
-                sprintf(buf, "%s coyly snatches $p off the ground.", GET_NAME(ch));
+                buf = fmt::format("{} coyly snatches $p off the ground.", GET_NAME(ch));
             LOOP_THRU_PEOPLE(tch, ch) {
                 if (tch == ch)
                     continue;
@@ -578,23 +559,23 @@ ACMD(do_palm) {
             act("$p is closed.", false, ch, cont, nullptr, TO_CHAR);
         else if (!IS_PLR_CORPSE(cont) || has_corpse_consent(ch, cont)) {
             if (!(obj = find_obj_in_list(cont->contains, find_vis_by_name(ch, arg1)))) {
-                sprintf(buf, "There doesn't seem to be %s %s in $p.", AN(arg1), arg1);
+                auto buf = fmt::format("There doesn't seem to be {} {} in $p.", AN(arg1), arg1);
                 act(buf, false, ch, cont, nullptr, TO_CHAR);
             } else if (cont_mode == FIND_OBJ_INV || can_take_obj(ch, obj)) {
                 if (IS_CARRYING_N(ch) >= CAN_CARRY_N(ch))
                     act("$p: you can't hold any more items.", false, ch, obj, nullptr, TO_CHAR);
                 else if (get_otrigger(obj, ch, cont)) {
-
+                    std::string buf;
                     if (SOLIDCHAR(ch) || GET_LEVEL(ch) >= LVL_IMMORT) {
                         roll = conceal_roll(ch, obj);
                         obj_from_obj(obj);
                         obj_to_char(obj, ch);
                         act("You quietly palm $p from $P.", false, ch, obj, cont, TO_CHAR);
-                        sprintf(buf, "%s quietly slips $p out of $P.", GET_NAME(ch));
+                        buf = fmt::format("{} quietly slips $p out of $P.", GET_NAME(ch));
                     } else {
                         act("You quietly reach into $P, but you can't seem to grasp $p.", false, ch, obj, cont,
                             TO_CHAR);
-                        sprintf(buf, "%s tries to slip $p out of $P, but is having trouble.", GET_NAME(ch));
+                        buf = fmt::format("{} tries to slip $p out of $P, but is having trouble.", GET_NAME(ch));
                     }
 
                     LOOP_THRU_PEOPLE(tch, ch) {

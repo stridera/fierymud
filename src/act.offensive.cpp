@@ -77,11 +77,11 @@ bool switch_ok(CharData *ch) {
 }
 
 const struct breath_type {
-    const char *name;
+    const std::string_view name;
     const int spell;
     const int skill;
-    const char *to_char;
-    const char *to_room;
+    const std::string_view to_char;
+    const std::string_view to_room;
 } breath_info[] = {
     {"fire", SPELL_FIRE_BREATH, SKILL_BREATHE_FIRE, "&1You snort and &bf&3i&7r&1e&0&1 shoots out of your nostrils!&0\n",
      "&1$n&1 snorts and a gout of &bf&3i&7r&1e&0&1 shoots out of $s nostrils!&0"},
@@ -97,7 +97,7 @@ const struct breath_type {
     {"lightning", SPELL_LIGHTNING_BREATH, SKILL_BREATHE_LIGHTNING,
      "&4You open your mouth and bolts of &blightning&0&4 shoot out!&0\n",
      "&4$n&4 opens $s mouth and bolts of &blightning&0&4 shoot out!&0"},
-    {nullptr, 0, 0, nullptr, nullptr},
+    {{}, 0, 0, {}, {}},
 };
 
 CharData *random_attack_target(CharData *ch, CharData *target, bool verbose) {
@@ -152,13 +152,13 @@ ACMD(do_breathe) {
         act("$n huffs and puffs but to no avail.", false, ch, 0, 0, TO_ROOM);
         return;
     }
-    one_argument(argument, arg);
+    auto arg = argument.shift();
 
-    for (type = 0; breath_info[type].name; ++type)
-        if (is_abbrev(arg, breath_info[type].name))
+    for (type = 0; !breath_info[type].name.empty(); ++type)
+        if (matches_start(arg, breath_info[type].name))
             break;
 
-    if (!breath_info[type].name) {
+    if (breath_info[type].name.empty()) {
         char_printf(ch, "Usage: breathe <fire / gas / frost / acid / lightning>\n");
         return;
     }
@@ -294,9 +294,8 @@ ACMD(do_roar) {
 
         if (SLEEPING(tch)) {
             if (random_number(0, 1)) {
-                sprintf(buf, "A loud %s jolts you from your slumber!\n",
-                        subcmd == SCMD_HOWL ? "OOOOAAAOAOOHHH howl" : "ROAAARRRRRR");
-                char_printf(tch, buf);
+                char_printf(tch, "A loud %s jolts you from your slumber!\n",
+                            subcmd == SCMD_HOWL ? "OOOOAAAOAOOHHH howl" : "ROAAARRRRRR");
                 act("$n jumps up dazedly, awakened by the noise!", true, tch, 0, 0, TO_ROOM);
                 GET_POS(tch) = POS_SITTING;
                 GET_STANCE(tch) = STANCE_ALERT;
@@ -309,7 +308,7 @@ ACMD(do_roar) {
             GET_STANCE(tch) = STANCE_ALERT;
             WAIT_STATE(tch, PULSE_VIOLENCE);
         } else
-            do_flee(tch, nullptr, 0, 0);
+            do_flee(tch, {""}, 0, 0);
         if (!MOB_FLAGGED(tch, MOB_ILLUSORY))
             realvictims = true;
     }
@@ -383,11 +382,11 @@ ACMD(do_sweep) {
 ACMD(do_assist) {
     CharData *helpee, *opponent;
 
-    one_argument(argument, arg);
+    auto arg = argument.shift();
 
     if (FIGHTING(ch))
         char_printf(ch, "You're already fighting!\n");
-    else if (!*arg)
+    else if (arg.empty())
         char_printf(ch, "Whom do you wish to assist?\n");
     else if (!(helpee = find_char_in_room(&world[ch->in_room], find_vis_by_name(ch, arg))))
         char_printf(ch, NOPERSON);
@@ -435,7 +434,7 @@ ACMD(do_disengage) {
     stop_fighting(ch);
     char_printf(ch, "You disengage from combat.\n");
     if (GET_CLASS(ch) == CLASS_ROGUE || GET_CLASS(ch) == CLASS_THIEF) {
-        do_hide(ch, 0, 0, 0);
+        do_hide(ch, {""}, 0, 0);
     } else {
         WAIT_STATE(ch, PULSE_VIOLENCE);
     }
@@ -444,13 +443,13 @@ ACMD(do_disengage) {
 ACMD(do_hit) {
     CharData *vict;
 
-    one_argument(argument, arg);
+    auto arg = argument.shift();
 
     if (ROOM_EFF_FLAGGED(ch->in_room, ROOM_EFF_DARKNESS))
         char_printf(ch, "It is just too dark!&0\n");
     else if (EFF_FLAGGED(ch, EFF_BLIND))
         char_printf(ch, "You can't see a thing!\n");
-    else if (!*arg)
+    else if (arg.empty())
         char_printf(ch, "Hit who?\n");
     else if (!(vict = find_char_in_room(&world[ch->in_room], find_vis_by_name(ch, arg))))
         char_printf(ch, "They don't seem to be here.\n");
@@ -488,9 +487,9 @@ ACMD(do_kill) {
         do_hit(ch, argument, cmd, subcmd);
         return;
     }
-    one_argument(argument, arg);
+    auto arg = argument.shift();
 
-    if (!*arg) {
+    if (arg.empty()) {
         char_printf(ch, "Kill who?\n");
     } else {
         if (!(vict = find_char_in_room(&world[ch->in_room], find_vis_by_name(ch, arg))))
@@ -594,9 +593,9 @@ ACMD(do_backstab) {
         return;
     }
 
-    one_argument(argument, buf);
+    auto target = argument.shift();
 
-    if (!*buf) {
+    if (target.empty()) {
         if (FIGHTING(ch)) {
             vict = FIGHTING(ch);
         } else {
@@ -604,7 +603,7 @@ ACMD(do_backstab) {
             return;
         }
 
-    } else if (!(vict = find_char_in_room(&world[ch->in_room], find_vis_by_name(ch, buf)))) {
+    } else if (!(vict = find_char_in_room(&world[ch->in_room], find_vis_by_name(ch, target)))) {
         char_printf(ch, "Backstab who?\n");
         return;
     }
@@ -889,7 +888,7 @@ ACMD(do_retreat) {
     int dir, to_room;
     CharData *vict;
 
-    if (!ch || !argument)
+    if (!ch || argument.empty())
         return;
 
     if (!GET_SKILL(ch, SKILL_RETREAT)) {
@@ -902,14 +901,14 @@ ACMD(do_retreat) {
         return;
     }
 
-    one_argument(argument, arg);
+    auto arg = argument.shift();
 
-    if (!*arg) {
+    if (arg.empty()) {
         char_printf(ch, "Retreat where!?\n");
         return;
     }
 
-    dir = searchblock(arg, dirs, false);
+    dir = search_block(arg, dirs, false);
 
     if (dir < 0 || !CH_DEST(ch, dir)) {
         char_printf(ch, "You can't retreat that way!\n");
@@ -931,12 +930,10 @@ ACMD(do_retreat) {
         !ROOM_FLAGGED(CH_NDEST(ch, dir), ROOM_DEATH) && do_simple_move(ch, dir, true)) {
 
         /* Send message back to original room. */
-        sprintf(buf, "$n carefully retreats from combat, leaving %s.", dirs[dir]);
         to_room = ch->in_room;
         ch->in_room = vict->in_room;
-        act(buf, true, ch, 0, 0, TO_ROOM);
+        act(fmt::format("$n carefully retreats from combat, leaving %s.", dirs[dir]), true, ch, 0, 0, TO_ROOM);
         ch->in_room = to_room;
-
         char_printf(ch, "\nYou skillfully retreat {}.\n", dirs[dir]);
     }
     /* If fighting a mob that can switch, maybe get attacked. */
@@ -966,7 +963,7 @@ ACMD(do_gretreat) {
     FollowType *k, *next_k;
     bool realopponents = false;
 
-    if (!ch || !argument)
+    if (!ch || argument.empty())
         return;
 
     if (!GET_SKILL(ch, SKILL_GROUP_RETREAT)) {
@@ -979,14 +976,14 @@ ACMD(do_gretreat) {
         return;
     }
 
-    argument = one_argument(argument, arg);
+    auto arg = argument.shift();
 
-    if (!*arg) {
+    if (arg.empty()) {
         char_printf(ch, "Retreat where!?\n");
         return;
     }
 
-    dir = searchblock(arg, dirs, false);
+    dir = search_block(arg, dirs, false);
 
     if (dir < 0 || !CH_DEST(ch, dir)) {
         char_printf(ch, "You can't retreat that way!\n");
@@ -1017,11 +1014,9 @@ ACMD(do_gretreat) {
     else if (GET_SKILL(ch, SKILL_GROUP_RETREAT) > random_number(0, 81) &&
              !ROOM_FLAGGED(CH_NDEST(ch, dir), ROOM_DEATH) && CAN_GO(ch, dir) && do_simple_move(ch, dir, true)) {
         /* Echo line back to the original room. */
-        sprintf(buf, "$n carefully retreats from combat, leading $s group %s.", dirs[dir]);
-
         to_room = ch->in_room;
         ch->in_room = was_in;
-        act(buf, true, ch, 0, 0, TO_ROOM);
+        act(fmt::format("$n carefully retreats from combat, leading $s group %s.", dirs[dir]), true, ch, 0, 0, TO_ROOM);
         ch->in_room = to_room;
         char_printf(ch, "\nYou skillfully lead your group {}.\n", dirs[dir]);
 
@@ -1029,8 +1024,7 @@ ACMD(do_gretreat) {
             next_k = k->next;
             if (k->follower->in_room == was_in && GET_STANCE(k->follower) >= STANCE_ALERT && k->can_see_master) {
                 abort_casting(k->follower);
-                sprintf(buf, "You follow $N %s.", dirs[dir]);
-                act(buf, false, k->follower, 0, ch, TO_CHAR);
+                act(fmt::format("You follow $N %s.", dirs[dir]), false, k->follower, 0, ch, TO_CHAR);
                 perform_move(k->follower, dir, 1, false);
             }
         }
@@ -1092,12 +1086,12 @@ ACMD(do_bash) {
         }
     }
 
-    one_argument(argument, arg);
+    auto arg = argument.shift();
 
-    if (!*arg || !(vict = find_char_in_room(&world[ch->in_room], find_vis_by_name(ch, arg)))) {
+    if (arg.empty() || !(vict = find_char_in_room(&world[ch->in_room], find_vis_by_name(ch, arg)))) {
         vict = FIGHTING(ch);
         if (!vict || IN_ROOM(ch) != IN_ROOM(vict) || !CAN_SEE(ch, vict)) {
-            char_printf(ch, "{} who?\n", capitalize(skills[skill].name));
+            char_printf(ch, "{} who?\n", capitalize_first(skills[skill].name));
             return;
         }
     }
@@ -1235,7 +1229,7 @@ ACMD(do_rescue) {
     CharData *vict, *attacker, *c;
     int percent, prob, num;
 
-    one_argument(argument, arg);
+    auto arg = argument.shift();
 
     if (!(vict = find_char_in_room(&world[ch->in_room], find_vis_by_name(ch, arg)))) {
         char_printf(ch, "Whom do you want to rescue?\n");
@@ -1312,9 +1306,9 @@ ACMD(do_kick) {
         return;
     }
 
-    one_argument(argument, arg);
+    auto arg = argument.shift();
 
-    if (!*arg) {
+    if (arg.empty()) {
         if (FIGHTING(ch)) {
             vict = FIGHTING(ch);
         } else {
@@ -1371,9 +1365,9 @@ ACMD(do_eye_gouge) {
         return;
     }
 
-    one_argument(argument, arg);
+    auto arg = argument.shift();
 
-    if (!*arg) {
+    if (arg.empty()) {
         if (FIGHTING(ch))
             vict = FIGHTING(ch);
         else {
@@ -1472,7 +1466,7 @@ ACMD(do_springleap) {
         return;
     }
 
-    one_argument(argument, arg);
+    auto arg = argument.shift();
 
     if (!(vict = find_char_in_room(&world[ch->in_room], find_vis_by_name(ch, arg)))) {
         if (FIGHTING(ch))
@@ -1584,11 +1578,6 @@ ACMD(do_throatcut) {
     effect eff;
     ObjData *weapon;
     int random, chance, percent, dam, expReduction;
-    char buf1[255];
-    char buf2[255];
-    char buf3[255];
-    char stop_buf1[255];
-    char stop_buf2[255];
     bool skipcast = false;
 
     if (GET_COOLDOWN(ch, CD_THROATCUT)) {
@@ -1617,7 +1606,7 @@ ACMD(do_throatcut) {
         return;
     }
 
-    one_argument(argument, buf);
+    auto buf = argument.shift();
 
     if ((!(vict = find_char_in_room(&world[ch->in_room], find_vis_by_name(ch, buf)))) && (!(vict == ch))) {
         char_printf(ch, "Cut whose throat?\n");
@@ -1666,9 +1655,6 @@ ACMD(do_throatcut) {
         vict = random_attack_target(ch, vict, true);
 
     /* Can't throatcut dragons, nor mobs that are twice your size */
-    /*
-    if (GET_RACE(vict) == RACE_DRAGON) {
-    */
     if (GET_RACE(vict) == RACE_DRAGON_GENERAL || GET_RACE(vict) == RACE_DRAGON_FIRE ||
         GET_RACE(vict) == RACE_DRAGON_ACID || GET_RACE(vict) == RACE_DRAGON_FROST ||
         GET_RACE(vict) == RACE_DRAGON_LIGHTNING || GET_RACE(vict) == RACE_DRAGON_GAS) {
@@ -1762,6 +1748,12 @@ ACMD(do_throatcut) {
         chance = 95;
     }
 
+    std::string to_char;
+    std::string to_vict;
+    std::string to_room;
+    std::string stop_buf1;
+    std::string stop_buf2;
+
     /* The moment of excitement! */
     if (percent < chance) {
         if (damage_evasion(vict, ch, weapon, THROATCUT_DAMAGE)) {
@@ -1779,47 +1771,52 @@ ACMD(do_throatcut) {
             dam = (GET_MAX_HIT(vict) * 3) / 4;
             expReduction = (GET_EXP(vict) * 3) / 4; /* rip same % exp from the mob... since they're doing less work! */
 
-            sprintf(buf1, "&1&bYou nearly sever the head of $N with %s.&0", weapon->short_description);
-            sprintf(buf2, "&1&b$n nearly severs your head with %s!&0", weapon->short_description);
-            sprintf(buf3, "&1&b$n nearly severs the head of $N with %s!&0", weapon->short_description);
-            sprintf(stop_buf1, "Your profuse bleeding interrupts your chanting!");
-            sprintf(stop_buf2, "$n stops chanting abruptly!");
+            to_char = fmt::format("&1&bYou nearly sever the head of $N with {}.&0", weapon->short_description);
+            to_vict = fmt::format("&1&b$n nearly severs your head with {}!&0", weapon->short_description);
+            to_room = fmt::format("&1&b$n nearly severs the head of $N with {}!&0", weapon->short_description);
+            stop_buf1 = "Your profuse bleeding interrupts your chanting!";
+            stop_buf2 = "$n stops chanting abruptly!";
             break;
         case 2:
         case 5:
             dam = GET_MAX_HIT(vict) / 4;
             expReduction = GET_EXP(vict) / 4; /* rip same % exp from the mob... since they're doing less work! */
 
-            sprintf(buf1, "&1&bBlood splatters all over you as you cut into $N with %s.&0", weapon->short_description);
-            sprintf(buf2, "&1&bBlood splatters all over $n as $e cuts into you with %s!&0", weapon->short_description);
-            sprintf(buf3, "&1&bBlood splatters all over $n as $e dices $N with %s!&0", weapon->short_description);
-            sprintf(stop_buf1, "Your chanting is interrupted by your coughing up blood!");
-            sprintf(stop_buf2, "$n stops chanting abruptly!");
+            to_char = fmt::format("&1&bBlood splatters all over you as you cut into $N with {}.&0",
+                                  weapon->short_description);
+            to_vict = fmt::format("&1&bBlood splatters all over $n as $e cuts into you with {}!&0",
+                                  weapon->short_description);
+            to_room =
+                fmt::format("&1&bBlood splatters all over $n as $e dices $N with {}!&0", weapon->short_description);
+            stop_buf1 = "Your chanting is interrupted by your coughing up blood!";
+            stop_buf2 = "$n stops chanting abruptly!";
             break;
         case 3:
         case 4:
             dam = GET_MAX_HIT(vict) / 8;
             expReduction = GET_EXP(vict) / 8; /* rip same % exp from the mob... since they're doing less work! */
 
-            sprintf(buf1, "&1&b$N gasps as you slice into $S throat with %s.&0", weapon->short_description);
-            sprintf(buf2, "&1&bYou gasp with fear as $n slices into your throat with %s!&0", weapon->short_description);
-            sprintf(buf3, "&1&b$N looks horrified as $n slices into $S throat with %s!&0", weapon->short_description);
-            sprintf(stop_buf1, "Your gasp abruptly interrupts your chanting!");
-            sprintf(stop_buf2, "$n stops chanting abruptly!");
+            to_char = fmt::format("&1&b$N gasps as you slice into $S throat with {}.&0", weapon->short_description);
+            to_vict = fmt::format("&1&bYou gasp with fear as $n slices into your throat with {}!&0",
+                                  weapon->short_description);
+            to_room =
+                fmt::format("&1&b$N looks horrified as $n slices into $S throat with {}!&0", weapon->short_description);
+            stop_buf1 = "Your gasp abruptly interrupts your chanting!";
+            stop_buf2 = "$n stops chanting abruptly!";
             break;
         case 7:
             dam = (GET_MAX_HIT(vict) * 9) / 10;
             expReduction = (GET_EXP(vict) * 9) / 10; /* rip same % exp from the mob... since
                                                         they're doing less work! */
 
-            sprintf(buf1, "&1&bBlood spews everywhere as you nearly incapacitate $N with %s.&0",
-                    weapon->short_description);
-            sprintf(buf2, "&1&bBlood spews everywhere as $n nearly incapacitates you with %s!&0",
-                    weapon->short_description);
-            sprintf(buf3, "&1&bBlood spews everywhere as $n nearly incapacitates $N with %s!&0",
-                    weapon->short_description);
-            sprintf(stop_buf1, "Your chanting is interrupted by your gurgling of blood!");
-            sprintf(stop_buf2, "$n stops chanting abruptly!");
+            to_char = fmt::format("&1&bBlood spews everywhere as you nearly incapacitate $N with {}.&0",
+                                  weapon->short_description);
+            to_vict = fmt::format("&1&bBlood spews everywhere as $n nearly incapacitates you with {}!&0",
+                                  weapon->short_description);
+            to_room = fmt::format("&1&bBlood spews everywhere as $n nearly incapacitates $N with {}!&0",
+                                  weapon->short_description);
+            stop_buf1 = "Your chanting is interrupted by your gurgling of blood!";
+            stop_buf2 = "$n stops chanting abruptly!";
             break;
         default:
             dam = expReduction = 0;
@@ -1831,9 +1828,9 @@ ACMD(do_throatcut) {
         expReduction = 0; /* rip same % exp from the mob... since they're doing less work! */
 
         /* If we want silent misses for non-critical misses.. remove the act txt */
-        sprintf(buf1, "&3&b$N jumps back before you have a chance to even get close!&0");
-        sprintf(buf2, "&3&b$n just tried to cut your throat!&0");
-        sprintf(buf3, "&3&b$n misses $N with $s throat cut!&0");
+        to_char = fmt::format("&3&b$N jumps back before you have a chance to even get close!&0");
+        to_vict = fmt::format("&3&b$n just tried to cut your throat!&0");
+        to_room = fmt::format("&3&b$n misses $N with $s throat cut!&0");
     }
 
     if (IS_NPC(vict))
@@ -1841,23 +1838,19 @@ ACMD(do_throatcut) {
                                                                  negative exp gain for ch */
 
     if (damage_amounts) {
+        std::string damage;
         if (dam <= 0)
-            sprintf(buf, " (&1%d&0)", dam);
+            damage = fmt::format(" (&1{}&0)", dam);
         else
-            sprintf(buf, " (&3%d&0)", dam);
+            damage = fmt::format(" (&3{}&0)", dam);
 
-        strcat(buf1, buf);
-        act(buf1, false, ch, nullptr, vict, TO_CHAR);
-
-        strcat(buf2, buf);
-        act(buf2, false, ch, nullptr, vict, TO_VICT);
-
-        strcat(buf3, buf);
-        act(buf3, false, ch, nullptr, vict, TO_NOTVICT);
+        act(to_char + damage, false, ch, nullptr, vict, TO_CHAR);
+        act(to_vict + damage, false, ch, nullptr, vict, TO_VICT);
+        act(to_room + damage, false, ch, nullptr, vict, TO_NOTVICT);
     } else {
-        act(buf1, false, ch, nullptr, vict, TO_CHAR);
-        act(buf2, false, ch, nullptr, vict, TO_VICT);
-        act(buf3, false, ch, nullptr, vict, TO_NOTVICT);
+        act(to_char, false, ch, nullptr, vict, TO_CHAR);
+        act(to_vict, false, ch, nullptr, vict, TO_VICT);
+        act(to_room, false, ch, nullptr, vict, TO_NOTVICT);
     }
 
     if (dam > 0) {
@@ -1942,8 +1935,8 @@ ACMD(do_disarm) {
 
     /* Determine what item is to be wrested away */
 
-    one_argument(argument, arg);
-    if (!*arg) {
+    auto arg = argument.shift();
+    if (arg.empty()) {
         /* Nothing specified: look for primary, then secondary weapon */
         if ((obj = GET_EQ(tch, WEAR_WIELD))) {
             pos = WEAR_WIELD;
@@ -2070,9 +2063,10 @@ ACMD(do_disarm) {
             act("&3&b$p&3&b magically returns to $s&0 &B&3inventory!&0", true, vict, obj, nullptr, TO_ROOM);
         } else {
             obj_to_room(unequip_char(vict, pos), vict->in_room);
-            sprintf(buf, "%s lands on the %s.", obj->short_description, CH_OUTSIDE(vict) ? "ground" : "floor");
-            act(buf, false, vict, 0, 0, TO_ROOM);
-            act(buf, false, vict, 0, 0, TO_CHAR);
+            auto output =
+                fmt::format("{} falls to the {}", obj->short_description, CH_OUTSIDE(vict) ? "ground" : "floor");
+            act(output, false, vict, 0, 0, TO_ROOM);
+            act(output, false, vict, 0, 0, TO_CHAR);
         }
         /* Move secondary hand weapon to primary hand. */
         if (pos == WEAR_WIELD && GET_EQ(vict, WEAR_WIELD2))
@@ -2155,8 +2149,8 @@ ACMD(do_hitall) {
         orig_target = FIGHTING(ch);
 
     /* Find out whether to hit "all" or just aggressive monsters */
-    one_argument(argument, arg);
-    if (!strcasecmp(arg, "all") || subcmd == SCMD_TANTRUM)
+    auto arg = argument.shift();
+    if (matches(arg, "all") || subcmd == SCMD_TANTRUM)
         hit_all = 1;
 
     /* Hit all aggressive monsters in room */
@@ -2222,10 +2216,10 @@ ACMD(do_corner) {
         return;
     }
 
-    one_argument(argument, arg);
+    auto arg = argument.shift();
 
     /* You can only corner the person you're fighting. */
-    if (!*arg && FIGHTING(ch))
+    if (arg.empty() && FIGHTING(ch))
         vict = FIGHTING(ch);
     else if (!(vict = find_char_in_room(&world[ch->in_room], find_vis_by_name(ch, arg))) || vict != FIGHTING(ch)) {
         char_printf(ch, "You have to be fighting someone to corner them!\n");
@@ -2275,7 +2269,7 @@ ACMD(do_peck) {
         return;
     }
 
-    one_argument(argument, arg);
+    auto arg = argument.shift();
     if (!(vict = find_char_in_room(&world[ch->in_room], find_vis_by_name(ch, arg)))) {
         if (FIGHTING(ch))
             vict = FIGHTING(ch);
@@ -2330,7 +2324,7 @@ ACMD(do_claw) {
         return;
     }
 
-    one_argument(argument, arg);
+    auto arg = argument.shift();
     if (!(vict = find_char_in_room(&world[ch->in_room], find_vis_by_name(ch, arg)))) {
         if (FIGHTING(ch))
             vict = FIGHTING(ch);
@@ -2531,7 +2525,7 @@ ACMD(do_cartwheel) {
         return;
     }
 
-    one_argument(argument, arg);
+    auto arg = argument.shift();
 
     if (!(vict = find_char_in_room(&world[ch->in_room], find_vis_by_name(ch, arg)))) {
         if (FIGHTING(ch))
@@ -2694,9 +2688,8 @@ ACMD(do_lure) {
     CharData *vict;
     FollowType *k, *next_k;
 
-    argument = delimited_arg(argument, arg, '\'');
-    skip_spaces(&argument);
-    vict = find_char_in_room(&world[ch->in_room], find_vis_by_name(ch, arg));
+    auto victim_name = argument.shift();
+    vict = find_char_in_room(&world[ch->in_room], find_vis_by_name(ch, victim_name));
 
     if (!ch)
         return;
@@ -2716,7 +2709,7 @@ ACMD(do_lure) {
         return;
     }
 
-    if (!*arg || !vict) {
+    if (victim_name.empty() || !vict) {
         char_printf(ch, "Lure who?!\n");
         return;
     }
@@ -2726,13 +2719,12 @@ ACMD(do_lure) {
         return;
     }
 
-    if (!*argument) {
+    if (argument.empty()) {
         act("Lure $M where!?", false, ch, 0, vict, TO_CHAR);
         return;
     }
 
-    dir = searchblock(argument, dirs, false);
-
+    dir = search_block(argument.shift(), dirs, false);
     if (FIGHTING(vict)) {
         char_printf(ch, "You can't lure someone away from combat!\n");
         return;
@@ -2840,9 +2832,9 @@ ACMD(do_rend) {
         return;
     }
 
-    one_argument(argument, arg);
+    auto arg = argument.shift();
 
-    if (!*arg) {
+    if (arg.empty()) {
         if (FIGHTING(ch)) {
             vict = FIGHTING(ch);
         } else {
@@ -2941,9 +2933,9 @@ ACMD(do_tripup) {
         }
     }
 
-    one_argument(argument, arg);
+    auto arg = argument.shift();
 
-    if (!*arg || !(vict = find_char_in_room(&world[ch->in_room], find_vis_by_name(ch, arg)))) {
+    if (arg.empty() || !(vict = find_char_in_room(&world[ch->in_room], find_vis_by_name(ch, arg)))) {
         vict = FIGHTING(ch);
         if (!vict || IN_ROOM(ch) != IN_ROOM(vict) || !CAN_SEE(ch, vict)) {
             char_printf(ch, "Trip up who?\n");
@@ -3112,8 +3104,8 @@ ACMD(do_roundhouse) {
     }
 
     /* Find out whether to hit "all" or just aggressive monsters */
-    one_argument(argument, arg);
-    if (!strcasecmp(arg, "all"))
+    auto arg = argument.shift();
+    if (matches(arg, "all"))
         kick_all = 1;
 
     /* Hit all aggressive monsters in room */

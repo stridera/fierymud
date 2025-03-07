@@ -52,7 +52,7 @@ bool update_inventory(CharData *ch, ObjData *obj, int where);
 CharData *check_guard(CharData *ch, CharData *victim, int gag_output);
 void get_check_money(CharData *ch, ObjData *obj);
 void perform_wear(CharData *ch, ObjData *obj, int where, bool collective = false);
-int find_eq_pos(CharData *ch, ObjData *obj, char *arg);
+int find_eq_pos(CharData *ch, ObjData *obj, std::string_view arg);
 bool mob_cast(CharData *ch, CharData *tch, ObjData *tobj, int spellnum);
 void hunt_victim(CharData *ch);
 void start_studying(CharData *ch);
@@ -87,11 +87,12 @@ void mobile_activity(void) {
             continue;
 
         /* Don't execute procs when someone is switched in. */
-        if (POSSESSED (ch))
+        if (POSSESSED(ch))
             continue;
-            
+
         /* If lower than default position, get up. */
-        if ((GET_MOB_WAIT(ch) <= 0 && GET_DEFAULT_POS(ch) > GET_POS(ch) && GET_STANCE(ch) >= STANCE_RESTING) && !EVENT_FLAGGED(ch, EVENT_REGEN_SPELLSLOT)) {
+        if ((GET_MOB_WAIT(ch) <= 0 && GET_DEFAULT_POS(ch) > GET_POS(ch) && GET_STANCE(ch) >= STANCE_RESTING) &&
+            !EVENT_FLAGGED(ch, EVENT_REGEN_SPELLSLOT)) {
             switch (GET_DEFAULT_POS(ch)) {
             case POS_PRONE:
                 do_recline(ch, "", 0, 0);
@@ -279,7 +280,7 @@ void mobile_spec_activity(void) {
 
         /* Look for people I'd like to attack */
         if (!ROOM_FLAGGED(ch->in_room, ROOM_PEACEFUL) && !EFF_FLAGGED(ch, EFF_MESMERIZED) &&
-           (!EFF_FLAGGED(ch, EFF_CHARM) || (ch->master && ch->master->in_room != ch->in_room))) {
+            (!EFF_FLAGGED(ch, EFF_CHARM) || (ch->master && ch->master->in_room != ch->in_room))) {
             if ((vict = find_aggr_target(ch))) {
                 mob_attack(ch, vict);
                 continue;

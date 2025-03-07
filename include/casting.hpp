@@ -166,7 +166,7 @@ int mag_bulk_objs(int skill, CharData *ch, int spellnum, int type);
 int mag_creation(int skill, CharData *ch, int spellnum);
 int call_magic(CharData *caster, CharData *cvict, ObjData *ovict, int spellnum, int skill, int casttype);
 int mag_room(int skill, CharData *ch, int spellnum);
-void mag_objectmagic(CharData *ch, ObjData *obj, char *argument);
+void mag_objectmagic(CharData *ch, ObjData *obj, std::string_view argument);
 int cast_spell(CharData *ch, CharData *tch, ObjData *tobj, int spellnum);
 
 /* other prototypes */

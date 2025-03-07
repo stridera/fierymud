@@ -98,15 +98,15 @@ struct sectordef {
 };
 
 extern const struct sectordef sectors[NUM_SECTORS];
-extern const char *room_bits[NUM_ROOM_FLAGS + 1];
-extern const char *room_effects[NUM_ROOM_EFF_FLAGS + 1];
+extern const std::string_view room_bits[NUM_ROOM_FLAGS + 1];
+extern const std::string_view room_effects[NUM_ROOM_EFF_FLAGS + 1];
 
 struct RoomData {
     room_num vnum;                        /* Room's vnum              */
     int zone;                             /* Room zone (for resetting)          */
     int sector_type;                      /* sector type (move/hide)            */
-    char *name;                           /* Rooms name 'You are ...'           */
-    char *description;                    /* Shown when entered                 */
+    std::string name;                     /* Rooms name 'You are ...'           */
+    std::string description;              /* Shown when entered                 */
     ExtraDescriptionData *ex_description; /* for examine/look              */
     Exit *exits[NUM_OF_DIRS];
 

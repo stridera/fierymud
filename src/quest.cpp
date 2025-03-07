@@ -29,7 +29,7 @@
 #include "utils.hpp"
 
 /* Local functions */
-QuestList *quest_find_char(CharData *ch, char *qname);
+QuestList *quest_find_char(CharData *ch, std::string_view qname);
 
 /* Quest defines */
 int max_quests = 0;
@@ -38,7 +38,7 @@ QuestInfo *all_quests = nullptr;
 void boot_quests() {
     FILE *fl;
     char line[256];
-    char *quest_name;
+    std::string_view quest_name;
     int quest_num, max_stages, num_records = 0;
 
     max_quests = 0;
@@ -73,7 +73,7 @@ void boot_quests() {
 }
 
 /* quest_stat - returns true if any stat info was listed */
-bool quest_stat(CharData *ch, CharData *vict, char *qname) {
+bool quest_stat(CharData *ch, CharData *vict, std::string_view qname) {
     QuestList *quest = quest_find_char(vict, qname);
     QuestVariableList *vars;
     int qid_num;
@@ -112,7 +112,7 @@ void quest_mstat(CharData *ch, CharData *vict) {
         char_printf(ch, "No quest data found.\n");
 }
 
-CharData *quest_id_char(TrigData *t, CharData *ch, char *name) {
+CharData *quest_id_char(TrigData *t, CharData *ch, std::string_view name) {
     CharData *vict;
 
     if (!(vict = find_char_for_keyword(ch, name)))
@@ -132,12 +132,12 @@ CharData *quest_id_char(TrigData *t, CharData *ch, char *name) {
 
 ACMD(do_qstat) {
     CharData *vict;
-    char *quest_name;
+    std::string_view quest_name;
 
     argument = any_one_arg(argument, arg);  /* player name */
     argument = any_one_arg(argument, buf1); /* quest */
 
-    if (!*arg) {
+    if (arg.empty()) {
         char_printf(ch, "Usage: qstat <player> [<quest>]\n");
         return;
     }
@@ -162,12 +162,12 @@ ACMD(do_qstat) {
     }
 }
 
-void perform_quest(TrigData *t, char *argument, CharData *ch, ObjData *obj, RoomData *room) {
+void perform_quest(TrigData *t, std::string_view argument, CharData *ch, ObjData *obj, RoomData *room) {
     char error_string[MAX_INPUT_LENGTH * 2], *quest_name, e2[MAX_INPUT_LENGTH * 2];
     CharData *vict;
     int amount;
 
-    skip_spaces(&argument);
+    skip_spaces(argument);
     argument = any_one_arg(argument, arg);  /* command */
     argument = any_one_arg(argument, buf1); /* quest */
     argument = any_one_arg(argument, buf2); /* player name */
@@ -175,7 +175,7 @@ void perform_quest(TrigData *t, char *argument, CharData *ch, ObjData *obj, Room
     /* Check for the "mstat" command first, since it requires one fewer argument
      * than the rest of them.  This one can only be done by a character (not a
      * trigger). */
-    if (*arg && !strcasecmp(arg, "mstat") && ch) {
+    if (*arg && matches(arg, "mstat") && ch) {
         if (*buf1) {
             /* OK: mstat command, buf1 = player name */
             if ((vict = quest_id_char(nullptr, ch, buf1)))
@@ -187,7 +187,7 @@ void perform_quest(TrigData *t, char *argument, CharData *ch, ObjData *obj, Room
     }
 
     /* Make sure we have a quest command. */
-    if (!*arg || !*buf1 || !*buf2) {
+    if (arg.empty() || buf1.empty() || buf2.empty()) {
         if (t) {
             log(LogSeverity::Stat, LVL_GOD, "QUEST ERROR: quest command called with less than 3 args by trigger {:d}",
                 GET_TRIG_VNUM(t));
@@ -255,10 +255,10 @@ void perform_quest(TrigData *t, char *argument, CharData *ch, ObjData *obj, Room
      * Advances player <vict> by <amount> stages in the quest <quest_name>.
      * Defaults to 1 stage.
      */
-    if (!strncasecmp(arg, "advance", strlen(arg))) {
+    if (matches(arg, "advance"){
         argument = any_one_arg(argument, buf1);
         amount = atoi(buf1);
-        if (!amount && !*buf1) /* If no amount given, then advance by 1. */
+        if (!amount && buf1.empty()) /* If no amount given, then advance by 1. */
             amount = 1;
         quest_advance(ch, vict, quest_name, error_string, amount);
     }
@@ -267,7 +267,7 @@ void perform_quest(TrigData *t, char *argument, CharData *ch, ObjData *obj, Room
      *
      * Start player <vict> on the quest <quest_name>.
      */
-    else if (!strncasecmp(arg, "start", strlen(arg))) {
+    else if (matches(arg, "start"){
         argument = any_one_arg(argument, buf1);
         quest_start(ch, vict, quest_name, error_string, buf1);
     }
@@ -278,19 +278,19 @@ void perform_quest(TrigData *t, char *argument, CharData *ch, ObjData *obj, Room
      * quest <quest_name>, or check quest variable <buf1> on player <vict>
      * on the quest <quest_name>.
      */
-    else if (!strncasecmp(arg, "variable", strlen(arg))) {
+    else if (matches(arg, "variable"){
         argument = any_one_arg(argument, buf1);
         argument = any_one_arg(argument, buf2);
-        if (ch && !*buf1)
+        if (ch && buf1.empty())
             char_printf(ch, "Which variable?\n");
-        else if (ch && !*buf2) {
+        else if (ch && buf2.empty()) {
             char_printf(ch, "Variable {} on {} for quest {}: {}\n", buf1, GET_NAME(vict), quest_name,
                         get_quest_variable(vict, quest_name, buf1));
         } else if (*buf1 && *buf2)
             set_quest_variable(ch, vict, quest_name, error_string, buf1, buf2);
-        else if (!*buf1) {
+        else if (buf1.empty()) {
             log(LogSeverity::Stat, LVL_GOD, error_string, "set variable with no variable");
-        } else if (!*buf2) {
+        } else if (buf2.empty()) {
             log(LogSeverity::Stat, LVL_GOD, error_string, "set variable \"{}\" with no value", buf1);
         }
     }
@@ -314,10 +314,10 @@ void perform_quest(TrigData *t, char *argument, CharData *ch, ObjData *obj, Room
      * Rewinds player <vict> by <amount> stages in the quest <quest_name>.
      * Defaults to 1 stage.
      */
-    else if (!strncasecmp(arg, "rewind", strlen(arg))) {
+    else if (matches(arg, "rewind"){
         argument = any_one_arg(argument, buf1);
         amount = atoi(buf1);
-        if (!amount && !*buf1) /* If no amount given, then rewind by 1. */
+        if (!amount && buf1.empty()) /* If no amount given, then rewind by 1. */
             amount = 1;
         quest_rewind(ch, vict, quest_name, error_string, amount);
     }
@@ -341,7 +341,7 @@ void perform_quest(TrigData *t, char *argument, CharData *ch, ObjData *obj, Room
      *
      * Shows stage for quest <quest_name> on player <vict>.
      */
-    else if (ch && !strncasecmp(arg, "stage", strlen(arg))) {
+    else if (ch && matches(arg, "stage"){
         if (quest_find_char(vict, quest_name)) {
             amount = quest_stage(vict, quest_name);
             if (amount == QUEST_FAILURE)
@@ -359,7 +359,7 @@ void perform_quest(TrigData *t, char *argument, CharData *ch, ObjData *obj, Room
      *
      * Shows variable data for a quest
      */
-    else if (ch && !strcasecmp(arg, "stat")) {
+    else if (ch && matches(arg, "stat")) {
         if (!quest_stat(ch, vict, quest_name)) {
             char_printf(ch, "No quest data was found.\n");
         }
@@ -383,7 +383,7 @@ void perform_quest(TrigData *t, char *argument, CharData *ch, ObjData *obj, Room
  *
  * NOTE:	uses strncasecmp  so abbreviations of quest anmes are tolerated.
  */
-unsigned short quest_find_num(char *qname) {
+unsigned short quest_find_num(std::string_view qname) {
     int count;
     /*
      * Loop through the quests and if we find the one we're looking for,
@@ -400,7 +400,7 @@ unsigned short quest_find_num(char *qname) {
  * utility function for perform_quest.  Returns the full qualified name of
  * a quest based on an abbreviation.
  */
-char *check_quest_name(char *qname) {
+std::string_view check_quest_name(std::string_view qname) {
     int count;
     for (count = 0; count < max_quests; count++)
         if (!strncasecmp(all_quests[count].quest_name, qname, strlen(qname)))
@@ -413,7 +413,7 @@ char *check_quest_name(char *qname) {
  *
  * Internal routine to find the maximum stage for a quest.
  */
-short quest_find_max_stage(char *qname) {
+short quest_find_max_stage(std::string_view qname) {
     int count = 0;
 
     for (count = 0; count < max_quests; count++)
@@ -427,7 +427,7 @@ short quest_find_max_stage(char *qname) {
  *
  * descr:	internal routine to find a quest in a quest_list
  */
-QuestList *quest_find_char(CharData *ch, char *qname) {
+QuestList *quest_find_char(CharData *ch, std::string_view qname) {
     QuestList *quest;
     int quest_num = quest_find_num(qname);
 
@@ -440,7 +440,7 @@ QuestList *quest_find_char(CharData *ch, char *qname) {
 /*
  * get_quest_variable
  */
-char *get_quest_variable(CharData *vict, char *qname, char *variable) {
+std::string_view get_quest_variable(CharData *vict, std::string_view qname, std::string_view variable) {
     QuestList *quest = quest_find_char(vict, qname);
     QuestVariableList *vars;
 
@@ -448,13 +448,14 @@ char *get_quest_variable(CharData *vict, char *qname, char *variable) {
         return "0";
 
     for (vars = quest->variables; vars; vars = vars->next)
-        if (!strcasecmp(variable, vars->var))
+        if (matches(variable, vars->var))
             return vars->val;
 
     return "0";
 }
 
-void set_quest_variable(CharData *ch, CharData *vict, char *qname, char *error_string, char *variable, char *value) {
+void set_quest_variable(CharData *ch, CharData *vict, std::string_view qname, std::string_view error_string,
+                        std::string_view variable, std::string_view value) {
     QuestList *quest = quest_find_char(vict, qname);
     QuestVariableList *vars;
 
@@ -468,7 +469,7 @@ void set_quest_variable(CharData *ch, CharData *vict, char *qname, char *error_s
     }
 
     for (vars = quest->variables; vars; vars = vars->next)
-        if (!strcasecmp(variable, vars->var)) {
+        if (matches(variable, vars->var)) {
             strncpy(vars->val, value, 20);
             return;
         }
@@ -499,7 +500,7 @@ void set_quest_variable(CharData *ch, CharData *vict, char *qname, char *error_s
  * 		that the char has failed this quest, so call has_failed_quest
  * 		to be sure
  */
-int quest_stage(CharData *ch, char *qname) {
+int quest_stage(CharData *ch, std::string_view qname) {
     QuestList *quest;
 
     if (!ch)
@@ -526,7 +527,7 @@ int quest_stage(CharData *ch, char *qname) {
  * more than 254 stages in your quest you are an evil bastard and should seek
  * help.
  */
-void quest_complete(CharData *ch, CharData *vict, char *qname, char *error_string) {
+void quest_complete(CharData *ch, CharData *vict, std::string_view qname, std::string_view error_string) {
     QuestList *quest = quest_find_char(vict, qname);
 
     if (!quest) {
@@ -565,7 +566,7 @@ void quest_complete(CharData *ch, CharData *vict, char *qname, char *error_strin
     }
 }
 
-void quest_fail(CharData *ch, CharData *vict, char *qname, char *error_string) {
+void quest_fail(CharData *ch, CharData *vict, std::string_view qname, std::string_view error_string) {
     QuestList *quest = quest_find_char(vict, qname);
 
     if (!quest) {
@@ -606,7 +607,7 @@ void quest_fail(CharData *ch, CharData *vict, char *qname, char *error_string) {
  * quest advance
  *
  */
-void quest_advance(CharData *ch, CharData *vict, char *qname, char *error_string, int amount) {
+void quest_advance(CharData *ch, CharData *vict, std::string_view qname, std::string_view error_string, int amount) {
     short max_stage;
     QuestList *quest = quest_find_char(vict, qname);
 
@@ -659,7 +660,8 @@ void quest_advance(CharData *ch, CharData *vict, char *qname, char *error_string
  * quest start
  *
  */
-void quest_start(CharData *ch, CharData *vict, char *qname, char *error_string, char *subclass_abbr) {
+void quest_start(CharData *ch, CharData *vict, std::string_view qname, std::string_view error_string,
+                 std::string_view subclass_abbr) {
     QuestList *quest = quest_find_char(vict, qname);
     extern int class_ok_race[NUM_RACES][NUM_CLASSES];
     unsigned short quest_num;
@@ -676,7 +678,7 @@ void quest_start(CharData *ch, CharData *vict, char *qname, char *error_string, 
 
     quest_num = quest_find_num(qname);
 
-    if (!*subclass_abbr && IS_SUBCLASS_QUEST(quest_num)) {
+    if (subclass_abbr.empty() && IS_SUBCLASS_QUEST(quest_num)) {
         if (ch)
             char_printf(ch, "You must supply the name of the subclass for this quest.\n");
         else if (error_string) {
@@ -785,7 +787,7 @@ void quest_start(CharData *ch, CharData *vict, char *qname, char *error_string, 
     }
 }
 
-void quest_rewind(CharData *ch, CharData *vict, char *qname, char *error_string, int amount) {
+void quest_rewind(CharData *ch, CharData *vict, std::string_view qname, std::string_view error_string, int amount) {
     QuestList *quest = quest_find_char(vict, qname);
 
     if (!quest) {
@@ -834,7 +836,7 @@ void quest_rewind(CharData *ch, CharData *vict, char *qname, char *error_string,
     }
 }
 
-void quest_restart(CharData *ch, CharData *vict, char *qname, char *error_string) {
+void quest_restart(CharData *ch, CharData *vict, std::string_view qname, std::string_view error_string) {
     QuestList *quest = quest_find_char(vict, qname);
 
     if (!quest) {
@@ -866,7 +868,7 @@ void quest_restart(CharData *ch, CharData *vict, char *qname, char *error_string
  * 		this was a completed subclass and the player has CHANGED
  * 		subclass, then they will not be changed back.
  */
-void quest_erase(CharData *ch, CharData *vict, char *qname, char *error_string) {
+void quest_erase(CharData *ch, CharData *vict, std::string_view qname, std::string_view error_string) {
     QuestList *quest, *prev;
     /*   quest_var_list *vars, *next_vars; */
     unsigned short quest_num;
@@ -927,7 +929,7 @@ void quest_erase(CharData *ch, CharData *vict, char *qname, char *error_string) 
  * NOTE:	if has_failed_quest returns 0, and quest_stage also returns 0
  * then the quest does not exist or the player has not started it
  */
-int has_failed_quest(char *qname, CharData *ch) {
+int has_failed_quest(std::string_view qname, CharData *ch) {
     QuestList *quest = quest_find_char(ch, qname);
 
     if (quest && quest->stage == QUEST_FAILURE)
@@ -946,7 +948,7 @@ int has_failed_quest(char *qname, CharData *ch) {
  * started it.
  *
  */
-int has_completed_quest(char *qname, CharData *ch) {
+int has_completed_quest(std::string_view qname, CharData *ch) {
     QuestList *quest = quest_find_char(ch, qname);
 
     if (quest && quest->stage == QUEST_SUCCESS)
@@ -967,7 +969,7 @@ ACMD(do_qadd) {
     argument = any_one_arg(argument, buf1);
     argument = any_one_arg(argument, buf2);
 
-    if (!*buf1 || !*buf2) {
+    if (buf1.empty() || buf2.empty()) {
         char_printf(ch, "Usage: qadd <quest_name> <max_stages> [<yes_if_subclass_quest>]\n");
         return;
     }
@@ -988,7 +990,7 @@ ACMD(do_qadd) {
      * longer than 0, otherwise all quests are subclass quests.
      */
     argument = any_one_arg(argument, arg);
-    if (*arg && !strncasecmp("yes", arg, strlen(arg))) {
+    if (*arg && matches("yes", arg){
         max_id = (MAX_SUBCLASS_QUEST_ID | SUBCLASS_BIT);
         new_id |= SUBCLASS_BIT;
     } else
@@ -1059,7 +1061,7 @@ ACMD(do_qdel) {
 
     argument = any_one_arg(argument, buf1);
 
-    if (!*buf1) {
+    if (buf1.empty()) {
         char_printf(ch, "Usage: qdel <quest_name>\n");
         return;
     }
@@ -1070,7 +1072,7 @@ ACMD(do_qdel) {
      * think we should be a little more careful than that when deleting.
      */
     for (i = 0; i < max_quests; i++)
-        if (!strcasecmp(all_quests[i].quest_name, buf1)) {
+        if (matches(all_quests[i].quest_name, buf1)) {
             quest_num = all_quests[i].quest_id;
             break;
         }

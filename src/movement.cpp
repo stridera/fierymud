@@ -43,7 +43,7 @@ bool can_travel_on_water(CharData *ch) {
 
     /* FIXME: should be in something like items.h or equipment.h */
     /* This function is currently in act.item.c */
-    int find_eq_pos(CharData * ch, ObjData * obj, char *arg);
+    int find_eq_pos(CharData * ch, ObjData * obj, std::string_view arg);
 
     if (GET_LEVEL(ch) >= LVL_IMMORT)
         return true;
@@ -224,7 +224,7 @@ void falling_check(CharData *ch) {
  * in the surrounding rooms. */
 void falling_yell(CharData *ch) {
     int dir, was_in, backdir, i;
-    char *dirstr;
+    std::string_view dirstr;
     RoomData *oroom;
 
     if (EFF_FLAGGED(ch, EFF_SILENCE))
@@ -270,8 +270,9 @@ void falling_yell(CharData *ch) {
                 dirstr = buf2;
             }
 
-            sprintf(buf, "You hear a %s %s from %s, which quickly fades.", random_number(0, 10) < 5 ? "surprised" : "sudden",
-                    random_number(0, 10) < 6 ? "shriek" : "yelp", dirstr);
+            sprintf(buf, "You hear a %s %s from %s, which quickly fades.",
+                    random_number(0, 10) < 5 ? "surprised" : "sudden", random_number(0, 10) < 6 ? "shriek" : "yelp",
+                    dirstr);
 
             ch->in_room = EXIT_NDEST(world[was_in].exits[dir]);
             act(buf, false, ch, 0, 0, TO_ROOM);
@@ -467,8 +468,8 @@ void disband_group(CharData *master, bool verbose, bool forceful) {
         g->groupee->group_master = nullptr;
         master->groupees = g->next;
         if (verbose)
-            act(forceful ? "&2The group has been disbanded.&0" : "&2$n &2has disbanded the group.&0", false,
-                master, 0, g->groupee, TO_VICT);
+            act(forceful ? "&2The group has been disbanded.&0" : "&2$n &2has disbanded the group.&0", false, master, 0,
+                g->groupee, TO_VICT);
         free(g);
     }
 }
@@ -534,8 +535,7 @@ void ungroup(CharData *ch, bool verbose, bool forceful) {
                     continue;
                 }
                 if (verbose)
-                    act(forceful ? "&2$n &2has been kicked out of your group!&0"
-                                 : "&2$n &2has left your group!&0",
+                    act(forceful ? "&2$n &2has been kicked out of your group!&0" : "&2$n &2has left your group!&0",
                         true, ch, 0, g->next->groupee, TO_VICT);
                 g = g->next;
             }
@@ -544,10 +544,10 @@ void ungroup(CharData *ch, bool verbose, bool forceful) {
             ch->group_master = nullptr;
 
             if (verbose) {
-                act(forceful ? "&2You have been kicked out of your group.&0" : "&2You have left your group!&0",
-                    false, ch, 0, 0, TO_CHAR);
-                act(forceful ? "&2You have kicked $n &2out of your group.&0" : "&2$n &2has left your group!&0",
-                    false, ch, 0, master, TO_VICT);
+                act(forceful ? "&2You have been kicked out of your group.&0" : "&2You have left your group!&0", false,
+                    ch, 0, 0, TO_CHAR);
+                act(forceful ? "&2You have kicked $n &2out of your group.&0" : "&2$n &2has left your group!&0", false,
+                    ch, 0, master, TO_VICT);
             }
         }
     } else

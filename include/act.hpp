@@ -70,26 +70,25 @@ ACMD(do_who);
 struct StackNode {
     ObjData *obj;
     int count;
-    const char *to_char;
-    const char *to_room;
+    std::string_view to_char;
+    std::string_view to_room;
     StackNode *next;
 };
 struct GetContext {
     CharData *ch;
     StackNode *stack;
-    int coins[NUM_COIN_TYPES];
+    Money coins;
 };
 
 /* Public functions */
-void garble_text(char *string, int percent);
-std::string drunken_speech(std::string speech, int drunkenness);
+std::string drunken_speech(std::string_view speech, int drunkenness);
 
 bool senses_living(CharData *ch, CharData *vict, int basepct);
 bool senses_living_only(CharData *ch, CharData *vict, int basepct);
-const char *relative_location_str(int bits);
-void split_coins(CharData *ch, int coins[], unsigned int mode);
+const std::string_view relative_location_str(int bits);
+void split_coins(CharData *ch, Money coins, unsigned int mode);
 
-void print_obj_to_char(ObjData *obj, CharData *ch, int mode, char *additional_args);
+void print_obj_to_char(ObjData *obj, CharData *ch, int mode, std::string_view additional_args);
 void list_obj_to_char(ObjData *list, CharData *ch, int mode);
 void print_char_to_char(CharData *targ, CharData *ch, int mode);
 void list_char_to_char(CharData *list, CharData *ch, int mode);
@@ -97,29 +96,29 @@ void print_room_to_char(room_num room_nr, CharData *ch, bool ignore_brief);
 void look_at_room(CharData *ch, int ignore_brief);
 void check_new_surroundings(CharData *ch, bool old_room_was_dark, bool tx_obvious);
 void look_in_direct(CharData *ch, int dir);
-void look_in_obj(CharData *ch, char *arg);
-void look_at_target(CharData *ch, char *arg);
+void look_in_obj(CharData *ch, std::string_view arg);
+void look_at_target(CharData *ch, std::string_view arg);
 void identify_obj(ObjData *obj, CharData *ch, int location);
-const char *status_string(int cur, int max, int mode);
+const std::string_view status_string(int cur, int max, int mode);
 
 /* status_string mode codes */
 #define STATUS_COLOR 0
 #define STATUS_ALIAS 1
 #define STATUS_PHRASE 2
 
-const char *save_message(int save);
-const char *align_message(int align);
-const char *hitdam_message(int value);
-const char *armor_message(int ac);
-const char *perception_message(int perception);
-const char *hiddenness_message(int hiddenness);
-const char *ability_message(int value);
+const std::string_view save_message(int save);
+const std::string_view align_message(int align);
+const std::string_view hitdam_message(int value);
+const std::string_view armor_message(int ac);
+const std::string_view perception_message(int perception);
+const std::string_view hiddenness_message(int hiddenness);
+const std::string_view ability_message(int value);
 long xp_percentage(CharData *ch);
-const char *exp_message(CharData *ch);
-const char *exp_bar(CharData *ch, int length, int gradations, int sub_gradations, bool color);
-const char *cooldown_bar(CharData *ch, int cooldown, int length, int gradations, bool color);
-const char *hp_regen_message(int regen);
-const char *focus_message(int focus);
+const std::string_view exp_message(CharData *ch);
+const std::string_view exp_bar(CharData *ch, int length, int gradations, int sub_gradations, bool color);
+std::string cooldown_bar(CharData *ch, int cooldown, int length, int gradations, bool color);
+const std::string_view hp_regen_message(int regen);
+const std::string_view focus_message(int focus);
 
 /* item functions */
 GetContext *begin_get_transaction(CharData *ch);
@@ -128,8 +127,8 @@ void perform_get_from_room(GetContext *context, ObjData *obj);
 void perform_get_from_container(GetContext *context, ObjData *obj, ObjData *cont);
 void get_random_object(GetContext *context);
 
-void get_from_container(CharData *ch, ObjData *cont, char *name, int *amount);
-void get_from_room(CharData *ch, char *name, int amount);
+void get_from_container(CharData *ch, ObjData *cont, std::string_view name, int *amount);
+void get_from_room(CharData *ch, std::string_view name, int amount);
 bool can_take_obj(CharData *ch, ObjData *obj);
 void get_check_money(CharData *ch, ObjData *obj);
 

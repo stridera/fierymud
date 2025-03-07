@@ -39,7 +39,8 @@ void complete_spell(CharData *ch);
 void start_chant(CharData *ch);
 void end_chant(CharData *ch, CharData *tch, ObjData *tobj, int spellnum);
 int bad_guess(CharData *ch);
-bool find_spell_target(int spellnum, CharData *ch, char *t, int *target_status, CharData **tch, ObjData **tobj);
+bool find_spell_target(int spellnum, CharData *ch, std::string_view t, int *target_status, CharData **tch,
+                       ObjData **tobj);
 bool check_spell_target(int spellnum, CharData *ch, CharData *tch, ObjData *tobj);
 void abort_casting(CharData *ch);
 void aggro_lose_spells(CharData *ch);
@@ -63,8 +64,8 @@ int bogus_priest_spells[] = {0,
                              SPELL_FLAMESTRIKE, SPELL_FULL_HARM, SPELL_BLINDNESS, SPELL_SILENCE, SPELL_DARKNESS};
 
 struct syllable {
-    const char *org;
-    const char *new_char;
+    const std::string_view org;
+    const std::string_view new_char;
 };
 
 struct syllable syls[] = {{" ", " "},      {"ar", "abra"},  {"ate", "i"},         {"cau", "kada"},   {"blind", "nose"},
@@ -82,10 +83,9 @@ struct syllable syls[] = {{" ", " "},      {"ar", "abra"},  {"ate", "i"},       
 void end_chant(CharData *ch, CharData *tch, ObjData *tobj, int spellnum) {
     CharData *gch;
     KnowSpell *tmp;
-    char lbuf[256];
-    char spellbuf[256];
-    char saybuf[256];
-    int ofs, j;
+    std::string lbuf;
+    std::string spellbuf;
+    std::string saybuf;
     bool found;
 
     /* There's no end-of-cast message for ventriloquate. */
@@ -93,16 +93,15 @@ void end_chant(CharData *ch, CharData *tch, ObjData *tobj, int spellnum) {
         return;
 
     /*
-     * Loop through bystanders in the room and see if they recognize the
-     * spell and/or target.
+     * Loop through bystanders in the room and see if they recognize the spell and/or target.
      */
     for (gch = world[ch->in_room].people; gch; gch = gch->next_in_room) {
         /* either the caster or sleeping bystander */
         if (ch == gch || !AWAKE(gch) || !gch->desc || PLR_FLAGGED(gch, PLR_WRITING) || EDITING(gch->desc))
             continue;
 
-        memset(spellbuf, 0x0, 256);
-        memset(saybuf, 0x0, 256);
+        spellbuf.clear();
+        saybuf.clear();
         found = false;
 
         /* gods see all */
@@ -116,18 +115,21 @@ void end_chant(CharData *ch, CharData *tch, ObjData *tobj, int spellnum) {
 
         if (!found) {
             /* change the syllables of the spoken spell */
-            memset(lbuf, 0x0, 256);
-            ofs = 0;
-            strcpy(lbuf, skills[spellnum].name);
-            while (*(lbuf + ofs))
-                for (j = 0; *(syls[j].org); j++)
-                    if (!strncasecmp(syls[j].org, lbuf + ofs, strlen(syls[j].org))) {
-                        strcat(spellbuf, syls[j].new_char);
-                        ofs += strlen(syls[j].org);
+            lbuf = skills[spellnum].name;
+            size_t ofs = 0;
+            while (ofs < lbuf.size()) {
+                for (int j = 0; !syls[j].org.empty(); j++) {
+                    if (matches(syls[j].org, lbuf.substr(ofs, syls[j].org.size()))) {
+                        spellbuf += syls[j].new_char;
+                        ofs += syls[j].org.size();
+                        break;
                     }
-        } else
+                }
+            }
+        } else {
             /* on the list. recognize the spell */
-            strcpy(spellbuf, skills[spellnum].name);
+            spellbuf = skills[spellnum].name;
+        }
 
         /* Can the bystander see the caster? */
         if (CAN_SEE(gch, ch)) {
@@ -135,30 +137,30 @@ void end_chant(CharData *ch, CharData *tch, ObjData *tobj, int spellnum) {
             if (tch && tch->in_room == ch->in_room) {
                 /* Is the caster targeting himself? */
                 if (ch == tch)
-                    snprintf(saybuf, sizeof(saybuf), "$n closes $s eyes and utters the words, '%s'.", spellbuf);
+                    saybuf = fmt::format("$n closes $s eyes and utters the words, '{}'.", spellbuf);
                 /* Is the target the receiver of the message? */
                 else if (tch == gch)
-                    snprintf(saybuf, sizeof(saybuf), "$n stares at you and utters the words, '%s'.", spellbuf);
+                    saybuf = fmt::format("$n stares at you and utters the words, '{}'.", spellbuf);
                 /* Ok, just a bystander.  But can they see the target? */
                 else if (CAN_SEE(gch, tch))
-                    snprintf(saybuf, sizeof(saybuf), "$n stares at $N and utters the words, '%s'.", spellbuf);
+                    saybuf = fmt::format("$n stares at $N and utters the words, '{}'.", spellbuf);
                 else
-                    snprintf(saybuf, sizeof(saybuf), "$n stares off at nothing and utters the words, '%s'.", spellbuf);
+                    saybuf = fmt::format("$n stares off at nothing and utters the words, '{}'.", spellbuf);
             }
             /* Is there an object target in the room? */
             else if (tobj && ((tobj->in_room == ch->in_room) || (tobj->carried_by == ch))) {
                 if (CAN_SEE_OBJ(gch, tobj))
-                    snprintf(saybuf, sizeof(saybuf), "$n stares at $p and utters the words, '%s'.", spellbuf);
+                    saybuf = fmt::format("$n stares at $p and utters the words, '{}'.", spellbuf);
                 else
-                    snprintf(saybuf, sizeof(saybuf), "$n stares at something and utters the words, '%s'.", spellbuf);
+                    saybuf = fmt::format("$n stares at something and utters the words, '{}'.", spellbuf);
             }
             /* No target. */
             else
-                snprintf(saybuf, sizeof(saybuf), "$n utters the words, '%s'.", spellbuf);
+                saybuf = fmt::format("$n utters the words, '{}'.", spellbuf);
         }
         /* The bystander cannot see the caster. */
         else
-            snprintf(saybuf, sizeof(saybuf), "Someone utters the words, '%s'.", spellbuf);
+            saybuf = fmt::format("Someone utters the words, '{}'.", spellbuf);
 
         /* Sending the message to the bystander or target. */
         std::string formatted = format_act(saybuf, ch, tobj, tch, gch);
@@ -592,22 +594,22 @@ int call_magic(CharData *caster, CharData *cvict, ObjData *ovict, int spellnum, 
 /* Random messages to be sent to the room when a scroll is recited at a mob. */
 /* These are used when the spheres of the spells don't tell us what message
  * to send. */
-char *scroll_mob_msg[] = {"The writing on $p glows faintly as $n recites it at $N.",
-                          "$n turns toward $N and recites $p.", "$n faces $N and recites $p.", nullptr};
+constexpr std::string_view scroll_mob_msg[] = {"The writing on $p glows faintly as $n recites it at $N.",
+                                               "$n turns toward $N and recites $p.", "$n faces $N and recites $p."};
 
 /* Choose randomly among the strings in scroll_mob_msg */
-char *random_scroll_mob_msg(void) {
-    char *msg = "$n recites $p at $N."; /* Default message */
+std::string_view random_scroll_mob_msg(void) {
+    std::string_view msg = "$n recites $p at $N."; /* Default message */
     int i = 0;
-    for (; scroll_mob_msg[i]; i++) {
-        if (random_number(1, i) == 1)
-            msg = scroll_mob_msg[i];
+    size_t count = std::size(scroll_mob_msg);
+    if (count > 0) {
+        msg = scroll_mob_msg[random_number(0, count - 1)];
     }
     return msg;
 }
 
 /* Choose a message according to the sphere of spell(s) cast. */
-char *get_scroll_mob_msg(int spell1, int spell2, int spell3) {
+std::string_view get_scroll_mob_msg(int spell1, int spell2, int spell3) {
 
     /* Select one of the passed spells at random. Its sphere will be used
      * to determine the message. */
@@ -652,22 +654,23 @@ char *get_scroll_mob_msg(int spell1, int spell2, int spell3) {
 #define SCROLL_FAILURE_NOTSELF 1
 #define SCROLL_FAILURE_ONLYSELF 2
 
-void mag_objectmagic(CharData *ch, ObjData *obj, char *argument) {
+void mag_objectmagic(CharData *ch, ObjData *obj, std::string_view argument) {
     int i, target_status, spellnum;
     CharData *tch = nullptr, *next_tch;
     ObjData *tobj = nullptr;
     int scroll_failure, scroll_success;
-    char *misc = nullptr;
-    char *actmsg;
+    std::string_view misc;
+    std::string_view actmsg;
 
-    one_argument(argument, arg);
+    auto args = Arguments(argument);
+    auto arg = args.get();
 
     switch (GET_OBJ_TYPE(obj)) {
     case ITEM_STAFF:
     case ITEM_INSTRUMENT:
         if (GET_OBJ_TYPE(obj) == ITEM_STAFF) {
             act("You tap $p three times on the ground.", false, ch, obj, 0, TO_CHAR);
-            if (obj->action_description && strncasecmp(obj->action_description, "Nothing.", 8))
+            if (!obj->action_description.empty() && !matches(obj->action_description, "Nothing."))
                 act(obj->action_description, false, ch, obj, 0, TO_ROOM);
             else
                 act("$n taps $p three times on the ground.", false, ch, obj, 0, TO_ROOM);
@@ -676,7 +679,7 @@ void mag_objectmagic(CharData *ch, ObjData *obj, char *argument) {
             act("You play $p.", false, ch, obj, 0, TO_CHAR);
             act("$n plays $p.", false, ch, obj, 0, TO_ROOM);
 
-            if (obj->action_description && strncasecmp(obj->action_description, "Nothing.", 8)) {
+            if (!obj->action_description.empty() && !matches(obj->action_description, "Nothing.")) {
                 act(obj->action_description, false, ch, obj, 0, TO_ROOM);
                 act(obj->action_description, false, ch, obj, 0, TO_CHAR);
             }
@@ -718,7 +721,7 @@ void mag_objectmagic(CharData *ch, ObjData *obj, char *argument) {
                         return;
                     } else {
                         act("You point $p at yourself.", false, ch, obj, 0, TO_CHAR);
-                        if (obj->action_description && strncasecmp(obj->action_description, "Nothing.", 8))
+                        if (!obj->action_description.empty() && !matches(obj->action_description, "Nothing."))
                             act(obj->action_description, false, ch, obj, tobj, TO_ROOM);
                         else
                             act("$n points $p at $mself.", false, ch, obj, 0, TO_ROOM);
@@ -731,7 +734,7 @@ void mag_objectmagic(CharData *ch, ObjData *obj, char *argument) {
                      * reason to give the name of the target to observers... */
 
                     if (ch->in_room == tch->in_room) {
-                        if (obj->action_description && strncasecmp(obj->action_description, "Nothing.", 8))
+                        if (!obj->action_description.empty() && !matches(obj->action_description, "Nothing."))
                             act(obj->action_description, false, ch, obj, tch, TO_ROOM);
                         else {
                             act("$n points $p at $N.", true, ch, obj, tch, TO_NOTVICT);
@@ -744,7 +747,7 @@ void mag_objectmagic(CharData *ch, ObjData *obj, char *argument) {
             } else if (tobj) {
                 act("You point $p at $P.", false, ch, obj, tobj, TO_CHAR);
                 if (ch->in_room == tobj->in_room) {
-                    if (obj->action_description && strncasecmp(obj->action_description, "Nothing.", 8))
+                    if (!obj->action_description.empty() && !matches(obj->action_description, "Nothing."))
                         act(obj->action_description, false, ch, obj, tobj, TO_ROOM);
                     else
                         act("$n points $p at $P.", true, ch, obj, tobj, TO_ROOM);
@@ -755,7 +758,7 @@ void mag_objectmagic(CharData *ch, ObjData *obj, char *argument) {
                 act("You wave $p in the air.", true, ch, obj, 0, TO_CHAR);
                 act("$n waves $p in the air.", true, ch, obj, 0, TO_ROOM);
             }
-        } else if (*arg) {
+        } else if (!arg.empty()) {
             char_printf(ch, "You can't see any {} here.\n", arg);
             return;
         } else {
@@ -778,10 +781,7 @@ void mag_objectmagic(CharData *ch, ObjData *obj, char *argument) {
         GET_OBJ_VAL(obj, VAL_WAND_CHARGES_LEFT)--;
         WAIT_STATE(ch, PULSE_VIOLENCE);
 
-        misc = strdup(arg);
-        if (ch->casting.misc)
-            free(ch->casting.misc);
-        ch->casting.misc = misc;
+        ch->casting.misc = arg;
         ch->casting.spell = 0;
         if (GET_OBJ_VAL(obj, 0))
             call_magic(ch, tch, tobj, GET_OBJ_VAL(obj, VAL_WAND_SPELL), GET_OBJ_VAL(obj, VAL_WAND_LEVEL), CAST_WAND);
@@ -821,7 +821,7 @@ void mag_objectmagic(CharData *ch, ObjData *obj, char *argument) {
                         scroll_success = true;
                         act("You recite $p which dissolves.", true, ch, obj, 0, TO_CHAR);
                         /* Decide what message to send to the room. */
-                        if (obj->action_description && strncasecmp(obj->action_description, "Nothing.", 8))
+                        if (!obj->action_description.empty() && !matches(obj->action_description, "Nothing."))
                             /* The scroll has a specific action desription message. */
                             act(obj->action_description, false, ch, obj, nullptr, TO_ROOM);
                         else if (tch) {
@@ -842,10 +842,7 @@ void mag_objectmagic(CharData *ch, ObjData *obj, char *argument) {
                             return;
 
                         WAIT_STATE(ch, PULSE_VIOLENCE);
-                        misc = strdup(arg);
-                        if (ch->casting.misc)
-                            free(ch->casting.misc);
-                        ch->casting.misc = misc;
+                        ch->casting.misc = arg;
                         ch->casting.spell = 0;
                     }
                     call_magic(ch, tch, tobj, spellnum, GET_OBJ_VAL(obj, VAL_SCROLL_LEVEL), CAST_SCROLL);
@@ -863,7 +860,7 @@ void mag_objectmagic(CharData *ch, ObjData *obj, char *argument) {
         } else if (scroll_failure == SCROLL_FAILURE_ONLYSELF) {
             char_printf(ch, "You can only cast this spell on yourself.\n");
             return;
-        } else if (!(*arg)) {
+        } else if (arg.empty()) {
             act("What do you want to recite $p at?", false, ch, obj, nullptr, TO_CHAR);
             return;
         } else {
@@ -874,7 +871,7 @@ void mag_objectmagic(CharData *ch, ObjData *obj, char *argument) {
     case ITEM_POTION:
         tch = ch;
         act("You quaff $p.", false, ch, obj, nullptr, TO_CHAR);
-        if (obj->action_description && strncasecmp(obj->action_description, "Nothing.", 8))
+        if (!obj->action_description.empty() && !matches(obj->action_description, "Nothing."))
             act(obj->action_description, false, ch, obj, nullptr, TO_ROOM);
         else
             act("$n quaffs $p.", true, ch, obj, nullptr, TO_ROOM);
@@ -1088,26 +1085,6 @@ int chant(CharData *ch, CharData *tch, ObjData *obj, int chantnum) {
     return cresult;
 }
 
-/* Entry point for Bard music */
-
-/*
-bool music( CharData *ch, int music) {
-    if (GET_LEVEL(ch) < LVL_GOD && GET_COOLDOWN(ch, music)) {
-            int hours = GET_COOLDOWN(ch, music) / (1 MUD_HR);
-            if (hours == 1)
-                strcpy(buf1, "hour");
-            else
-                sprintf(buf1, "%d hours", hours);
-            char_printf(ch,
-                    "You're still drained from performing recently!\n"
-                    "You'll be able to perform again in another %s.\n",
-                    buf1);
-            return true;
-    }
-    return false;
-}
-*/
-
 int perform(CharData *ch, CharData *tch, ObjData *obj, int songnum) {
     int cresult;
 
@@ -1273,9 +1250,9 @@ ACMD(do_cast) {
         }
     }
 
-    argument = delimited_arg(argument, arg, '\'');
+    auto arg = argument.shift();
 
-    if (!*arg) {
+    if (arg.empty()) {
         if (subcmd == SCMD_CHANT)
             char_printf(ch, "What do you want to chant?\n");
         else if (subcmd == SCMD_PERFORM)
@@ -1306,7 +1283,9 @@ ACMD(do_cast) {
     }
 
     /* Can the caster actually cast this spell? */
-    if ((GET_LEVEL(ch) < SINFO.min_level[(int)GET_CLASS(ch)] && GET_LEVEL(ch) < SINFO.min_race_level[(int)GET_RACE(ch)]) || !GET_SKILL(ch, spellnum)) {
+    if ((GET_LEVEL(ch) < SINFO.min_level[(int)GET_CLASS(ch)] &&
+         GET_LEVEL(ch) < SINFO.min_race_level[(int)GET_RACE(ch)]) ||
+        !GET_SKILL(ch, spellnum)) {
         if (subcmd == SCMD_CHANT)
             char_printf(ch, "You do not know that chant!\n");
         else if (subcmd == SCMD_PERFORM)
@@ -1326,7 +1305,7 @@ ACMD(do_cast) {
                 } else if (!SINFO.violent && GET_COOLDOWN(ch, CD_DEFENSE_CHANT)) {
                     seconds = GET_COOLDOWN(ch, CD_DEFENSE_CHANT) / 10;
                 }
-                
+
                 if (seconds) {
                     char_printf(ch,
                                 "You're still out of breath from chanting recently!\n"
@@ -1349,13 +1328,12 @@ ACMD(do_cast) {
         return;
 
     /* Find the target */
-    skip_spaces(&argument);
-    one_argument(argument, arg);
+    arg = argument.shift();
 
     target = find_spell_target(spellnum, ch, arg, &target_status, &tch, &tobj);
 
     if (!target) {
-        if (*arg) {
+        if (!arg.empty()) {
             if (subcmd == SCMD_CHANT)
                 char_printf(ch, "Cannot find the target of your chant!\n");
             else if (subcmd == SCMD_PERFORM)
@@ -1431,9 +1409,7 @@ ACMD(do_cast) {
     if (subcmd == SCMD_CAST)
         targets_remember_caster(ch);
 
-    if (ch->casting.misc)
-        free(ch->casting.misc);
-    ch->casting.misc = strdup(argument);
+    ch->casting.misc = argument.get();
     ch->casting.target_status = target_status;
 
     ch->casting.casting_time = SINFO.cast_time;
@@ -1445,9 +1421,13 @@ ACMD(do_cast) {
         if (IS_SET(cresult, CAST_RESULT_CHARGE)) {
             /* Monks get a second chant for debuffing/offensive chants */
             if (SINFO.violent && GET_CLASS(ch) == CLASS_MONK) {
-                SET_COOLDOWN(ch, CD_OFFENSE_CHANT, (7 - (((stat_bonus[GET_WIS(ch)].magic) * 3) / 4) + (((stat_bonus[GET_INT(ch)].magic) * 1) / 4)) MUD_HR);
+                SET_COOLDOWN(ch, CD_OFFENSE_CHANT,
+                             (7 - (((stat_bonus[GET_WIS(ch)].magic) * 3) / 4) +
+                              (((stat_bonus[GET_INT(ch)].magic) * 1) / 4)) MUD_HR);
             } else {
-                SET_COOLDOWN(ch, CD_DEFENSE_CHANT, (7 - (((stat_bonus[GET_WIS(ch)].magic) * 3) / 4) + (((stat_bonus[GET_INT(ch)].magic) * 1) / 4)) MUD_HR);
+                SET_COOLDOWN(ch, CD_DEFENSE_CHANT,
+                             (7 - (((stat_bonus[GET_WIS(ch)].magic) * 3) / 4) +
+                              (((stat_bonus[GET_INT(ch)].magic) * 1) / 4)) MUD_HR);
             }
             WAIT_STATE(ch, PULSE_VIOLENCE * 1.5);
         }
@@ -1545,8 +1525,8 @@ ACMD(do_cast) {
 }
 
 bool check_spell_target(int spellnum, CharData *ch, CharData *tch, ObjData *tobj) {
-    const char *verb = IS_CHANT(spellnum) ? "chant" : "cast";
-    const char *noun = IS_CHANT(spellnum) ? "song" : "spell";
+    const std::string_view verb = IS_CHANT(spellnum) ? "chant" : "cast";
+    const std::string_view noun = IS_CHANT(spellnum) ? "song" : "spell";
 
     if (IS_SET(SINFO.targets, TAR_SELF_ONLY) && tch != ch && GET_LEVEL(ch) < LVL_GOD) {
         char_printf(ch, "You can only {} this {} {} yourself!\n", verb, noun, IS_CHANT(spellnum) ? "to" : "upon");
@@ -1594,7 +1574,8 @@ bool check_spell_target(int spellnum, CharData *ch, CharData *tch, ObjData *tobj
  *   tobj             An object target.
  */
 
-bool find_spell_target(int spellnum, CharData *ch, char *t, int *target_status, CharData **tch, ObjData **tobj) {
+bool find_spell_target(int spellnum, CharData *ch, std::string_view t, int *target_status, CharData **tch,
+                       ObjData **tobj) {
     FindContext context = find_vis_by_name(ch, t);
 
     *tch = nullptr;
@@ -1608,7 +1589,7 @@ bool find_spell_target(int spellnum, CharData *ch, char *t, int *target_status, 
         *tch = ch;
         *target_status = TARGET_SELF;
         return true;
-    } else if (*t) {
+    } else if (!t.empty()) {
         if ((IS_SET(SINFO.targets, TAR_CHAR_ROOM))) {
             if ((*tch = find_char_in_room(&world[ch->in_room], context)) != nullptr) {
                 *target_status = TARGET_IN_ROOM;
@@ -1730,7 +1711,7 @@ bool mob_cast(CharData *ch, CharData *tch, ObjData *tobj, int spellnum) {
         return false;
 
     if (GET_MOB_WAIT(ch) <= 0 && GET_POS(ch) < POS_STANDING)
-        do_stand(ch, "", 0, 0);
+        do_stand(ch, {}, 0, 0);
 
     if (GET_STANCE(ch) < STANCE_ALERT)
         return false;
@@ -1810,7 +1791,6 @@ bool mob_cast(CharData *ch, CharData *tch, ObjData *tobj, int spellnum) {
                     SPELL_CIRCLE(ch, spellnum), circle, CLRLV(ch, ANRM, C_SPR));
     }
 
-
     /* Reveal hidden/invis/concealed attackers. */
     if (SINFO.violent)
         aggro_lose_spells(ch);
@@ -1821,14 +1801,12 @@ bool mob_cast(CharData *ch, CharData *tch, ObjData *tobj, int spellnum) {
     ch->casting.tch = targ_ch;
     ch->casting.obj = targ_obj;
     targets_remember_caster(ch);
-    if (ch->casting.misc)
-        free(ch->casting.misc);
     if (tch)
-        ch->casting.misc = strdup(GET_NAME(tch));
+        ch->casting.misc = GET_NAME(tch);
     else if (tobj)
-        ch->casting.misc = strdup(GET_OBJ_NAME(tobj));
+        ch->casting.misc = GET_OBJ_NAME(tobj);
     else
-        ch->casting.misc = strdup("");
+        ch->casting.misc = "";
     ch->casting.target_status = target_status;
 
     /* Quick chant for mobs --gurlaek 7/13/1999 */
@@ -1845,37 +1823,38 @@ bool mob_cast(CharData *ch, CharData *tch, ObjData *tobj, int spellnum) {
 }
 
 void start_chant(CharData *ch) {
-    void garble_text(char *string, int percent);
     CharData *gch;
-    KnowSpell *tmp, *tmp2;
-    char lbuf[256];
-    char spellbuf[256];
-    char garblebuf[256];
-    char namebuf[256];
+    std::string lbuf, garblebuf, spellbuf, namebuf, buf;
+
     int ofs = 0, j, circle, percent;
     bool bad;
 
-    memset(lbuf, 0x0, 256);
-    memset(garblebuf, 0x0, 256);
-
-    /* free the caster's old list of people that knew the spell */
-    for (tmp = ch->see_spell; tmp; tmp = tmp2) {
-        tmp2 = tmp->next;
-        free(tmp);
-    }
-    ch->see_spell = nullptr;
+    ch->see_spell.clear();
 
     /* Randomly garble the letters. */
-    strcpy(lbuf, skills[ch->casting.spell].name);
-    garble_text(lbuf, -1);
+    for (j = 0; j < skills[ch->casting.spell].name.size(); j++)
+        if (random_number(0, 1))
+            lbuf[ofs++] = skills[ch->casting.spell].name[j];
+        else
+            lbuf[ofs++] = random_number(0, 1) ? toupper(skills[ch->casting.spell].name[j])
+                                              : tolower(skills[ch->casting.spell].name[j]);
 
     /* Change the syllables of the spoken spell */
-    while (*(lbuf + ofs))
-        for (j = 0; *(syls[j].org); j++)
-            if (!strncasecmp(syls[j].org, lbuf + ofs, strlen(syls[j].org))) {
-                strcat(garblebuf, syls[j].new_char);
-                ofs += strlen(syls[j].org);
+    while (ofs < lbuf.size()) {
+        bool matched = false;
+        for (const auto &syl : syls) {
+            if (lbuf.substr(ofs, syl.org.size()) == syl.org) {
+                garblebuf += syl.new_char;
+                ofs += syl.org.size();
+                matched = true;
+                break;
             }
+        }
+        if (!matched) {
+            garblebuf += lbuf[ofs];
+            ofs++;
+        }
+    }
 
     /* Loop through bystanders and see if they recognize the spell */
     for (gch = world[ch->in_room].people; gch; gch = gch->next_in_room) {
@@ -1889,8 +1868,6 @@ void start_chant(CharData *ch) {
             continue;
 
         bad = false;
-        memset(namebuf, 0x0, MAX_NAME_LENGTH);
-        memset(spellbuf, 0x0, 256);
         percent = -1; /* assume failure at first */
 
         /* Clerical and arcane magic don't recognize each others spells. */
@@ -1915,46 +1892,42 @@ void start_chant(CharData *ch) {
         if (random_number(0, 101) > percent && GET_LEVEL(gch) < LVL_GOD) {
             if (random_number(0, 100) < 20) {
                 /* For really bad rolls, replace the spell with an incorrect one */
-                strcpy(spellbuf, skills[bad_guess(ch)].name);
+                spellbuf = skills[bad_guess(ch)].name;
                 bad = true;
             } else
                 /* Copy the garbled buffer into the spell */
-                strcpy(spellbuf, garblebuf);
+                spellbuf = garblebuf;
         } else {
             /* Hey we recognized the spell! */
-            strcpy(spellbuf, skills[ch->casting.spell].name);
+            spellbuf = skills[ch->casting.spell].name;
 
             /*
              * Create the caster's see_spell list: This is a list of char's who
              * have recognized the spell and will see it clearly when it is cast
              * if they are still in the room.
              */
-            CREATE(tmp, KnowSpell, 1);
-            tmp->sch = gch;
-            tmp->next = ch->see_spell;
-            ch->see_spell = tmp;
+            ch->see_spell.emplace_back(gch);
         }
 
         /* Is there a Target?  Is it in the room?  Is it not the caster? */
         if (ch->casting.tch && ch->casting.tch->in_room == ch->in_room && ch != ch->casting.tch) {
 
-            /* Intelligence check to determine the target.  If we know the spell we
-             * know the target */
-            if (random_number(0, 101) < GET_INT(gch) || !strcasecmp(spellbuf, skills[ch->casting.spell].name) ||
-                (bad) || GET_LEVEL(gch) >= LVL_GOD) {
+            /* Intelligence check to determine the target.  If we know the spell we know the target */
+            if (random_number(0, 101) < GET_INT(gch) || matches(spellbuf, skills[ch->casting.spell].name) || bad ||
+                GET_LEVEL(gch) >= LVL_GOD) {
                 if (ch->casting.tch == gch)
                     /* Target is the receiver of the message */
-                    sprintf(namebuf, " at &1&bYou&0!!!");
+                    namebuf = " at &1&bYou&0!!!";
                 else
                     /* target is someone else in room */
-                    sprintf(namebuf, " at &7&b%s&0", GET_NAME(ch->casting.tch));
+                    namebuf = std::format(" at &7&b{}&0", GET_NAME(ch->casting.tch));
             }
         }
 
         /* Message to bystander */
-        sprintf(buf, "$n %s &3&b'%s'&0%s...", (GET_LEVEL(ch) < LVL_GOD) ? "starts casting" : "casts", spellbuf,
-                namebuf);
-        act(buf, false, ch, 0, gch, TO_VICT);
+        auto msg = fmt::format("$n %s &3&b'%s'&0%s...", (GET_LEVEL(ch) < LVL_GOD) ? "starts casting" : "casts",
+                               spellbuf, namebuf);
+        act(msg, false, ch, 0, gch, TO_VICT);
     }
 
     /* Message to caster */

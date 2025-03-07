@@ -35,7 +35,9 @@ struct sizedef sizes[NUM_SIZES] = {
     /* TITANIC */ {"titanic", "&6&b", 256000, 1024000, 3072, 6144},
     /* MOUNTAINOUS */ {"mountainous", "&7&b", 1024000, 4096000, 6144, 12288}};
 
-int parse_size(CharData *ch, char *arg) { return parse_obj_name(ch, arg, "size", NUM_SIZES, sizes, sizeof(sizedef)); }
+int parse_size(CharData *ch, std::string_view arg) {
+    return parse_obj_name(ch, arg, "size", NUM_SIZES, sizes, sizeof(sizedef));
+}
 
 /* Set a character's height and weight. */
 void set_init_height_weight(CharData *ch) {
@@ -121,12 +123,12 @@ void reset_height_weight(CharData *ch) {
     }
 
     GET_WEIGHT(ch) = std::max(1, sizes[asize].weight_min + (sizes[asize].weight_max - sizes[asize].weight_min) *
-                                                          (ch->player.base_weight - sizes[bsize].weight_min) /
-                                                          (sizes[bsize].weight_max - sizes[bsize].weight_min));
+                                                               (ch->player.base_weight - sizes[bsize].weight_min) /
+                                                               (sizes[bsize].weight_max - sizes[bsize].weight_min));
 
     GET_HEIGHT(ch) = std::max(1, sizes[asize].height_min + (sizes[asize].height_max - sizes[asize].height_min) *
-                                                          (ch->player.base_height - sizes[bsize].height_min) /
-                                                          (sizes[bsize].height_max - sizes[bsize].height_min));
+                                                               (ch->player.base_height - sizes[bsize].height_min) /
+                                                               (sizes[bsize].height_max - sizes[bsize].height_min));
 }
 
 /* set_base_size()
@@ -170,18 +172,17 @@ void adjust_size(CharData *ch, int delta) {
 }
 
 void show_sizes(CharData *ch) {
-    int i;
-    char hrange[MAX_STRING_LENGTH];
-    char wrange[MAX_STRING_LENGTH];
-
     char_printf(ch, "The character sizes are:\n\n");
     char_printf(ch, "Idx  Name          Height range                              Weight range\n");
     char_printf(ch,
                 "---  ------------  ----------------------------------------  "
                 "-------------------------\n");
-    for (i = 0; i < NUM_SIZES; i++) {
-        sprintf(hrange, "%-18s - %-18s", statelength(sizes[i].height_min), statelength(sizes[i].height_max));
-        sprintf(wrange, "%-11s - %-11s", stateweight(sizes[i].weight_min), stateweight(sizes[i].weight_max));
-        char_printf(ch, "{: 3d}  {}{:<12}&0  {:<40}  {}\n", i, sizes[i].color, sizes[i].name, hrange, wrange);
+    for (int i = 0; i < NUM_SIZES; i++) {
+        std::string hrange =
+            fmt::format("{:<18} - {:<18}", statelength(sizes[i].height_min), statelength(sizes[i].height_max));
+        std::string wrange =
+            fmt::format("{:<11} - {:<11}", stateweight(sizes[i].weight_min), stateweight(sizes[i].weight_max));
+        char_printf(ch,
+                    fmt::format("{: 3d}  {}{:<12}&0  {:<40}  {}\n", i, sizes[i].color, sizes[i].name, hrange, wrange));
     }
 }

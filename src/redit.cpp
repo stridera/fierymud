@@ -1,4 +1,4 @@
-/***************************************************************************
+t/***************************************************************************
  *   File: redit.c                                        Part of FieryMUD *
  *  Usage:                                                                 *
  *     By: Harvey Gilpin of TwyliteMud                                     *
@@ -35,7 +35,7 @@ void redit_disp_exit_flag_menu(DescriptorData *d);
 void redit_disp_flag_menu(DescriptorData *d);
 void redit_disp_sector_menu(DescriptorData *d);
 void redit_disp_menu(DescriptorData *d);
-void redit_parse(DescriptorData *d, char *arg);
+void redit_parse(DescriptorData *d, std::string_view arg);
 void redit_setup_new(DescriptorData *d);
 void redit_setup_existing(DescriptorData *d, int real_num);
 void redit_save_to_disk(int zone);
@@ -613,7 +613,7 @@ void redit_disp_menu(DescriptorData *d) {
  *                        The main loop                                   *
  **************************************************************************/
 
-void redit_parse(DescriptorData *d, char *arg) {
+void redit_parse(DescriptorData *d, std::string_view arg) {
     int number;
 
     switch (OLC_MODE(d)) {

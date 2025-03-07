@@ -91,18 +91,20 @@ static struct {
     },
 };
 
-static EditorContext *create_context(DescriptorData *d, enum EditorCommandEnum command, const char *argument);
+static EditorContext *create_context(DescriptorData *d, enum EditorCommandEnum command,
+                                     const std::string_view argument);
 static DescriptorData *consume_context(EditorContext *c);
-static void editor_action(DescriptorData *d, enum EditorCommandEnum command, char *argument);
-static void editor_append(DescriptorData *d, char *line);
-static bool editor_format_text(char **string, int indent, size_t max_length, int first_line, int last_line);
-static int editor_replace_string(char **string, char *pattern, char *replacement, bool replace_all, size_t max_length);
-static size_t limit_lines(char *string, size_t max_lines);
+static void editor_action(DescriptorData *d, enum EditorCommandEnum command, std::string_view argument);
+static void editor_append(DescriptorData *d, std::string_view line);
+static bool editor_format_text(std::string_view string, int indent, size_t max_length, int first_line, int last_line);
+static int editor_replace_string(std::string_view string, std::string_view pattern, std::string_view replacement,
+                                 bool replace_all, size_t max_length);
+static size_t limit_lines(std::string_view string, size_t max_lines);
 static EVENTFUNC(editor_start);
 
-void ispell_check(DescriptorData *d, const char *word);
+void ispell_check(DescriptorData *d, const std::string_view word);
 
-const DescriptorData *editor_edited_by(char **message) {
+const DescriptorData *editor_edited_by(std::string_view message) {
     DescriptorData *d;
 
     for (d = descriptor_list; d; d = d->next)
@@ -112,7 +114,7 @@ const DescriptorData *editor_edited_by(char **message) {
     return nullptr;
 }
 
-void editor_init(DescriptorData *d, char **string, size_t max_length) {
+void editor_init(DescriptorData *d, std::string_view string, size_t max_length) {
     if (!d) {
         log("SYSERR: NULL descriptor passed to editor_init");
         return;
@@ -131,9 +133,9 @@ void editor_init(DescriptorData *d, char **string, size_t max_length) {
     CREATE(d->editor, EditorData, 1);
 
     d->editor->started = false;
-    d->editor->string = (string && *string && **string) ? strdup(*string) : nullptr;
+    d->editor->string = string;
     d->editor->destination = string;
-    d->editor->begin_string = nullptr;
+    d->editor->begin_string = "";
     d->editor->max_length = max_length;
     d->editor->max_lines = 9999;
     d->editor->data = nullptr;
@@ -164,7 +166,7 @@ EVENTFUNC(editor_start) {
             d->editor->string[d->editor->length - 1] = '\0';
             d->editor->length = d->editor->max_length;
         }
-        editor_action(d, ED_BEGIN, nullptr);
+        editor_action(d, ED_BEGIN, {});
     }
 
     return EVENT_FINISHED;
@@ -223,9 +225,9 @@ void editor_set_max_lines(DescriptorData *d, size_t max_lines) {
     d->editor->max_lines = max_lines;
 }
 
-void editor_set_begin_string(DescriptorData *d, const char *string, ...) {
+void editor_set_begin_string(DescriptorData *d, const std::string_view string, ...) {
     va_list args;
-    char buf[MAX_STRING_LENGTH];
+    std::string buf;
 
     if (!d) {
         log("SYSERR: NULL descriptor passed to editor_set_begin_string");
@@ -237,19 +239,16 @@ void editor_set_begin_string(DescriptorData *d, const char *string, ...) {
         return;
     }
 
-    if (!string) {
+    if (string.empty()) {
         log("SYSERR: NULL string passed to editor_set_begin_string");
         return;
     }
 
-    va_start(args, string);
-    vsnprintf(buf, sizeof(buf), string, args);
-    va_end(args);
-
-    d->editor->begin_string = strdup(buf);
+    d->editor->begin_string = fmt::vformat(string, fmt::make_format_args(args));
 }
 
-static EditorContext *create_context(DescriptorData *d, enum EditorCommandEnum command, const char *argument) {
+static EditorContext *create_context(DescriptorData *d, enum EditorCommandEnum command,
+                                     const std::string_view argument) {
     EditorContext *context;
 
     CREATE(context, EditorContext, 1);
@@ -281,7 +280,7 @@ static DescriptorData *consume_context(EditorContext *c) {
     return d;
 }
 
-static void editor_action(DescriptorData *d, enum EditorCommandEnum command, char *argument) {
+static void editor_action(DescriptorData *d, enum EditorCommandEnum command, std::string_view argument) {
     EditorContext *context;
 
     if (command < 0 || command >= NUM_ED_COMMAND_TYPES)
@@ -301,8 +300,8 @@ static void editor_action(DescriptorData *d, enum EditorCommandEnum command, cha
         editor_cleanup(d);
 }
 
-void editor_interpreter(DescriptorData *d, char *line) {
-    char *argument = line;
+void editor_interpreter(DescriptorData *d, std::string_view line) {
+    std::string_view argument = line;
     size_t i;
 
     if (!EDITING(d)) {
@@ -312,10 +311,10 @@ void editor_interpreter(DescriptorData *d, char *line) {
 
     delete_doubledollar(line);
     smash_tilde(line);
-    skip_spaces(&argument);
+    skip_spaces(argument);
 
     if (!d->editor->started)
-        editor_action(d, ED_BEGIN, nullptr);
+        editor_action(d, ED_BEGIN, {});
 
     /* If the line doesn't start with a /, it's not a command: append it */
     if (*argument != ED_CMD_CHAR)
@@ -334,40 +333,35 @@ void editor_interpreter(DescriptorData *d, char *line) {
     }
 }
 
-static void editor_append(DescriptorData *d, char *line) {
-    size_t line_length = strlen(line) + 2; /* +2 for \n */
+static void editor_append(DescriptorData *d, std::string_view line) {
+    size_t line_length = line.size() + 1; // +1 for \n
     size_t space_left = d->editor->max_length - d->editor->length;
     size_t new_length = d->editor->length + line_length;
-    char *orig_string;
-    char *new_string;
 
     if (d->editor->lines >= d->editor->max_lines) {
-        desc_printf(d, "Too many lines - Input ignored.  Max lines: {} lines.\n", d->editor->max_lines);
+        desc_printf(d, "Too many lines - Input ignored. Max lines: {} lines.\n", d->editor->max_lines);
         return;
     }
 
     if (line_length >= space_left) {
-        /* Shorter than 3?  To short for even a newline.  Ignore line. */
-        if (space_left <= 3) {
-            desc_printf(d, "String too long - Input ignored.  Max length: {} characters.\n", d->editor->max_length);
+        if (space_left <= 1) {
+            desc_printf(d, "String too long - Input ignored. Max length: {} characters.\n", d->editor->max_length);
             return;
         }
-        desc_printf(d, "String too long - Input truncated.  Max length: {} characters.\n", d->editor->max_length);
+        desc_printf(d, "String too long - Input truncated. Max length: {} characters.\n", d->editor->max_length);
         new_length = d->editor->max_length - 1;
     }
 
-    orig_string = d->editor->string;
-    CREATE(new_string, char, new_length + 1);
-    if (orig_string)
-        strcpy(new_string, orig_string);
+    std::string orig_string = d->editor->string ? d->editor->string : "";
+    std::string new_string = orig_string;
+
     if (line_length >= space_left) {
         line_length = space_left - 1;
-        line[line_length + 2] = '\0';
+        line = line.substr(0, line_length);
     }
-    strcpy(new_string + d->editor->length, line);
-    strcpy(new_string + d->editor->length + line_length - 2, "\n");
-    if (orig_string)
-        free(orig_string);
+
+    new_string.append(line).append("\n");
+
     d->editor->length += line_length;
     d->editor->string = new_string;
     d->editor->lines++;
@@ -383,12 +377,6 @@ void editor_cleanup(DescriptorData *d) {
         log("SYSERR: Editor not initialized on descriptor passed to editor_cleanup");
         return;
     }
-
-    if (d->editor->string)
-        free(d->editor->string);
-
-    if (d->editor->begin_string)
-        free(d->editor->begin_string);
 
     if (d->editor->cleanup_action == ED_FREE_DATA)
         free(d->editor->data);
@@ -408,9 +396,8 @@ EDITOR_FUNC(editor_default_begin) {
 }
 
 EDITOR_FUNC(editor_default_clear) {
-    if (edit->string) {
-        free(edit->string);
-        edit->string = nullptr;
+    if (!edit->string.empty()) {
+        edit->string.clear();
         desc_printf(edit->descriptor, "Current buffer cleared.\n");
     } else
         desc_printf(edit->descriptor, "Current buffer empty.\n");
@@ -495,11 +482,11 @@ EDITOR_FUNC(editor_default_help) {
 }
 
 EDITOR_FUNC(editor_default_insert_line) {
-    char *str, temp, *start;
+    std::string_view str, temp, *start;
     int line, insert_line;
     size_t final_length;
     DescriptorData *d = edit->descriptor;
-    const char *argument = edit->argument;
+    const std::string_view argument = edit->argument;
 
     if (!edit->string) {
         desc_printf(d, "Current buffer empty; nowhere to insert.\n");
@@ -544,7 +531,7 @@ EDITOR_FUNC(editor_default_insert_line) {
             ++str;
         }
 
-    if (line < insert_line || !str || !*str) {
+    if (line < insert_line || !str || str.empty()) {
         desc_printf(d, "Line number out of range; insert aborted.\n");
         return ED_PROCESSED;
     }
@@ -569,11 +556,11 @@ EDITOR_FUNC(editor_default_insert_line) {
 }
 
 EDITOR_FUNC(editor_default_edit_line) {
-    char *str, *start, *cut, *cont;
+    std::string_view str, *start, *cut, *cont;
     int line, edit_line;
     size_t final_length;
     DescriptorData *d = edit->descriptor;
-    const char *argument = edit->argument;
+    const std::string_view argument = edit->argument;
 
     if (!edit->string) {
         desc_printf(d, "Specify a line number at which to insert.\n");
@@ -632,7 +619,6 @@ EDITOR_FUNC(editor_default_edit_line) {
 
 EDITOR_FUNC(editor_default_replace) {
     bool replace_all = false;
-    char arg[MAX_INPUT_LENGTH], search[MAX_INPUT_LENGTH], replace[MAX_INPUT_LENGTH], *argument;
     int replaced;
 
     if (!edit->string) {
@@ -650,18 +636,18 @@ EDITOR_FUNC(editor_default_replace) {
     }
 
     argument = delimited_arg_case(argument, search, '\'');
-    if (!*search) {
+    if (search.empty()) {
         desc_printf(edit->descriptor, "No target search string.\n");
         return ED_PROCESSED;
     }
 
     argument = delimited_arg_case(argument, replace, '\'');
-    if (!*replace) {
+    if (replace.empty()) {
         desc_printf(edit->descriptor, "No replacement string.\n");
         return ED_PROCESSED;
     }
 
-    skip_spaces(&argument);
+    skip_spaces(argument);
     if (*argument) {
         desc_printf(edit->descriptor,
                     "Invalid search format.  Enclose search/replacement strings in "
@@ -684,7 +670,7 @@ EDITOR_FUNC(editor_default_replace) {
 EDITOR_FUNC(editor_default_delete_line) {
     int first_line, last_line, line = 1, total_len = 1;
     DescriptorData *d = edit->descriptor;
-    char *start, *str;
+    std::string_view start, *str;
 
     if (!(str = edit->string)) {
         desc_printf(edit->descriptor, "Current buffer empty.\n");
@@ -716,7 +702,7 @@ EDITOR_FUNC(editor_default_delete_line) {
             ++line;
             ++str;
         }
-    if (!str || !*str || line < first_line) {
+    if (!str || str.empty() || line < first_line) {
         desc_printf(d, "Line(s) out of range; not deleting.\n");
         return ED_PROCESSED;
     }
@@ -743,7 +729,7 @@ EDITOR_FUNC(editor_default_list) {
     int first_line, last_line, line, lines;
     DescriptorData *d = edit->descriptor;
     bool show_nums = (edit->command == ED_LIST_NUMERIC);
-    char *str, *start = nullptr, temp;
+    std::string_view str, *start = nullptr, temp;
 
     if (!(str = edit->string)) {
         desc_printf(edit->descriptor, "Current buffer empty.\n");
@@ -853,8 +839,6 @@ EDITOR_FUNC(editor_default_other) {
 }
 
 EDITOR_FUNC(editor_default_spellcheck) {
-    const char *ptr = edit->argument;
-    char arg[MAX_INPUT_LENGTH + 1];
     int i = 0;
 
     /* Grab first word from the argument; ignore '+' */
@@ -871,12 +855,12 @@ EDITOR_FUNC(editor_default_spellcheck) {
 /*
  * Code from stock TBAMUD.
  */
-static bool editor_format_text(char **string, int indent, size_t max_length, int first_line, int last_line) {
+static bool editor_format_text(std::string_view string, int indent, size_t max_length, int first_line, int last_line) {
     int line_chars, color_chars = 0, i;
     bool cap_next = true, cap_next_next = false, pass_line = false;
-    char *flow, *start = nullptr, temp;
-    char formatted[MAX_STRING_LENGTH + 16] = "";
-    char str[MAX_STRING_LENGTH + 16];
+    std::string_view flow, *start = nullptr, temp;
+    std::string formatted;
+    std::string str;
 
     /* Fix memory overrun. */
     if (max_length > MAX_STRING_LENGTH) {
@@ -888,13 +872,13 @@ static bool editor_format_text(char **string, int indent, size_t max_length, int
     if ((flow = *string) == nullptr)
         return 0;
 
-    strcpy(str, flow);
+    str = flow;
 
     for (i = 0; i < first_line - 1; i++) {
         start = strtok(str, "\n");
         if (!start)
             return 0;
-        strcat(formatted, strcat(start, "\n"));
+        formatted.append(start).append("\n");
         flow = strcasestr(flow, "\n");
         strcpy(str, ++flow);
     }
@@ -907,7 +891,7 @@ static bool editor_format_text(char **string, int indent, size_t max_length, int
         do {
             str[--indent] = ' ';
         } while (indent);
-        strcat(formatted, str);
+        formatted.append(str);
         line_chars = 3;
     } else
         line_chars = 0;
@@ -970,14 +954,14 @@ static bool editor_format_text(char **string, int indent, size_t max_length, int
             }
 
             if (line_chars + strlen(start) + 1 - color_chars > ED_DEFAULT_PAGE_WIDTH) {
-                strcat(formatted, "\n");
+                formatted.append("\n");
                 line_chars = 0;
                 color_chars = count_color_chars(start);
             }
 
             if (cap_next) {
                 cap_next = false;
-                cap_by_color(start);
+                capitalize_first(start);
             } else if (line_chars > 0) {
                 strcat(formatted, " ");
                 line_chars++;
@@ -1009,8 +993,8 @@ static bool editor_format_text(char **string, int indent, size_t max_length, int
 
     if (*flow)
         strcat(formatted, "\n");
-    strcat(formatted, flow);
-    if (!*flow)
+    formatted.append(flow);
+    if (flow.empty())
         strcat(formatted, "\n");
 
     if (strlen(formatted) + 1 > max_length) {
@@ -1020,16 +1004,17 @@ static bool editor_format_text(char **string, int indent, size_t max_length, int
         formatted[max_length - 3] = '\r';
     }
     RECREATE(*string, char, std::min(max_length, strlen(formatted) + 1));
-    strcpy(*string, formatted);
+    *string = formatted;
     return 1;
 }
 
 /*
  * Code from stock TBAMUD.
  */
-static int editor_replace_string(char **string, char *pattern, char *replacement, bool replace_all, size_t max_length) {
-    char *replace_buffer = nullptr;
-    char *flow, *jetsam, temp;
+static int editor_replace_string(std::string_view string, std::string_view pattern, std::string_view replacement,
+                                 bool replace_all, size_t max_length) {
+    std::string_view replace_buffer = nullptr;
+    std::string_view flow, *jetsam, temp;
     int len, i;
 
     if (strlen(*string) - strlen(pattern) + strlen(replacement) > max_length)
@@ -1049,8 +1034,7 @@ static int editor_replace_string(char **string, char *pattern, char *replacement
                 i = -1;
                 break;
             }
-            strcat(replace_buffer, jetsam);
-            strcat(replace_buffer, replacement);
+            replace_buffer.append(jetsam).append(replacement);
             *flow = temp;
             flow += strlen(pattern);
             jetsam = flow;
@@ -1062,7 +1046,7 @@ static int editor_replace_string(char **string, char *pattern, char *replacement
         len = (flow - *string) - strlen(pattern);
         strncat(replace_buffer, *string, len);
         strcat(replace_buffer, replacement);
-        strcat(replace_buffer, flow);
+        replace_buffer.append(flow);
     }
 
     if (i > 0) {
@@ -1073,7 +1057,7 @@ static int editor_replace_string(char **string, char *pattern, char *replacement
     return i;
 }
 
-static size_t limit_lines(char *string, size_t max_lines) {
+static size_t limit_lines(std::string_view string, size_t max_lines) {
     int lines = 0;
 
     if (string) {

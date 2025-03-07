@@ -33,38 +33,38 @@
 Queue *event_q; /* the event queue */
 int processing_events = false;
 
-const char *eventnames[MAX_EVENT + 1] = {"!INVALID EVENT!", /* 0 - reserved */
-                                         "autodouse",       /* 1 */
-                                         "camp",
-                                         "hurt",
-                                         "mob_quit",
-                                         "name_timeout", /* 5 */
-                                         "recall",
-                                         "room_undo",
-                                         "spell",
-                                         "track",
-                                         "trigger_wait", /* 10 */
-                                         "sink_and_lose",
-                                         "battle_paralysis",
-                                         "casting",
-                                         "regen_hp",
-                                         "regen_spell_slot", /* 15 */
-                                         "regen_move",
-                                         "memming",
-                                         "scribing",
-                                         "quick_aggro",
-                                         "die", /* 20 */
-                                         "rage",
-                                         "extract",
-                                         "gravity",
-                                         "cooldown",
-                                         "fullpurge", /* 25 */
-                                         "overweight",
-                                         "falltoground",
-                                         "command",
-                                         "start_editor",
-                                         "get_money", /* 30 */
-                                         "\n"};
+const std::string_view eventnames[MAX_EVENT + 1] = {"!INVALID EVENT!", /* 0 - reserved */
+                                                    "autodouse",       /* 1 */
+                                                    "camp",
+                                                    "hurt",
+                                                    "mob_quit",
+                                                    "name_timeout", /* 5 */
+                                                    "recall",
+                                                    "room_undo",
+                                                    "spell",
+                                                    "track",
+                                                    "trigger_wait", /* 10 */
+                                                    "sink_and_lose",
+                                                    "battle_paralysis",
+                                                    "casting",
+                                                    "regen_hp",
+                                                    "regen_spell_slot", /* 15 */
+                                                    "regen_move",
+                                                    "memming",
+                                                    "scribing",
+                                                    "quick_aggro",
+                                                    "die", /* 20 */
+                                                    "rage",
+                                                    "extract",
+                                                    "gravity",
+                                                    "cooldown",
+                                                    "fullpurge", /* 25 */
+                                                    "overweight",
+                                                    "falltoground",
+                                                    "command",
+                                                    "start_editor",
+                                                    "get_money", /* 30 */
+                                                    "\n"};
 
 /*************************************************************************/
 /*                        EVENT UTILITY FUNCTIONS                        */
@@ -79,11 +79,11 @@ bool char_has_event(CharData *ch, int eventtype) {
     return false;
 }
 
-bool char_has_delayed_command(CharData *ch, const char *command) {
+bool char_has_delayed_command(CharData *ch, const std::string_view command) {
     Event *e;
 
     for (e = ch->events; e; e = e->next)
-        if (e->num == EVENT_COMMAND && e->event_obj && !strcasecmp(command, ((CommandEventData *)(e->event_obj))->cmd))
+        if (e->num == EVENT_COMMAND && e->event_obj && matches(command, ((CommandEventData *)(e->event_obj))->cmd))
             return true;
     return false;
 }
@@ -202,12 +202,8 @@ EVENTFUNC(casting_handler) {
         complete_spell(ch);
         return EVENT_FINISHED;
     } else {
-        sprintf(castbuf, "Casting: %s ", skill_name(ch->casting.spell));
-
-        for (i = 1; i <= ch->casting.casting_time; i += 2)
-            strcat(castbuf, "*");
-        strcat(castbuf, "\n");
-        char_printf(ch, castbuf);
+        char_printf(ch,
+                    fmt::format("Casting: {} {}\n", skill_name(ch->casting.spell), '*' * ch->casting.casting_time / 2));
     }
 
     ch->casting.casting_time -= 2;
@@ -346,7 +342,7 @@ EVENTFUNC(falltoground_event) {
     return EVENT_FINISHED;
 }
 
-void delayed_command(CharData *ch, char *command, int delay, bool repeatable) {
+void delayed_command(CharData *ch, std::string_view command, int delay, bool repeatable) {
     CommandEventData *ce;
 
     if (!repeatable && char_has_delayed_command(ch, command))
@@ -354,14 +350,11 @@ void delayed_command(CharData *ch, char *command, int delay, bool repeatable) {
 
     CREATE(ce, CommandEventData, 1);
     ce->ch = ch;
-    ce->cmd = strdup(command);
+    ce->cmd = command;
     event_create(EVENT_COMMAND, command_event, ce, true, &(ch->events), delay);
 }
 
-void free_command_event_data(void *e) {
-    free(((CommandEventData *)e)->cmd);
-    free(e);
-}
+void free_command_event_data(void *e) { free(e); }
 
 EVENTFUNC(command_event) {
     CommandEventData *ce = (CommandEventData *)event_obj;
@@ -540,7 +533,7 @@ bool event_target_valid(CharData *ch) {
     return false;
 }
 
-const char *eventname(Event *e) {
+const std::string_view eventname(Event *e) {
     if (e->num < 1 || e->num > MAX_EVENT)
         return eventnames[0];
     return eventnames[e->num];

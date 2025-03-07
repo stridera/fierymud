@@ -27,7 +27,7 @@
 #include "sysdep.hpp"
 #include "utils.hpp"
 
-const char *RICK_SALA =
+const std::string_view RICK_SALA =
     "=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=\n"
     "=~=~=  Rick Sala known to many as his admin character Pergus        =~=~=\n"
     "=~=~=  passed away on June 21, 2006.                                =~=~=\n"
@@ -35,12 +35,7 @@ const char *RICK_SALA =
     "=~=~=  missed for his wit, humor, and the friend he was to us all.  =~=~=\n"
     "=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=\n";
 
-void postmaster_send_mail(CharData *ch, CharData *mailman, int cmd, char *arg);
-void postmaster_check_mail(CharData *ch, CharData *mailman, int cmd, char *arg);
-void postmaster_receive_mail(CharData *ch, CharData *mailman, int cmd, char *arg);
-
-void money_convert(CharData *ch, int amount);
-int find_name(char *name);
+int find_name(std::string_view name);
 
 MailIndex *mail_index = 0;   /* list of recs in the mail file  */
 PositionList *free_list = 0; /* list of free positions in file */
@@ -189,15 +184,15 @@ int has_mail(long recipient) {
 /* STORE_MAIL  */
 /* call store_mail to store mail.  (hard, huh? :-) )  Pass 3 arguments:
    who the mail is to (long), who it's from (long), and a pointer to the
-   actual message text (char *).
+   actual message text (std::string_view ).
 */
 
-/*void store_mail(long to, long from, char *message_pointer)*/
-bool store_mail(long to, long from, int vnum, char *message_pointer) {
+/*void store_mail(long to, long from, std::string_view message_pointer)*/
+bool store_mail(long to, long from, int vnum, std::string_view message_pointer) {
     HeaderBlock header;
     DataBlock data;
     long last_address, target_address;
-    char *msg_txt = message_pointer;
+    std::string_view msg_txt = message_pointer;
     int bytes_written = 0;
     int total_length = strlen(message_pointer);
 
@@ -210,11 +205,11 @@ bool store_mail(long to, long from, int vnum, char *message_pointer) {
     assert(sizeof(HeaderBlock) == sizeof(DataBlock));
     assert(sizeof(HeaderBlock) == BLOCK_SIZE);
 
-    if (from < 0 || to < 0 || !*message_pointer) {
+    if (from < 0 || to < 0 || message_pointer.empty()) {
         log("SYSERR: Mail system -- non-fatal error #5.");
         return false;
     }
-    memset((char *)&header, 0, sizeof(header)); /* clear the record */
+    memset((std::string_view)&header, 0, sizeof(header)); /* clear the record */
     header.block_type = HEADER_BLOCK;
     header.header_data.next_block = LAST_BLOCK;
     header.header_data.from = from;
@@ -244,7 +239,7 @@ bool store_mail(long to, long from, int vnum, char *message_pointer) {
     write_to_file(&header, BLOCK_SIZE, last_address);
 
     /* now write the current data block */
-    memset((char *)&data, 0, sizeof(data)); /* clear the record */
+    memset((std::string_view)&data, 0, sizeof(data)); /* clear the record */
     data.block_type = LAST_BLOCK;
     strncpy(data.txt, msg_txt, DATA_BLOCK_DATASIZE);
     data.txt[DATA_BLOCK_DATASIZE] = '\0';
@@ -290,8 +285,8 @@ bool store_mail(long to, long from, int vnum, char *message_pointer) {
 you're retrieving.  It returns to you a char pointer to the message text.
 The mail is then discarded from the file and the mail index. */
 
-/*char *read_delete(long recipient)*/
-char *read_delete(long recipient, int *obj_vnum)
+/*std::string_view read_delete(long recipient)*/
+std::string_view read_delete(long recipient, int *obj_vnum)
 /* recipient is the name as it appears in the index.
    recipient_formatted is the name as it should appear on the mail
    header (i.e. the text handed to the player) */
@@ -301,20 +296,20 @@ char *read_delete(long recipient, int *obj_vnum)
     MailIndex *mail_pointer, *prev_mail;
     PositionList *position_pointer;
     long mail_address, following_block;
-    char *message, buf[200];
+    std::string message;
     size_t string_size;
 
     if (recipient < 0) {
         log("SYSERR: Mail system -- non-fatal error #6.");
-        return 0;
+        return {};
     }
     if (!(mail_pointer = find_char_in_index(recipient))) {
         log("SYSERR: Mail system -- post office spec_proc error?  Error #7.");
-        return 0;
+        return {};
     }
     if (!(position_pointer = mail_pointer->list_start)) {
         log("SYSERR: Mail system -- non-fatal error #8.");
-        return 0;
+        return {};
     }
     if (!(position_pointer->next)) { /* just 1 entry in list. */
         mail_address = position_pointer->position;
@@ -347,24 +342,20 @@ char *read_delete(long recipient, int *obj_vnum)
         log("SYSERR: Oh dear.");
         no_mail = 1;
         log("SYSERR: Mail system disabled!  -- Error #9.");
-        return 0;
+        return {};
     }
-    strftime(buf1, 15, TIMEFMT_DATE, localtime(&header.header_data.mail_time));
     *obj_vnum = header.header_data.vnum;
 
-    sprintf(buf,
-            " * * * * &2FieryMUD Mail System&0 * * * *\n"
-            "Date: %s\n"
-            "  To: %s\n"
-            "From: %s\n\n",
-            buf1, get_name_by_id(recipient), get_name_by_id(header.header_data.from));
+    message = fmt::format(
+        " * * * * &2FieryMUD Mail System&0 * * * *\n"
+        "Date: " TIMEFMT_DATE
+        "\n"
+        "  To: {}\n"
+        "From: {}\n\n",
+        localtime(&header.header_data.mail_time), get_name_by_id(recipient), get_name_by_id(header.header_data.from));
 
-    string_size = (sizeof(char) * (strlen(buf) + strlen(header.txt) + 3));
-    CREATE(message, char, string_size);
-    strcpy(message, buf);
-    strcat(message, header.txt);
-    strcat(message, "@0");
-    message[string_size - 1] = '\0';
+    message += header.txt;
+    message += "@0";
     following_block = header.header_data.next_block;
 
     /* mark the block as deleted */
@@ -375,10 +366,7 @@ char *read_delete(long recipient, int *obj_vnum)
     while (following_block != LAST_BLOCK) {
         read_from_file(&data, BLOCK_SIZE, following_block);
 
-        string_size = (sizeof(char) * (strlen(message) + strlen(data.txt) + 1));
-        RECREATE(message, char, string_size);
-        strcat(message, data.txt);
-        message[string_size - 1] = '\0';
+        message += data.txt;
         mail_address = following_block;
         following_block = data.block_type;
         data.block_type = DELETED_BLOCK;
@@ -393,6 +381,145 @@ char *read_delete(long recipient, int *obj_vnum)
  ** Below is the spec_proc for a postmaster using the above       **
  ** routines.  Written by Jeremy Elson (jelson@server.cs.jhu.edu) **
  *******************************************************************/
+
+void postmaster_send_mail(CharData *ch, CharData *mailman, int cmd, Arguments argument) {
+    long recipient;
+    int price = STAMP_PRICE;
+    ObjData *obj = nullptr;
+
+    auto target = argument.shift();
+    auto object_name = argument.get();
+
+    if (GET_LEVEL(ch) < MIN_MAIL_LEVEL) {
+        auto err_msg = fmt::format("$n tells you, 'Sorry, you have to be level {} to send mail!'", MIN_MAIL_LEVEL);
+        act(err_msg, false, mailman, 0, ch, TO_VICT);
+        return;
+    }
+
+    if (target.empty()) { /* you'll get no argument from me! */
+        act("$n tells you, 'You need to specify an addressee!'", false, mailman, 0, ch, TO_VICT);
+        return;
+    }
+    /* =~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~
+       Code to let players know if another player has passed away and
+       not generate any mail for them. - RSD 6/24/2006
+       =~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~
+     */
+    auto pergus_arr = {"pergus", "daroowise", "ninmei", "brilan"};
+    if (std::find(pergus_arr.begin(), pergus_arr.end(), target) != pergus_arr.end()) {
+        act("$n tells you, 'I'm sorry, that character has passed away....'", false, mailman, 0, ch, TO_VICT);
+        act(RICK_SALA, false, mailman, 0, ch, TO_VICT);
+        return;
+    }
+
+    if (!object_name.empty() && (obj = find_obj_in_list(ch->carrying, find_vis_by_name(ch, object_name)))) {
+        if (OBJ_FLAGGED(obj, ITEM_NODROP)) {
+            act("You can't mail $p.  It's CURSED!", false, ch, obj, obj, TO_CHAR);
+            return;
+        }
+        if (OBJ_FLAGGED(obj, ITEM_NORENT)) {
+            act("$n tells you, 'I'm not sending that!'", false, mailman, 0, ch, TO_VICT);
+            return;
+        }
+        price += STAMP_PRICE * .1;
+        price += GET_OBJ_EFFECTIVE_WEIGHT(obj) * 100;
+    } else if (!object_name.empty()) {
+        char_printf(ch, "You don't seem to have a {} to mail.\n", object_name);
+        return;
+    }
+
+    if (GET_CASH(ch) < price) {
+        if (GET_LEVEL(ch) < 100) {
+            auto buf = fmt::format(
+                "$n tells you, 'A stamp costs {%d} copper coins.'\n"
+                "$n tells you, '...which I see you can't afford.'",
+                price);
+            act(buf, false, mailman, 0, ch, TO_VICT);
+            return;
+        } else {
+            price = 0;
+        }
+    }
+
+    if (GET_LEVEL(ch) >= 100)
+        price = 0;
+
+    if ((recipient = get_id_by_name(target)) < 0) {
+        act("$n tells you, 'No one by that name is registered here!'", false, mailman, 0, ch, TO_VICT);
+        return;
+    }
+
+    if (obj != nullptr) {
+        ch->desc->mail_vnum = GET_OBJ_VNUM(obj);
+        act("$n takes $p and prepares it for packaging.", false, mailman, obj, ch, TO_VICT);
+        extract_obj(obj);
+    } else
+        ch->desc->mail_vnum = NOTHING;
+
+    act("$n starts to write some mail.", true, ch, 0, 0, TO_ROOM);
+
+    if (GET_LEVEL(ch) < 100)
+        act(fmt::format("$n tells you, 'I'll take {} copper coins for the stamp.'\n"
+                        "$n tells you, 'Write your message, (/s saves /h for help)'",
+                        price),
+            false, mailman, 0, ch, TO_VICT);
+    else
+        act(fmt::format("$n tells you, 'I refuse to take money from a deity.  This stamp is on me.'\n"
+                        "$n tells you, 'Write your message, (/s saves /h for help)'"),
+            false, mailman, 0, ch, TO_VICT);
+
+    charge_char(ch, price);
+    SET_FLAG(PLR_FLAGS(ch), PLR_MAILING);
+    SET_FLAG(PLR_FLAGS(ch), PLR_WRITING);
+
+    mail_write(ch->desc, {}, MAX_MAIL_SIZE, recipient);
+}
+
+void postmaster_check_mail(CharData *ch, CharData *mailman, int cmd, Arguments arg) {
+    if (has_mail(GET_IDNUM(ch)))
+        act("$n tells you, 'You have mail waiting.'", false, mailman, 0, ch, TO_VICT);
+    else
+        act("$n tells you, 'Sorry, you don't have any mail waiting.'", false, mailman, 0, ch, TO_VICT);
+}
+
+void postmaster_receive_mail(CharData *ch, CharData *mailman, int cmd, Arguments arg) {
+    ObjData *obj, *mail_obj;
+    int obj_vnum = NOTHING;
+
+    if (!has_mail(GET_IDNUM(ch))) {
+        act("$n tells you, 'Sorry, you don't have any mail waiting.'", false, mailman, 0, ch, TO_VICT);
+        return;
+    }
+    while (has_mail(GET_IDNUM(ch))) {
+        obj = create_obj();
+        obj->item_number = NOTHING;
+        obj->name = strdup("mail paper letter");
+        obj->short_description = strdup("a piece of mail");
+        obj->description = strdup("Someone has left a piece of mail here.");
+
+        GET_OBJ_TYPE(obj) = ITEM_NOTE;
+        GET_OBJ_WEAR(obj) = ITEM_WEAR_TAKE | ITEM_WEAR_HOLD;
+        GET_OBJ_WEIGHT(obj) = GET_OBJ_EFFECTIVE_WEIGHT(obj) = 1;
+        GET_OBJ_COST(obj) = 30;
+        /* GET_OBJ_RENT(obj) = 10; */
+        obj->action_description = read_delete(GET_IDNUM(ch), &obj_vnum);
+
+        if (obj->action_description.empty())
+            obj->action_description = strdup("Mail system error - please report.  Error #11.\n");
+
+        obj_to_char(obj, ch);
+
+        if (obj_vnum != NOTHING && real_object(obj_vnum) != NOTHING) {
+            mail_obj = read_object(real_object(obj_vnum), REAL);
+            obj_to_char(mail_obj, ch);
+            act("$n gives you $p, which was attached to your mail.", false, mailman, mail_obj, ch, TO_VICT);
+            act("$N gives $n $p, which was attached to $S mail.", false, ch, mail_obj, mailman, TO_ROOM);
+        }
+
+        act("$n gives you a piece of mail.", false, mailman, 0, ch, TO_VICT);
+        act("$N gives $n a piece of mail.", false, ch, 0, mailman, TO_ROOM);
+    }
+}
 
 SPECIAL(postmaster) {
     if (!ch->desc || IS_NPC(ch))
@@ -417,171 +544,6 @@ SPECIAL(postmaster) {
         return 1;
     } else
         return 0;
-}
-
-void postmaster_send_mail(CharData *ch, CharData *mailman, int cmd, char *arg) {
-    long recipient;
-    char buf[256];
-    char buf2[256];
-    int price = STAMP_PRICE;
-    ObjData *obj;
-
-    obj = nullptr;
-
-    if (GET_LEVEL(ch) < MIN_MAIL_LEVEL) {
-        sprintf(buf, "$n tells you, 'Sorry, you have to be level %d to send mail!'", MIN_MAIL_LEVEL);
-        act(buf, false, mailman, 0, ch, TO_VICT);
-        return;
-    }
-    /*one_argument(arg, buf); */
-    two_arguments(arg, buf, buf2);
-
-    if (!*buf) { /* you'll get no argument from me! */
-        act("$n tells you, 'You need to specify an addressee!'", false, mailman, 0, ch, TO_VICT);
-        return;
-    }
-    /* =~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~
-       Code to let players know if another player has passed away and
-       not generate any mail for them. - RSD 6/24/2006
-       =~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~
-     */
-    if (strcasecmp(buf, "pergus") == 0) {
-        act("$n tells you, 'I'm sorry, that character has passed away....'", false, mailman, 0, ch, TO_VICT);
-        act(RICK_SALA, false, mailman, 0, ch, TO_VICT);
-        return;
-    }
-    if (strcasecmp(buf, "daroowise") == 0) {
-        act("$n tells you, 'I'm sorry, that character has passed away....'", false, mailman, 0, ch, TO_VICT);
-        act(RICK_SALA, false, mailman, 0, ch, TO_VICT);
-        return;
-    }
-    if (strcasecmp(buf, "ninmei") == 0) {
-        act("$n tells you, 'I'm sorry, that character has passed away....'", false, mailman, 0, ch, TO_VICT);
-        act(RICK_SALA, false, mailman, 0, ch, TO_VICT);
-        return;
-    }
-    if (strcasecmp(buf, "brilan") == 0) {
-        act("$n tells you, 'I'm sorry, that character has passed away....'", false, mailman, 0, ch, TO_VICT);
-        act(RICK_SALA, false, mailman, 0, ch, TO_VICT);
-        return;
-    }
-
-    if (*buf2 && (obj = find_obj_in_list(ch->carrying, find_vis_by_name(ch, buf2)))) {
-        if (OBJ_FLAGGED(obj, ITEM_NODROP)) {
-            act("You can't mail $p.  It's CURSED!", false, ch, obj, obj, TO_CHAR);
-            return;
-        }
-        if (OBJ_FLAGGED(obj, ITEM_NORENT)) {
-            act("$n tells you, 'I'm not sending that!'", false, mailman, 0, ch, TO_VICT);
-            return;
-        }
-        price += STAMP_PRICE * .1;
-        price += GET_OBJ_EFFECTIVE_WEIGHT(obj) * 100;
-    } else if (*buf2) {
-        char_printf(ch, "You don't seem to have a {} to mail.\n", buf2);
-        return;
-    }
-
-    if (GET_CASH(ch) < price) {
-        if (GET_LEVEL(ch) < 100) {
-            sprintf(buf,
-                    "$n tells you, 'A stamp costs %d copper coins.'\n"
-                    "$n tells you, '...which I see you can't afford.'",
-                    price);
-            act(buf, false, mailman, 0, ch, TO_VICT);
-            return;
-        } else {
-            price = 0;
-        }
-    }
-
-    if (GET_LEVEL(ch) >= 100)
-        price = 0;
-
-    if ((recipient = get_id_by_name(buf)) < 0) {
-        act("$n tells you, 'No one by that name is registered here!'", false, mailman, 0, ch, TO_VICT);
-        return;
-    }
-
-    if (obj != nullptr) {
-        ch->desc->mail_vnum = GET_OBJ_VNUM(obj);
-        act("$n takes $p and prepares it for packaging.", false, mailman, obj, ch, TO_VICT);
-        extract_obj(obj);
-    } else
-        ch->desc->mail_vnum = NOTHING;
-
-    act("$n starts to write some mail.", true, ch, 0, 0, TO_ROOM);
-
-    if (GET_LEVEL(ch) < 100)
-        sprintf(buf,
-                "$n tells you, 'I'll take %d coins for the stamp.'\n"
-                "$n tells you, 'Write your message, (/s saves /h for help)'",
-                price);
-    else
-        sprintf(buf,
-                "$n tells you, 'I refuse to take money from a deity.  This "
-                "stamp is on me.'\n"
-                "$n tells you, 'Write your message, (/s saves /h for help)'");
-
-    act(buf, false, mailman, 0, ch, TO_VICT);
-    money_convert(ch, price);
-    GET_COPPER(ch) -= price;
-    SET_FLAG(PLR_FLAGS(ch), PLR_MAILING);
-    SET_FLAG(PLR_FLAGS(ch), PLR_WRITING);
-
-    mail_write(ch->desc, nullptr, MAX_MAIL_SIZE, recipient);
-}
-
-void postmaster_check_mail(CharData *ch, CharData *mailman, int cmd, char *arg) {
-    char buf[256];
-
-    if (has_mail(GET_IDNUM(ch)))
-        sprintf(buf, "$n tells you, 'You have mail waiting.'");
-    else
-        sprintf(buf, "$n tells you, 'Sorry, you don't have any mail waiting.'");
-    act(buf, false, mailman, 0, ch, TO_VICT);
-}
-
-void postmaster_receive_mail(CharData *ch, CharData *mailman, int cmd, char *arg) {
-    char buf[256];
-    /* ObjData *obj; */
-    ObjData *obj, *mail_obj;
-    int obj_vnum = NOTHING;
-
-    if (!has_mail(GET_IDNUM(ch))) {
-        sprintf(buf, "$n tells you, 'Sorry, you don't have any mail waiting.'");
-        act(buf, false, mailman, 0, ch, TO_VICT);
-        return;
-    }
-    while (has_mail(GET_IDNUM(ch))) {
-        obj = create_obj();
-        obj->item_number = NOTHING;
-        obj->name = strdup("mail paper letter");
-        obj->short_description = strdup("a piece of mail");
-        obj->description = strdup("Someone has left a piece of mail here.");
-
-        GET_OBJ_TYPE(obj) = ITEM_NOTE;
-        GET_OBJ_WEAR(obj) = ITEM_WEAR_TAKE | ITEM_WEAR_HOLD;
-        GET_OBJ_WEIGHT(obj) = GET_OBJ_EFFECTIVE_WEIGHT(obj) = 1;
-        GET_OBJ_COST(obj) = 30;
-        /* GET_OBJ_RENT(obj) = 10; */
-        obj->action_description = read_delete(GET_IDNUM(ch), &obj_vnum);
-
-        if (obj->action_description == nullptr)
-            obj->action_description = strdup("Mail system error - please report.  Error #11.\n");
-
-        obj_to_char(obj, ch);
-
-        if (obj_vnum != NOTHING && real_object(obj_vnum) != NOTHING) {
-            mail_obj = read_object(real_object(obj_vnum), REAL);
-            obj_to_char(mail_obj, ch);
-            act("$n gives you $p, which was attached to your mail.", false, mailman, mail_obj, ch, TO_VICT);
-            act("$N gives $n $p, which was attached to $S mail.", false, ch, mail_obj, mailman, TO_ROOM);
-        }
-
-        act("$n gives you a piece of mail.", false, mailman, 0, ch, TO_VICT);
-        act("$N gives $n a piece of mail.", false, ch, 0, mailman, TO_ROOM);
-    }
 }
 
 void free_mail_index(void) {

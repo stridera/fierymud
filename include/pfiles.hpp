@@ -40,11 +40,11 @@ bool build_object(FILE *fl, ObjData **obj, int *location);
 void extract_objects(CharData *ch);
 bool write_objects(ObjData *obj, FILE *fl, int location);
 void auto_save_all(void);
-void show_rent(CharData *ch, char *argument);
+void show_rent(CharData *ch, std::string_view argument);
 bool delete_player_obj_file(CharData *ch);
-FILE *open_player_obj_file(const char *player_name, CharData *ch, bool quiet);
+FILE *open_player_obj_file(const std::string_view player_name, CharData *ch, bool quiet);
 void convert_player_obj_files(CharData *ch);
-void convert_single_player_obj_file(CharData *ch, char *name);
+void convert_single_player_obj_file(CharData *ch, std::string_view name);
 void save_player(CharData *ch);
 
 void load_pets(CharData *ch);

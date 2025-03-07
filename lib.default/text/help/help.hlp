@@ -1345,29 +1345,29 @@ all the zones on the MUD look uniform. More will be added as time goes
 on.
 
 Rooms:
-1) Always capitalize all important words in the room name.
+1) Always capitalize_first all important words in the room name.
    Example: A Long Tunnel in Darkwood Forest
 2) Always leave a three space indentation at the start of every room
    description.
 
 Objects:
-1) An object's short description should never contain capitalized letters
+1) An object's short description should never contain capitalize_firstd letters
    unless they are proper nouns.
    Example: a wicked mace named 'Bone Crusher' or an ivory handled dagger
 2) Long descriptions should have the same structure as a proper sentence,
    including first word capitalization and punctuation. Only proper nouns 
-   should be capitalized in the long description.
+   should be capitalize_firstd in the long description.
 3) An object should have on average an extra description of at least one 
    or two lines in length.
 4) Try to keep objects balanced with the zone. Look at other zones or ask 
    for help if you are unsure of item balance.
 
 Mobiles:
-1) Mobile short descriptions should not contain any capitalized letters 
+1) Mobile short descriptions should not contain any capitalize_firstd letters 
    unless they are proper nouns. No ANSI code should be used before the 
    first word of their short description.
 2) Mobile long descriptions should be structured like a proper sentence,
-   containing no capitalized words except for the first word and any 
+   containing no capitalize_firstd words except for the first word and any 
    proper nouns.
 3) Mobiles should not have unrealistic flags or levels. No level 50 fleas
    or baby orcs with haste and stone skin please.
@@ -2393,7 +2393,7 @@ element.
 
 Beings not composed of flesh are generally immune to poison and have a 
 wide range of other resistances. However, they usually (but not always!) 
-have some vulnerability that the attentive adventurer can capitalize.
+have some vulnerability that the attentive adventurer can capitalize_first.
 
 There are even beings with no physical form whatsoever. Some elemental 
 magics can harm them, but in general they laugh at the attacks of mere 

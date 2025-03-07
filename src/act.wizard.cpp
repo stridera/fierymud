@@ -12,6 +12,7 @@
 
 #include "act.hpp"
 
+#include "ban.hpp"
 #include "casting.hpp"
 #include "charsize.hpp"
 #include "clan.hpp"
@@ -53,7 +54,9 @@
 #include "weather.hpp"
 
 #include <algorithm>
+#include <array>
 #include <fcntl.h>
+#include <fmt/ranges.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/stat.h>
@@ -61,14 +64,12 @@
 #include <time.h>
 #include <unistd.h>
 
-void garble_text(char *string, int percent);
 void check_new_surroundings(CharData *ch, bool old_room_was_dark, bool tx_obvious);
 
-int Valid_Name(char *newname);
-int reserved_word(char *argument);
+int reserved_word(std::string_view argument);
 
 /* extern functions */
-void send_to_xnames(char *name);
+void send_to_xnames(std::string_view name);
 int find_zone(int num);
 void cure_laryngitis(CharData *ch);
 void reboot_mud_prep();
@@ -76,9 +77,8 @@ void rebootwarning(int minutes);
 void update_stats(CharData *ch);
 
 ACMD(do_inctime) {
-    skip_spaces(&argument);
-
-    if (strcasecmp(argument, "yes") != 0) {
+    auto arg = argument.shift();
+    if (!matches(arg, "yes")) {
         char_printf(ch,
                     "Are you sure you want to move time forward?\n"
                     "If so, type 'inctime yes'.\n");
@@ -90,7 +90,7 @@ ACMD(do_inctime) {
 }
 
 ACMD(do_echo) {
-    std::string echo{trim(argument)};
+    auto echo = argument.shift();
 
     if (echo.empty())
         char_printf(ch, "Yes.. but what?\n");
@@ -121,9 +121,10 @@ ACMD(do_echo) {
 ACMD(do_send) {
     CharData *vict;
 
-    half_chop(argument, arg, buf);
+    auto arg = argument.shift();
+    auto buf = argument.get();
 
-    if (!*arg) {
+    if (arg.empty()) {
         char_printf(ch, "Send what to who?\n");
         return;
     }
@@ -138,21 +139,21 @@ ACMD(do_send) {
         char_printf(ch, "You send '{}@0' to {}.\n", buf, GET_NAME(vict));
 }
 
-void perform_ptell(CharData *ch, CharData *vict, char *arg) {
+void perform_ptell(CharData *ch, CharData *vict, std::string_view arg) {
     DescriptorData *d;
 
     if (PRF_FLAGGED(ch, PRF_NOREPEAT))
         char_printf(ch, OK);
     else {
-        sprintf(buf, "&6You respond to $N, '&b%s&0&6'&0", arg);
-        act(buf, false, ch, 0, vict, TO_CHAR | TO_SLEEP);
+        act(fmt::format("&6You respond to $N, '&b{}&0&6'&0", arg), false, ch, 0, vict, TO_CHAR | TO_SLEEP);
     }
     if (PRF_FLAGGED(vict, PRF_AFK)) {
         char_printf(vict, "You received the previous message while AFK.\n");
         char_printf(ch, "That person is AFK right now but received your message.\n");
     }
 
-    sprintf(buf, "&6%s responds to %s's petition, '&b%s&0&6'&0\n", GET_NAME(REAL_CHAR(ch)), GET_NAME(vict), arg);
+    auto buf =
+        fmt::format("&6{} responds to {}'s petition, '&b{}&0&6'&0\n", GET_NAME(REAL_CHAR(ch)), GET_NAME(vict), arg);
     for (d = descriptor_list; d; d = d->next) {
         if (STATE(d) == CON_PLAYING && d != ch->desc && GET_LEVEL(d->character) >= LVL_IMMORT &&
             !PLR_FLAGGED(d->character, PLR_WRITING) && !PLR_FLAGGED(d->character, PLR_MAILING) && !EDITING(d))
@@ -162,16 +163,17 @@ void perform_ptell(CharData *ch, CharData *vict, char *arg) {
     if (vict->forward && !vict->desc)
         vict = vict->forward;
 
-    sprintf(buf, "&6$n responds to your petition, '&b%s&0&6'&0", arg);
-    act(buf, false, REAL_CHAR(ch), 0, vict, TO_VICT | TO_SLEEP);
+    act(fmt::format("&6$n responds to your petition, '&b%s&0&6'&0", arg), false, REAL_CHAR(ch), 0, vict,
+        TO_VICT | TO_SLEEP);
 }
 
 ACMD(do_ptell) {
     CharData *vict;
 
-    half_chop(argument, buf, buf2);
+    auto buf = argument.shift();
+    auto buf2 = argument.get();
 
-    if (!*buf || !*buf2)
+    if (buf.empty() || buf2.empty())
         char_printf(ch, "Who do you wish to ptell??\n");
     else if (!(vict = find_char_around_char(ch, find_vis_by_name(ch, buf))))
         char_printf(ch, NOPERSON);
@@ -190,21 +192,17 @@ ACMD(do_ptell) {
 }
 
 /* take a string, and return an rnum.. used for goto, at, etc.  -je 4/6/93 */
-int find_target_room(CharData *ch, char *rawroomstr) {
-    int tmp;
+int find_target_room(CharData *ch, std::string_view roomstr) {
     int location;
     CharData *target_mob;
     ObjData *target_obj;
-    char roomstr[MAX_INPUT_LENGTH];
 
-    one_argument(rawroomstr, roomstr);
-
-    if (!*roomstr) {
+    if (roomstr.empty()) {
         char_printf(ch, "You must supply a room number or name.\n");
         return NOWHERE;
     }
-    if (isdigit(*roomstr) && !strchr(roomstr, '.')) {
-        tmp = atoi(roomstr);
+    if (is_integer(roomstr) && roomstr.find('.') == std::string_view::npos) {
+        int tmp = svtoi(roomstr);
         if ((location = real_room(tmp)) < 0) {
             char_printf(ch, "No room exists with that number.\n");
             return NOWHERE;
@@ -242,16 +240,17 @@ int find_target_room(CharData *ch, char *rawroomstr) {
 }
 
 ACMD(do_at) {
-    char command[MAX_INPUT_LENGTH];
     int location, original_loc;
 
-    half_chop(argument, buf, command);
-    if (!*buf) {
+    auto buf = argument.shift();
+    auto command = argument.get();
+
+    if (buf.empty()) {
         char_printf(ch, "You must supply a room number or a name.\n");
         return;
     }
 
-    if (!*command) {
+    if (command.empty()) {
         char_printf(ch, "What do you want to do there?\n");
         return;
     }
@@ -276,31 +275,34 @@ ACMD(do_goto) {
     int location;
     FollowType *k;
 
-    skip_spaces(&argument);
-    if (strcasecmp(argument, "home") == 0) {
+    auto arg = argument.shift();
+
+    if (matches(arg, "home")) {
         if ((location = real_room(GET_HOMEROOM(ch))) < 0) {
             char_printf(ch, "Your home room is invalid.\n");
             return;
         }
-    } else if ((location = find_target_room(ch, argument)) < 0) {
+    } else if ((location = find_target_room(ch, arg)) < 0) {
         return;
     }
-    if (GET_POOFOUT(ch) && *GET_POOFOUT(ch))
-        strcpy(buf, GET_POOFOUT(ch));
-    else
-        strcpy(buf, "$n disappears in a puff of smoke.");
 
-    act(buf, true, ch, 0, 0, TO_ROOM);
+    std::string poofout_msg = [&]() {
+        if (GET_POOFOUT(ch).empty())
+            return std::string{"$n disappears in a puff of smoke."};
+        return GET_POOFOUT(ch);
+    }();
+
+    act(poofout_msg, true, ch, 0, 0, TO_ROOM);
     dismount_char(ch);
     char_from_room(ch);
     char_to_room(ch, location);
 
-    if (GET_POOFIN(ch) && *GET_POOFIN(ch))
-        strcpy(buf, GET_POOFIN(ch));
-    else
-        strcpy(buf, "$n appears with an ear-splitting bang.");
-
-    act(buf, true, ch, 0, 0, TO_ROOM);
+    std::string poofin_msg = [&]() {
+        if (GET_POOFIN(ch).empty())
+            return std::string{"$n appears with an ear-splitting bang."};
+        return GET_POOFIN(ch);
+    }();
+    act(poofin_msg, true, ch, 0, 0, TO_ROOM);
     look_at_room(ch, false);
 
     for (k = ch->followers; k; k = k->next) {
@@ -315,9 +317,9 @@ ACMD(do_goto) {
 ACMD(do_linkload) {
     CharData *victim = 0;
 
-    one_argument(argument, arg);
+    auto arg = argument.shift();
 
-    if (!*arg) {
+    if (arg.empty()) {
         char_printf(ch, "Linkload who?\n");
         return;
     }
@@ -355,29 +357,10 @@ ACMD(do_trans) {
     CharData *victim;
     bool wasdark;
 
-    one_argument(argument, buf);
-    if (!*buf)
+    auto buf = argument.shift();
+    if (buf.empty())
         char_printf(ch, "Whom do you wish to transfer?\n");
-    else if (strcasecmp("all", buf)) {
-        if (!(victim = find_char_around_char(ch, find_vis_by_name(ch, buf))))
-            char_printf(ch, NOPERSON);
-        else if (victim == ch)
-            char_printf(ch, "That doesn't make much sense, does it?\n");
-        else {
-            if ((GET_LEVEL(ch) < GET_LEVEL(victim)) && !IS_NPC(victim)) {
-                char_printf(ch, "Go transfer someone your own size.\n");
-                return;
-            }
-            act("$n disappears in a mushroom cloud.", false, victim, 0, 0, TO_ROOM);
-            wasdark = IS_DARK(victim->in_room) && !CAN_SEE_IN_DARK(victim);
-            dismount_char(victim);
-            char_from_room(victim);
-            char_to_room(victim, ch->in_room);
-            act("$n arrives from a puff of smoke.", false, victim, 0, 0, TO_ROOM);
-            act("$n has transferred you!", false, ch, 0, victim, TO_VICT);
-            check_new_surroundings(victim, wasdark, true);
-        }
-    } else { /* Trans All */
+    else if (matches("all", buf)) {
         if (GET_LEVEL(ch) < LVL_GRGOD) {
             char_printf(ch, "I think not.\n");
             return;
@@ -398,6 +381,25 @@ ACMD(do_trans) {
                 check_new_surroundings(victim, wasdark, true);
             }
         char_printf(ch, OK);
+    } else {
+        if (!(victim = find_char_around_char(ch, find_vis_by_name(ch, buf))))
+            char_printf(ch, NOPERSON);
+        else if (victim == ch)
+            char_printf(ch, "That doesn't make much sense, does it?\n");
+        else {
+            if ((GET_LEVEL(ch) < GET_LEVEL(victim)) && !IS_NPC(victim)) {
+                char_printf(ch, "Go transfer someone your own size.\n");
+                return;
+            }
+            act("$n disappears in a mushroom cloud.", false, victim, 0, 0, TO_ROOM);
+            wasdark = IS_DARK(victim->in_room) && !CAN_SEE_IN_DARK(victim);
+            dismount_char(victim);
+            char_from_room(victim);
+            char_to_room(victim, ch->in_room);
+            act("$n arrives from a puff of smoke.", false, victim, 0, 0, TO_ROOM);
+            act("$n has transferred you!", false, ch, 0, victim, TO_VICT);
+            check_new_surroundings(victim, wasdark, true);
+        }
     }
 }
 
@@ -406,9 +408,10 @@ ACMD(do_teleport) {
     int target;
     bool wasdark;
 
-    two_arguments(argument, buf, buf2);
+    auto buf = argument.shift();
+    auto buf2 = argument.get();
 
-    if (!*buf)
+    if (buf.empty())
         char_printf(ch, "Whom do you wish to teleport?\n");
     else if (!(victim = find_char_around_char(ch, find_vis_by_name(ch, buf))))
         char_printf(ch, NOPERSON);
@@ -416,7 +419,7 @@ ACMD(do_teleport) {
         char_printf(ch, "Use 'goto' to teleport yourself.\n");
     else if (GET_LEVEL(victim) >= GET_LEVEL(ch))
         char_printf(ch, "Maybe you shouldn't do that.\n");
-    else if (!*buf2)
+    else if (buf2.empty())
         char_printf(ch, "Where do you wish to send this person?\n");
     else if ((target = find_target_room(ch, buf2)) >= 0) {
         char_printf(ch, OK);
@@ -438,17 +441,17 @@ ACMD(do_shutdown) {
         char_printf(ch, "If you want to shut something down, say so!\n");
         return;
     }
-    one_argument(argument, arg);
+    auto arg = argument.shift();
 
-    if (!*arg) {
+    if (arg.empty()) {
         log("(GC) Shutdown by {}.", GET_NAME(ch));
         all_printf("Shutting down.\n");
         circle_shutdown = 1;
-    } else if (!strcasecmp(arg, "reboot")) {
+    } else if (matches(arg, "reboot")) {
         log("(GC) Reboot by {}.", GET_NAME(ch));
         reboot_mud_prep();
         circle_shutdown = circle_reboot = 1;
-    } else if (!strcasecmp(arg, "now")) {
+    } else if (matches(arg, "now")) {
         log("(GC) Shutdown NOW by {}.", GET_NAME(ch));
         all_printf(
             "Rebooting.. come back in a minute or two.\n"
@@ -473,12 +476,12 @@ ACMD(do_shutdown) {
         circle_shutdown = 1;
         circle_reboot = 2;
 
-    } else if (!strcasecmp(arg, "die")) {
+    } else if (matches(arg, "die")) {
         log("(GC) Shutdown by {}.", GET_NAME(ch));
         all_printf("Shutting down for maintenance.\n");
         touch("../.killscript");
         circle_shutdown = 1;
-    } else if (!strcasecmp(arg, "pause")) {
+    } else if (matches(arg, "pause")) {
         log("(GC) Shutdown by {}.", GET_NAME(ch));
         all_printf("Shutting down for maintenance.\n");
         touch("../pause");
@@ -546,12 +549,12 @@ ACMD(do_snoop) {
     if (!ch->desc)
         return;
 
-    one_argument(argument, arg);
+    auto arg = argument.shift();
 
-    if (!*arg)
+    if (arg.empty())
         stop_snooping(ch);
-    else if (isdigit(*arg)) {
-        dnum = atoi(arg);
+    else if (is_integer(arg)) {
+        dnum = svtoi(arg);
         for (d = descriptor_list; d; d = d->next) {
             if (d->desc_num == dnum) {
                 perform_snoop(ch, d);
@@ -572,11 +575,11 @@ ACMD(do_snoop) {
 ACMD(do_switch) {
     CharData *victim;
 
-    one_argument(argument, arg);
+    auto arg = argument.shift();
 
     if (POSSESSED(ch))
         char_printf(ch, "You're already switched.\n");
-    else if (!*arg)
+    else if (arg.empty())
         char_printf(ch, "Switch with who?\n");
     else if (!(victim = find_char_around_char(ch, find_vis_by_name(ch, arg))))
         char_printf(ch, "No such character.\n");
@@ -597,23 +600,22 @@ ACMD(do_switch) {
         victim->desc = ch->desc;
         ch->desc = nullptr;
 
-        if (!GET_PROMPT(victim) || IS_NPC(victim))
-            GET_PROMPT(victim) = strdup(GET_PROMPT(ch));
+        if (victim->player.prompt.empty() || IS_NPC(victim))
+            victim->player.prompt = ch->player.prompt;
     }
 }
 
 ACMD(do_rename) {
     int player_i;
     CharData *victim = nullptr;
-    char tmp_name[MAX_INPUT_LENGTH], arg1[MAX_INPUT_LENGTH];
-    char arg2[MAX_INPUT_LENGTH];
 
-    two_arguments(argument, arg1, arg2);
+    auto arg1 = argument.shift();
+    auto arg2 = argument.get();
 
     if (!ch || IS_NPC(ch))
         return;
 
-    if (!*arg1 || !*arg2) {
+    if (arg1.empty() || arg2.empty()) {
         char_printf(ch, "Usage: rename <player name> <new name>\n");
         return;
     }
@@ -630,8 +632,9 @@ ACMD(do_rename) {
         return;
     }
 
-    if (_parse_name(arg2, tmp_name) || strlen(tmp_name) < 2 || strlen(tmp_name) > MAX_NAME_LENGTH ||
-        !Valid_Name(tmp_name) || fill_word(strcpy(buf, tmp_name)) || reserved_word(buf)) {
+    auto tmp_name = _parse_name(arg2);
+    if (tmp_name.empty() || tmp_name.length() < 2 || tmp_name.length() > MAX_NAME_LENGTH || !is_valid_name(tmp_name) ||
+        fill_word(tmp_name) || reserved_word(tmp_name)) {
         char_printf(ch, "The new name is invalid.\n");
         return;
     }
@@ -641,7 +644,7 @@ ACMD(do_rename) {
         return;
     }
 
-    char_printf(ch, "&1&bYou have renamed &7{}&1 to &7{}&0\n", GET_NAME(victim), cap_by_color(tmp_name));
+    char_printf(ch, "&1&bYou have renamed &7{}&1 to &7{}&0\n", GET_NAME(victim), capitalize_first(tmp_name));
     log(LogSeverity::Stat, LVL_HEAD_C, "(GC) {} has renamed {} to {}", GET_NAME(ch), GET_NAME(victim), tmp_name);
 
     rename_player(victim, tmp_name);
@@ -678,19 +681,17 @@ ACMD(do_return) {
 ACMD(do_load) {
     CharData *mob;
     ObjData *obj;
-    int number, r_num;
+    int r_num;
 
-    two_arguments(argument, buf, buf2);
+    auto load_type = argument.shift();
+    auto number_opt = argument.try_shift_number();
 
-    if (!*buf || !*buf2 || !isdigit(*buf2)) {
+    if (load_type.empty() || !number_opt) {
         char_printf(ch, "Usage: load { obj | mob } <number>\n");
         return;
     }
-    if ((number = atoi(buf2)) < 0) {
-        char_printf(ch, "A NEGATIVE number??\n");
-        return;
-    }
-    if (is_abbrev(buf, "mob")) {
+    auto number = *number_opt;
+    if (matches_start(load_type, "mob")) {
         if ((r_num = real_mobile(number)) < 0) {
             char_printf(ch, "There is no monster with that number.\n");
             return;
@@ -704,7 +705,7 @@ ACMD(do_load) {
         log(LogSeverity::Stat, std::max<int>(LVL_GOD, GET_INVIS_LEV(ch)), "(GC) {} loads mob,  {}", GET_NAME(ch),
             GET_NAME(mob));
         load_mtrigger(mob);
-    } else if (is_abbrev(buf, "obj")) {
+    } else if (matches_start(load_type, "obj")) {
         if ((r_num = real_object(number)) < 0) {
             char_printf(ch, "There is no object with that number.\n");
             return;
@@ -726,10 +727,9 @@ ACMD(do_purge) {
     CharData *vict, *next_v;
     ObjData *obj, *next_o;
 
-    one_argument(argument, buf);
+    auto buf = argument.shift();
 
-    if (*buf) { /* argument supplied. destroy single object
-                 * or char */
+    if (!buf.empty()) { /* argument supplied. destroy single object or char */
         if ((vict = find_char_in_room(&world[ch->in_room], find_vis_by_name(ch, buf)))) {
             if (!IS_NPC(vict) && (GET_LEVEL(ch) <= GET_LEVEL(vict)) && (GET_LEVEL(ch) >= LVL_HEAD_B)) {
                 char_printf(ch, "Fuuuuuuuuu!\n");
@@ -774,12 +774,11 @@ ACMD(do_purge) {
 
 ACMD(do_advance) {
     CharData *victim;
-    char *name = arg, *level = buf2;
-    int newlevel, oldlevel, i;
 
-    two_arguments(argument, name, level);
+    auto name = argument.shift();
+    auto level = argument.try_shift_number();
 
-    if (!*name) {
+    if (name.empty()) {
         char_printf(ch, "Advance who?\n");
         return;
     }
@@ -796,10 +795,11 @@ ACMD(do_advance) {
         char_printf(ch, "NO!  Not on NPC's.\n");
         return;
     }
-    if (!*level || (newlevel = atoi(level)) <= 0) {
+    if (!level || *level <= 0) {
         char_printf(ch, "That's not a level!\n");
         return;
     }
+    int newlevel = *level;
     if (newlevel > LVL_IMPL) {
         char_printf(ch, "{} is the highest possible level.\n", LVL_IMPL);
         return;
@@ -814,7 +814,7 @@ ACMD(do_advance) {
         return;
     }
 
-    oldlevel = GET_LEVEL(victim);
+    int oldlevel = GET_LEVEL(victim);
     if (newlevel < GET_LEVEL(victim)) {
         char_printf(ch,
                     "&0&9&bYou are momentarily enveloped by darkness!&0\n"
@@ -848,7 +848,7 @@ ACMD(do_advance) {
         SET_FLAG(PRF_FLAGS(victim), PRF_HOLYLIGHT);
         SET_FLAG(PRF_FLAGS(victim), PRF_SHOWVNUMS);
         SET_FLAG(PRF_FLAGS(victim), PRF_AUTOEXIT);
-        for (i = 1; i <= MAX_SKILLS; i++)
+        for (int i = 1; i <= MAX_SKILLS; i++)
             SET_SKILL(victim, i, 100);
         /* Make sure they have an empty olc zone list */
         free_olc_zone_list(victim);
@@ -882,15 +882,14 @@ void perform_restore(CharData *vict) {
 
 ACMD(do_restore) {
     CharData *vict;
-    int i;
 
     if (environment == ENV_PROD && GET_LEVEL(ch) < LVL_RESTORE) {
         char_printf(ch, "You are not godly enough for that!\n");
         return;
     }
 
-    one_argument(argument, buf);
-    if (!*buf)
+    auto buf = argument.shift();
+    if (buf.empty())
         char_printf(ch, "Whom do you wish to restore?\n");
     else if (!(vict = find_char_around_char(ch, find_vis_by_name(ch, buf))))
         char_printf(ch, NOPERSON);
@@ -899,7 +898,7 @@ ACMD(do_restore) {
         act("You have been fully healed by $N!", false, vict, 0, ch, TO_CHAR | TO_SLEEP);
         perform_restore(vict);
         if ((GET_LEVEL(ch) >= LVL_GRGOD) && (GET_LEVEL(vict) >= LVL_IMMORT)) {
-            for (i = 1; i <= TOP_SKILL; i++)
+            for (int i = 1; i <= TOP_SKILL; i++)
                 SET_SKILL(vict, i, 1000);
             effect_total(vict);
         }
@@ -918,8 +917,8 @@ void perform_pain(CharData *vict) {
 ACMD(do_pain) {
     CharData *vict;
 
-    one_argument(argument, buf);
-    if (!(*buf))
+    auto buf = argument.shift();
+    if (buf.empty())
         char_printf(ch, "To whom do you wish to cause pain?\n");
     else if (!(vict = find_char_around_char(ch, find_vis_by_name(ch, buf))))
         char_printf(ch, NOPERSON);
@@ -965,21 +964,19 @@ void perform_immort_invis(CharData *ch, int level) {
 }
 
 ACMD(do_invis) {
-    int level;
-
     if (IS_NPC(ch)) {
         char_printf(ch, "You can't do that!\n");
         return;
     }
 
-    one_argument(argument, arg);
-    if (!*arg) {
+    auto level_opt = argument.try_shift_number();
+    if (!level_opt) {
         if (GET_INVIS_LEV(ch) > 0)
             perform_immort_vis(ch);
         else
             perform_immort_invis(ch, GET_LEVEL(ch));
     } else {
-        level = atoi(arg);
+        int level = *level_opt;
         if (level > GET_LEVEL(ch))
             char_printf(ch, "You can't go invisible above your own level.\n");
         else if (level < 1)
@@ -992,37 +989,35 @@ ACMD(do_invis) {
 ACMD(do_gecho) {
     DescriptorData *pt;
 
-    skip_spaces(&argument);
-
-    if (!*argument)
+    if (argument.empty())
         char_printf(ch, "That must be a mistake...\n");
     else {
+        auto msg = argument.get();
         for (pt = descriptor_list; pt; pt = pt->next)
             if (!pt->connected && pt->character && pt->character != ch)
-                char_printf(pt->character, "{}&0\n", argument);
+                char_printf(pt->character, "{}&0\n", msg);
         if (PRF_FLAGGED(ch, PRF_NOREPEAT))
             char_printf(ch, OK);
         else
-            char_printf(ch, "{}&0\n", argument);
+            char_printf(ch, "{}&0\n", msg);
     }
 }
 
 /* completely redone in order to add poofs to the pfile */
 /* --Fingon                                             */
 ACMD(do_poofset) {
-    skip_spaces(&argument);
 
     switch (subcmd) {
     case SCMD_POOFIN:
-        if (argument[0] != '\0') {
-            GET_POOFIN(ch) = strdup(argument);
+        if (argument.empty()) {
+            GET_POOFIN(ch) = argument.get();
             char_printf(ch, "Your poofin is now: {}\n", GET_POOFIN(ch));
         } else
             char_printf(ch, "Your poofin is: {}\n", GET_POOFIN(ch));
         break;
     case SCMD_POOFOUT:
-        if (argument[0] != '\0') {
-            GET_POOFOUT(ch) = strdup(argument);
+        if (argument.empty()) {
+            GET_POOFOUT(ch) = argument.get();
             char_printf(ch, "Your poofin is now: {}\n", GET_POOFOUT(ch));
         } else
             char_printf(ch, "Your poofout is: {}\n", GET_POOFOUT(ch));
@@ -1035,21 +1030,21 @@ ACMD(do_poofset) {
 
 ACMD(do_dc) {
     DescriptorData *d = nullptr;
-    int num_to_dc;
 
-    one_argument(argument, arg);
-    if ((num_to_dc = atoi(arg))) {
+    auto arg = argument.shift();
+    if (is_integer(arg)) {
+        int num_to_dc = svtoi(arg);
         for (d = descriptor_list; d && d->desc_num != num_to_dc; d = d->next)
             ;
         if (!d) {
             char_printf(ch, "No such connection.\n");
             return;
         }
-    } else if (*arg)
+    } else if (!arg.empty())
         for (d = descriptor_list; d; d = d->next) {
-            if (d->character && GET_NAME(d->character) && !strcasecmp(GET_NAME(d->character), arg))
+            if (d->character && !GET_NAME(d->character).empty() && matches(GET_NAME(d->character), arg))
                 break;
-            if (d->original && GET_NAME(d->original) && !strcasecmp(GET_NAME(d->original), arg))
+            if (d->original && !GET_NAME(d->original).empty() && matches(GET_NAME(d->original), arg))
                 break;
         }
 
@@ -1063,19 +1058,18 @@ ACMD(do_dc) {
         char_printf(ch, "Umm.. maybe that's not such a good idea...\n");
         return;
     }
-    num_to_dc = d->desc_num;
     close_socket(d);
-    char_printf(ch, "Connection #{:d} closed.\n", num_to_dc);
+    char_printf(ch, "Connection #{:d} closed.\n", d->desc_num);
     log("(GC) Connection closed by {}.", GET_NAME(ch));
 }
 
 ACMD(do_wizlock) {
     int value;
-    const char *when;
+    std::string_view when;
 
-    one_argument(argument, arg);
-    if (*arg) {
-        value = atoi(arg);
+    auto arg = argument.try_shift_number();
+    if (arg) {
+        value = *arg;
         if (value < 0 || value > GET_LEVEL(ch)) {
             char_printf(ch, "Invalid wizlock value.\n");
             return;
@@ -1101,28 +1095,27 @@ ACMD(do_wizlock) {
         char_printf(ch, "Only level {:d} and above may enter the game {}.\n", should_restrict, when);
         break;
     }
-    if (!*arg && restrict_reason == RESTRICT_AUTOBOOT)
+    if (!arg && restrict_reason == RESTRICT_AUTOBOOT)
         char_printf(ch, "The restriction was set automatically by the automatic rebooting system.\n");
 }
 
 ACMD(do_date) {
-    char *tmstr;
     time_t mytime;
     int d, h, m;
     extern time_t *boot_time;
 
     if (subcmd == SCMD_DATE)
-        mytime = time(0);
+        mytime = time(nullptr);
     else
         mytime = boot_time[0];
 
-    tmstr = (char *)asctime(localtime(&mytime));
-    *(tmstr + strlen(tmstr) - 1) = '\0';
+    std::string tmstr = std::ctime(&mytime);
+    tmstr.pop_back(); // Remove the newline character
 
     if (subcmd == SCMD_DATE)
         char_printf(ch, "Current machine time: {}\n", tmstr);
     else {
-        mytime = time(0) - boot_time[0];
+        mytime = time(nullptr) - boot_time[0];
         d = mytime / 86400;
         h = (mytime / 3600) % 24;
         m = (mytime / 60) % 60;
@@ -1133,50 +1126,52 @@ ACMD(do_date) {
 ACMD(do_force) {
     DescriptorData *i, *next_desc;
     CharData *vict, *next_force;
-    char to_force[MAX_INPUT_LENGTH + 2];
 
-    half_chop(argument, arg, to_force);
+    auto who = argument.shift();
+    auto command = argument.get();
 
-    sprintf(buf1, "$n has forced you to '%s'.", to_force);
+    std::string output = fmt::format("$n has forced you to '{}'.", command);
 
-    if (!*arg || !*to_force)
+    if (who.empty())
         char_printf(ch, "Whom do you wish to force do what?\n");
-    else if ((GET_LEVEL(ch) < LVL_GRGOD) || (strcasecmp("all", arg) && strcasecmp("room", arg))) {
-        if (!(vict = find_char_around_char(ch, find_vis_by_name(ch, arg))))
+    else if (command.empty())
+        char_printf(ch, "What do you wish them to do?\n");
+    else if ((GET_LEVEL(ch) < LVL_GRGOD) || (!matches("all", who) && !matches("room", who))) {
+        if (!(vict = find_char_around_char(ch, find_vis_by_name(ch, who))))
             char_printf(ch, NOPERSON);
         else if (GET_LEVEL(ch) <= GET_LEVEL(vict))
             char_printf(ch, "No, no, no!\n");
         else {
             char_printf(ch, OK);
-            act(buf1, false, ch, nullptr, vict, TO_VICT);
+            act(output, false, ch, nullptr, vict, TO_VICT);
             log(LogSeverity::Stat, std::max<int>(LVL_GOD, GET_INVIS_LEV(ch)), "(GC) {} forced {} to {}", GET_NAME(ch),
-                GET_NAME(vict), to_force);
-            command_interpreter(vict, to_force);
+                GET_NAME(vict), command);
+            command_interpreter(vict, command);
         }
-    } else if (!strcasecmp("room", arg)) {
+    } else if (matches("room", who)) {
         char_printf(ch, OK);
         log(LogSeverity::Stat, std::max<int>(LVL_GOD, GET_INVIS_LEV(ch)), "(GC) {} forced room {:d} to {}",
-            GET_NAME(ch), world[ch->in_room].vnum, to_force);
+            GET_NAME(ch), world[ch->in_room].vnum, command);
 
         for (vict = world[ch->in_room].people; vict; vict = next_force) {
             next_force = vict->next_in_room;
             if (GET_LEVEL(vict) >= GET_LEVEL(ch))
                 continue;
-            act(buf1, false, ch, nullptr, vict, TO_VICT);
-            command_interpreter(vict, to_force);
+            act(output, false, ch, nullptr, vict, TO_VICT);
+            command_interpreter(vict, command);
         }
     } else { /* force all */
         char_printf(ch, OK);
         log(LogSeverity::Stat, std::max<int>(LVL_GOD, GET_INVIS_LEV(ch)), "(GC) {} forced all to {}", GET_NAME(ch),
-            to_force);
+            command);
 
         for (i = descriptor_list; i; i = next_desc) {
             next_desc = i->next;
 
             if (i->connected || !(vict = i->character) || GET_LEVEL(vict) >= GET_LEVEL(ch))
                 continue;
-            act(buf1, false, ch, nullptr, vict, TO_VICT);
-            command_interpreter(vict, to_force);
+            act(output, false, ch, nullptr, vict, TO_VICT);
+            command_interpreter(vict, command);
         }
     }
 }
@@ -1187,10 +1182,7 @@ ACMD(do_wiznet) {
     bool explicit_level = false;
     int level = LVL_IMMORT;
 
-    skip_spaces(&argument);
-    delete_doubledollar(argument);
-
-    if (!*argument) {
+    if (argument.empty()) {
         char_printf(ch,
                     "Usage: \n"
                     "   wiznet <text> - Send a message over wiznet to all gods.\n "
@@ -1199,75 +1191,69 @@ ACMD(do_wiznet) {
         return;
     }
 
-    switch (*argument) {
-    case '#':
-        one_argument(argument + 1, buf1);
-        if (is_number(buf1)) {
-            half_chop(argument + 1, buf1, argument);
-            level = std::max(atoi(buf1), 1);
-            if (level > GET_LEVEL(ch)) {
-                char_printf(ch, "You can't wiznet above your own level.\n");
-                return;
-            }
-            explicit_level = true;
-        }
-        break;
-    case '@':
-        for (d = descriptor_list; d; d = d->next) {
-            if (!d->connected && GET_LEVEL(d->character) >= LVL_IMMORT && !PRF_FLAGGED(d->character, PRF_NOWIZ) &&
-                (CAN_SEE(ch, d->character) || GET_LEVEL(ch) == LVL_IMPL)) {
-                if (!any) {
-                    sprintf(buf1, "Gods online:\n");
-                    any = true;
+    auto command = argument.command_shift(true);
+    if (!command.empty()) {
+        switch (command[0]) {
+        case '#': {
+            auto level_opt = argument.try_shift_number();
+            if (level_opt) {
+                level = std::max(*level_opt, 1);
+                if (level > GET_LEVEL(ch)) {
+                    char_printf(ch, "You can't wiznet above your own level.\n");
+                    return;
                 }
-                sprintf(buf1, "%s  %s", buf1, GET_NAME(d->character));
-                if (PLR_FLAGGED(d->character, PLR_WRITING))
-                    sprintf(buf1, "%s (Writing)\n", buf1);
-                else if (EDITING(d))
-                    sprintf(buf1, "%s (Writing)\n", buf1);
-                else if (PLR_FLAGGED(d->character, PLR_MAILING))
-                    sprintf(buf1, "%s (Writing mail)\n", buf1);
-                else
-                    sprintf(buf1, "%s\n", buf1);
+                explicit_level = true;
             }
-        }
-        any = false;
-        for (d = descriptor_list; d; d = d->next) {
-            if (!d->connected && GET_LEVEL(d->character) >= LVL_IMMORT && PRF_FLAGGED(d->character, PRF_NOWIZ) &&
-                CAN_SEE(ch, d->character)) {
-                if (!any) {
-                    sprintf(buf1, "%sGods offline:\n", buf1);
-                    any = true;
+        } break;
+        case '@': {
+            std::string buf;
+            for (d = descriptor_list; d; d = d->next) {
+                if (!d->connected && GET_LEVEL(d->character) >= LVL_IMMORT && !PRF_FLAGGED(d->character, PRF_NOWIZ) &&
+                    (CAN_SEE(ch, d->character) || GET_LEVEL(ch) == LVL_IMPL)) {
+                    if (!any) {
+                        buf = "Gods online:\n";
+                        any = true;
+                    }
+                    buf += "  " + GET_NAME(d->character);
+                    if (PLR_FLAGGED(d->character, PLR_WRITING))
+                        buf += " (Writing)\n";
+                    else if (EDITING(d))
+                        buf += " (Writing)\n";
+                    else if (PLR_FLAGGED(d->character, PLR_MAILING))
+                        buf += " (Writing mail)\n";
+                    else
+                        buf += "\n";
                 }
-                sprintf(buf1, "%s  %s\n", buf1, GET_NAME(d->character));
             }
+            any = false;
+            for (d = descriptor_list; d; d = d->next) {
+                if (!d->connected && GET_LEVEL(d->character) >= LVL_IMMORT && PRF_FLAGGED(d->character, PRF_NOWIZ) &&
+                    CAN_SEE(ch, d->character)) {
+                    if (!any) {
+                        buf += "Gods offline:\n";
+                        any = true;
+                    }
+                    buf += "  " + GET_NAME(d->character) + "\n";
+                }
+            }
+            char_printf(ch, buf);
+            return;
+        } break;
+        case '\\':
+            break;
+        default:
+            break;
         }
-        char_printf(ch, buf1);
-        return;
-        break;
-    case '\\':
-        ++argument;
-        break;
-    default:
-        break;
     }
+
     if (PRF_FLAGGED(ch, PRF_NOWIZ)) {
         char_printf(ch, "You are offline!\n");
         return;
     }
-    skip_spaces(&argument);
 
-    if (!*argument) {
+    if (argument.empty()) {
         char_printf(ch, "Don't bother the gods like that!\n");
         return;
-    }
-
-    if (explicit_level) {
-        sprintf(buf1, "&6%s: <%d> %s&0\n", GET_NAME(ch), level, argument);
-        sprintf(buf2, "&6Someone: <%d> %s&0\n", level, argument);
-    } else {
-        sprintf(buf1, "&6%s: %s&0\n", GET_NAME(ch), argument);
-        sprintf(buf2, "&6Someone: %s&0\n", argument);
     }
 
     for (d = descriptor_list; d; d = d->next) {
@@ -1283,10 +1269,16 @@ ACMD(do_wiznet) {
             continue;
         if (d == ch->desc && PRF_FLAGGED(d->character, PRF_NOREPEAT))
             continue;
-        if (CAN_SEE(d->character, ch))
-            char_printf(d->character, buf1);
+        if (CAN_SEE(d->character, ch)) {
+            if (explicit_level)
+                char_printf(d->character, "&6{}: <{}> {}&0\n", GET_NAME(ch), level, argument);
+            else
+                char_printf(d->character, "&6{}: {}&0\n", GET_NAME(ch), argument);
+
+        } else if (explicit_level)
+            char_printf(d->character, "&6Someone: <{}> {}&0\n", level, argument);
         else
-            char_printf(d->character, buf2);
+            char_printf(d->character, "&6Someone: {}&0\n", argument);
     }
 
     if (PRF_FLAGGED(ch, PRF_NOREPEAT))
@@ -1295,7 +1287,7 @@ ACMD(do_wiznet) {
 
 /* added for name approval system by fingh 3/31/99 */
 /* Complete name approval system redone by Zantir/David Endre 5/4/99 */
-void broadcast_name(char *name) {
+void broadcast_name(std::string_view name) {
     DescriptorData *d;
     for (d = descriptor_list; d; d = d->next)
         if (IS_PLAYING(d) && d->character && GET_LEVEL(d->character) >= LVL_IMMORT &&
@@ -1303,7 +1295,7 @@ void broadcast_name(char *name) {
             string_to_output(d, "&2&b{} is awaiting name approval.&0\n", name);
 }
 
-const char *reasons[] = {
+constexpr std::array<std::string_view, 9> reasons = {
     "Compound words. Examples: LadyJade, BraveBlade, ImmortalSoul\n"
     "These types of names give a player an unearned arrogance above\n"
     "other players and in some instances above the gods.",
@@ -1324,18 +1316,14 @@ const char *reasons[] = {
     "Other...Please talk to a god for further information."};
 
 ACMD(do_name) {
-    char buffer[MAX_STRING_LENGTH];
-    char arg2[MAX_INPUT_LENGTH];
     DescriptorData *d;
     int choice = 0;
     int z = 0;
 
-    *buffer = '\0';
-
     switch (subcmd) {
-    case SCMD_ACCEPT:
-        one_argument(argument, arg);
-        if (!*arg) {
+    case SCMD_ACCEPT: {
+        auto arg = argument.shift();
+        if (arg.empty()) {
             char_printf(ch, "Accept WHO?\n");
             return;
         }
@@ -1346,12 +1334,10 @@ ACMD(do_name) {
             if (!d->character)
                 continue;
 
-            /* make sure player is either at the CON_NAME_WAIT_APPROVAL state
-               or has been auto-accepted and still pending approval
-               and the player is not yourself
-             */
+            // make sure player is either at the CON_NAME_WAIT_APPROVAL state or has been auto-accepted and still
+            // pending approval and the player is not yourself
             if (((STATE(d) == CON_NAME_WAIT_APPROVAL) || (PLR_FLAGGED(d->character, PLR_NAPPROVE))) &&
-                ((d != ch->desc) && (strncasecmp(GET_NAME(d->character), arg, strlen(arg)) == 0))) {
+                ((d != ch->desc) && matches(GET_NAME(d->character), arg))) {
                 /* create the player in the pfile if he isn't there already */
                 if (GET_PFILEPOS(d->character) < 0) {
                     GET_PFILEPOS(d->character) = create_player_index_entry(GET_NAME(d->character));
@@ -1382,41 +1368,39 @@ ACMD(do_name) {
 
                 /* tell the player the name has been accepted */
                 char_printf(ch, "&2&bThe name: {} has been accepted.&0\n", GET_NAME(d->character));
-                char_printf(d->character, buf);
                 return;
             }
         }
         char_printf(ch, "No such player waiting for approval.\n");
-        break;
-    case SCMD_DECLINE:
-        two_arguments(argument, arg, arg2);
-        if (!*arg) {
+    } break;
+    case SCMD_DECLINE: {
+        auto arg = argument.shift();
+        auto arg2 = argument.try_shift_number();
+
+        if (arg.empty()) {
             char_printf(ch, "Decline WHO?\n");
             return;
         }
-        if (!*arg2) {
+        if (!arg2 || *arg2 < 1 || *arg2 > reasons.size()) {
             char_printf(ch, "For what reason? Type 'nlist 0' for a list.\n");
             return;
         }
 
-        choice = atoi(arg2);
-        choice--;
-        if (choice < 0 || choice > 7)
-            choice = 8;
+        choice = *arg2;
         /* cycle through connected players */
         for (d = descriptor_list; d; d = d->next) {
             /* added to stop crashes while people are at CON_QANSI etc. */
             if (!d->character)
                 continue;
 
-            if (((STATE(d) == CON_NAME_WAIT_APPROVAL) || (PLR_FLAGGED(d->character, PLR_NAPPROVE))) &&
-                (d != ch->desc) && (strncasecmp(GET_NAME(d->character), arg, strlen(arg)) == 0)) {
+            if (((STATE(d) == CON_NAME_WAIT_APPROVAL) || (PLR_FLAGGED(d->character, PLR_NAPPROVE))) && d != ch->desc &&
+                matches(GET_NAME(d->character), arg)) {
                 log(LogSeverity::Stat, LVL_IMMORT, "The name: {} has been declined by {}, reason {:d}.",
-                    GET_NAME(d->character), GET_NAME(ch), choice + 1);
+                    GET_NAME(d->character), GET_NAME(ch), choice);
                 char_printf(ch, "&2&bThe name: {} has been declined.&0\n", GET_NAME(d->character));
                 send_to_xnames(GET_NAME(d->character));
                 string_to_output(d, "That name has been rejected, because it breaks this rule:\n");
-                string_to_output(d, "{}\n", reasons[choice]);
+                string_to_output(d, "{}\n", reasons[choice - 1]);
                 SET_FLAG(PLR_FLAGS(d->character), PLR_NEWNAME);
                 if (STATE(d) == CON_NAME_WAIT_APPROVAL) {
                     string_to_output(d, "Please try another name.\n");
@@ -1432,37 +1416,28 @@ ACMD(do_name) {
             }
         }
         char_printf(ch, "No such player waiting for approval.\n");
-        break;
-    case SCMD_LIST:
-        one_argument(argument, arg);
-
-        if (*arg) {
-            if (atoi(arg) == 0) {
-                for (z = 0; z < 8; z++)
-                    char_printf(ch, "{}{:d}. {}\n", buf, z + 1, reasons[z]);
-            }
-        }
-
+    } break;
+    case SCMD_LIST: {
+        char_printf(ch, "The following people are awaiting name approval:\n");
+        int count = 0;
         for (d = descriptor_list; d; d = d->next) {
             if (d->character) {
                 if (((STATE(d) == CON_NAME_WAIT_APPROVAL) ||
                      (PLR_FLAGGED(d->character, PLR_NAPPROVE) && !(PLR_FLAGGED(d->character, PLR_NEWNAME)))) &&
                     (d != ch->desc)) {
-                    sprintf(buffer, "%s%s\n", buffer, GET_NAME(d->character));
+                    char_printf(ch, GET_NAME(d->character) + "\n");
+                    count++;
                 }
             }
         }
 
-        if (strlen(buffer) < 2) {
+        if (count == 0) {
             char_printf(ch, "No one.\n");
-        } else {
-            char_printf(ch, "The following people are awaiting name approval:\n");
-            char_printf(ch, buffer);
         }
-        break;
+    } break;
     default:
         break; /* maybe send an error to log here? */
-    }          /* end switch */
+    } /* end switch */
 }
 
 ACMD(do_zreset) {
@@ -1470,11 +1445,11 @@ ACMD(do_zreset) {
 
     int i, j;
 
-    one_argument(argument, arg);
+    auto arg = argument.shift();
 
-    if (!*arg || *arg == '.') {
+    if (arg.empty()) {
         i = world[ch->in_room].zone;
-    } else if (*arg == '*') {
+    } else if (arg[0] == '*') {
         if (GET_LEVEL(ch) <= LVL_HEAD_B)
             return;
         for (i = 0; i <= top_of_zone_table; i++)
@@ -1482,11 +1457,11 @@ ACMD(do_zreset) {
         char_printf(ch, "Reset world.\n");
         log(LogSeverity::Stat, std::max(LVL_GRGOD, GET_INVIS_LEV(ch)), "(GC) {} reset entire world.", GET_NAME(ch));
         return;
-    } else if (!isdigit(*arg)) {
+    } else if (!is_integer(arg)) {
         char_printf(ch, "Usage: zreset [<zone-number>]\n");
         return;
     } else {
-        j = atoi(arg);
+        j = svtoi(arg);
         for (i = 0; i <= top_of_zone_table; i++)
             if (zone_table[i].number == j)
                 break;
@@ -1504,7 +1479,7 @@ ACMD(do_zreset) {
         char_printf(ch, "Invalid zone number.\n");
 }
 
-static char *center_wiztitle(char *wiztitle, int len, int noansi_len) {
+static std::string_view center_wiztitle(std::string_view wiztitle, int len, int noansi_len) {
     char centerbuf[MAX_INPUT_LENGTH];
     int i;
     bool add_zero;
@@ -1528,35 +1503,29 @@ static char *center_wiztitle(char *wiztitle, int len, int noansi_len) {
         centerbuf[WIZ_TITLE_WIDTH - 1 + (len - noansi_len) - i] = ' ';
     centerbuf[WIZ_TITLE_WIDTH + (len - noansi_len)] = '\0';
 
-    return strdup(centerbuf);
+    return centerbuf;
 }
 
-void do_wiztitle(char *outbuf, CharData *vict, char *argument) {
-    int noansi_len, len;
+void do_wiztitle(CharData *vict, Arguments argument) {
+    auto new_title = argument.shift();
 
-    skip_spaces(&argument);
-    delete_doubledollar(argument);
+    int len = new_title.length();
+    int noansi_len = len - count_color_chars(new_title);
 
-    /* check size of title w/out ansi chars */
-    len = strlen(argument);
-    noansi_len = len - count_color_chars(argument);
-
-    if (IS_NPC(vict))
-        sprintf(buf, "Mobile's do not have godly titles...nice try.\n");
-    else if (strcasestr(argument, "[") || strcasestr(argument, "]"))
-        sprintf(buf, "Godly Titles can't contain the [ or ] characters.\n");
-    else if (strlen(argument) >= MAX_INPUT_LENGTH)
-        sprintf(buf, "Sorry, godly titles can't be longer than %d characters.\n", MAX_INPUT_LENGTH - 1);
-    else if (noansi_len > WIZ_TITLE_WIDTH)
-        sprintf(buf, "Sorry, text portion of godly titles can't be longer than 12 characters.\n");
-    else if (noansi_len == 0) {
-        GET_WIZ_TITLE(vict) = nullptr;
-        sprintf(buf, "Okay, %s's godly title reset to default.\n", GET_NAME(vict));
+    if (IS_NPC(vict)) {
+        char_printf(vict, "Mobiles do not have godly titles...nice try.\n");
+    } else if (new_title.find('[') != std::string::npos || new_title.find(']') != std::string::npos) {
+        char_printf(vict, "Godly Titles can't contain the [ or ] characters.\n");
+    } else if (len >= MAX_INPUT_LENGTH) {
+        char_printf(vict, "Sorry, godly titles can't be longer than {} characters.\n", MAX_INPUT_LENGTH - 1);
+    } else if (noansi_len > WIZ_TITLE_WIDTH) {
+        char_printf(vict, "Sorry, text portion of godly titles can't be longer than 12 characters.\n");
+    } else if (noansi_len == 0) {
+        GET_WIZ_TITLE(vict).clear();
+        char_printf(vict, "Okay, {}'s godly title reset to default.\n", GET_NAME(vict));
     } else {
-        if (GET_WIZ_TITLE(vict))
-            free(GET_WIZ_TITLE(vict));
-        GET_WIZ_TITLE(vict) = center_wiztitle(argument, len, noansi_len);
-        sprintf(buf, "Okay, %s's godly title is now [%s]\n", GET_NAME(vict), GET_WIZ_TITLE(vict));
+        GET_WIZ_TITLE(vict) = center_wiztitle(new_title, len, noansi_len);
+        char_printf(vict, "Okay, {}'s godly title is now [{}]\n", GET_NAME(vict), GET_WIZ_TITLE(vict));
     }
 }
 
@@ -1568,9 +1537,9 @@ ACMD(do_wizutil) {
     CharData *vict;
     long result;
 
-    one_argument(argument, arg);
+    auto arg = argument.shift();
 
-    if (!*arg)
+    if (arg.empty())
         char_printf(ch, "Yes, but for whom?!?\n");
     else if (!(vict = find_char_around_char(ch, find_vis_by_name(ch, arg))))
         char_printf(ch, "There is no such player.\n");
@@ -1708,7 +1677,6 @@ ACMD(do_wizutil) {
 ACMD(do_set) {
     int i, l;
     CharData *vict = nullptr, *cbuf = nullptr;
-    char field[MAX_INPUT_LENGTH], name[MAX_INPUT_LENGTH], val_arg[MAX_INPUT_LENGTH];
     int on = 0, off = 0, value = 0;
     char is_file = 0, is_player = 0, save = true;
     int player_i = 0;
@@ -1716,7 +1684,7 @@ ACMD(do_set) {
     int parse_diety(CharData * ch, char arg);
 
     struct set_struct {
-        const char *cmd;
+        const std::string_view cmd;
         const char level;
         const char pcnpc;
         const char type;
@@ -1801,24 +1769,23 @@ ACMD(do_set) {
                   {"summon mount", LVL_GOD, PC, NUMBER},
                   {"\n", 0, BOTH, MISC}};
 
-    half_chop(argument, name, buf);
-    if (!strcasecmp(name, "file")) {
+    auto name = argument.shift();
+    if (matches(name, "file")) {
         is_file = 1;
-        half_chop(buf, name, buf);
-    } else if (!strcasecmp(name, "player")) {
+        name = argument.shift();
+    } else if (matches(name, "player")) {
         is_player = 1;
-        half_chop(buf, name, buf);
-    } else if (!strcasecmp(name, "mob")) {
-        half_chop(buf, name, buf);
+        name = argument.shift();
+    } else if (matches(name, "mob")) {
+        name = argument.shift();
     }
-    half_chop(buf, field, buf);
-    strcpy(val_arg, buf);
+    auto field = argument.shift();
 
-    if (!*name || !*field) {
+    if (name.empty() || field.empty()) {
         paging_printf(ch, "Usage: set <victim> <field> <value>\n");
         paging_printf(ch, "Set fields currently available to you:\n");
-        for (l = 0; *(fields[l].cmd) != '\n'; l++) {
-            if (fields[l].level <= GET_LEVEL(ch) && *(fields[l].cmd)) {
+        for (l = 0; fields[l].cmd[0] != '\n'; l++) {
+            if (fields[l].level <= GET_LEVEL(ch)) {
                 paging_printf(ch, "{:<20} {:<20} {:<6}\n", fields[l].cmd,
                               (fields[l].pcnpc == PC ? "Player Only" : "Player or Mob"),
                               (fields[l].type == BINARY ? "Binary" : (fields[l].type == NUMBER ? "Number" : "Misc")));
@@ -1862,8 +1829,8 @@ ACMD(do_set) {
             return;
         }
     }
-    for (l = 0; *(fields[l].cmd) != '\n'; l++)
-        if (!strncasecmp(field, fields[l].cmd, strlen(field)))
+    for (l = 0; fields[l].cmd[0] != '\n'; l++)
+        if (matches(field, fields[l].cmd))
             break;
 
     if (GET_LEVEL(ch) < fields[l].level) {
@@ -1878,19 +1845,25 @@ ACMD(do_set) {
         return;
     }
     if (fields[l].type == BINARY) {
-        if (!strcasecmp(val_arg, "on") || !strcasecmp(val_arg, "yes"))
+        auto value = argument.shift();
+        if (matches(value, "on") || matches(value, "yes"))
             on = 1;
-        else if (!strcasecmp(val_arg, "off") || !strcasecmp(val_arg, "no"))
+        else if (matches(value, "off") || matches(value, "no"))
             off = 1;
         if (!(on || off)) {
             char_printf(ch, "Value must be on or off.\n");
             return;
         }
     } else if (fields[l].type == NUMBER) {
-        value = atoi(val_arg);
+        auto value_opt = argument.try_shift_number();
+        if (!value_opt) {
+            char_printf(ch, "Value must be a number.\n");
+            return;
+        }
+        value = *value_opt;
     }
 
-    strcpy(buf, OK);
+    std::string buf{OK};
     switch (l) {
     case 0:
         SET_OR_REMOVE(PRF_FLAGS(vict), PRF_BRIEF);
@@ -1899,14 +1872,18 @@ ACMD(do_set) {
         char_printf(ch, "This option is unused.  You should not have seen this!\n");
         return;
     case 2:
-        set_title(vict, val_arg);
-        sprintf(buf, "%s's title is now: %s\n", GET_NAME(vict), GET_TITLE(vict));
+        set_title(vict, argument.get());
+        buf = fmt::format("{}'s title is now: {}\n", GET_NAME(vict), GET_TITLE(vict));
         break;
     case 3:
         SET_OR_REMOVE(PRF_FLAGS(vict), PRF_SUMMONABLE);
         on = !on; /* so output will be correct */
         break;
-    case 4:
+    case 4: {
+        if (!value) {
+            char_printf(ch, "Value must be a number.\n");
+            return;
+        }
         /* Base hit is in a player special. Don't set for npcs */
         if (IS_NPC(vict))
             GET_MAX_HIT(vict) = std::clamp(value, 1, 500000);
@@ -1914,7 +1891,7 @@ ACMD(do_set) {
             GET_BASE_HIT(vict) = std::clamp(value, 1, 500000);
             effect_total(vict);
         }
-        break;
+    } break;
     case 5:
         vict->points.max_mana = std::clamp(value, 1, 500000);
         effect_total(vict);
@@ -1969,20 +1946,21 @@ ACMD(do_set) {
         GET_NATURAL_CON(vict) = std::clamp(value, MIN_ABILITY_VALUE, MAX_ABILITY_VALUE);
         effect_total(vict);
         break;
-    case 17:
-        if (!strcasecmp(val_arg, "male"))
+    case 17: {
+        auto gender = argument.shift();
+        if (matches(gender, "male"))
             vict->player.sex = SEX_MALE;
-        else if (!strcasecmp(val_arg, "female"))
+        else if (matches(gender, "female"))
             vict->player.sex = SEX_FEMALE;
-        else if (!strcasecmp(val_arg, "neutral"))
+        else if (matches(gender, "neutral"))
             vict->player.sex = SEX_NEUTRAL;
-        else if (!strcasecmp(val_arg, "nonbinary"))
+        else if (matches(gender, "nonbinary"))
             vict->player.sex = SEX_NONBINARY;
         else {
             char_printf(ch, "Must be 'male', 'female', 'nonbinary', or 'neutral'.\n");
             return;
         }
-        break;
+    } break;
     case 18:
         GET_AC(vict) = std::clamp(value, MIN_AC, MIN_AC);
         effect_total(vict);
@@ -1997,7 +1975,7 @@ ACMD(do_set) {
                 zone->next = next->next;
                 free(next);
                 i = true;
-                sprintf(buf, "Removed %d from %s allowed OLC zones.\n", value, GET_NAME(vict));
+                buf = fmt::format("Removed {} from {} allowed OLC zones.\n", value, GET_NAME(vict));
                 break;
             }
         }
@@ -2008,7 +1986,7 @@ ACMD(do_set) {
             zone->zone = value;
             zone->next = GET_OLC_ZONES(vict);
             GET_OLC_ZONES(vict) = zone;
-            sprintf(buf, "Added %d to %s allowed OLC zones.\n", value, GET_NAME(vict));
+            buf = fmt::format("Added {} to {} allowed OLC zones.\n", value, GET_NAME(vict));
         }
     } break;
     case 20:
@@ -2043,7 +2021,7 @@ ACMD(do_set) {
         break;
     case 24:
         if (GET_LEVEL(ch) < LVL_HEAD_C && ch != vict) {
-            strcpy(buf, "You aren't godly enough for that!\n");
+            buf = "You aren't godly enough for that!\n";
             save = false;
             break;
         }
@@ -2051,7 +2029,7 @@ ACMD(do_set) {
         break;
     case 25:
         if (GET_LEVEL(ch) < LVL_HEAD_C && ch != vict) {
-            strcpy(buf, "You aren't godly enough for that!\n");
+            buf = "You aren't godly enough for that!\n";
             save = false;
             break;
         }
@@ -2071,22 +2049,23 @@ ACMD(do_set) {
         break;
     case 29:
     case 30:
-    case 31:
-        if (!strcasecmp(val_arg, "off")) {
+    case 31: {
+        auto val_arg = argument.shift();
+        if (matches(val_arg, "off")) {
             GET_COND(vict, (l - 29)) = (char)-1;
-            sprintf(buf, "%s's %s now off.\n", GET_NAME(vict), fields[l].cmd);
-        } else if (is_number(val_arg)) {
-            value = atoi(val_arg);
+            buf = fmt::format("{}'s {} now off.\n", GET_NAME(vict), fields[l].cmd);
+        } else if (is_integer(val_arg)) {
+            value = svtoi(val_arg);
             value = std::clamp(value, 0, 24);
             GET_COND(vict, (l - 29)) = (char)value;
-            sprintf(buf, "%s's %s set to %d.\n", GET_NAME(vict), fields[l].cmd, value);
+            buf = fmt::format("{}'s {} set to {}.\n", GET_NAME(vict), fields[l].cmd, value);
         } else {
-            strcpy(buf, "Must be 'off' or a value from 0 to 24.\n");
+            buf = "Must be 'off' or a value from 0 to 24.\n";
             save = false;
             break;
         }
         check_regen_rates(vict);
-        break;
+    } break;
     case 32:
         SET_OR_REMOVE(PLR_FLAGS(vict), PLR_KILLER);
         break;
@@ -2095,20 +2074,16 @@ ACMD(do_set) {
         break;
     case 34:
         if (value > GET_LEVEL(ch) || value > LVL_OVERLORD) {
-            strcpy(buf, "You can't do that.\n");
+            buf = "You can't do that.\n";
             save = false;
             break;
         }
-        if (GET_CLAN(vict) && IS_CLAN_MEMBER(vict))
-            GET_CLAN(vict)->power -= GET_LEVEL(vict);
         value = std::clamp(value, 0, LVL_IMPL);
         vict->player.level = (byte)value;
-        if (GET_CLAN(vict) && IS_CLAN_MEMBER(vict))
-            GET_CLAN(vict)->power += GET_LEVEL(vict);
         break;
     case 35:
         if ((i = real_room(value)) < 0) {
-            strcpy(buf, "No room exists with that number.\n");
+            buf = "No room exists with that number.\n";
             save = false;
             break;
         }
@@ -2127,47 +2102,50 @@ ACMD(do_set) {
     case 38:
         SET_OR_REMOVE(PLR_FLAGS(vict), PLR_DELETED);
         break;
-    case 39:
-        if ((i = parse_class(ch, vict, val_arg)) == CLASS_UNDEFINED) {
+    case 39: {
+        auto new_class = argument.shift();
+        if ((i = parse_class(ch, vict, new_class)) == CLASS_UNDEFINED) {
             save = false;
             buf[0] = '\0'; /* Don't say "Okay", we just gave feedback. */
             break;
         }
         if (i == GET_CLASS(vict)) {
-            sprintf(buf, "%s already %s.", vict == ch ? "You're" : "$e's", with_indefinite_article(CLASS_FULL(vict)));
+            buf = fmt::format("%s already %s.", vict == ch ? "You're" : "$e's",
+                              with_indefinite_article(CLASS_FULL(vict)));
         } else {
             convert_class(vict, i);
             if (ch != vict) {
-                sprintf(buf, "$n has changed your class to %s!", CLASS_FULL(vict));
+                buf = fmt::format("$n has changed your class to {}!", CLASS_FULL(vict));
                 act(buf, false, ch, 0, vict, TO_VICT);
             }
-            sprintf(buf, "Okay, %s now %s.", vict == ch ? "you are" : "$n is",
-                    with_indefinite_article(CLASS_FULL(vict)));
+            buf = fmt::format("Okay, {} now {}.", vict == ch ? "you are" : "$n is",
+                              with_indefinite_article(CLASS_FULL(vict)));
         }
         act(buf, false, vict, 0, ch, TO_VICT);
         buf[0] = '\0'; /* Don't say "Okay", we just gave feedback. */
-        break;
+    } break;
     case 40:
         SET_OR_REMOVE(PLR_FLAGS(vict), PLR_NOWIZLIST);
         break;
     case 41:
         SET_OR_REMOVE(PRF_FLAGS(vict), PRF_QUEST);
         break;
-    case 42:
-        if (is_number(val_arg)) {
-            value = atoi(val_arg);
+    case 42: {
+        auto room_num_opt = argument.try_shift_number();
+        if (room_num_opt) {
+            value = *room_num_opt;
             if (real_room(value) != NOWHERE) {
                 GET_HOMEROOM(vict) = value;
-                sprintf(buf, "%s's home room is now #%d.\n", GET_NAME(vict), GET_HOMEROOM(vict));
+                buf = fmt::format("{}'s home room is now #{}.\n", GET_NAME(vict), GET_HOMEROOM(vict));
             } else {
-                strcpy(buf, "That room does not exist!\n");
+                buf = "That room does not exist!\n";
                 save = false;
             }
         } else {
-            strcpy(buf, "Must be a room's vnum.\n");
+            buf = "Must be a room's vnum.\n";
             save = false;
         }
-        break;
+    } break;
     case 43:
         SET_OR_REMOVE(PRF_FLAGS(vict), PRF_COLOR_1);
         SET_OR_REMOVE(PRF_FLAGS(vict), PRF_COLOR_2);
@@ -2182,16 +2160,14 @@ ACMD(do_set) {
             char_printf(ch, "Not while they're logged in!\n");
             return;
         }
-        if (GET_IDNUM(ch) > 2 && !strcasecmp(GET_NAME(ch), "zuur")) {
-            strcpy(buf, "Please don't use this command, yet.\n");
-            save = false;
-        } else if (GET_LEVEL(vict) > LVL_HEAD_C) {
-            strcpy(buf, "You cannot change that.\n");
+        if (GET_LEVEL(vict) > LVL_HEAD_C) {
+            buf = "You cannot change that.\n";
             save = false;
         } else {
-            strncpy(GET_PASSWD(vict), CRYPT(val_arg, GET_NAME(vict)), MAX_PWD_LENGTH);
-            GET_PASSWD(vict)[MAX_PWD_LENGTH] = '\0';
-            sprintf(buf, "Password changed to '%s'.\n", val_arg);
+            auto pass = argument.get();
+            auto crypt_password = CRYPT(pass.data(), GET_NAME(vict).data());
+            GET_PASSWD(vict) = crypt_password.substr(0, MAX_PWD_LENGTH);
+            buf = fmt::format("Password changed to '{}'.\n", pass);
         }
         break;
     case 46:
@@ -2201,26 +2177,28 @@ ACMD(do_set) {
         GET_NATURAL_CHA(vict) = std::clamp(value, MIN_ABILITY_VALUE, MAX_ABILITY_VALUE);
         effect_total(vict);
         break;
-    case 48:
-        if ((i = parse_race(ch, vict, val_arg)) == RACE_UNDEFINED) {
+    case 48: {
+        auto new_race = argument.shift();
+        if ((i = parse_race(ch, vict, new_race)) == RACE_UNDEFINED) {
             save = false;
             buf[0] = '\0'; /* Don't say "Okay", we just gave feedback. */
             break;
         }
         if (i == GET_RACE(vict)) {
-            sprintf(buf, "%s already %s.", vict == ch ? "You're" : "$e's", with_indefinite_article(RACE_FULL(vict)));
+            buf =
+                fmt::format("{} already {}.", vict == ch ? "You're" : "$e's", with_indefinite_article(RACE_FULL(vict)));
         } else {
             convert_race(vict, i);
             if (ch != vict) {
-                sprintf(buf, "$n has changed your race to %s!", RACE_FULL(vict));
+                buf = fmt::format("$n has changed your race to {}!", RACE_FULL(vict));
                 act(buf, false, ch, 0, vict, TO_VICT);
             }
-            sprintf(buf, "Okay, %s now %s.", vict == ch ? "you are" : "$n is",
-                    with_indefinite_article(RACE_FULL(vict)));
+            buf = fmt::format("Okay, %s now %s.", vict == ch ? "you are" : "$n is",
+                              with_indefinite_article(RACE_FULL(vict)));
         }
         act(buf, false, vict, 0, ch, TO_VICT);
         buf[0] = '\0'; /* Don't say "Okay", we just gave feedback. */
-        break;
+    } break;
     case 49:
         /* GET_OLC2_ZONE(vict) = value; */
         break;
@@ -2273,27 +2251,28 @@ ACMD(do_set) {
         SET_OR_REMOVE(PRF_FLAGS(vict), PRF_HOLYLIGHT);
         break;
     case 66:
-        do_wiztitle(buf, vict, val_arg);
+        do_wiztitle(vict, argument);
         break;
     case 67:
         GET_COOLDOWN(vict, CD_OFFENSE_CHANT) = std::clamp(value, 0, 100);
         GET_COOLDOWN(vict, CD_DEFENSE_CHANT) = std::clamp(value, 0, 100);
         break;
-    case 68:
-        if (!*val_arg) {
+    case 68: {
+        auto new_size = argument.shift();
+        if (new_size.empty()) {
             show_sizes(ch);
             save = false;
-            buf[0] = '\0';
+            buf.clear();
             break;
-        } else if ((value = parse_size(ch, val_arg)) == SIZE_UNDEFINED) {
+        } else if ((value = parse_size(ch, new_size)) == SIZE_UNDEFINED) {
             save = false;
-            buf[0] = '\0';
+            buf.clear();
             break;
         }
         change_natural_size(vict, value);
-        sprintf(buf, "%s %s now %s in size.\n", ch == vict ? "You" : GET_NAME(vict), ch == vict ? "are" : "is",
-                SIZE_DESC(vict));
-        break;
+        buf = fmt::format("{} {} now {} in size.\n", ch == vict ? "You" : GET_NAME(vict), ch == vict ? "are" : "is",
+                          SIZE_DESC(vict));
+    } break;
     case 69:
         GET_HIDDENNESS(vict) = std::clamp(value, 0, 1000);
         break;
@@ -2301,29 +2280,24 @@ ACMD(do_set) {
         GET_RAGE(vict) = std::clamp(value, 0, 1000);
         check_regen_rates(vict);
         break;
-    case 71:
-        argument = any_one_arg(val_arg, field);
-        skip_spaces(&argument);
-        i = atoi(field);
-        value = 1;
-        if (GET_PERM_TITLES(ch))
-            for (; GET_PERM_TITLES(ch)[value - 1]; ++value)
-                ;
-        if (i < 1 || i > value)
-            sprintf(buf, "You can only set ptitles from 1 to %d.\n", value);
-        else {
-            if (strlen(argument) > MAX_TITLE_WIDTH)
-                argument[MAX_TITLE_WIDTH] = '\0';
-            if (i == value)
-                add_perm_title(vict, argument);
+    case 71: {
+        auto title_num = argument.try_shift_number();
+        auto new_title = argument.get().substr(0, MAX_TITLE_WIDTH);
+        int max_titles = GET_PERM_TITLES(vict).size();
+        if (!title_num) {
+            add_perm_title(vict, new_title);
+        } else if (*title_num < 1 || *title_num > max_titles) {
+            buf = fmt::format("You can only replace ptitles from 1 to {}.\n", max_titles);
+            save = false;
+        } else {
+            if (GET_PERM_TITLES(vict).size() == max_titles)
+                add_perm_title(vict, new_title);
             else {
-                if (GET_PERM_TITLES(vict)[i - 1])
-                    free(GET_PERM_TITLES(vict)[i - 1]);
-                GET_PERM_TITLES(vict)[i - 1] = strdup(argument);
+                GET_PERM_TITLES(vict)[*title_num] = new_title;
             }
-            sprintf(buf, "%s's p-title %d is now: %s\n", GET_NAME(vict), i, GET_PERM_TITLES(vict)[i - 1]);
+            buf = fmt::format("{}'s p-title {} is now: {}\n", GET_NAME(vict), i, new_title);
         }
-        break;
+    } break;
     case 72:
         GET_HEIGHT(vict) = value;
         break;
@@ -2331,42 +2305,38 @@ ACMD(do_set) {
         GET_WEIGHT(vict) = value;
         break;
     case 74: /* LIFE FORCE */
-        if ((i = parse_lifeforce(ch, val_arg)) == LIFE_UNDEFINED) {
+        if ((i = parse_lifeforce(ch, argument.get())) == LIFE_UNDEFINED) {
             save = false;
-            buf[0] = '\0';
             break;
         }
         if (i == GET_LIFEFORCE(vict)) {
-            sprintf(buf, "%s already infused with %s.", vict == ch ? "You're" : "$e's", LIFEFORCE_NAME(vict));
+            buf = fmt::format("%s already infused with %s.", vict == ch ? "You're" : "$e's", LIFEFORCE_NAME(vict));
         } else {
             if (ch != vict) {
-                sprintf(buf, "$n has changed your life force to %s!", lifeforces[i].name);
+                buf = fmt::format("$n has changed your life force to %s!", lifeforces[i].name);
                 act(buf, false, ch, 0, vict, TO_VICT);
             }
-            sprintf(buf, "Okay, %s's life force is now %s.", vict == ch ? "you are" : "$n is", lifeforces[i].name);
+            buf = fmt::format("Okay, %s's life force is now %s.", vict == ch ? "you are" : "$n is", lifeforces[i].name);
             convert_lifeforce(vict, i);
         }
         act(buf, false, vict, 0, ch, TO_VICT);
-        buf[0] = '\0';
         break;
     case 75: /* COMPOSITION */
-        if ((i = parse_composition(ch, val_arg)) == COMP_UNDEFINED) {
+        if ((i = parse_composition(ch, argument.get())) == COMP_UNDEFINED) {
             save = false;
-            buf[0] = '\0';
             break;
         }
         if (i == BASE_COMPOSITION(vict)) {
-            sprintf(buf, "%s already composed of %s.", vict == ch ? "You're" : "$e's", compositions[i].name);
+            buf = fmt::format("%s already composed of %s.", vict == ch ? "You're" : "$e's", compositions[i].name);
         } else {
             if (ch != vict) {
-                sprintf(buf, "$n has changed your composition to %s!", compositions[i].name);
+                buf = fmt::format("$n has changed your composition to %s!", compositions[i].name);
                 act(buf, false, ch, 0, vict, TO_VICT);
             }
-            sprintf(buf, "Okay, %s now composed of %s.", vict == ch ? "you are" : "$n is", compositions[i].name);
+            buf = fmt::format("Okay, %s now composed of %s.", vict == ch ? "you are" : "$n is", compositions[i].name);
             set_base_composition(vict, i);
         }
         act(buf, false, vict, 0, ch, TO_VICT);
-        buf[0] = '\0';
         break;
     case 76: /* reset all bard music cooldowns */
         GET_COOLDOWN(vict, CD_MUSIC_1) = std::clamp(value, 0, 100);
@@ -2381,18 +2351,17 @@ ACMD(do_set) {
         GET_COOLDOWN(vict, CD_SUMMON_MOUNT) = std::clamp(value, 0, 100);
         break;
     default:
-        sprintf(buf, "Can't set that!\n");
+        buf = "Can't set that!\n";
         break;
     }
 
     if (fields[l].type == BINARY) {
-        sprintf(buf, "%s %s for %s.\n", fields[l].cmd, ONOFF(on), GET_NAME(vict));
-        cap_by_color(buf);
+        buf = fmt::format("{} {} for {}.\n", fields[l].cmd, ONOFF(on), GET_NAME(vict));
     } else if (fields[l].type == NUMBER) {
-        sprintf(buf, "%s's %s set to %d.\n", GET_NAME(vict), fields[l].cmd, value);
+        buf = fmt::format("{}'s {} set to {}.\n", GET_NAME(vict), fields[l].cmd, value);
     }
     if (buf[0])
-        char_printf(ch, cap_by_color(buf));
+        char_printf(ch, capitalize_first(buf));
 
     if (!is_file && !IS_NPC(vict) && save)
         save_player_char(vict);
@@ -2410,9 +2379,9 @@ ACMD(do_set) {
 ACMD(do_syslog) {
     int severity;
 
-    one_argument(argument, arg);
+    auto arg = argument.shift();
 
-    if (!*arg) {
+    if (arg.empty()) {
         char_printf(ch, "The minimum severity of syslog messages you see is {}.\n",
                     sprint_log_severity(GET_LOG_VIEW(ch)));
         return;
@@ -2428,7 +2397,7 @@ ACMD(do_syslog) {
     char_printf(ch, "The minimum severity of syslog messages you will see is now {}.\n", sprint_log_severity(severity));
 }
 
-void send_to_imms(char *msg) {
+void send_to_imms(std::string_view msg) {
     DescriptorData *pt;
 
     for (pt = descriptor_list; pt; pt = pt->next)
@@ -2436,89 +2405,91 @@ void send_to_imms(char *msg) {
             char_printf(pt->character, msg);
 }
 
-/* do_game recoded by 321 to allow different toggles to have different
- * minimum levels */
+/* do_game recoded by 321 to allow different toggles to have different minimum levels */
 ACMD(do_game) {
-    char field[MAX_INPUT_LENGTH], rest[MAX_INPUT_LENGTH];
-    char shortbuf[40], linebuf[160];
-    int i, n_visible = 0, value;
-    const char *msg;
-
-    struct {
-        const char *name;
-        const int has_value; /* Is it on/off (0) or does it have a value (1) */
-        int *config;
+    struct Command {
+        const std::string_view name;
+        const bool has_value; /* Is it on/off (false) or does it have a value (true) */
+        bool *field;
         const int min_level;
-        const char *turn_on;
-        const char *turn_off;
-        const char *enabled;
-        const char *disabled;
-    } commands[] = {
-        {"RACES", 0, &races_allowed, LVL_ADMIN, "[&2&bSYS: %s allows race logins&0]\n",
-         "[&1&bSYS: %s disallows race logins&0]\n", "Race login allowed", "Race login not allowed"},
-        {"EVILRACES", 0, &evil_races_allowed, LVL_ADMIN, "[&2&bSYS: %s allows evil race player creation&0]\n",
-         "[&1&bSYS: %s disallows evil race player creation&0]\n", "Evil race player creation allowed",
-         "Evil race player creation not allowed"},
-        {"PK", 0, &pk_allowed, LVL_ADMIN, "[&2&bSYS: %s allows PKilling&0]\n", "[&1&bSYS: %s disallows PKilling&0]\n",
-         "PKilling allowed", "PKilling not allowed"},
-        {"SLEEP", 0, &sleep_allowed, LVL_ADMIN, "[&2&bSYS: %s allows players to cast sleep on each other&0]\n",
-         "[&1&bSYS: %s disallows players from casting sleep on each other&0]\n",
-         "Casting sleep on other players allowed", "Casting sleep on other players not allowed"},
-        {"SUMMON", 0, &summon_allowed, LVL_ADMIN, "[&2&bSYS: %s allows players to summon one another&0]\n",
-         "[&1&bSYS: %s disallows players from summoning one another&0]\n", "Summoning other players allowed",
-         "Summoning other players not allowed"},
-        {"CHARM", 0, &charm_allowed, LVL_ADMIN, "[&2&bSYS: %s allows players to cast charm on each other&0]\n",
-         "[&1&bSYS: %s disallows players from casting charm on each other&0]\n", "Charming other players allowed",
-         "Charming other players not allowed"},
-        {"ROOMEFFECT", 0, &roomeffect_allowed, LVL_ADMIN,
-         "[&2&bSYS: %s allows room effect spells to hurt other players&0]\n",
-         "[&1&bSYS: %s disallows room effect spells from hurting other "
-         "players&0]\n",
-         "Room effect spells will hurt other players", "Room effect spells will not hurt other players"},
-        {"NAMES", 0, &approve_names, LVL_ADMIN, "[&2&bSYS: %s turned on name approval&0]\n",
-         "[&1&bSYS: %s turned off name approval&0]\n", "Name approval is required", "Name approval is NOT required"},
-        {"NPAUSE", 0, &napprove_pause, LVL_ADMIN, "[&2&bSYS: %s turned on name approval pause&0]\n",
-         "[&1&bSYS: %s turned off name approval pause&0]\n", "Name approval pause is ON", "Name approval pause is OFF"},
-        {"OOC", 0, &gossip_channel_active, LVL_ATTENDANT, "[&2&bSYS: %s enables OOC! ANARCHY!&0]\n",
-         "[&1&bSYS: %s diables OOC! GAWD SAVE THE QUEEN!&0]\n", "OOC is enabled", "OOC is disabled"},
-        {"SLOWNS", 0, &nameserver_is_slow, LVL_HEAD_C, "[&2&bSYS: %s turns off hostname lookup.&0]\n",
-         "[&1&bSYS: %s turns on hostname lookup.&0]\n", "Nameserver lookup is disabled: slowns is on",
-         "Nameserver lookup is enabled: slowns os off"},
-        {"LEVELGAIN", 0, &level_gain, LVL_BUILDER, "[&2&bSYS: %s turned on \"level gain\" code.&0]\n",
-         "[&1&bSYS: %s turned off \"level gain\" code.&0]\n", "\"level gain\" code is active: levelgain is on",
-         "\"level gain\" code is inactive: levelgain is off"},
-        {"DAMAGEAMTS", 0, &damage_amounts, LVL_BUILDER, "[&2&bSYS: %s turned on display damage amounts code.&0]\n",
-         "[&1&bSYS: %s turned off display damage amounts code.&0]\n", "Display damage code is active: damageamts is on",
-         "Display damage code is inactive: damageamts is off"},
-        {"GROUPING", 1, &max_group_difference, LVL_ATTENDANT,
-         "[&2&bSYS: %s set the max group level difference to %i.&0]\n",
-         "[&1&bSYS: %s turned off the max group level difference.&0]\n",
-         "Max group level difference is set to: ", "Max group level difference is off: "},
+        std::string_view turn_on;
+        std::string_view turn_off;
+        std::string_view enabled;
+        std::string_view disabled;
+    };
 
-        {nullptr, 0, nullptr, 0, nullptr, nullptr}};
+    constexpr std::array<Command, 14> commands = {
+        Command{"RACES", false, &races_allowed, LVL_ADMIN, "[&2&bSYS: {} allows race logins&0]\n",
+                "[&1&bSYS: {} disallows race logins&0]\n", "Race login allowed", "Race login not allowed"},
+        Command{"EVILRACES", false, &evil_races_allowed, LVL_ADMIN,
+                "[&2&bSYS: {} allows evil race player creation&0]\n",
+                "[&1&bSYS: {} disallows evil race player creation&0]\n", "Evil race player creation allowed",
+                "Evil race player creation not allowed"},
+        Command{"PK", false, &pk_allowed, LVL_ADMIN, "[&2&bSYS: {} allows PKilling&0]\n",
+                "[&1&bSYS: {} disallows PKilling&0]\n", "PKilling allowed", "PKilling not allowed"},
+        Command{"SLEEP", false, &sleep_allowed, LVL_ADMIN,
+                "[&2&bSYS: {} allows players to cast sleep on each other&0]\n",
+                "[&1&bSYS: {} disallows players from casting sleep on each other&0]\n",
+                "Casting sleep on other players allowed", "Casting sleep on other players not allowed"},
+        Command{"SUMMON", false, &summon_allowed, LVL_ADMIN, "[&2&bSYS: {} allows players to summon one another&0]\n",
+                "[&1&bSYS: {} disallows players from summoning one another&0]\n", "Summoning other players allowed",
+                "Summoning other players not allowed"},
+        Command{"CHARM", false, &charm_allowed, LVL_ADMIN,
+                "[&2&bSYS: {} allows players to cast charm on each other&0]\n",
+                "[&1&bSYS: {} disallows players from casting charm on each other&0]\n",
+                "Charming other players allowed", "Charming other players not allowed"},
+        Command{"ROOMEFFECT", false, &roomeffect_allowed, LVL_ADMIN,
+                "[&2&bSYS: {} allows room effect spells to hurt other players&0]\n",
+                "[&1&bSYS: {} disallows room effect spells from hurting other "
+                "players&0]\n",
+                "Room effect spells will hurt other players", "Room effect spells will not hurt other players"},
+        Command{"NAMES", false, &approve_names, LVL_ADMIN, "[&2&bSYS: {} turned on name approval&0]\n",
+                "[&1&bSYS: {} turned off name approval&0]\n", "Name approval is required",
+                "Name approval is NOT required"},
+        Command{"NPAUSE", false, &napprove_pause, LVL_ADMIN, "[&2&bSYS: {} turned on name approval pause&0]\n",
+                "[&1&bSYS: {} turned off name approval pause&0]\n", "Name approval pause is ON",
+                "Name approval pause is OFF"},
+        Command{"OOC", false, &gossip_channel_active, LVL_ATTENDANT, "[&2&bSYS: {} enables OOC! ANARCHY!&0]\n",
+                "[&1&bSYS: {} diables OOC! GAWD SAVE THE QUEEN!&0]\n", "OOC is enabled", "OOC is disabled"},
+        Command{"SLOWNS", false, &nameserver_is_slow, LVL_HEAD_C, "[&2&bSYS: {} turns off hostname lookup.&0]\n",
+                "[&1&bSYS: {} turns on hostname lookup.&0]\n", "Nameserver lookup is disabled: slowns is on",
+                "Nameserver lookup is enabled: slowns os off"},
+        Command{"LEVELGAIN", false, &level_gain, LVL_BUILDER, "[&2&bSYS: {} turned on \"level gain\" code.&0]\n",
+                "[&1&bSYS: {} turned off \"level gain\" code.&0]\n", "\"level gain\" code is active: levelgain is on",
+                "\"level gain\" code is inactive: levelgain is off"},
+        Command{"DAMAGEAMTS", false, &damage_amounts, LVL_BUILDER,
+                "[&2&bSYS: {} turned on display damage amounts code.&0]\n",
+                "[&1&bSYS: {} turned off display damage amounts code.&0]\n",
+                "Display damage code is active: damageamts is on",
+                "Display damage code is inactive: damageamts is off"},
+        Command{"GROUPING", true, &max_group_difference, LVL_ATTENDANT,
+                "[&2&bSYS: {} set the max group level difference to {}.&0]\n",
+                "[&1&bSYS: {} turned off the max group level difference.&0]\n",
+                "Max group level difference is set to: ", "Max group level difference is off: "}};
 
-    half_chop(argument, field, rest);
+    auto field = argument.shift();
+    auto set = argument.get();
 
-    for (i = 0; commands[i].name; i++)
-        if ((GET_LEVEL(ch) >= commands[i].min_level) && !strcasecmp(field, commands[i].name))
-            break;
+    // Find the first command that matches the field
+    const auto *command = std::find_if(commands.begin(), commands.end(), [&](const auto &cmd) {
+        return (GET_LEVEL(ch) >= cmd.min_level) && matches(field, cmd.name);
+    });
 
-    if (!commands[i].name) {
-        for (i = 0; commands[i].name; i++)
-            if (GET_LEVEL(ch) >= commands[i].min_level) {
+    if (command == commands.end()) {
+        int n_visible = 0;
+        for (auto &cmd : commands)
+            if (GET_LEVEL(ch) >= cmd.min_level) {
                 if (!n_visible++)
                     char_printf(ch, "\n[Current game status:]\n\n");
 
-                sprintf(shortbuf, "[%s%s&0]", *commands[i].config ? "&2&b" : "&1&b", commands[i].name);
+                auto shortbuf = fmt::format("[{}{}&0]", cmd.field ? "&2&b" : "&1&b", cmd.name);
 
-                if (commands[i].has_value) {
-                    sprintf(linebuf, "%-19s%s %i\n", shortbuf,
-                            *commands[i].config ? commands[i].enabled : commands[i].disabled, *commands[i].config);
-                } else {
-                    sprintf(linebuf, "%-19s%s\n", shortbuf,
-                            *commands[i].config ? commands[i].enabled : commands[i].disabled);
-                };
-
+                auto linebuf = [&]() {
+                    if (cmd.has_value) {
+                        return fmt::format("{:19}{} {}\n", shortbuf, cmd.field ? cmd.enabled : cmd.disabled, cmd.field);
+                    }
+                    return fmt::format("{:19s}{}\n", shortbuf, cmd.field ? cmd.enabled : cmd.disabled);
+                }();
                 char_printf(ch, linebuf);
             }
         if (!n_visible)
@@ -2526,39 +2497,53 @@ ACMD(do_game) {
         return;
     }
 
-    if (commands[i].has_value) {
-        sscanf(rest, "%i", &value);
-        *commands[i].config = value;
-        msg = ((value ? commands[i].turn_on : commands[i].turn_off));
-    } else {
-        /* if we've gotten this far then the field was recognized and of suitable
-         * level. toggle it and send an appropriate message */
-        msg = ((*commands[i].config = !*commands[i].config) ? commands[i].turn_on : commands[i].turn_off);
-    };
+    if (set.empty()) {
+        char_printf(ch, "Usage: game {} <on|off|value>\n", command->name);
+        return;
+    }
 
-    if (commands[i].has_value) {
-        sprintf(linebuf, msg, GET_NAME(ch), value);
-        send_to_imms(linebuf);
+    if (command->has_value) {
+        int value = svtoi(set);
+        *command->field = value;
+        auto msg = command->field ? command->turn_on : command->turn_off;
+        send_to_imms(fmt::vformat(msg, fmt::make_format_args(GET_NAME(ch), value)));
     } else {
-        sprintf(linebuf, msg, GET_NAME(ch));
-        send_to_imms(linebuf);
-    };
+        if (set.empty()) {
+            *command->field = !command->field;
+            const auto msg = command->field ? command->turn_on : command->turn_off;
+            send_to_imms(fmt::vformat(command->turn_off, fmt::make_format_args(GET_NAME(ch), command->field)));
+            return;
+        }
+        if (matches(set, "on")) {
+            if (!command->field) {
+                *command->field = true;
+                send_to_imms(fmt::vformat(command->turn_on, fmt::make_format_args(GET_NAME(ch))));
+            } else {
+                char_printf(ch, "It's already on.\n");
+            }
+        } else if (matches(set, "off")) {
+            if (command->field) {
+                *command->field = false;
+                send_to_imms(fmt::vformat(command->turn_off, fmt::make_format_args(GET_NAME(ch))));
+            } else {
+                char_printf(ch, "It's already off.\n");
+            }
+        } else {
+            char_printf(ch, "Usage: game {} <on|off>\n", command->name);
+        }
+    }
 }
 
 ACMD(do_autoboot) {
     extern void check_auto_rebooting();
     extern void cancel_auto_reboot(int postponed);
-    char field[MAX_INPUT_LENGTH];
-    char field2[MAX_INPUT_LENGTH];
-    char *s;
+    extern void reboot_info(CharData * ch);
+    std::string_view s;
     int hours, mins, minutes;
 
-    extern void reboot_info(CharData * ch);
+    auto field = argument.shift();
 
-    argument = any_one_arg(argument, field);
-    argument = any_one_arg(argument, field2);
-
-    if (!*field) {
+    if (field.empty()) {
         if (GET_LEVEL(ch) >= LVL_REBOOT_POSTPONE) {
             char_printf(ch, "Usage:\n");
             if (GET_LEVEL(ch) >= LVL_REBOOT_MASTER) {
@@ -2577,7 +2562,7 @@ ACMD(do_autoboot) {
         return;
     }
 
-    if (!strcasecmp(field, "postpone")) {
+    if (matches(field, "postpone")) {
         if (GET_LEVEL(ch) < LVL_REBOOT_POSTPONE) {
             char_printf(ch, "You can't do that.\n");
             return;
@@ -2597,15 +2582,14 @@ ACMD(do_autoboot) {
 
         reboot_pulse = global_pulse + minutes * 60 * PASSES_PER_SEC;
 
-        sprintf(buf, "[ %s postponed autoboot for %d minutes ]\n", GET_NAME(ch), minutes);
-        send_to_imms(buf);
+        send_to_imms(fmt::format("[ {} postponed autoboot for {} minutes ]\n", GET_NAME(ch), minutes));
         log("(GC) {} postponed autoboot for {:d} minutes.", GET_NAME(ch), minutes);
 
         cancel_auto_reboot(1);
         return;
     }
 
-    if (!strcasecmp(field, "on")) {
+    if (matches(field, "on")) {
         if (GET_LEVEL(ch) < LVL_REBOOT_MASTER) {
             char_printf(ch, "You can't do that.\n");
             return;
@@ -2617,8 +2601,7 @@ ACMD(do_autoboot) {
             return;
         }
         reboot_auto = true;
-        sprintf(buf, "[ %s set autoboot to &2&bON&0 ]\n", GET_NAME(ch));
-        send_to_imms(buf);
+        send_to_imms(fmt::format("[ {} set autoboot to &2&bON&0 ]\n", GET_NAME(ch)));
         log("(GC) {} turned on autoboot.", GET_NAME(ch));
 
         /* Make sure the reboot is a minimum amount of time away */
@@ -2629,7 +2612,7 @@ ACMD(do_autoboot) {
         return;
     }
 
-    if (!strcasecmp(field, "off")) {
+    if (matches(field, "off")) {
         if (GET_LEVEL(ch) < LVL_REBOOT_MASTER) {
             char_printf(ch, "You can't do that.\n");
             return;
@@ -2641,33 +2624,33 @@ ACMD(do_autoboot) {
         }
 
         reboot_auto = false;
-        sprintf(buf, "[ %s set autoboot to &1&bOFF&0 ]\n", GET_NAME(ch));
-        send_to_imms(buf);
+        send_to_imms(fmt::format("[ {} set autoboot to &1&bOFF&0 ]\n", GET_NAME(ch)));
         log("(GC) {} turned off autoboot.", GET_NAME(ch));
 
         cancel_auto_reboot(0);
         return;
     }
 
-    if (!strcasecmp(field, "warntime")) {
+    if (matches(field, "warntime")) {
         if (GET_LEVEL(ch) < LVL_REBOOT_MASTER) {
             char_printf(ch, "You can't do that.\n");
             return;
         }
 
-        if (!*field2) {
+        auto field2 = argument.try_shift_number();
+        if (!field2) {
             char_printf(ch, "Set the reboot warning to how many minutes?\n");
             return;
         }
-        mins = atoi(field2);
+        mins = *field2;
         if (mins < 1) {
             char_printf(ch, "Invalid setting - must be 1 or greater.\n");
             return;
         }
         reboot_warning_minutes = mins;
 
-        sprintf(buf, "[ %s set reboot warning time to %d minutes ]\n", GET_NAME(ch), reboot_warning_minutes);
-        send_to_imms(buf);
+        send_to_imms(
+            fmt::format("[ {} set reboot warning time to {} minutes ]\n", GET_NAME(ch), reboot_warning_minutes));
         log("(GC) {} set reboot warning time to {} minutes.", GET_NAME(ch), reboot_warning_minutes);
 
         /* The rest of this block is about managing warnings, which is moot
@@ -2699,14 +2682,13 @@ ACMD(do_autoboot) {
     minutes = 0;
     mins = 0;
 
-    if (field[0] == ':' && strlen(field) > 1) {
-        /* minutes only */
-        mins = atoi(field + 1);
+    if (field.starts_with(':') && field.length() > 1) {
+        // minutes only
+        mins = svtoi(field.substr(1));
     } else {
-        hours = atoi(field);
-        s = strchr(field, ':');
-        if (s && s[1]) {
-            mins = atoi(s + 1);
+        hours = svtoi(field);
+        if (auto s = field.find(':'); s != std::string_view::npos && s + 1 < field.length()) {
+            mins = svtoi(field.substr(s + 1));
         }
     }
 
@@ -2719,8 +2701,7 @@ ACMD(do_autoboot) {
         }
 
         reboot_auto = true;
-        sprintf(buf, "[ %s set the mud to reboot in &7&b%02d:%02d&0 ]\n", GET_NAME(ch), hours, mins);
-        send_to_imms(buf);
+        send_to_imms(fmt::format("[ {} set the mud to reboot in &7&b{:02d}:{:02d}&0 ]\n", GET_NAME(ch), hours, mins));
         log("(GC) {} set the mud to reboot in {:02d}:{:02d}.", GET_NAME(ch), hours, mins);
 
         reboot_pulse = global_pulse + 60 * PASSES_PER_SEC * minutes;
@@ -2736,24 +2717,20 @@ ACMD(do_autoboot) {
 ACMD(do_copyto) {
     /* Only works if you have Oasis OLC */
 
-    char buf2[10];
-    char buf[80];
     int iroom = 0, rroom = 0;
     RoomData *room;
 
-    one_argument(argument, buf2);
-    /* buf2 is room to copy to */
-
-    CREATE(room, RoomData, 1);
-
-    iroom = atoi(buf2);
-    rroom = real_room(atoi(buf2));
-    *room = world[rroom];
-
-    if (!*buf2) {
+    auto room_num = argument.try_shift_number();
+    if (!room_num) {
         char_printf(ch, "Format: copyto <room number>\n");
         return;
     }
+
+    CREATE(room, RoomData, 1);
+
+    rroom = real_room(*room_num);
+    *room = world[rroom];
+
     if (rroom <= 0) {
         char_printf(ch, "There is no room with the number {:d}.\n", iroom);
         return;
@@ -2761,8 +2738,8 @@ ACMD(do_copyto) {
 
     /* Main stuff */
 
-    if (world[ch->in_room].description) {
-        world[rroom].description = strdup(world[ch->in_room].description);
+    if (!world[ch->in_room].description.empty()) {
+        world[rroom].description = world[ch->in_room].description;
 
         /* Only works if you have Oasis OLC */
         olc_add_to_save_list((iroom / 100), OLC_SAVE_ROOM);
@@ -2775,21 +2752,20 @@ ACMD(do_copyto) {
 ACMD(do_dig) {
     int iroom, rroom, dir;
 
-    /* buf2 is the direction, buf3 is the room */
-    two_arguments(argument, buf1, buf2);
-    iroom = atoi(buf2);
-    rroom = real_room(iroom);
+    auto dir_str = argument.shift();
+    auto room_num = argument.try_shift_number();
 
-    if (!*buf1 || !*buf2) {
+    if (dir_str.empty() || room_num) {
         char_printf(ch, "Format: dig <dir> <room number>\n");
         return;
     }
 
-    if ((dir = parse_direction(buf1)) < 0) {
+    if ((dir = parse_direction(dir_str)) < 0) {
         char_printf(ch, "That isn't a valid direction.\n");
         return;
     }
 
+    rroom = real_room(*room_num);
     if (rroom <= 0) {
         char_printf(ch, "There is no room with the number {:d}.\n", iroom);
         return;
@@ -2807,36 +2783,32 @@ ACMD(do_dig) {
 ACMD(do_rrestore) {
     CharData *i;
 
-    if (argument)
-        skip_spaces(&argument);
-
+    auto message = argument.get();
     for (i = character_list; i; i = i->next) {
         if (i != ch && (!IS_NPC(i) || i->desc) && !ROOM_FLAGGED(i->in_room, ROOM_ARENA)) {
-            if (argument && *argument)
-                char_printf(i, "{}@0\n", argument);
+            if (!message.empty())
+                char_printf(i, "{}@0\n", message);
             else
-                act("&0&b&4$n &0&b&9spreads $s &0&benergy&0&b&9 across the realms "
-                    "&0&6restoring&0&b&9 all in $s path!&0",
+                act("&0&b&4$n &0&b&9spreads $s &0&benergy&0&b&9 across the realms &0&6restoring&0&b&9 all in $s "
+                    "path!&0",
                     false, ch, 0, i, TO_VICT | TO_SLEEP);
             perform_restore(i);
         }
     }
-    if (argument && *argument)
-        char_printf(ch, "{}@0\n", argument);
-    else
+    if (message.empty())
         char_printf(ch, "You spread healing energy across the realm, restoring all in its path.\n");
+    else
+        char_printf(ch, "{}@0\n", message);
 }
 
 ACMD(do_rpain) {
     CharData *i;
 
-    if (argument)
-        skip_spaces(&argument);
-
+    auto message = argument.get();
     for (i = character_list; i; i = i->next) {
         if (i != ch && (!IS_NPC(i) || i->desc)) {
             perform_pain(i);
-            if (argument && *argument)
+            if (!message.empty())
                 char_printf(i, "{}@0\n", argument);
             else
                 act("&0&1$n &0&9&bspreads pain and pestilence across the realm "
@@ -2844,27 +2816,26 @@ ACMD(do_rpain) {
                     false, ch, 0, i, TO_VICT | TO_SLEEP);
         }
     }
-    if (argument && *argument)
-        char_printf(ch, "{}@0\n", argument);
-    else
+    if (message.empty())
         char_printf(ch, "Pain and pestilence spreads across the lands.  Your wrath has been known.\n");
+    else
+        char_printf(ch, "{}@0\n", argument);
 }
 
 ACMD(do_rclone) {
     int vnum, rnum, i;
     RoomData *src, *dest;
 
-    one_argument(argument, buf2);
-    if (!*buf2) {
+    auto room_num = argument.try_shift_number();
+    if (!room_num) {
         char_printf(ch, "Format: hhroom <target room number>\n");
         return;
     }
 
-    vnum = atoi(buf2);
-    rnum = real_room(vnum);
+    rnum = real_room(*room_num);
 
     if (rnum <= NOWHERE) {
-        char_printf(ch, "There is no room with the number {}.\n", vnum);
+        char_printf(ch, "There is no room with the number {}.\n", *room_num);
         return;
     }
 
@@ -2876,12 +2847,12 @@ ACMD(do_rclone) {
     src = &world[ch->in_room];
     dest = &world[rnum];
 
-    if (src->description)
-        dest->description = strdup(src->description);
-    if (src->description)
-        dest->description = strdup(src->description);
-    if (src->name)
-        dest->name = strdup(src->name);
+    if (!src->description.empty())
+        dest->description = src->description;
+    if (!src->description.empty())
+        dest->description = src->description;
+    if (!src->name.empty())
+        dest->name = src->name;
     for (i = 0; i < FLAGVECTOR_SIZE(NUM_ROOM_FLAGS); ++i)
         dest->room_flags[i] = src->room_flags[i];
     if (src->sector_type)
@@ -2898,9 +2869,9 @@ ACMD(do_terminate) {
     char_printf(ch, "&1&bThis command has been disabled until further notice!&0\n");
     return;
 
-    one_argument(argument, buf);
+    auto buf = argument.shift();
 
-    if (!*buf) {
+    if (buf.empty()) {
         char_printf(ch, "Whom do you wish to terminate?\n");
         return;
     }
@@ -2944,17 +2915,17 @@ ACMD(do_pfilemaint) {
     DescriptorData *d;
     int i, j, idle_time, allowed_time, reason;
     long bitfield;
-    char file_name[255], tmp_name[255];
+    char tmp_name[255];
     PlayerIndexElement *new_player_table = nullptr;
 
-    static const char *rlist[] = {"",
-                                  "Invalid Characters",
-                                  "Too Short",
-                                  "Too Long",
-                                  "Reserved Fill Word",
-                                  "Reserved Word",
-                                  "Xname or MOB/OBJ name",
-                                  "Inactivity"};
+    static const std::string_view rlist[] = {"",
+                                             "Invalid Characters",
+                                             "Too Short",
+                                             "Too Long",
+                                             "Reserved Fill Word",
+                                             "Reserved Word",
+                                             "Xname or MOB/OBJ name",
+                                             "Inactivity"};
 
     if (should_restrict != GET_LEVEL(ch)) {
         char_printf(ch, "First <wizlock> and make sure everyone logs out before executing this command.\n");
@@ -2972,9 +2943,9 @@ ACMD(do_pfilemaint) {
     char_printf(ch, "Processing player files\n");
 
     /* copy the player index to a backup file */
-    sprintf(file_name, "%s/%s", PLR_PREFIX, INDEX_FILE);
-    sprintf(buf, "cp %s %s.`date +%%m%%d.%%H%%M%%S`", file_name, file_name);
-    system(buf);
+    auto file_name = fmt::format("{}/{}", PLR_PREFIX, INDEX_FILE);
+    auto buf = fmt::format("cp {} {}.`date +%%m%%d.%%H%%M%%S`", file_name, file_name);
+    system(buf.c_str());
 
     CREATE(new_player_table, PlayerIndexElement, top_of_p_table + 1);
 
@@ -2989,23 +2960,24 @@ ACMD(do_pfilemaint) {
         /* assume no delete at first          */
         reason = 0;
 
+        auto tmp_name = _parse_name(player_table[i].name);
         /* no spaces special chars etc        */
-        if ((_parse_name(player_table[i].name, tmp_name)))
+        if (tmp_name.empty())
             reason = 1;
         /* must be greater than 2 chars       */
-        if (strlen(tmp_name) < 2)
+        if (tmp_name.length() < 2)
             reason = 2;
         /* must be less than MAX_NAME_LENGTH  */
-        if (strlen(tmp_name) > MAX_NAME_LENGTH)
+        if (tmp_name.length() > MAX_NAME_LENGTH)
             reason = 3;
         /* can't be a reserved fill word      */
-        if (fill_word(strcpy(buf, tmp_name)))
+        if (fill_word(tmp_name))
             reason = 4;
         /* can't be a reserved word           */
         if (reserved_word(buf))
             reason = 5;
         /* can't be an xname or a mob name    */
-        if (!Valid_Name(tmp_name))
+        if (!is_valid_name(tmp_name))
             reason = 6;
         /* too much idle time/wasting space   */
         if (idle_time > allowed_time)
@@ -3030,8 +3002,6 @@ ACMD(do_pfilemaint) {
             }
 
             delete_player(i);
-
-            free(player_table[i].name);
         } else {
             /* No delete: copy this player to the new index */
             new_player_table[j] = player_table[i];
@@ -3057,7 +3027,6 @@ ACMD(do_hotboot) {
     FILE *fp;
     bool found = false;
     DescriptorData *d, *d_next;
-    char buf[MAX_INPUT_LENGTH];
     int i;
 
     extern int num_hotboots;
@@ -3066,7 +3035,7 @@ ACMD(do_hotboot) {
     extern time_t *boot_time;
     extern void ispell_done(void);
 
-    skip_spaces(&argument);
+    auto arg = argument.shift();
 
     /*
      * You must type 'hotboot yes' to actually hotboot.  However,
@@ -3074,34 +3043,32 @@ ACMD(do_hotboot) {
      * in OLC, a warning will be shown, and no hotboot will occur.
      * 'hotboot force' will override this.
      */
-    if (strcasecmp(argument, "force") != 0) {
-        if (strcasecmp(argument, "yes") != 0) {
-            char_printf(ch, "Are you sure you want to do a hotboot?  If so, type 'hotboot yes'.\n");
-            return;
+    if (!matches(arg, "force") || !matches(arg, "yes")) {
+        char_printf(ch, "Are you sure you want to do a hotboot?  If so, type 'hotboot yes'.\n");
+        return;
+    }
+
+    /*
+     * First scan the descriptors to see if it would be particularly
+     * inconvenient for anyone to have a hotboot right now.
+     */
+    for (d = descriptor_list; d; d = d->next) {
+        if (d->character && STATE(d) == CON_PLAYING)
+            continue; /* Okay, hopefully they're not too busy. */
+
+        if (!found) {
+            char_printf(ch, "Wait!  A hotboot might be inconvenient right now for:\n\n");
+            found = true;
         }
 
-        /*
-         * First scan the descriptors to see if it would be particularly
-         * inconvenient for anyone to have a hotboot right now.
-         */
-        for (d = descriptor_list; d; d = d->next) {
-            if (d->character && STATE(d) == CON_PLAYING)
-                continue; /* Okay, hopefully they're not too busy. */
+        char_printf(ch, "  {}, who is currently busy with: {}{}{}\n",
+                    d->character && !GET_NAME(d->character).empty() ? GET_NAME(d->character) : "An unnamed connection",
+                    CLR(ch, FYEL), connected_types[STATE(d)], CLR(ch, ANRM));
+    }
 
-            if (!found) {
-                char_printf(ch, "Wait!  A hotboot might be inconvenient right now for:\n\n");
-                found = true;
-            }
-
-            char_printf(ch, "  {}, who is currently busy with: {}{}{}\n",
-                        d->character && GET_NAME(d->character) ? GET_NAME(d->character) : "An unnamed connection",
-                        CLR(ch, FYEL), connected_types[STATE(d)], CLR(ch, ANRM));
-        }
-
-        if (found) {
-            char_printf(ch, "\nIf you still want to do a hotboot, type 'hotboot force'.\n");
-            return;
-        }
+    if (found) {
+        char_printf(ch, "\nIf you still want to do a hotboot, type 'hotboot force'.\n");
+        return;
     }
 
     fp = fopen(HOTBOOT_FILE, "w");
@@ -3112,7 +3079,8 @@ ACMD(do_hotboot) {
 
     log("(GC) Hotboot initiated by {}.", GET_NAME(ch));
 
-    sprintf(buf, "\n %s<<< HOTBOOT by %s - please remain seated! >>>%s\n", CLR(ch, HRED), GET_NAME(ch), CLR(ch, ANRM));
+    auto msg = fmt::format("\n {}<<< HOTBOOT by {} - please remain seated! >>>{}\n", CLR(ch, HRED), GET_NAME(ch),
+                           CLR(ch, ANRM));
 
     /* Write boot_time as first line in file */
     fprintf(fp, "%d", num_hotboots + 1); /* num of boots so far */
@@ -3131,11 +3099,11 @@ ACMD(do_hotboot) {
             close_socket(d); /* throw 'em out */
         } else {
             CharData *tch = d->character;
-            fprintf(fp, "%d %s %s\n", d->descriptor, GET_NAME(tch), d->host);
+            fprintf(fp, "%d %s %s\n", d->descriptor, GET_NAME(tch).c_str(), d->host);
             /* save tch */
             GET_QUIT_REASON(tch) = QUIT_HOTBOOT; /* Not exactly leaving, but sort of */
             save_player(tch);
-            write_to_descriptor(d->descriptor, buf);
+            write_to_descriptor(d->descriptor, msg);
         }
     }
 
@@ -3146,8 +3114,8 @@ ACMD(do_hotboot) {
     ispell_done();
 
     /* Prepare arguments to call self */
-    sprintf(buf, "%d", port);
-    sprintf(buf2, "-H%d", mother_desc);
+    auto buf = fmt::format("{}", port);
+    auto buf2 = fmt::format("-H{}", mother_desc);
 
     /* Ugh, seems it is expected we are 1 step above lib - this may be dangerous!
      */
@@ -3178,10 +3146,10 @@ void scan_pfile_objs(CharData *ch, int vnum) {
         }
 
         /* Skip the rent code at the beginning */
-        get_line(fl, buf);
+        auto version = get_line(fl);
 
         /* Skip this file if it's an obsolete binary one */
-        if (!is_integer(buf)) {
+        if (!version || !is_integer(*version)) {
             ++obsolete;
             fclose(fl);
             continue;
@@ -3211,8 +3179,7 @@ void scan_pfile_objs(CharData *ch, int vnum) {
         fclose(fl);
 
         if (objectshere) {
-            sprintf(buf, "%-15s  %3d\n", player_table[i].name, objectshere);
-            page_string(ch, buf);
+            page_string(ch, fmt::format("{:15s}  {:3d}\n", player_table[i].name, objectshere));
         }
     }
 
@@ -3220,80 +3187,56 @@ void scan_pfile_objs(CharData *ch, int vnum) {
     if (!playerswith) {
         char_printf(ch, "None found.\n");
     } else {
-        sprintf(buf, "Found %d player%s with %d %s.\n", playerswith, playerswith == 1 ? "" : "s", objectsfound,
-                objectsfound == 1 ? "copy" : "copies");
-        page_string(ch, buf);
+        page_string(ch, fmt::format("Found {} player{} with {} {}.\n", playerswith, playerswith == 1 ? "" : "s",
+                                    objectsfound, objectsfound == 1 ? "copy" : "copies"));
     }
 
     if (errs) {
-        sprintf(buf, "\n(%d error%s occurred during scan)\n", errs, errs == 1 ? "" : "s");
-        page_string(ch, buf);
+        page_string(ch, fmt::format("\n({} error{} occurred during scan)\n", errs, errs == 1 ? "" : "s"));
     }
     if (obsolete) {
-        sprintf(buf, "Skipped %d file%s that %s in the obsolete binary format.\n", obsolete, obsolete == 1 ? "" : "s",
-                obsolete == 1 ? "is" : "are");
-        page_string(ch, buf);
+        page_string(ch, fmt::format("Skipped {} file{} that {} in the obsolete binary format.\n", obsolete,
+                                    obsolete == 1 ? "" : "s", obsolete == 1 ? "is" : "are"));
     }
 }
 
-#define PSCAN_TYPE_UNDEFINED -1
-#define PSCAN_TYPE_OBJ 0
-
 ACMD(do_pscan) {
-    char arg1[MAX_INPUT_LENGTH], arg2[MAX_INPUT_LENGTH];
-    int num, pscantype = PSCAN_TYPE_UNDEFINED;
-    bool scanok = false;
-
-    skip_spaces(&argument);
-
-    if (!*argument) {
+    if (argument.empty()) {
         char_printf(ch, "Usage:\n");
         char_printf(ch, "   pscan obj <obj-vnum>\n");
         return;
     }
 
-    half_chop(argument, arg1, arg2);
-    num = atoi(arg2);
+    auto arg1 = argument.shift();
+    auto num_opt = argument.try_shift_number();
 
-    if (!strncasecmp(arg1, "obj", MAX_INPUT_LENGTH)) {
-        if (!strlen(arg2) || !isdigit(arg2[0])) {
+    if (matches(arg1, "obj")) {
+        if (!num_opt) {
             char_printf(ch, "Usage: pscan obj <vnum>\n");
             return;
         }
-        pscantype = PSCAN_TYPE_OBJ;
-        scanok = true;
+        scan_pfile_objs(ch, *num_opt);
     } else {
         char_printf(ch, "That's not something you can pscan.\n");
-    }
-
-    if (!scanok)
-        return;
-
-    switch (pscantype) {
-    case PSCAN_TYPE_OBJ:
-        scan_pfile_objs(ch, num);
-        break;
-    default:
-        char_printf(ch, "Sorry, some kind of internal error happened.\n");
     }
 }
 
 ACMD(do_objupdate) {
-    char arg1[MAX_INPUT_LENGTH], arg2[MAX_INPUT_LENGTH];
-    half_chop(argument, arg1, arg2);
+    auto arg1 = argument.shift();
+    auto arg2 = argument.get();
 
-    if (!*arg1) {
+    if (arg1.empty()) {
         char_printf(ch, "Usage: objupdate <player>\n");
         char_printf(ch, "Usage: objupdate all yes\n");
         return;
     }
 
-    if (!strncasecmp(arg1, "all", 4)) {
-        if (!*arg2) {
+    if (matches(arg1, "all")) {
+        if (arg2.empty()) {
             char_printf(ch, "If you really want to update all obsolete object files, type &2objupdate all yes&0\n");
             return;
         }
-        if (strncasecmp("yes", arg2, 4)) {
+        if (!matches("yes", arg2)) {
             char_printf(ch, "I'm not sure you really mean it!\n");
             return;
         }
@@ -3306,11 +3249,9 @@ ACMD(do_objupdate) {
 }
 
 ACMD(do_coredump) {
-    skip_spaces(&argument);
-
-    if (!*argument) {
+    if (argument.empty()) {
         char_printf(ch, "Please supply a name for the core dump.\n");
     } else {
-        drop_core(ch, argument);
+        drop_core(ch, argument.get());
     }
 }

@@ -19,10 +19,10 @@
 
 #include <sys/stat.h>
 
-int fbgetline(FBFILE *fbfl, char *line) {
-    char *r = fbfl->ptr, *w = line;
+int fbgetline(FBFILE *fbfl, std::string_view line) {
+    std::string_view r = fbfl->ptr, *w = line;
 
-    if (!fbfl || !line || !*fbfl->ptr)
+    if (!fbfl || !line || fbfl.empty()->ptr)
         return false;
 
     for (; *r && *r != '\n' && r <= fbfl->buf + fbfl->size; r++)
@@ -42,11 +42,11 @@ int fbgetline(FBFILE *fbfl, char *line) {
     }
 }
 
-int find_string_size(char *str) {
+int find_string_size(std::string_view str) {
     int i;
-    char *p;
+    std::string_view p;
 
-    if (!str || !*str || *str == '~')
+    if (!str || str.empty() || *str == '~')
         return 0;
 
     for (i = 1, p = str; *p; i++) {
@@ -77,17 +77,17 @@ int find_string_size(char *str) {
     return i;
 }
 
-char *fbgetstring(FBFILE *fl) {
+std::string_view fbgetstring(FBFILE *fl) {
     int size;
-    char *str, *r, *w;
+    std::string_view str, *r, *w;
 
-    if (!fl || !*fl->ptr)
+    if (!fl || fl.empty()->ptr)
         return nullptr;
 
     if (!(size = find_string_size(fl->ptr)))
         return nullptr;
 
-    str = (char *)malloc(size + 1);
+    str = (std::string_view)malloc(size + 1);
     *str = '\0';
     r = fl->ptr;
     w = str;
@@ -126,7 +126,7 @@ char *fbgetstring(FBFILE *fl) {
     return str;
 }
 
-FBFILE *fbopen_for_read(char *fname) {
+FBFILE *fbopen_for_read(std::string_view fname) {
     int err;
     FILE *fl;
     struct stat sb;
@@ -148,11 +148,11 @@ FBFILE *fbopen_for_read(char *fname) {
     }
 
     fbfl->size = sb.st_size;
-    if (!(fbfl->buf = (char *)malloc(fbfl->size))) {
+    if (!(fbfl->buf = (std::string_view)malloc(fbfl->size))) {
         free(fbfl);
         return nullptr;
     }
-    if (!(fbfl->name = (char *)malloc(strlen(fname) + 1))) {
+    if (!(fbfl->name = (std::string_view)malloc(strlen(fname) + 1))) {
         free(fbfl->buf);
         free(fbfl);
         return nullptr;
@@ -166,17 +166,17 @@ FBFILE *fbopen_for_read(char *fname) {
     return fbfl;
 }
 
-FBFILE *fbopen_for_write(char *fname, int mode) {
+FBFILE *fbopen_for_write(std::string_view fname, int mode) {
     FBFILE *fbfl;
 
     if (!(fbfl = (FBFILE *)malloc(sizeof(FBFILE))))
         return nullptr;
 
-    if (!(fbfl->buf = (char *)malloc(FB_STARTSIZE))) {
+    if (!(fbfl->buf = (std::string_view)malloc(FB_STARTSIZE))) {
         free(fbfl);
         return nullptr;
     }
-    if (!(fbfl->name = (char *)malloc(strlen(fname) + 1))) {
+    if (!(fbfl->name = (std::string_view)malloc(strlen(fname) + 1))) {
         free(fbfl->buf);
         free(fbfl);
         return nullptr;
@@ -189,8 +189,8 @@ FBFILE *fbopen_for_write(char *fname, int mode) {
     return fbfl;
 }
 
-FBFILE *fbopen(char *fname, int mode) {
-    if (!fname || !*fname || !mode)
+FBFILE *fbopen(std::string_view fname, int mode) {
+    if (!fname || fname.empty() || !mode)
         return nullptr;
 
     if (IS_SET(mode, FB_READ))
@@ -214,8 +214,8 @@ int fbclose_for_read(FBFILE *fbfl) {
 }
 
 int fbclose_for_write(FBFILE *fbfl) {
-    const char *arg;
-    char *tname;
+    const std::string_view arg;
+    std::string_view tname;
     int len, bytes_written;
     FILE *fl;
 
@@ -227,7 +227,7 @@ int fbclose_for_write(FBFILE *fbfl) {
     else
         arg = "w";
 
-    if (!(tname = (char *)malloc(strlen(fbfl->name) + 6)))
+    if (!(tname = (std::string_view)malloc(strlen(fbfl->name) + 6)))
         return 0;
 
     len = strlen(fbfl->buf);
@@ -269,12 +269,12 @@ int fbclose(FBFILE *fbfl) {
         return 0;
 }
 
-int fbwrite(FBFILE *fbfl, const char *string) {
+int fbwrite(FBFILE *fbfl, const std::string_view string) {
     int bytes_written = 0, length = 0;
 
     if (fbfl->ptr - fbfl->buf > (FB_STARTSIZE * 3) / 4) {
         length = fbfl->ptr - fbfl->buf;
-        if (!(fbfl->buf = (char *)realloc(fbfl->buf, fbfl->size + FB_STARTSIZE)))
+        if (!(fbfl->buf = (std::string_view)realloc(fbfl->buf, fbfl->size + FB_STARTSIZE)))
             return 0;
         fbfl->ptr = fbfl->buf + length;
         fbfl->size += FB_STARTSIZE;
@@ -289,7 +289,7 @@ int fbwrite(FBFILE *fbfl, const char *string) {
 
 #ifdef HAVE_VSNPRINTF
 
-int fbprintf(FBFILE *fbfl, const char *format, ...) {
+int fbprintf(FBFILE *fbfl, const std::string_view format, ...) {
     int bytes_written = 0, length = 0;
     va_list args;
 
@@ -312,13 +312,13 @@ int fbprintf(FBFILE *fbfl, const char *format, ...) {
 
 void fbrewind(FBFILE *fbfl) { fbfl->ptr = fbfl->buf; }
 
-int fbcat(char *fromfilename, FBFILE *tofile) {
+int fbcat(std::string_view fromfilename, FBFILE *tofile) {
     struct stat sb;
     FILE *fromfile;
-    char *in_buf = 0;
+    std::string_view in_buf = 0;
     int errnum = 0, length = 0;
 
-    if (!fromfilename || !*fromfilename || !tofile)
+    if (!fromfilename || fromfilename.empty() || !tofile)
         return 0;
 
     if (!(fromfile = fopen(fromfilename, "r+b")))
@@ -329,10 +329,10 @@ int fbcat(char *fromfilename, FBFILE *tofile) {
         return 0;
 
     length = tofile->ptr - tofile->buf;
-    tofile->buf = (char *)realloc(tofile->buf, tofile->size + sb.st_size);
+    tofile->buf = (std::string_view)realloc(tofile->buf, tofile->size + sb.st_size);
     tofile->ptr = tofile->buf + length;
     tofile->size += sb.st_size;
-    in_buf = (char *)malloc(sb.st_size + 1);
+    in_buf = (std::string_view)malloc(sb.st_size + 1);
     in_buf[0] = 0;
     errnum = fread(in_buf, sb.st_size, 1, fromfile);
 #ifdef HAVE_VSNPRINTF

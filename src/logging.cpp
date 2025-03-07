@@ -21,7 +21,9 @@ void log(LogSeverity severity, int level, std::string_view str) {
                 string_to_output(i, "LOG: {}\n", str);
 }
 
-const char *sprint_log_severity(int severity) { return log_severities[std::clamp(0, (severity - 1) / 10, 6)]; }
+const std::string_view sprint_log_severity(int severity) {
+    return log_severities[std::clamp(0, (severity - 1) / 10, 6)];
+}
 
 int parse_log_severity(std::string_view severity) {
     // Find the index of the severity in the array

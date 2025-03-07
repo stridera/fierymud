@@ -20,8 +20,8 @@
 /* Weapon attack texts */
 
 struct AttackHitType {
-    const char *singular;
-    const char *plural;
+    const std::string_view singular;
+    const std::string_view plural;
 };
 extern AttackHitType attack_hit_text[];
 

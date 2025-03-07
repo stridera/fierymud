@@ -48,12 +48,12 @@
 static void load_effects(FILE *fl, CharData *ch);
 static void load_skills(FILE *fl, CharData *ch);
 static void load_spellcasts(FILE *fl, CharData *ch);
-static void scan_slash(const char *line, int *cur, int *max);
+static void scan_slash(const std::string_view line, int *cur, int *max);
 static void write_aliases_ascii(FILE *file, CharData *ch);
 static void read_aliases_ascii(FILE *file, CharData *ch);
 static void load_cooldowns(FILE *fl, CharData *ch);
-static void load_coins(char *line, int coins[]);
-static void load_clan(char *line, CharData *ch);
+static void load_coins(std::string_view line, Money coins);
+static void load_clan(std::string_view line, CharData *ch);
 
 /*
  * These are the cooldowns that are saved in player files.  End this
@@ -92,36 +92,36 @@ static int saved_cooldowns[] = {CD_SUMMON_MOUNT,
                                 CD_OFFENSE_CHANT,
                                 -1};
 
-static char *quit_reenter_message[NUM_QUITTYPES] = {"%s reenters the game in %s.",
-                                                    "%s un-rents in %s.",
-                                                    "%s un-cryos in %s.",
-                                                    "%s returns from a voidout in %s.",
-                                                    "%s pops out after the hotboot in %s.",
-                                                    "%s reenters the game in %s.",
-                                                    "%s reenters the game in %s.",
-                                                    "%s breaks camp in %s.",
-                                                    "%s un-rents in %s.",
-                                                    "%s is reincorporated at %s.",
-                                                    "%s enters the game from a save-point at %s."};
+static std::string_view quit_reenter_message[NUM_QUITTYPES] = {"%s reenters the game in %s.",
+                                                               "%s un-rents in %s.",
+                                                               "%s un-cryos in %s.",
+                                                               "%s returns from a voidout in %s.",
+                                                               "%s pops out after the hotboot in %s.",
+                                                               "%s reenters the game in %s.",
+                                                               "%s reenters the game in %s.",
+                                                               "%s breaks camp in %s.",
+                                                               "%s un-rents in %s.",
+                                                               "%s is reincorporated at %s.",
+                                                               "%s enters the game from a save-point at %s."};
 
-static char *quit_statement[NUM_QUITTYPES] = {"%s left for unknown reasons in %s.",
-                                              "%s rented in %s.",
-                                              "%s cryo'd in %s.",
-                                              "%s voided out in %s.",
-                                              "%s was tucked away for a hotboot in %s.",
-                                              "%s quit in %s.",
-                                              "%s quit in %s.",
-                                              "%s camped in %s.",
-                                              "%s was rented by a trigger in %s.",
-                                              "%s was &1&bpurged&0 in %s.",
-                                              "%s was saved at %s."};
+static std::string_view quit_statement[NUM_QUITTYPES] = {"%s left for unknown reasons in %s.",
+                                                         "%s rented in %s.",
+                                                         "%s cryo'd in %s.",
+                                                         "%s voided out in %s.",
+                                                         "%s was tucked away for a hotboot in %s.",
+                                                         "%s quit in %s.",
+                                                         "%s quit in %s.",
+                                                         "%s camped in %s.",
+                                                         "%s was rented by a trigger in %s.",
+                                                         "%s was &1&bpurged&0 in %s.",
+                                                         "%s was saved at %s."};
 
-int get_pfilename(const char *name, char *filename, int mode) {
-    const char *prefix, *suffix;
+std::string get_pfilename(const std::string_view name, int mode) {
 
-    if (!name || !*name)
-        return 0;
+    if (!name.empty())
+        return {};
 
+    std::string prefix, suffix;
     switch (mode) {
     case OBJ_FILE:
         prefix = PLR_PREFIX;
@@ -148,11 +148,10 @@ int get_pfilename(const char *name, char *filename, int mode) {
         suffix = PET_SUFFIX;
         break;
     default:
-        return 0;
+        return {};
     }
 
-    sprintf(filename, "%s/%c/%c%s%s", prefix, UPPER(*name), UPPER(*name), name + 1, suffix);
-    return 1;
+    return fmt::format("{}/{}/{}{}", prefix, UPPER(name[0]), capitalize_first(name), suffix);
 }
 
 void reset_weight(CharData *ch) {
@@ -210,7 +209,7 @@ void build_player_index(void) {
 /* Create a new entry in the in-memory index table for the player file. If the
  * name already exists, by overwriting a deleted character, then we re-use the
  * old position. */
-int create_player_index_entry(char *name) {
+int create_player_index_entry(std::string_view name) {
     int i, pos;
 
     if (top_of_p_table == -1) { /* no table */
@@ -223,13 +222,7 @@ int create_player_index_entry(char *name) {
         pos = top_of_p_table;
     }
 
-    CREATE(player_table[pos].name, char, strlen(name) + 1);
-
-    /* copy lowercase equivalent of name to table field, cap first char */
-    *player_table[pos].name = UPPER(*name);
-    for (i = 1; (player_table[pos].name[i] = LOWER(name[i])); ++i)
-        ;
-    player_table[pos].name[i] = '\0';
+    player_table[pos].name = capitalize_first(name);
 
     /* clear the bitflag in case we have garbage data */
     player_table[pos].flags = 0;
@@ -250,7 +243,7 @@ void save_player_index(void) {
     }
 
     for (i = 0; i <= top_of_p_table; i++)
-        if (*player_table[i].name) {
+        if (!player_table[i].name.empty()) {
             sprintascii(bits, player_table[i].flags);
             fprintf(index_file, "%ld %s %d %s %ld\n", player_table[i].id, player_table[i].name, player_table[i].level,
                     *bits ? bits : "0", (long)player_table[i].last);
@@ -261,31 +254,23 @@ void save_player_index(void) {
 }
 
 void free_player_index(void) {
-    int tp;
-
     if (!player_table)
         return;
-
-    for (tp = 0; tp <= top_of_p_table; tp++)
-        if (player_table[tp].name)
-            free(player_table[tp].name);
 
     free(player_table);
     player_table = nullptr;
     top_of_p_table = 0;
 }
 
-long get_ptable_by_name(const char *name) {
-    int i;
-
-    for (i = 0; i <= top_of_p_table; i++)
-        if (is_equals(player_table[i].name, name))
+long get_ptable_by_name(std::string_view name) {
+    for (int i = 0; i <= top_of_p_table; i++)
+        if (player_table[i].name == name)
             return (i);
 
     return (-1);
 }
 
-long get_id_by_name(const char *name) {
+long get_id_by_name(const std::string_view name) {
     int i;
 
     for (i = 0; i <= top_of_p_table; i++)
@@ -295,26 +280,23 @@ long get_id_by_name(const char *name) {
     return (-1);
 }
 
-char *get_name_by_id(long id) {
+std::optional<std::string_view> get_name_by_id(long id) {
     int i;
 
     for (i = 0; i <= top_of_p_table; i++)
         if (player_table[i].id == id)
-            return (player_table[i].name && *player_table[i].name ? player_table[i].name : nullptr);
+            return (player_table[i].name.empty() ? std::nullopt : player_table[i].name);
 
-    return (nullptr);
+    return std::nullopt;
 }
 /* Stuff related to the save/load player system. */
 /* New load_char reads ASCII Player Files. Load a char, true if loaded, false if not. */
-int load_player(const char *name, CharData *ch) {
+int load_player(std::string_view name, CharData *ch) {
     int id, i, num;
     FILE *fl;
-    char fname[40];
-    char buf[MAX_INPUT_LENGTH], line[MAX_INPUT_LENGTH + 1], tag[128];
+    std::string fname, line, tag;
     bool found_damroll = false;
     bool found_hitroll = false;
-
-    extern void do_wiztitle(char *outbuf, CharData *vict, char *argument);
 
     if ((id = get_ptable_by_name(name)) < 0)
         return (-1);
@@ -364,70 +346,70 @@ int load_player(const char *name, CharData *ch) {
 
     while (get_line(fl, line)) {
         tag_argument(line, tag);
-        num = atoi(line);
+        num = stoi(line);
 
-        switch (toupper(*tag)) {
+        switch (to_upper(*tag)) {
         case 'A':
-            if (!strcasecmp(tag, "ac"))
+            if (matches(tag, "ac"))
                 GET_AC(ch) = num;
-            else if (!strcasecmp(tag, "alignment"))
+            else if (matches(tag, "alignment"))
                 GET_ALIGNMENT(ch) = std::clamp(num, -1000, 1000);
-            else if (!strcasecmp(tag, "aliases"))
+            else if (matches(tag, "aliases"))
                 read_aliases_ascii(fl, ch);
-            else if (!strcasecmp(tag, "aggression"))
+            else if (matches(tag, "aggression"))
                 GET_AGGR_LEV(ch) = num;
-            else if (!strcasecmp(tag, "autoinvis"))
+            else if (matches(tag, "autoinvis"))
                 GET_AUTOINVIS(ch) = num;
             else
                 goto bad_tag;
             break;
 
         case 'B':
-            if (!strcasecmp(tag, "badpasswords"))
+            if (matches(tag, "badpasswords"))
                 GET_BAD_PWS(ch) = num;
-            else if (!strcasecmp(tag, "bank"))
+            else if (matches(tag, "bank"))
                 load_coins(line, GET_BANK_COINS(ch));
-            else if (!strcasecmp(tag, "birthtime"))
+            else if (matches(tag, "birthtime"))
                 ch->player.time.birth = atol(line);
-            else if (!strcasecmp(tag, "base_height"))
+            else if (matches(tag, "base_height"))
                 ch->player.base_height = num;
-            else if (!strcasecmp(tag, "base_weight"))
+            else if (matches(tag, "base_weight"))
                 ch->player.base_weight = num;
-            else if (!strcasecmp(tag, "base_size"))
+            else if (matches(tag, "base_size"))
                 ch->player.base_size = std::clamp(num, 0, NUM_SIZES - 1);
             else
                 goto bad_tag;
             break;
 
         case 'C':
-            if (!strcasecmp(tag, "charisma"))
+            if (matches(tag, "charisma"))
                 GET_NATURAL_CHA(ch) = num;
-            else if (!strcasecmp(tag, "class"))
+            else if (matches(tag, "class"))
                 GET_CLASS(ch) = std::clamp(num, 0, NUM_CLASSES - 1);
-            else if (!strcasecmp(tag, "constitution"))
+            else if (matches(tag, "constitution"))
                 GET_NATURAL_CON(ch) = num;
-            else if (!strcasecmp(tag, "cash"))
+            else if (matches(tag, "cash"))
                 load_coins(line, GET_COINS(ch));
-            else if (!strcasecmp(tag, "clan"))
+            else if (matches(tag, "clan"))
                 load_clan(line, ch);
-            else if (!strcasecmp(tag, "currenttitle"))
-                GET_TITLE(ch) = strdup(line);
-            else if (!strcasecmp(tag, "composition"))
+            else if (matches(tag, "currenttitle"))
+                ch->player.title = std::string(line);
+            else if (matches(tag, "composition"))
                 BASE_COMPOSITION(ch) = num;
-            else if (!strcasecmp(tag, "cooldowns"))
+            else if (matches(tag, "cooldowns"))
                 load_cooldowns(fl, ch);
             else
                 goto bad_tag;
             break;
 
         case 'D':
-            if (!strcasecmp(tag, "description"))
+            if (matches(tag, "description"))
                 ch->player.description = fread_string(fl, "load_player");
-            else if (!strcasecmp(tag, "dexterity"))
+            else if (matches(tag, "dexterity"))
                 GET_NATURAL_DEX(ch) = num;
-            else if (!strcasecmp(tag, "drunkenness"))
+            else if (matches(tag, "drunkenness"))
                 GET_COND(ch, DRUNK) = std::clamp(num, -1, 24);
-            else if (!strcasecmp(tag, "damroll")) {
+            else if (matches(tag, "damroll")) {
                 GET_BASE_DAMROLL(ch) = num;
                 found_damroll = true;
             } else
@@ -435,48 +417,46 @@ int load_player(const char *name, CharData *ch) {
             break;
 
         case 'E':
-            if (!strcasecmp(tag, "experience"))
+            if (matches(tag, "experience"))
                 GET_EXP(ch) = atol(line);
-            else if (!strcasecmp(tag, "effectflags"))
+            else if (matches(tag, "effectflags"))
                 load_ascii_flags(EFF_FLAGS(ch), NUM_EFF_FLAGS, line);
-            else if (!strcasecmp(tag, "effects"))
+            else if (matches(tag, "effects"))
                 load_effects(fl, ch);
             else
                 goto bad_tag;
             break;
 
         case 'F':
-            if (!strcasecmp(tag, "freezelevel"))
+            if (matches(tag, "freezelevel"))
                 GET_FREEZE_LEV(ch) = std::clamp(num, 0, LVL_IMPL);
             else
                 goto bad_tag;
             break;
 
         case 'G':
-            if (!strcasecmp(tag, "gossips"))
+            if (matches(tag, "gossips"))
                 load_retained_comms(fl, ch, TYPE_RETAINED_GOSSIPS);
-            else if (!strcasecmp(tag, "grants"))
+            else if (matches(tag, "grants"))
                 read_player_grants(fl, &GET_GRANTS(ch));
-            else if (!strcasecmp(tag, "grantgroups"))
+            else if (matches(tag, "grantgroups"))
                 read_player_grant_groups(fl, &GET_GRANT_GROUPS(ch));
             else
                 goto bad_tag;
             break;
 
         case 'H':
-            if (!strcasecmp(tag, "hitpoints"))
+            if (matches(tag, "hitpoints"))
                 scan_slash(line, &GET_HIT(ch), &GET_BASE_HIT(ch));
-            else if (!strcasecmp(tag, "height"))
+            else if (matches(tag, "height"))
                 GET_HEIGHT(ch) = num;
-            else if (!strcasecmp(tag, "host")) {
-                if (GET_HOST(ch))
-                    free(GET_HOST(ch));
-                GET_HOST(ch) = strdup(line);
-            } else if (!strcasecmp(tag, "hunger"))
+            else if (matches(tag, "host")) {
+                GET_HOST(ch) = line;
+            } else if (matches(tag, "hunger"))
                 GET_COND(ch, FULL) = std::clamp(num, -1, 24);
-            else if (!strcasecmp(tag, "home"))
+            else if (matches(tag, "home"))
                 GET_HOMEROOM(ch) = num;
-            else if (!strcasecmp(tag, "hitroll")) {
+            else if (matches(tag, "hitroll")) {
                 GET_BASE_HITROLL(ch) = num;
                 found_hitroll = true;
             } else
@@ -484,39 +464,39 @@ int load_player(const char *name, CharData *ch) {
             break;
 
         case 'I':
-            if (!strcasecmp(tag, "id"))
+            if (matches(tag, "id"))
                 GET_IDNUM(ch) = atol(line);
-            else if (!strcasecmp(tag, "intelligence"))
+            else if (matches(tag, "intelligence"))
                 GET_NATURAL_INT(ch) = num;
-            else if (!strcasecmp(tag, "invislevel"))
+            else if (matches(tag, "invislevel"))
                 GET_INVIS_LEV(ch) = std::clamp(num, 0, LVL_IMPL);
             else
                 goto bad_tag;
             break;
 
         case 'L':
-            if (!strcasecmp(tag, "level"))
+            if (matches(tag, "level"))
                 GET_LEVEL(ch) = std::clamp(num, 0, LVL_IMPL);
-            else if (!strcasecmp(tag, "lastlevel"))
+            else if (matches(tag, "lastlevel"))
                 GET_LASTLEVEL(ch) = num;
-            else if (!strcasecmp(tag, "lastlogintime"))
+            else if (matches(tag, "lastlogintime"))
                 ch->player.time.logon = num;
-            else if (!strcasecmp(tag, "lifeforce"))
+            else if (matches(tag, "lifeforce"))
                 GET_LIFEFORCE(ch) = num;
-            else if (!strcasecmp(tag, "loadroom"))
+            else if (matches(tag, "loadroom"))
                 GET_LOADROOM(ch) = num;
-            else if (!strcasecmp(tag, "logview"))
+            else if (matches(tag, "logview"))
                 GET_LOG_VIEW(ch) = num;
             else
                 goto bad_tag;
             break;
 
         case 'M':
-            if (!strcasecmp(tag, "mana"))
+            if (matches(tag, "mana"))
                 scan_slash(line, &GET_MANA(ch), &GET_MAX_MANA(ch));
-            else if (!strcasecmp(tag, "move"))
+            else if (matches(tag, "move"))
                 scan_slash(line, &GET_MOVE(ch), &GET_MAX_MOVE(ch));
-            else if (!strcasecmp(tag, "mem")) {
+            else if (matches(tag, "mem")) {
                 // We no longer have memorized spells.  Just skip this section.
                 while (get_line(fl, line) && *line != '0')
                     ;
@@ -525,20 +505,20 @@ int load_player(const char *name, CharData *ch) {
             break;
 
         case 'N':
-            if (!strcasecmp(tag, "name")) {
-                GET_NAME(ch) = strdup(line);
-                GET_NAMELIST(ch) = strdup(line);
-            } else if (!strcasecmp(tag, "natural_size"))
+            if (matches(tag, "name")) {
+                ch->player.short_descr = std::string(line);
+                ch->player.namelist = std::string(line);
+            } else if (matches(tag, "natural_size"))
                 ch->player.natural_size = std::clamp(num, 0, NUM_SIZES - 1);
             else
                 goto bad_tag;
             break;
 
         case 'O':
-            if (!strcasecmp(tag, "olczones")) {
+            if (matches(tag, "olczones")) {
                 OLCZoneList *zone;
-                char *next = line;
-                while ((next = any_one_arg(next, buf)) && is_number(buf)) {
+                std::string_view next = line;
+                while ((next = any_one_arg(next, buf)) && is_integer(buf)) {
                     CREATE(zone, OLCZoneList, 1);
                     zone->zone = atoi(buf);
                     zone->next = GET_OLC_ZONES(ch);
@@ -549,93 +529,93 @@ int load_player(const char *name, CharData *ch) {
             break;
 
         case 'P':
-            if (!strcasecmp(tag, "pagelength"))
+            if (matches(tag, "pagelength"))
                 GET_PAGE_LENGTH(ch) = std::clamp(num, 5, 250);
-            else if (!strcasecmp(tag, "password"))
+            else if (matches(tag, "password"))
                 strcpy(GET_PASSWD(ch), line);
-            else if (!strcasecmp(tag, "playerflags"))
+            else if (matches(tag, "playerflags"))
                 load_ascii_flags(PLR_FLAGS(ch), NUM_PLR_FLAGS, line);
-            else if (!strcasecmp(tag, "poofin"))
+            else if (matches(tag, "poofin"))
                 GET_POOFIN(ch) = strdup(line);
-            else if (!strcasecmp(tag, "poofout"))
+            else if (matches(tag, "poofout"))
                 GET_POOFOUT(ch) = strdup(line);
-            else if (!strcasecmp(tag, "prefflags"))
+            else if (matches(tag, "prefflags"))
                 load_ascii_flags(PRF_FLAGS(ch), NUM_PRF_FLAGS, line);
-            else if (!strcasecmp(tag, "privflags"))
+            else if (matches(tag, "privflags"))
                 load_ascii_flags(PRV_FLAGS(ch), NUM_PRV_FLAGS, line);
-            else if (!strcasecmp(tag, "prompt"))
+            else if (matches(tag, "prompt"))
                 GET_PROMPT(ch) = strdup(line);
             else
                 goto bad_tag;
             break;
 
         case 'R':
-            if (!strcasecmp(tag, "race"))
+            if (matches(tag, "race"))
                 GET_RACE(ch) = std::clamp(num, 0, NUM_RACES - 1);
             else
                 goto bad_tag;
             break;
 
         case 'S':
-            if (!strcasecmp(tag, "savingthrows")) {
-                char *next = line;
+            if (matches(tag, "savingthrows")) {
+                std::string_view next = line;
                 i = 0;
                 while (*(next = any_one_arg(next, buf)) && i < NUM_SAVES)
                     GET_SAVE(ch, i++) = atoi(buf);
-            } else if (!strcasecmp(tag, "saveroom"))
+            } else if (matches(tag, "saveroom"))
                 GET_SAVEROOM(ch) = num;
-            else if (!strcasecmp(tag, "sex"))
+            else if (matches(tag, "sex"))
                 GET_SEX(ch) = std::clamp(num, 0, NUM_SEXES - 1);
             /* "size" is a holdover which meant the same thing as "base_size" */
-            else if (!strcasecmp(tag, "size"))
+            else if (matches(tag, "size"))
                 ch->player.base_size = std::clamp(num, 0, NUM_SIZES - 1);
-            else if (!strcasecmp(tag, "skills"))
+            else if (matches(tag, "skills"))
                 load_skills(fl, ch);
-            else if (!strcasecmp(tag, "spellcasts"))
+            else if (matches(tag, "spellcasts"))
                 load_spellcasts(fl, ch);
-            else if (!strcasecmp(tag, "strength"))
+            else if (matches(tag, "strength"))
                 GET_NATURAL_STR(ch) = num;
             else
                 goto bad_tag;
             break;
 
         case 'Q':
-            if (!strcasecmp(tag, "quit_reason"))
+            if (matches(tag, "quit_reason"))
                 GET_QUIT_REASON(ch) = num;
             break;
 
         case 'T':
-            if (!strcasecmp(tag, "tells"))
+            if (matches(tag, "tells"))
                 load_retained_comms(fl, ch, TYPE_RETAINED_TELLS);
-            else if (!strcasecmp(tag, "thirst"))
+            else if (matches(tag, "thirst"))
                 GET_COND(ch, THIRST) = std::clamp(num, -1, 24);
-            else if (!strcasecmp(tag, "title"))
+            else if (matches(tag, "title"))
                 add_perm_title(ch, line);
-            else if (!strcasecmp(tag, "timeplayed"))
+            else if (matches(tag, "timeplayed"))
                 ch->player.time.played = num;
-            else if (!strcasecmp(tag, "trophy"))
+            else if (matches(tag, "trophy"))
                 load_trophy(fl, ch);
             else
                 goto bad_tag;
             break;
 
         case 'U':
-            if (!strcasecmp(tag, "revokes"))
+            if (matches(tag, "revokes"))
                 read_player_grants(fl, &GET_REVOKES(ch));
-            else if (!strcasecmp(tag, "revokegroups"))
+            else if (matches(tag, "revokegroups"))
                 read_player_grant_groups(fl, &GET_REVOKE_GROUPS(ch));
             else
                 goto bad_tag;
             break;
 
         case 'W':
-            if (!strcasecmp(tag, "weight"))
+            if (matches(tag, "weight"))
                 GET_WEIGHT(ch) = num;
-            else if (!strcasecmp(tag, "wimpy"))
+            else if (matches(tag, "wimpy"))
                 GET_WIMP_LEV(ch) = num;
-            else if (!strcasecmp(tag, "wisdom"))
+            else if (matches(tag, "wisdom"))
                 GET_NATURAL_WIS(ch) = num;
-            else if (!strcasecmp(tag, "wiztitle"))
+            else if (matches(tag, "wiztitle"))
                 do_wiztitle(buf, ch, line);
             else
                 goto bad_tag;
@@ -750,10 +730,9 @@ void save_player_char(CharData *ch) {
     if (ch->desc) {
         if (*ch->desc->host) {
             if (!GET_HOST(ch))
-                GET_HOST(ch) = strdup(ch->desc->host);
-            else if (GET_HOST(ch) && strcasecmp(GET_HOST(ch), ch->desc->host)) {
-                free(GET_HOST(ch));
-                GET_HOST(ch) = strdup(ch->desc->host);
+                GET_HOST(ch) = ch->desc->host;
+            else if (!GET_HOST(ch).empty() && !matches(GET_HOST(ch), ch->desc->host)) {
+                GET_HOST(ch) = ch->desc->host;
             }
         }
 
@@ -826,13 +805,15 @@ void save_player_char(CharData *ch) {
     fprintf(fl, "password: %s\n", GET_PASSWD(ch));
     if (GET_TITLE(ch) && *GET_TITLE(ch))
         fprintf(fl, "currenttitle: %s\n", GET_TITLE(ch));
-    if (ch->player.description && *ch->player.description)
-        fprintf(fl, "description\n%s~\n", filter_chars(buf, ch->player.description, "\r~"));
-    if (GET_PROMPT(ch) && *GET_PROMPT(ch))
+    if (!ch->player.description.empty())
+        fprintf(fl, "description\n%s~\n", filter_characters(ch->player.description, [](char c) {
+                    return c != '~' || c != '\r';
+                })); // Todo, filter with update.
+    if (!ch->player.prompt.empty())
         fprintf(fl, "prompt: %s\n", GET_PROMPT(ch));
-    if (GET_POOFIN(ch))
+    if (!ch->player_specials->poofin.empty())
         fprintf(fl, "poofin: %s\n", GET_POOFIN(ch));
-    if (GET_POOFOUT(ch))
+    if (!ch->player_specials->poofout.empty())
         fprintf(fl, "poofout: %s\n", GET_POOFOUT(ch));
     if (GET_AUTOINVIS(ch) > -1)
         fprintf(fl, "autoinvis: %d\n", GET_AUTOINVIS(ch));
@@ -849,7 +830,7 @@ void save_player_char(CharData *ch) {
     fprintf(fl, "timeplayed: %d\n", ch->player.time.played);
     fprintf(fl, "lastlogintime: %ld\n", (long)ch->player.time.logon);
 
-    if (GET_HOST(ch))
+    if (!GET_HOST(ch).empty())
         fprintf(fl, "host: %s\n", GET_HOST(ch));
     fprintf(fl, "height: %d\n", GET_HEIGHT(ch));
     fprintf(fl, "weight: %d\n", GET_WEIGHT(ch));
@@ -943,13 +924,11 @@ void save_player_char(CharData *ch) {
     if (GET_LOG_VIEW(ch))
         fprintf(fl, "logview: %d\n", GET_LOG_VIEW(ch));
 
-    if (GET_PERM_TITLES(ch))
-        for (i = 0; GET_PERM_TITLES(ch)[i]; ++i)
-            fprintf(fl, "title: %s\n", GET_PERM_TITLES(ch)[i]);
-    if (GET_WIZ_TITLE(ch)) {
-        strcpy(buf, GET_WIZ_TITLE(ch));
-        trim_spaces(buf);
-        fprintf(fl, "wiztitle: %s\n", buf);
+    if (!GET_PERM_TITLES(ch).empty())
+        for (auto title : GET_PERM_TITLES(ch))
+            fprintf(fl, "title: %s\n", title);
+    if (!GET_WIZ_TITLE(ch).empty()) {
+        fprintf(fl, "wiztitle: %s\n", trim(GET_WIZ_TITLE(ch)));
     }
 
     fprintf(fl, "quit_reason: %d\n", GET_QUIT_REASON(ch));
@@ -1076,7 +1055,7 @@ void delete_player(int pfilepos) {
     char fname[40];
     int i;
 
-    if (pfilepos > top_of_p_table || !*player_table[pfilepos].name)
+    if (pfilepos > top_of_p_table || player_table[pfilepos].name.empty())
         return;
 
     /* Delete all player-owned files */
@@ -1088,7 +1067,7 @@ void delete_player(int pfilepos) {
     save_player_index();
 }
 
-void rename_player(CharData *victim, char *newname) {
+void rename_player(CharData *victim, std::string_view newname) {
     int pfilepos = get_ptable_by_name(GET_NAME(victim));
     int i;
     char fname1[40], fname2[40];
@@ -1096,11 +1075,8 @@ void rename_player(CharData *victim, char *newname) {
     if (pfilepos < 0)
         return;
 
-    cap_by_color(newname);
-
-    if (player_table[pfilepos].name)
-        free(player_table[pfilepos].name);
-    player_table[pfilepos].name = strdup(newname);
+    capitalize_first(newname);
+    player_table[pfilepos].name = newname;
 
     /* Rename all player-owned files */
     for (i = 0; i < NUM_PLR_FILES; i++) {
@@ -1109,19 +1085,14 @@ void rename_player(CharData *victim, char *newname) {
                 rename(fname1, fname2);
     }
 
-    if (GET_NAME(victim))
-        free(GET_NAME(victim));
-    GET_NAME(victim) = strdup(newname);
+    GET_NAME(victim) = newname;
 
     save_player(victim);
 }
 
 void write_ascii_flags(FILE *fl, flagvector flags[], int num_flags) {
-    int i;
-    char flagbuf[FLAGBLOCK_SIZE + 1];
-
-    for (i = 0; i < FLAGVECTOR_SIZE(num_flags); ++i) {
-        sprintascii(flagbuf, flags[i]);
+    for (int i = 0; i < FLAGVECTOR_SIZE(num_flags); ++i) {
+        std::string flagbuf = sprintascii(flags[i]);
         fprintf(fl, "%s%s", i ? " " : "", flagbuf);
     }
 }
@@ -1174,7 +1145,7 @@ static void load_spellcasts(FILE *fl, CharData *ch) {
     } while (circle != 0);
 }
 
-static void scan_slash(const char *line, int *cur, int *max) {
+static void scan_slash(const std::string_view line, int *cur, int *max) {
     int num1 = 0, num2 = 0;
 
     sscanf(line, "%d/%d", &num1, &num2);
@@ -1200,17 +1171,17 @@ static void write_aliases_ascii(FILE *file, CharData *ch) {
 
 static void read_aliases_ascii(FILE *file, CharData *ch) {
     AliasData *alias;
-    char *replacement;
+    std::string_view replacement;
 
     do {
         /* Read the aliased command to buf. */
         get_line(file, buf);
 
-        if (!strcasecmp(buf, "0")) /* last alias line a single 0 */
+        if (matches(buf, "0")) /* last alias line a single 0 */
             return;
 
         replacement = any_one_arg(buf, buf1);
-        skip_spaces(&replacement);
+        skip_spaces(replacement);
 
         CREATE(alias, AliasData, 1);
         alias->alias = strdup(buf1);
@@ -1224,7 +1195,7 @@ static void read_aliases_ascii(FILE *file, CharData *ch) {
     } while (strcasecmp(buf, "0")); /* while buf is not "0" */
 }
 
-static void load_coins(char *line, int coins[]) {
+static void load_coins(std::string_view line, Money coins) {
     int c1, c2, c3, c4;
     if (sscanf(line, "%d %d %d %d", &c1, &c2, &c3, &c4) == 4) {
         coins[PLATINUM] = c1;
@@ -1251,10 +1222,10 @@ static void load_cooldowns(FILE *fl, CharData *ch) {
     } while (time != 0);
 }
 
-void load_ascii_flags(flagvector flags[], int num_flags, char *line) {
+void load_ascii_flags(flagvector flags[], int num_flags, std::string_view line) {
     int i = 0;
 
-    skip_spaces(&line);
+    skip_spaces(line);
 
     line = strtok(line, " ");
 
@@ -1272,26 +1243,14 @@ void load_ascii_flags(flagvector flags[], int num_flags, char *line) {
     }
 }
 
-static void load_clan(char *line, CharData *ch) {
+static void load_clan(std::string_view line, CharData *ch) {
     Clan *clan = find_clan(line);
     ch->player_specials->clan = find_clan_membership_in_clan(GET_NAME(ch), clan);
     if (GET_CLAN_MEMBERSHIP(ch))
         GET_CLAN_MEMBERSHIP(ch)->player = ch;
 }
 
-void add_perm_title(CharData *ch, char *line) {
-    int i;
-    if (!GET_PERM_TITLES(ch)) {
-        CREATE(GET_PERM_TITLES(ch), char *, 2);
-        i = 0;
-    } else {
-        for (i = 0; GET_PERM_TITLES(ch)[i]; ++i)
-            ;
-        RECREATE(GET_PERM_TITLES(ch), char *, i + 2);
-    }
-    GET_PERM_TITLES(ch)[i] = strdup(line);
-    GET_PERM_TITLES(ch)[i + 1] = nullptr;
-}
+void add_perm_title(CharData *ch, std::string_view line) { GET_PERM_TITLES(ch).push_back(std::string(line)); }
 
 /*
  * Initialize a player.

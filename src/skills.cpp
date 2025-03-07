@@ -30,16 +30,16 @@
 
 SkillDef skills[TOP_SKILL_DEFINE + 1];
 
-const char *talent_types[5] = {
+const std::string_view talent_types[5] = {
     "talent", "spell", "skill", "chant", "song",
 };
 
-const char *targets[NUM_TAR_FLAGS + 1] = {"IGNORE",    "CHAR_ROOM", "CHAR_WORLD", "FIGHT_SELF", "FIGHT_VICT",
-                                          "SELF_ONLY", "NOT_SELF",  "OBJ_INV",    "OBJ_ROOM",   "OBJ_WORLD",
-                                          "OBJ_EQUIP", "STRING",    "NIGHT_ONLY", "DAY_ONLY",   "OUTDOORS",
-                                          "GROUND",    "CONTACT",   "DIRECT",     "\n"};
+const std::string_view targets[NUM_TAR_FLAGS + 1] = {"IGNORE",    "CHAR_ROOM", "CHAR_WORLD", "FIGHT_SELF", "FIGHT_VICT",
+                                                     "SELF_ONLY", "NOT_SELF",  "OBJ_INV",    "OBJ_ROOM",   "OBJ_WORLD",
+                                                     "OBJ_EQUIP", "STRING",    "NIGHT_ONLY", "DAY_ONLY",   "OUTDOORS",
+                                                     "GROUND",    "CONTACT",   "DIRECT",     "\n"};
 
-const char *routines[NUM_ROUTINE_TYPES + 1] = {
+const std::string_view routines[NUM_ROUTINE_TYPES + 1] = {
     "DAMAGE", "AFFECT", "UNAFFECT", "POINT",  "ALTER_OBJ", "GROUP",     "MASS",
     "AREA",   "SUMMON", "CREATION", "MANUAL", "ROOM",      "BULK_OBJS", "\n",
 };
@@ -58,7 +58,7 @@ int talent_type(int skill_num) {
     return TALENT;
 }
 
-const char *skill_name(int num) {
+const std::string_view skill_name(int num) {
     if (num <= 0 || num >= TOP_SKILL_DEFINE) {
         if (num == 0)
             return "UNUSED";
@@ -69,12 +69,12 @@ const char *skill_name(int num) {
     return skills[num].name;
 }
 
-int find_talent_num(char *name, int should_restrict) {
+int find_talent_num(std::string_view name, int should_restrict) {
     int index = 0, abbrevmatch = -1, ok;
-    char *temp, *temp2;
+    std::string_view temp, *temp2;
     char first[256], first2[256], temp3[256];
 
-    skip_spaces(&name);
+    skip_spaces(name);
 
     /* Loop through the skills to find a match. */
     while (++index <= TOP_SKILL_DEFINE) {
@@ -84,14 +84,14 @@ int find_talent_num(char *name, int should_restrict) {
             continue;
 
         /* Exact match.  This is the skill we're looking for. */
-        if (!strcasecmp(name, skills[index].name))
+        if (matches(name, skills[index].name))
             return index;
 
         /*
          * If we found an abbreviated match, we don't want to return its
          * index immediately, in case we find a better match later.
          */
-        if (is_abbrev(name, skills[index].name)) {
+        if (matches_start(name, skills[index].name)) {
             if (abbrevmatch == -1 || strcasecmp(skills[index].name, skills[abbrevmatch].name) == -1) {
                 abbrevmatch = index;
                 continue;
@@ -106,13 +106,13 @@ int find_talent_num(char *name, int should_restrict) {
         temp = any_one_arg(temp3, first);
         temp2 = any_one_arg(name, first2);
         while (*first && *first2 && ok) {
-            if (!is_abbrev(first2, first))
+            if (!matches_start(first2, first))
                 ok = 0;
             temp = any_one_arg(temp, first);
             temp2 = any_one_arg(temp2, first2);
         }
 
-        if (ok && !*first2 && abbrevmatch == -1) {
+        if (ok && first2.empty() && abbrevmatch == -1) {
             abbrevmatch = index;
         }
     }
@@ -120,13 +120,13 @@ int find_talent_num(char *name, int should_restrict) {
     return abbrevmatch;
 }
 
-int find_skill_num(char *name) { return find_talent_num(name, SKILL); }
+int find_skill_num(std::string_view name) { return find_talent_num(name, SKILL); }
 
-int find_spell_num(char *name) { return find_talent_num(name, SPELL); }
+int find_spell_num(std::string_view name) { return find_talent_num(name, SPELL); }
 
-int find_chant_num(char *name) { return find_talent_num(name, CHANT); }
+int find_chant_num(std::string_view name) { return find_talent_num(name, CHANT); }
 
-int find_song_num(char *name) { return find_talent_num(name, SONG); }
+int find_song_num(std::string_view name) { return find_talent_num(name, SONG); }
 
 void improve_skill(CharData *ch, int skill) {
     int percent, maxpercent;
@@ -351,9 +351,9 @@ void update_skills(CharData *ch) {
 }
 
 /* Define the skills on boot up */
-void dskill(int skill, char *name, int max_mana, int min_mana, int mana_change, int minpos, int ok_fighting,
+void dskill(int skill, std::string_view name, int max_mana, int min_mana, int mana_change, int minpos, int ok_fighting,
             int targets, byte violent, bool humanoid, int routines, int addl_mem_time, int cast_time, int damage_type,
-            int sphere, int pages, int quest, char *wearoff) {
+            int sphere, int pages, int quest, std::string_view wearoff) {
     int i;
 
     skills[skill].name = name;

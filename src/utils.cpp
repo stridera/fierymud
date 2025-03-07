@@ -34,8 +34,12 @@
 #include "sysdep.hpp"
 #include "weather.hpp"
 
+#include <algorithm>
 #include <fmt/format.h>
+#include <memory>
+#include <string>
 #include <sys/stat.h> /* For stat() */
+#include <vector>
 
 flagvector *ALL_FLAGS;
 
@@ -132,11 +136,11 @@ long exp_next_level(int level, int class_num) {
 }
 
 /* the "touch" command, essentially. */
-int touch(const char *path) {
+int touch(const std::string_view path) {
     FILE *fl;
 
-    if (!(fl = fopen(path, "a"))) {
-        perror(path);
+    if (!(fl = fopen(std::string(path), "a"))) {
+        perror(std::string(path));
         return -1;
     } else {
         fclose(fl);
@@ -303,26 +307,17 @@ void die_consentee_clean(CharData *ch) {
  *
  * Returns the number of lines advanced in the file.
  */
-int get_line(FILE *fl, char *buf) {
+std::optional<std::string> get_line(FILE *fl) {
     char temp[256];
-    int lines = 0;
 
-    temp[0] = 0; /* Otherwise, reading a 0-length file could lead to errors. */
-
-    do {
-        lines++;
-        fgets(temp, 256, fl);
-        if (*temp) {
-            temp[strlen(temp) - 1] = '\0';
+    while (fgets(temp, sizeof(temp), fl)) {
+        if (temp[0] != '*' && !std::string(temp).empty()) {
+            temp[strcspn(temp, "\n")] = '\0'; // Remove newline character
+            return std::string(temp);
         }
-    } while (!feof(fl) && (*temp == '*' || !*temp));
-
-    if (feof(fl))
-        return 0;
-    else {
-        strcpy(buf, temp);
-        return lines;
     }
+
+    return std::nullopt; // Return empty optional if end of file is reached
 }
 
 int num_pc_in_room(RoomData *room) {
@@ -336,13 +331,13 @@ int num_pc_in_room(RoomData *room) {
     return i;
 }
 
-CharData *is_playing(char *vict_name) {
+CharData *is_playing(std::string_view vict_name) {
     DescriptorData *i;
     for (i = descriptor_list; i; i = i->next)
         if (i->connected == CON_PLAYING) {
-            if (!strcasecmp(GET_NAME(i->character), vict_name))
+            if (!matches(GET_NAME(i->character), vict_name))
                 return i->character;
-            else if (i->original && !strcasecmp(GET_NAME(i->original), vict_name))
+            else if (i->original && !matches(GET_NAME(i->original), vict_name))
                 return i->original;
         }
     return nullptr;
@@ -376,7 +371,7 @@ int load_modifier(CharData *ch) {
     return 300;
 }
 
-const char *movewords(CharData *ch, int dir, int room, int leaving) {
+const std::string_view movewords(CharData *ch, int dir, int room, int leaving) {
     if (GET_POS(ch) == POS_FLYING)
         return (leaving ? "flies" : "flies in");
 
@@ -539,8 +534,8 @@ void perform_random_gem_drop(CharData *ch) {
     obj_to_char(od, ch);
 }
 
-int yesno_result(char *answer) {
-    if (!answer || !(*answer))
+int yesno_result(std::string_view answer) {
+    if (answer.empty())
         return YESNO_NONE;
     else if (answer[0] == 'y' || answer[0] == 'Y')
         return YESNO_YES;
@@ -567,103 +562,64 @@ int find_zone(int num) {
  * Returns 0 on success or 1 if the address is invalid.
  */
 
-int normalize_ip_address(char *in, char *out) {
-    int octets[4];
+int normalize_ip_address(const std::string_view in, std::string &out) {
+    int octets[4] = {0};
     int octet = 0;
-    char *inx = in;
     int octval = 0;
 
-    while (*inx && octet < 4) {
-        switch (*inx) {
-        case '.':
+    for (char ch : in) {
+        if (ch == '.') {
             if (octval > 255) {
-                /* Invalid value */
+                // Invalid value
                 return 1;
             }
             octets[octet++] = octval;
             octval = 0;
-            break;
-        case '0':
-        case '1':
-        case '2':
-        case '3':
-        case '4':
-        case '5':
-        case '6':
-        case '7':
-        case '8':
-        case '9':
-            octval = octval * 10 + (int)(*inx - '0');
-            break;
-        default:
-            /* Invalid character */
+            if (octet >= 4) {
+                // Too many octets
+                return 1;
+            }
+        } else if (std::isdigit(ch)) {
+            octval = octval * 10 + (ch - '0');
+        } else {
+            // Invalid character
             return 1;
         }
-        inx++;
     }
+
     if (octval > 255 || octet != 3) {
-        /* Invalid value or incorrect number of octets */
+        // Invalid value or incorrect number of octets
         return 1;
     }
     octets[octet] = octval;
-    sprintf(out, "%d.%d.%d.%d", octets[0], octets[1], octets[2], octets[3]);
+
+    out = fmt::format("{}.{}.{}.{}", octets[0], octets[1], octets[2], octets[3]);
     return 0;
 }
 
-char *statelength(int inches) {
-    static char res0[400];
-    static char res1[400];
-    static int resptr = 0;
-    char *res = res0;
-
-    if (resptr == 0) {
-        resptr = 1;
-        res = res1;
-    } else {
-        resptr = 0;
-        res = res0;
-    }
-
+std::string_view statelength(int inches) {
     if (inches < 12)
-        sprintf(res, "%d inch%s", inches, inches == 1 ? "" : "es");
+        return fmt::format("{} inch{}", inches, inches == 1 ? "" : "es");
     else if (inches < 1200 && inches % 12)
-        sprintf(res, "%d %s, %d inch%s", inches / 12, inches / 12 == 1 ? "foot" : "feet", inches % 12,
-                inches % 12 == 1 ? "" : "es");
+        return fmt::format("{} {}, {} inch{}", inches / 12, inches / 12 == 1 ? "foot" : "feet", inches % 12,
+                           inches % 12 == 1 ? "" : "es");
     else
-        sprintf(res, "%d %s", inches / 12, inches / 12 == 1 ? "foot" : "feet");
-
-    return res;
+        return fmt::format("{} {}", inches / 12, inches / 12 == 1 ? "foot" : "feet");
 }
 
-char *stateweight(float pounds) {
-    static char res0[400];
-    static char res1[400];
-    static int resptr = 0;
-    char *res = res0;
-    int len;
-
-    if (resptr == 0) {
-        resptr = 1;
-        res = res1;
-    } else {
-        resptr = 0;
-        res = res0;
-    }
-
+std::string_view stateweight(float pounds) {
     if (pounds < 2000)
-        sprintf(res, "%.2f pound%s", pounds, pounds == 1 ? "" : "s");
+        return fmt::format("{:.2f} pound{}", pounds, pounds == 1 ? "" : "s");
     else if (pounds < 2100)
-        sprintf(res, "1 ton");
+        return "1 ton";
     else {
-        sprintf(res, "%0.1f", pounds / 2000.0);
+        auto res = fmt::format("{:.1f}", pounds / 2000.0);
         /* Lop off trailing ".0" */
-        len = strlen(res);
-        if (len > 2 && res[len - 1] == '0' && res[len - 2] == '.')
-            res[len - 2] = '\0';
-        strcat(res, " tons");
+        if (res.size() > 2 && res.back() == '0' && res[res.size() - 2] == '.')
+            res.erase(res.size() - 2);
+        res += " tons";
+        return res;
     }
-
-    return res;
 }
 
 /* parse_obj_name()
@@ -685,15 +641,16 @@ char *stateweight(float pounds) {
  */
 
 struct objdef {
-    char *name;
+    std::string_view name;
 };
 
-#define OBJNAME(i) (((objdef *)((char *)(objects) + objsize * i))->name)
+#define OBJNAME(i) (((objdef *)((objects) + objsize * i))->name)
 
-int parse_obj_name(CharData *ch, const char *arg, const char *objname, int numobjs, void *objects, int objsize) {
+int parse_obj_name(CharData *ch, const std::string_view arg, const std::string_view objname, int numobjs, void *objects,
+                   int objsize) {
     int i, answer = -1, best = -1;
 
-    if (!*arg) {
+    if (arg.empty()) {
         if (ch) {
             char_printf(ch, "What {}?\n", objname);
         }
@@ -701,19 +658,19 @@ int parse_obj_name(CharData *ch, const char *arg, const char *objname, int numob
     }
 
     if (isdigit(arg[0])) {
-        answer = atoi(arg);
+        answer = svtoi(arg);
         if (answer < 0 || answer >= numobjs)
             answer = -1;
     } else
         for (i = 0; i < numobjs; i++) {
-            if (!strncasecmp(arg, OBJNAME(i), strlen(arg))) {
-                if (!strcasecmp(arg, OBJNAME(i))) {
+            if (!matches_start(arg, OBJNAME(i))) {
+                if (!matches(arg, OBJNAME(i))) {
                     answer = i;
                     break;
                 }
                 if (best == -1)
                     best = i;
-            } else if (is_abbrev(arg, OBJNAME(i))) {
+            } else if (matches_start(arg, OBJNAME(i))) {
                 if (best == -1)
                     best = i;
             }
@@ -729,7 +686,7 @@ int parse_obj_name(CharData *ch, const char *arg, const char *objname, int numob
     return answer;
 }
 
-char *format_apply(int apply, int modifier) {
+std::string_view format_apply(int apply, int modifier) {
     static char f[MAX_STRING_LENGTH];
 
     if (apply == APPLY_COMPOSITION) {
@@ -843,7 +800,7 @@ void optquicksort(int array[], int count, int comparator(int a, int b)) {
 #undef MAX_LEVELS
 }
 
-void drop_core(CharData *ch, const char *desc) {
+void drop_core(CharData *ch, const std::string_view desc) {
     static int corenum = 0;
     char initcorename[MAX_STRING_LENGTH];
     char corename[MAX_STRING_LENGTH];
@@ -855,10 +812,10 @@ void drop_core(CharData *ch, const char *desc) {
     if (child == 0) {
         abort();
     } else {
-        if (desc && *desc) {
-            sprintf(corename, "core-%s-%d.%d", desc, corenum, getpid());
-        } else {
+        if (desc.empty()) {
             sprintf(corename, "core-%d.%d", corenum, getpid());
+        } else {
+            sprintf(corename, "core-%s-%d.%d", desc, corenum, getpid());
         }
         corenum++;
         waitpid(child, 0, 0);

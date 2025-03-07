@@ -112,13 +112,13 @@ void increment_game_time();
 void update_daylight();
 void update_season();
 
-char *wind_message(int current_wind, int original_wind);
-char *temperature_message(int temperature);
-char *precipitation_message(ZoneData *zone, int original);
+std::string_view wind_message(int current_wind, int original_wind);
+std::string_view temperature_message(int temperature);
+std::string_view precipitation_message(ZoneData *zone, int original);
 
 /* hemispheres for weather and time NE< NW< SE< SW */
 struct HemisphereData {
-    const char *name;
+    const std::string_view name;
     int season;
     int sunlight;
 };
@@ -127,17 +127,17 @@ struct HemisphereData {
  * corresponds to the climate type as defined below in CLIMATE_xxx
  */
 struct ClimateData {
-    const char *name;
+    const std::string_view name;
     int base_temperature;
     int base_precipitation_rate;
     int base_wind_speed;
     int allowed_disasters;
 };
 
-extern const char *wind_speeds[];
-extern const char *precip[];
-extern const char *daylight_change[];
-extern const char *seasons[];
-extern const char *season_change[];
+extern const std::string_view wind_speeds[];
+extern const std::string_view precip[];
+extern const std::string_view daylight_change[];
+extern const std::string_view seasons[];
+extern const std::string_view season_change[];
 extern HemisphereData hemispheres[NUM_HEMISPHERES];
 extern ClimateData climates[NUM_CLIMATES];

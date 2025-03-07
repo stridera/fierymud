@@ -46,7 +46,7 @@ using namespace std::string_view_literals;
 #define PARSE_LIST_NUM 6
 #define PARSE_EDIT 7
 
-char *string_fields[] = {"name", "short", "long", "description", "title", "delete-description", "\n"};
+std::string_view string_fields[] = {"name", "short", "long", "description", "title", "delete-description", "\n"};
 
 /* maximum length for text field x+1 */
 int length[] = {15, 60, 256, 240, 60};
@@ -56,7 +56,7 @@ int length[] = {15, 60, 256, 240, 60};
  ************************************************************************ */
 
 /* Basic API function to start writing somewhere. */
-void string_write_limit(DescriptorData *d, char **writeto, size_t len, int maxlines) {
+void string_write_limit(DescriptorData *d, std::string_view writeto, size_t len, int maxlines) {
     if (!writeto)
         return;
 
@@ -87,11 +87,11 @@ void string_write_limit(DescriptorData *d, char **writeto, size_t len, int maxli
 }
 
 /* Start writing when you don't care about the number of lines. */
-void string_write(DescriptorData *d, char **writeto, size_t len) { string_write_limit(d, writeto, len, 0); }
+void string_write(DescriptorData *d, std::string_view writeto, size_t len) { string_write_limit(d, writeto, len, 0); }
 
-void mail_write(DescriptorData *d, char **writeto, size_t len, long recipient) {
+void mail_write(DescriptorData *d, std::string_view writeto, size_t len, long recipient) {
     if (!writeto)
-        CREATE(writeto, char *, 1);
+        CREATE(writeto, std::string_view, 1);
     string_write(d, writeto, len);
     d->mail_to = recipient;
 }
@@ -99,11 +99,11 @@ void mail_write(DescriptorData *d, char **writeto, size_t len, long recipient) {
 /*
  * Handle some editor commands.
  */
-void parse_action(int command, char *string, DescriptorData *d) {
+void parse_action(int command, std::string_view string, DescriptorData *d) {
     int indent = 0, rep_all = 0, flags = 0, total_len, replaced;
     int j = 0;
     int i, line_low, line_high;
-    char *s, *t, temp;
+    std::string_view s, *t, temp;
 
     switch (command) {
     case PARSE_HELP:
@@ -133,8 +133,8 @@ void parse_action(int command, char *string, DescriptorData *d) {
         break;
     case PARSE_FORMAT:
         if (STATE(d) == CON_TRIGEDIT) {
-            skip_spaces(&string);
-            i = is_number(string) ? atoi(string) : 3;
+            skip_spaces(string);
+            i = is_integer(string) ? atoi(string) : 3;
             replaced = format_script(d, i);
             if (replaced)
                 string_to_output(d, "Script formatted.\n");
@@ -300,9 +300,9 @@ void parse_action(int command, char *string, DescriptorData *d) {
             *s = temp;
         } else
             strcat(buf, t);
-            /*
-             * This is kind of annoying...but some people like it.
-             */
+        /*
+         * This is kind of annoying...but some people like it.
+         */
 #if 0
 	sprintf(buf, "%s\n%d line%sshown.\n", buf, total_len, ((total_len != 1) ? "s " : " "));
 #endif
@@ -510,7 +510,7 @@ void parse_action(int command, char *string, DescriptorData *d) {
 }
 
 /* Add user input to the 'current' string (as defined by d->str) */
-void string_add(DescriptorData *d, char *str) {
+void string_add(DescriptorData *d, std::string_view str) {
     int terminator = 0, action = 0;
     int i = 2, j = 0;
     char actions[MAX_INPUT_LENGTH], *s;
@@ -608,7 +608,7 @@ void string_add(DescriptorData *d, char *str) {
             char_printf(d->character, "String too long, limit reached on message.  Last line ignored.\n");
             return;
         } else {
-            if (!(*d->str = (char *)realloc(*d->str, strlen(*d->str) + strlen(str) + 3))) {
+            if (!(*d->str = (std::string_view)realloc(*d->str, strlen(*d->str) + strlen(str) + 3))) {
                 perror("string_add");
                 exit(1);
             }
@@ -739,10 +739,8 @@ void string_add(DescriptorData *d, char *str) {
             REMOVE_FLAG(PLR_FLAGS(d->character), PLR_WRITING);
             REMOVE_FLAG(PLR_FLAGS(d->character), PLR_MAILING);
         }
-        if (d->backstr)
-            free(d->backstr);
-        d->backstr = nullptr;
-        d->str = nullptr;
+        d->backstr.clear();
+        d->str.clear();
     }
 }
 
@@ -753,12 +751,11 @@ void string_add(DescriptorData *d, char *str) {
 /* made skillset <vict> only show nonzero skills -321 3/14/00 */
 ACMD(do_skillset) {
     CharData *vict;
-    char name[100], buf2[100];
     int skill, value, i, j, k;
 
-    argument = one_argument(argument, name);
+    auto name = argument.shift();
 
-    if (!*name) { /* no arguments. print an informative text */
+    if (name.empty()) { /* no arguments. print an informative text */
         char_printf(ch, "Syntax: skillset <name> '<skill>' <value>\n");
         strcpy(buf, "Skill being one of the following:\n");
         for (j = 0, k = 0; j <= TOP_SKILL; ++j) {
@@ -772,7 +769,7 @@ ACMD(do_skillset) {
             }
             ++k;
         }
-        if (*buf)
+        if (!buf.empty())
             char_printf(ch, buf);
         char_printf(ch, "\n");
         return;
@@ -781,10 +778,8 @@ ACMD(do_skillset) {
         char_printf(ch, NOPERSON);
         return;
     }
-    skip_spaces(&argument);
-
     /* If there is no chars in argument */
-    if (!*argument) {
+    if (argument.empty()) {
         if (GET_LEVEL(vict) < GET_LEVEL(ch) || ch == vict) {
             strcpy(buf, "Current values of skills:\n");
             for (i = 0; i <= TOP_SKILL; ++i) {
@@ -815,9 +810,9 @@ ACMD(do_skillset) {
         return;
     }
 
-    argument = one_argument(argument, arg);
+    auto arg = argument.shift();
 
-    if (!*arg) {
+    if (arg.empty()) {
         char_printf(ch, "Learned value expected.\n");
         return;
     } else if ((value = atoi(arg)) < 0) {
@@ -887,7 +882,7 @@ void paging_printf(CharData *ch, std::string_view messg) { paging_addstr(ch->des
 
 void desc_paging_printf(DescriptorData *d, std::string_view messg) { paging_addstr(d, messg); }
 
-void get_paging_input(DescriptorData *d, char *input) {
+void get_paging_input(DescriptorData *d, std::string_view input) {
     one_argument(input, buf);
 
     /* Q is for quit. :) */
@@ -912,7 +907,7 @@ void get_paging_input(DescriptorData *d, char *input) {
             char_printf(d->character, "Invalid page number.\n");
             return;
         }
-    } else if (*buf) {
+    } else if (!buf.empty()) {
         /* Other input: quit the pager */
         d->page_outbuf->clear();
         return;

@@ -32,29 +32,29 @@ using namespace std::string_literals;
  * However, if you decide you want to have an all-out knock-down drag-out
  * PK Mud, just set pk_allowed to true - and anything goes.
  */
-int pk_allowed = false;
-int summon_allowed = true;
-int charm_allowed = false;
-int sleep_allowed = false;
-int roomeffect_allowed = true;
+bool pk_allowed = false;
+bool summon_allowed = true;
+bool charm_allowed = false;
+bool sleep_allowed = false;
+bool roomeffect_allowed = true;
 
-int races_allowed = true;
-int evil_races_allowed = false; /* Allows good races only. */
+bool races_allowed = true;
+bool evil_races_allowed = false; /* Allows good races only. */
 
 /* do you have to visit your guild to level? */
-int level_gain = true;
+bool level_gain = true;
 
 /* Show damage amounts to players? */
-int damage_amounts = true;
+bool damage_amounts = true;
 
 /* is playerthieving allowed? */
-int pt_allowed = false;
+bool pt_allowed = false;
 
 /* minimum level a player must be to shout/holler/gossip/auction */
 int level_can_shout = 1;
 
 /* default group level difference, zero is OFF */
-int max_group_difference = false;
+bool max_group_difference = false;
 
 /* number of movement points it costs to holler */
 int holler_move_cost = 20;
@@ -65,13 +65,13 @@ int max_pc_corpse_time = 3500;  /* 3500 ticks is approximately 3 real days  */
 int short_pc_corpse_time = 100; /* 100 ticks = about 2 real hours */
 
 /* approve new character names being allowing them to enter the game? */
-int approve_names = false;
+bool approve_names = false;
 
 /* new character name approval causes a pause before entering the game? */
-int napprove_pause = false;
+bool napprove_pause = false;
 
 /* should items in death traps automatically be junked? */
-int dts_are_dumps = true;
+bool dts_are_dumps = true;
 
 /* Automatic rebooting */
 int reboot_hours_base = 140;     /* Average time to reboot (real hours) */
@@ -82,7 +82,7 @@ int reboot_hours_deviation = 30; /* added to or subtracted from reboot_hours_bas
 int reboot_warning_minutes = 10;
 
 /* Setting this to false will prevent the mud from rebooting itself */
-int reboot_auto = true;
+bool reboot_auto = true;
 
 /* reboot_pulse is the time, on the pulse clock (global_pulse),
  * when the mud will actually reboot. This initial value is temporary.
@@ -128,7 +128,7 @@ int should_restrict = 0;             /* level of game restriction         */
 int restrict_reason = RESTRICT_NONE; /* reason for should_restrict > 0 */
 
 int environment = ENV_PROD; /* 0 = production, 1 = test, 2 = dev */
-const char *environments[] = {"PROD", "TEST", "DEV"};
+const std::string_view environments[] = {"PROD", "TEST", "DEV"};
 
 /*
  * This is the default port the game should run on if no port is given on
@@ -139,10 +139,10 @@ const char *environments[] = {"PROD", "TEST", "DEV"};
 int DFLT_PORT = 9999;
 
 /* default directory to use as data directory */
-const char *DFLT_DIR = "lib";
+const std::string_view DFLT_DIR = "lib";
 
 /* default environment */
-const char *DFLT_ENV = "test";
+const std::string_view DFLT_ENV = "test";
 
 /* maximum number of players allowed before game starts to turn people away */
 int MAX_PLAYERS = 300;
@@ -169,9 +169,9 @@ int max_bad_pws = 3;
  * the SLOWNS command from within the MUD.
  */
 
-int nameserver_is_slow = true;
+bool nameserver_is_slow = true;
 
-const char *MENU =
+const std::string_view MENU =
     "\n"
     "   ~~~ Welcome to &1&bFieryMUD&0 ~~~\n"
     "\n"
@@ -182,70 +182,63 @@ const char *MENU =
     "\n"
     "       Make your choice: ";
 
-const char *GREETINGS =
+const std::string_view GREETINGS =
     "\n\n"
     "      . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . \n"
     "      .       &3&b ________&0                                             . \n"
     "      .       &3&b/   ___\\_}              ___    _____ ______&0           . \n"
     "      .       &3&b|  |   __  ________     |_ \\  /  | | |  |   \\&0         . \n"
-    "      .       &3&b|  |__/  \\/  __ \\ |\\__ / /  \\/   | | |  |    \\&0        . \n";
-const char *GREETINGS2 =
+    "      .       &3&b|  |__/  \\/  __ \\ |\\__ / /  \\/   | | |  |    \\&0        . \n"
     "      .       &3&b|  ____\\ |  {_/ /  __ / /        | | |  | |\\  \\&0       . \n"
     "      .       &1&b|  |  |  | {___/  /\\ Y /|  /\\/\\  | | |  | | |  |&0      . \n"
     "      .       &1&b|  |  |  | \\___|  |/  / |  |  |  | \\_/  | L_|  |&0      . \n"
     "      .       &1&b|__|  \\__/_____/__|__/  |__|  |__|_____/______/&0       . \n"
     "      . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . \n"
-    "      .      &7&bMud based on: Copper DikuMud I (B.1) by Swiftest&0       . \n";
-const char *GREETINGS3 =
+    "      .      &7&bMud based on: Copper DikuMud I (B.1) by Swiftest&0       . \n"
     "      .    &7&bDikuMud creators: Hans Henrik Staerfeldt, Katja Nyboe,&0   . \n"
     "      .      &7&bTom Madsen, Michael Seifert, and Sebastian Hammer.&0     . \n"
     "      . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . \n"
     "      .          &1&bFor Help or Information: &3&bwww.fierymud.org&0          . \n"
     "      . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . "
-    "\n";
-
-const char *GREETINGS4 = "                                                     Build No.";
-const char *TEST_GREETING =
+    "\n"
+    "                                                     Build No.";
+const std::string_view TEST_GREETING =
     "\n\n"
     "      . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . \n"
     "      .      &3&b________         _________________  _______________&0    . \n"
     "      .     &3&b/   ___\\_}        \\____      ____/ \\/    \\     ____/&0    . \n"
     "      .     &3&b|  |   __  ________    \\_   /|  ___/   __/    /&0         . \n"
-    "      .     &3&b|  |__/  \\/  __ \\ |\\__ / / | |  |__   /   |  |&0          . \n";
-const char *TEST_GREETING2 =
+    "      .     &3&b|  |__/  \\/  __ \\ |\\__ / / | |  |__   /   |  |&0          . \n"
     "      .     &3&b|  ____\\ |  {_/ /  __ / /  | |   __|   \\  |  |&0          . \n"
     "      .     &1&b|  |  |  | {___/  /\\ Y /|  | |  |__ \\   \\ |  |&0          . \n"
     "      .     &1&b|  |  |  | \\___|  |/  / |  | |     \\_\\  \\|  |&0          . \n"
     "      .     &1&b|__|  \\__/_____/__|__/  |__| \\_____/_____/|__|&0          . \n"
     "      . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . \n"
-    "      .      Mud based on: Copper DikuMud I (B.1) by Swiftest       . \n";
-const char *TEST_GREETING3 =
+    "      .      Mud based on: Copper DikuMud I (B.1) by Swiftest       . \n"
     "      .    DikuMud creators: Hans Henrik Staerfeldt, Katja Nyboe,   . \n"
     "      .      Tom Madsen, Michael Seifert, and Sebastian Hammer.     . \n"
     "      . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . \n"
     "                                                     Build No.";
 
-const char *DEV_GREETING =
+const std::string_view DEV_GREETING =
     "\n\n"
     "      . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . \n"
     "      .     &3&b ________               _____   _______ _        ___    &0. \n"
     "      .     &3&b/   _____}             |     \\ |       \\ \\      /  /    &0. \n"
     "      .     &3&b|  |   __  ________    |   _  \\|  _____/  \\    /  /     &0. \n"
-    "      .     &3&b|  |__/  \\/  __ \\ |\\__ / /| \\  \\  |__ \\    \\  /  /      &0. \n";
-const char *DEV_GREETING2 =
+    "      .     &3&b|  |__/  \\/  __ \\ |\\__ / /| \\  \\  |__ \\    \\  /  /      &0. \n"
     "      .     &3&b|  ____\\ |  {_/ /  __ / / | /  /   __| \\    \\/  /       &0. \n"
     "      .     &1&b|  |  |  | {___/  /\\ Y /  |/  /|  |____ \\      /        &0. \n"
     "      .     &1&b|  |  |  | \\___|  |/  /|     / |       \\ \\    /         &0. \n"
     "      .     &1&b|__|  \\__/_____/__|__/ |____/  |_______/  \\__/          &0. \n"
     "      . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . \n"
-    "      .      Mud based on: Copper DikuMud I (B.1) by Swiftest       . \n";
-const char *DEV_GREETING3 =
+    "      .      Mud based on: Copper DikuMud I (B.1) by Swiftest       . \n"
     "      .    DikuMud creators: Hans Henrik Staerfeldt, Katja Nyboe,   . \n"
     "      .      Tom Madsen, Michael Seifert, and Sebastian Hammer.     . \n"
     "      . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . \n"
     "                                                     Build No.";
 
-const char *WHOAREYOU =
+const std::string_view WHOAREYOU =
     "\n\n"
     "                        Based on HubisMUD 1.0\n"
     "                       Based on CircleMUD 3.0,\n"
@@ -253,16 +246,16 @@ const char *WHOAREYOU =
     "\n"
     "By what name do you wish to be known? ";
 
-const char *WELC_MESSG =
+const std::string_view WELC_MESSG =
     "\n"
     "Welcome to FieryMUD!\n"
     "\n\n";
 
-const char *START_MESSG =
+const std::string_view START_MESSG =
     "Welcome.  This is your new character! Type help display "
     "and help newbie.\n";
 
-const char *NAMES_EXPLANATION =
+const std::string_view NAMES_EXPLANATION =
     "\n"
     "Our name policy is fairly relaxed, but does have the following "
     "restrictions:\n"
@@ -274,7 +267,7 @@ const char *NAMES_EXPLANATION =
     "3) Nothing that is deemed offensive or inappropriate by our staff.\n"
     "\n";
 
-const char *BANNEDINTHEUSA =
+const std::string_view BANNEDINTHEUSA =
     "\n"
     "                       IF YOU SEE THIS IT IS BAD!\n"
     "\n"
@@ -283,39 +276,27 @@ const char *BANNEDINTHEUSA =
     "       FFF            III    EEE          RRR   RRRR   YYY    YYY  \n"
     "       FFFFFF         III    EEEEEE       RRR    RRR    YYYYYYYY   \n"
     "       FFF            III    EEE          RRRRRRRRR         YYY    \n"
-    "       FFF           IIIII   EEEEEEEEEE   RRR    RRR       YYY     \n";
-
-const char *BANNEDINTHEUSA2 =
+    "       FFF           IIIII   EEEEEEEEEE   RRR    RRR       YYY     \n"
     "       FFF          IIIIIII   EEEEEEEEEE  RRRR    RRRR   YYYY      \n"
     "\n"
-    " You have been banned from playing on FieryMUD. We are sorry if that is "
-    "an\n"
-    " inconvenience however it has been done with good reason.  Do not "
-    "attempt\n"
-    " to continually reconnect to FieryMUD as all connection will be met "
-    "with\n"
-    " this message. All connections are logged. If we have trouble from a "
-    "site\n"
-    " we can and will contact the administrators of the site or your "
-    "Internet\n";
-
-const char *BANNEDINTHEUSA3 =
+    " You have been banned from playing on FieryMUD. We are sorry if that is an\n"
+    " inconvenience however it has been done with good reason.  Do not attempt\n"
+    " to continually reconnect to FieryMUD as all connection will be met with\n"
+    " this message. All connections are logged. If we have trouble from a site\n"
+    " we can and will contact the administrators of the site or your Internet\n"
     " service provider.\n"
     "                         YOU HAVE BEEN WARNED!\n"
     "\n"
-    " We will review the ban list once every six months to determine if any "
-    "site\n"
-    " merits removal from the list.  If you feel you have been unjustly "
-    "denied\n"
+    " We will review the ban list once every six months to determine if any site\n"
+    " merits removal from the list.  If you feel you have been unjustly denied\n"
     " access to FieryMUD send mail to gods@fierymud.org.\n";
 
-const char *NEWSUPDATED1 =
+const std::string_view NEWSUPDATED =
     "&2 __    __                                            &0\n"
     "&2|  \\  |  \\    &2&bTHE                              &0\n"
     "&2| $$\\ | $$  ______   __   __   __   _______         &0\n"
     "&2| $$$\\| $$ /      \\ |  \\ |  \\ |  \\ /       \\   &0\n"
-    "&2| $$$$\\ $$|  $$$$$$\\| $$ | $$ | $$|  $$$$$$$       &0\n";
-const char *NEWSUPDATED2 =
+    "&2| $$$$\\ $$|  $$$$$$\\| $$ | $$ | $$|  $$$$$$$       &0\n"
     "&2| $$\\$$ $$| $$    $$| $$ | $$ | $$ \\$$    \\       &0\n"
     "&2| $$ \\$$$$| $$$$$$$$| $$_/ $$_/ $$ _\\$$$$$$\\      &0\n"
     "&2| $$  \\$$$ \\$$     \\ \\$$   $$   $$|       $$     &0\n"

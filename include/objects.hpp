@@ -23,8 +23,8 @@
 /*[ STRUCTURES ]**************************************************************/
 
 struct ObjectTypeDef {
-    const char *name;
-    const char *desc;
+    const std::string_view name;
+    const std::string_view desc;
     struct {
         int min;
         int max;
@@ -32,9 +32,9 @@ struct ObjectTypeDef {
 };
 
 struct LiquidDef {
-    const char *alias;
-    const char *name;
-    const char *color_desc;
+    const std::string_view alias;
+    const std::string_view name;
+    const std::string_view color_desc;
     int condition_effects[3];
 };
 
@@ -73,10 +73,10 @@ struct ObjData {
     int mob_from;                             /* where the mob is from*/
     ObjectFlagData obj_flags;                 /* Object information               */
     ObjectApplyType applies[MAX_OBJ_APPLIES]; /* applies */
-    char *name;                               /* Title of object :get etc.        */
-    char *description;                        /* When in room                     */
-    char *short_description;                  /* when worn/carry/in cont.         */
-    char *action_description;                 /* What to write when used          */
+    std::string name;                         /* Title of object :get etc.        */
+    std::string description;                  /* When in room                     */
+    std::string short_description;            /* when worn/carry/in cont.         */
+    std::string action_description;           /* What to write when used          */
     ExtraDescriptionData *ex_description;     /* extra descriptions     */
     CharData *carried_by;                     /* Carried by :NULL in room/conta   */
     CharData *worn_by;                        /* Worn by?                              */
@@ -103,7 +103,7 @@ struct ObjData {
  *
  * name, desc, value min/maxes
  */
-const struct ObjectTypeDef item_types[NUM_ITEM_TYPES] = {
+constexpr struct ObjectTypeDef item_types[NUM_ITEM_TYPES] = {
 
     {
         "UNDEFINED",
@@ -639,13 +639,13 @@ const struct LiquidDef liquid_types[NUM_LIQ_TYPES] = {
 void init_objtypes(void);
 bool delete_object(obj_num rnum);
 void limit_obj_values(ObjData *obj);
-int parse_obj_type(CharData *ch, char *arg);
+int parse_obj_type(CharData *ch, std::string_view arg);
 void free_obj_strings(ObjData *obj);
 void free_obj_strings_absolutely(ObjData *obj);
 void free_prototyped_obj_strings(ObjData *obj);
 void copy_object(ObjData *to, ObjData *from);
 
-int parse_liquid(CharData *ch, char *arg);
+int parse_liquid(CharData *ch, std::string_view arg);
 void weight_change_object(ObjData *obj, float weight);
 void setup_drinkcon(ObjData *obj, int newliq);
 void name_from_drinkcon(ObjData *obj, int type);

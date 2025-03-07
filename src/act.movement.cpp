@@ -47,7 +47,7 @@
 #include <math.h>
 
 /* external functs */
-int special(CharData *ch, int cmd, char *arg);
+int special(CharData *ch, int cmd, std::string_view arg);
 void appear(CharData *ch);
 bool senses_living(CharData *ch, CharData *vict, int basepct); /* act.informative.c */
 
@@ -82,22 +82,19 @@ void spill_blood(CharData *ch) {
 }
 
 int do_misdirected_move(CharData *actor, int dir) {
-    CharData *people;
-    char mmsg[MAX_STRING_LENGTH];
-    char rmsg[MAX_STRING_LENGTH];
+    std::string mmsg = fmt::format("$n {} {}.", movewords(actor, dir, actor->in_room, true), dirs[dir]);
+    std::string rmsg = fmt::format("$n's &5illusion &0{} {}.", movewords(actor, dir, actor->in_room, true), dirs[dir]);
 
-    sprintf(mmsg, "$n %s %s.", movewords(actor, dir, actor->in_room, true), dirs[dir]);
-    sprintf(rmsg, "$n's &5illusion &0%s %s.", movewords(actor, dir, actor->in_room, true), dirs[dir]);
-
-    LOOP_THRU_PEOPLE(people, actor) {
+    for (CharData *people = world[actor->in_room].people; people; people = people->next_in_room) {
         if (actor == people) {
             char_printf(actor, "Your &5illusion&0 {} {}.\n", movewords(actor, dir, actor->in_room, true), dirs[dir]);
-        } else if (!AWAKE(people))
-            ;
-        else if (SEES_THROUGH_MISDIRECTION(people, actor))
-            act(rmsg, false, actor, 0, people, TO_VICT);
-        else
-            act(mmsg, false, actor, 0, people, TO_VICT);
+        } else if (!AWAKE(people)) {
+            continue;
+        } else if (SEES_THROUGH_MISDIRECTION(people, actor)) {
+            act(rmsg.c_str(), false, actor, 0, people, TO_VICT);
+        } else {
+            act(mmsg.c_str(), false, actor, 0, people, TO_VICT);
+        }
     }
 
     return 1;
@@ -121,20 +118,19 @@ bool try_to_sense_departure(CharData *observer, CharData *mover) {
     }
 }
 
-void observe_char_leaving(CharData *observer, CharData *mover, CharData *mount, char *msg, int direction) {
+void observe_char_leaving(CharData *observer, CharData *mover, CharData *mount, std::string_view msg, int direction) {
     if (observer == mover || observer == mount || !AWAKE(observer))
         return;
 
     if (observer == RIDING(mover)) {
-        sprintf(buf, "%s you.", msg);
-        act(buf, false, mover, 0, observer, TO_VICT);
+        act(fmt::format("{} you.", msg), false, mover, 0, observer, TO_VICT);
         return;
     }
 
     if (mount) {
         /* MOUNTED MOVEMENT */
         if (CAN_SEE(observer, mount) || CAN_SEE(observer, mover)) {
-            sprintf(buf, "%s %s.", msg, CAN_SEE(observer, mount) ? GET_NAME(mount) : "something");
+            auto buf = fmt::format("{} {}.", msg, CAN_SEE(observer, mount) ? GET_NAME(mount) : "something");
             act(buf, false, mover, 0, observer, TO_VICT);
         } else if (CAN_SEE_BY_INFRA(observer, mover) || CAN_SEE_BY_INFRA(observer, mount)) {
             char_printf(observer, "&1&bA {}-sized creature rides {} on a {} mount.&0\n", SIZE_DESC(mover),
@@ -165,16 +161,16 @@ void observe_char_leaving(CharData *observer, CharData *mover, CharData *mount, 
         try_to_sense_departure(observer, mover);
 }
 
-void observe_char_arriving(CharData *observer, CharData *mover, CharData *mount, char *mountmsg, char *stdmsg,
-                           int direction) {
+void observe_char_arriving(CharData *observer, CharData *mover, CharData *mount, std::string_view mountmsg,
+                           std::string_view stdmsg, int direction) {
     if (observer == mover || observer == mount || !AWAKE(observer))
         return;
 
     if (mount) {
         /* MOUNTED MOVEMENT */
-        sprintf(buf2, "%s%s.", mountmsg, CAN_SEE(observer, mount) ? GET_NAME(mount) : "something");
         if (CAN_SEE(observer, mount) || CAN_SEE(observer, mover)) {
-            act(buf2, false, mover, 0, observer, TO_VICT);
+            auto buf = fmt::format("{}{}.", mountmsg, CAN_SEE(observer, mount) ? GET_NAME(mount) : "something");
+            act(buf, false, mover, 0, observer, TO_VICT);
         } else if (CAN_SEE_BY_INFRA(observer, mover) || CAN_SEE_BY_INFRA(observer, mount)) {
             char_printf(observer, "&1&bA {}-sized creature arrives from {}{}, riding a {} mount.&0\n", SIZE_DESC(mover),
                         (direction < UP ? "the " : ""),
@@ -217,8 +213,6 @@ bool do_simple_move(CharData *ch, int dir, int need_specials_check) {
     int flying = 0, levitating = 0;
     bool boat;
     int need_movement, vnum;
-    char mmsg[MAX_STRING_LENGTH];
-    char tmp[MAX_STRING_LENGTH];
     CharData *observer;
 
     /* Possible situations:
@@ -283,15 +277,15 @@ bool do_simple_move(CharData *ch, int dir, int need_specials_check) {
     /* Is mount standing and conscious? */
     if (mount) {
         if (GET_STANCE(mount) < STANCE_RESTING) {
-            sprintf(buf, "You aren't riding $N anywhere while $E's %s.", stance_types[GET_STANCE(mount)]);
-            act(buf, false, actor, 0, mount, TO_CHAR);
-            sprintf(buf, "$n tries to ride the %s $D.", stance_types[GET_STANCE(mount)]);
-            act(buf, true, actor, 0, mount, TO_ROOM);
+            act(fmt::format("You aren't riding $N anywhere while $E's %s.", stance_types[GET_STANCE(mount)]), false,
+                actor, 0, mount, TO_CHAR);
+            act(fmt::format("$n tries to ride the %s $D.", stance_types[GET_STANCE(mount)]), true, actor, 0, mount,
+                TO_ROOM);
             return false;
         }
         if (GET_POS(mount) < POS_STANDING) {
-            sprintf(buf, "You can't ride away on $N while $E's %s.", position_types[GET_POS(mount)]);
-            act(buf, false, actor, 0, mount, TO_CHAR);
+            act(fmt::format("You can't ride away on $N while $E's %s.", position_types[GET_POS(mount)]), false, actor,
+                0, mount, TO_CHAR);
             return false;
         }
         if (GET_STANCE(mount) == STANCE_RESTING) {
@@ -503,12 +497,13 @@ bool do_simple_move(CharData *ch, int dir, int need_specials_check) {
 
     alter_move(motivator, need_movement);
 
+    std::string_view mmsg;
     if (mount) {
-        sprintf(buf2, "You ride %s on %s.\n", dirs[dir], PERS(mount, actor));
+        auto buf2 = fmt::format("You ride {} on {}.\n", dirs[dir], PERS(mount, actor));
         act(buf2, true, actor, 0, 0, TO_CHAR);
-        sprintf(mmsg, "$n rides %s on", dirs[dir]);
+        mmsg = fmt::format("$n rides {} on", dirs[dir]);
     } else {
-        sprintf(mmsg, "$n %s %s.", movewords(actor, dir, actor->in_room, true), dirs[dir]);
+        mmsg = fmt::format("$n {} {}.", movewords(actor, dir, actor->in_room, true), dirs[dir]);
     }
 
     if (IS_HIDDEN(motivator) || EFF_FLAGGED(motivator, EFF_SNEAK)) {
@@ -553,23 +548,27 @@ bool do_simple_move(CharData *ch, int dir, int need_specials_check) {
     /* At last, it is time to actually move */
     char_from_room(actor);
     char_to_room(actor, world[was_in].exits[dir]->to_room);
+    std::string mounted_message, standard_message;
     if (mount) {
         char_from_room(mount);
         char_to_room(mount, actor->in_room);
         look_at_room(mount, true);
 
-        sprintf(tmp, "$n arrives from %s%s, riding ", (dir < UP ? "the " : ""),
-                (dir == UP     ? "below"
-                 : dir == DOWN ? "above"
-                               : dirs[rev_dir[dir]]));
+        mounted_message = fmt::format("$n arrives from {}{}, riding ", (dir < UP ? "the " : ""),
+                                      (dir == UP     ? "below"
+                                       : dir == DOWN ? "above"
+                                                     : dirs[rev_dir[dir]]));
     } else {
-        sprintf(buf, "$n %s from %s%s.", movewords(actor, dir, actor->in_room, false), (dir < UP ? "the " : ""),
-                (dir == UP     ? "below"
-                 : dir == DOWN ? "above"
-                               : dirs[rev_dir[dir]]));
+        standard_message =
+            fmt::format("$n {} from {}{}.", movewords(actor, dir, actor->in_room, false), (dir < UP ? "the " : ""),
+                        (dir == UP     ? "below"
+                         : dir == DOWN ? "above"
+                                       : dirs[rev_dir[dir]]));
     }
 
-    LOOP_THRU_PEOPLE(observer, actor) { observe_char_arriving(observer, actor, mount, tmp, buf, dir); }
+    LOOP_THRU_PEOPLE(observer, actor) {
+        observe_char_arriving(observer, actor, mount, mounted_message, standard_message, dir);
+    }
 
     /* If the room is affected by a circle of fire, damage the person */
     /* if it dies, don't do anything else */
@@ -651,8 +650,7 @@ bool perform_move(CharData *ch, int dir, int need_specials_check, bool misdirect
                     if (IN_ROOM(k->follower) != IN_ROOM(ch))
                         act("&3Oops!  $n&0&3 seems to have wandered off again.&0", false, k->follower, 0, ch, TO_VICT);
                 } else {
-                    sprintf(buf, "You follow $N %s.\n", dirs[dir]);
-                    act(buf, false, k->follower, 0, ch, TO_CHAR);
+                    act(fmt::format("You follow $N {}.\n", dirs[dir]), false, k->follower, 0, ch, TO_CHAR);
                     if (perform_move(k->follower, dir, 1, false) && IS_MOB(k->follower) && PLAYERALLY(k->follower)) {
                         if (GET_MOVE(k->follower) == 0) {
                             act("$N staggers, gasping for breath.  They don't look like they could walk another step.",
@@ -691,18 +689,17 @@ ACMD(do_move) {
      * by other functions which do not require the remapping.
      */
 
-    int misdir;
+    auto arg = argument.shift();
 
-    one_argument(argument, arg);
-
-    if (*arg && EFF_FLAGGED(ch, EFF_MISDIRECTION) && subcmd >= SCMD_STAY && subcmd <= SCMD_DOWN) {
+    if (!arg.empty() && EFF_FLAGGED(ch, EFF_MISDIRECTION) && subcmd >= SCMD_STAY && subcmd <= SCMD_DOWN) {
 
         if (RIDING(ch) || RIDDEN_BY(ch)) {
             char_printf(ch, "You can't misdirect people while riding.\n");
             return;
         }
 
-        if (!strncasecmp("st", arg, 2)) {
+        int misdir;
+        if (matches_start("st", arg)) {
             /* Misdirection is "stay" */
             misdir = -1;
         } else {
@@ -745,18 +742,19 @@ ACMD(do_move) {
         perform_move(ch, subcmd - 1, 0, false);
         break;
     default:
-        if (argument && *arg && (subcmd = searchblock(arg, dirs, 0)) >= 0)
+        if (!arg.empty() && (subcmd = search_block(arg, dirs, 0)) >= 0)
             perform_move(ch, subcmd, 0, false);
         else
             char_printf(ch, "Which way do you want to go?\n");
     }
 }
 
-int find_door(CharData *ch, const char *name, const char *dirname, const char *cmdname, int quiet) {
+int find_door(CharData *ch, const std::string_view name, const std::string_view dirname, const std::string_view cmdname,
+              int quiet) {
     int dir;
     Exit *exit;
 
-    if (*dirname) { /* a direction was specified */
+    if (!dirname.empty()) { /* a direction was specified */
 
         if ((dir = parse_direction(dirname)) == -1) { /* Partial Match */
             if (!quiet)
@@ -779,7 +777,7 @@ int find_door(CharData *ch, const char *name, const char *dirname, const char *c
             return -1;
         }
     } else { /* try to locate the keyword */
-        if (!name || !*name) {
+        if (name.empty()) {
             if (!quiet) {
                 char_printf(ch, "What is it you want to {}?\n", cmdname);
             }
@@ -1070,7 +1068,6 @@ void perform_door_action(CharData *ch, int subcmd, int door) {
 
 ACMD(do_gen_door) {
     int door = -1, bits;
-    char type[MAX_INPUT_LENGTH], dir[MAX_INPUT_LENGTH];
     ObjData *obj = nullptr;
     CharData *victim = nullptr;
 
@@ -1079,21 +1076,21 @@ ACMD(do_gen_door) {
         return;
     }
 
-    skip_spaces(&argument);
-    if (!*argument) {
-        sprintf(buf, "%s what?\n", cmd_door[subcmd]);
-        char_printf(ch, cap_by_color(buf));
+    if (argument.empty()) {
+        char_printf(ch, "{} what?\n", capitalize_first(cmd_door[subcmd]));
         return;
     }
 
-    two_arguments(argument, type, dir);
+    auto obj_type = argument.shift();
+    auto dir = argument.shift();
 
     /* Identify the thing to be manipulated.
      * If a direction is specified, or no such object could be found, we'll
      * try to find a door. */
 
-    if (*dir || !(bits = generic_find(type, FIND_OBJ_EQUIP | FIND_OBJ_INV | FIND_OBJ_ROOM, ch, &victim, &obj))) {
-        door = find_door(ch, type, dir, cmd_door[subcmd], false);
+    if (!dir.empty() ||
+        !(bits = generic_find(obj_type, FIND_OBJ_EQUIP | FIND_OBJ_INV | FIND_OBJ_ROOM, ch, &victim, &obj))) {
+        door = find_door(ch, obj_type, dir, cmd_door[subcmd], false);
         if (door > -1)
             perform_door_action(ch, subcmd, door);
         return;
@@ -1128,7 +1125,7 @@ ACMD(do_gen_door) {
      * intended to manipulate a door. */
 
     if (!OBJ_IS_OPENABLE(obj)) {
-        door = find_door(ch, type, dir, cmd_door[subcmd], true);
+        door = find_door(ch, obj_type, dir, cmd_door[subcmd], true);
         if (door >= 0) {
             perform_door_action(ch, subcmd, door);
         } else {
@@ -1178,10 +1175,10 @@ ACMD(do_enter) {
         return;
     }
 
-    one_argument(argument, arg);
+    auto arg = argument.shift();
 
     /* Enter without args: try to enter an adjacent building. */
-    if (!*arg) {
+    if (arg.empty()) {
         if (ROOM_FLAGGED(CH_NROOM(ch), ROOM_INDOORS))
             char_printf(ch, "You are already indoors.\n");
         else
@@ -1266,18 +1263,16 @@ ACMD(do_enter) {
 
     /* Display entry message. */
     if (GET_OBJ_VAL(obj, VAL_PORTAL_ENTRY_MSG) >= 0) {
-        for (i = 0; i < GET_OBJ_VAL(obj, VAL_PORTAL_ENTRY_MSG) && *portal_entry_messages[i] != '\n'; ++i)
-            ;
-        if (*portal_entry_messages[i] != '\n')
-            act(portal_entry_messages[i], true, ch, obj, 0, TO_ROOM);
+        for (auto msg : portal_entry_messages) {
+            act(msg, true, ch, obj, 0, TO_ROOM);
+        }
     }
 
     /* Display character message. */
     if (GET_OBJ_VAL(obj, 2) >= VAL_PORTAL_CHAR_MSG) {
-        for (i = 0; i < GET_OBJ_VAL(obj, VAL_PORTAL_CHAR_MSG) && *portal_character_messages[i] != '\n'; ++i)
-            ;
-        if (*portal_character_messages[i] != '\n')
-            act(portal_character_messages[i], true, ch, obj, 0, TO_CHAR);
+        for (auto msg : portal_character_messages) {
+            act(msg, true, ch, obj, 0, TO_CHAR);
+        }
     }
 
     char_from_room(ch);
@@ -1285,10 +1280,9 @@ ACMD(do_enter) {
 
     /* Display exit message. */
     if (GET_OBJ_VAL(obj, VAL_PORTAL_EXIT_MSG) >= 0) {
-        for (i = 0; i < GET_OBJ_VAL(obj, VAL_PORTAL_EXIT_MSG) && *portal_exit_messages[i] != '\n'; ++i)
-            ;
-        if (*portal_exit_messages[i] != '\n')
-            act(portal_exit_messages[i], true, ch, obj, 0, TO_ROOM);
+        for (auto msg : portal_exit_messages) {
+            act(msg, true, ch, obj, 0, TO_ROOM);
+        }
     }
 
     look_at_room(ch, true);
@@ -1336,7 +1330,6 @@ ACMD(do_doorbash)
 #define EXITK(room, dir) (world[room].exits[dir])
 #define OPEN_DOORK(room, door) (TOGGLE_BIT(EXITK(room, door)->exit_info, EX_CLOSED))
 {
-    char arg[MAX_INPUT_LENGTH];
     int dir = 0, chance, probability, dam;
     Exit *exit;
     RoomData *dest;
@@ -1363,8 +1356,8 @@ ACMD(do_doorbash)
         probability = 101;
     }
 
-    one_argument(argument, arg);
-    if (!*arg) {
+    auto arg = argument.shift();
+    if (arg.empty()) {
         char_printf(ch, "What direction?\n");
         return;
     }
@@ -1403,7 +1396,7 @@ ACMD(do_doorbash)
     }
 
     /* Is the exit broken? */
-    if (exit->keyword == nullptr) {
+    if (exit->keyword.empty()) {
         log(LogSeverity::Warn, LVL_GOD, "SYSERR:act.item.c:do_doorbash():A one sided door in room {:d}",
             world[ch->in_room].vnum);
         char_printf(ch, "This exit seems broken.   Please tell a god.\n");
@@ -1426,7 +1419,7 @@ ACMD(do_doorbash)
     if (EXIT_IS_LOCKED(exit) && (EXIT_IS_PICKPROOF(exit) || probability < 80)) {
         /* You failed, or it was unbashable. */
         char_printf(ch, "You CHARGE at the {} &0but merely bounce off!&0\n", exit_name(exit));
-        sprintf(buf, "$n &0CHARGES at the %s&0 and literally bounces off!", exit_name(exit));
+        auto buf = fmt::format("$n &0CHARGES at the {}&0 and literally bounces off!", exit_name(exit));
         act(buf, false, ch, 0, 0, TO_ROOM);
 
         if (GET_LEVEL(ch) < LVL_IMMORT) {
@@ -1448,9 +1441,7 @@ ACMD(do_doorbash)
 
     /* Success */
     OPEN_DOORK(ch->in_room, dir);
-
-    sprintf(buf, "&0$n &0*CRASHES* through the %s&0!", exit_name(exit));
-    act(buf, false, ch, 0, 0, TO_ROOM);
+    act(fmt::format("&0$n &0*CRASHES* through the %s&0!", exit_name(exit)), false, ch, 0, 0, TO_ROOM);
     char_printf(ch, "&0You *CHARGE* at the {} &0and crash through it!&0\n", exit_name(exit));
 
     if (dest->exits[rev_dir[dir]]) {
@@ -1464,8 +1455,7 @@ ACMD(do_doorbash)
     /* The things we do to send a message to the destination room... */
     char_from_room(ch);
     char_to_room(ch, ndest);
-    sprintf(buf, "&bSplinters and dust fly as $n &0&b*CRASHES* into the room!&0");
-    act(buf, false, ch, 0, 0, TO_ROOM);
+    act(fmt::format("&bSplinters and dust fly as $n &0&b*CRASHES* into the room!&0"), false, ch, 0, 0, TO_ROOM);
     char_from_room(ch);
     char_to_room(ch, was_in);
 
@@ -1498,10 +1488,10 @@ ACMD(do_drag) {
     ObjData *tobj = nullptr;
     ObjData *portal = nullptr;
 
-    argument = one_argument(argument, arg);
-    skip_spaces(&argument);
+    auto arg = argument.shift();
+    auto location = argument.shift();
 
-    if (!*arg || !*argument) {
+    if (arg.empty() || location.empty()) {
         char_printf(ch, "Drag what? Where?\n");
         return;
     }
@@ -1528,27 +1518,28 @@ ACMD(do_drag) {
                     COMPOSITION_ADJECTIVE(ch));
         return;
     } else if (tch && GET_LEVEL(ch) < LVL_IMMORT) {
+        std::string msg;
         if (RIGID(ch) && !RIGID(tch)) {
-            sprintf(buf, "$N's %s%s&0 seems to pass right through your fingers.", COMPOSITION_COLOR(tch),
-                    COMPOSITION_MASS(tch));
-            act(buf, false, ch, 0, tch, TO_CHAR);
-            sprintf(buf, "$n tries to grab $N, but $e can't get a grip on $N's %s%s&0 flesh.", COMPOSITION_COLOR(tch),
-                    COMPOSITION_ADJECTIVE(tch));
-            act(buf, true, ch, 0, tch, TO_NOTVICT);
-            sprintf(buf, "$n tries to grab you, but $e can't get a grip on your %s%s&0 flesh.", COMPOSITION_COLOR(tch),
-                    COMPOSITION_ADJECTIVE(tch));
-            act(buf, true, ch, 0, tch, TO_VICT);
+            msg = fmt::format("$N's {}{}&0 seems to pass right through your fingers.", COMPOSITION_COLOR(tch),
+                              COMPOSITION_MASS(tch));
+            act(msg, false, ch, 0, tch, TO_CHAR);
+            msg = fmt::format("$n tries to grab $N, but $e can't get a grip on $N's {}{}&0 flesh.",
+                              COMPOSITION_COLOR(tch), COMPOSITION_ADJECTIVE(tch));
+            act(msg, true, ch, 0, tch, TO_NOTVICT);
+            msg = fmt::format("$n tries to grab you, but $e can't get a grip on your {}{}&0 flesh.",
+                              COMPOSITION_COLOR(tch), COMPOSITION_ADJECTIVE(tch));
+            act(msg, true, ch, 0, tch, TO_VICT);
             return;
         } else if (!RIGID(ch) && RIGID(tch)) {
-            sprintf(buf, "You can't get hold of $N with your %s%s&0 grip.", COMPOSITION_COLOR(ch),
-                    COMPOSITION_ADJECTIVE(ch));
-            act(buf, false, ch, 0, tch, TO_CHAR);
-            sprintf(buf, "$n tries to grab $N, but $s %s%s&0 fingers can't get a grip.", COMPOSITION_COLOR(ch),
-                    COMPOSITION_ADJECTIVE(ch));
-            act(buf, true, ch, 0, tch, TO_NOTVICT);
-            sprintf(buf, "$n tries to grab you, but $s %s%s&0 fingers can't get a grip.", COMPOSITION_COLOR(ch),
-                    COMPOSITION_ADJECTIVE(ch));
-            act(buf, true, ch, 0, tch, TO_VICT);
+            msg = fmt::format("You can't get hold of $N with your {}{}&0 grip.", COMPOSITION_COLOR(ch),
+                              COMPOSITION_ADJECTIVE(ch));
+            act(msg, false, ch, 0, tch, TO_CHAR);
+            msg = fmt::format("$n tries to grab $N, but $s {}{}&0 fingers can't get a grip.", COMPOSITION_COLOR(ch),
+                              COMPOSITION_ADJECTIVE(ch));
+            act(msg, true, ch, 0, tch, TO_NOTVICT);
+            msg = fmt::format("$n tries to grab you, but $s {}{}&0 fingers can't get a grip.", COMPOSITION_COLOR(ch),
+                              COMPOSITION_ADJECTIVE(ch));
+            act(msg, true, ch, 0, tch, TO_VICT);
             return;
         }
     }
@@ -1573,9 +1564,8 @@ ACMD(do_drag) {
             }
 
             /*
-             * The code below can handle the maximum dragging position set to
-             * as high as POS_SITTING.  I wouldn't recommend setting it any
-             * higher.
+             * The code below can handle the maximum dragging position set to as high as POS_SITTING.  I wouldn't
+             * recommend setting it any higher.
              */
             if (GET_POS(tch) > POS_SITTING) {
                 act("$N isn't quite relaxed enough to be dragged.", false, ch, 0, tch, TO_CHAR);
@@ -1587,8 +1577,7 @@ ACMD(do_drag) {
                 return;
             }
         } else if (GET_LEVEL(tch) >= GET_LEVEL(ch) && CONSENT(tch) != ch) {
-            /* Immorts can drag anyone, except other immorts of same or higher level
-             */
+            /* Immorts can drag anyone, except other immorts of same or higher level */
             char_printf(ch, "You can't drag someone a higher level than you.\n");
             return;
         }
@@ -1633,12 +1622,12 @@ ACMD(do_drag) {
     from_room = IN_ROOM(ch);
 
     /* Now determine the direction. */
-    argument = any_one_arg(argument, arg);
+    auto dir_arg = argument.shift();
 
-    if ((dir = parse_direction(arg)) < 0) {
+    if ((dir = parse_direction(dir_arg)) < 0) {
         /* Not a valid direction.  Try to drag into a portal. */
-        if (!(portal = find_obj_in_list(world[from_room].contents, find_vis_by_name(ch, arg)))) {
-            char_printf(ch, "Can't find a '{}' to drag into!\n", arg);
+        if (!(portal = find_obj_in_list(world[from_room].contents, find_vis_by_name(ch, dir_arg)))) {
+            char_printf(ch, "Can't find a '{}' to drag into!\n", dir_arg);
             return;
         }
 
@@ -1660,7 +1649,7 @@ ACMD(do_drag) {
             act("&3$n&3 drags you into $p&3.&0", true, ch, portal, tch, TO_VICT);
             act("&3You drag $N&3 into $p&3.&0", false, ch, portal, tch, TO_CHAR);
         }
-        do_enter(ch, arg, 0, 0);
+        do_enter(ch, dir_arg, 0, 0);
         to_room = IN_ROOM(ch);
         if (tobj) {
             act("&3$n&3 drags $p&3 from $P.&0", true, ch, tobj, portal, TO_ROOM);
@@ -1699,13 +1688,13 @@ ACMD(do_drag) {
         if (!perform_move(ch, dir, false, false)) {
             if (tch) {
                 char_to_room(tch, from_room);
-                sprintf(buf, "&3Looking confused, $n&0&3 tried to drag $N&0&3 %s.&0", dirs[dir]);
-                act(buf, false, ch, 0, tch, TO_NOTVICT);
-                sprintf(buf, "&3Looking confused, $n&0&3 tried to drag you %s.&0", dirs[dir]);
-                act(buf, false, ch, 0, tch, TO_VICT);
+                act(fmt::format("&3Looking confused, $n&0&3 tried to drag $N&0&3 %s.&0", dirs[dir]), false, ch, 0, tch,
+                    TO_NOTVICT);
+                act(fmt::format("&3Looking confused, $n&0&3 tried to drag you %s.&0", dirs[dir]), false, ch, 0, tch,
+                    TO_VICT);
             } else if (tobj) {
-                sprintf(buf, "&3Looking confused, $n&0&3 tried to drag $p&0&3 %s.&0", dirs[dir]);
-                act(buf, false, ch, tobj, 0, TO_ROOM);
+                act(fmt::format("&3Looking confused, $n&0&3 tried to drag $p&0&3 %s.&0", dirs[dir]), false, ch, tobj, 0,
+                    TO_ROOM);
             }
             return;
         }
@@ -1734,7 +1723,7 @@ ACMD(do_drag) {
             act("&3Your meditation is interrupted as %N grabs you.&0", false, ch, 0, 0, TO_CHAR);
             if (IS_NPC(ch))
                 REMOVE_FLAG(MOB_FLAGS(ch), MOB_MEDITATE);
-            else 
+            else
                 REMOVE_FLAG(PLR_FLAGS(ch), PLR_MEDITATE);
         }
 
@@ -2192,8 +2181,8 @@ ACMD(do_wake) {
     CharData *vict;
     int self = 0;
 
-    one_argument(argument, arg);
-    if (*arg) {
+    auto arg = argument.shift();
+    if (!arg.empty()) {
         if (GET_STANCE(ch) < STANCE_RESTING)
             char_printf(ch, "Maybe you should wake yourself up first.\n");
         else if ((vict = find_char_in_room(&world[ch->in_room], find_vis_by_name(ch, arg))) == nullptr)
@@ -2236,9 +2225,9 @@ ACMD(do_follow) {
         return;
     }
 
-    one_argument(argument, arg);
+    auto arg = argument.shift();
 
-    if (!*arg) {
+    if (arg.empty()) {
         if (ch->master)
             act("You are following $N.", false, ch, 0, ch->master, TO_CHAR);
         else
@@ -2246,7 +2235,7 @@ ACMD(do_follow) {
         return;
     }
 
-    if (!strcasecmp(arg, "off"))
+    if (matches(arg, "off"))
         leader = ch;
     else if (!(leader = find_char_in_room(&world[ch->in_room], find_vis_by_name(ch, arg)))) {
         char_printf(ch, NOPERSON);
@@ -2297,23 +2286,17 @@ ACMD(do_abandon) {
     bool found = false;
     CharData *follower;
     FollowType *k;
-    char buf[MAX_STRING_LENGTH];
 
-    one_argument(argument, arg);
-
-    buf[0] = 0;
+    auto arg = argument.shift();
 
     if (pk_allowed) {
-
-        if (!*arg) {
+        if (arg.empty()) {
+            std::string buf("You are being followed by:\n");
             if (ch->followers) {
-                sprintf(buf, "You are being followed by:\n");
                 for (k = ch->followers; k; k = k->next) {
-                    if (GET_INVIS_LEV(k->follower) < GET_LEVEL(ch)) {
-                        if (CAN_SEE_MOVING(ch, k->follower)) {
-                            sprintf(buf, "%s  %s\n", buf, GET_NAME(k->follower));
-                            found = true;
-                        }
+                    if (GET_INVIS_LEV(k->follower) < GET_LEVEL(ch) && CAN_SEE_MOVING(ch, k->follower)) {
+                        buf += fmt::format("  {}\n", GET_NAME(k->follower));
+                        found = true;
                     }
                 }
             }
@@ -2325,7 +2308,7 @@ ACMD(do_abandon) {
             return;
         }
 
-        if (!strcasecmp(arg, "all")) {
+        if (matches(arg, "all")) {
             if (ch->followers) {
                 for (k = ch->followers; k; k = k->next) {
                     if (GET_LEVEL(k->follower) < LVL_GOD) {
@@ -2347,7 +2330,7 @@ ACMD(do_abandon) {
             return;
         }
 
-        if (!strcasecmp(arg, "pets")) {
+        if (matches(arg, "pets")) {
             if (ch->followers) {
                 for (k = ch->followers; k; k = k->next) {
                     if (EFF_FLAGGED(k->follower, EFF_CHARM)) {
@@ -2362,7 +2345,7 @@ ACMD(do_abandon) {
             return;
         }
 
-        if (!strcasecmp(arg, "players")) {
+        if (matches(arg, "players")) {
             if (ch->followers) {
                 for (k = ch->followers; k; k = k->next) {
                     if (!(EFF_FLAGGED(k->follower, EFF_CHARM))) {
@@ -2409,16 +2392,16 @@ ACMD(do_abandon) {
         }
         return;
     } else {
-        if (!*arg) {
+        if (arg.empty()) {
+            std::string buf{"You are being followed by:\n"};
             if (ch->followers) {
-                sprintf(buf, "You are being followed by:\n");
                 for (k = ch->followers; k; k = k->next) {
                     if (GET_INVIS_LEV(k->follower) < GET_LEVEL(ch)) {
                         if (EFF_FLAGGED(k->follower, EFF_INVISIBLE)) {
-                            sprintf(buf, "%s  %s (invis)\n", buf, GET_NAME(k->follower));
+                            buf += fmt::format("  {} (invis)\n", GET_NAME(k->follower));
                             found = true;
                         } else {
-                            sprintf(buf, "%s  %s\n", buf, GET_NAME(k->follower));
+                            buf += fmt::format("  {}\n", GET_NAME(k->follower));
                             found = true;
                         }
                     }
@@ -2432,7 +2415,7 @@ ACMD(do_abandon) {
             return;
         }
 
-        if (!strcasecmp(arg, "all")) {
+        if (matches(arg, "all")) {
             if (ch->followers) {
                 for (k = ch->followers; k; k = k->next) {
                     if (GET_LEVEL(k->follower) < LVL_GOD) {
@@ -2455,7 +2438,7 @@ ACMD(do_abandon) {
             return;
         }
 
-        if (!strcasecmp(arg, "pets")) {
+        if (matches(arg, "pets")) {
             if (ch->followers) {
                 for (k = ch->followers; k; k = k->next) {
                     if (EFF_FLAGGED(k->follower, EFF_CHARM)) {
@@ -2470,7 +2453,7 @@ ACMD(do_abandon) {
             return;
         }
 
-        if (!strcasecmp(arg, "players")) {
+        if (matches(arg, "players")) {
             if (ch->followers) {
                 for (k = ch->followers; k; k = k->next) {
                     if (!(EFF_FLAGGED(k->follower, EFF_CHARM))) {
@@ -2559,7 +2542,6 @@ void perform_buck(CharData *mount, int whilemounting) {
 }
 
 ACMD(do_mount) {
-    char arg[MAX_INPUT_LENGTH];
     CharData *vict;
 
     if (FIGHTING(ch)) {
@@ -2567,9 +2549,9 @@ ACMD(do_mount) {
         return;
     }
 
-    one_argument(argument, arg);
+    auto arg = argument.shift();
 
-    if (!*arg) {
+    if (arg.empty()) {
         char_printf(ch, "Mount who?\n");
         return;
     } else if (!(vict = find_char_in_room(&world[ch->in_room], find_vis_by_name(ch, arg)))) {
@@ -2677,7 +2659,6 @@ ACMD(do_buck) {
 }
 
 ACMD(do_tame) {
-    char arg[MAX_INPUT_LENGTH];
     effect eff;
     CharData *vict;
     int tame_duration = 0;
@@ -2687,9 +2668,9 @@ ACMD(do_tame) {
         char_printf(ch, "You can't tame while fighting!\n");
         return;
     }
-    one_argument(argument, arg);
+    auto arg = argument.shift();
 
-    if (!*arg) {
+    if (arg.empty()) {
         char_printf(ch, "Tame who?\n");
         return;
     } else if (!(vict = find_char_in_room(&world[ch->in_room], find_vis_by_name(ch, arg)))) {

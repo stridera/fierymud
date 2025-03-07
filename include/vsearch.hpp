@@ -15,5 +15,5 @@
 #include "structs.hpp"
 #include "sysdep.hpp"
 
-int print_char_listheader(char *lbuf);
-int print_char_listitem(CharData *mob, char *lbuf, int nfound);
+int print_char_listheader(std::string_view lbuf);
+int print_char_listitem(CharData *mob, std::string_view lbuf, int nfound);

@@ -57,7 +57,7 @@ int add_spell_to_book(CharData *ch, ObjData *obj, int spell);
 int book_contains_spell(ObjData *obj, int spell);
 ObjData *find_spellbook_with_spell(CharData *ch, int spell);
 CharData *find_teacher_for_spell(CharData *ch, int spell);
-void print_spells_in_book(CharData *ch, ObjData *obj, char *dest_buf);
+void print_spells_in_book(CharData *ch, ObjData *obj, std::string_view dest_buf);
 int room_in_book(ObjData *obj, int pages);
 void start_scribing(CharData *ch);
 void clear_scribing(CharData *ch);
@@ -68,8 +68,9 @@ int start_scribing_spell(CharData *ch, ObjData *spellbook, Scribing *scr);
 int spells_used_for_circle(CharData *ch, int circle);
 
 // Globals
-const char *circle_abbrev[NUM_SPELL_CIRCLES + 1] = {"!UNUSED!", " 1st", " 2nd", " 3rd", " 4th", " 5th", " 6th", " 7th",
-                                                    " 8th",     " 9th", "10th", "11th", "12th", "13th", "14th"};
+const std::string_view circle_abbrev[NUM_SPELL_CIRCLES + 1] = {"!UNUSED!", " 1st", " 2nd", " 3rd", " 4th",
+                                                               " 5th",     " 6th", " 7th", " 8th", " 9th",
+                                                               "10th",     "11th", "12th", "13th", "14th"};
 
 /*---- spell table -------
  * This table describes how many spells a caster can memorize from a
@@ -543,7 +544,7 @@ void charge_mem(CharData *ch, int spellnum, int circle = -1) {
 
     recover_time = circle_recover_time[circle] + skills[spellnum].addl_mem_time;
 
-    ch->spellcasts.push_back(SpellCast(circle, recover_time));
+    ch->spellcasts.emplace_back(circle, recover_time);
 
     if (!EVENT_FLAGGED(ch, EVENT_REGEN_SPELLSLOT))
         set_regen_event(ch, EVENT_REGEN_SPELLSLOT);
@@ -639,11 +640,11 @@ int book_contains_spell(ObjData *obj, int spell) {
  *
  */
 
-void print_spells_in_book(CharData *ch, ObjData *obj, char *dest_buf) {
+void print_spells_in_book(CharData *ch, ObjData *obj, std::string_view dest_buf) {
     int spage = 0, fpage = 0;
     SpellBookList *entry;
     char list_buf[MAX_STRING_LENGTH];
-    char *obuf = list_buf;
+    std::string_view obuf = list_buf;
 
     list_buf[0] = 0;
     if (dest_buf)
@@ -819,7 +820,7 @@ ACMD(do_scribe) {
 
     argument = delimited_arg_all(argument, arg, '\'');
 
-    if (!*arg) {
+    if (arg.empty()) {
         char_printf(ch, "What spell do you want to scribe?\n");
         return;
     }

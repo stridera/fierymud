@@ -84,6 +84,16 @@
 #define BWHT "\x1B[47m"  /* Background White                     */
 #define BLBK "\x1b[100m" /* Background Light Black               */
 
+/* Bright (relative) background colors */
+#define BHBLK "\x1B[0;100m" /* Background Bright Black            */
+#define BHRED "\x1B[0;101m" /* Background Bright Red              */
+#define BHGRN "\x1B[0;102m" /* Background Bright Green            */
+#define BHYEL "\x1B[0;103m" /* Background Bright Yellow           */
+#define BHBLU "\x1B[0;104m" /* Background Bright Blue             */
+#define BHMAG "\x1B[0;105m" /* Background Bright Magenta          */
+#define BHCYN "\x1B[0;106m" /* Background Bright Cyan             */
+#define BHWHT "\x1B[0;107m" /* Background Bright White            */
+
 /* Normal (absolute) text colors */
 #define AFBLK "\x1B[0;30m" /* Foreground Black                     */
 #define AFRED "\x1B[0;31m" /* Foreground Red                       */

@@ -45,8 +45,8 @@
 
 void clear_memory(CharData *ch);
 void perform_wear(CharData *ch, ObjData *obj, int where, bool collective = false);
-void half_chop(char *string, char *arg1, char *arg2);
-void command_interpreter(CharData *ch, char *argument);
+void half_chop(std::string_view string, std::string_view arg1, std::string_view arg2);
+void command_interpreter(CharData *ch, std::string_view argument);
 void check_new_surroundings(CharData *ch, bool old_room_was_dark, bool tx_obvious);
 
 ASPELL(spell_acid_fog) {
@@ -180,8 +180,9 @@ ASPELL(spell_banish) {
             attack(victim, ch);
     }
 
-    /* min val -99, max val 207; at max skill and max roll and max charisma against a max level victim gives a value of 108 */
-    roll = random_number(0, 100) + skill + stat_bonus[GET_CHA(ch)].magic - GET_LEVEL(victim); 
+    /* min val -99, max val 207; at max skill and max roll and max charisma against a max level victim gives a value of
+     * 108 */
+    roll = random_number(0, 100) + skill + stat_bonus[GET_CHA(ch)].magic - GET_LEVEL(victim);
 
     /* Failure */
     if (roll < 50) {
@@ -199,7 +200,7 @@ ASPELL(spell_banish) {
     /* Success */
     if (roll > 100) {
         if (IS_NPC(victim)) {
-            roll = random_number (0, 100) + (stat_bonus[GET_WIS(ch)].magic * 2); /* min: 0, max: 114 */
+            roll = random_number(0, 100) + (stat_bonus[GET_WIS(ch)].magic * 2); /* min: 0, max: 114 */
             if (roll > 66) /* 66% chance to wipe victim eq, nears 50% at max wis */
                 extract_objects(victim);
             extract_char(victim);
@@ -314,7 +315,7 @@ ASPELL(spell_cloud_of_daggers) {
 ASPELL(spell_color_spray) {
     CharData *vict, *next_vict;
     int effect, required;
-    char *color;
+    std::string_view color;
 
     if (!ch)
         return 0;
@@ -459,8 +460,8 @@ ASPELL(spell_create_water) {
         return 0;
 
     if (GET_OBJ_TYPE(obj) == ITEM_DRINKCON) {
-        amount =
-            std::min(GET_OBJ_VAL(obj, VAL_DRINKCON_CAPACITY) - GET_OBJ_VAL(obj, VAL_DRINKCON_REMAINING), 1 + 15 * skill / 2);
+        amount = std::min(GET_OBJ_VAL(obj, VAL_DRINKCON_CAPACITY) - GET_OBJ_VAL(obj, VAL_DRINKCON_REMAINING),
+                          1 + 15 * skill / 2);
         if (amount <= 0) {
             act("$o seems to be full already.", false, ch, obj, 0, TO_CHAR);
         } else {
@@ -822,7 +823,6 @@ ASPELL(spell_flood) {
 
 ASPELL(spell_fracture) {
     FollowType *fol;
-    char *argument;
 
     if (!ch)
         return 0;
@@ -833,11 +833,10 @@ ASPELL(spell_fracture) {
         return CAST_RESULT_CHARGE;
     }
 
-    if (ch->casting.misc && *ch->casting.misc) {
-        argument = ch->casting.misc;
-        skip_spaces(&argument);
-        one_argument(argument, arg);
-        victim = find_char_in_room(&world[ch->in_room], find_vis_by_name(ch, arg));
+    if (!ch->casting.misc.empty()) {
+        auto argument = ch->casting.misc;
+        skip_spaces(argument);
+        victim = find_char_in_room(&world[ch->in_room], find_vis_by_name(ch, argument));
     }
 
     if (victim) {
@@ -1434,7 +1433,8 @@ ASPELL(spell_major_paralysis) {
         return 0;
     if (!attack_ok(ch, victim, true))
         return CAST_RESULT_CHARGE;
-    if (mag_savingthrow(victim, SAVING_PARA) || skill - GET_LEVEL(victim) > random_number(0, 70) || MOB_FLAGGED(victim, MOB_NOCHARM)) {
+    if (mag_savingthrow(victim, SAVING_PARA) || skill - GET_LEVEL(victim) > random_number(0, 70) ||
+        MOB_FLAGGED(victim, MOB_NOCHARM)) {
 
         if (MOB_FLAGGED(victim, MOB_NOCHARM))
             act("&7&b$N cannot be paralyzed!&0", false, ch, 0, victim, TO_CHAR);
@@ -1473,13 +1473,16 @@ ASPELL(spell_minor_creation) {
     if (!ch)
         return 0;
 
-    if (!(ch->casting.misc) || !*(ch->casting.misc)) {
+    auto argument = Arguments(ch->casting.misc);
+
+    if (argument.empty()) {
         char_printf(ch, "What are you trying to create?\n");
         return 0;
     }
-    half_chop(ch->casting.misc, buf, buf2);
+
+    auto obj_string = argument.shift();
     while (*minor_creation_items[i] != '\n') {
-        if (is_abbrev(buf, minor_creation_items[i])) {
+        if (matches_start(obj_string, minor_creation_items[i])) {
             found = 1;
             break;
         } else
@@ -1642,7 +1645,6 @@ ASPELL(spell_pyre) {
     const int PYRE_DELAY = PULSE_VIOLENCE;
     FollowType *fol;
     DelayedCastEventObj *event_obj;
-    char *argument;
 
 #define CAN_BURN(ch)                                                                                                   \
     (GET_COMPOSITION(ch) == COMP_FLESH || GET_COMPOSITION(ch) == COMP_PLANT || GET_COMPOSITION(ch) == COMP_BONE)
@@ -1656,12 +1658,11 @@ ASPELL(spell_pyre) {
         return CAST_RESULT_CHARGE;
     }
 
+    auto argument = Arguments(ch->casting.misc);
+
     /* If there was a named target, try to use that one */
-    if (ch->casting.misc && *ch->casting.misc) {
-        argument = ch->casting.misc;
-        skip_spaces(&argument);
-        one_argument(argument, arg);
-        victim = find_char_in_room(&world[ch->in_room], find_vis_by_name(ch, arg));
+    if (!argument.empty()) {
+        victim = find_char_in_room(&world[ch->in_room], find_vis_by_name(ch, argument.shift()));
     }
 
     /* If there was a named target, check if attacking is okay */
@@ -2050,18 +2051,13 @@ ASPELL(spell_soul_tap_recur) {
 }
 
 ASPELL(spell_ventriloquate) {
-    char *msg;
     CharData *tch;
 
-    msg = ch->casting.misc;
+    auto args = Arguments(ch->casting.misc);
+    auto target = args.shift();
+    auto msg = args.get();
 
-    /* Skip over the first word, which is the target's name */
-    while (*msg && *msg != ' ')
-        msg++;
-    while (*msg && *msg == ' ')
-        msg++;
-
-    if (!*msg) {
+    if (msg.empty()) {
         act("You seem to have forgotten what you wanted $M to say!", false, ch, 0, victim, TO_CHAR);
         return CAST_RESULT_CHARGE;
     }
@@ -2195,13 +2191,14 @@ ASPELL(spell_word_of_command) {
     if (!ch || !victim)
         return 0;
 
-    if ((ch->casting.misc) && *(ch->casting.misc))
-        half_chop(ch->casting.misc, buf, buf2);
-    if (!*buf2) {
+    auto args = Arguments(ch->casting.misc);
+    auto target = args.shift();
+    auto command = args.get();
+
+    if (args.empty()) {
         char_printf(ch, "What do you want them to do?\n");
         return 0;
     }
-    half_chop(buf2, buf2, buf);                               /* only 1 word commands */
     if (GET_LEVEL(victim) >= LVL_IMMORT && !IS_NPC(victim)) { /* no commanding gods */
         char_printf(ch, "You best be careful who you try commanding!\n");
         return CAST_RESULT_CHARGE;
@@ -2211,20 +2208,8 @@ ASPELL(spell_word_of_command) {
         return CAST_RESULT_CHARGE;
     }
 
-    /* This check is already done in evades_spell(), but we need some
-     * way to get proper messages sent.   Maybe a mag_evades()? :-) */
-    /*
-       if (boolean_attack_evasion(victim, skill, DAM_MENTAL)) {
-       act("$N resists your command.", false, ch, 0, victim, TO_CHAR);
-       act("You resist $n's telepathic command.", false, ch, 0, victim, TO_VICT);
-       return CAST_RESULT_CHARGE | CAST_RESULT_IMPROVE;
-       }
-     */
-
-    sprintf(buf, "$n&0 has commanded you to, '%s'", buf2);
-    act(buf, false, ch, 0, victim, TO_VICT);
-    sprintf(buf, "You command $N&0 to, '%s'", buf2);
-    act(buf, false, ch, 0, victim, TO_CHAR);
+    act(fmt::format("$n&0 has commanded you to, '{}'", command), false, ch, 0, victim, TO_VICT);
+    act(fmt::format("You command $N&0 to, '%s'", command), false, ch, 0, victim, TO_CHAR);
 
     if (mag_savingthrow(victim, SAVING_SPELL)) {
         /* start combat if failure */
@@ -2236,12 +2221,12 @@ ASPELL(spell_word_of_command) {
     }
 
     act("&7&b$n&7&b uses $s holy power to command $N.&0", true, ch, 0, victim, TO_NOTVICT);
-    command_interpreter(victim, buf2);
+    command_interpreter(victim, command);
 
     return CAST_RESULT_CHARGE | CAST_RESULT_IMPROVE;
 }
 
-void create_magical_wall(int room, int power, int dir, int spell, char *material, char *mcolor) {
+void create_magical_wall(int room, int power, int dir, int spell, std::string_view material, std::string_view mcolor) {
     ObjData *wall;
 
     wall = create_obj();
@@ -2285,23 +2270,24 @@ void create_magical_wall(int room, int power, int dir, int spell, char *material
 
 /* General wall-creation function. */
 ASPELL(spell_magical_wall) {
-    char material[40], mcolor[40];
-    int i, next_room, dir = -1;
+    std::string_view material, mcolor;
+    int next_room, dir = -1;
     ObjData *sobj;
+
+    auto args = Arguments(ch->casting.misc);
 
     if (!ch)
         return 0;
 
-    if (!(ch->casting.misc) || !*(ch->casting.misc)) {
+    if (args.empty()) {
         char_printf(ch, "In what direction should the wall be cast?\n");
         return 0;
     }
 
     /* Determine what direction the wall will be created in. */
-
-    half_chop(ch->casting.misc, buf, buf2);
-    for (i = 0; i < NUM_OF_DIRS; i++) {
-        if (is_abbrev(buf, dirs[i]))
+    auto dir_arg = args.shift();
+    for (int i = 0; i < NUM_OF_DIRS; i++) {
+        if (matches_start(dir_arg, dirs[i]))
             dir = i;
     }
 
@@ -2311,7 +2297,6 @@ ASPELL(spell_magical_wall) {
     }
 
     /* You can't cast this spell in peaceful rooms. */
-
     if (ROOM_FLAGGED(ch->in_room, ROOM_PEACEFUL)) {
         char_printf(ch, "A flash of white light fills the room, dispelling your violent magic!\n");
         act("White light from no particular source suddenly fills the room, then vanishes.", false, ch, 0, 0, TO_ROOM);
@@ -2338,25 +2323,24 @@ ASPELL(spell_magical_wall) {
 
     switch (spellnum) {
     case SPELL_WALL_OF_ICE:
-        sprintf(material, "ice");
-        sprintf(mcolor, "&6&b");
+        material = "ice";
+        mcolor = "&6&b";
         break;
     case SPELL_ILLUSORY_WALL:
-        half_chop(buf2, buf, arg);
-        if (strlen(buf) > 38) {
+        material = args.shift();
+        if (strlen(material.length()) > 38) {
             char_printf(ch, "That's far too exotic a material!\n");
             return 0;
         }
-        strcpy(material, buf);
-        if (!*buf || !strcasecmp("stone", buf)) {
-            sprintf(material, "stone");
-            sprintf(mcolor, "&9&b");
-        } else if (!strcasecmp("ice", buf)) {
-            sprintf(mcolor, "&6&b");
-        } else if (!strcasecmp("brick", buf)) {
-            sprintf(mcolor, "&1");
-        } else if (!strcasecmp("wood", buf)) {
-            sprintf(mcolor, "&3");
+        if (material.empty() || matches("stone", material)) {
+            material = "stone";
+            mcolor = "&9&b";
+        } else if (matches("ice", material)) {
+            mcolor = "&6&b";
+        } else if (matches("brick", material)) {
+            mcolor = "&1";
+        } else if (matches("wood", material)) {
+            mcolor = "&3";
         } else {
             char_printf(ch, "The material must be brick, ice, stone, or wood.\n");
             return 0;
@@ -2364,22 +2348,19 @@ ASPELL(spell_magical_wall) {
         break;
     case SPELL_WALL_OF_STONE:
     default:
-        sprintf(material, "stone");
-        sprintf(mcolor, "&9&b");
+        material = "stone";
+        mcolor = "&9&b";
         break;
     }
 
     /* Create the first wall. */
-
     create_magical_wall(ch->in_room, skill, dir, spellnum, material, mcolor);
 
     /* Find the proper exit in the next room for walling.
-     * If the next room does not have an exit to the original room,
-     * don't make a wall there. */
-
+     * If the next room does not have an exit to the original room, don't make a wall there. */
     next_room = CH_NDEST(ch, dir);
 
-    for (i = 0, dir = -1; i < NUM_OF_DIRS; i++) {
+    for (int i = 0, dir = -1; i < NUM_OF_DIRS; i++) {
         if (world[next_room].exits[i] && (world[next_room].exits[i]->to_room != NOWHERE) &&
             (world[next_room].exits[i])->to_room == ch->in_room)
             dir = i;
@@ -2426,14 +2407,12 @@ ASPELL(spell_dispel_magic) {
         if (ch != victim) {
             act("&4You attempt to dispel $N&0&4's magical nature...&0", false, ch, 0, victim, TO_CHAR);
             act("&4$n&0&4 focuses on you, you feel your magical nature wavering...&0", true, ch, 0, victim, TO_VICT);
-            act("&4$n&0&4 focuses on $N&0&4, attempting to dispel $S magical "
-                "nature...&0",
-                true, ch, 0, victim, TO_NOTVICT);
+            act("&4$n&0&4 focuses on $N&0&4, attempting to dispel $S magical nature...&0", true, ch, 0, victim,
+                TO_NOTVICT);
         } else {
             act("&4You attempt to dispel your magical nature...&0", false, ch, 0, victim, TO_CHAR);
-            act("&4$n&0&4 focuses on $mself, attempting to dispel $s magical "
-                "nature...&0",
-                true, ch, 0, victim, TO_NOTVICT);
+            act("&4$n&0&4 focuses on $mself, attempting to dispel $s magical nature...&0", true, ch, 0, victim,
+                TO_NOTVICT);
         }
 
         if ((eff = victim->effects)) {
@@ -2604,9 +2583,8 @@ ASPELL(spell_teleport) {
     }
 
     act("&9&b$n &9&bslowly fades out of existence and is gone.&0", false, victim, 0, 0, TO_ROOM);
-    act("&9&bYou feel your body being pulled in all directions, then find "
-        "yourself elsewhere.&0",
-        false, ch, 0, victim, TO_VICT);
+    act("&9&bYou feel your body being pulled in all directions, then find yourself elsewhere.&0", false, ch, 0, victim,
+        TO_VICT);
     wasdark = IS_DARK(victim->in_room) && !CAN_SEE_IN_DARK(victim);
     dismount_char(victim);
     char_from_room(victim);
@@ -2622,7 +2600,7 @@ ASPELL(spell_teleport) {
 ASPELL(spell_summon) {
     int track;
     bool wasdark;
-    int find_track_victim(CharData * ch, char *name, int maxdist, CharData **victim);
+    int find_track_victim(CharData * ch, std::string_view name, int maxdist, CharData **victim);
 
     if (ch == nullptr)
         return 0;
@@ -2808,15 +2786,16 @@ ASPELL(spell_locate_object) {
         o = items[i];
 
         if (o->carried_by)
-            char_printf(ch, "{} is being carried by {}.\n", capitalize(o->short_description), PERS(o->carried_by, ch));
+            char_printf(ch, "{} is being carried by {}.\n", capitalize_first(o->short_description),
+                        PERS(o->carried_by, ch));
         else if (o->in_room != NOWHERE)
-            char_printf(ch, "{} is in {}.\n", capitalize(o->short_description), world[o->in_room].name);
+            char_printf(ch, "{} is in {}.\n", capitalize_first(o->short_description), world[o->in_room].name);
         else if (o->in_obj)
-            char_printf(ch, "{} is in {}.\n", capitalize(o->short_description), o->in_obj->short_description);
+            char_printf(ch, "{} is in {}.\n", capitalize_first(o->short_description), o->in_obj->short_description);
         else if (o->worn_by)
-            char_printf(ch, "{} is being worn by {}.\n", capitalize(o->short_description), PERS(o->worn_by, ch));
+            char_printf(ch, "{} is being worn by {}.\n", capitalize_first(o->short_description), PERS(o->worn_by, ch));
         else
-            char_printf(ch, "{}'s location is uncertain.\n", capitalize(o->short_description));
+            char_printf(ch, "{}'s location is uncertain.\n", capitalize_first(o->short_description));
     }
 
     return CAST_RESULT_CHARGE | CAST_RESULT_IMPROVE;
@@ -2832,7 +2811,7 @@ static MATCH_OBJ_FUNC(match_corpse_by_name) {
     return false;
 }
 
-/* Necromancer / Anti-paladin spell, by Zzur's request (9/14/02) jjl */
+// Necromancer / Anti-paladin spell
 ASPELL(spell_summon_corpse) {
     int o_zone, c_zone;
     FindContext find_corpse = find_vis_by_name(ch, ch->casting.misc);
@@ -2845,8 +2824,7 @@ ASPELL(spell_summon_corpse) {
         return CAST_RESULT_CHARGE;
     }
 
-    /* This spell is zone restricted.   Make sure the char and obj are in
-       the same zone. */
+    /* This spell is zone restricted.   Make sure the char and obj are in the same zone. */
     o_zone = world[ch->in_room].zone;
     c_zone = world[obj->in_room].zone;
     if (o_zone != c_zone) {
@@ -2876,9 +2854,7 @@ ASPELL(spell_summon_corpse) {
     obj_to_room(obj, ch->in_room);
 
     /* Print success to the new room. */
-    room_printf(ch->in_room,
-                "From within a cloud of &9&bdarkness&0, a corpse "
-                "materializes.\n");
+    room_printf(ch->in_room, "From within a cloud of &9&bdarkness&0, a corpse materializes.\n");
 
     return CAST_RESULT_CHARGE | CAST_RESULT_IMPROVE;
 }

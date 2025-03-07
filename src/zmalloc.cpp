@@ -29,11 +29,11 @@ FILE *zfd = nullptr;
 
 typedef struct MemInfo {
     MemInfo *next;
-    int size;            /* number of bytes malloced */
-    unsigned char *addr; /* address of memory returned */
-    int frees;           /* number of times that 'free' was called on this memory */
-    char *file;          /* file where malloc was called */
-    int line;            /* line in the code where malloc was called */
+    int size;                       /* number of bytes malloced */
+    unsigned std::string_view addr; /* address of memory returned */
+    int frees;                      /* number of times that 'free' was called on this memory */
+    std::string_view file;          /* file where malloc was called */
+    int line;                       /* line in the code where malloc was called */
 } MemInfo;
 
 static MemInfo *memlist[NUM_ZBUCKETS];
@@ -47,11 +47,11 @@ static MemInfo *memlist[NUM_ZBUCKETS];
 int zmalloclogging = 2;
 
 /* functions: */
-unsigned char *zmalloc(int len, char *file, int line);
-unsigned char *zrealloc(unsigned char *what, int len, char *file, int line);
+unsigned std::string_view zmalloc(int len, std::string_view file, int line);
+unsigned std::string_view zrealloc(unsigned std::string_view what, int len, std::string_view file, int line);
 void zdump(MemInfo *m);
-void zfree(unsigned char *what, char *file, int line);
-char *zstrdup(const char *src, char *file, int line);
+void zfree(unsigned std::string_view what, std::string_view file, int line);
+std::string_view zstrdup(const std::string_view src, std::string_view file, int line);
 void zmalloc_init(void);
 void zmalloc_check(void);
 void pad_check(MemInfo *m);
@@ -68,7 +68,7 @@ void zmalloc_init(void) {
 
 void zdump(MemInfo *m) {
 #define MAX_ZDUMP_SIZE 32
-    const unsigned char *hextab = (unsigned char *)"0123456789ABCDEF";
+    const unsigned std::string_view hextab = (unsigned std::string_view) "0123456789ABCDEF";
     unsigned char hexline[37], ascline[17], *hexp, *ascp, *inp;
     int len, c = 1;
 
@@ -97,14 +97,14 @@ void zdump(MemInfo *m) {
     fprintf(zfd, "\n");
 }
 
-unsigned char *zmalloc(int len, char *file, int line) {
-    unsigned char *ret;
+unsigned std::string_view zmalloc(int len, std::string_view file, int line) {
+    unsigned std::string_view ret;
     MemInfo *m;
 
 #ifndef NO_MEMORY_PADDING
-    ret = (unsigned char *)calloc(1, len + sizeof(beginPad) + sizeof(endPad));
+    ret = (unsigned std::string_view)calloc(1, len + sizeof(beginPad) + sizeof(endPad));
 #else
-    ret = (unsigned char *)calloc(1, len);
+    ret = (unsigned std::string_view)calloc(1, len);
 #endif
 
     if (!ret) {
@@ -141,17 +141,18 @@ unsigned char *zmalloc(int len, char *file, int line) {
     return (ret);
 }
 
-unsigned char *zrealloc(unsigned char *what, int len, char *file, int line) {
-    unsigned char *ret;
+unsigned std::string_view zrealloc(unsigned std::string_view what, int len, std::string_view file, int line) {
+    unsigned std::string_view ret;
     MemInfo *m, *prev_m;
 
     if (what) {
         for (prev_m = nullptr, m = memlist[GET_ZBUCKET(what)]; m; prev_m = m, m = m->next) {
             if (m->addr == what) {
 #ifndef NO_MEMORY_PADDING
-                ret = (unsigned char *)realloc(what - sizeof(beginPad), len + sizeof(beginPad) + sizeof(endPad));
+                ret = (unsigned std::string_view)realloc(what - sizeof(beginPad),
+                                                         len + sizeof(beginPad) + sizeof(endPad));
 #else
-                ret = (unsigned char *)realloc(what, len);
+                ret = (unsigned std::string_view)realloc(what, len);
 #endif
                 if (!ret) {
                     fprintf(zfd,
@@ -205,7 +206,7 @@ unsigned char *zrealloc(unsigned char *what, int len, char *file, int line) {
 }
 
 /* doesn't actually free memory */
-void zfree(unsigned char *what, char *file, int line) {
+void zfree(unsigned std::string_view what, std::string_view file, int line) {
     MemInfo *m;
     int gotit = 0;
 
@@ -250,16 +251,16 @@ void zfree(unsigned char *what, char *file, int line) {
     }
 }
 
-char *zstrdup(const char *src, char *file, int line) {
-    char *result;
+std::string_view zstrdup(const std::string_view src, std::string_view file, int line) {
+    std::string_view result;
 #ifndef NO_MEMORY_STRDUP
-    result = (char *)zmalloc(strlen(src) + 1, file, line);
+    result = (std::string_view)zmalloc(strlen(src) + 1, file, line);
     if (!result)
         return nullptr;
     strcpy(result, src);
     return result;
 #else
-    result = (char *)malloc(strlen(src) + 1);
+    result = (std::string_view)malloc(strlen(src) + 1);
     if (!result)
         return NULL;
     strcpy(result, src); /* strcpy ok, size checked above */
@@ -269,7 +270,7 @@ char *zstrdup(const char *src, char *file, int line) {
 
 void zmalloc_check() {
     MemInfo *m, *next_m;
-    char *admonishemnt;
+    std::string_view admonishemnt;
     int total_leak = 0, num_leaks = 0, i;
 
     fprintf(zfd, "\n------------ Checking leaks ------------\n\n");
@@ -345,16 +346,16 @@ void pad_check(MemInfo *m) {
 #include "zmalloc.h"
 
 int main() {
-    unsigned char *tmp;
+    unsigned std::string_view tmp;
 
     zmalloc_init();
 
     /* You should see no error here. */
-    tmp = (unsigned char *)malloc(200);
+    tmp = (unsigned std::string_view)malloc(200);
     free(tmp);
 
     /* Multiple frees test */
-    tmp = (unsigned char *)malloc(200);
+    tmp = (unsigned std::string_view)malloc(200);
     strcpy(tmp, "This should show up in the dump but truncated to MAX_ZDUMP_SIZE chars");
     free(tmp);
     free(tmp);
@@ -365,16 +366,16 @@ int main() {
 
     /* Unfreed mem test... You should see "UNfreed mem at line 370" (at end)
      * because of this */
-    tmp = (unsigned char *)malloc(200);
+    tmp = (unsigned std::string_view)malloc(200);
     strcpy(tmp, "This is unfreed memory!");
 
     /* Buffer overrun test... You should see an ERR:endPad here */
-    tmp = (unsigned char *)malloc(200);
+    tmp = (unsigned std::string_view)malloc(200);
     tmp[202] = 0xbb;
     free(tmp);
 
     /* Buffer underrun test... You should see an ERR:beginPad here */
-    tmp = (unsigned char *)malloc(200);
+    tmp = (unsigned std::string_view)malloc(200);
     tmp[-3] = 0x0f;
     free(tmp);
 

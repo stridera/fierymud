@@ -38,7 +38,7 @@
 #include "sysdep.hpp"
 #include "utils.hpp"
 
-const char *stats_display =
+const std::string_view stats_display =
     "\n&0&7&b[s]&0 Strength      &0&7&b[i]&0 Intelligence\n"
     "&0&7&b[w]&0 Wisdom        &0&7&b[c]&0 Constitution\n"
     "&0&7&b[d]&0 Dexterity     &0&7&b[m]&0 Charisma\n\n";
@@ -403,7 +403,7 @@ int dam_suscept_adjust(CharData *ch, CharData *victim, ObjData *weapon, int dam,
     return dam;
 }
 
-const char *align_color(int align) {
+const std::string_view align_color(int align) {
     if (align >= 500)
         return "@Y";
     else if (align >= 350)

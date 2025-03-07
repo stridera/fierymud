@@ -24,14 +24,14 @@
 #define EX_DESCRIPT (1 << 5)  /* Just an extra description  */
 
 struct Exit {
-    char *general_description; /* When look DIR.                     */
-    char *keyword;             /* for open/close                     */
-    int exit_info;             /* Exit info                          */
-    obj_num key;               /* Key's vnum (-1 for no key)         */
-    room_num to_room;          /* Where it leads (real number)       */
+    std::string_view general_description; /* When look DIR.                     */
+    std::string_view keyword;             /* for open/close                     */
+    int exit_info;                        /* Exit info                          */
+    obj_num key;                          /* Key's vnum (-1 for no key)         */
+    room_num to_room;                     /* Where it leads (real number)       */
 };
 
-extern const char *cmd_door[];
+extern const std::string_view cmd_door[];
 
 #define EXIT_IS_DOOR(e) ((e)->exit_info & EX_ISDOOR)
 #define EXIT_IS_CLOSED(e) ((e)->exit_info & EX_CLOSED)
@@ -47,8 +47,8 @@ extern const char *cmd_door[];
 
 #define CAN_GO(ch, dir) (CH_EXIT(ch, dir) && EXIT_DEST(CH_EXIT(ch, dir)) && !EXIT_IS_CLOSED(CH_EXIT(ch, dir)))
 
-const char *exit_dest_desc(Exit *e);
+const std::string_view exit_dest_desc(Exit *e);
 Exit *create_exit(int dest_room);
-bool exit_has_keyword(Exit *exit, const char *name);
+bool exit_has_keyword(Exit *exit, const std::string_view name);
 Exit *opposite_exit(Exit *exit, room_num roomvnum, int dir);
-const char *exit_name(Exit *exit);
+const std::string_view exit_name(Exit *exit);

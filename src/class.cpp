@@ -937,25 +937,25 @@ void init_classes(void) {
  * feedback to ch (if specified) as to the reason for the failure.  Otherwise,
  * it does not provide feedback.
  */
-int parse_class(CharData *ch, CharData *vict, char *arg) {
+int parse_class(CharData *ch, CharData *vict, std::string_view arg) {
     int i, class_num = CLASS_UNDEFINED, best = CLASS_UNDEFINED;
 
-    if (!*arg) {
+    if (arg.empty()) {
         if (ch)
             char_printf(ch, "What class?\n");
         return CLASS_UNDEFINED;
     }
 
     for (i = 0; i < NUM_CLASSES; i++) {
-        if (!strncasecmp(arg, classes[i].name, strlen(arg))) {
-            if (!strcasecmp(arg, classes[i].name)) {
+        if (matches(arg, classes[i].name)) {
+            if (matches(arg, classes[i].name)) {
                 class_num = i;
                 break;
             }
             if (best == CLASS_UNDEFINED)
                 best = i;
-        } else if (!strncasecmp(arg, classes[i].altname, strlen(arg))) {
-            if (!strcasecmp(arg, classes[i].altname)) {
+        } else if (matches(arg, classes[i].altname)) {
+            if (matches(arg, classes[i].altname)) {
                 class_num = i;
                 break;
             }
@@ -999,8 +999,9 @@ int parse_class(CharData *ch, CharData *vict, char *arg) {
 
     if (!class_ok_race[(int)GET_RACE(vict)][class_num]) {
         if (ch) {
-            sprintf(buf, "As %s, $n can't become %s.", with_indefinite_article(races[(int)GET_RACE(vict)].displayname),
-                    with_indefinite_article(classes[class_num].name));
+            auto buf = fmt::format("As {}, $n can't become {}.",
+                                   with_indefinite_article(races[(int)GET_RACE(vict)].displayname),
+                                   with_indefinite_article(classes[class_num].name));
             act(buf, false, vict, 0, ch, TO_VICT);
         }
         return CLASS_UNDEFINED;
@@ -1298,8 +1299,7 @@ int level_max_skill(CharData *ch, int level, int skill) {
 
 int return_max_skill(CharData *ch, int skill) { return level_max_skill(ch, GET_LEVEL(ch), skill); }
 
-void init_char_class(CharData *ch) { /* Nothing much to do here. */
-}
+void init_char_class(CharData *ch) { /* Nothing much to do here. */ }
 
 void update_char_class(CharData *ch) {
     if (!VALID_CLASS(ch)) {
@@ -1478,15 +1478,6 @@ void advance_level(CharData *ch, enum level_action action) {
         GET_COND(ch, DRUNK) = (char)-1;
         SET_FLAG(PRF_FLAGS(ch), PRF_HOLYLIGHT);
     }
-
-    /* Modify clan power */
-    if (GET_CLAN(ch) && IS_CLAN_MEMBER(ch)) {
-        if (action == LEVEL_GAIN)
-            ++GET_CLAN(ch)->power;
-        else
-            --GET_CLAN(ch)->power;
-    }
-
     check_regen_rates(ch); /* start regening new points */
     update_char(ch);       /* update skills/spells/innates/etc. for new level */
     save_player_char(ch);

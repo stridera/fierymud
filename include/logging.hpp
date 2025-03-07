@@ -34,5 +34,5 @@ template <typename... Args> void log(fmt::string_view str, Args &&...args) {
     log(LogSeverity::Info, 0, fmt::vformat(str, fmt::make_format_args(args...)));
 }
 
-const char *sprint_log_severity(int severity);
+const std::string_view sprint_log_severity(int severity);
 int parse_log_severity(std::string_view severity);

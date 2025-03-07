@@ -1354,7 +1354,7 @@ RaceDef races[NUM_RACES] = {
 
 };
 
-const char *race_align_abbrevs[] = {"&0&3&bGOOD&0", "&0&1&bEVIL&0"};
+const std::string_view race_align_abbrevs[] = {"&0&3&bGOOD&0", "&0&1&bEVIL&0"};
 
 void init_races(void) {
 #define PERM_EFF(r, f) SET_FLAG(races[(r)].effect_flags, (f))
@@ -1425,7 +1425,8 @@ void init_races(void) {
      * If a constant value is declared, the skill will always reset back to that value.
      * Use 'proficiency' or 'ROLL_SKILL_PROF' instead.
      * The only spells that should be assigned here are the breath weapon spells.
-     * Skills and spells intended to be unlocked beyond level 1 must be added in the assign_race_skills() function below.
+     * Skills and spells intended to be unlocked beyond level 1 must be added in the assign_race_skills() function
+     * below.
      */
     for (race = 0; race < NUM_RACES; ++race) {
         memset(races[race].skills, 0, sizeof(races[race].skills));
@@ -1521,13 +1522,14 @@ void init_races(void) {
 #undef PERM_EFF
 }
 
-/* This is where to add race skills which unlock beyond level 1, or spells that should be castable through normal means. */
+/* This is where to add race skills which unlock beyond level 1, or spells that should be castable through normal means.
+ */
 
 #define race_spell_assign(spellnum, race_num, level) race_skill_assign(spellnum, race_num, level)
 #define race_chant_assign(chantnum, race_num, level) race_skill_assign(chantnum, race_num, level)
 #define race_song_assign(songnum, race_num, level) race_skill_assign(songnum, race_num, level)
 
- void assign_race_skills(void) {
+void assign_race_skills(void) {
 
     /* From here on down, the races are listed in alphabetical order.
      * Within each race, skills should be sorted by level and spells
@@ -1546,7 +1548,7 @@ void init_races(void) {
     /* DRAGON - ACID */
 
     /* DRAGON - FIRE */
-    
+
     /* DRAGON - GAS */
 
     /* DRAGON - GENERAL */
@@ -1563,7 +1565,7 @@ void init_races(void) {
 
     /* DRAGONBORN - FROST */
     race_skill_assign(SKILL_BREATHE_FROST, RACE_DRAGONBORN_FROST, 1);
-    
+
     /* DRAGONBORN - GAS */
     race_skill_assign(SKILL_BREATHE_GAS, RACE_DRAGONBORN_GAS, 1);
 
@@ -1613,9 +1615,7 @@ void init_races(void) {
     /* TROLL */
 
     /* UNSEELIE FAERIE */
-
- }
-
+}
 
 /* parse_race
  *
@@ -1632,18 +1632,18 @@ void init_races(void) {
  * feedback to ch (if specified) as to the reason for the failure.  Otherwise,
  * it does not provide feedback.
  */
-int parse_race(CharData *ch, CharData *vict, char *arg) {
+int parse_race(CharData *ch, CharData *vict, std::string_view arg) {
     int i, race = RACE_UNDEFINED, altname = RACE_UNDEFINED, best = RACE_UNDEFINED;
 
-    if (!*arg) {
+    if (arg.empty()) {
         if (ch)
             char_printf(ch, "What race?\n");
         return RACE_UNDEFINED;
     }
 
     for (i = 0; i < NUM_RACES; i++) {
-        if (!strncasecmp(arg, races[i].name, strlen(arg))) {
-            if (!strcasecmp(arg, races[i].name)) {
+        if (matches(arg, races[i].name){
+            if (matches(arg, races[i].name)) {
                 race = i;
                 break;
             }
@@ -1652,7 +1652,7 @@ int parse_race(CharData *ch, CharData *vict, char *arg) {
         } else if (isname(arg, races[i].names)) {
             if (altname == RACE_UNDEFINED)
                 altname = i;
-        } else if (is_abbrev(arg, races[i].name)) {
+        } else if (matches_start(arg, races[i].name)) {
             if (best == RACE_UNDEFINED)
                 best = i;
         }
@@ -1694,8 +1694,9 @@ int parse_race(CharData *ch, CharData *vict, char *arg) {
 
     if (!class_ok_race[race][(int)GET_CLASS(vict)]) {
         if (ch) {
-            sprintf(buf, "As %s, $n can't be %s.", with_indefinite_article(classes[(int)GET_CLASS(vict)].displayname),
-                    with_indefinite_article(races[race].displayname));
+            auto buf = fmt::format("As {}, $n can't be {}.",
+                                   with_indefinite_article(classes[(int)GET_CLASS(vict)].displayname),
+                                   with_indefinite_article(races[race].displayname));
             act(buf, false, vict, 0, ch, TO_VICT);
         }
         return RACE_UNDEFINED;

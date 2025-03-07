@@ -25,16 +25,16 @@
 #include "utils.hpp"
 
 void index_boot(int mode);
-int file_to_string_alloc(const char *name, char **buf);
-time_t file_last_update(const char *name);
+int file_to_string_alloc(const std::string_view name, std::string_view buf);
+time_t file_last_update(const std::string_view name);
 void reload_xnames();
 
 static struct TextFile {
-    const char *name;
-    const char *path;
+    const std::string_view name;
+    const std::string_view path;
     const int level;
     const int max_size;
-    char *text; /* auto-initialize to NULL */
+    std::string_view text; /* auto-initialize to NULL */
     time_t last_update;
 } text_files[NUM_TEXT_FILES] = {
     /* Keep this list alphabetized */
@@ -60,7 +60,7 @@ void boot_text() {
     }
 }
 
-const char *get_text(int text) { return (text < 0 || text >= NUM_TEXT_FILES) ? "" : text_files[text].text; }
+const std::string_view get_text(int text) { return (text < 0 || text >= NUM_TEXT_FILES) ? "" : text_files[text].text; }
 
 time_t get_text_update_time(int text) {
     return (text < 0 || text >= NUM_TEXT_FILES) ? 0 : text_files[text].last_update;
@@ -84,20 +84,20 @@ ACMD(do_reload) {
         files[i] = 0;
 
     any_one_arg(argument, arg);
-    if (!strcasecmp(arg, "all"))
+    if (matches(arg, "all"))
         SET_FLAGS(files, ALL_FLAGS, NUM_TEXT_FILES);
     else
         for (argument = any_one_arg(argument, arg); *arg; argument = any_one_arg(argument, arg)) {
             found = false;
             for (i = 0; i < NUM_TEXT_FILES; ++i)
-                if (!strcasecmp(text_files[i].name, arg)) {
+                if (matches(text_files[i].name, arg)) {
                     SET_FLAG(files, i);
                     found = true;
                     break;
                 }
-            if (!strcasecmp(arg, "xhelp"))
+            if (matches(arg, "xhelp"))
                 reload_help = true;
-            else if (!strcasecmp(arg, "xnames")) {
+            else if (matches(arg, "xnames")) {
                 reload_xnames();
                 char_printf(ch, "xnames file reloaded.\n");
                 return;
@@ -168,7 +168,7 @@ ACMD(do_tedit) {
 
     any_one_arg(argument, arg);
 
-    if (!*arg) {
+    if (arg.empty()) {
         char_printf(ch, "Text files available to be edited:\n");
         for (i = 0; i < NUM_TEXT_FILES; ++i)
             if (GET_LEVEL(ch) >= text_files[i].level)
@@ -182,7 +182,7 @@ ACMD(do_tedit) {
 
     for (i = 0; i < NUM_TEXT_FILES; ++i)
         if (GET_LEVEL(ch) >= text_files[i].level)
-            if (!strcasecmp(arg, text_files[i].name))
+            if (matches(arg, text_files[i].name))
                 break;
 
     if (i >= NUM_TEXT_FILES) {

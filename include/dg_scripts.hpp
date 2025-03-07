@@ -103,14 +103,14 @@
 
 /* one line of the trigger */
 struct CmdlistElement {
-    char *cmd; /* one line of a trigger */
+    std::string_view cmd; /* one line of a trigger */
     CmdlistElement *original;
     CmdlistElement *next;
 };
 
 struct TriggerVariableData {
-    char *name;  /* name of variable  */
-    char *value; /* value of variable */
+    std::string_view name;  /* name of variable  */
+    std::string_view value; /* value of variable */
 
     TriggerVariableData *next;
 };
@@ -120,12 +120,12 @@ struct TrigData {
     int nr;                        /* trigger's rnum                  */
     byte attach_type;              /* mob/obj/wld intentions          */
     byte data_type;                /* type of game_data for trig      */
-    char *name;                    /* name of trigger                 */
+    std::string_view name;         /* name of trigger                 */
     long trigger_type;             /* type of trigger (for bitvector) */
     CmdlistElement *cmdlist;       /* top of command list             */
     CmdlistElement *curr_state;    /* ptr to current line of trigger  */
     int narg;                      /* numerical argument              */
-    char *arglist;                 /* argument list                   */
+    std::string_view arglist;      /* argument list                   */
     int depth;                     /* depth into nest ifs/whiles/etc  */
     int loops;                     /* loop iteration counter          */
     Event *wait_event;             /* event to pause the trigger      */
@@ -137,9 +137,9 @@ struct TrigData {
     TrigData *next;
     TrigData *next_in_world; /* next in the global trigger list */
 };
-extern const char *trig_types[];
-extern const char *otrig_types[];
-extern const char *wtrig_types[];
+extern const std::string_view trig_types[];
+extern const std::string_view otrig_types[];
+extern const std::string_view wtrig_types[];
 extern TrigData *trigger_list;
 
 /* a complete script (composed of several triggers) */
@@ -157,11 +157,11 @@ int find_real_zone_by_room(room_num vznum);
 int real_zone(int zvnum);
 
 /* function prototypes from triggers.c */
-void act_mtrigger(const CharData *ch, const char *str, const CharData *actor, const CharData *victim,
-                  const ObjData *obj, const ObjData *target, char *arg, char *arg2);
-void speech_mtrigger(CharData *actor, const char *str);
-void speech_to_mtrigger(CharData *actor, CharData *ch, const char *str);
-void speech_wtrigger(CharData *actor, const char *str);
+void act_mtrigger(const CharData *ch, const std::string_view str, const CharData *actor, const CharData *victim,
+                  const ObjData *obj, const ObjData *target, std::string_view arg, std::string_view arg2);
+void speech_mtrigger(CharData *actor, const std::string_view str);
+void speech_to_mtrigger(CharData *actor, CharData *ch, const std::string_view str);
+void speech_wtrigger(CharData *actor, const std::string_view str);
 int greet_mtrigger(CharData *actor, int dir);
 int entry_mtrigger(CharData *ch, int destination);
 int preentry_wtrigger(RoomData *room, CharData *actor, int dir);
@@ -173,11 +173,11 @@ int drop_wtrigger(ObjData *obj, CharData *actor);
 int give_otrigger(ObjData *obj, CharData *actor, CharData *victim);
 int remove_otrigger(ObjData *obj, CharData *actor);
 int receive_mtrigger(CharData *ch, CharData *actor, ObjData *obj);
-void bribe_mtrigger(CharData *ch, CharData *actor, int *cPtr);
+void bribe_mtrigger(CharData *ch, CharData *actor, Money coins);
 int wear_otrigger(ObjData *obj, CharData *actor, int where);
-int command_mtrigger(CharData *actor, char *cmd, char *argument);
-int command_otrigger(CharData *actor, char *cmd, char *argument);
-int command_wtrigger(CharData *actor, char *cmd, char *argument);
+int command_mtrigger(CharData *actor, std::string_view cmd, std::string_view argument);
+int command_otrigger(CharData *actor, std::string_view cmd, std::string_view argument);
+int command_wtrigger(CharData *actor, std::string_view cmd, std::string_view argument);
 int death_mtrigger(CharData *ch, CharData *actor);
 int death_otrigger(CharData *ch);
 void fight_mtrigger(CharData *ch);
@@ -200,8 +200,8 @@ void time_mtrigger(CharData *ch);
 void time_otrigger(ObjData *obj);
 void time_wtrigger(RoomData *room);
 
-int look_otrigger(ObjData *obj, CharData *actor, char *arg, const char *additional_args);
-int look_mtrigger(CharData *ch, CharData *actor, const char *arg);
+int look_otrigger(ObjData *obj, CharData *actor, std::string_view arg, const std::string_view additional_args);
+int look_mtrigger(CharData *ch, CharData *actor, const std::string_view arg);
 
 int use_otrigger(ObjData *obj, ObjData *tobj, CharData *actor, CharData *victim);
 
@@ -216,13 +216,13 @@ void script_trigger_check(void);
 void add_trigger(ScriptData *sc, TrigData *t, int loc);
 
 void do_stat_trigger(CharData *ch, TrigData *trig);
-void do_sstat_room(CharData *ch, char *buf, RoomData *rm);
-void do_sstat_object(CharData *ch, char *buf, ObjData *j);
-void do_sstat_character(CharData *ch, char *buf, CharData *k);
+std::string do_sstat_room(CharData *ch, RoomData *rm);
+std::string do_sstat_object(CharData *ch, ObjData *j);
+std::string do_sstat_character(CharData *ch, CharData *k);
 
-void script_log(TrigData *t, char *msg);
+void script_log(TrigData *t, std::string_view msg);
 void dg_read_trigger(FILE *fp, void *i, int type);
-void dg_obj_trigger(char *line, ObjData *obj);
+void dg_obj_trigger(std::string_view line, ObjData *obj);
 void assign_triggers(void *i, int type);
 TrigData *read_trigger(int nr);
 void parse_trigger(FILE *trig_f, int nr);
@@ -235,8 +235,8 @@ void free_varlist(TriggerVariableData *vd);
 void free_proto_script(TriggerPrototypeList **list);
 bool format_script(DescriptorData *d, int indent_quantum);
 
-void add_var(TriggerVariableData **var_list, const char *name, const char *value);
-int remove_var(TriggerVariableData **var_list, const char *name);
+void add_var(TriggerVariableData **var_list, const std::string_view name, const std::string_view value);
+int remove_var(TriggerVariableData **var_list, const std::string_view name);
 
 /* Macros for scripts */
 
@@ -264,10 +264,9 @@ int remove_var(TriggerVariableData **var_list, const char *name);
 #define SCRIPT_CHECK(go, type) (SCRIPT(go) && IS_SET(SCRIPT_TYPES(SCRIPT(go)), type))
 #define TRIGGER_CHECK(t, type) (IS_SET(GET_TRIG_TYPE(t), type) && !GET_TRIG_DEPTH(t))
 
-#define ADD_UID_VAR(buf, trig, go, name)                                                                               \
+#define ADD_UID_VAR(trig, go, name)                                                                                    \
     {                                                                                                                  \
-        sprintf(buf, "%c%ld", UID_CHAR, GET_ID(go));                                                                   \
-        add_var(&GET_TRIG_VARS(trig), name, buf);                                                                      \
+        add_var(&GET_TRIG_VARS(trig), name, fmt::format("{}{}", UID_CHAR, GET_ID(go)));                                \
     }
 
 /* typedefs that the dg functions rely on */

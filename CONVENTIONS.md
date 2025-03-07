@@ -1,0 +1,7 @@
+- Try to use the most modern C++ features available in the C++ standard that are supported by the compiler.  (C++23)
+- Use the `std::string` class instead of C-style strings.
+- Clean up all unused variables, functions, and headers.
+- Avoid using old-style string formatting, such as `"%s" % "string"`. Instead, use the `fmt::format()` method.
+- Update old arrays to use std::array or std::vector
+- Avoid using old c-string functions, such as `strcpy()`, `strcat()`, `strncpy()`, `strncat()`, `sprintf()`, `snprintf()`, `vsprintf()`, `vsnprintf()`, `strtok()`, `strtok_r()`, `strdup()`, `strndup()`, `strerror()`, `strerror_r()`, `strsignal()`, `strpbrk()`, `strsep()`, `strspn()`, `strcspn()`, `strcoll()`, `strxfrm()`, `strtok()`, `strtok_r()`, `strtok_s()`, `strnlen`, `strnlen_s`
+- Update file handling to use the C++ file handling classes, such as `std::ifstream`, `std::ofstream`, `std::fstream`, `std::stringstream`, `std::istringstream`, `std::ostringstream`, `std::wifstream`, `std::wofstream`, `std::wfstream`, `std::wstringstream`, `std::wistringstream`, `std::wostringstream`.

@@ -27,21 +27,21 @@
  * the game boots (and are updated as the game runs).
  */
 
-const char *wind_speeds[] = {"",  "&6breeze", "&6strong wind", "&4gale-force wind", "&4hurricane-strength &0&6wind",
-                             "\n"};
+const std::string_view wind_speeds[] = {
+    "", "&6breeze", "&6strong wind", "&4gale-force wind", "&4hurricane-strength &0&6wind", "\n"};
 
-const char *precip[] = {"&6&brain", "&7&bsnow", "\n"};
+const std::string_view precip[] = {"&6&brain", "&7&bsnow", "\n"};
 
-const char *daylight_change[] = {
+const std::string_view daylight_change[] = {
     "&9&bThe night has begun.&0\n",
     "&6&bThe &3sun &6rises in the east.&0\n",
     "&6&bThe day has begun.&0\n",
     "&5&bThe &3&bsun &5slowly disapp&0&5ears in th&9&be west.&0\n",
 };
 
-const char *seasons[] = {"winter", "spring", "summer", "autumn", "\n"};
+const std::string_view seasons[] = {"winter", "spring", "summer", "autumn", "\n"};
 
-const char *season_change[] = {
+const std::string_view season_change[] = {
     "&7&bWinter takes hold as &0&3Autumn&0 &7&bfades into history...&0\n",
     "&2&bThe bite of &7&bWinter &2is gone as &3Spring &2begins.&0\n",
     "Spring gives way to Summer.\n",
@@ -216,7 +216,7 @@ void init_weather() {
     }
 }
 
-char *wind_message(int current, int original) {
+std::string_view wind_message(int current, int original) {
     if (original == WIND_NONE) {
         if (current == WIND_NONE)
             strcpy(buf, "&6The air is calm.&0\n");
@@ -269,8 +269,8 @@ void update_wind(int zone_rnum) {
     callback_printf(cb_outdoor, zone_rnum, "{}", wind_message(zone->wind_speed, original));
 }
 
-char *temperature_message(int temperature) {
-    char *message;
+std::string_view temperature_message(int temperature) {
+    std::string_view message;
 
     if (temperature <= 0)
         message = "It's too c-c-c-cold to be outside!\n";
@@ -347,7 +347,7 @@ void update_temperature(int zone_rnum) {
     callback_printf(cb_outdoor, zone_rnum, "{}", temperature_message(zone->temperature));
 }
 
-char *precipitation_message(ZoneData *zone, int original) {
+std::string_view precipitation_message(ZoneData *zone, int original) {
     if (original > PRECIP_GRAY_CLOUDS) {
         if (zone->precipitation > original)
             sprintf(buf, "&4It starts %sing harder.&0\n", GET_PRECIP_TYPE(zone));

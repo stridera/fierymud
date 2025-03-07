@@ -49,7 +49,9 @@
 #include "version.hpp"
 
 #include <fmt/format.h>
+#include <fstream>
 #include <math.h>
+#include <string_utils.hpp>
 #include <sys/stat.h>
 
 EVENTFUNC(camp_event);
@@ -102,14 +104,14 @@ void stop_guarding(CharData *ch) {
 ACMD(do_guard) {
     CharData *vict;
 
-    one_argument(argument, arg);
+    auto arg = argument.shift();
 
     if (!GET_SKILL(ch, SKILL_GUARD)) {
         char_printf(ch, "You don't have the protective skill required to guard.\n");
         return;
     }
 
-    if (!*arg) {
+    if (arg.empty()) {
         if (ch->guarding)
             act("You are guarding $N.", false, ch, 0, ch->guarding, TO_CHAR);
         else
@@ -117,9 +119,9 @@ ACMD(do_guard) {
         return;
     }
 
-    if (!strcasecmp(arg, "off"))
+    if (matches(arg, "off"))
         vict = ch;
-    else if (!(vict = find_char_in_room(&world[ch->in_room], find_vis_by_name(ch, arg)))) {
+    else if (!(vict = find_char_in_room(&world[ch->in_room], find_vis_by_name(ch, arg).value_or(nullptr)))) {
         char_printf(ch, "That person is not here.\n");
         return;
     }
@@ -159,7 +161,7 @@ ACMD(do_subclass) {
     int subclass, anyvalid;
     QuestList *quest = nullptr;
     float old_exp;
-    char *s;
+    std::string_view s;
     ClassDef *c;
 
     /* Ew */
@@ -212,7 +214,7 @@ ACMD(do_subclass) {
 
         if (anyvalid) {
             char_printf(ch, "You have until level {} to subclass. See HELP SUBCLASS_{} for more information.\n",
-                        c->max_subclass_level, capitalize(c->name));
+                        c->max_subclass_level, capitalize_first(c->name));
         } else
             char_printf(ch, "There are no subclasses available to you.\n");
         return;
@@ -260,7 +262,7 @@ ACMD(do_subclass) {
 ACMD(do_quit) {
     int i;
     ObjData *money, *obj;
-    one_argument(argument, arg);
+    auto arg = argument.shift();
 
     if (IS_NPC(ch) || !ch->desc) {
         char_printf(ch, "You can't quit while shapechanged!\n");
@@ -286,7 +288,7 @@ ACMD(do_quit) {
         return;
     }
 
-    if (!*arg || strcasecmp(arg, "yes")) {
+    if (arg.empty() || !matches(arg, "yes")) {
         char_printf(ch, "You must type 'quit yes' to leave this world.\n");
         char_printf(ch,
                     "Note: You will lose &1&beverything&0 if you quit!  Camping or renting will save everything.\n");
@@ -348,7 +350,7 @@ ACMD(do_quit) {
 #define SHAPE_VNUM_MAX 1038
 
 const struct shapechange_data {
-    const char *name;
+    const std::string_view name;
     int vnum;
     int type;
     int midlevel;
@@ -445,11 +447,11 @@ ACMD(do_shapechange) {
         return;
     }
 
-    argument = any_one_arg(argument, arg);
+    auto arg = argument.shift();
 
     /* If already shapechanged, other rules apply. */
     if (POSSESSED(ch)) {
-        if (!*arg) {
+        if (arg.empty()) {
             if (ch->char_specials.timer == 0)
                 char_printf(ch, "You have just recently taken the form of {}.\n", GET_NAME(ch));
             else if (ch->char_specials.timer == 1)
@@ -457,7 +459,7 @@ ACMD(do_shapechange) {
             else
                 char_printf(ch, "You have been in the form of {} for {:d} hours.\n", GET_NAME(ch),
                             ch->char_specials.timer);
-        } else if (!is_abbrev(arg, "me"))
+        } else if (!matches_start(arg, "me"))
             char_printf(ch, "You cannot shapechange to another animal from this form.\n");
         else {
             if (POSSESSOR(ch)->desc)
@@ -481,8 +483,8 @@ ACMD(do_shapechange) {
             GET_ALIGNMENT(player) = GET_ALIGNMENT(ch);
 
             if (GET_LEVEL(player) < LVL_IMMORT) {
-                i = GET_COOLDOWN(player, CD_SHAPECHANGE) / (1 MUD_HR);
-                SET_COOLDOWN(player, CD_SHAPECHANGE, std::clamp(i, 1, 5) MUD_HR);
+                i = GET_COOLDOWN(player, CD_SHAPECHANGE) / (1 * MUD_HR);
+                SET_COOLDOWN(player, CD_SHAPECHANGE, std::clamp(i, 1, 5) * MUD_HR);
             }
 
             player->desc = ch->desc;
@@ -527,12 +529,12 @@ ACMD(do_shapechange) {
         return;
     }
 
-    if (!*arg) {
+    if (arg.empty()) {
         char_printf(ch, "Shapechange to what?\n");
         return;
     }
 
-    if (!strcasecmp(arg, "me")) {
+    if (matches(arg, "me")) {
         char_printf(ch, "You are already in your normal form.\n");
         return;
     }
@@ -552,39 +554,39 @@ ACMD(do_shapechange) {
      * keywords as you like. */
     i = type = class_num = 0;
     do {
-        if (is_abbrev(arg, "mammal"))
+        if (matches_start(arg, "mammal"))
             type |= MAMMAL;
-        else if (is_abbrev(arg, "reptile"))
+        else if (matches_start(arg, "reptile"))
             type |= REPTILE;
-        else if (is_abbrev(arg, "bird"))
+        else if (matches_start(arg, "bird"))
             type |= BIRD;
-        else if (is_abbrev(arg, "fish"))
+        else if (matches_start(arg, "fish"))
             type |= FISH;
-        else if (is_abbrev(arg, "tank"))
+        else if (matches_start(arg, "tank"))
             class_num |= TANK;
-        else if (is_abbrev(arg, "damager"))
+        else if (matches_start(arg, "damager"))
             class_num |= DAMAGER;
-        else if (is_abbrev(arg, "traveler"))
+        else if (matches_start(arg, "traveler"))
             class_num |= TRAVEL;
-        else if (is_abbrev(arg, "tracker"))
+        else if (matches_start(arg, "tracker"))
             class_num |= TRACKER;
-        else if (is_abbrev(arg, "aquatic"))
+        else if (matches_start(arg, "aquatic"))
             type |= AQUATIC;
         else {
-            for (desired_index = 0; *creatures[desired_index].name != '\n'; ++desired_index)
-                if (is_abbrev(arg, creatures[desired_index].name)) {
+            for (desired_index = 0; creatures[desired_index].name != "\n"; ++desired_index)
+                if (matches_start(arg, creatures[desired_index].name)) {
                     type = creatures[desired_index].type & (MAMMAL | REPTILE | BIRD | AQUATIC | FISH);
                     class_num = creatures[desired_index].type & (TANK | DAMAGER | TRAVEL | TRACKER);
                     i = 1;
                     break;
                 }
-            if (*creatures[desired_index].name == '\n') {
+            if (creatures[desired_index].name == "\n") {
                 char_printf(ch, "What kind of animal is that?\n");
                 return;
             }
         }
-        argument = any_one_arg(argument, arg);
-    } while (*argument && !i);
+        arg = argument.shift();
+    } while (!argument.empty() && !i);
 
     if (IS_SET(type, AQUATIC | FISH) && !IS_WATER(ch->in_room) && GET_LEVEL(ch) < LVL_IMMORT) {
         char_printf(ch, "You won't be able to turn into that here!\n");
@@ -592,7 +594,7 @@ ACMD(do_shapechange) {
     }
 
     /* Determine which mob this player can actually shapechange into. */
-    for (i = 0, index = -1; *creatures[i].name != '\n'; ++i) {
+    for (i = 0, index = -1; creatures[i].name != "\n"; ++i) {
         /* Skip creatures of lower level than already picked creature. */
         if (index >= 0 && creatures[i].midlevel < creatures[index].midlevel)
             continue;
@@ -646,7 +648,7 @@ ACMD(do_shapechange) {
     char_to_room(mob, ch->in_room);
 
     /* Transfer hover slot items to new mob */
-    if GET_EQ(ch, WEAR_HOVER) {
+    if (GET_EQ(ch, WEAR_HOVER)) {
 
         obj = GET_EQ(ch, WEAR_HOVER);
         unequip_char(ch, WEAR_HOVER);
@@ -658,7 +660,7 @@ ACMD(do_shapechange) {
     char_to_room(ch, 0);
 
     /* Copy some preferences from the player to the mob. */
-    GET_PROMPT(mob) = strdup(GET_PROMPT(ch));
+    mob->player.prompt = ch->player.prompt;
 
     /* Set up level based on player level and alignment. */
     GET_LEVEL(mob) = creatures[index].midlevel + std::max(std::clamp(GET_LEVEL(ch) - creatures[index].midlevel, -5, 5),
@@ -696,7 +698,7 @@ ACMD(do_shapechange) {
     hurt_char(mob, nullptr, 0, true);
 
     /* Add the player's name to the mob's namelist */
-    GET_NAMELIST(mob) = strdup(fmt::format("{} {}", GET_NAMELIST(mob), GET_NAME(ch)).c_str());
+    mob->player.namelist = fmt::format("{} {}", GET_NAMELIST(mob), GET_NAME(ch));
 
     /* Set gender */
     GET_SEX(mob) = GET_SEX(ch);
@@ -748,16 +750,15 @@ ACMD(do_save) {
     /*  syntax: save <playername>, where <playername> is the player to */
     /*  be saved. This works on any character which has been brought */
     /*  online either by the player logging in or a god linkloading. */
+    auto arg = argument.shift();
     if (GET_LEVEL(ch) >= LVL_GOD) {
-        one_argument(argument, arg);
-
-        if (!strcasecmp(arg, "all")) {
+        if (matches(arg, "all")) {
             auto_save_all();
             char_printf(ch, "You have saved all players in the realm.\n");
             log(LogSeverity::Stat, std::max<int>(GET_LEVEL(ch), GET_INVIS_LEV(ch)),
                 "(GC) {} has saved all players in the realm.", GET_NAME(ch));
             return;
-        } else if (*arg)
+        } else if (!arg.empty())
             /*  try to locate this player within the realm */
             target = find_char_around_char(ch, find_by_name(arg));
         else
@@ -949,11 +950,10 @@ EVENTFUNC(camp_event) {
 ACMD(do_unbind) {
     int prob, percent;
     CharData *vict;
-    char arg[MAX_INPUT_LENGTH];
 
-    one_argument(argument, arg);
+    auto arg = argument.shift();
 
-    if (!*arg) {
+    if (arg.empty()) {
         if (!PLR_FLAGGED(ch, PLR_BOUND)) {
             char_printf(ch, "You are free as a bird!\n");
             return;
@@ -970,7 +970,7 @@ ACMD(do_unbind) {
             WAIT_STATE(ch, PULSE_VIOLENCE * 3);
         return;
     } else {
-        if (!(vict = find_char_in_room(&world[ch->in_room], find_vis_by_name(ch, arg)))) {
+        if (!(vict = find_char_in_room(&world[ch->in_room], find_vis_by_name(ch, arg).value_or(nullptr)))) {
             char_printf(ch, "Unbind who?\n");
             return;
         }
@@ -994,23 +994,22 @@ ACMD(do_unbind) {
 }
 
 ACMD(do_bind) {
+    /* disable this command it's broken and is being used to ruin the game for players RSD 2/11/2001 */
+    char_printf(ch, "Huh?!?\n");
+    return;
+
     CharData *vict;
     ObjData *held = GET_EQ(ch, WEAR_HOLD);
     int prob, percent;
-
-    /* disable this command it's broken and is being used to
-       ruin the game for players RSD 2/11/2001 */
-    char_printf(ch, "Huh?!?\n");
-    return;
 
     if (FIGHTING(ch)) {
         char_printf(ch, "You are too busy fighting to think about that right now!\n");
         return;
     }
 
-    one_argument(argument, arg);
+    auto arg = argument.shift();
 
-    if (!*arg)
+    if (arg.empty())
         char_printf(ch, "Bind who?\n");
     else if (!(vict = find_char_in_room(&world[ch->in_room], find_vis_by_name(ch, arg))))
         char_printf(ch, "There is no such player.\n");
@@ -1116,8 +1115,8 @@ ACMD(do_hide) {
     upper_bound = skill * (3 * GET_DEX(ch) + GET_INT(ch)) / 40;
 
     if (group_size(ch, true) > 1 && GET_RACE(ch) == RACE_HALFLING)
-        GET_HIDDENNESS(ch) =
-            random_number(lower_bound, upper_bound) + (stat_bonus[GET_DEX(ch)].rogue_skills * ((GET_LEVEL(ch) / 30) + 1));
+        GET_HIDDENNESS(ch) = random_number(lower_bound, upper_bound) +
+                             (stat_bonus[GET_DEX(ch)].rogue_skills * ((GET_LEVEL(ch) / 30) + 1));
     else
         GET_HIDDENNESS(ch) = random_number(lower_bound, upper_bound) + stat_bonus[GET_DEX(ch)].rogue_skills;
 
@@ -1142,7 +1141,6 @@ ACMD(do_hide) {
 ACMD(do_steal) {
     CharData *vict;
     ObjData *obj;
-    char vict_name[MAX_INPUT_LENGTH], obj_name[MAX_INPUT_LENGTH];
     int percent, eq_pos, caught = 0, coins[NUM_COIN_TYPES];
 
     ACMD(do_gen_comm);
@@ -1164,10 +1162,10 @@ ACMD(do_steal) {
         return;
     }
 
-    argument = one_argument(argument, obj_name);
-    one_argument(argument, vict_name);
+    auto obj_name = argument.shift();
+    auto vict_name = argument.shift();
 
-    if (!(vict = find_char_in_room(&world[ch->in_room], find_vis_by_name(ch, vict_name)))) {
+    if (!(vict = find_char_in_room(&world[ch->in_room], find_vis_by_name(ch, vict_name).value_or(nullptr)))) {
         char_printf(ch, "Steal what from who?\n");
         return;
     } else if (vict == ch) {
@@ -1199,10 +1197,42 @@ ACMD(do_steal) {
         percent = 101 + 50;
 
     /* First check whether the thief wants to steal money */
-    if (strcasecmp(obj_name, "coins") && strcasecmp(obj_name, "gold")) {
+    if (matches(obj_name, "coins") && matches(obj_name, "gold")) {
+        /* Steal some coins */
+        if (AWAKE(vict) && (percent > GET_SKILL(ch, SKILL_STEAL))) {
+            /* Failed attempt to steal some coins */
+            caught = true;
+            act("Oops..", false, ch, 0, 0, TO_CHAR);
+            act("&3&bYou discover that $n has $s hands in your wallet.&0", false, ch, 0, vict, TO_VICT);
+            act("&3&b$n tries to steal coins from $N.&0", true, ch, 0, vict, TO_NOTVICT);
+            improve_skill(ch, SKILL_STEAL);
+        } else {
+            /* Successful theft of coins */
+            coins[PLATINUM] = (GET_PLATINUM(vict) * random_number(1, 10)) / 100;
+            coins[GOLD] = (GET_GOLD(vict) * random_number(1, 10)) / 100;
+            coins[SILVER] = (GET_SILVER(vict) * random_number(1, 10)) / 100;
+            coins[COPPER] = (GET_COPPER(vict) * random_number(1, 10)) / 100;
+
+            if (CASH_VALUE(coins) > 0) {
+                GET_COPPER(ch) += coins[COPPER];
+                GET_COPPER(vict) -= coins[COPPER];
+                GET_SILVER(ch) += coins[SILVER];
+                GET_SILVER(vict) -= coins[SILVER];
+                GET_GOLD(ch) += coins[GOLD];
+                GET_GOLD(vict) -= coins[GOLD];
+                GET_PLATINUM(ch) += coins[PLATINUM];
+                GET_PLATINUM(vict) -= coins[PLATINUM];
+                char_printf(ch, "Woohoo! You stole {}.\n", statemoney(Money{coins[PLATINUM], coins[GOLD], coins[SILVER], coins[COPPER]}));
+            } else {
+                char_printf(ch, "You couldn't get any coins...\n");
+            }
+            if (AWAKE(vict))
+                improve_skill(ch, SKILL_STEAL);
+        }
+    } else {
 
         /* If not money, look for an item in the victim's inventory */
-        if (!(obj = find_obj_in_list(vict->carrying, find_vis_by_name(ch, obj_name)))) {
+        if (!(obj = find_obj_in_list(vict->carrying, find_vis_by_name(ch, obj_name).value_or(nullptr)))) {
 
             /* If not an item in inventory, look for an equipped item */
             for (eq_pos = 0; eq_pos < NUM_WEARS; eq_pos++)
@@ -1259,39 +1289,6 @@ ACMD(do_steal) {
                     char_printf(ch, "You cannot carry that much.\n");
             }
         }
-    } else {
-        /* Steal some coins */
-        if (AWAKE(vict) && (percent > GET_SKILL(ch, SKILL_STEAL))) {
-            /* Failed attempt to steal some coins */
-            caught = true;
-            act("Oops..", false, ch, 0, 0, TO_CHAR);
-            act("&3&bYou discover that $n has $s hands in your wallet.&0", false, ch, 0, vict, TO_VICT);
-            act("&3&b$n tries to steal coins from $N.&0", true, ch, 0, vict, TO_NOTVICT);
-            improve_skill(ch, SKILL_STEAL);
-        } else {
-            /* Successful theft of coins */
-            coins[PLATINUM] = (GET_PLATINUM(vict) * random_number(1, 10)) / 100;
-            coins[GOLD] = (GET_GOLD(vict) * random_number(1, 10)) / 100;
-            coins[SILVER] = (GET_SILVER(vict) * random_number(1, 10)) / 100;
-            coins[COPPER] = (GET_COPPER(vict) * random_number(1, 10)) / 100;
-
-            if (CASH_VALUE(coins) > 0) {
-                GET_COPPER(ch) += coins[COPPER];
-                GET_COPPER(vict) -= coins[COPPER];
-                GET_SILVER(ch) += coins[SILVER];
-                GET_SILVER(vict) -= coins[SILVER];
-                GET_GOLD(ch) += coins[GOLD];
-                GET_GOLD(vict) -= coins[GOLD];
-                GET_PLATINUM(ch) += coins[PLATINUM];
-                GET_PLATINUM(vict) -= coins[PLATINUM];
-                statemoney(buf, coins);
-                char_printf(ch, "Woohoo! You stole {}.\n", buf);
-            } else {
-                char_printf(ch, "You couldn't get any coins...\n");
-            }
-            if (AWAKE(vict))
-                improve_skill(ch, SKILL_STEAL);
-        }
     }
 
     if (caught && IS_NPC(vict) && AWAKE(vict))
@@ -1300,14 +1297,14 @@ ACMD(do_steal) {
 }
 
 ACMD(do_level) {
-    extern char *exp_message(CharData * ch);
+    extern std::string_view exp_message(CharData * ch);
     extern ACMD(do_experience);
 
-    one_argument(argument, arg);
+    auto arg = argument.shift();
 
-    if (!*arg)
+    if (arg.empty())
         do_experience(ch, argument, 0, 0);
-    else if (!strcasecmp(arg, "gain"))
+    else if (matches(arg, "gain"))
         char_printf(ch, "You can only do that in your guild.\n");
     else
         char_printf(ch, "Huh?!?\n");
@@ -1328,66 +1325,60 @@ ACMD(do_visible) {
     }
 }
 
-void set_title(CharData *ch, char *title);
 ACMD(do_title) {
-    int titles, which;
+    int titles;
 
-    skip_spaces(&argument);
-    delete_doubledollar(argument);
+    auto title = std::string(argument.get());
+    delete_doubledollar(title);
 
     if (IS_NPC(ch))
         char_printf(ch, "Your title is fine... go away.\n");
     else if (PLR_FLAGGED(ch, PLR_NOTITLE))
         char_printf(ch, "You can't title yourself -- you shouldn't have abused it!\n");
     else if (GET_LEVEL(ch) >= LVL_IMMORT) {
-        if (strlen(argument) > MAX_TITLE_LENGTH)
+        if (title.length() > MAX_TITLE_LENGTH)
             char_printf(ch, "Sorry, titles can't be longer than {:d} characters.\n", MAX_TITLE_LENGTH);
         else {
-            set_title(ch, argument);
+            set_title(ch, title);
             char_printf(ch, "Okay, you're now {} {}.\n", GET_NAME(ch), GET_TITLE(ch));
             save_player_char(ch);
         }
-    } else if (!*argument) {
-        titles = 0;
-        if (GET_PERM_TITLES(ch))
-            while (GET_PERM_TITLES(ch)[titles])
-                ++titles;
+    } else if (argument.empty()) {
+        titles = GET_PERM_TITLES(ch).size();
         if (GET_CLAN(ch) && IS_CLAN_MEMBER(ch))
             ++titles;
         if (titles == 0) {
             char_printf(ch, "You haven't earned any permanent titles!\n");
-            if (ch->player.title && *ch->player.title)
+            if (!ch->player.title.empty())
                 char_printf(ch, "Use 'title 0' to clear your current title.\n");
         } else {
             titles = 0;
             char_printf(ch,
                         "You have earned the following titles:\n"
                         "  0) <no title>\n");
-            if (GET_PERM_TITLES(ch))
-                while (GET_PERM_TITLES(ch)[titles]) {
-                    char_printf(ch, "  {:d}) {}\n", titles + 1, GET_PERM_TITLES(ch)[titles]);
-                    ++titles;
-                }
+            for (auto perm_title : GET_PERM_TITLES(ch))
+                char_printf(ch, "  {:d}) {}\n", ++titles, perm_title);
+
             if (GET_CLAN(ch) && IS_CLAN_MEMBER(ch))
                 char_printf(ch, "  {:d}) {} {}\n", ++titles, GET_CLAN_TITLE(ch), GET_CLAN(ch)->abbreviation);
             char_printf(ch, "Use 'title <number>' to switch your title.\n");
         }
-    } else if (!is_positive_integer(argument))
+    } else if (!is_integer(title))
         char_printf(ch,
                     "Usage: title\n"
                     "       title <number>\n");
     else {
         int i;
-        which = atoi(argument);
+        int which = svtoi(title);
         titles = 0;
         if (which == 0)
-            set_title(ch, nullptr);
-        if (GET_PERM_TITLES(ch))
-            for (i = 0; GET_PERM_TITLES(ch)[i]; ++i)
-                if (++titles == which) {
-                    set_title(ch, GET_PERM_TITLES(ch)[i]);
-                    break;
-                }
+            set_title(ch, "");
+
+        if (which > 0 && which <= GET_PERM_TITLES(ch).size())
+            set_title(ch, GET_PERM_TITLES(ch)[which - 1]);
+        else
+            which -= GET_PERM_TITLES(ch).size();
+
         if (GET_CLAN(ch) && IS_CLAN_MEMBER(ch)) {
             if (++titles == which)
                 clan_set_title(ch);
@@ -1396,10 +1387,10 @@ ACMD(do_title) {
             char_printf(ch, "You don't have that many titles!\n");
             return;
         }
-        if (GET_TITLE(ch)) {
-            char_printf(ch, "Okay, set your title to: {}\n", GET_TITLE(ch));
-        } else
+        if (GET_TITLE(ch).empty()) {
             char_printf(ch, "Okay, cleared your title.\n");
+        } else
+            char_printf(ch, "Okay, set your title to: {}\n", GET_TITLE(ch));
     }
 }
 
@@ -1411,11 +1402,12 @@ ACMD(do_douse) {
     if (!ch)
         return;
 
-    if (argument && *argument) {
-        one_argument(argument, arg);
-        vict = find_char_in_room(&world[ch->in_room], find_vis_by_name(ch, arg));
-    } else
+    if (argument.empty()) {
         vict = ch;
+    } else {
+        auto arg = argument.shift();
+        vict = find_char_in_room(&world[ch->in_room], find_vis_by_name(ch, arg));
+    }
 
     if (!vict) {
         char_printf(ch, "You don't see that person here.\n");
@@ -1434,12 +1426,10 @@ ACMD(do_douse) {
 
     /* There is a fountain here */
     if (success) {
-
         /* Dousing yourself with a fountain */
         if (ch == vict) {
-            act("*SPLASH* $n leaps into $o, putting out the flames that were "
-                "consuming $m.",
-                false, ch, obj, 0, TO_ROOM);
+            act("*SPLASH* $n leaps into $o, putting out the flames that were consuming $m.", false, ch, obj, 0,
+                TO_ROOM);
             act("*SPLASH* You leap into $o, dousing your flames!", false, ch, obj, 0, TO_CHAR);
 
             /* Dousing someone else with a fountain */
@@ -1473,15 +1463,11 @@ ACMD(do_douse) {
             act("$n rolls around in the water, quickly putting out $s flames.", false, ch, 0, 0, TO_ROOM);
             act("You roll around in the water, quickly dousing your flames.", false, ch, obj, 0, TO_CHAR);
         } else {
-            act("You push $N down into the shallow water, putting $M out! *SPLASH* "
-                "*GURGLE*",
-                false, ch, 0, vict, TO_CHAR);
-            act("$n pushes you into the shallow water, putting your flames out! "
-                "*GURGLE*",
-                false, ch, 0, vict, TO_VICT);
-            act("$n pushes $N into the shallow water, dousing $S flames! *SPLASH* "
-                "*GURGLE*",
-                false, ch, 0, vict, TO_NOTVICT);
+            act("You push $N down into the shallow water, putting $M out! *SPLASH* *GURGLE*", false, ch, 0, vict,
+                TO_CHAR);
+            act("$n pushes you into the shallow water, putting your flames out! *GURGLE*", false, ch, 0, vict, TO_VICT);
+            act("$n pushes $N into the shallow water, dousing $S flames! *SPLASH* *GURGLE*", false, ch, 0, vict,
+                TO_NOTVICT);
         }
         success = true;
     }
@@ -1491,9 +1477,8 @@ ACMD(do_douse) {
     /* No water, trying to douse yourself */
     else if (ch == vict) {
         if (GET_SKILL(ch, SKILL_DOUSE) < random_number(0, 100)) {
-            act("$n&0 frantically rolls around on the ground, attempting to douse "
-                "the flames consuming $s body.",
-                true, ch, 0, 0, TO_ROOM);
+            act("$n&0 frantically rolls around on the ground, attempting to douse the flames consuming $s body.", true,
+                ch, 0, 0, TO_ROOM);
             char_printf(ch, "You roll around on the ground, trying to douse the flames engulfing your body!\n");
         } else {
             act("$n&0 rolls on the ground frantically, finally smothering the fire that was consuming $m.", true, ch, 0,
@@ -1533,9 +1518,9 @@ ACMD(do_disband) {
 ACMD(do_consent) {
     CharData *target;
 
-    one_argument(argument, arg);
+    auto arg = argument.shift();
 
-    if (!*arg) {
+    if (arg.empty()) {
         if (!CONSENT(ch))
             char_printf(ch, "You are not consented to anyone!\n");
         else
@@ -1543,9 +1528,9 @@ ACMD(do_consent) {
         return;
     }
 
-    if (!strcasecmp(arg, "off"))
+    if (matches(arg, "off"))
         target = ch; /* consent self to turn it off */
-    else if (!(target = find_char_around_char(ch, find_vis_by_name(ch, arg)))) {
+    else if (!(target = find_char_around_char(ch, find_vis_by_name(ch, arg).value_or(nullptr)))) {
         char_printf(ch, NOPERSON);
         return;
     }
@@ -1580,10 +1565,10 @@ ACMD(do_consent) {
 ACMD(do_bandage) {
     CharData *victim;
 
-    one_argument(argument, arg);
+    auto arg = argument.shift();
 
     /* If no arg, bandage the first person in the room who needs it. */
-    if (!*arg) {
+    if (arg.empty()) {
         for (victim = world[ch->in_room].people; victim; victim = victim->next_in_room)
             if (CAN_SEE(ch, victim))
                 if (GET_HIT(victim) < 0 || GET_STANCE(victim) < STANCE_STUNNED)
@@ -1620,40 +1605,40 @@ ACMD(do_bandage) {
         WAIT_STATE(ch, PULSE_VIOLENCE);
 }
 
-void make_group_report_line(CharData *ch, char *buffer) {
+std::string make_group_report_line(CharData *ch) {
     int perc;
-    char harm_color[20];
+    std::string_view harm_color;
 
     perc = (100 * GET_HIT(ch) / GET_MAX_HIT(ch));
 
-    strcpy(harm_color, perc >= 100  ? CLR(ch, ANRM)
-                       : perc >= 88 ? CLR(ch, AFYEL)
-                       : perc >= 70 ? CLR(ch, AHYEL)
-                       : perc >= 45 ? CLR(ch, AFMAG)
-                       : perc >= 20 ? CLR(ch, AFRED)
-                       : perc >= 0  ? CLR(ch, AFRED)
-                                    : CLR(ch, AFRED));
+    harm_color = perc >= 100  ? CLR(ch, ANRM)
+                 : perc >= 88 ? CLR(ch, AFYEL)
+                 : perc >= 70 ? CLR(ch, AHYEL)
+                 : perc >= 45 ? CLR(ch, AFMAG)
+                 : perc >= 20 ? CLR(ch, AFRED)
+                 : perc >= 0  ? CLR(ch, AFRED)
+                              : CLR(ch, AFRED);
 
-    sprintf(buffer, "%s%-15s &0[", harm_color, GET_NAME(ch));
+    std::string buffer = fmt::format("{}{:15} &0[", harm_color, GET_NAME(ch));
     if (GET_HIT(ch) < 10)
-        strcat(buffer, "   ");
+        buffer += "   ";
     else if (GET_HIT(ch) < 100)
-        strcat(buffer, "  ");
+        buffer += "  ";
     else if (GET_HIT(ch) < 1000)
-        strcat(buffer, " ");
+        buffer += " ";
 
-    sprintf(buf2, "%s%d&0h&0/", harm_color, GET_HIT(ch));
-    strcat(buffer, buf2);
+    buffer += fmt::format("{}{}&0h&0/", harm_color, GET_HIT(ch));
     if (GET_MAX_HIT(ch) < 10)
-        strcat(buffer, "   ");
+        buffer += "   ";
     else if (GET_MAX_HIT(ch) < 100)
-        strcat(buffer, "  ");
+        buffer += "  ";
     else if (GET_MAX_HIT(ch) < 1000)
-        strcat(buffer, " ");
+        buffer += " ";
 
-    sprintf(buf2, "%s%d&0H&0  %3dv/%3dV] [%s]", CLR(ch, AUND), GET_MAX_HIT(ch), GET_MOVE(ch), GET_MAX_MOVE(ch),
-            CLASS_ABBR(ch));
-    strcat(buffer, buf2);
+    buffer += fmt::format("{}{}&0H&0  {:3d}v/{:3d}V] [{}]", CLR(ch, AUND), GET_MAX_HIT(ch), GET_MOVE(ch),
+                          GET_MAX_MOVE(ch), CLASS_ABBR(ch));
+
+    return buffer;
 }
 
 void print_group(CharData *ch) {
@@ -1667,16 +1652,14 @@ void print_group(CharData *ch) {
 
         k = (ch->group_master ? ch->group_master : ch);
         if (CAN_SEE(ch, k)) {
-            make_group_report_line(k, buf);
-            char_printf(ch, "{} (&0&2&bHead of group&0)\n", buf);
+            char_printf(ch, "{} (&0&2&bHead of group&0)\n", make_group_report_line(k));
         }
 
         for (f = k->groupees; f; f = f->next) {
             if (!CAN_SEE(ch, f->groupee))
                 continue;
 
-            make_group_report_line(f->groupee, buf);
-            char_printf(ch, "{}\n", buf);
+            char_printf(ch, "{}\n", make_group_report_line(f->groupee));
         }
     }
 }
@@ -1686,10 +1669,10 @@ ACMD(do_group) {
     int level_diff;
     bool group_all = false;
 
-    one_argument(argument, arg);
+    auto arg = argument.shift();
 
     /* No argument, just asking for group info. */
-    if (!*arg) {
+    if (arg.empty()) {
         print_group(ch);
         return;
     }
@@ -1700,7 +1683,7 @@ ACMD(do_group) {
         return;
     }
 
-    if (!strcasecmp("all", arg)) {
+    if (matches("all", arg)) {
         group_all = true;
         tch = nullptr;
     } else if (!(tch = find_char_around_char(ch, find_vis_by_name(ch, arg)))) {
@@ -1736,7 +1719,7 @@ ACMD(do_group) {
             }
             if (d->original) {
                 gch = d->original;
-            } else if (!(gch = d->character)) {
+            } else if (!(gch = d->character.value_or(nullptr))) {
                 continue;
             }
             if (!CAN_SEE(ch, gch)) {
@@ -1808,10 +1791,9 @@ ACMD(do_group) {
     add_groupee(ch, tch);
 }
 
-static void split_share(CharData *giver, CharData *receiver, int coins[]) {
+static void split_share(CharData *giver, CharData *receiver, Money coins) {
     if (coins[PLATINUM] || coins[GOLD] || coins[SILVER] || coins[COPPER]) {
-        statemoney(buf, coins);
-        char_printf(receiver, "You {} {}.\n", giver == receiver ? "keep" : "receive", buf);
+        char_printf(receiver, "You {} {}.\n", giver == receiver ? "keep" : "receive", statemoney(coins));
     } else
         char_printf(receiver, "You forego your share.\n");
     GET_PLATINUM(receiver) += coins[PLATINUM];
@@ -1824,8 +1806,9 @@ static void split_share(CharData *giver, CharData *receiver, int coins[]) {
     GET_COPPER(giver) -= coins[COPPER];
 }
 
-void split_coins(CharData *ch, int coins[], unsigned int mode) {
-    int i, j, count, share[NUM_COIN_TYPES], remainder_start[NUM_COIN_TYPES];
+void split_coins(CharData *ch, Money coins, unsigned int mode) {
+    int i, j, count, remainder_start[NUM_COIN_TYPES];
+    Money share;
     GroupType *g;
     CharData *master;
 
@@ -1834,7 +1817,7 @@ void split_coins(CharData *ch, int coins[], unsigned int mode) {
 
     if (!max_members) {
         max_members = 16;
-        CREATE(members, CharData *, max_members);
+        CREATE(members, CharData *, max_members, CharData *);
     }
 
     master = ch->group_master ? ch->group_master : ch;
@@ -1850,7 +1833,7 @@ void split_coins(CharData *ch, int coins[], unsigned int mode) {
         if (CAN_SEE(ch, g->groupee) && ch->in_room == g->groupee->in_room) {
             if (count >= max_members) {
                 max_members *= 2;
-                RECREATE(members, CharData *, max_members);
+                RECREATE(members, CharData *, max_members, CharData *);
             }
             members[count++] = g->groupee;
         }
@@ -1897,8 +1880,6 @@ void split_coins(CharData *ch, int coins[], unsigned int mode) {
 }
 
 ACMD(do_split) {
-    int coins[NUM_COIN_TYPES], i;
-
     if (IS_NPC(ch))
         return;
 
@@ -1907,24 +1888,24 @@ ACMD(do_split) {
         return;
     }
 
-    skip_spaces(&argument);
-
-    if (!*argument) {
+    if (argument.empty()) {
         char_printf(ch, "Split what?\n");
         return;
     }
 
-    if (!parse_money(&argument, coins)) {
+    auto coin_opt = parse_money(argument.get());
+    if (!coin_opt) {
         char_printf(ch, "That's not a coin type.\n");
         return;
     }
 
-    if (!coins[PLATINUM] && !coins[GOLD] && !coins[SILVER] && !coins[COPPER]) {
+    auto coins = *coin_opt;
+    if (coins[PLATINUM] == 0 && coins[GOLD] == 0 && coins[SILVER] == 0 && coins[COPPER] == 0) {
         char_printf(ch, "Split zero coins?  Done.\n");
         return;
     }
 
-    for (i = 0; i < NUM_COIN_TYPES; ++i)
+    for (int i = 0; i < NUM_COIN_TYPES; ++i)
         if (coins[i] > GET_COINS(ch)[i]) {
             char_printf(ch, "You don't have enough {}!\n", COIN_NAME(i));
             return;
@@ -1936,8 +1917,8 @@ ACMD(do_split) {
 ACMD(do_use) {
     ObjData *mag_item;
 
-    half_chop(argument, arg, buf);
-    if (!*arg) {
+    auto arg = argument.shift();
+    if (arg.empty()) {
         char_printf(ch, "What do you want to {}?\n", CMD_NAME);
         return;
     }
@@ -1947,7 +1928,7 @@ ACMD(do_use) {
         switch (subcmd) {
         case SCMD_RECITE:
         case SCMD_QUAFF:
-            if (!(mag_item = find_obj_in_list(ch->carrying, find_vis_by_name(ch, arg)))) {
+            if (!(mag_item = find_obj_in_list(ch->carrying, find_vis_by_name(ch, arg).value_or(nullptr)))) {
                 char_printf(ch, "You don't seem to have {} {}.\n", AN(arg), arg);
                 return;
             }
@@ -1999,15 +1980,13 @@ ACMD(do_use) {
         break;
     }
 
-    mag_objectmagic(ch, mag_item, buf);
+    mag_objectmagic(ch, mag_item, argument.get());
 }
 
 ACMD(do_wimpy) {
     int wimp_lev;
 
-    one_argument(argument, arg);
-
-    if (!*arg) {
+    if (argument.empty()) {
         if (GET_WIMP_LEV(ch)) {
             char_printf(ch, "Your current wimp level is {:d} hit points.\n", GET_WIMP_LEV(ch));
             return;
@@ -2016,11 +1995,12 @@ ACMD(do_wimpy) {
             return;
         }
     }
-    if (isdigit(*arg)) {
-        if ((wimp_lev = atoi(arg))) {
-            if (wimp_lev < 0)
-                char_printf(ch, "Heh, heh, heh.. we are jolly funny today, eh?\n");
-            else if (wimp_lev > GET_MAX_HIT(ch))
+
+    auto val_opt = argument.try_shift_number();
+    if (val_opt) {
+        wimp_lev = *val_opt;
+        if (wimp_lev > 0) {
+            if (wimp_lev > GET_MAX_HIT(ch))
                 char_printf(ch, "That doesn't make much sense, now does it?\n");
             else if (wimp_lev > (GET_MAX_HIT(ch) >> 1))
                 char_printf(ch, "You can't set your wimp level above half your hit points.\n");
@@ -2039,65 +2019,48 @@ ACMD(do_wimpy) {
 }
 
 ACMD(do_display) {
-    int i, x;
 
-    one_argument(argument, arg);
+    auto choice_opt = argument.try_shift_number();
 
-    if (!*arg || !is_number(arg)) {
+    if (!choice_opt) {
         char_printf(ch, "The following pre-set prompts are availible...\n");
-        for (i = 0; default_prompts[i][0]; i++) {
-            char_printf(ch, "{:2d}. {:<20} {}\n", i, default_prompts[i][0], default_prompts[i][1]);
+        int i = 0;
+        for (auto prompt : default_prompts) {
+            char_printf(ch, "{:2d}. {:<20} {}\n", ++i, prompt[0], prompt[1]);
         }
         char_printf(ch, "Usage: display <number>\n");
         return;
     }
 
-    i = atoi(arg);
+    auto choice = *choice_opt - 1;
 
-    if (i < 0) {
-        char_printf(ch, "The number cannot be negative.\n");
+    if (choice < 0 || choice >= default_prompts.size()) {
+        char_printf(ch, "The range for the prompt number is 1-{}.\n", default_prompts.size());
         return;
     }
 
-    for (x = 0; default_prompts[x][0]; ++x)
-        ;
-
-    if (i >= x) {
-        char_printf(ch, "The range for the prompt number is 0-{}.\n", x - 1);
-        return;
-    }
-
-    if (GET_PROMPT(ch))
-        free(GET_PROMPT(ch));
-
-    GET_PROMPT(ch) = strdup(default_prompts[i][1]);
-    char_printf(ch, "Set your prompt to the {} preset prompt.\n", default_prompts[i][0]);
+    GET_PROMPT(ch) = default_prompts[choice - 1][1];
+    char_printf(ch, "Set your prompt to the {} preset prompt.\n", default_prompts[choice][0]);
 }
 
 ACMD(do_prompt) {
-    skip_spaces(&argument);
-
-    if (!*argument) {
-        char_printf(ch, "Your prompt is currently: {}\n", (GET_PROMPT(ch) ? escape_ansi(GET_PROMPT(ch)) : "n/a"));
+    if (argument.empty()) {
+        char_printf(ch, "Your prompt is currently: {}\n",
+                    (GET_PROMPT(ch).empty() ? "n/a" : escape_ansi(GET_PROMPT(ch))));
         return;
     }
 
-    delete_doubledollar(argument);
+    auto arg = argument.shift_clean();
 
-    if (GET_PROMPT(ch))
-        free(GET_PROMPT(ch));
-
-    GET_PROMPT(ch) = strdup(argument);
-
-    char_printf(ch, "Okay, set your prompt to: {}\n", escape_ansi(argument));
+    GET_PROMPT(ch) = arg;
+    char_printf(ch, "Okay, set your prompt to: {}\n", escape_ansi(arg));
 }
 
-const char *idea_types[] = {"bug", "typo", "idea", "note"};
+const std::string_view idea_types[] = {"bug", "typo", "idea", "note"};
 
 ACMD(do_gen_write) {
     FILE *fl;
-    const char *filename;
-    char buf[MAX_STRING_LENGTH];
+    std::string filename;
     struct stat fbuf;
     extern int max_filesize;
     time_t ct;
@@ -2109,20 +2072,17 @@ ACMD(do_gen_write) {
         return;
     }
 
-    skip_spaces(&argument);
-    delete_doubledollar(argument);
-
     switch (subcmd) {
-    case SCMD_NOTE:
-        argument = one_argument(argument, arg);
-        if (!*argument) {
+    case SCMD_NOTE: {
+        auto who = argument.shift();
+
+        if (who.empty() || argument.empty()) {
             char_printf(ch, "Usage: note <player> <text>\n");
             return;
         }
-        get_pfilename(arg, buf, NOTES_FILE);
-        filename = buf;
-        char_printf(ch, "{}\n", buf);
-        break;
+        filename = get_pfilename(who, NOTES_FILE);
+        char_printf(ch, "{}\n", filename);
+    } break;
     case SCMD_BUG:
         filename = BUG_FILE;
         break;
@@ -2145,38 +2105,32 @@ ACMD(do_gen_write) {
         return;
     }
 
-    if (!*argument) {
+    if (argument.empty()) {
         char_printf(ch, "Please enter a message to go with that bug, idea, or typo.\n");
         return;
     }
 
     log(LogSeverity::Stat, LVL_IMMORT, "{} by {} [{:d}]: {}", idea_types[subcmd], GET_NAME(ch), CH_RVNUM(ch), argument);
-
-    if (stat(filename, &fbuf) >= 0 && fbuf.st_size >= max_filesize) {
-        char_printf(ch, "Sorry, the file is full right now.. try again later.\n");
-        return;
-    }
-
-    if (!(fl = fopen(filename, "a"))) {
+    std::ofstream file(filename, std::ios::app);
+    if (!file.is_open()) {
         perror("do_gen_write");
-        char_printf(ch, "Could not open the file.  Sorry.\n");
+        char_printf(ch, "Could not open the file. Sorry.\n");
         return;
     }
 
-    ct = time(0);
-    strftime(buf1, 15, TIMEFMT_DATE, localtime(&ct));
-    fprintf(fl, "%-8s (%11.11s) [%5d] %s\n", GET_NAME(ch), buf1, world[ch->in_room].vnum, argument);
-    fclose(fl);
+    auto now = std::chrono::system_clock::to_time_t(std::chrono::system_clock::now());
+    auto timestamp = fmt::format("{:%Y-%m-%d %H:%M:%S}", *std::localtime(&now));
+    file << fmt::format("{:<8} ({:11}) [{:5}] {}\n", GET_NAME(ch), timestamp, world[ch->in_room].vnum, argument);
+    file.close();
     char_printf(ch, "Thanks for the bug, idea, or typo comment!\n");
 }
 
 ACMD(do_peace) {
     CharData *vict, *next_v;
-    one_argument(argument, arg);
-    if (!is_abbrev(arg, "off")) {
-        act("&7$n &4&bglows&0&7 with a &bbright white aura&0&7 as $e waves $s "
-            "mighty hand!&0",
-            false, ch, 0, 0, TO_ROOM);
+    auto arg = argument.shift();
+    if (!matches_start(arg, "off")) {
+        act("&7$n &4&bglows&0&7 with a &bbright white aura&0&7 as $e waves $s mighty hand!&0", false, ch, 0, 0,
+            TO_ROOM);
         room_printf(ch->in_room, "&7&bA peaceful feeling washes into the room, dousing all violence!&0\n");
         for (vict = world[ch->in_room].people; vict; vict = next_v) {
             next_v = vict->next_in_room;
@@ -2200,12 +2154,11 @@ ACMD(do_petition) {
     if (!ch->desc)
         return;
 
-    skip_spaces(&argument);
     if (GET_LEVEL(ch) >= LVL_IMMORT) {
         char_printf(ch, "Petition is for those wimpy mortals!\n");
         return;
     }
-    if (!*argument) {
+    if (argument.empty()) {
         char_printf(ch, "Yes, but WHAT do you want to petition?\n");
         return;
     }
@@ -2213,7 +2166,8 @@ ACMD(do_petition) {
     if (!speech_ok(ch, 0))
         return;
 
-    char_printf(ch, "&0&6You petition, '&b{}&0&6'&0\n", argument);
+    auto msg = argument.get();
+    char_printf(ch, "&0&6You petition, '&b{}&0&6'&0\n", msg);
 
     for (d = descriptor_list; d; d = d->next) {
         if (!d->character)
@@ -2223,7 +2177,7 @@ ACMD(do_petition) {
             continue;
         if (GET_LEVEL(tch) < LVL_IMMORT)
             continue;
-        char_printf(d->character, "&0&6{}&0&6 petitions, '&b{}&0&6'&0\n", GET_NAME(REAL_CHAR(ch)), argument);
+        char_printf(d->character, "&0&6{}&0&6 petitions, '&b{}&0&6'&0\n", GET_NAME(REAL_CHAR(ch)), msg);
     }
 }
 
@@ -2279,11 +2233,13 @@ ACMD(do_summon_mount) {
         }
         if (GET_COOLDOWN(ch, CD_SUMMON_MOUNT)) {
             i = GET_COOLDOWN(ch, CD_SUMMON_MOUNT) / 10;
-            if (i == 1)
-                strcpy(buf1, "second");
-            else
-                sprintf(buf1, "%d seconds", i);
-            char_printf(ch, "You must wait another {} before you can summon a mount again.\n", buf1);
+            auto time_str = [](int i) {
+                if (i == 1)
+                    return std::string{"one more second"};
+                else
+                    return fmt::format("{} more seconds", i);
+            }(i);
+            char_printf(ch, "You must wait {} before you can summon a mount again.\n", time_str);
             return;
         }
     }
@@ -2401,14 +2357,14 @@ ACMD(do_layhand) {
         return;
     }
 
-    one_argument(argument, arg);
+    auto arg = argument.shift();
 
     /*
      * Determine target.
      */
-    if (*arg) {
+    if (!arg.empty()) {
         /* If a target was specified, attempt to use that. */
-        if (!(vict = find_char_in_room(&world[ch->in_room], find_vis_by_name(ch, arg)))) {
+        if (!(vict = find_char_in_room(&world[ch->in_room], find_vis_by_name(ch, arg).value_or(nullptr)))) {
             char_printf(ch, NOPERSON);
             return;
         }
@@ -2463,7 +2419,7 @@ ACMD(do_layhand) {
     damage(ch, vict, dam, SKILL_LAY_HANDS);
 
     if (GET_LEVEL(ch) < LVL_GOD)
-        SET_COOLDOWN(ch, CD_LAY_HANDS, 4 MUD_HR);
+        SET_COOLDOWN(ch, CD_LAY_HANDS, 4 * MUD_HR);
 }
 
 /***************************************************************************
@@ -2477,7 +2433,7 @@ ACMD(do_layhand) {
 ACMD(do_control_undead)
 {
  CharData *vict = NULL;
-  char *to_vict = NULL, *to_room = NULL, *to_char = NULL;
+  std::string_view to_vict = NULL, *to_room = NULL, *to_char = NULL;
   affected_type af;
   float control_duration = 0;
 
@@ -2606,12 +2562,12 @@ ACMD(do_first_aid) {
     if (GET_HIT(ch) > GET_MAX_HIT(ch))
         GET_HIT(ch) = GET_MAX_HIT(ch);
 
-    char_printf(ch, "You attempt to render first aid unto yourself. (" AHGRN "{:d}" ANRM ")\n", GET_HIT(ch) - orig_hp);
+    char_printf(ch, "You attempt to render first aid unto yourself. (" AHGRN "{}" ANRM ")\n", GET_HIT(ch) - orig_hp);
 
     improve_skill(ch, SKILL_FIRST_AID);
 
     if (GET_LEVEL(ch) < LVL_IMMORT)
-        SET_COOLDOWN(ch, CD_FIRST_AID, 24 MUD_HR);
+        SET_COOLDOWN(ch, CD_FIRST_AID, 24 * MUD_HR);
 }
 
 /***************************************************************************
@@ -2620,21 +2576,20 @@ ACMD(do_first_aid) {
 
 ACMD(do_ignore) {
     CharData *target, *tch;
-    char arg[MAX_STRING_LENGTH], buf[MAX_STRING_LENGTH];
 
     tch = REAL_CHAR(ch);
 
     if (IS_NPC(tch))
         return;
 
-    one_argument(argument, arg);
+    auto arg = argument.shift();
 
-    if (!*arg || is_abbrev(arg, "off")) {
+    if (arg.empty() || matches_start(arg, "off")) {
         char_printf(ch, "You feel sociable and stop ignoring anyone.\n");
         tch->player_specials->ignored = nullptr;
         return;
     }
-    if (!(target = find_char_around_char(ch, find_vis_by_name(ch, arg))) || IS_NPC(target)) {
+    if (!(target = find_char_around_char(ch, find_vis_by_name(ch, arg).value_or(nullptr))) || IS_NPC(target)) {
         char_printf(ch, NOPERSON);
         return;
     }
@@ -2647,15 +2602,14 @@ ACMD(do_point) {
     CharData *tch = nullptr;
     ObjData *tobj = nullptr;
 
-    argument = one_argument(argument, arg);
-    skip_spaces(&argument);
+    auto arg = argument.shift();
 
-    if (!*arg) {
+    if (arg.empty()) {
         char_printf(ch, "Point at what?  Or whom?\n");
         return;
     }
 
-    if (!(found = generic_find(arg, FIND_OBJ_ROOM | FIND_CHAR_ROOM, ch, &tch, &tobj))) {
+    if (!(found = generic_find(arg, FIND_OBJ_ROOM | FIND_CHAR_ROOM, ch, &tch, &tobj).value_or(0))) {
         char_printf(ch, "Can't find that!\n");
         return;
     }

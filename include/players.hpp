@@ -33,25 +33,25 @@
 
 void reset_weight(CharData *ch);
 void build_player_index(void);
-int create_player_index_entry(char *name);
+int create_player_index_entry(std::string_view name);
 void save_player_index(void);
 void free_player_index(void);
 
-long get_ptable_by_name(const char *name);
-long get_id_by_name(const char *name);
-char *get_name_by_id(long id);
-int get_pfilename(const char *name, char *filename, int mode);
+long get_ptable_by_name(const std::string_view name);
+long get_id_by_name(const std::string_view name);
+std::optional<std::string_view> get_name_by_id(long id);
+[[nodiscard]] std::string get_pfilename(const std::string_view name, int mode);
 
-int load_player(const char *name, CharData *ch);
+int load_player(const std::string_view name, CharData *ch);
 void save_player_char(CharData *ch);
 void delete_player(int pfilepos);
-void rename_player(CharData *victim, char *newname);
+void rename_player(CharData *victim, std::string_view newname);
 void init_player(CharData *ch);
 void start_player(CharData *ch);
 
-void add_perm_title(CharData *ch, char *line);
+void add_perm_title(CharData *ch, std::string_view line);
 
-void load_ascii_flags(flagvector flags[], int num_flags, char *line);
+void load_ascii_flags(flagvector flags[], int num_flags, std::string_view line);
 void write_ascii_flags(FILE *fl, flagvector flags[], int num_flags);
 
 void remove_player_from_game(CharData *ch, int removal_mode);

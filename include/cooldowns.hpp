@@ -21,7 +21,7 @@
  */
 
 #define PULSE_COOLDOWN (1 RL_SEC)
-extern const char *cooldowns[NUM_COOLDOWNS + 1];
+extern const std::string_view cooldowns[NUM_COOLDOWNS + 1];
 
 #define CD_CURRENT 0
 #define CD_MAX 1

@@ -26,8 +26,8 @@
 
 struct LifeDef {
     /* The first element of this struct, 'name', is used by parse_obj_name() and must not be changed. */
-    const char *name;
-    const char *color;
+    const std::string_view name;
+    const std::string_view color;
     int sus_heal;
     int sus_discorporate;
     int sus_dispel;
@@ -35,7 +35,7 @@ struct LifeDef {
 };
 extern LifeDef lifeforces[NUM_LIFEFORCES];
 
-int parse_lifeforce(CharData *ch, char *arg);
+int parse_lifeforce(CharData *ch, std::string_view arg);
 void convert_lifeforce(CharData *ch, int newlifeforce);
 #define VALID_LIFEFORCENUM(num) ((num) >= 0 && (num) < NUM_LIFEFORCES)
 #define VALID_LIFEFORCE(ch) (VALID_LIFEFORCENUM(GET_LIFEFORCE(ch)))

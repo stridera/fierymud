@@ -93,7 +93,7 @@ inline void desc_printf(DescriptorData *t, std::string_view txt) { string_to_out
 template <typename... Args> void desc_printf(DescriptorData *t, std::string_view txt, Args &&...args) {
     desc_printf(t, fmt::vformat(txt, fmt::make_format_args(args...)));
 }
-void write_to_q(char *txt, txt_q *queue, int aliased, DescriptorData *d);
+void write_to_q(std::string_view txt, txt_q *queue, int aliased, DescriptorData *d);
 
 typedef RETSIGTYPE sigfunc(int);
 
@@ -114,4 +114,4 @@ extern int max_players;
 extern int tics;
 extern int scheck;
 extern int dg_act_check;
-extern int gossip_channel_active;
+extern bool gossip_channel_active;

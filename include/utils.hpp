@@ -18,7 +18,12 @@
 #include "sysdep.hpp"
 #include "text.hpp"
 
-#include <math.h>
+#include <algorithm>
+#include <cmath>
+#include <fmt/format.h>
+#include <memory>
+#include <string>
+#include <vector>
 
 /* external declarations and prototypes **********************************/
 
@@ -34,21 +39,22 @@ void perform_random_gem_drop(CharData *);
 bool event_target_valid(CharData *ch);
 int con_aff(CharData *ch);
 int static_ac(int dex);
-int touch(const char *path);
+int touch(const std::string_view path);
 
-int get_line(FILE *fl, char *buf);
+std::optional<std::string> get_line(FILE *fl);
 TimeInfoData age(CharData *ch);
 int num_pc_in_room(RoomData *room);
 int load_modifier(CharData *ch);
-const char *movewords(CharData *ch, int cmd, int room, int leaving);
+const std::string_view movewords(CharData *ch, int cmd, int room, int leaving);
 void build_count(void);
 int monk_weight_penalty(CharData *ch);
 int find_zone(int num);
-int parse_obj_name(CharData *ch, const char *arg, const char *objname, int numobjs, void *objects, int objsize);
+int parse_obj_name(CharData *ch, const std::string_view arg, const std::string_view objname, int numobjs, void *objects,
+                   int objsize);
 void init_flagvectors();
 long exp_next_level(int level, int class_num);
 void init_exp_table(void);
-CharData *is_playing(char *vict_name);
+CharData *is_playing(std::string_view vict_name);
 
 void sort(void algorithm(int[], int, int(int a, int b)), int array[], int count, int comparator(int, int));
 void bubblesort(int array[], int count, int comparator(int a, int b));
@@ -58,16 +64,16 @@ void optquicksort(int array[], int count, int comparator(int a, int b));
 
 void update_pos(CharData *victim);
 
-int yesno_result(char *answer);
+int yesno_result(std::string_view answer);
 #define YESNO_NONE 0  /* just pressed enter (probably wanted default) */
 #define YESNO_OTHER 1 /* typed something, but not starting with y or n */
 #define YESNO_YES 2   /* entered something starting with y or Y */
 #define YESNO_NO 3    /* entered something starting with n or N */
 
-char *statelength(int inches);
-char *stateweight(float pounds);
-char *format_apply(int apply, int amount);
-void drop_core(CharData *ch, const char *desc);
+std::string_view statelength(int inches);
+std::string_view stateweight(float pounds);
+std::string_view format_apply(int apply, int amount);
+void drop_core(CharData *ch, const std::string_view desc);
 
 /* various constants *****************************************************/
 
@@ -111,7 +117,7 @@ void drop_core(CharData *ch, const char *desc);
 #define UPPER(c) (IS_LOWER(c) ? ((c) + ('A' - 'a')) : (c))
 
 #define IS_NEWLINE(ch) ((ch) == '\n')
-#define AN(string) (strchr("aeiouAEIOU", *string) ? "an" : "a")
+#define AN(str) (!str.empty() && std::string("aeiouAEIOU").find(str[0]) != std::string::npos ? "an" : "a")
 
 /* memory utils **********************************************************/
 
@@ -194,7 +200,7 @@ extern flagvector *ALL_FLAGS;
 #define IS_NPC(ch) IS_FLAGGED(MOB_FLAGS(ch), MOB_ISNPC)
 #define IS_MOB(ch) (IS_NPC(ch) && ((ch)->mob_specials.nr > -1))
 #define POSSESSED(ch) ((ch)->desc && (ch)->desc->original)
-#define POSSESSOR(ch) ((ch)->desc && (ch)->desc->original ? (ch)->desc->original : NULL)
+#define POSSESSOR(ch) ((ch)->desc && (ch)->desc->original ? (ch)->desc->original : nullptr)
 #define REAL_CHAR(ch) ((ch)->desc && (ch)->desc->original ? (ch)->desc->original : (ch))
 #define FORWARD(ch) ((ch)->forward ? (ch)->forward : (ch))
 #define IS_PC(ch) (!IS_NPC(REAL_CHAR(ch)))
@@ -492,8 +498,8 @@ extern flagvector *ALL_FLAGS;
 #define HESHE(ch) HSSH(ch)
 #define HIMHER(ch) HMHR(ch)
 
-#define ANA(obj) (strchr("aeiouyAEIOUY", *(obj)->name) ? "An" : "A")
-#define SANA(obj) (strchr("aeiouyAEIOUY", *(obj)->name) ? "an" : "a")
+#define ANA(obj) (std::string("aeiouyAEIOUY").find((obj)->name[0]) != std::string::npos ? "An" : "A")
+#define SANA(obj) (std::string("aeiouyAEIOUY").find((obj)->name[0]) != std::string::npos ? "an" : "a")
 
 #define SENDOK(ch)                                                                                                     \
     ((ch)->desc && (AWAKE(ch) || sleep) &&                                                                             \
@@ -553,7 +559,7 @@ extern flagvector *ALL_FLAGS;
 #if defined(NOCRYPT) || !defined(HAVE_CRYPT)
 #define CRYPT(a, b) (a)
 #else
-#define CRYPT(a, b) ((char *)crypt((a), (b)))
+#define CRYPT(a, b) ((std::string_view)crypt((a), (b)))
 #endif
 
 #define SD_LVL_MULT(i) spell_dam_info[i].lvl_mult
@@ -571,6 +577,6 @@ extern flagvector *ALL_FLAGS;
 #define SD_NOTE(i) spell_dam_info[i].note
 #define SPELL_DAM_FILE "misc/spell_dams" /*for spell dams*/
 
-/* Format strings for strftime */
-#define TIMEFMT_LOG "%a %d %b %Y %H:%M:%S" /* 24 characters */
-#define TIMEFMT_DATE "%b %d %Y"            /* 11 characters */
+/* Format strings for timestamps */
+constexpr auto TIMEFMT_LOG = "{:%a %d %b %Y %H:%M:%S}"; /* 24 characters */
+constexpr auto TIMEFMT_DATE = "{:%b %d %Y}";            /* 11 characters */

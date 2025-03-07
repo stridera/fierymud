@@ -39,7 +39,7 @@ void sethurtevent(CharData *ch, CharData *vict, int dam);
 void overweight_check(CharData *ch);
 
 bool char_has_event(CharData *ch, int eventtype);
-bool char_has_delayed_command(CharData *ch, const char *command);
+bool char_has_delayed_command(CharData *ch, const std::string_view command);
 
 /* function protos need by other modules */
 void event_init(void);
@@ -50,10 +50,10 @@ void event_cancel(Event *event);
 void event_process(void);
 long event_time(Event *event);
 void event_free_all(void);
-const char *eventname(Event *e);
+const std::string_view eventname(Event *e);
 void cancel_event_list(Event **list);
 GenericEventData *mkgenericevent(CharData *ch, CharData *vict, ObjData *obj);
-void delayed_command(CharData *ch, char *command, int delay, bool repeatable);
+void delayed_command(CharData *ch, std::string_view command, int delay, bool repeatable);
 
 #define EVENT_AUTODOUSE 1
 #define EVENT_CAMP 2
@@ -172,5 +172,5 @@ struct HurtEventData {
 
 struct CommandEventData {
     CharData *ch;
-    char *cmd;
+    std::string_view cmd;
 };

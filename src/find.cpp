@@ -18,24 +18,29 @@
 #include "dg_scripts.hpp"
 #include "handler.hpp"
 #include "interpreter.hpp"
+#include "logging.hpp"
 #include "math.hpp"
 #include "structs.hpp"
 #include "sysdep.hpp"
 #include "utils.hpp"
-#include "logging.hpp"
-
 
 /*
  * Takes a name, and if it is of the form '#.name', skips over the
  * number and period and returns the number.
  */
-int grab_number(char **name) {
+int grab_number(std::string_view name) {
     int num;
-    char *pos;
+    size_t pos = name.find('.');
 
-    if ((pos = strchr(*name, '.'))) {
-        num = atoi(*name);
-        *name = ++pos;
+    if (pos != std::string::npos) {
+        try {
+            num = svtoi(name.substr(0, pos));
+        } catch (const std::invalid_argument &e) {
+            num = 1; // default value if conversion fails
+        } catch (const std::out_of_range &e) {
+            num = 1; // default value if conversion fails
+        }
+        name = name.substr(pos + 1);
         return num > 0 ? num : 1;
     }
 
@@ -158,34 +163,34 @@ FindContext find_vis_by_id(CharData *ch, int id) {
 }
 
 /* Find objs/chars using namelist */
-FindContext find_by_name(char *name) {
+FindContext find_by_name(const std::string_view &name) {
     FindContext context = NULL_FCONTEXT;
-    if (*name == UID_CHAR) {
+    if (name[0] == UID_CHAR) {
         context.obj_func = match_obj_by_id;
         context.char_func = match_char_by_id;
-        context.number = atoi(name + 1);
+        context.number = svtoi(name.substr(1));
     } else {
         context.obj_func = match_obj_by_name;
         context.char_func = match_char_by_name;
-        context.number = grab_number(&name);
+        context.number = grab_number(name);
         context.string = name;
     }
     return context;
 }
 
 /* Find objs/chars visible to a given char using namelist */
-FindContext find_vis_by_name(CharData *ch, char *name) {
+FindContext find_vis_by_name(CharData *ch, const std::string_view name) {
     FindContext context = NULL_FCONTEXT;
-    if (*name == UID_CHAR) {
+    if (name[0] == UID_CHAR) {
         context.obj_func = match_vis_obj_by_id;
         context.char_func = match_vis_char_by_id;
-        context.number = atoi(name + 1);
+        context.number = svtoi(name.substr(1));
     } else {
         context.obj_func = match_vis_obj_by_name;
         context.char_func = match_vis_char_by_name;
-        context.number = grab_number(&name);
+        context.number = grab_number(name);
         context.string = name;
-        if (!strcasecmp(name, "self") || !strcasecmp(name, "me"))
+        if (name == "self" || name == "me")
             context.override = true;
     }
     context.ch = ch;
@@ -238,17 +243,17 @@ FindContext find_vis_by_type(CharData *ch, int type) {
 }
 
 /* Find players using name */
-FindContext find_plr_by_name(char *name) {
+FindContext find_plr_by_name(std::string &name) {
     FindContext context = find_by_name(name);
-    if (*name != UID_CHAR)
+    if (name[0] != UID_CHAR)
         context.char_func = match_player_by_name;
     return context;
 }
 
 /* Find players visible to a given char using name */
-FindContext find_vis_plr_by_name(CharData *ch, char *name) {
+FindContext find_vis_plr_by_name(CharData *ch, std::string &name) {
     FindContext context = find_vis_by_name(ch, name);
-    if (*name != UID_CHAR)
+    if (name[0] != UID_CHAR)
         context.char_func = match_vis_player_by_name;
     return context;
 }
@@ -473,7 +478,7 @@ ObjData *find_obj_around_room(RoomData *room, FindContext context) {
  * if it gets this far,
  *
  */
-ObjData *find_obj_for_mtrig(CharData *ch, char *name) {
+ObjData *find_obj_for_mtrig(CharData *ch, std::string_view name) {
     ObjData *obj;
     FindContext context = find_vis_by_name(ch, name);
 
@@ -625,7 +630,7 @@ CharData *find_char_around_room(RoomData *room, FindContext context) {
  * if it gets this far, it probably means
  *
  */
-CharData *find_char_for_mtrig(CharData *ch, char *name) {
+CharData *find_char_for_mtrig(CharData *ch, char name[0]) {
     CharData *targ;
 
     /* scan room */
@@ -653,10 +658,8 @@ CharData *find_char_for_mtrig(CharData *ch, char *name) {
 /* The routine returns a pointer to the next word in *arg (just like the  */
 /* one_argument routine).                                                 */
 
-int generic_find(char *arg, int bitvector, CharData *ch, CharData **tch, ObjData **tobj) {
-    char name[MAX_INPUT_LENGTH];
-    one_argument(arg, name);
-    if (!*name)
+int generic_find(std::string_view name, int bitvector, CharData *ch, CharData **tch, ObjData **tobj) {
+    if (name.empty())
         return 0;
     return universal_find(find_vis_by_name(ch, name), bitvector, tch, tobj);
 }
@@ -820,27 +823,27 @@ char_iterator find_chars(FindContext context, int bitvector) {
     return iter;
 }
 
-ObjData *find_obj_for_keyword(ObjData *obj, const char *name) {
-    if (!strcasecmp(name, "self") || !strcasecmp(name, "me"))
+ObjData *find_obj_for_keyword(ObjData *obj, const char name[0]) {
+    if (matches(name, "self") || matches(name, "me"))
         return obj;
     return nullptr;
 }
 
-CharData *find_char_for_keyword(CharData *ch, const char *name) {
-    if (!strcasecmp(name, "self") || !strcasecmp(name, "me"))
+CharData *find_char_for_keyword(CharData *ch, const char name[0]) {
+    if (matches(name, "self") || matches(name, "me"))
         return ch;
     return nullptr;
 }
 
 /* a function to scan for "all" or "all.x" */
-int find_all_dots(char **arg) {
-    if (!strcasecmp(*arg, "all"))
+int find_all_dots(std::string_view arg) {
+    if (matches(*arg, "all"))
         return FIND_ALL;
-    else if (!strncasecmp(*arg, "all.", 4)) {
+        else if (matches(*arg, "all."){
         *arg += 4;
         return FIND_ALLDOT;
-    } else
-        return FIND_INDIV;
+        } else
+            return FIND_INDIV;
 }
 
 CharData *get_random_char_around(CharData *ch, int mode) {

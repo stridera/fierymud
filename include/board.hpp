@@ -21,8 +21,7 @@
 #define BOARD_INDEX_FILE "etc/boards/index"
 
 /*
- * Board privileges; each board can be assigned a different privilege
- * type for each privilege.
+ * Board privileges; each board can be assigned a different privilege type for each privilege.
  */
 #define BPRIV_READ 0
 #define BPRIV_WRITE_NEW 1
@@ -45,7 +44,7 @@
 
 /* list of edits made to a message */
 struct BoardMessageEdit {
-    char *editor;
+    std::string_view editor;
     time_t time;
     BoardMessageEdit *next;
 };
@@ -56,11 +55,11 @@ struct BoardIter {
 
 /* board message */
 struct BoardMessage {
-    char *poster; /* player name */
-    int level;    /* player's level */
-    time_t time;  /* time of posting */
-    char *subject;
-    char *message;
+    std::string poster; /* player name */
+    int level;          /* player's level */
+    time_t time;        /* time of posting */
+    std::string subject;
+    std::string message;
     bool sticky; /* sticky messages float towards the top of the board */
     BoardMessageEdit *edits;
     CharData *editing; /* message currently being edited by... */
@@ -71,8 +70,8 @@ struct BoardData {
 
     Rule *privileges[NUM_BPRIV];
 
-    char *alias; /* letters, numbers, underscore only; used as filename */
-    char *title; /* any characters */
+    std::string alias; /* letters, numbers, underscore only; used as filename */
+    std::string title; /* any characters */
 
     BoardMessage **messages;
     int message_count;
@@ -85,7 +84,7 @@ struct BoardData {
 struct board_editing_data {
     BoardData *board;
     BoardMessage *message;
-    char *subject;
+    std::string subject;
     bool sticky;
 };
 
@@ -97,7 +96,7 @@ const BoardData *next_board(BoardIter *iter);
 void free_board_iterator(BoardIter *iter);
 
 int board_count();
-bool valid_alias(const char *alias);
+bool valid_alias(const std::string_view alias);
 
 void board_init();
 void board_cleanup();
@@ -108,5 +107,5 @@ void look_at_board(CharData *ch, const BoardData *board, const ObjData *face);
 void read_message(CharData *ch, BoardData *board, int msg);
 void edit_message(CharData *ch, BoardData *board, int msg);
 void remove_message(CharData *ch, BoardData *board, int msg, const ObjData *face);
-void write_message(CharData *ch, BoardData *board, const char *subject);
+void write_message(CharData *ch, BoardData *board, const std::string_view subject);
 bool has_board_privilege(CharData *ch, const BoardData *board, int privnum);

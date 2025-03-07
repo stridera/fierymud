@@ -27,15 +27,15 @@ struct QuestInfo {
     unsigned short quest_id; /* 16 bits = 65536 possible quests
                               * although the top bit is reserved for subclasses
                               */
-    char *quest_name;
+    std::string_view quest_name;
     unsigned char maxstages; /* 8 bits = 254 possible stages, as 0 is reserved
                               * for failed and -1 (all bits set) for passed
                               */
 };
 
 struct QuestVariableList {
-    char *var;
-    char *val;
+    std::string_view var;
+    std::string_view val;
     QuestVariableList *next;
 };
 
@@ -56,21 +56,23 @@ struct QuestList {
 /*
  * quest function definitions
  */
-void perform_quest(TrigData *t, char *argument, CharData *ch, ObjData *obj, RoomData *room);
-void quest_advance(CharData *ch, CharData *vict, char *qname, char *error_string, int amount);
-void quest_start(CharData *ch, CharData *vict, char *qname, char *error_string, char *subclass);
-void quest_complete(CharData *ch, CharData *vict, char *qname, char *error_string);
-void quest_fail(CharData *ch, CharData *vict, char *qname, char *error_string);
-void quest_rewind(CharData *ch, CharData *vict, char *qname, char *error_string, int amount);
-void quest_restart(CharData *ch, CharData *vict, char *qname, char *error_string);
-void quest_erase(CharData *ch, CharData *vict, char *qname, char *error_string);
-int quest_stage(CharData *ch, char *qname);
-void set_quest_variable(CharData *ch, CharData *vict, char *qname, char *error_string, char *variable, char *value);
-char *get_quest_variable(CharData *ch, char *qname, char *variable);
-int has_failed_quest(char *qname, CharData *ch);
-int has_completed_quest(char *qname, CharData *ch);
-unsigned short quest_find_num(char *qname);
-char *check_quest_name(char *qname);
+void perform_quest(TrigData *t, std::string_view argument, CharData *ch, ObjData *obj, RoomData *room);
+void quest_advance(CharData *ch, CharData *vict, std::string_view qname, std::string_view error_string, int amount);
+void quest_start(CharData *ch, CharData *vict, std::string_view qname, std::string_view error_string,
+                 std::string_view subclass);
+void quest_complete(CharData *ch, CharData *vict, std::string_view qname, std::string_view error_string);
+void quest_fail(CharData *ch, CharData *vict, std::string_view qname, std::string_view error_string);
+void quest_rewind(CharData *ch, CharData *vict, std::string_view qname, std::string_view error_string, int amount);
+void quest_restart(CharData *ch, CharData *vict, std::string_view qname, std::string_view error_string);
+void quest_erase(CharData *ch, CharData *vict, std::string_view qname, std::string_view error_string);
+int quest_stage(CharData *ch, std::string_view qname);
+void set_quest_variable(CharData *ch, CharData *vict, std::string_view qname, std::string_view error_string,
+                        std::string_view variable, std::string_view value);
+std::string_view get_quest_variable(CharData *ch, std::string_view qname, std::string_view variable);
+int has_failed_quest(std::string_view qname, CharData *ch);
+int has_completed_quest(std::string_view qname, CharData *ch);
+unsigned short quest_find_num(std::string_view qname);
+std::string_view check_quest_name(std::string_view qname);
 void free_quest_list(CharData *ch);
 void free_quests(void);
 

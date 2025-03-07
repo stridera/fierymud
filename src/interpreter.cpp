@@ -45,36 +45,10 @@
 #include "utils.hpp"
 #include "version.hpp"
 
-/* external functions */
-void broadcast_name(char *name);
-void echo_on(DescriptorData *d);
-void echo_off(DescriptorData *d);
-int special(CharData *ch, int cmd, char *arg);
-int isbanned(char *hostname);
-int Valid_Name(char *newname);
-void oedit_parse(DescriptorData *d, char *arg);
-void redit_parse(DescriptorData *d, char *arg);
-void zedit_parse(DescriptorData *d, char *arg);
-void medit_parse(DescriptorData *d, char *arg);
-void sedit_parse(DescriptorData *d, char *arg);
-void hedit_parse(DescriptorData *d, char *arg);
-void sdedit_parse(DescriptorData *d, char *arg);
-int roll_table[6];
-void send_to_xnames(char *name);
-void personal_reboot_warning(CharData *ch);
-
-void display_question(DescriptorData *d);
-/*void rolls_display( CharData *ch, char *[], char *[]);*/
-void roll_natural_abils(CharData *ch);
-void new_roller_display(CharData *ch, int[]);
-int bonus_stat(CharData *ch, char arg);
-int parse_good_race(char arg); /* Put in until such time that all races are allowed */
-void set_innate(CharData *ch, char *arg);
-void trigedit_parse(DescriptorData *d, char *arg);
-char *diety_selection;
-void appear(CharData *ch);
-EVENTFUNC(name_timeout);
-bool ispell_name_check(char *);
+#include <iostream>
+#include <sstream>
+#include <string>
+#include <vector>
 
 /* prototypes for all do_x functions. */
 ACMD(do_abort);
@@ -995,19 +969,20 @@ const CommandInfo cmd_info[] = {
 
     {"\n", 0, 0, 0, 0, 0, CMD_HIDE}}; /* this must be last */
 
-const char *command_flags[] = {"MEDITATE", "MAJOR PARA", "MINOR PARA", "HIDE", "BOUND", "CAST", "OLC", "NOFIGHT", "\n"};
+const std::string_view command_flags[] = {"MEDITATE", "MAJOR PARA", "MINOR PARA", "HIDE", "BOUND",
+                                          "CAST",     "OLC",        "NOFIGHT",    "\n"};
 
-const char *fill[] = {"in", "from", "with", "the", "on", "at", "to", "\n"};
+const std::string_view fill[] = {"in", "from", "with", "the", "on", "at", "to", "\n"};
 
-const char *reserved[] = {"self", "me", "all", "room", "someone", "something", "\n"};
+const std::string_view reserved[] = {"self", "me", "all", "room", "someone", "something", "\n"};
 
-void list_similar_commands(CharData *ch, char *arg) {
+void list_similar_commands(CharData *ch, std::string_view arg) {
     int found = false, cmd;
 
     if (!PRF_FLAGGED(ch, PRF_NOHINTS)) {
         /* Display similar commands. */
-        for (cmd = 0; *cmd_info[cmd].command != '\n'; ++cmd) {
-            if (*arg != *cmd_info[cmd].command)
+        for (cmd = 0; cmd_info[cmd].command != "\n"; ++cmd) {
+            if (arg != cmd_info[cmd].command)
                 continue;
             if (!can_use_command(ch, cmd))
                 continue;
@@ -1032,36 +1007,31 @@ void list_similar_commands(CharData *ch, char *arg) {
  * It makes sure you are the proper level and position to execute the command,
  * then calls the appropriate function.
  */
-void command_interpreter(CharData *ch, char *argument) {
-    int cmd, length;
+void command_interpreter(CharData *ch, std::string_view argument) {
     extern int no_specials;
-    char *line;
+    int cmd;
 
     /* just drop to next line for hitting CR */
-    skip_slash(&argument);
-    skip_spaces(&argument);
-    if (!*argument)
+    if (argument.empty())
         return;
+
+    auto args = Arguments(argument);
+    auto command = args.command_shift();
+    auto line = args.shift();
 
     /*
      * special case to handle one-character, non-alphanumeric commands;
      * requested by many people so "'hi" or ";godnet test" is possible.
      * Patch sent by Eric Green and Stefan Wasilewski.
      */
-    if (!isalpha(*argument)) {
-        arg[0] = argument[0];
-        arg[1] = '\0';
-        line = argument + 1;
-    } else
-        line = any_one_arg(argument, arg);
 
     /* otherwise, find the command */
-    if (GET_LEVEL(ch) < LVL_IMMORT &&
-        (command_wtrigger(ch, arg, line) || command_mtrigger(ch, arg, line) || command_otrigger(ch, arg, line)))
+    if (GET_LEVEL(ch) < LVL_IMMORT && (command_wtrigger(ch, command, line) || command_mtrigger(ch, command, line) ||
+                                       command_otrigger(ch, command, line)))
         return; /* command trigger took over */
 
-    for (length = strlen(arg), cmd = 1; *cmd_info[cmd].command != '\n'; cmd++)
-        if (!strncasecmp(cmd_info[cmd].command, arg, length))
+    for (cmd = 1; cmd_info[cmd].command != "\n"; cmd++)
+        if (matches_start(cmd_info[cmd].command, command))
             if (can_use_command(ch, cmd))
                 break;
 
@@ -1076,9 +1046,9 @@ void command_interpreter(CharData *ch, char *argument) {
         char_printf(ch, "You stop meditating.\n&0");
     }
 
-    if (*cmd_info[cmd].command == '\n') {
+    if (cmd_info[cmd].command[0] == '\n') {
         char_printf(ch, HUH);
-        list_similar_commands(ch, arg);
+        list_similar_commands(ch, command);
     } else if (PLR_FLAGGED(ch, PLR_FROZEN) && GET_LEVEL(ch) < LVL_HEAD_B)
         char_printf(ch, "You try, but the mind-numbing cold prevents you...\n");
     else if (ch->desc && STATE(ch->desc) != CON_PLAYING && !IS_SET(cmd_info[cmd].flags, CMD_OLC)) {
@@ -1143,7 +1113,7 @@ void command_interpreter(CharData *ch, char *argument) {
             break;
         }
     else if (no_specials || !special(ch, cmd, line))
-        ((*cmd_info[cmd].command_pointer)(ch, line, cmd, cmd_info[cmd].subcmd));
+        ((*cmd_info[cmd].command_pointer)(ch, Arguments(line), cmd, cmd_info[cmd].subcmd));
 }
 
 /**************************************************************************
@@ -1153,41 +1123,32 @@ void command_interpreter(CharData *ch, char *argument) {
 /* into the pfile.  --Fingon                                              */
 
 /* completely rewritten --Fingon */
-AliasData *find_alias(AliasData *alias, char *str) {
+AliasData *find_alias(AliasData *alias, std::string_view str) {
     for (; alias; alias = alias->next)
-        if (!strcasecmp(alias->alias, str))
+        if (matches(alias->alias, str))
             return alias;
 
     return nullptr;
-}
-
-void free_alias(AliasData *a) {
-    if (a->alias)
-        free(a->alias);
-    if (a->replacement)
-        free(a->replacement);
-    free(a);
 }
 
 void free_aliases(AliasData *alias_list) {
     AliasData *alias;
     while ((alias = alias_list)) {
         alias_list = alias->next;
-        free_alias(alias);
+        free(alias);
     }
 }
 
 /* The interface to the outside world: do_alias */
 /* Modified heavily --Fingon                    */
 ACMD(do_alias) {
-    char *repl;
     AliasData *alias, *temp;
     CharData *vict;
 
-    repl = any_one_arg(argument, arg);
+    auto arg = argument.shift();
 
     if (GET_LEVEL(ch) >= LVL_GOD && (vict = find_char_around_char(ch, find_vis_plr_by_name(ch, arg))))
-        repl = any_one_arg(repl, arg);
+        arg = argument.shift();
     else
         vict = ch;
 
@@ -1196,7 +1157,7 @@ ACMD(do_alias) {
         return;
     }
 
-    if (!*arg) {
+    if (arg.empty()) {
         /* no argument specified -- list currently defined aliases */
         char_printf(ch, "Currently defined aliases:\n");
 
@@ -1212,13 +1173,11 @@ ACMD(do_alias) {
         /* is this an alias we've already defined? */
         if ((alias = find_alias(GET_ALIASES(vict), arg))) {
             REMOVE_FROM_LIST(alias, GET_ALIASES(vict), next);
-            free_alias(alias);
+            free(alias);
         }
 
-        skip_spaces(&repl);
-
         /* if no replacement string is specified, assume we want to delete */
-        if (!*repl) {
+        if (argument.empty()) {
             if (alias)
                 char_printf(ch, "Alias deleted.\n");
             else
@@ -1227,17 +1186,20 @@ ACMD(do_alias) {
 
             /* otherwise, either add or redefine an alias */
 
-            if (!strcasecmp(arg, "alias")) {
+            if (matches(arg, "alias")) {
                 char_printf(ch, "You can't alias 'alias'.\n");
                 return;
             }
 
+            /* make a new alias */
+            std::string replacement = std::string(argument.get());
+            delete_doubledollar(replacement);
+
             /* find a blank alias slot */
             CREATE(alias, AliasData, 1);
-            alias->alias = strdup(arg);
-            delete_doubledollar(repl);
-            alias->replacement = strdup(repl);
-            if (strchr(repl, ALIAS_SEP_CHAR) || strchr(repl, ALIAS_VAR_CHAR))
+            alias->alias = arg;
+            alias->replacement = replacement;
+            if (replacement.contains(ALIAS_SEP_CHAR) || replacement.contains(ALIAS_VAR_CHAR))
                 alias->type = ALIAS_COMPLEX;
             else
                 alias->type = ALIAS_SIMPLE;
@@ -1258,51 +1220,61 @@ ACMD(do_alias) {
  */
 #define NUM_TOKENS 9
 
-void perform_complex_alias(CharData *ch, txt_q *input_q, char *orig, AliasData *alias) {
+void perform_complex_alias(CharData *ch, txt_q *input_q, std::string_view orig, AliasData *alias) {
     txt_q temp_queue;
-    char *tokens[NUM_TOKENS], *temp, *write_point;
-    int num_of_tokens = 0, num;
+    std::vector<std::string> tokens;
+    std::string temp_buf;
+    std::ostringstream write_point;
 
-    /* First, parse the original string */
-    temp = strtok(strcpy(buf2, orig), " ");
-    while (temp != nullptr && num_of_tokens < NUM_TOKENS) {
-        tokens[num_of_tokens++] = temp;
-        temp = strtok(nullptr, " ");
+    // Tokenize the original string
+    std::istringstream iss(std::string(orig));
+    std::string token;
+    while (iss >> token && tokens.size() < NUM_TOKENS) {
+        tokens.push_back(token);
     }
 
-    /* initialize */
-    write_point = buf;
+    std::vector<std::string> tokens;
+    std::stringstream ss(std::string(orig));
+    std::string token;
+    while (std::getline(ss, token, " ")) {
+        tokens.push_back(token);
+    }
+
+    // Initialize the temporary queue
     temp_queue.head = temp_queue.tail = nullptr;
 
-    /* now parse the alias */
-    for (temp = alias->replacement; *temp; temp++) {
-        if (*temp == ALIAS_SEP_CHAR) {
-            *write_point = '\0';
-            buf[MAX_INPUT_LENGTH - 1] = '\0';
-            write_to_q(buf, &temp_queue, 1, ch->desc);
-            write_point = buf;
-        } else if (*temp == ALIAS_VAR_CHAR) {
-            temp++;
-            if ((num = *temp - '1') < num_of_tokens && num >= 0) {
-                strcpy(write_point, tokens[num]);
-                write_point += strlen(tokens[num]);
-            } else if (*temp == ALIAS_GLOB_CHAR) {
-                strcpy(write_point, orig);
-                write_point += strlen(orig);
-            } else if ((*(write_point++) = *temp) == '$') /* redouble $ for act safety */
-                *(write_point++) = '$';
-        } else
-            *(write_point++) = *temp;
+    // Parse the alias
+    for (char c : alias->replacement) {
+        if (c == ALIAS_SEP_CHAR) {
+            temp_buf = write_point.str();
+            write_to_q(temp_buf, &temp_queue, 1, ch->desc);
+            write_point.str("");
+            write_point.clear();
+        } else if (c == ALIAS_VAR_CHAR) {
+            ++c;
+            int num = c - '1';
+            if (num >= 0 && num < tokens.size()) {
+                write_point << tokens[num];
+            } else if (c == ALIAS_GLOB_CHAR) {
+                write_point << orig;
+            } else if (c == '$') {
+                write_point << "$$";
+            } else {
+                write_point << c;
+            }
+        } else {
+            write_point << c;
+        }
     }
 
-    *write_point = '\0';
-    buf[MAX_INPUT_LENGTH - 1] = '\0';
-    write_to_q(buf, &temp_queue, 1, ch->desc);
+    write_point << '\0';
+    temp_buf = write_point.str();
+    write_to_q(temp_buf, &temp_queue, 1, ch->desc);
 
-    /* push our temp_queue on to the _front_ of the input queue */
-    if (input_q->head == nullptr)
+    // Push our temp_queue to the front of the input queue
+    if (input_q->head == nullptr) {
         *input_q = temp_queue;
-    else {
+    } else {
         temp_queue.tail->next = input_q->head;
         input_q->head = temp_queue.head;
     }
@@ -1316,7 +1288,7 @@ void perform_complex_alias(CharData *ch, txt_q *input_q, char *orig, AliasData *
  *   1: String was _not_ modified in place; rather, the expanded aliases
  *      have been placed at the front of the character's input queue.
  */
-int perform_alias(DescriptorData *d, char *orig) {
+int perform_alias(DescriptorData *d, std::string_view orig) {
     char first_arg[MAX_INPUT_LENGTH], *ptr;
     AliasData *alias;
 
@@ -1332,7 +1304,7 @@ int perform_alias(DescriptorData *d, char *orig) {
     ptr = any_one_arg(orig, first_arg);
 
     /* bail out if it's null */
-    if (!*first_arg)
+    if (first_arg.empty())
         return 0;
 
     /* if the first arg is not an alias, return without doing anything */
@@ -1352,66 +1324,9 @@ int perform_alias(DescriptorData *d, char *orig) {
  * Various other parsing utilities                                         *
  **************************************************************************/
 
-/*
- * searches an array of strings for a target string.  "exact" can be
- * 0 or non-0, depending on whether or not the match must be exact for
- * it to be returned.  Returns -1 if not found; 0..n otherwise.  Array
- * must be terminated with a '\n' so it knows to stop searching.
- *
- * searchblock follows a similar naming convention to strcasecmp:
- * searchblock is case-sensitive, search_block is case-insensitive.
- * Often, which one you use only depends on the case of items in your
- * list, because any_one_arg and one_argument always return lower case
- * arguments.
- */
-int searchblock(char *arg, const char **list, bool exact) {
-    int i, l;
-
-    /* Make into lower case, and get length of string */
-    for (l = 0; *(arg + l); l++)
-        *(arg + l) = LOWER(*(arg + l));
-
-    if (exact) {
-        for (i = 0; **(list + i) != '\n'; i++)
-            if (!strcasecmp(arg, *(list + i)))
-                return (i);
-    } else {
-        if (!l)
-            l = 1; /* Avoid "" to match the first available
-                    * string */
-        for (i = 0; **(list + i) != '\n'; i++)
-            if (!strncasecmp(arg, *(list + i), l))
-                return (i);
-    }
-
-    return -1;
-}
-
-int search_block(const char *arg, const char **list, bool exact) {
-    int i, len;
-
-    if (!arg)
-        return -1;
-
-    if (exact) {
-        for (i = 0; **(list + i) != '\n'; i++)
-            if (!strcasecmp(arg, *(list + i)))
-                return (i);
-    } else {
-        len = strlen(arg);
-        if (!len)
-            len = 1; /* Avoid "" to match the first available string */
-        for (i = 0; **(list + i) != '\n'; i++)
-            if (!strncasecmp(arg, *(list + i), (unsigned)len))
-                return (i);
-    }
-
-    return (-1);
-}
-
 /* \s*\d+ */
-bool is_number(const char *str) {
-    if (!str || !*str)
+bool is_integer(const std::string_view str) {
+    if (!str || str.empty())
         return false;
 
     while (*str && isspace(*str))
@@ -1425,8 +1340,8 @@ bool is_number(const char *str) {
 }
 
 /* \d+ */
-bool is_positive_integer(const char *str) {
-    if (!str || (!*str))
+bool is_positive_integer(const std::string_view str) {
+    if (!str || (str.empty()))
         return false;
 
     while (*str)
@@ -1437,7 +1352,7 @@ bool is_positive_integer(const char *str) {
 }
 
 /* [+-]\d+ */
-bool is_integer(const char *str) {
+bool is_integer(const std::string_view str) {
     if (!str)
         return false;
 
@@ -1448,364 +1363,92 @@ bool is_integer(const char *str) {
 }
 
 /* -\d+ For completeness sake */
-bool is_negative_integer(const char *str) {
+bool is_negative_integer(const std::string_view str) {
     if (!str || *(str++) != '-')
         return false;
 
     return is_positive_integer(str);
 }
 
-void skip_slash(char **string) {
-    if (**string && ((**string == '/') || (**string == '\\')))
-        (*string)++;
+void skip_slash(std::string_view &str) {
+    if (!str.empty() && (str.front() == '/' || str.front() == '\\'))
+        str.remove_prefix(1);
 }
 
-void skip_spaces(char **string) {
-    for (; **string && isspace(**string); (*string)++)
-        ;
-}
-
-/* Given a string, change all instances of double dollar signs ($$) to single
- * dollar signs ($).  When strings come in, all $'s are changed to $$'s to
- * avoid having users be able to crash the system if the inputted string is
- * eventually sent to act().  If you are using user input to produce screen
- * output AND YOU ARE SURE IT WILL NOT BE SENT THROUGH THE act() FUNCTION
- * (i.e., do_gecho, do_title, but NOT do_gsay), you can call
- * delete_doubledollar() to make the output look correct.
- * Modifies the string in-place. */
-char *delete_doubledollar(char *string) {
-    char *read, *write;
-
-    /* If the string has no dollar signs, return immediately */
-    if ((write = strchr(string, '$')) == nullptr)
-        return string;
-
-    /* Start from the location of the first dollar sign */
-    read = write;
-
-    /* Until we reach the end of the string... */
-    while (*read)
-        if ((*(write++) = *(read++)) == '$') /* copy one char */
-            if (*read == '$')
-                read++; /* skip if we saw 2 $'s in a row */
-
-    *write = '\0';
-
-    return string;
-}
-
-int fill_word(char *argument) {
-    /* Needs to be case-insensitive since fill_word is used by the nanny for
-     * name-checking */
+int fill_word(std::string_view argument) {
+    // Needs to be case-insensitive since fill_word is used by the nanny for name-checking
     return (search_block(argument, fill, true) >= 0);
 }
 
-int reserved_word(char *argument) {
-    /* Needs to be case-insensitive since fill_word is used by the nanny for
-     * name-checking */
+int reserved_word(std::string_view argument) {
+    // Needs to be case-insensitive since fill_word is used by the nanny for name-checking
     return (search_block(argument, reserved, true) >= 0);
 }
 
-/*
- * copy the first non-fill-word, space-delimited argument of 'argument'
- * to 'first_arg'; return a pointer to the remainder of the string.
- */
-char *one_argument(char *argument, char *first_arg) {
-    char *begin = first_arg;
-
-    do {
-        skip_spaces(&argument);
-
-        first_arg = begin;
-        while (*argument && !isspace(*argument)) {
-            *(first_arg++) = LOWER(*argument);
-            argument++;
-        }
-
-        *first_arg = '\0';
-    } while (fill_word(begin));
-
-    return argument;
-}
-
-char *delimited_arg(char *argument, char *first_arg, char delimiter) {
-    skip_spaces(&argument);
-
-    if (*argument == delimiter) {
-        argument++;
-        while (*argument && *argument != delimiter) {
-            *(first_arg++) = LOWER(*argument);
-            argument++;
-        }
-        argument++;
-    } else {
-        while (*argument && !isspace(*argument)) {
-            *(first_arg++) = LOWER(*argument);
-            argument++;
-        }
-    }
-
-    *first_arg = '\0';
-
-    return argument;
-}
-
-/* Like delimited_arg, but don't lowercase everything */
-char *delimited_arg_case(char *argument, char *first_arg, char delimiter) {
-    skip_spaces(&argument);
-
-    if (*argument == delimiter) {
-        argument++;
-        while (*argument && *argument != delimiter) {
-            *(first_arg++) = *argument;
-            argument++;
-        }
-        argument++;
-    } else {
-        while (*argument && !isspace(*argument)) {
-            *(first_arg++) = *argument;
-            argument++;
-        }
-    }
-
-    *first_arg = '\0';
-
-    return argument;
-}
-
-char *delimited_arg_all(char *argument, char *first_arg, char delimiter) {
-    skip_spaces(&argument);
-
-    if (*argument == delimiter) {
-        argument++;
-        while (*argument && *argument != delimiter) {
-            *(first_arg++) = LOWER(*argument);
-            argument++;
-        }
-        argument++;
-    } else {
-        while (*argument) {
-            *(first_arg++) = LOWER(*argument);
-            argument++;
-        }
-    }
-
-    *first_arg = '\0';
-
-    return argument;
-}
-
-/*
- * one_word is like one_argument, except that words in quotes ("") are
- * considered one word.
- */
-char *one_word(char *argument, char *first_arg) { return delimited_arg(argument, first_arg, '\"'); }
-
-/* same as one_argument except that it doesn't ignore fill words */
-char *any_one_arg(char *argument, char *first_arg) {
-    skip_spaces(&argument);
-
-    while (*argument && !isspace(*argument)) {
-        *(first_arg++) = LOWER(*argument);
-        argument++;
-    }
-
-    *first_arg = '\0';
-
-    return argument;
-}
-
-/*
- * Same as one_argument except that it takes two args and returns the rest;
- * ignores fill words
- */
-char *two_arguments(char *argument, char *first_arg, char *second_arg) {
-    return one_argument(one_argument(argument, first_arg), second_arg); /* :-) */
-}
-
-/*
- * determine if a given string is an abbreviation of another
- * (now works symmetrically -- JE 7/25/94)
- *
- * that was dumb.  it shouldn't be symmetrical.  JE 5/1/95
- *
- * returns 1 if arg1 is an abbreviation of arg2
- */
-int is_abbrev(const char *arg1, const char *arg2) {
-    if (!*arg1)
-        return 0;
-
-    for (; *arg1 && *arg2; arg1++, arg2++)
-        if (LOWER(*arg1) != LOWER(*arg2))
-            return 0;
-
-    if (!*arg1)
-        return 1;
-    else
-        return 0;
-}
-
 void display_classes(DescriptorData *d, int select) {
-    /*  int x; */ /* Commented out for commenting of - Subclassing
-                     explanation/preface RSD */
+    /* Commented out for commenting of - Subclassing explanation/preface RSD */
     int char_race;
     int mageok, warriorok, rogueok, clericok;
 
     char_race = (int)GET_RACE(d->character);
-    *buf = '\0';
-    *buf2 = '\0';
     mageok = class_ok_race[char_race][CLASS_SORCERER];
     warriorok = class_ok_race[char_race][CLASS_WARRIOR];
     rogueok = class_ok_race[char_race][CLASS_ROGUE];
     clericok = class_ok_race[char_race][CLASS_CLERIC];
-    /* commenter out by Fingh 11/7 class_ok_race[char_race][CLASS_SHAMAN]; */
     if (select) {
         char_printf(d->character, subclass_descrip);
         char_printf(d->character, subclass_descrip2);
-        char_printf(d->character, "\n&5Class selection menu - \n "); /* Added return newline after menu - RSD */
+        char_printf(d->character, "\n&5Class selection menu - \n ");
+        char_printf(d->character, "&6Choose -%s%s%s%s: ", warriorok ? " [&0&1&bw&0&6]arrior" : "",
+                    clericok ? " [&0&1&bc&0&6]leric" : "", mageok ? " [&0&1&bs&0&6]orcerer" : "",
+                    rogueok ? " [&0&1&br&0&6]ogue" : "");
     }
-    /*  char_printf(d->character, "&1&b(&0&5*&1&b) denotes a class available to your race!&0&5\n\n"); */
-
-    /*
-
-       for (x = 0; x < NUM_CLASSES; x++)
-       if (class_ok_race[(int)GET_RACE(d->character)][x])
-       char_printf(d->character, class_display[x]);
-       char_printf(d->character, "\nClass: ");
-     */
-    /* Subclassing explaination/preface */
-    /*  sprintf(buf,"&5&b");
-      if(warriorok){
-        sprintf(buf, "%s%-16.16s ", buf,
-                strip_ansi(pc_class_types[CLASS_WARRIOR]));
-        sprintf(buf2, "%-16.16s ", "=======");
-      }
-      if(clericok) {
-        sprintf(buf, "%s%-16.16s ", buf,
-                strip_ansi(pc_class_types[CLASS_CLERIC]));
-        sprintf(buf2, "%s%-16.16s ", buf2, "======");
-      }
-      if(mageok) {
-        sprintf(buf, "%s%-16.16s ", buf,
-                strip_ansi(pc_class_types[CLASS_SORCERER]));
-        sprintf(buf2, "%s%-16.16s ", buf2, "========");
-      }
-      if(rogueok) {
-        sprintf(buf, "%s%-16.16s ", buf,
-                strip_ansi(pc_class_types[CLASS_ROGUE]));
-        sprintf(buf2, "%s%-16.16s ", buf2, "=====");
-      }
-      if(shamanok) {
-        sprintf(buf, "%s%-16.16s", buf,
-                strip_ansi(pc_class_types[CLASS_SHAMAN]));
-        sprintf(buf2, "%s%-16.16s", buf2, "======");
-      }
-      sprintf(buf,"%s\n", buf);
-      char_printf(d->character, buf);
-      char_printf(d->character, buf2);
-      sprintf(buf, "\n&5");
-      for (x=0;x<std::max(std::max(std::max(WARRIOR_SUBCLASSES, CLERIC_SUBCLASSES),
-      MAGE_SUBCLASSES), ROGUE_SUBCLASSES);x++) { if(warriorok) if (x <
-      WARRIOR_SUBCLASSES) sprintf(buf, "%s%s%-15.15s ", buf,
-                    class_ok_race[char_race][warrior_subclasses[x]] ? "*" : " ",
-                    strip_ansi(pc_class_types[warrior_subclasses[x]]));
-          else
-            sprintf(buf, "%s%-16.16s ", buf, " ");
-        if(clericok)
-          if (x < CLERIC_SUBCLASSES)
-            sprintf(buf, "%s%s%-15.15s ", buf,
-                    class_ok_race[char_race][cleric_subclasses[x]] ? "*" : " ",
-                    strip_ansi(pc_class_types[cleric_subclasses[x]]));
-          else
-            sprintf(buf, "%s%-16.16s ", buf, " ");
-        if(mageok)
-          if (x < MAGE_SUBCLASSES)
-            sprintf(buf, "%s%s%-15.15s ", buf,
-                    class_ok_race[char_race][mage_subclasses[x]] ? "*" : " ",
-                    strip_ansi(pc_class_types[mage_subclasses[x]]));
-          else
-            sprintf(buf, "%s%-16.16s ", buf, " ");
-        if(rogueok)
-          if (x < ROGUE_SUBCLASSES)
-            sprintf(buf, "%s%s%-15.15s", buf,
-                    class_ok_race[char_race][rogue_subclasses[x]] ? "*" : " ",
-                    strip_ansi(pc_class_types[rogue_subclasses[x]]));
-          else
-            sprintf(buf, "%s%-16.16s", buf, " ");
-
-        sprintf(buf, "%s\n", buf);
-      }
-    */
-    if (select)
-        sprintf(buf, "%s\n&6Choose -%s%s%s%s: ", buf, warriorok ? " [&0&1&bw&0&6]arrior" : "",
-                clericok ? " [&0&1&bc&0&6]leric" : "", mageok ? " [&0&1&bs&0&6]orcerer" : "",
-                rogueok ? " [&0&1&br&0&6]ogue" : "");
-    char_printf(d->character, buf);
-    sprintf(buf, "\n\n(&6[&0&1&b?&0&6] Class Help Menu)");
-    char_printf(d->character, buf);
-    char_printf(d->character, "&0");
-}
-
-/* return first space-delimited token in arg1; remainder of string in arg2 */
-void half_chop(char *str, char *arg1, char *arg2) {
-    char *temp;
-
-    temp = any_one_arg(str, arg1);
-    skip_spaces(&temp);
-    strcpy(arg2, temp);
+    char_printf(d->character, "\n\n(&6[&0&1&b?&0&6] Class Help Menu)&0");
 }
 
 /* Used in specprocs, mostly.  (Exactly) matches "command" to cmd number */
-int find_command(const char *command) {
-    int cmd;
-
-    for (cmd = 0; *cmd_info[cmd].command != '\n'; ++cmd)
-        if (!strcasecmp(cmd_info[cmd].command, command))
+int find_command(const std::string_view command) {
+    for (int cmd = 0; cmd_info[cmd].command.front() != '\n'; ++cmd)
+        if (matches(cmd_info[cmd].command, command))
             return cmd;
 
     return -1;
 }
 
-int parse_command(char *command) {
-    int cmd, length = strlen(command);
-
-    for (cmd = 0; *cmd_info[cmd].command != '\n'; ++cmd)
-        if (!strncasecmp(cmd_info[cmd].command, command, length))
+int parse_command(const std::string_view command) {
+    for (int cmd = 0; cmd_info[cmd].command.front() != '\n'; ++cmd)
+        if (matches(cmd_info[cmd].command, command))
             return cmd;
 
     return -1;
 }
 
-int special(CharData *ch, int cmd, char *arg) {
-    ObjData *i;
-    CharData *k;
-    int j;
-
+int special(CharData *ch, int cmd, const std::string_view arg) {
     /* special in room? */
     if (GET_ROOM_SPEC(ch->in_room) != nullptr)
         if (GET_ROOM_SPEC(ch->in_room)(ch, world + ch->in_room, cmd, arg))
             return 1;
 
     /* special in equipment list? */
-    for (j = 0; j < NUM_WEARS; j++)
+    for (int j = 0; j < NUM_WEARS; j++)
         if (GET_EQ(ch, j) && GET_OBJ_SPEC(GET_EQ(ch, j)) != nullptr)
             if (GET_OBJ_SPEC(GET_EQ(ch, j))(ch, GET_EQ(ch, j), cmd, arg))
                 return 1;
 
     /* special in inventory? */
-    for (i = ch->carrying; i; i = i->next_content)
+    for (ObjData *i = ch->carrying; i; i = i->next_content)
         if (GET_OBJ_SPEC(i) != nullptr)
             if (GET_OBJ_SPEC(i)(ch, i, cmd, arg))
                 return 1;
 
     /* special in mobile present? */
-    for (k = world[ch->in_room].people; k; k = k->next_in_room)
+    for (CharData *k = world[ch->in_room].people; k; k = k->next_in_room)
         if (GET_MOB_SPEC(k) != nullptr && !MOB_FLAGGED(k, MOB_NOSCRIPT))
             if (GET_MOB_SPEC(k)(ch, k, cmd, arg))
                 return 1;
 
     /* special in object present? */
-    for (i = world[ch->in_room].contents; i; i = i->next_content)
+    for (ObjData *i = world[ch->in_room].contents; i; i = i->next_content)
         if (GET_OBJ_SPEC(i) != nullptr)
             if (GET_OBJ_SPEC(i)(ch, i, cmd, arg))
                 return 1;
@@ -1818,11 +1461,11 @@ int special(CharData *ch, int cmd, char *arg) {
  ************************************************************************* */
 
 /* locate entry in p_table with entry->name == name. -1 mrks failed search */
-int find_name(const char *name) {
+int find_name(const std::string_view name) {
     int i;
 
     for (i = 0; i <= top_of_p_table; i++) {
-        if (!strcasecmp((player_table + i)->name, name))
+        if (matches((player_table + i)->name, name))
             return i;
     }
 
@@ -1856,7 +1499,7 @@ int perform_dupe_check(DescriptorData *d) {
             STATE(k) = CON_CLOSE;
             if (k->character && k->original->player.level <= 100) {
                 if (POSSESSED(k->character))
-                    do_shapechange(k->character, "me", 0, 1);
+                    do_shapechange(k->character, Arguments("me"), 0, 1);
                 mode = UNSWITCH;
             } else if (!target) {
                 target = k->original;
@@ -1938,12 +1581,13 @@ int perform_dupe_check(DescriptorData *d) {
     case RECON:
         string_to_output(d, "Reconnecting.\n");
         act("$n has reconnected.", true, d->character, 0, 0, TO_ROOM);
-        log(LogSeverity::Stat, std::max<int>(LVL_IMMORT, GET_INVIS_LEV(d->character)), "{} [{}] has reconnected.",
-            GET_NAME(d->character), d->host);
-        break;
-    case USURP:
-        string_to_output(d, "Overriding old connection.\n");
-        act("$n suddenly keels over in pain, surrounded by a white aura...\n"
+        log(LogSeverity::Stat, std::max<int>(LVL_IMMORT, GET_INVIS_LEV(d->character)),
+            "{} [{}] has
+            reconnected
+                .", GET_NAME(d->character), d->host); break; case USURP: string_to_output(d, " Overriding old
+                    connection.\n "); act(" $n suddenly keels over in pain,
+            surrounded by a white aura...\n
+            "
             "$n's body has been taken over by a new spirit!",
             true, d->character, 0, 0, TO_ROOM);
         log(LogSeverity::Stat, std::max<int>(LVL_IMMORT, GET_INVIS_LEV(d->character)),
@@ -1951,9 +1595,8 @@ int perform_dupe_check(DescriptorData *d) {
         break;
     case UNSWITCH:
         string_to_output(d, "Reconnecting to unswitched char.");
-        log(LogSeverity::Stat, std::max<int>(LVL_IMMORT, GET_INVIS_LEV(d->character)), "{} [{}] has reconnected.",
-            GET_NAME(d->character), d->host);
-        break;
+                log(LogSeverity::Stat, std::max<int>(LVL_IMMORT, GET_INVIS_LEV(d->character)), "{} [{}] has
+        reconnected.", GET_NAME(d->character), d->host); break;
     }
 
     return 1;
@@ -2030,25 +1673,16 @@ int enter_player_game(DescriptorData *d) {
 }
 
 void clear_player_name(CharData *ch) {
-    if (ch->player.short_descr) {
-        free(ch->player.short_descr);
-        ch->player.short_descr = nullptr;
-    }
-    if (ch->player.namelist) {
-        free(ch->player.namelist);
-        ch->player.namelist = nullptr;
-    }
+    ch->player.short_descr.clear();
+    ch->player.namelist.clear();
 }
 
-void set_player_name(CharData *ch, char *name) {
-    char *s;
+void set_player_name(CharData *ch, std::string_view name) {
+    std::string_view s;
 
     clear_player_name(ch);
-    ch->player.short_descr = strdup(cap_by_color(name));
-    ch->player.namelist = strdup(name);
-
-    for (s = ch->player.namelist; *s; s++)
-        *s = tolower(*s);
+    ch->player.short_descr = capitalize_first(name);
+    ch->player.namelist = to_lower(name);
 }
 
 void new_roller_display(CharData *ch, int word[6]) {
@@ -2213,7 +1847,7 @@ void stat_swap(CharData *ch, int stat, int number) {
     }
 }
 
-bool select_stat(CharData *ch, int stat, const char *choice) {
+bool select_stat(CharData *ch, int stat, const std::string_view choice) {
     int number;
 
     number = atoi(choice);
@@ -2229,18 +1863,18 @@ bool select_stat(CharData *ch, int stat, const char *choice) {
 }
 
 /* deal with newcomers and other non-playing sockets */
-void nanny(DescriptorData *d, char *arg) {
+void nanny(DescriptorData *d, std::string_view arg) {
     int player_i, load_result;
     char tmp_name[MAX_INPUT_LENGTH];
     extern int max_bad_pws;
-    extern void modify_player_index_file(char *name, char *newname);
+    extern void modify_player_index_file(std::string_view name, std::string_view newname);
     int color = 0;
     int set_new_home_town(int race, int class_num, char);
     int i;
 
     struct {
         int state;
-        void (*func)(DescriptorData *, char *);
+        void (*func)(DescriptorData *, std::string_view);
     } olc_functions[] = {
         {CON_OEDIT, oedit_parse},
         {CON_IEDIT, oedit_parse},
@@ -2255,7 +1889,7 @@ void nanny(DescriptorData *d, char *arg) {
         {-1, nullptr},
     };
 
-    skip_spaces(&arg);
+    skip_spaces(arg);
 
     /* Quick check for the OLC states. */
     for (player_i = 0; olc_functions[player_i].state >= 0; ++player_i)
@@ -2276,7 +1910,7 @@ void nanny(DescriptorData *d, char *arg) {
     case CON_GET_NAME:
 
         /* They merely pressed enter... disconnect them. */
-        if (!*arg) {
+        if (arg.empty()) {
             close_socket(d);
             return;
         }
@@ -2364,7 +1998,7 @@ void nanny(DescriptorData *d, char *arg) {
                 return;
             }
 
-            if (!Valid_Name(tmp_name)) {
+            if (!valid_name(tmp_name)) {
                 string_to_output(d,
                                  "Invalid name, please try another.\n"
                                  "Name: ");
@@ -2427,7 +2061,7 @@ void nanny(DescriptorData *d, char *arg) {
         }
         break;
     case CON_NEW_NAME:
-        if (!*arg) {
+        if (arg.empty()) {
             string_to_output(d, "Name: ");
             return;
         }
@@ -2443,7 +2077,7 @@ void nanny(DescriptorData *d, char *arg) {
             string_to_output(d, "Name: ");
             return;
         }
-        if (!Valid_Name(arg)) {
+        if (!valid_name(arg)) {
             string_to_output(d,
                              "d> Invalid name, please try another.\n"
                              "Name: ");
@@ -2496,7 +2130,7 @@ void nanny(DescriptorData *d, char *arg) {
 
         echo_on(d); /* turn echo back on */
 
-        if (!*arg)
+        if (arg.empty())
             close_socket(d);
         else {
             if (strncasecmp(CRYPT(arg, GET_PASSWD(d->character)), GET_PASSWD(d->character), MAX_PWD_LENGTH)) {
@@ -2577,7 +2211,7 @@ void nanny(DescriptorData *d, char *arg) {
 
     case CON_NEWPASSWD:
     case CON_CHPWD_GETNEW:
-        if (!*arg || strlen(arg) > MAX_PWD_LENGTH || strlen(arg) < 3 || !strcasecmp(arg, GET_NAME(d->character))) {
+        if (arg.empty() || strlen(arg) > MAX_PWD_LENGTH || strlen(arg) < 3 || matches(arg, GET_NAME(d->character))) {
             string_to_output(d, "\nIllegal password.\n");
             string_to_output(d, "Password: ");
             return;
@@ -2696,7 +2330,7 @@ void nanny(DescriptorData *d, char *arg) {
             break;
         default:
             int chk, bot, top, mid, minlen;
-            char *race;
+            std::string_view race;
 
             race_result = interpret_race_selection(*arg);
 
@@ -2811,8 +2445,9 @@ void nanny(DescriptorData *d, char *arg) {
         case '?':
             STATE(d) = CON_CLASSHELP;
             string_to_output(d, "\n\n&6Class Help Menu\n-=-=-=-=-=-=-=-&0\n");
-            string_to_output(
-                d, "\n&6Choose - [&0&1&bw&0&6]arrior, [&0&1&bc&0&6]leric, [&0&1&bs&0&6]orcerer, [&0&1&br&0&6]ogue:&0");
+            string_to_output(d,
+                             "\n&6Choose - [&0&1&bw&0&6]arrior, [&0&1&bc&0&6]leric, [&0&1&bs&0&6]orcerer, "
+                             "[&0&1&br&0&6]ogue:&0");
             string_to_output(d, "\n\n&6(Enter [&0&1&bX&0&6] to go back to class selection)\n&0");
             break;
         default:
@@ -2896,7 +2531,7 @@ void nanny(DescriptorData *d, char *arg) {
             break;
         default:
             int chk, bot, top, mid, minlen;
-            char *charclass;
+            std::string_view charclass;
 
             switch (*arg) {
             case 'w':
@@ -2914,9 +2549,9 @@ void nanny(DescriptorData *d, char *arg) {
 
             default:
                 string_to_output(d, "\nInvalid selection. ");
-                string_to_output(
-                    d,
-                    "\n&6Choose - [&0&1&bw&0&6]arrior, [&0&1&bc&0&6]leric, [&0&1&bs&0&6]orcerer, [&0&1&br&0&6]ogue:&0");
+                string_to_output(d,
+                                 "\n&6Choose - [&0&1&bw&0&6]arrior, [&0&1&bc&0&6]leric, [&0&1&bs&0&6]orcerer, "
+                                 "[&0&1&br&0&6]ogue:&0");
                 string_to_output(d, "\n\n&6(Enter [&0&1&bX&0&6] to go back to class selection.)&0");
                 return;
             }
@@ -3004,7 +2639,7 @@ void nanny(DescriptorData *d, char *arg) {
         break;
 
     case CON_SELECT_STR:
-        const char *choice;
+        const std::string_view choice;
 
         choice = arg;
 
@@ -3261,7 +2896,7 @@ void nanny(DescriptorData *d, char *arg) {
         break;
 
     case CON_DELCNF2:
-        if (!strcasecmp(arg, "yes")) {
+        if (matches(arg, "yes")) {
             if (PLR_FLAGGED(d->character, PLR_FROZEN)) {
                 string_to_output(d, "You try to kill yourself, but the ice stops you.\n");
                 string_to_output(d, "Character not deleted.\n\n");
@@ -3416,7 +3051,7 @@ void sort_commands(void) {
      * first, count commands.  num_of_cmds includes the 'reserved'
      * command, which is not copied to the cmd_sort_info array
      */
-    while (*cmd_info[num_of_cmds].command != '\n')
+    while (cmd_info[num_of_cmds].command != "\n")
         ++num_of_cmds;
 
     /* create data array */

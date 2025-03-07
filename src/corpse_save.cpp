@@ -49,11 +49,11 @@ points of interest are:
 #include "handler.hpp"
 #include "interpreter.hpp"
 #include "limits.hpp"
+#include "logging.hpp"
 #include "math.hpp"
 #include "objects.hpp"
 #include "pfiles.hpp"
-// #include "strings.hpp"
-#include "logging.hpp"
+#include "string_utils.hpp"
 #include "structs.hpp"
 #include "sysdep.hpp"
 #include "utils.hpp"
@@ -104,7 +104,7 @@ static int corpse_id(ObjData *corpse) {
 }
 
 /* Return a filename given a corpse id */
-static bool get_corpse_filename(int id, char *filename) {
+static bool get_corpse_filename(int id, std::string_view filename) {
     if (id < 0) {
         log("SYSERR(corpse_save.c): Corpse has id number < 0 no corpse loaded.");
         return false;
@@ -145,7 +145,7 @@ static ObjData *load_corpse(int id) {
     }
 
     if (build_object(fl, &obj, &location)) {
-        if (GET_OBJ_TYPE(obj) != ITEM_CONTAINER || !strcasestr(obj->name, "corpse")) {
+        if (GET_OBJ_TYPE(obj) != ITEM_CONTAINER || !contains_case_insensitive(obj->name, "corpse")) {
             log("SYSERR: First object '{}' loaded from corpse {:d} not corpse", obj->short_description, id);
             extract_obj(obj);
             return nullptr;
@@ -359,31 +359,34 @@ void destroy_corpse(ObjData *corpse) {
     }
 }
 
-void show_corpses(CharData *ch, char *argument) {
+void show_corpses(CharData *ch, Arguments argument) {
     corpse_data *entry;
+    std::string location;
 
     if (corpse_control.count) {
         char_printf(ch,
                     "Id  Corpse              Level  Decomp  Location\n"
                     "-------------------------------------------------------------------\n");
         for (entry = SENTINEL->next; entry != SENTINEL; entry = entry->next) {
-            if (!strncasecmp(entry->corpse->short_description, "the corpse of ", 14))
-                strcpy(buf1, entry->corpse->short_description + 14);
-            else
-                strcpy(buf1, entry->corpse->name);
+            std::string name = fmt::format("{:-4d}{:<20}{:5d}  {:6d}  ", entry->id,
+                                           matches_start(entry->corpse->short_description, "the corpse of ")
+                                               ? entry->corpse->short_description.substr(14)
+                                               : entry->corpse->short_description,
+                                           GET_OBJ_LEVEL(entry->corpse), GET_OBJ_DECOMP(entry->corpse));
+            location.clear();
             if (entry->corpse->carried_by)
-                sprintf(buf2, "carried by %s", GET_NAME(entry->corpse->carried_by));
+                location += fmt::format("carried by {}", GET_NAME(entry->corpse->carried_by));
             else if (entry->corpse->in_room != NOWHERE)
-                sprintf(buf2, "%s @L[&0%d@L]&0", world[entry->corpse->in_room].name,
-                        world[entry->corpse->in_room].vnum);
+                location += fmt::format("{} @L[&0{}@L]&0", world[entry->corpse->in_room].name,
+                                        world[entry->corpse->in_room].vnum);
             else if (entry->corpse->in_obj)
-                sprintf(buf2, "in %s", entry->corpse->in_obj->short_description);
+                location += fmt::format("in {}", entry->corpse->in_obj->short_description);
             else if (entry->corpse->worn_by)
-                sprintf(buf2, "worn by %s", GET_NAME(entry->corpse->worn_by));
+                location += fmt::format("worn by {}", GET_NAME(entry->corpse->worn_by));
             else
-                strcpy(buf2, "an unknown location");
-            char_printf(ch, "{:-4d}{:<20}{:5d}  {:6d}  {:<25s}\n", entry->id, buf1, GET_OBJ_LEVEL(entry->corpse),
-                        GET_OBJ_DECOMP(entry->corpse), buf2);
+                location += "an unknown location";
+            char_printf(ch, "{:-4d}{:<20}{:5d}  {:6d}  {:<25s}\n", entry->id, name, GET_OBJ_LEVEL(entry->corpse),
+                        GET_OBJ_DECOMP(entry->corpse), location);
         }
     } else
         char_printf(ch, "There are no player corpses in the game.\n");

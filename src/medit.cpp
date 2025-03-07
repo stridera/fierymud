@@ -72,7 +72,7 @@ extern PlayerSpecialData dummy_mob;
 /*-------------------------------------------------------------------*/
 /*. Function prototypes .*/
 int get_ac(int level, int race, int class_num);
-void medit_parse(DescriptorData *d, char *arg);
+void medit_parse(DescriptorData *d, std::string_view arg);
 void medit_disp_menu(DescriptorData *d);
 void medit_setup_new(DescriptorData *d);
 void medit_setup_existing(DescriptorData *d, int rmob_num);
@@ -103,35 +103,6 @@ int get_set_dice(int, int, int, int);
  * * * * */
 
 void medit_free_mobile(CharData *mob) {
-    int i;
-    /*
-     * Non-prototyped mobile.  Also known as new mobiles.
-     */
-    if (!mob)
-        return;
-    else if (GET_MOB_RNUM(mob) == -1) {
-        if (mob->player.namelist)
-            free(mob->player.namelist);
-        if (mob->player.title)
-            free(mob->player.title);
-        if (mob->player.short_descr)
-            free(mob->player.short_descr);
-        if (GET_MOBLDESC(mob))
-            free(GET_MOBLDESC(mob));
-        if (mob->player.description)
-            free(mob->player.description);
-    } else if ((i = GET_MOB_RNUM(mob)) > -1) { /* Prototyped mobile. */
-        if (mob->player.namelist && mob->player.namelist != mob_proto[i].player.namelist)
-            free(mob->player.namelist);
-        if (mob->player.title && mob->player.title != mob_proto[i].player.title)
-            free(mob->player.title);
-        if (mob->player.short_descr && mob->player.short_descr != mob_proto[i].player.short_descr)
-            free(mob->player.short_descr);
-        if (GET_MOBLDESC(mob) && GET_MOBLDESC(mob) != mob_proto[i].player.long_descr)
-            free(GET_MOBLDESC(mob));
-        if (mob->player.description && mob->player.description != mob_proto[i].player.description)
-            free(mob->player.description);
-    }
     while (mob->effects)
         effect_remove(mob, mob->effects);
 
@@ -148,11 +119,11 @@ void medit_setup_new(DescriptorData *d) {
 
     GET_MOB_RNUM(mob) = -1;
     /*. default strings . */
-    GET_NAMELIST(mob) = strdup("mob unfinished");
-    GET_SDESC(mob) = strdup("the unfinished mob");
-    GET_MOBLDESC(mob) = strdup("An unfinished mob stands here.\n");
-    GET_DDESC(mob) = strdup("It looks unfinished.\n");
-    GET_CLASS(mob) = CLASS_DEFAULT;
+    mob->player.namelist = "mob unfinished";
+    mob->player.short_descr = "the unfinished mob";
+    mob->player.long_descr = "An unfinished mob stands here.\n";
+    mob->player.description = "It looks unfinished.\n";
+    mob->player.class_num = CLASS_DEFAULT;
 
     OLC_MOB(d) = mob;
 
@@ -189,16 +160,6 @@ void medit_setup_existing(DescriptorData *d, int rmob_num) {
 /*. Copy one mob struct to another .*/
 
 void copy_mobile(CharData *tmob, CharData *fmob) {
-    /*. Free up any used strings . */
-    if (GET_NAMELIST(tmob))
-        free(GET_NAMELIST(tmob));
-    if (GET_SDESC(tmob))
-        free(GET_SDESC(tmob));
-    if (GET_MOBLDESC(tmob))
-        free(GET_MOBLDESC(tmob));
-    if (GET_DDESC(tmob))
-        free(GET_DDESC(tmob));
-
     /* delete the old script list */
     if (tmob->proto_script && tmob->proto_script != fmob->proto_script)
         free_proto_script(&tmob->proto_script);
@@ -208,18 +169,14 @@ void copy_mobile(CharData *tmob, CharData *fmob) {
      */
     *tmob = *fmob;
 
-    /*
-     * Reallocate strings.
-     */
-    GET_NAMELIST(tmob) = strdup((GET_NAMELIST(fmob) && *GET_NAMELIST(fmob)) ? GET_NAMELIST(fmob) : "undefined");
-    GET_SDESC(tmob) = strdup((GET_SDESC(fmob) && *GET_SDESC(fmob)) ? GET_SDESC(fmob) : "undefined");
-    GET_MOBLDESC(tmob) = strdup((GET_MOBLDESC(fmob) && *GET_MOBLDESC(fmob)) ? GET_MOBLDESC(fmob) : "undefined");
-    GET_DDESC(tmob) = strdup((GET_DDESC(fmob) && *GET_DDESC(fmob)) ? GET_DDESC(fmob) : "undefined");
+    tmob->player.namelist = fmob->player.namelist.empty() ? "undefined" : fmob->player.namelist;
+    tmob->player.short_descr = fmob->player.short_descr.empty() ? "undefined" : fmob->player.short_descr;
+    tmob->player.long_descr = fmob->player.long_descr.empty() ? "undefined" : fmob->player.long_descr;
+    tmob->player.description = fmob->player.description.empty() ? "undefined" : fmob->player.description;
 }
 
 /*-------------------------------------------------------------------*/
-/*. Ideally, this function should be in db.c, but I'll put it here for
-  portability.*/
+/*. Ideally, this function should be in db.c, but I'll put it here for portability.*/
 
 void init_mobile(CharData *mob) {
     clear_char(mob);
@@ -369,10 +326,10 @@ void medit_save_internally(DescriptorData *d) {
                      * Only really need to update the strings, since these can
                      * cause protection faults.  The rest can wait till a reset/reboot.
                      */
-                    GET_NAMELIST(live_mob) = GET_NAMELIST(mob_proto + rmob_num);
-                    GET_SDESC(live_mob) = GET_SDESC(mob_proto + rmob_num);
-                    GET_MOBLDESC(live_mob) = (GET_MOBLDESC(mob_proto + rmob_num));
-                    GET_DDESC(live_mob) = GET_DDESC(mob_proto + rmob_num);
+                    live_mob->player.namelist = (mob_proto + rmob_num)->player.namelist;
+                    live_mob->player.short_descr = (mob_proto + rmob_num)->player.short_descr;
+                    live_mob->player.long_descr = (mob_proto + rmob_num)->player.long_descr;
+                    live_mob->player.description = (mob_proto + rmob_num)->player.description;
                 }
         }
     }
@@ -534,14 +491,6 @@ void medit_save_to_disk(int zone_num) {
             }
             mob = (mob_proto + rmob_num);
 
-            /*
-             * Clean up strings.
-             */
-            strcpy(buf1, (GET_MOBLDESC(mob) && *GET_MOBLDESC(mob)) ? GET_MOBLDESC(mob) : "undefined");
-            strip_string(buf1);
-            strcpy(buf2, (GET_DDESC(mob) && *GET_DDESC(mob)) ? GET_DDESC(mob) : "undefined");
-            strip_string(buf2);
-
             fprintf(mob_file,
                     "%s~\n"
                     "%s~\n"
@@ -551,8 +500,10 @@ void medit_save_to_disk(int zone_num) {
                     "%d %d %d %dd%d+%d %dd%d+%d\n"
                     "%d %d %d %d %ld %d\n"
                     "%d %d %d %d %d %d %d\n",
-                    (GET_NAMELIST(mob) && *GET_NAMELIST(mob)) ? GET_NAMELIST(mob) : "undefined",
-                    (GET_SDESC(mob) && *GET_SDESC(mob)) ? GET_SDESC(mob) : "undefined", buf1, buf2, MOB_FLAGS(mob)[0],
+                    mob->player.namelist.empty() ? "undefined" : mob->player.namelist,
+                    mob->player.short_descr.empty() ? "undefined" : mob->player.short_descr,
+                    mob->player.long_descr.empty() ? "undefined" : mob->player.long_descr,
+                    mob->player.description.empty() ? "undefined" : mob->player.description, MOB_FLAGS(mob)[0],
                     EFF_FLAGS(mob)[0], GET_ALIGNMENT(mob), GET_LEVEL(mob), 20 - mob->mob_specials.ex_hitroll,
                     /* Hitroll -> THAC0 */ GET_EX_AC(mob) / 10, (mob)->mob_specials.ex_hpnumdice,
                     (mob)->mob_specials.ex_hpsizedice, GET_MOVE(mob), (mob)->mob_specials.ex_damnodice,
@@ -799,7 +750,7 @@ void medit_disp_lifeforces(DescriptorData *d) {
     char_printf(d->character, "[H[J");
 #endif
     for (i = 0; i < NUM_LIFEFORCES; i++) {
-        sprintf(buf, "%s%2d%s) %s%s%s\n", grn, i, nrm, lifeforces[i].color, capitalize(lifeforces[i].name), nrm);
+        sprintf(buf, "%s%2d%s) %s%s%s\n", grn, i, nrm, lifeforces[i].color, capitalize_first(lifeforces[i].name), nrm);
         char_printf(d->character, buf);
     }
     char_printf(d->character, "Enter life force number:\n");
@@ -843,7 +794,7 @@ void medit_disp_menu(DescriptorData *d) {
     menu += fmt::format("&2&b7&0) Level: &6{:<3}&0\t\t\t&2&b8&0) Class: &6{:<10}&0\t\t", GET_LEVEL(mob),
                         classes[(int)GET_CLASS(mob)].plainname);
     menu += fmt::format("&2&b9&0) Alignment: &6{}&0\n", GET_ALIGNMENT(mob));
-    char_printf(d->character, menu.c_str());
+    char_printf(d->character, menu);
 
     menu = "";
     menu += fmt::format("&2&bA&0) Hitroll    : (&6{:3}&0)+[&6&b{:3}&0]\t", mob->points.hitroll,
@@ -870,14 +821,16 @@ void medit_disp_menu(DescriptorData *d) {
                         GET_EX_PLATINUM(mob));
     menu += fmt::format("&2&bL&0) Perception : [&6&b{:4}&0]\t\t&2&bM&0) Hiddenness  : [&6&b{:4}&0]\n",
                         GET_PERCEPTION(mob), GET_HIDDENNESS(mob));
-    char_printf(d->character, menu.c_str());
+    char_printf(d->character, menu);
 
     sprintflag(buf1, MOB_FLAGS(mob), NUM_MOB_FLAGS, action_bits);
     sprintflag(buf2, EFF_FLAGS(mob), NUM_EFF_FLAGS, effect_flags);
 
     menu = "";
-    menu += fmt::format("&2&bN&0) Life Force    : {}{}&0\n", LIFEFORCE_COLOR(mob), capitalize(LIFEFORCE_NAME(mob)));
-    menu += fmt::format("&2&bO&0) Composition   : {}{}&0\n", COMPOSITION_COLOR(mob), capitalize(COMPOSITION_NAME(mob)));
+    menu +=
+        fmt::format("&2&bN&0) Life Force    : {}{}&0\n", LIFEFORCE_COLOR(mob), capitalize_first(LIFEFORCE_NAME(mob)));
+    menu += fmt::format("&2&bO&0) Composition   : {}{}&0\n", COMPOSITION_COLOR(mob),
+                        capitalize_first(COMPOSITION_NAME(mob)));
     menu += fmt::format("&2&bP&0) Stance        : &6{}&0\n", stance_types[(int)GET_STANCE(mob)]);
     menu += fmt::format("&2&bR&0) Load Position : &6{}&0\n", position_types[(int)GET_POS(mob)]);
     menu += fmt::format("&2&bT&0) Default Pos   : &6{}&0\n", position_types[(int)GET_DEFAULT_POS(mob)]);
@@ -886,7 +839,7 @@ void medit_disp_menu(DescriptorData *d) {
     menu += fmt::format("&2&bW&0) Aff Flags     : &6{}&0\n", buf2);
     menu += fmt::format("&2&bS&0) Script        : &6{}&0\n", mob->proto_script ? "&6&bSet&0" : "&6Not Set&0");
     menu += "&2&bQ&0) Quit\nEnter choice:\n";
-    char_printf(d->character, menu.c_str());
+    char_printf(d->character, menu);
 
     OLC_MODE(d) = MEDIT_MAIN_MENU;
 }
@@ -895,10 +848,10 @@ void medit_disp_menu(DescriptorData *d) {
  *                The GARGANTAUN event handler                      *
  **************************************************************************/
 
-void medit_parse(DescriptorData *d, char *arg) {
+void medit_parse(DescriptorData *d, std::string_view arg) {
     int i;
     if (OLC_MODE(d) > MEDIT_NUMERICAL_RESPONSE) {
-        if (!*arg || (!isdigit(arg[0]) && ((*arg == '-') && (!isdigit(arg[1]))))) {
+        if (arg.empty() || (!isdigit(arg[0]) && ((*arg == '-') && (!isdigit(arg[1]))))) {
             char_printf(d->character, "Field must be numerical, try again:\n");
             return;
         }
@@ -1131,26 +1084,18 @@ void medit_parse(DescriptorData *d, char *arg) {
         break;
         /*-------------------------------------------------------------------*/
     case MEDIT_ALIAS:
-        if (GET_NAMELIST(OLC_MOB(d)))
-            free(GET_NAMELIST(OLC_MOB(d)));
-        GET_NAMELIST(OLC_MOB(d)) = strdup((arg && *arg) ? arg : "undefined");
+        d->olc->mob->player.namelist = arg && *arg ? arg : "undefined";
         break;
         /*-------------------------------------------------------------------*/
     case MEDIT_S_DESC:
-        if (GET_SDESC(OLC_MOB(d)))
-            free(GET_SDESC(OLC_MOB(d)));
-        GET_SDESC(OLC_MOB(d)) = strdup((arg && *arg) ? arg : "undefined");
+        GET_SDESC(OLC_MOB(d)) = arg && *arg ? arg : "undefined";
         break;
         /*-------------------------------------------------------------------*/
     case MEDIT_L_DESC:
-        if (GET_MOBLDESC(OLC_MOB(d)))
-            free(GET_MOBLDESC(OLC_MOB(d)));
         if (arg && *arg) {
-            strcpy(buf, arg);
-            strcat(buf, "\n");
-            GET_MOBLDESC(OLC_MOB(d)) = strdup(buf);
+            GET_MOBLDESC(OLC_MOB(d)) = std::string(arg) + "\n";
         } else
-            GET_MOBLDESC(OLC_MOB(d)) = strdup("undefined");
+            GET_MOBLDESC(OLC_MOB(d)) = "undefined";
 
         break;
         /*-------------------------------------------------------------------*/

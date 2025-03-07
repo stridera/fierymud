@@ -29,7 +29,7 @@
 static FILE *ispell_out, *ispell_in;
 static int ispell_pid = -1;
 static int fiery_to_ispell[2], ispell_to_fiery[2];
-bool ispell_name_check(char *);
+bool ispell_name_check(std::string_view);
 
 #define ISPELL_BUF_SIZE 1024
 
@@ -67,7 +67,7 @@ void ispell_init(void) {
         for (i = 2; i < 255; i++)
             close(i);
 
-        execlp("ispell", "ispell", "-a", "-p" ISPELL_DICTIONARY, (char *)nullptr);
+        execlp("ispell", "ispell", "-a", "-p" ISPELL_DICTIONARY, (std::string_view) nullptr);
         exit(1);
     }
 
@@ -97,7 +97,7 @@ void ispell_done(void) {
     }
 }
 
-const char *get_ispell_line(const char *word) {
+const std::string_view get_ispell_line(const std::string_view word) {
     static char buf[ISPELL_BUF_SIZE];
     char throwaway[ISPELL_BUF_SIZE];
 
@@ -116,13 +116,13 @@ const char *get_ispell_line(const char *word) {
     return buf;
 }
 
-void ispell_check(DescriptorData *d, const char *word) {
-    const char *pc;
+void ispell_check(DescriptorData *d, const std::string_view word) {
+    const std::string_view pc;
 
     if (!d)
         return;
 
-    if (!*word || !(pc = get_ispell_line(word))) {
+    if (word.empty() || !(pc = get_ispell_line(word))) {
         desc_printf(d, "Spellchecker failed.\n");
         return;
     }
@@ -149,15 +149,15 @@ void ispell_check(DescriptorData *d, const char *word) {
 }
 
 ACMD(do_ispell) {
-    const char *pc;
+    const std::string_view pc;
 
     if (ispell_pid < 0) {
         char_printf(ch, "Spellchecker is not running.\n");
         return;
     }
 
-    skip_spaces(&argument);
-    if (!*argument || strchr(argument, ' ')) {
+    skip_spaces(argument);
+    if (argument.empty() || strchr(argument, ' ')) {
         char_printf(ch, "Invalid input.\n");
         return;
     }
@@ -189,8 +189,8 @@ ACMD(do_ispell) {
    return 1 = bad name bail out
 
  */
-bool ispell_name_check(char *argument) {
-    const char *name;
+bool ispell_name_check(std::string_view argument) {
+    const std::string_view name;
 
     if (ispell_pid < 0) {
         /* ispell is not running. */

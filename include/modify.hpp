@@ -18,10 +18,10 @@
 #include <fmt/format.h>
 #include <string>
 
-void string_write_limit(DescriptorData *d, char **writeto, size_t len, int maxlines);
-void string_write(DescriptorData *d, char **writeto, size_t len);
-void mail_write(DescriptorData *d, char **writeto, size_t len, long recipient);
-void parse_action(int command, char *string, DescriptorData *d);
+void string_write_limit(DescriptorData *d, std::string_view writeto, size_t len, int maxlines);
+void string_write(DescriptorData *d, std::string_view writeto, size_t len);
+void mail_write(DescriptorData *d, std::string_view writeto, size_t len, long recipient);
+void parse_action(int command, std::string_view string, DescriptorData *d);
 
 /* PAGING */
 /* page_string and page_string_desc will also start paging */
@@ -34,7 +34,7 @@ template <typename... Args> void paging_printf(CharData *ch, std::string_view me
 }
 void paging_printf(CharData *ch, std::string_view messg);
 
-template <typename... Args> void desc_paging_printf(DescriptorData *d, const char *messg, Args &&...args) {
+template <typename... Args> void desc_paging_printf(DescriptorData *d, const std::string_view messg, Args &&...args) {
     desc_paging_printf(d, fmt::vformat(messg, fmt::make_format_args(args...)));
 }
 void desc_paging_printf(DescriptorData *d, std::string_view messg);
@@ -42,7 +42,7 @@ void desc_paging_printf(DescriptorData *d, std::string_view messg);
 void start_paging(CharData *ch);
 void start_paging_desc(DescriptorData *desc);
 void print_current_page(DescriptorData *ch);
-void get_paging_input(DescriptorData *d, char *input);
+void get_paging_input(DescriptorData *d, std::string_view input);
 
 #define PAGING_PAGE(d) (d->paging_curpage)
 #define PAGING_NUMPAGES(d) (d->paging_numpages)

@@ -45,7 +45,7 @@
 bool delete_mobile(obj_num rnum);
 
 /*. Utils exported from olc.c .*/
-void strip_string(char *);
+void strip_string(std::string_view);
 void cleanup_olc(DescriptorData *d, byte cleanup_type);
 void get_char_cols(CharData *ch);
 void olc_add_to_save_list(int zone, byte type);
@@ -57,9 +57,9 @@ int real_zone(int number);
 
 /*. OLC structs .*/
 struct OLCCommandGroup {
-    char *alias;
-    char *name;
-    char *description;
+    std::string_view alias;
+    std::string_view name;
+    std::string_view description;
     int minimum_level;
     int *commands;
 };
@@ -73,7 +73,7 @@ struct OLCData {
     int zone_num;
     int number;
     int value;
-    char *storage;
+    std::string storage;
     CharData *mob;
     RoomData *room;
     ObjData *obj;
@@ -87,7 +87,7 @@ struct OLCData {
     int trigger_position;
     int item_type;
     TriggerPrototypeList *script;
-    /* char *storage;*/ /* for holding commands etc.. */
+    /* std::string_view storage;*/ /* for holding commands etc.. */
     OLCCommandGroup *group;
     ObjData *item;
 };
@@ -102,7 +102,7 @@ struct OLCSaveInfo {
  * Exported globals.
  */
 
-extern const char *nrm, *grn, *cyn, *yel, *blk, *red;
+extern const std::string_view nrm, *grn, *cyn, *yel, *blk, *red;
 extern OLCSaveInfo *olc_save_list;
 
 /*
@@ -338,14 +338,14 @@ extern OLCSaveInfo *olc_save_list;
 #define MAX_MOB_DESC 1024
 #define MAX_OBJ_DESC 512
 
-extern const char *save_info_msg[5];
+extern const std::string_view save_info_msg[5];
 
 /*
  * Internal data structures.
  */
 
 struct OLCSCommandData {
-    const char *text;
+    const std::string_view text;
     int con_type;
 };
 

@@ -60,45 +60,23 @@ std::string fname(std::string_view namelist) {
     return std::string(namelist.substr(0, first_space));
 }
 
-char *fname(const char *namelist) {
-    static char holder[30];
-    char *point;
-
-    for (point = holder; isalpha(*namelist); namelist++, point++)
-        *point = *namelist;
-
-    *point = '\0';
-
-    return (holder);
-}
-
-int isname(const char *str, const char *namelist) {
-    const char *curname, *curstr;
-
-    curname = namelist;
-    for (;;) {
-        for (curstr = str;; curstr++, curname++) {
-            if (!*curstr)
-                return (1);
-
-            if (!*curname)
-                return (0);
-
-            if (!*curstr || *curname == ' ')
-                break;
-
-            if (LOWER(*curstr) != LOWER(*curname))
-                break;
+bool isname(std::string_view str, std::string_view namelist) {
+    while (!namelist.empty()) {
+        auto curname = namelist.substr(0, namelist.find(' '));
+        if (curname.empty()) {
+            return false;
         }
 
-        /* skip to next name */
+        if (str.size() <= curname.size() && std::equal(str.begin(), str.end(), curname.begin(), [](char a, char b) {
+                return std::tolower(a) == std::tolower(b);
+            })) {
+            return true;
+        }
 
-        for (; isalpha(*curname); curname++)
-            ;
-        if (!*curname)
-            return (0);
-        curname++; /* first char of new name */
+        namelist.remove_prefix(curname.size());
+        namelist = namelist.substr(namelist.find_first_not_of(' '));
     }
+    return false;
 }
 
 void effect_modify(CharData *ch, byte loc, sh_int mod, flagvector bitv[], bool add) {
@@ -722,34 +700,34 @@ bool may_wear_eq(CharData *ch,    /* Who is trying to wear something */
         ITEM_WEAR_HOLD,  ITEM_WEAR_HOLD,   ITEM_WEAR_2HWIELD, ITEM_WEAR_EYES,  ITEM_WEAR_FACE,  ITEM_WEAR_EAR,
         ITEM_WEAR_EAR,   ITEM_WEAR_BADGE,  ITEM_WEAR_OBELT,   ITEM_WEAR_HOVER};
 
-    char *already_wearing[] = {"You're already using a light.\n",
-                               "YOU SHOULD NEVER SEE THIS MESSAGE.   PLEASE REPORT.\n",
-                               "You're already wearing something on both of your ring fingers.\n",
-                               "YOU SHOULD NEVER SEE THIS MESSAGE.   PLEASE REPORT.\n",
-                               "You can't wear anything else around your neck.\n",
-                               "You're already wearing something on your body.\n",
-                               "You're already wearing something on your head.\n",
-                               "You're already wearing something on your legs.\n",
-                               "You're already wearing something on your feet.\n",
-                               "You're already wearing something on your hands.\n",
-                               "You're already wearing something on your arms.\n",
-                               "You're already using a shield.\n",
-                               "You're already wearing something about your body.\n",
-                               "You already have something around your waist.\n",
-                               "YOU SHOULD NEVER SEE THIS MESSAGE.   PLEASE REPORT.\n",
-                               "You're already wearing something around both of your wrists.\n",
-                               "You're already wielding a weapon.\n",
-                               "You're already wielding a weapon there!\n",
-                               "You're already holding something.\n",
-                               "You're already holding something.\n",
-                               "You're already wielding a weapon.\n",
-                               "You're already wearing something on your eyes.\n",
-                               "You're already wearing something on your face.\n",
-                               "YOU SHOULD NEVER SEE THIS REPORT IT!.\n",
-                               "You're already wearing something in both of your ears.\n",
-                               "You're already wearing a badge.\n",
-                               "You can't attach any more to your belt.\n",
-                               "You already have something hovering around you.\n"};
+    std::string_view already_wearing[] = {"You're already using a light.\n",
+                                          "YOU SHOULD NEVER SEE THIS MESSAGE.   PLEASE REPORT.\n",
+                                          "You're already wearing something on both of your ring fingers.\n",
+                                          "YOU SHOULD NEVER SEE THIS MESSAGE.   PLEASE REPORT.\n",
+                                          "You can't wear anything else around your neck.\n",
+                                          "You're already wearing something on your body.\n",
+                                          "You're already wearing something on your head.\n",
+                                          "You're already wearing something on your legs.\n",
+                                          "You're already wearing something on your feet.\n",
+                                          "You're already wearing something on your hands.\n",
+                                          "You're already wearing something on your arms.\n",
+                                          "You're already using a shield.\n",
+                                          "You're already wearing something about your body.\n",
+                                          "You already have something around your waist.\n",
+                                          "YOU SHOULD NEVER SEE THIS MESSAGE.   PLEASE REPORT.\n",
+                                          "You're already wearing something around both of your wrists.\n",
+                                          "You're already wielding a weapon.\n",
+                                          "You're already wielding a weapon there!\n",
+                                          "You're already holding something.\n",
+                                          "You're already holding something.\n",
+                                          "You're already wielding a weapon.\n",
+                                          "You're already wearing something on your eyes.\n",
+                                          "You're already wearing something on your face.\n",
+                                          "YOU SHOULD NEVER SEE THIS REPORT IT!.\n",
+                                          "You're already wearing something in both of your ears.\n",
+                                          "You're already wearing a badge.\n",
+                                          "You can't attach any more to your belt.\n",
+                                          "You already have something hovering around you.\n"};
 
     /* first, make sure that the wear position is valid. */
     /* Only allow light items in the light pos, and then only
@@ -970,7 +948,7 @@ EVENTFUNC(sink_and_lose_event) {
     SinkAndLose *data = (SinkAndLose *)event_obj;
     ObjData *obj = data->obj;
     int room = data->room;
-    const char *conjugation;
+    const std::string_view conjugation;
 
     if (obj->in_room == room) {
         if (isplural(GET_OBJ_NAME(obj)))

@@ -45,13 +45,13 @@
 
 int real_mobile(int);
 
-void half_chop(char *string, char *arg1, char *arg2);
+void half_chop(std::string_view string, std::string_view arg1, std::string_view arg2);
 bool is_grouped(CharData *ch, CharData *tch);
 void add_follower(CharData *ch, CharData *leader);
 int roll_dice(int number, int size);
 int get_spell_duration(CharData *ch, int spellnum);
 int get_vitality_hp_gain(CharData *ch, int spellnum);
-char *get_vitality_vict_message(int spellnum);
+std::string_view get_vitality_vict_message(int spellnum);
 bool check_armor_spells(CharData *ch, CharData *victim, int spellnum);
 bool check_bless_spells(CharData *ch, CharData *victim, int spellnum);
 bool check_enhance_spells(CharData *ch, CharData *victim, int spellnum);
@@ -1110,7 +1110,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
     effect eff[MAX_SPELL_EFFECTS];
     effect *effect = nullptr;
     bool accum_effect = false, accum_duration = false, is_innate = false, refresh = true;
-    const char *to_vict = nullptr, *to_room = nullptr, *to_char = nullptr;
+    const std::string_view to_vict = nullptr, *to_room = nullptr, *to_char = nullptr;
     int i;
 
     if (victim == nullptr || ch == nullptr)
@@ -1707,19 +1707,19 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
             return CAST_RESULT_CHARGE;
         }
 
-        if (is_abbrev(buf2, "fire")) {
+        if (matches_start(buf2, "fire")) {
             SET_FLAG(eff[0].flags, EFF_PROT_FIRE);
             to_vict = "You are warded from &1fire&0.";
             to_char = "You protect $N from &1fire&0.";
-        } else if (is_abbrev(buf2, "cold")) {
+        } else if (matches_start(buf2, "cold")) {
             SET_FLAG(eff[0].flags, EFF_PROT_COLD);
             to_vict = "You are warded from the &4cold&0.";
             to_char = "You protect $N from the &4cold&0.";
-        } else if (is_abbrev(buf2, "air")) {
+        } else if (matches_start(buf2, "air")) {
             SET_FLAG(eff[0].flags, EFF_PROT_AIR);
             to_vict = "You are warded from &6&bair&0.";
             to_char = "You protect $N from &6&bair&0.";
-        } else if (is_abbrev(buf2, "earth")) {
+        } else if (matches_start(buf2, "earth")) {
             SET_FLAG(eff[0].flags, EFF_PROT_EARTH);
             to_vict = "You are warded from &3earth&0.";
             to_char = "You protect $N from &3earth&0.";
@@ -1756,32 +1756,32 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
         if (check_enhance_spells(ch, victim, spellnum))
             return CAST_RESULT_CHARGE;
 
-        if (is_abbrev(buf2, "strength")) {
+        if (matches_start(buf2, "strength")) {
             eff[0].location = APPLY_STR;
             to_vict = "You feel stronger!";
             to_char = "You increase $N's strength!";
             to_room = "$N looks stronger!";
-        } else if (is_abbrev(buf2, "dexterity")) {
+        } else if (matches_start(buf2, "dexterity")) {
             eff[0].location = APPLY_DEX;
             to_vict = "You feel more dexterous!";
             to_char = "You increase $N's dexterity!";
             to_room = "$N looks more dexterous!";
-        } else if (is_abbrev(buf2, "constitution")) {
+        } else if (matches_start(buf2, "constitution")) {
             eff[0].location = APPLY_CON;
             to_vict = "You feel healthier!";
             to_char = "You increase $N's constitution!";
             to_room = "$N looks healthier!";
-        } else if (is_abbrev(buf2, "intelligence")) {
+        } else if (matches_start(buf2, "intelligence")) {
             eff[0].location = APPLY_INT;
             to_vict = "You feel smarter!";
             to_char = "You increase $N's intelligence!";
             to_room = "$N looks smarter!";
-        } else if (is_abbrev(buf2, "wisdom")) {
+        } else if (matches_start(buf2, "wisdom")) {
             eff[0].location = APPLY_WIS;
             to_vict = "You feel wiser!";
             to_char = "You increase $N's wisdom!";
             to_room = "$N looks wiser!";
-        } else if (is_abbrev(buf2, "charisma")) {
+        } else if (matches_start(buf2, "charisma")) {
             eff[0].location = APPLY_CHA;
             to_vict = "You feel more charismatic!";
             to_char = "You increase $N's charisma!";
@@ -1996,19 +1996,19 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
         if (check_monk_hand_spells(ch, victim, spellnum))
             break;
 
-        if (is_abbrev(buf2, "fire")) {
+        if (matches_start(buf2, "fire")) {
             SET_FLAG(eff[0].flags, EFF_FIREHANDS);
             to_vict = "&1Your fists burn with inner fire.&0";
             to_room = "&1$N's fists burn with inner fire.&0";
-        } else if (is_abbrev(buf2, "ice")) {
+        } else if (matches_start(buf2, "ice")) {
             SET_FLAG(eff[0].flags, EFF_ICEHANDS);
             to_vict = "&4&bYou unleash the blizzard in your heart.&0";
             to_room = "&4&b$N unleashes the blizzard in $S heart.&0";
-        } else if (is_abbrev(buf2, "lightning")) {
+        } else if (matches_start(buf2, "lightning")) {
             SET_FLAG(eff[0].flags, EFF_LIGHTNINGHANDS);
             to_vict = "&6&bYour knuckles crackle with lightning.&0";
             to_room = "&6&b$N's knuckles crackle with lightning.&0";
-        } else if (is_abbrev(buf2, "acid")) {
+        } else if (matches_start(buf2, "acid")) {
             SET_FLAG(eff[0].flags, EFF_ACIDHANDS);
             to_vict = "&3&bYou charge your hands with corrosive chi.&0";
             to_room = "&3&b$N charges $S hands with corrosive chi.&0";
@@ -3450,7 +3450,7 @@ void perform_mag_group(int skill, CharData *ch, CharData *tch, int spellnum, int
 
 int mag_group(int skill, CharData *ch, int spellnum, int savetype) {
     CharData *tch, *next_tch;
-    const char *to_room, *to_char;
+    const std::string_view to_room, *to_char;
 
     if (ch == nullptr)
         return 0;
@@ -3586,8 +3586,8 @@ int mag_bulk_objs(int skill, CharData *ch, int spellnum, int savetype) {
 
 int mag_area(int skill, CharData *ch, int spellnum, int savetype) {
     CharData *tch, *next_tch;
-    const char *to_char = nullptr;
-    const char *to_room = nullptr;
+    const std::string_view to_char = nullptr;
+    const std::string_view to_room = nullptr;
     int casttype = 0;
     bool found = false;
     bool damage = true;
@@ -4653,7 +4653,7 @@ int mag_point(int skill, CharData *ch, CharData *victim, int spellnum, int savet
 
 int mag_unaffect(int skill, CharData *ch, CharData *victim, int spellnum, int type) {
     int spell = 0;
-    const char *to_vict = nullptr, *to_room = nullptr;
+    const std::string_view to_vict = nullptr, *to_room = nullptr;
 
     if (victim == nullptr)
         return 0;
@@ -4905,8 +4905,8 @@ int mag_unaffect(int skill, CharData *ch, CharData *victim, int spellnum, int ty
 /* Return value: CAST_RESULT_ flags.
  */
 int mag_alter_obj(int skill, CharData *ch, ObjData *obj, int spellnum, int savetype) {
-    const char *to_char = nullptr;
-    const char *to_room = nullptr;
+    const std::string_view to_char = nullptr;
+    const std::string_view to_room = nullptr;
     int i;
     int result = CAST_RESULT_CHARGE | CAST_RESULT_IMPROVE;
 
@@ -5087,7 +5087,7 @@ int mag_alter_obj(int skill, CharData *ch, ObjData *obj, int spellnum, int savet
 #define WAYBREAD_OBJ_2 10
 
 int mag_creation(int skill, CharData *ch, int spellnum) {
-    char *to_char = nullptr, *to_room = nullptr;
+    std::string_view to_char = nullptr, *to_room = nullptr;
     ObjData *tobj;
     int z, zplus;
     int give_char = 0;
@@ -5171,8 +5171,8 @@ int mag_creation(int skill, CharData *ch, int spellnum) {
 int mag_room(int skill, CharData *ch, int spellnum) {
     int eff;   /* what effect */
     int ticks; /* how many ticks this spell lasts */
-    char *to_char = nullptr;
-    char *to_room = nullptr;
+    std::string_view to_char = nullptr;
+    std::string_view to_room = nullptr;
     RoomEffectNode *reff;
 
     ticks = 0;
@@ -5299,14 +5299,14 @@ int get_spell_duration(CharData *ch, int spellnum) {
     return duration;
 }
 
-char *get_vitality_vict_message(int spellnum) {
+std::string_view get_vitality_vict_message(int spellnum) {
     int index;
-    char *victim_messages[] = {"&4&bYou feel you can endure significant pain!&0",
-                               "&4&bYou feel you can endure a bit more pain!&0",
-                               "&4&bYou feel you can endure more pain!&0",
-                               "&4&bYou feel vitalized!&0",
-                               "&4&bYou feel greatly vitalized!&0",
-                               "&4&bYou feel the blood of dragons surge through your veins!&0"};
+    std::string_view victim_messages[] = {"&4&bYou feel you can endure significant pain!&0",
+                                          "&4&bYou feel you can endure a bit more pain!&0",
+                                          "&4&bYou feel you can endure more pain!&0",
+                                          "&4&bYou feel vitalized!&0",
+                                          "&4&bYou feel greatly vitalized!&0",
+                                          "&4&bYou feel the blood of dragons surge through your veins!&0"};
 
     index = 0;
 
@@ -5628,7 +5628,7 @@ bool look_at_magic_wall(CharData *ch, int dir, bool sees_next_room) {
 
     for (wall = world[ch->in_room].contents; wall; wall = wall->next_content) {
         if (GET_OBJ_TYPE(wall) == ITEM_WALL && GET_OBJ_VAL(wall, VAL_WALL_DIRECTION) == dir) {
-            char_printf(ch, "{}&0 is standing here.\n", capitalize(wall->short_description));
+            char_printf(ch, "{}&0 is standing here.\n", capitalize_first(wall->short_description));
             return true;
         }
     }

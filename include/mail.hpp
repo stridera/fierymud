@@ -42,8 +42,8 @@
 
 int scan_file(void);
 int has_mail(long recipient);
-bool store_mail(long to, long from, int vnum, char *message_pointer);
-char *read_delete(long recipient, int *obj_vnum);
+bool store_mail(long to, long from, int vnum, std::string_view message_pointer);
+std::string_view read_delete(long recipient, int *obj_vnum);
 void free_mail_index(void);
 
 #define HEADER_BLOCK -1

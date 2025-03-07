@@ -16,8 +16,8 @@
 #include "sysdep.hpp"
 
 struct sizedef {
-    const char *name;
-    const char *color;
+    const std::string_view name;
+    const std::string_view color;
     int weight_min;
     int weight_max;
     int height_min;
@@ -32,7 +32,7 @@ extern struct sizedef sizes[NUM_SIZES];
 #define SIZE_DESC(ch) (VALID_SIZE(ch) ? sizes[GET_SIZE(ch)].name : "<INVALID SIZE>")
 #define SIZE_COLOR(ch) (VALID_SIZE(ch) ? sizes[GET_SIZE(ch)].color : "")
 
-int parse_size(CharData *ch, char *arg);
+int parse_size(CharData *ch, std::string_view arg);
 void reset_height_weight(CharData *ch);
 void set_base_size(CharData *ch, int newsize);
 void change_natural_size(CharData *ch, int newsize);

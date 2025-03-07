@@ -149,19 +149,16 @@ void spell_slot_restore_tick(CharData *ch) {
     }
 }
 
-void set_title(CharData *ch, char *title) {
-    if (!title) {
-        GET_TITLE(ch) = nullptr;
+void set_title(CharData *ch, std::string_view title) {
+    if (title.empty()) {
+        GET_TITLE(ch) = "";
         return;
     }
 
-    if (strlen(title) >= MAX_TITLE_LENGTH)
-        title[MAX_TITLE_LENGTH - 1] = '\0';
+    if (title.length() >= MAX_TITLE_LENGTH)
+        title = title.substr(0, MAX_TITLE_LENGTH - 1);
 
-    if (GET_TITLE(ch))
-        free(GET_TITLE(ch));
-
-    GET_TITLE(ch) = strdup(title);
+    GET_TITLE(ch) = title;
 }
 
 void gain_exp(CharData *ch, long gain, unsigned int mode) {
@@ -402,7 +399,7 @@ void check_idling(CharData *ch) {
 
 void weardown_light(ObjData *obj) {
     CharData *ch;
-    const char *lightmsg = nullptr;
+    const std::string_view lightmsg = nullptr;
 
     /* Don't wear down permanant lights. */
     if (GET_OBJ_VAL(obj, VAL_LIGHT_REMAINING) == LIGHT_PERMANENT)
@@ -485,7 +482,7 @@ void extract_corpse(ObjData *obj) {
 #define BLOOD_DROP_OBJ 34 /* the vnum of the blood object */
 #define BLOOD_POOL_OBJ 35 /* the vnum of the blood object */
 void decay_object(ObjData *obj) {
-    char *msg;
+    std::string_view msg;
 
     /* Nothing special if it's inside another object */
     if (obj->in_room == NOWHERE) {
@@ -560,7 +557,6 @@ void sick_update(void) {
     CharData *i, *next_char;
     ObjData *j;
     int pc_dam;
-
 
     /* characters */
     for (i = character_list; i; i = next_char) {

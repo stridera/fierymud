@@ -14,6 +14,8 @@
 
 #pragma once
 
+#include <string_view>
+
 #define FB_READ (1 << 0)   /* read from disk	*/
 #define FB_WRITE (1 << 1)  /* write to disk	*/
 #define FB_APPEND (1 << 2) /* write with append	*/
@@ -25,19 +27,19 @@
 #endif
 
 struct FBFILE {
-    char *buf;  /* start of buffer			*/
-    char *ptr;  /* current location pointer		*/
-    int size;   /* size in bytes of buffer		*/
-    int flags;  /* read/write/append, future expansion	*/
-    char *name; /* filename (for delayed writing)	*/
+    std::string_view buf;  /* start of buffer			*/
+    std::string_view ptr;  /* current location pointer		*/
+    int size;              /* size in bytes of buffer		*/
+    int flags;             /* read/write/append, future expansion	*/
+    std::string_view name; /* filename (for delayed writing)	*/
 };
 
-void tag_argument(char *argument, char *tag);
-int fbgetline(FBFILE *fbfl, char *line);
-FBFILE *fbopen(char *fname, int mode);
+void tag_argument(std::string_view argument, std::string_view tag);
+int fbgetline(FBFILE *fbfl, std::string_view line);
+FBFILE *fbopen(std::string_view fname, int mode);
 int fbclose(FBFILE *fbfl);
-int fbwrite(FBFILE *fbfl, const char *string);
-int fbprintf(FBFILE *fbfl, const char *format, ...);
+int fbwrite(FBFILE *fbfl, const std::string_view string);
+int fbprintf(FBFILE *fbfl, const std::string_view format, ...);
 void fbrewind(FBFILE *fbfl);
-int fbcat(char *fromfilename, FBFILE *tofile);
-char *fbgetstring(FBFILE *fl);
+int fbcat(std::string_view fromfilename, FBFILE *tofile);
+std::string_view fbgetstring(FBFILE *fl);

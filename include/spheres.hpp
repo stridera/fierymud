@@ -29,8 +29,8 @@
 #define NUM_SPHERES 11
 
 struct SphereDef {
-    const char *name;
-    const char *color;
+    const std::string_view name;
+    const std::string_view color;
     int skill;
 };
 

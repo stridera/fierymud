@@ -54,7 +54,7 @@ void zedit_disp_arg2(DescriptorData *d);
 void zedit_disp_arg3(DescriptorData *d);
 void zedit_save_internally(DescriptorData *d);
 void zedit_save_to_disk(int zone_num);
-void zedit_create_index(int znum, char *type);
+void zedit_create_index(int znum, std::string_view type);
 void zedit_new_zone(CharData *ch, int vzone_num);
 
 /*-------------------------------------------------------------------*/
@@ -298,7 +298,8 @@ void zedit_new_zone(CharData *ch, int vzone_num) {
      * That quirk has been fixed with the std::max() statement.
      */
 
-    log(LogSeverity::Warn, std::max(LVL_GOD, GET_INVIS_LEV(ch)), "OLC: {} creates new zone #{:d}", GET_NAME(ch), vzone_num);
+    log(LogSeverity::Warn, std::max(LVL_GOD, GET_INVIS_LEV(ch)), "OLC: {} creates new zone #{:d}", GET_NAME(ch),
+        vzone_num);
     char_printf(ch, "Zone created successfully.\n");
 
     return;
@@ -306,10 +307,10 @@ void zedit_new_zone(CharData *ch, int vzone_num) {
 
 /*-------------------------------------------------------------------*/
 
-void zedit_create_index(int znum, char *type) {
+void zedit_create_index(int znum, std::string_view type) {
     FILE *newfile, *oldfile;
     char new_name[32], old_name[32];
-    const char *prefix;
+    const std::string_view prefix;
     int num, found = false;
 
     switch (*type) {
@@ -447,8 +448,8 @@ void zedit_save_internally(DescriptorData *d) {
 void zedit_save_to_disk(int zone_num) {
     int subcmd, arg1 = -1, arg2 = -1, arg3 = -1;
     char fname[64];
-    const char *sarg = nullptr;
-    const char *comment = nullptr;
+    const std::string_view sarg = nullptr;
+    const std::string_view comment = nullptr;
     FILE *zfile;
 
     sprintf(fname, "%s/%d.new", ZON_PREFIX, zone_table[zone_num].number);
@@ -689,9 +690,9 @@ void delete_command(DescriptorData *d, int pos) {
 
     if ((pos >= subcmd) || (pos < 0))
         return;
-        /*
-         * Ok, let's zap it
-         */
+    /*
+     * Ok, let's zap it
+     */
 #if defined(DEBUG)
     log("delete_command called remove_cmd_from_list.");
 #endif
@@ -1027,7 +1028,7 @@ void zedit_disp_sarg(DescriptorData *d) {
  *    	                The GARGANTAUN event handler                     *
  *************************************************************************/
 
-void zedit_parse(DescriptorData *d, char *arg) {
+void zedit_parse(DescriptorData *d, std::string_view arg) {
     int pos, i = 0;
     /*  char spos; */
 
@@ -1040,8 +1041,8 @@ void zedit_parse(DescriptorData *d, char *arg) {
             /*. Save the zone in memory . */
             char_printf(d->character, "Saving zone info in memory.\n");
             zedit_save_internally(d);
-            log(LogSeverity::Debug, std::max(LVL_GOD, GET_INVIS_LEV(d->character)), "OLC: {} edits zone info for room {:d}.",
-                GET_NAME(d->character), OLC_NUM(d));
+            log(LogSeverity::Debug, std::max(LVL_GOD, GET_INVIS_LEV(d->character)),
+                "OLC: {} edits zone info for room {:d}.", GET_NAME(d->character), OLC_NUM(d));
         /* FALL THROUGH */
         case 'n':
         case 'N':
@@ -1496,7 +1497,8 @@ void zedit_parse(DescriptorData *d, char *arg) {
         if (OLC_ZNUM(d) == top_of_zone_table)
             OLC_ZONE(d)->top = std::max(OLC_ZNUM(d) * 100, std::min(198999, atoi(arg)));
         else
-            OLC_ZONE(d)->top = std::max(OLC_ZNUM(d) * 100, std::min(zone_table[OLC_ZNUM(d) + 1].number * 100, atoi(arg)));
+            OLC_ZONE(d)->top =
+                std::max(OLC_ZNUM(d) * 100, std::min(zone_table[OLC_ZNUM(d) + 1].number * 100, atoi(arg)));
         zedit_disp_menu(d);
         break;
         /*-------------------------------------------------------------------*/

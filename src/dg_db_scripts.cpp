@@ -29,8 +29,8 @@
 
 void trig_data_copy(TrigData *current, const TrigData *trg);
 
-void half_chop(char *string, char *arg1, char *arg2);
-long asciiflag_conv(char *flag);
+void half_chop(std::string_view string, std::string_view arg1, std::string_view arg2);
+long asciiflag_conv(std::string_view flag);
 
 void parse_trigger(FILE *trig_f, int nr) {
     int t[2], k, attach_type;
@@ -257,7 +257,7 @@ void dg_read_trigger(FILE *fp, void *proto, int type) {
     }
 }
 
-void dg_obj_trigger(char *line, ObjData *obj) {
+void dg_obj_trigger(std::string_view line, ObjData *obj) {
     char junk[8];
     int vnum, rnum, count;
     TriggerPrototypeList *trg_proto, *new_trg;

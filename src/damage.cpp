@@ -38,7 +38,7 @@ DamageDef damtypes[NUM_DAMTYPES] = {{"slash", "&3", "slash", "slashes", "slash"}
                                     {"discorporate", "&5", "discorporate", "discorporates", "discorporation"},
                                     {"mental", "", "punish", "punishes", "punishment"}};
 
-int parse_damtype(CharData *ch, char *arg) {
+int parse_damtype(CharData *ch, std::string_view arg) {
     return parse_obj_name(ch, arg, "damage type", NUM_DAMTYPES, damtypes, sizeof(DamageDef));
 }
 

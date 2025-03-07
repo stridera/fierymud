@@ -51,7 +51,7 @@
 
 /* function protos */
 void sdedit_disp_menu(DescriptorData *d);
-void sdedit_parse(DescriptorData *d, char *arg);
+void sdedit_parse(DescriptorData *d, std::string_view arg);
 void sdedit_setup_existing(DescriptorData *d, int real_num);
 void sdedit_save_to_disk(DescriptorData *d);
 void sdedit_save_internally(DescriptorData *d);
@@ -75,10 +75,10 @@ void sdedit_setup_existing(DescriptorData *d, int real_num) {
 void sdedit_disp_menu(DescriptorData *d) {
     char cbuf2[600];
     SpellDamage *spell;
-    const char *nrm = CLR(d->character, ANRM);
-    const char *yel = CLR(d->character, FYEL);
-    const char *grn = CLR(d->character, FGRN);
-    const char *red = CLR(d->character, FRED);
+    const std::string_view nrm = CLR(d->character, ANRM);
+    const std::string_view yel = CLR(d->character, FYEL);
+    const std::string_view grn = CLR(d->character, FGRN);
+    const std::string_view red = CLR(d->character, FRED);
     spell = OLC_SD(d);
 
     sprintf(buf,
@@ -174,7 +174,7 @@ void sdedit_save_to_disk(DescriptorData *d) {
     }
 }
 
-void sdedit_parse(DescriptorData *d, char *arg) {
+void sdedit_parse(DescriptorData *d, std::string_view arg) {
     int i = 0;
 
     switch (OLC_MODE(d)) {
@@ -287,7 +287,7 @@ void sdedit_parse(DescriptorData *d, char *arg) {
     case SDEDIT_NOTE:
         if (OLC_SD(d)->note)
             free(OLC_SD(d)->note);
-        if (*arg)
+        if (!arg.empty())
             OLC_SD(d)->note = strdup(arg);
         else
             OLC_SD(d)->note = nullptr;

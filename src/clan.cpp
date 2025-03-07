@@ -28,12 +28,11 @@
 #include "utils.hpp"
 
 #include <fmt/format.h>
+#include <magic_enum/magic_enum.hpp>
 
-#define CLANCMD(name) void(name)(CharData * ch, ClanMembership * member, Clan * clan, char *argument)
+#define CLANCMD(name) void(name)(CharData * ch, ClanMembership * member, std::shared_ptr<Clan> clan, Arguments argument)
 
 CLANCMD(clan_list) {
-    clan_iter iter;
-
     if (clan_count() == 0) {
         char_printf(ch, "No clans have formed yet.\n");
         return;
@@ -41,29 +40,31 @@ CLANCMD(clan_list) {
 
     /* List clans, # of members, power, and app fee */
     paging_printf(ch, AUND " Num   Clan           Members/Power  App Fee/Lvl\n" ANRM);
-    for (iter = clans_start(); iter != clans_end(); ++iter) {
-        paging_printf(ch, fmt::format("[{:3}] {:<{}} {:3}/{:5}   {:5}p/{:3}\n", (*iter)->number, (*iter)->abbreviation,
-                                      18 + count_color_chars((*iter)->abbreviation) * 2, (*iter)->member_count,
-                                      (*iter)->power, (*iter)->app_fee, (*iter)->app_level));
+    for (const auto &clan : clans) {
+        paging_printf(ch, fmt::format("[{:3}] {:<{}} {:3}/{:5}   {:5}p/{:3}\n", clan->number, clan->abbreviation,
+                                      18 + count_color_chars(clan->abbreviation) * 2, clan.members.size(), clan->power,
+                                      clan->app_fee, clan->app_level));
     }
 
     start_paging(ch);
 }
 
 CLANCMD(clan_bank) {
-    int coins[NUM_COIN_TYPES];
     bool deposit;
-    const char *verb, *preposition;
+    std::string_view verb, preposition;
 
-    argument = any_one_arg(argument, arg);
-    deposit = is_abbrev(arg, "deposit");
+    auto arg = argument.shift();
+    deposit = matches_start(arg, "deposit");
     verb = deposit ? "deposit" : "withdraw";
     preposition = deposit ? "into" : "from";
 
-    if (!parse_money(&argument, coins)) {
+    auto money_opt = parse_money(argument.get());
+    if (!money_opt || CASH_VALUE(*money_opt) <= 0) {
         char_printf(ch, "How much do you want to {}?\n", verb);
         return;
     }
+
+    auto coins = *money_opt;
 
     if (deposit) {
         /* Gods have bottomless pockets */
@@ -93,8 +94,7 @@ CLANCMD(clan_bank) {
         save_player_char(ch);
     }
 
-    statemoney(buf, coins);
-    char_printf(ch, "You {} {} {}'s account: {}\n", verb, preposition, clan->abbreviation, buf);
+    char_printf(ch, "You {} {} {}'s account: {}\n", verb, preposition, clan->abbreviation, statemoney(coins));
 
     if (deposit) {
         clan->treasure[PLATINUM] += coins[PLATINUM];
@@ -124,7 +124,6 @@ CLANCMD(clan_tell) {
     DescriptorData *d;
     CharData *tch;
     CharData *me = REAL_CHAR(ch);
-    std::string speech{trim(argument)};
 
     if (EFF_FLAGGED(ch, EFF_SILENCE)) {
         char_printf(ch, "Your lips move, but no sound forms.\n");
@@ -134,12 +133,12 @@ CLANCMD(clan_tell) {
     if (!speech_ok(ch, 0))
         return;
 
-    if (speech.empty()) {
+    if (argument.empty()) {
         char_printf(ch, "What do you want to tell the clan?\n");
         return;
     }
 
-    speech = drunken_speech(speech, GET_COND(ch, DRUNK));
+    auto speech = drunken_speech(argument.get(), GET_COND(ch, DRUNK));
 
     char_printf(ch, AFMAG "You tell {}" AFMAG ", '" AHMAG "{}" AFMAG "'\n" ANRM,
                 member ? "your clan" : clan->abbreviation, speech);
@@ -164,86 +163,72 @@ CLANCMD(clan_tell) {
 }
 
 CLANCMD(clan_set) {
-    argument = any_one_arg(argument, arg);
+    auto cmd = argument.get();
 
-    if (is_abbrev(arg, "abbr")) {
-        char *old_abbr = clan->abbreviation;
-        skip_spaces(&argument);
-        if (ansi_strlen(argument) > MAX_CLAN_ABBR_LEN) {
+    if (matches_start(cmd, "abbr")) {
+        std::string old_abbr{clan->abbreviation};
+        auto abbreviation = argument.get();
+        if (ansi_strlen(abbreviation) > MAX_CLAN_ABBR_LEN) {
             char_printf(ch, "Clan abbreviationss may be at most {} characters in length.\n", MAX_CLAN_ABBR_LEN);
             return;
         }
-        clan->abbreviation = nullptr; /* so find_clan doesn't find this clan */
-        if (find_clan(argument)) {
+        clan->abbreviation = {}; /* so find_clan doesn't find this clan */
+        if (find_clan(abbreviation)) {
             char_printf(ch, "A clan with that name or abbreviation already exists!\n");
             clan->abbreviation = old_abbr; /* revert */
             return;
         }
-        clan->abbreviation = strdup(fmt::format("{}&0", argument).c_str());
+        clan->abbreviation = abbreviation;
         char_printf(ch, "{} is now abbreviated {}.\n", clan->name, clan->abbreviation);
         log(LogSeverity::Stat, LVL_GOD, "(CLAN) {} changes {}'s to {}", GET_NAME(ch), clan->name, clan->abbreviation);
-        free(old_abbr);
-    }
-
-    else if (is_abbrev(arg, "addrank")) {
-        int i;
-
+    } else if (matches_start(cmd, "addrank")) {
         if (clan->rank_count >= MAX_CLAN_RANKS) {
             char_printf(ch, "{} already has the maximum number of ranks.\n", clan->name);
             return;
         }
 
         ++clan->rank_count;
-        /* Warning! RECREATE does not initialize to zero... */
-        RECREATE(clan->ranks, ClanRank, clan->rank_count);
-        clan->ranks[clan->rank_count - 1].title = strdup("Member");
-        for (i = 0; i < NUM_CLAN_PRIVS; ++i)
+        clan->ranks = std::make_unique<ClanRank[]>(clan->rank_count);
+        clan->ranks[clan->rank_count - 1].title = "Member";
+        for (int i = 0; i < magic_enum::enum_count<ClanPrivilege>(); ++i)
             if (clan_privileges[i].default_on)
                 SET_FLAG(clan->ranks[clan->rank_count - 1].privileges, i);
             else
                 REMOVE_FLAG(clan->ranks[clan->rank_count - 1].privileges, i);
 
         char_printf(ch, "You add a new rank ({}) to {}.\n", clan->rank_count, clan->name);
-        clan_notification(clan, ch, "%s adds a new rank to your clan.", GET_NAME(ch));
-    }
-
-    else if (is_abbrev(arg, "appfee")) {
-        any_one_arg(argument, arg);
-        if (!is_number(arg)) {
+        clan_notification(clan, ch, "{} adds a new rank to your clan.", GET_NAME(ch));
+    } else if (matches_start(cmd, "appfee")) {
+        auto fee = argument.try_shift_number();
+        if (!fee) {
             char_printf(ch, "How much platinum should the clan's application fee be?\n");
             return;
         }
-        clan->app_fee = atoi(arg);
+        clan->app_fee = *fee;
         char_printf(ch, "{}'s application fee is now {} platinum.\n", clan->name, clan->app_fee);
-    }
-
-    else if (is_abbrev(arg, "applev")) {
-        unsigned int level;
-        any_one_arg(argument, arg);
-        if (!is_number(arg)) {
+    } else if (matches_start(cmd, "applev")) {
+        auto level_opt = argument.try_shift_number();
+        if (!level_opt) {
             char_printf(ch, "What should the clan's minimum application level be?\n");
             return;
         }
-        level = atoi(arg);
+        auto level = *level_opt;
         if (level < 1 || level > LVL_IMPL) {
             char_printf(ch, "The minimum application level must be between 1 and {}.\n", LVL_IMPL);
             return;
         }
         clan->app_level = level;
         char_printf(ch, "{}'s minimum application level is now {}.\n", clan->name, clan->app_level);
-    }
-
-    else if (is_abbrev(arg, "delrank")) {
+    } else if (matches_start(cmd, "delrank")) {
         if (clan->rank_count <= MIN_CLAN_RANKS) {
             char_printf(ch, "{} already has the minimum number of ranks.\n", clan->name);
             return;
         }
 
         --clan->rank_count;
-        free(clan->ranks[clan->rank_count].title);
 
         char_printf(ch, "You remove a rank ({}) from {}.\n", clan->rank_count + 1, clan->name);
-        clan_notification(clan, ch, "%s removes a rank from your clan.", GET_NAME(ch));
+        clan_notification(clan, ch, "{} removes a rank from your clan.", GET_NAME(ch));
 
         for (member = clan->members; member; member = member->next)
             if (member->rank == clan->rank_count + 1) {
@@ -252,66 +237,55 @@ CLANCMD(clan_set) {
                     char_printf(FORWARD(member->player),
                                 AFMAG "You have been automatically promoted to rank {}.\n" ANRM, member->rank);
             }
-    }
-
-    else if (is_abbrev(arg, "dues")) {
-        any_one_arg(argument, arg);
-        if (!is_number(arg)) {
+    } else if (matches_start(cmd, "dues")) {
+        auto dues_opt = argument.try_shift_number();
+        if (!dues_opt) {
             char_printf(ch, "How much platinum should the clan's dues be?\n");
             return;
         }
-        clan->dues = atoi(arg);
+        clan->dues = *dues_opt;
         char_printf(ch, "{}'s monthly dues are now {} platinum.\n", clan->name, clan->dues);
-    }
-
-    else if (is_abbrev(arg, "name")) {
-        char *old_name = clan->name;
-        skip_spaces(&argument);
-        if (ansi_strlen(argument) > MAX_CLAN_NAME_LEN) {
+    } else if (matches_start(cmd, "name")) {
+        std::string_view old_name = clan->name;
+        auto new_name = argument.get();
+        if (ansi_strlen(new_name) > MAX_CLAN_NAME_LEN) {
             char_printf(ch, "Clan names may be at most {} characters in length.\n", MAX_CLAN_NAME_LEN);
             return;
         }
-        clan->name = nullptr; /* so find_clan doesn't find this clan */
-        if (find_clan(argument)) {
+        clan->name = {}; /* so find_clan doesn't find this clan */
+        if (find_clan(new_name)) {
             char_printf(ch, "A clan with that name already exists!\n");
             clan->name = old_name; /* revert */
             return;
         }
-        clan->name = strdup(fmt::format("{}&0", argument).c_str());
+        clan->name = new_name;
         char_printf(ch, "{} is now named {}.\n", old_name, clan->name);
         log(LogSeverity::Stat, LVL_GOD, "(CLAN) {} renames {} to {}", GET_NAME(ch), old_name, clan->name);
-        free(old_name);
-    }
-
-    else if (is_abbrev(arg, "title")) {
-        unsigned int rank;
-        argument = any_one_arg(argument, arg);
-        if (!*arg) {
+    } else if (matches_start(cmd, "title")) {
+        auto rank_opt = argument.try_shift_number();
+        if (!rank_opt) {
             char_printf(ch, "For which rank do you want to set a title?\n");
             return;
         }
-        rank = atoi(arg);
-        if (!is_number(arg) || rank < 1 || rank > clan->rank_count) {
-            char_printf(ch, "'{}' is an invalid rank.  Valid ranks are 1-{}.\n", arg, clan->rank_count);
+        auto rank = *rank_opt;
+        if (rank < 1 || rank > clan->rank_count) {
+            char_printf(ch, "'{}' is an invalid rank.  Valid ranks are 1-{}.\n", rank, clan->rank_count);
             return;
         }
-        skip_spaces(&argument);
         if (!IS_CLAN_SUPERADMIN(ch) && !IS_CLAN_ADMIN(ch) && OUTRANKS(rank, GET_CLAN_RANK(ch))) {
             char_printf(ch, "You cannot set the title for a rank above your own.\n");
             return;
         }
-        if (ansi_strlen(argument) > MAX_CLAN_TITLE_LEN) {
+        auto title = argument.get();
+        if (ansi_strlen(title) > MAX_CLAN_TITLE_LEN) {
             char_printf(ch, "Clan titles may be at most {} characters long.\n", MAX_CLAN_TITLE_LEN);
             return;
         }
-        free(clan->ranks[rank - 1].title);
-        clan->ranks[rank - 1].title = strdup(fmt::format("{}&0", argument).c_str());
-        char_printf(ch, "Rank {}'s title is now: {}\n", rank, argument);
-        clan_notification(clan, ch, "%s has changed rank %u's title to %s.", GET_NAME(ch), rank, argument);
-    }
-
-    else {
-        log(LogSeverity::Error, LVL_GOD, "SYSERR: clan_set: unknown subcommand '{}'", arg);
+        clan->ranks[rank - 1].title = title;
+        char_printf(ch, "Rank {}'s title is now: {}\n", rank, title);
+        clan_notification(clan, ch, "{} has changed rank %u's title to {}.", GET_NAME(ch), rank, title);
+    } else {
+        log(LogSeverity::Error, LVL_GOD, "SYSERR: clan_set: unknown subcommand '{}'", cmd);
         return;
     }
 
@@ -322,9 +296,9 @@ CLANCMD(clan_alt) {
     CharData *tch;
     ClanMembership *alt;
 
-    argument = any_one_arg(argument, arg);
+    auto target = argument.shift();
 
-    if (!*arg) {
+    if (target.empty()) {
         char_printf(ch, "Whom do you want to add or remove as an alt?\n");
         return;
     }
@@ -334,7 +308,7 @@ CLANCMD(clan_alt) {
      * to be online for that.
      */
     for (alt = member->relation.alts; alt; alt = alt->next) {
-        if (!strcasecmp(alt->name, arg)) {
+        if (matches(alt->name, target)) {
             char_printf(ch, "You remove {} as one of {}{} clan alts.\n", alt->name,
                         ch == member->player ? "your" : member->name, ch == member->player ? "" : "'s");
             if (ch != member->player && member->player)
@@ -348,8 +322,8 @@ CLANCMD(clan_alt) {
         }
     }
 
-    if (!(tch = find_char_by_desc(find_vis_by_name(ch, arg))))
-        char_printf(ch, "There's no one online by the name of {}.\n", arg);
+    if (!(tch = find_char_by_desc(find_vis_by_name(ch, target))))
+        char_printf(ch, "There's no one online by the name of {}.\n", target);
     else if (ch == tch)
         char_printf(ch, "You want to be your own alt?\n");
     else if (GET_CLAN_MEMBERSHIP(tch))
@@ -367,13 +341,11 @@ CLANCMD(clan_alt) {
             char_printf(FORWARD(member->player), AFMAG "{} makes {} one of your clan alts.\n" ANRM, GET_NAME(ch),
                         GET_NAME(tch));
         CREATE(alt, ClanMembership, 1);
-        alt->name = strdup(GET_NAME(tch));
+        alt->name = GET_NAME(tch);
         alt->rank = ALT_RANK_OFFSET + member->rank;
         alt->since = member->since;
         alt->relation.member = member;
-        alt->next = member->relation.alts;
         member->relation.alts = alt;
-        alt->clan = clan;
         alt->player = tch;
         GET_CLAN_MEMBERSHIP(tch) = alt;
         save_player_char(tch);
@@ -399,10 +371,10 @@ CLANCMD(clan_apply) {
         clan->treasure[PLATINUM] += clan->app_fee;
     }
 
-    clan_notification(clan, nullptr, "%s has applied to your clan.", GET_NAME(ch));
+    clan_notification(clan, nullptr, "{} has applied to your clan.", GET_NAME(ch));
 
     CREATE(member, ClanMembership, 1);
-    member->name = strdup(GET_NAME(ch));
+    member->name = GET_NAME(ch);
     member->rank = RANK_APPLICANT;
     member->since = time(0);
     member->player = ch;
@@ -415,50 +387,39 @@ CLANCMD(clan_apply) {
 CLANCMD(clan_create) {
     unsigned int i = 0;
 
-    fetch_word(argument, buf, sizeof(buf));
+    auto abbreviation = argument.get();
 
-    if (!*buf)
+    if (abbreviation.empty())
         char_printf(ch, "What is the abbreviation for the new clan?\n");
-    else if (ansi_strlen(buf) > 10)
+    else if (ansi_strlen(abbreviation) > 10)
         char_printf(ch, "Clan abbreviations can be at most 10 visible characters long.\n");
-    else if (find_clan_by_abbr(strip_ansi(buf).c_str()))
+    else if (find_clan_by_abbr(strip_ansi(abbreviation)))
         char_printf(ch, "A clan with a similar abbreviation already exists.\n");
     else {
-        strcat(buf, "&0");
         clan = alloc_clan();
-        clan->name = strdup(buf);
-        clan->abbreviation = strdup(buf);
-        clan->description = nullptr;
-        clan->motd = nullptr;
+        clan->name = abbreviation;
+        clan->abbreviation = abbreviation;
+        clan->description.clear();
+        clan->motd.clear();
 
         clan->dues = 0;
         clan->app_fee = 0;
         clan->app_level = 0;
-        clan->power = 0;
         for (i = 0; i < NUM_COIN_TYPES; ++i)
             clan->treasure[i] = 0;
 
         clan->rank_count = 2;
-        CREATE(clan->ranks, ClanRank, 2);
-        clan->ranks[0].title = strdup("Leader");
-        clan->ranks[1].title = strdup("Member");
+        clan->ranks = std::make_unique<ClanRank[]>(clan->rank_count);
+        clan->ranks[0].title = "Leader";
+        clan->ranks[1].title = "Member";
         for (i = 0; i < NUM_CLAN_PRIVS; ++i) {
             SET_FLAG(clan->ranks[0].privileges, i);
             if (clan_privileges[i].default_on)
                 SET_FLAG(clan->ranks[1].privileges, i);
         }
 
-        clan->people_count = 0;
-        clan->people = nullptr;
-        clan->member_count = 0;
-        clan->members = nullptr;
-        clan->admin_count = 0;
-        clan->admins = nullptr;
-        clan->applicant_count = 0;
-        clan->applicants = nullptr;
-
-        char_printf(ch, "New clan created.\n");
-        log(LogSeverity::Stat, LVL_GOD, "(CLAN) {} creates new clan: {}", GET_NAME(ch), buf);
+        char_printf(ch, "New clan {} created.\n", abbreviation);
+        log(LogSeverity::Stat, LVL_GOD, "(CLAN) {} creates new clan: {}", GET_NAME(ch), abbreviation);
 
         save_clan(clan);
     }
@@ -466,11 +427,11 @@ CLANCMD(clan_create) {
 
 CLANCMD(update_clan_rank) {
     unsigned int rank;
-    const char *action = nullptr;
+    std::string_view action;
 
-    argument = any_one_arg(argument, arg);
+    auto arg = argument.shift();
 
-    if (is_abbrev(arg, "demote")) {
+    if (matches_start(arg, "demote")) {
         if (!IS_CLAN_SUPERADMIN(ch) && ch != member->player && !OUTRANKS(GET_CLAN_RANK(ch), member->rank))
             char_printf(ch, "You cannot demote someone at or above your rank.\n");
         else if (member->rank == clan->rank_count)
@@ -481,7 +442,7 @@ CLANCMD(update_clan_rank) {
             rank = member->rank + 1;
             action = "demote";
         }
-    } else if (is_abbrev(arg, "promote")) {
+    } else if (matches_start(arg, "promote")) {
         if (!IS_CLAN_SUPERADMIN(ch) && !OUTRANKS(GET_CLAN_RANK(ch), member->rank))
             char_printf(ch, "You cannot promote someone at or above your rank.\n");
         else if (member->rank == RANK_LEADER)
@@ -498,7 +459,7 @@ CLANCMD(update_clan_rank) {
     }
 
     /* action only gets set if all checks above were successful. */
-    if (!action)
+    if (action.empty())
         return;
 
     if (ch == member->player)
@@ -510,7 +471,7 @@ CLANCMD(update_clan_rank) {
         char_printf(ch, "You {} {} to rank {}: {}\n", action, member->name, rank, clan->ranks[rank - 1].title);
     }
     member->rank = RANK_NONE; /* Temporary so they don't get the notification */
-    clan_notification(clan, ch, "%s has %sd %s to rank %u: " ANRM "%s", GET_NAME(ch), action, member->name, rank,
+    clan_notification(clan, ch, "{} has {}d {} to rank %u: " ANRM "{}", GET_NAME(ch), action, member->name, rank,
                       clan->ranks[rank - 1].title);
     member->rank = rank;
     /* Shift alts' ranks too */
@@ -531,12 +492,6 @@ CLANCMD(clan_enroll) {
 
     member->since = time(0);
     member->rank = clan->member_count ? clan->rank_count : RANK_LEADER;
-    --clan->applicant_count;
-    ++clan->member_count;
-    if (member->player)
-        clan->power += GET_LEVEL(member->player);
-    else if ((num = get_ptable_by_name(member->name)))
-        clan->power += player_table[num].level;
 
     update_clan(clan);
     save_clan(clan);
@@ -551,11 +506,10 @@ CLANCMD(clan_enroll) {
 }
 
 CLANCMD(clan_expel) {
-    char *name = strdup(member->name);
+    std::string_view name = member->name;
 
     if (!IS_CLAN_SUPERADMIN(ch) && !OUTRANKS(GET_CLAN_RANK(ch), member->rank)) {
         char_printf(ch, "{} outranks you!\n", name);
-        free(name);
         return;
     }
 
@@ -570,39 +524,37 @@ CLANCMD(clan_expel) {
     log(LogSeverity::Stat, LVL_GOD, "(CLAN) {} expels {} from {}.", GET_NAME(ch), name, clan->name);
     revoke_clan_membership(member);
 
-    clan_notification(clan, ch, "%s has expelled %s from your clan.", GET_NAME(ch), name);
-    free(name);
+    clan_notification(clan, ch, "{} has expelled {} from your clan.", GET_NAME(ch), name);
 }
 
 CLANCMD(clan_priv) {
     enum { GRANT, REVOKE } action;
     int rank, priv;
 
-    argument = any_one_arg(argument, arg);
+    auto subcommand = argument.shift();
 
-    if (is_abbrev(arg, "grant"))
+    if (matches_start(subcommand, "grant"))
         action = GRANT;
-    else if (is_abbrev(arg, "revoke"))
+    else if (matches_start(subcommand, "revoke"))
         action = REVOKE;
     else {
-        log("SYSERR: clan_priv: invalid subcommand '{}'", arg);
+        log("SYSERR: clan_priv: invalid subcommand '{}'", subcommand);
         return;
     }
 
-    argument = any_one_arg(argument, arg);
-    rank = atoi(arg);
+    auto rank_opt = argument.try_shift_number();
 
-    if (rank < RANK_LEADER || rank > clan->rank_count) {
-        char_printf(ch, "'{}' is an invalid rank.  Valid ranks are 1-{}.\n", arg, clan->rank_count);
+    if (!rank_opt || *rank_opt < RANK_LEADER || *rank_opt > clan->rank_count) {
+        char_printf(ch, "'{}' is an invalid rank.  Valid ranks are 1-{}.\n", *rank_opt, clan->rank_count);
         return;
     }
-
-    argument = any_one_arg(argument, arg);
+    rank = *rank_opt;
+    auto priv_arg = argument.shift();
     for (priv = 0; priv < NUM_CLAN_PRIVS; ++priv)
-        if (is_abbrev(arg, clan_privileges[priv].abbr))
+        if (matches_start(priv_arg, clan_privileges[priv].abbr))
             break;
     if (priv >= NUM_CLAN_PRIVS) {
-        char_printf(ch, "'{}' is an invalid privilege.  Valid privileges are listed on clan info.\n", arg);
+        char_printf(ch, "'{}' is an invalid privilege.  Valid privileges are listed on clan info.\n", priv_arg);
         return;
     }
 
@@ -640,10 +592,8 @@ static void show_clan_info(CharData *ch, const Clan *clan) {
     bool show_all =
         ((member && member->clan == clan && OUTRANKS(member->rank, RANK_APPLICANT)) || IS_CLAN_SUPERADMIN(ch));
 
-    strcpy(buf, "----------------------------------------------------------------------\n");
-    sprintf(buf1, "[ Clan %u: %s ]", clan->number, clan->name);
-    memcpy(buf + 29 - strlen(clan->name) / 2, buf1, strlen(buf1));
-    paging_printf(ch, buf);
+    std::string title = fmt::format("[ Clan {}: {} ]", clan->number, clan->name);
+    paging_printf(ch, "{:-^70}\n", title);
 
     paging_printf(ch,
                   "Nickname: " AFYEL "{}" ANRM
@@ -665,8 +615,7 @@ static void show_clan_info(CharData *ch, const Clan *clan) {
                   clan->app_fee, clan->app_level, clan->dues);
 
     if (show_all) {
-        statemoney(buf, clan->treasure);
-        paging_printf(ch, "Treasure: {}\n", buf);
+        paging_printf(ch, "Treasure: {}\n", statemoney(clan->treasure));
 
         paging_printf(ch, "\nRanks:\n");
         for (i = 0; i < clan->rank_count; ++i)
@@ -684,28 +633,28 @@ static void show_clan_info(CharData *ch, const Clan *clan) {
         paging_printf(ch, "\n");
     }
 
-    if (clan->description)
+    if (!clan->description.empty())
         paging_printf(ch, "\nDescription:\n{}", clan->description);
 
     if (show_all)
-        if (clan->motd)
+        if (!clan->motd.empty())
             paging_printf(ch, "\nMessage of the Day:\n{}", clan->motd);
 
     start_paging(ch);
 }
 
 CLANCMD(clan_info) {
-    argument = any_one_arg(argument, arg);
+    auto clan_name = argument.get();
 
-    if (!*arg) {
+    if (clan_name.empty()) {
         if (clan)
             show_clan_info(ch, clan);
         else
             char_printf(ch, "Which clan's info do you want to view?\n");
-    } else if ((clan = find_clan(arg)))
+    } else if ((clan = find_clan(clan_name)))
         show_clan_info(ch, clan);
     else
-        char_printf(ch, "'{}' does not refer to a valid clan.\n", arg);
+        char_printf(ch, "'{}' does not refer to a valid clan.\n", clan_name);
 }
 
 static void show_clan_member_status(CharData *ch, CharData *tch) {
@@ -720,7 +669,7 @@ static void show_clan_member_status(CharData *ch, CharData *tch) {
         char_printf(ch, "{} {} an administrator for {}.\n", ch == tch ? "You" : GET_NAME(tch), ch == tch ? "are" : "is",
                     GET_CLAN(tch)->name);
     else if (IS_CLAN_MEMBER(tch) || IS_CLAN_ALT(tch) || IS_CLAN_APPLICANT(tch)) {
-        strftime(buf, sizeof(buf), "%a, %d %b %Y", localtime(&GET_CLAN_MEMBERSHIP(tch)->since));
+        auto since = std::format("{:%a, %d %b %Y}", std::localtime(&GET_CLAN_MEMBERSHIP(tch)->since));
         paging_printf(ch,
                       "Clan membership status for {}:\n"
                       "  Clan: {}\n",
@@ -733,7 +682,7 @@ static void show_clan_member_status(CharData *ch, CharData *tch) {
                           GET_CLAN_MEMBERSHIP(tch)->relation.member->name);
         else if (IS_CLAN_APPLICANT(tch))
             paging_printf(ch, "  Rank: Applicant\n");
-        paging_printf(ch, "  Member since: {}\n", buf);
+        paging_printf(ch, "  Member since: {}\n", since);
         if (IS_CLAN_MEMBER(tch)) {
             if (HAS_FLAGS(GET_CLAN(tch)->ranks[GET_CLAN_RANK(tch) - 1].privileges, NUM_CLAN_PRIVS)) {
                 ScreenBuf *sb = new_screen_buf();
@@ -743,9 +692,9 @@ static void show_clan_member_status(CharData *ch, CharData *tch) {
                 sb_set_other_indentation(sb, len);
                 for (i = 0; i < NUM_CLAN_PRIVS; ++i)
                     if (HAS_CLAN_PRIV(tch, i))
-                        sb_append(sb, "%s%s", seen++ ? ", " : "", clan_privileges[i].abbr);
+                        sb_append(sb, "{}{}", seen++ ? ", " : "", clan_privileges[i].abbr);
                 /* skip over the first 14 spaces (dummy indentation) */
-                paging_printf(ch, "  Privileges: {}\n", sb_get_buffer(sb) + len);
+                paging_printf(ch, "  Privileges: {}\n", sb_get_buffer(sb));
                 free_screen_buf(sb);
             }
             if (GET_CLAN_MEMBERSHIP(tch)->relation.alts) {
@@ -756,9 +705,9 @@ static void show_clan_member_status(CharData *ch, CharData *tch) {
                 sb_set_first_indentation(sb, len);
                 sb_set_other_indentation(sb, len);
                 for (alt = GET_CLAN_MEMBERSHIP(tch)->relation.alts; alt; alt = alt->next)
-                    sb_append(sb, "%s%s", seen++ ? ", " : "", alt->name);
+                    sb_append(sb, "{}{}", seen++ ? ", " : "", alt->name);
                 /* skip over the first 8 spaces (dummy indentation) */
-                paging_printf(ch, "  Alts: {}\n", sb_get_buffer(sb) + len);
+                paging_printf(ch, "  Alts: {}\n", sb_get_buffer(sb));
                 free_screen_buf(sb);
             }
         }
@@ -771,7 +720,7 @@ static void show_clan_member_status(CharData *ch, CharData *tch) {
 CLANCMD(clan_status) {
     CharData *tch;
 
-    argument = any_one_arg(argument, arg);
+    auto arg = argument.get();
 
     if (IS_CLAN_SUPERADMIN(ch)) {
         if ((tch = find_char_around_char(ch, find_vis_by_name(ch, arg))))
@@ -804,20 +753,19 @@ static EDITOR_FUNC(clan_edit_done) {
 }
 
 CLANCMD(clan_edit) {
-    char **message;
-    const char *editing;
+    std::string_view message, editing;
     ClanEdit *data;
 
     if (!ch->desc)
         return;
 
-    any_one_arg(argument, arg);
+    auto arg = argument.get();
 
-    if (is_abbrev(arg, "motd")) {
-        message = &clan->motd;
+    if (matches_start(arg, "motd")) {
+        message = clan->motd;
         editing = "message of the day";
-    } else if (is_abbrev(arg, "desc")) {
-        message = &clan->description;
+    } else if (matches_start(arg, "desc")) {
+        message = clan->description;
         editing = "description";
     } else {
         log("SYSECR: E unknown string specified");
@@ -826,7 +774,7 @@ CLANCMD(clan_edit) {
 
     CREATE(data, ClanEdit, 1);
     data->clan = clan;
-    strcpy(data->string, arg);
+    strncpy(data->string, arg.data(), 20);
 
     if (editor_edited_by(message)) {
         char_printf(ch, "{}'s {} is already being edited.", clan->name, editing);
@@ -836,7 +784,7 @@ CLANCMD(clan_edit) {
     act("$n begins writing on a large scroll.", true, ch, 0, 0, TO_ROOM);
 
     editor_init(ch->desc, message, MAX_DESC_LENGTH);
-    editor_set_begin_string(ch->desc, "Edit %s's %s below.", clan->name, editing);
+    editor_set_begin_string(ch->desc, "Edit {}'s {} below.", clan->name, editing);
     editor_set_callback_data(ch->desc, data, ED_FREE_DATA);
     editor_set_callback(ch->desc, ED_EXIT_SAVE, clan_edit_done);
     editor_set_callback(ch->desc, ED_EXIT_ABORT, clan_edit_done);
@@ -855,7 +803,7 @@ CLANCMD(clan_quit) {
         char_printf(ch, "You are no longer in {}.\n", clan->name);
     if (!IS_CLAN_ALT(ch)) {
         log(LogSeverity::Stat, LVL_GOD, "(CLAN) {} quits {}.", GET_NAME(ch), clan->name);
-        clan_notification(clan, ch, "%s has quit your clan.", GET_NAME(ch));
+        clan_notification(clan, ch, "{} has quit your clan.", GET_NAME(ch));
     }
     revoke_clan_membership(GET_CLAN_MEMBERSHIP(ch));
 }
@@ -876,25 +824,22 @@ CLANCMD(clan_reject) {
     log(LogSeverity::Stat, LVL_GOD, "(CLAN) {} rejects {}'s application to {}.", GET_NAME(ch), member->name,
         member->clan->name);
     char_printf(ch, "You reject {}'s application to {}.\n", member->name, clan->name);
-    clan_notification(clan, ch, "%s rejects %s's application to your clan.", GET_NAME(ch), member->name);
+    clan_notification(clan, ch, "{} rejects {}'s application to your clan.", GET_NAME(ch), member->name);
 }
 
 CLANCMD(clan_snoop) {
     ClanSnoop *snoop, *temp;
-    clan_iter iter;
 
-    fetch_word(argument, arg, sizeof(arg));
+    auto arg = argument.get();
 
-    if (!*arg) {
+    if (arg.empty()) {
         if (GET_CLAN_SNOOP(ch)) {
             char_printf(ch, "You are currently snooping:\n");
             for (snoop = GET_CLAN_SNOOP(ch); snoop; snoop = snoop->next)
                 char_printf(ch, "  {}\n", snoop->clan->name);
         } else
             char_printf(ch, "You are not currently snooping any clan channels.\n");
-    }
-
-    else if (!strcasecmp(arg, "off")) {
+    } else if (matches(arg, "off")) {
         if (GET_CLAN_SNOOP(ch)) {
             while (GET_CLAN_SNOOP(ch)) {
                 snoop = GET_CLAN_SNOOP(ch)->next;
@@ -904,20 +849,16 @@ CLANCMD(clan_snoop) {
             char_printf(ch, "You are no longer snooping any clan channels.\n");
         } else
             char_printf(ch, "You are not currently snooping any clan channels.\n");
-    }
-
-    else if (!strcasecmp(arg, "all")) {
-        for (iter = clans_start(); iter != clans_end(); ++iter)
-            if (!is_snooping(ch, *iter)) {
+    } else if (matches(arg, "all")) {
+        for (const auto &clan : clans)
+            if (!is_snooping(ch, &clan)) {
                 CREATE(snoop, ClanSnoop, 1);
-                snoop->clan = *iter;
+                snoop->clan = clan;
                 snoop->next = GET_CLAN_SNOOP(ch);
                 GET_CLAN_SNOOP(ch) = snoop;
             }
         char_printf(ch, "You are now snooping all clan channels.\n");
-    }
-
-    else if ((clan = find_clan(arg))) {
+    } else if ((clan = find_clan(arg))) {
         if (is_snooping(ch, clan)) {
             snoop = GET_CLAN_SNOOP(ch);
             if (snoop->clan == clan) {
@@ -946,17 +887,12 @@ CLANCMD(clan_snoop) {
 
 static void send_clan_who_line(CharData *ch, const ClanMembership *member) {
     long num;
-    char level_buf[4];
-    char alt_buf[50];
-    char logon_buf[30];
-    const char *level, *title, *last_logon, *name_color;
+    std::string_view level, title, last_logon, name_color;
 
     num = get_ptable_by_name(member->name);
     if (num >= 0) {
-        snprintf(level_buf, sizeof(level_buf), "%d", player_table[num].level);
-        level = level_buf;
-        strftime(logon_buf, sizeof(logon_buf), "%a, %d %b %Y %H:%M", localtime(&player_table[num].last));
-        last_logon = logon_buf;
+        level = fmt::format("{}", player_table[num].level);
+        last_logon = fmt::format("{:%a, %d %b %Y %H:%M}", localtime(&player_table[num].last));
     } else {
         level = "??";
         last_logon = "";
@@ -967,8 +903,7 @@ static void send_clan_who_line(CharData *ch, const ClanMembership *member) {
     else if (IS_APPLICANT_RANK(member->rank))
         title = "(applicant)";
     else if (IS_ALT_RANK(member->rank)) {
-        snprintf(alt_buf, sizeof(alt_buf), "(%s's alt)", member->relation.member->name);
-        title = alt_buf;
+        title = fmt::format("({}'s alt)", member->relation.member->name);
     } else
         title = "";
 
@@ -1057,16 +992,17 @@ CLANCMD(clan_who) {
 #define ADMIN (1 << 2) /* here as their actual values of 2 and 4 */
 #define NUM_GROUPS 5
 
-static const char *clan_cmdgroup[NUM_GROUPS] = {"General", "Management", "Privileged", "Modifier", "Administrative"};
+static const std::string_view clan_cmdgroup[NUM_GROUPS] = {"General", "Management", "Privileged", "Modifier",
+                                                           "Administrative"};
 
 /* Clan command information structure */
 static const struct clan_subcommand {
-    const char *name;
+    const std::string_view name;
     unsigned int group;
     unsigned int type;
     unsigned int data;
     unsigned int args;
-    const char *more_args;
+    const std::string_view more_args;
     CLANCMD(*handler);
 } commands[] = {
     /* KEEP THIS LIST ALPHABETIZED */
@@ -1118,7 +1054,7 @@ static const struct clan_subcommand {
     {"who", GENERAL, SUPER, 0, CLAN, "", clan_who},
     {"withdraw", PRIV, PRIV | ADMIN, CPRIV_WITHDRAW, REPEAT, "<money>", clan_bank},
     {"withdraw", PRIV, SUPER, 0, CLAN | REPEAT, "<money>", clan_bank},
-    {0, 0, 0, 0, 0, 0, 0},
+    {{}, 0, 0, 0, 0, {}, 0},
 };
 
 static bool can_use_clan_command(CharData *ch, const clan_subcommand *command) {
@@ -1140,15 +1076,11 @@ static bool can_use_clan_command(CharData *ch, const clan_subcommand *command) {
     return false;
 }
 
-static const clan_subcommand *determine_command(CharData *ch, const char *cmd) {
+static const clan_subcommand *determine_command(CharData *ch, const std::string_view cmd) {
     const clan_subcommand *command = nullptr;
 
-    for (command = commands; command->name; ++command) {
-        if (*command->name < *cmd)
-            continue;
-        else if (*command->name > *cmd)
-            break;
-        else if (is_abbrev(cmd, command->name))
+    for (command = commands; !command->name.empty(); ++command) {
+        if (matches_start(cmd, command->name))
             if (can_use_clan_command(ch, command))
                 return command;
     }
@@ -1160,7 +1092,6 @@ ACMD(do_clan) {
     const clan_subcommand *command = nullptr;
     Clan *clan;
     ClanMembership *member;
-    char arg[MAX_INPUT_LENGTH];
     unsigned int group;
 
     if (IS_NPC(ch) || !ch->desc) {
@@ -1172,12 +1103,12 @@ ACMD(do_clan) {
     member = GET_CLAN_MEMBERSHIP(ch);
 
     /* Determine which command to invoke */
-    argument = any_one_arg(argument, arg);
-    if (strlen(arg) >= 3)
+    auto arg = argument.shift();
+    if (arg.length() >= 3)
         if ((command = determine_command(ch, arg))) {
             if (IS_SET(command->args, CLAN)) {
-                argument = any_one_arg(argument, arg);
-                if (!*arg) {
+                arg = argument.shift();
+                if (arg.empty()) {
                     char_printf(ch, "Which clan?\n");
                     return;
                 } else if (!(clan = find_clan(arg))) {
@@ -1186,9 +1117,8 @@ ACMD(do_clan) {
                 }
             }
             if (IS_SET(command->args, MEMBER | APPLICANT)) {
-                argument = any_one_arg(argument, arg);
-                cap_by_color(arg);
-                if (!*arg) {
+                arg = capitalize_first(argument.shift());
+                if (arg.empty()) {
                     char_printf(ch, "Whom do you want to {}?\n", arg);
                     return;
                 } else if (!(member = find_clan_membership(arg))) {
@@ -1204,28 +1134,19 @@ ACMD(do_clan) {
                 if (!IS_SET(command->args, CLAN))
                     clan = member->clan;
             }
-            if (IS_SET(command->args, REPEAT)) {
-                strcat(arg, argument);
-                argument = arg;
-            } else
-                skip_spaces(&argument);
-
+            if (IS_SET(command->args, REPEAT))
+                argument = Arguments(std::string(arg) + " " + std::string(argument.get()));
             command->handler(ch, member, clan, argument);
             return;
         }
 
     for (group = 0; group < NUM_GROUPS; ++group) {
-        strcpy(buf, "--------------------------------------------------------------------");
-        sprintf(buf1, "[ %s commands ]", clan_cmdgroup[group]);
-        strncpy(buf + 2, buf1, strlen(buf1));
-        for (command = commands; command->name; ++command) {
+        auto group_title = fmt::format("[ {} Commands ]", clan_cmdgroup[group]);
+        char_printf(ch, fmt::format("{:-^70}\n", group_title));
+        for (command = commands; !command->name.empty(); ++command) {
             if (group != command->group)
                 continue;
             if (can_use_clan_command(ch, command)) {
-                if (*buf) {
-                    char_printf(ch, "\n{}", buf);
-                    *buf = '\0';
-                }
                 char_printf(ch, "\n   clan {:<8s}", command->name);
                 if (IS_SET(command->args, CLAN))
                     char_printf(ch, " <clan>");
@@ -1233,7 +1154,7 @@ ACMD(do_clan) {
                     char_printf(ch, " <applicant>");
                 else if (IS_SET(command->args, MEMBER))
                     char_printf(ch, " <member>");
-                if (command->more_args)
+                if (!command->more_args.empty())
                     char_printf(ch, " {}", command->more_args);
             }
         }
@@ -1247,23 +1168,18 @@ ACMD(do_ctell) {
 
     if (IS_CLAN_SUPERADMIN(me)) {
         /* Only snooping one clan: auto send to that one */
-        if (GET_CLAN_SNOOP(me) && !GET_CLAN_SNOOP(me)->next)
-            clan_tell(ch, nullptr, GET_CLAN_SNOOP(me)->clan, argument);
-        else {
-            argument = any_one_arg(argument, arg);
-            if (!*arg)
-                char_printf(ch, "Which clan do you want to talk to?\n");
-            else if (!(clan = find_clan(arg)))
-                char_printf(ch,
-                            "'{}' does not refer to a valid clan.\nYou can "
-                            "only omit the clan if you are snooping just one "
-                            "clan.\n",
-                            arg);
-            else if (!is_snooping(me, clan))
-                char_printf(ch, "You must be snooping {} first.\n", clan->name);
-            else
-                clan_tell(ch, nullptr, clan, argument);
-        }
+        auto arg = argument.get();
+        if (arg.empty())
+            char_printf(ch, "Which clan do you want to talk to?\n");
+        else if (!(clan = find_clan(arg)))
+            char_printf(ch,
+                        "'{}' does not refer to a valid clan.\n"
+                        "You can only omit the clan if you are snooping just one clan.\n",
+                        arg);
+        else if (!is_snooping(me, clan))
+            char_printf(ch, "You must be snooping {} first.\n", clan->name);
+        else
+            clan_tell(ch, nullptr, clan, argument);
     } else if (!clan || IS_CLAN_REJECT(me))
         char_printf(ch, "You're not part of a clan.\n");
     else if (IS_CLAN_APPLICANT(me))

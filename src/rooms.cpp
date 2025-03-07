@@ -72,18 +72,18 @@ const struct sectordef sectors[NUM_SECTORS] = {
     {"Avernus", "&5&b", 1, 0, 0, true, false, "(yes, you can camp here)", "(don't use)"},
 };
 
-const char *room_bits[NUM_ROOM_FLAGS + 1] = {
-    "DARK",   "DEATH",     "!MOB",      "INDOORS",     "PEACEFUL", "SOUNDPROOF", "!TRACK", "!MAGIC",
-    "TUNNEL", "PRIVATE",   "GODROOM",   "HOUSE",       "HCRSH",    "ATRIUM",     "OLC",    "*BFS_MARK*",
-    "NOWELL", "NORECALL",  "UNDERDARK", "!SUMMON",     "NOSHIFT",  "GUILDHALL",  "!SCAN",  "ALT_EXIT",
-    "MAP",    "ALWAYSLIT", "ARENA",     "OBSERVATORY", "\n"};
+constexpr std::array<std::string_view, NUM_ROOM_FLAGS> room_bits = {
+    "DARK",      "DEATH",      "!MOB",     "INDOORS",  "PEACEFUL",  "SOUNDPROOF", "!TRACK",
+    "!MAGIC",    "TUNNEL",     "PRIVATE",  "GODROOM",  "HOUSE",     "HCRSH",      "ATRIUM",
+    "OLC",       "*BFS_MARK*", "NOWELL",   "NORECALL", "UNDERDARK", "!SUMMON",    "NOSHIFT",
+    "GUILDHALL", "!SCAN",      "ALT_EXIT", "MAP",      "ALWAYSLIT", "ARENA",      "OBSERVATORY"};
 
-const char *room_effects[NUM_ROOM_EFF_FLAGS + 1] = {"FOG",         "DARKNESS",  "CONT_LIGHT", "FOREST",
-                                                    "CIRCLE_FIRE", "ISOLATION", "\n"};
+const std::array<std::string_view, NUM_ROOM_EFF_FLAGS> room_effects = {"FOG",    "DARKNESS",    "CONT_LIGHT",
+                                                                       "FOREST", "CIRCLE_FIRE", "ISOLATION"};
 
 /* act.movement.c */
 void cantgo_msg(CharData *ch, int dir) {
-    const char *bumpinto = nullptr;
+    std::string_view bumpinto;
 
     if (!CONFUSED(ch)) {
         char_printf(ch, "Alas, you cannot go that way...\n");
@@ -235,10 +235,9 @@ void cantgo_msg(CharData *ch, int dir) {
             break;
         }
 
-    if (bumpinto) {
+    if (!bumpinto.empty()) {
         act("Oops!  You bumped into $T!", false, ch, 0, bumpinto, TO_CHAR);
-        sprintf(buf, "$n tried to walk away and bumped into %s!", bumpinto);
-        act(buf, true, ch, 0, 0, TO_ROOM);
+        act(fmt::format("$n tried to walk away and bumped into {}!", bumpinto), true, ch, 0, 0, TO_ROOM);
     }
 }
 
@@ -340,10 +339,9 @@ void open_door(CharData *ch, room_num roomnum, int dir, bool quiet) {
 
     if (ch && !quiet) {
         char_printf(ch, OK);
-        sprintf(buf, "$n opens the %s.", exit_name(exit));
-        act(buf, false, ch, 0, 0, TO_ROOM);
-        send_gmcp_room(ch);
+        act(fmt::format("$n opens the %s.", exit_name(exit)), false, ch, 0, 0, TO_ROOM);
     }
+    send_gmcp_room(ch);
 }
 
 void close_door(CharData *ch, room_num roomnum, int dir, bool quiet) {
@@ -392,8 +390,7 @@ void close_door(CharData *ch, room_num roomnum, int dir, bool quiet) {
 
     if (ch && !quiet) {
         char_printf(ch, OK);
-        sprintf(buf, "$n closes the %s.", exit_name(exit));
-        act(buf, false, ch, 0, 0, TO_ROOM);
+        act(fmt::format("$n closes the %s.", exit_name(exit)), false, ch, 0, 0, TO_ROOM);
         send_gmcp_room(ch);
     }
 }
@@ -476,15 +473,11 @@ void unlock_door(CharData *ch, room_num roomnum, int dir, bool quiet) {
 
     if (ch && !quiet) {
         if (key) {
-            sprintf(buf, "*Click*  You unlock the %s with $p.", exit_name(exit));
-            act(buf, false, ch, key, 0, TO_CHAR);
-            sprintf(buf, "$n unlocks the %s with $p.", exit_name(exit));
-            act(buf, false, ch, key, 0, TO_ROOM);
+            act(fmt::format("*Click*  You unlock the {} with $p.", exit_name(exit)), false, ch, key, 0, TO_CHAR);
+            act(fmt::format("$n unlocks the {} with $p.", exit_name(exit)), false, ch, key, 0, TO_ROOM);
         } else {
-            sprintf(buf, "*Click*  You unlock the %s.", exit_name(exit));
-            act(buf, false, ch, 0, 0, TO_CHAR);
-            sprintf(buf, "$n unlocks the %s.", exit_name(exit));
-            act(buf, false, ch, 0, 0, TO_ROOM);
+            act(fmt::format("*Click*  You unlock the {}.", exit_name(exit)), false, ch, 0, 0, TO_CHAR);
+            act(fmt::format("$n unlocks the {}.", exit_name(exit)), false, ch, 0, 0, TO_ROOM);
         }
 
         send_gmcp_room(ch);
@@ -571,15 +564,11 @@ void lock_door(CharData *ch, room_num roomnum, int dir, bool quiet) {
 
     if (ch && !quiet) {
         if (key) {
-            sprintf(buf, "*Click*  You lock the %s with $p.", exit_name(exit));
-            act(buf, false, ch, key, 0, TO_CHAR);
-            sprintf(buf, "$n locks the %s with $p.", exit_name(exit));
-            act(buf, false, ch, key, 0, TO_ROOM);
+            act(fmt::format("*Click*  You lock the %s with $p.", exit_name(exit)), false, ch, key, 0, TO_CHAR);
+            act(fmt::format("$n locks the %s with $p.", exit_name(exit)), false, ch, key, 0, TO_ROOM);
         } else {
-            sprintf(buf, "*Click*  You lock the %s.", exit_name(exit));
-            act(buf, false, ch, 0, 0, TO_CHAR);
-            sprintf(buf, "$n locks the %s.", exit_name(exit));
-            act(buf, false, ch, 0, 0, TO_ROOM);
+            act(fmt::format("*Click*  You lock the %s.", exit_name(exit)), false, ch, 0, 0, TO_CHAR);
+            act(fmt::format("$n locks the %s.", exit_name(exit)), false, ch, 0, 0, TO_ROOM);
         }
 
         send_gmcp_room(ch);
@@ -655,8 +644,7 @@ void pick_door(CharData *ch, room_num roomnum, int dir) {
     /* Feedback to this room. */
 
     char_printf(ch, "The lock yields to your skills.\n");
-    sprintf(buf, "$n skillfully picks the lock on the %s.", exit_name(exit));
-    act(buf, false, ch, 0, 0, TO_ROOM);
+    act(fmt::format("$n skillfully picks the lock on the {}.", exit_name(exit)), false, ch, 0, 0, TO_ROOM);
     send_gmcp_room(ch);
 
     /* Skill improvement. */
@@ -673,13 +661,13 @@ void send_auto_exits(CharData *ch, int roomnum) {
     int dir;
     RoomData *room, *dest;
     Exit *exit;
+    std::string buf;
 
     room = &world[roomnum];
-    *buf = '\0';
 
     if (ROOM_EFF_FLAGGED(roomnum, ROOM_EFF_ISOLATION)) {
         if (GET_LEVEL(ch) >= LVL_IMMORT)
-            strcpy(buf, " &5&b<&0&5isolation&b>&0");
+            buf = " &5&b<&0&5isolation&b>&0";
         else {
             char_printf(ch, "&2Obvious exits: &6None&0.\n");
             return;
@@ -688,64 +676,58 @@ void send_auto_exits(CharData *ch, int roomnum) {
 
     for (dir = 0; dir < NUM_OF_DIRS; dir++) {
         if ((exit = room->exits[dir]) && ((dest = EXIT_DEST(exit))) && can_see_exit(ch, roomnum, exit)) {
-            sprintf(buf, "%s &0-&6%s", buf, capdirs[dir]);
+            buf += fmt::format(" &0-&6{}", capdirs[dir]);
             if (EXIT_IS_CLOSED(exit))
-                sprintf(buf, "%s#", buf);
+                buf += "#";
             if (EXIT_IS_HIDDEN(exit))
-                sprintf(buf, "%s(hidden)", buf);
+                buf += "(hidden)";
         }
     }
 
-    char_printf(ch, "&2Obvious exits:{}&0\n", *buf ? buf : " &6None&0.");
+    char_printf(ch, "&2Obvious exits:{}&0\n", buf.empty() ? " &6None&0." : buf);
 }
 
 void send_full_exits(CharData *ch, int roomnum) {
     int dir;
-    RoomData *room, *dest;
+    RoomData *room = &world[roomnum], *dest;
     Exit *exit;
-
-    room = &world[roomnum];
-    *buf = '\0';
+    std::string buf;
 
     if (ROOM_EFF_FLAGGED(roomnum, ROOM_EFF_ISOLATION)) {
         if (GET_LEVEL(ch) < LVL_IMMORT) {
             char_printf(ch, "Obvious exits:\n None.\n");
             return;
         } else {
-            strcpy(buf, "&9&b(&0exits obscured by &5isolation&0&9&b)&0\n");
+            buf = "&9&b(&0exits obscured by &5isolation&0&9&b)&0\n";
         }
     }
 
     for (dir = 0; dir < NUM_OF_DIRS; dir++) {
         if ((exit = room->exits[dir]) && ((dest = EXIT_DEST(exit))) && can_see_exit(ch, roomnum, exit)) {
             if (GET_LEVEL(ch) >= LVL_IMMORT && PRF_FLAGGED(ch, PRF_ROOMFLAGS)) {
-                strcpy(buf1, " &9&b[&0");
-                /* only show keyword if there is one */
-                if (exit->keyword) {
-                    /* Only show key vnum if there is one */
+                buf += " &9&b[&0";
+                if (!exit->keyword.empty()) {
                     if (exit->key == NOTHING)
-                        sprintf(buf1, "%s&2%s&0: ", buf1, exit->keyword);
+                        buf += fmt::format("&2{}&0: ", exit->keyword);
                     else
-                        sprintf(buf1, "%s&2%s&0 (key %d): ", buf1, exit->keyword, exit->key);
+                        buf += fmt::format("&2{}&0 (key {}): ", exit->keyword, exit->key);
                 }
-                sprintbit(exit->exit_info, exit_bits, buf1 + strlen(buf1));
-                strcat(buf1, "&9&b]&0");
-                sprintf(buf2, "%-5s - [%5d] %s%s\n", dirs[dir], dest->vnum, dest->name, buf1);
+                buf += fmt::format("{}&9&b]&0", sprintbit(exit->exit_info, exit_bits));
+                buf += fmt::format("{:<5} - [{:5}] {}\n", dirs[dir], dest->vnum, dest->name);
             } else {
-                sprintf(buf2, "%-5s - ", dirs[dir]);
+                buf += fmt::format("{:<5} - ", dirs[dir]);
                 if (EXIT_IS_CLOSED(exit))
-                    sprintf(buf2, "%s(%s %s closed)", buf2, exit_name(exit), isplural(exit_name(exit)) ? "are" : "is");
+                    buf += fmt::format("({} {} closed)", exit_name(exit), isplural(exit_name(exit)) ? "are" : "is");
                 else if (IS_DARK(exit->to_room) && !CAN_SEE_IN_DARK(ch))
-                    strcat(buf2, "Too dark to tell");
+                    buf += "Too dark to tell";
                 else
-                    strcat(buf2, dest->name);
-                strcat(buf2, "\n");
+                    buf += dest->name;
+                buf += "\n";
             }
-            strcat(buf, cap_by_color(buf2));
         }
     }
 
-    if (*buf) {
+    if (!buf.empty()) {
         char_printf(ch, "Obvious exits:\n{}&0", buf);
     } else
         char_printf(ch, "There are no obvious exits.\n");

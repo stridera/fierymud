@@ -13,4 +13,7 @@
 #pragma once
 
 #include "defines.hpp"
-extern const char *effect_flags[NUM_EFF_FLAGS + 1];
+
+#include <string_view>
+
+extern const std::string_view effect_flags[NUM_EFF_FLAGS + 1];

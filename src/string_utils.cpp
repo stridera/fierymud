@@ -17,13 +17,14 @@
 #include "utils.hpp"
 
 #include <algorithm>
+#include <numeric>
 #include <ranges>
 #include <string>
 #include <utility>
 
-std::string ellipsis(const std::string str, int maxlen) {
+std::string ellipsis(const std::string_view str, int maxlen) {
     if (str.length() < maxlen - 3)
-        return str;
+        return std::string(str);
 
     std::string result;
     bool in_code = false;
@@ -42,25 +43,6 @@ std::string ellipsis(const std::string str, int maxlen) {
     return result + "...";
 }
 
-void sprintbit(long bitvector, const char *names[], char *result) {
-    long i;
-    char *orig_pos = result;
-
-    /* Assuming 8 bits to a byte... */
-    for (i = 0; *names[i] != '\n'; i++) {
-        if (IS_SET(bitvector, (1 << i))) {
-            strcpy(result, names[i]);
-            result += strlen(result);
-            *(result++) = ' ';
-        }
-    }
-
-    if (orig_pos == result)
-        strcpy(result, "NO BITS");
-    else
-        *result = '\0'; /* Nul terminate */
-}
-
 std::string cap_string(std::string_view str) {
     std::string result;
     bool cap_next = true;
@@ -75,6 +57,11 @@ std::string cap_string(std::string_view str) {
             cap_next = true;
     }
     return result;
+}
+
+// Tests to see if the string_view is a (POSITIVE) integer
+[[nodiscard]] bool is_integer(std::string_view sv) noexcept {
+    return !sv.empty() && std::ranges::all_of(trim(sv), ::isdigit);
 }
 
 std::string capitalize_first(std::string_view sv) {
@@ -94,61 +81,10 @@ std::string capitalize_first(std::string_view sv) {
     return result;
 }
 
-void sprinttype(int type, const char *names[], char *result) {
-    int nr = 0;
-
-    while (type && *names[nr] != '\n') {
-        type--;
-        nr++;
-    }
-
-    if (*names[nr] != '\n')
-        strcpy(result, names[nr]);
-    else {
-        strcpy(result, "UNDEFINED");
-        log("SYSERR: Unknown type {} in sprinttype.", type);
-    }
-}
-
-void sprintflag(char *result, flagvector flags[], int num_flags, const char *names[]) {
-    int i, nr = 0;
-    char *orig_pos = result;
-
-    for (i = 0; i < num_flags; ++i) {
-        if (IS_FLAGGED(flags, i)) {
-            if (*names[nr] != '\n')
-                strcpy(result, names[nr]);
-            else
-                strcpy(result, "UNDEFINED");
-            result += strlen(result);
-            *(result++) = ' ';
-        }
-        if (*names[nr] != '\n')
-            ++nr;
-    }
-
-    if (orig_pos == result)
-        strcpy(result, "NO FLAGS");
-    else
-        *(result - 1) = '\0'; /* Nul terminate */
-}
-
-int sprintascii(char *out, flagvector bits) {
-    int i, j = 0;
-    /* 32 bits, don't just add letters to try to get more unless flagvector is
-     * also as large. */
-    const char *flags = "abcdefghijklmnopqrstuvwxyzABCDEF";
-
-    for (i = 0; flags[i]; ++i)
-        if (bits & (1 << i))
-            out[j++] = flags[i];
-
-    if (j == 0) /* Didn't write anything. */
-        out[j++] = '0';
-
-    /* Nul terminate the output string. */
-    out[j++] = '\0';
-    return j;
+std::string to_lower(std::string_view str) {
+    std::string result;
+    std::transform(str.begin(), str.end(), std::back_inserter(result), ::tolower);
+    return result;
 }
 
 bool is_equals(const std::string_view &lhs, const std::string_view &rhs) {
@@ -162,27 +98,80 @@ bool matches_start(std::string_view lhs, std::string_view rhs) {
     return is_equals(lhs, rhs.substr(0, lhs.size()));
 }
 
+std::string filter_characters(const std::string_view input, bool (*filter_func)(char)) {
+    std::string result = "";
+    for (char c : input) {
+        if (filter_func(c)) {
+            result += c;
+        }
+    }
+    return result;
+}
+
+void skip_spaces(std::string str) { str.erase(0, str.find_first_not_of(" \t\f\n\r")); }
+
+int svtoi(std::string_view sv, int default_value = -1) noexcept {
+    int value = default_value;
+    auto [ptr, ec] = std::from_chars(sv.data(), sv.data() + sv.size(), value);
+    if (ec == std::errc()) {
+        return value;
+    }
+    return value;
+}
+
+bool string_in_list(std::string_view target, const std::list<std::string_view> stringList) {
+    for (std::string_view element : stringList) {
+        if (target == element) {
+            return true;
+        }
+    }
+    return false;
+}
+
 // c++23
-// bool matches(std::string_view lhs, std::string_view rhs) {
-//     if (lhs.size() != rhs.size())
-//         return false;
-//     return std::ranges::all_of(std::ranges::zip_view(lhs, rhs),
-//                                [](auto pr) { return tolower(pr.first) == tolower(pr.second); });
-// }
+bool matches(std::string_view lhs, std::string_view rhs) {
+    if (lhs.size() != rhs.size())
+        return false;
+    return std::ranges::all_of(std::ranges::zip_view(lhs, rhs),
+                               [](auto pr) { return tolower(std::get<0>(pr)) == tolower(std::get<1>(pr)); });
+}
 
-// bool matches_end(std::string_view lhs, std::string_view rhs) {
-//     if (lhs.size() > rhs.size() || lhs.empty())
-//         return false;
-//     auto rhs_remaining = rhs.substr(rhs.size() - lhs.size(), lhs.size());
-//     auto zipped_reverse = std::ranges::zip_view(lhs, rhs_remaining) | std::ranges::views::reverse;
-//     return std::ranges::all_of(zipped_reverse, [](auto pr) { return tolower(pr.first) == tolower(pr.second); });
-// }
+bool matches_end(std::string_view lhs, std::string_view rhs) {
+    if (lhs.size() > rhs.size() || lhs.empty())
+        return false;
+    auto rhs_remaining = rhs.substr(rhs.size() - lhs.size(), lhs.size());
+    auto zipped_reverse = std::ranges::zip_view(lhs, rhs_remaining) | std::ranges::views::reverse;
+    return std::ranges::all_of(zipped_reverse,
+                               [](auto pr) { return tolower(std::get<0>(pr)) == tolower(std::get<1>(pr)); });
+}
 
-// bool matches_inside(std::string_view needle, std::string_view haystack) {
-//     auto needle_low = needle | std::ranges::views::transform(tolower);
-//     auto haystack_low = haystack | std::ranges::views::transform(tolower);
-//     return !std::ranges::search(haystack_low, needle_low).empty();
-// }
+bool matches_inside(std::string_view needle, std::string_view haystack) {
+    auto needle_low = needle | std::ranges::views::transform(tolower);
+    auto haystack_low = haystack | std::ranges::views::transform(tolower);
+    return !std::ranges::search(haystack_low, needle_low).empty();
+}
+
+std::string replace_string(std::string_view str, std::string_view from, std::string_view to) {
+    std::string result(str);
+    size_t pos = result.find(from);
+    while (pos != std::string::npos) {
+        result.replace(pos, from.length(), to);
+        pos = result.find(from, pos + to.length());
+    }
+    return result;
+}
+
+std::string_view to_lowercase(std::string_view str) {
+    std::string result;
+    std::transform(str.begin(), str.end(), std::back_inserter(result), ::tolower);
+    return result;
+}
+
+std::string_view to_uppercase(std::string_view str) {
+    std::string result;
+    std::transform(str.begin(), str.end(), std::back_inserter(result), ::toupper);
+    return result;
+}
 
 std::string progress_bar(int current, int level_max, int max) {
     double percentage = static_cast<double>(current) / max * 100;
@@ -207,4 +196,30 @@ std::string progress_bar(int current, int level_max, int max) {
     progress_bar += "]";
 
     return progress_bar;
+}
+
+std::string_view getline(std::string_view input, char delim) {
+    auto pos = input.find(delim);
+    if (pos == std::string_view::npos) {
+        return input;
+    }
+    auto line = input.substr(0, pos);
+    input.remove_prefix(pos + 1);
+    return line;
+}
+
+std::string join_strings(const std::vector<std::string> &strings, const std::string_view separator,
+                         const std::string_view last_separator) {
+    if (strings.empty()) {
+        return "";
+    }
+    if (strings.size() == 1) {
+        return std::string(strings[0]);
+    }
+
+    return std::accumulate(strings.begin(), strings.end() - 1, std::string{},
+                           [&separator](const std::string &a, const std::string &b) {
+                               return a.empty() ? b : a + std::string(separator) + b;
+                           }) +
+           std::string(last_separator) + strings.back();
 }

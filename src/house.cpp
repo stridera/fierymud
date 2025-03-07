@@ -34,7 +34,7 @@ int num_of_houses = 0;
 /* First, the basics: finding the filename; loading/saving objects */
 
 /* Return a filename given a house vnum */
-int House_get_filename(int vnum, char *filename) {
+int House_get_filename(int vnum, std::string_view filename) {
     if (vnum < 0)
         return 0;
 
@@ -175,7 +175,7 @@ void House_boot(void) {
     int real_house, real_atrium;
     FILE *fl;
 
-    memset((char *)house_control, 0, sizeof(HouseControlRec) * MAX_HOUSES);
+    memset((std::string_view)house_control, 0, sizeof(HouseControlRec) * MAX_HOUSES);
 
     if (!(fl = fopen(HCONTROL_FILE, "rb"))) {
         log("House control file does not exist.");
@@ -187,7 +187,7 @@ void House_boot(void) {
         if (feof(fl))
             break;
 
-        if (get_name_by_id(temp_house.owner) == nullptr)
+        if (get_name_by_id(temp_house.owner) == std::nullopt)
             continue; /* owner no longer exists -- skip */
 
         if ((real_house = real_room(temp_house.vnum)) < 0)
@@ -219,7 +219,7 @@ void House_boot(void) {
 
 /* "House Control" functions */
 
-char *HCONTROL_FORMAT =
+std::string_view HCONTROL_FORMAT =
     "Usage: hcontrol build <house vnum> <exit direction> <player name>\n"
     "          hcontrol destroy <house vnum>\n"
     "          hcontrol pay <house vnum>\n"
@@ -229,7 +229,7 @@ char *HCONTROL_FORMAT =
 
 void hcontrol_list_houses(CharData *ch) {
     int i, j;
-    char *timestr, *temp;
+    std::string_view timestr, *temp;
     char built_on[128], last_pay[128], own_name[128];
 
     if (!num_of_houses) {
@@ -257,13 +257,13 @@ void hcontrol_list_houses(CharData *ch) {
         strcpy(own_name, NAME(house_control[i].owner));
 
         sprintf(buf, "%s%7d %7d   %-10s      %2d      %-12s %s\n", buf, house_control[i].vnum, house_control[i].atrium,
-                built_on, house_control[i].num_of_guests, cap_by_color(own_name), last_pay);
+                built_on, house_control[i].num_of_guests, capitalize_first(own_name), last_pay);
 
         if (house_control[i].num_of_guests) {
             strcat(buf, "       Guests: ");
             for (j = 0; j < house_control[i].num_of_guests; j++) {
                 sprintf(buf2, "%s ", NAME(house_control[i].guests[j]));
-                strcat(buf, cap_by_color(buf2));
+                strcat(buf, capitalize_first(buf2));
             }
             strcat(buf, "\n");
         }
@@ -271,7 +271,7 @@ void hcontrol_list_houses(CharData *ch) {
     char_printf(ch, buf);
 }
 
-void hcontrol_build_house(CharData *ch, char *arg) {
+void hcontrol_build_house(CharData *ch, std::string_view arg) {
     char arg1[MAX_INPUT_LENGTH];
     HouseControlRec temp_house;
     int virt_house, real_house, real_atrium, virt_atrium, exit_num;
@@ -284,7 +284,7 @@ void hcontrol_build_house(CharData *ch, char *arg) {
 
     /* first arg: house's vnum */
     arg = one_argument(arg, arg1);
-    if (!*arg1) {
+    if (arg1.empty()) {
         char_printf(ch, HCONTROL_FORMAT);
         return;
     }
@@ -300,11 +300,11 @@ void hcontrol_build_house(CharData *ch, char *arg) {
 
     /* second arg: direction of house's exit */
     arg = one_argument(arg, arg1);
-    if (!*arg1) {
+    if (arg1.empty()) {
         char_printf(ch, HCONTROL_FORMAT);
         return;
     }
-    if ((exit_num = searchblock(arg1, dirs, false)) < 0) {
+    if ((exit_num = search_block(arg1, dirs, false)) < 0) {
         char_printf(ch, "'{}' is not a valid direction.\n", arg1);
         return;
     }
@@ -323,7 +323,7 @@ void hcontrol_build_house(CharData *ch, char *arg) {
 
     /* third arg: player's name */
     arg = one_argument(arg, arg1);
-    if (!*arg1) {
+    if (arg1.empty()) {
         char_printf(ch, HCONTROL_FORMAT);
         return;
     }
@@ -352,11 +352,11 @@ void hcontrol_build_house(CharData *ch, char *arg) {
     House_save_control();
 }
 
-void hcontrol_destroy_house(CharData *ch, char *arg) {
+void hcontrol_destroy_house(CharData *ch, std::string_view arg) {
     int i, j;
     int real_atrium, real_house;
 
-    if (!*arg) {
+    if (arg.empty()) {
         char_printf(ch, HCONTROL_FORMAT);
         return;
     }
@@ -397,10 +397,10 @@ void hcontrol_destroy_house(CharData *ch, char *arg) {
             SET_FLAG(ROOM_FLAGS(real_atrium), ROOM_ATRIUM);
 }
 
-void hcontrol_pay_house(CharData *ch, char *arg) {
+void hcontrol_pay_house(CharData *ch, std::string_view arg) {
     int i;
 
-    if (!*arg)
+    if (arg.empty())
         char_printf(ch, HCONTROL_FORMAT);
     else if ((i = find_house(atoi(arg))) < 0)
         char_printf(ch, "Unknown house.\n");
@@ -420,13 +420,13 @@ ACMD(do_hcontrol) {
 
     half_chop(argument, arg1, arg2);
 
-    if (is_abbrev(arg1, "build"))
+    if (matches_start(arg1, "build"))
         hcontrol_build_house(ch, arg2);
-    else if (is_abbrev(arg1, "destroy"))
+    else if (matches_start(arg1, "destroy"))
         hcontrol_destroy_house(ch, arg2);
-    else if (is_abbrev(arg1, "pay"))
+    else if (matches_start(arg1, "pay"))
         hcontrol_pay_house(ch, arg2);
-    else if (is_abbrev(arg1, "show"))
+    else if (matches_start(arg1, "show"))
         hcontrol_list_houses(ch);
     else
         char_printf(ch, HCONTROL_FORMAT);
@@ -435,9 +435,9 @@ ACMD(do_hcontrol) {
 /* The house command, used by mortal house owners to assign guests */
 ACMD(do_house) {
     int i, j, id;
-    char *temp;
+    std::string_view temp;
 
-    one_argument(argument, arg);
+    auto arg = argument.shift();
 
     if (!ROOM_FLAGGED(ch->in_room, ROOM_HOUSE))
         char_printf(ch, "You must be in your house to set guests.\n");
@@ -445,14 +445,14 @@ ACMD(do_house) {
         char_printf(ch, "Um.. this house seems to be screwed up.\n");
     else if (GET_IDNUM(ch) != house_control[i].owner)
         char_printf(ch, "Only the primary owner can set guests.\n");
-    else if (!*arg) {
+    else if (arg.empty()) {
         char_printf(ch, "Guests of your house:\n");
         if (house_control[i].num_of_guests == 0)
             char_printf(ch, "   None.\n");
         else
             for (j = 0; j < house_control[i].num_of_guests; j++) {
                 strcpy(buf, NAME(house_control[i].guests[j]));
-                char_printf(ch, strcat(cap_by_color(buf), "\n"));
+                char_printf(ch, strcat(capitalize_first(buf), "\n"));
             }
     } else if ((id = get_id_by_name(arg)) < 0)
         char_printf(ch, "No such player.\n");

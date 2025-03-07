@@ -14,27 +14,24 @@
 
 #include "board.hpp"
 
-#include "clan.hpp"
 #include "comm.hpp"
-#include "commands.hpp"
 #include "conf.hpp"
 #include "db.hpp"
-#include "editor.hpp"
 #include "handler.hpp"
 #include "interpreter.hpp"
 #include "logging.hpp"
-#include "math.hpp"
-#include "modify.hpp"
-#include "objects.hpp"
-#include "rules.hpp"
-#include "screen.hpp"
-#include "string_utils.hpp"
+#include "players.hpp"
 #include "structs.hpp"
 #include "sysdep.hpp"
 #include "utils.hpp"
-#include "vsearch.hpp" /* for ellipsis */
 
+#include <algorithm>
+#include <fmt/format.h>
+#include <fstream>
+#include <memory>
+#include <string>
 #include <sys/stat.h> /* for mkdir */
+#include <vector>
 
 /******* BOARD VARIABLES *******/
 
@@ -50,8 +47,8 @@ static BoardData null_board;              /* public undefined board */
 
 static const struct privilege_info {
     char abbr[5];
-    const char *alias;
-    const char *message;
+    const std::string_view alias;
+    const std::string_view message;
 } privilege_data[NUM_BPRIV] = {
     {"READ", "read", "read"},
     {"WRIT", "write-new", "write new"},
@@ -65,24 +62,18 @@ static const struct privilege_info {
 
 /******* STRUCTURAL INTERFACE FUNCTIONS *******/
 
-bool valid_alias(const char *alias) {
-    if (!alias || !*alias)
+bool valid_alias(std::string_view alias) {
+    if (alias.empty())
         return false;
-    for (; *alias; ++alias)
-        if (!VALID_ALIAS_CHAR(*alias))
-            return false;
-    return true;
+
+    return std::ranges::all_of(alias, [](char c) { return VALID_ALIAS_CHAR(c); });
 }
 
 static void free_message(BoardMessage *msg) {
     BoardMessageEdit *edit;
-    free(msg->poster);
-    free(msg->subject);
-    free(msg->message);
 
     while ((edit = msg->edits)) {
         msg->edits = edit->next;
-        free(edit->editor);
         free(edit);
     }
 
@@ -96,9 +87,6 @@ static void free_board(BoardData *board) {
         log("SYSERR: attempt to free null_board");
         return;
     }
-
-    free(board->alias);
-    free(board->title);
 
     // for (i = 0; i < NUM_BPRIV; ++i)
     //     free_rule(board->privileges[i]);
@@ -121,7 +109,7 @@ void board_cleanup() {
     num_boards = 0;
 }
 
-static BoardData *new_board(const char *alias) {
+static BoardData *new_board(std::string_view alias) {
     BoardData *board;
     size_t priv;
 
@@ -133,8 +121,8 @@ static BoardData *new_board(const char *alias) {
     CREATE(board, BoardData, 1);
 
     board->number = (num_boards > 1 ? board_index[num_boards - 2]->number : 0) + 1;
-    board->alias = strdup(alias);
-    board->title = strdup("Untitled Board");
+    board->alias = alias;
+    board->title = "Untitled Board";
 
     // for (priv = 0; priv < NUM_BPRIV; ++priv)
     //     board->privileges[priv] = make_level_rule(0, LVL_IMPL);
@@ -150,8 +138,8 @@ static BoardData *new_board(const char *alias) {
 static bool delete_board(BoardData *board) {
     int i;
     bool found = false;
-    char filename[MAX_INPUT_LENGTH];
-    char bkupname[MAX_INPUT_LENGTH];
+    std::string_view filename;
+    std::string_view bkupname;
 
     if (board->editing)
         return false;
@@ -171,9 +159,9 @@ static bool delete_board(BoardData *board) {
     --num_boards;
     board_index[num_boards] = nullptr;
 
-    sprintf(filename, BOARD_PREFIX "/%s" BOARD_SUFFIX, board->alias);
-    sprintf(bkupname, BOARD_PREFIX "/%s.bak", board->alias);
-    if (rename(filename, bkupname))
+    filename = fmt::format("{}/{}{}", BOARD_PREFIX, board->alias, BOARD_SUFFIX);
+    bkupname = fmt::format("{}/{}.bak", BOARD_PREFIX, board->alias);
+    if (rename(std::string(filename).c_str(), std::string(bkupname).c_str()))
         log("SYSERR: Error renaming board file {} to backup name", filename);
 
     free_board(board);
@@ -195,19 +183,20 @@ BoardData *board(int num) {
     return &null_board;
 }
 
-static BoardData *find_board(const char *str) {
-    int i;
+static BoardData *find_board(std::string_view str) {
+    if (str.empty())
+        return nullptr;
 
-    if (!str || !*str)
-        return nullptr;
-    else if (is_integer(str))
-        return board(atoi(str));
-    else {
-        for (i = 0; i < num_boards; ++i)
-            if (!strcasecmp(board_index[i]->alias, str))
-                return board_index[i];
-        return nullptr;
+    // Check if the string is a number
+    if (std::ranges::all_of(str, [](char c) { return std::isdigit(c); })) {
+        return board(std::stoi(std::string(str)));
     }
+
+    // Find a board with matching alias
+    auto span = std::span(board_index, num_boards);
+    auto it = std::ranges::find_if(span, [&str](const BoardData *board) { return board->alias == str; });
+
+    return it != span.end() ? *it : nullptr;
 }
 
 BoardMessage *board_message(const BoardData *board, int num) {
@@ -269,16 +258,15 @@ static bool delete_message(BoardData *board, BoardMessage *msg) {
     return found;
 }
 
-static BoardMessage *add_new_message(BoardData *board, CharData *ch, char *subject, char *message) {
+static BoardMessage *add_new_message(BoardData *board, CharData *ch, std::string subject, std::string message) {
     BoardMessage *msg;
 
     CREATE(msg, BoardMessage, 1);
     msg->poster = strdup(GET_NAME(ch));
     msg->level = GET_LEVEL(ch);
     msg->time = time(0);
-    msg->subject = subject ? subject : strdup("");
-    msg->message = message ? message : strdup("Nothing.\n");
-    ;
+    msg->subject = subject;
+    msg->message = message.empty() ? "Nothing.\n" : message;
 
     board->message_count++;
     RECREATE(board->messages, BoardMessage *, board->message_count);
@@ -307,16 +295,14 @@ static void fix_message_order(BoardData *board) {
     board->messages = newindex;
 }
 
-static void apply_message_edit(BoardMessage *msg, CharData *editor, char *subject, char *message) {
+static void apply_message_edit(BoardMessage *msg, CharData *editor, std::string subject, std::string message) {
     BoardMessageEdit *edit;
 
-    free(msg->subject);
-    msg->subject = subject ? subject : strdup("");
-    free(msg->message);
-    msg->message = message ? message : strdup("Nothing.\n");
+    msg->subject = subject;
+    msg->message = message.empty() ? "Nothing.\n" : message;
 
     CREATE(edit, BoardMessageEdit, 1);
-    edit->editor = strdup(GET_NAME(editor));
+    edit->editor = GET_NAME(editor);
     edit->time = time(0);
     edit->next = msg->edits;
     msg->edits = edit;
@@ -325,25 +311,20 @@ static void apply_message_edit(BoardMessage *msg, CharData *editor, char *subjec
 /******* FILE INTERFACE FUNCTIONS *******/
 
 /* Used by load_board */
-static void parse_privilege(BoardData *board, char *line) {
-    char arg[MAX_INPUT_LENGTH];
+static void parse_privilege(BoardData *board, std::string_view line) {
     int num;
 
-    line = any_one_arg(line, arg);
-    num = atoi(arg);
+    num = svtoi(line);
     if (num < 0 || num >= NUM_BPRIV) {
-        log("SYSERR: invalid privilege {} in parse_privilege", arg);
+        log("SYSERR: invalid privilege {} in parse_privilege", line);
         return;
     }
-
-    // if (!(board->privileges[num] = parse_rule(line)))
-    //     board->privileges[num] = make_level_rule(0, LVL_IMPL);
 }
 
 /* Called by board_init */
-static BoardData *load_board(const char *name) {
+static BoardData *load_board(std::string_view name) {
     FILE *fl;
-    char filename[MAX_INPUT_LENGTH + 40];
+    std::string filename;
     BoardData *board;
     BoardMessage *msg = nullptr;
     char line[MAX_INPUT_LENGTH + 1];
@@ -356,7 +337,7 @@ static BoardData *load_board(const char *name) {
     BoardMessageEdit *edit;
     char editname[MAX_INPUT_LENGTH];
 
-    if (!name) {
+    if (name.empty()) {
         log("SYSERR: NULL board name passed to load_board()");
         return nullptr;
     }
@@ -366,44 +347,44 @@ static BoardData *load_board(const char *name) {
         return nullptr;
     }
 
-    sprintf(filename, BOARD_PREFIX "/%s" BOARD_SUFFIX, name);
-    if (!(fl = fopen(filename, "r"))) {
+    filename = BOARD_PREFIX "/" + std::string(name) + BOARD_SUFFIX;
+    if (!(fl = fopen(filename.c_str(), "r"))) {
         log("SYSERR: Couldn't open board file {}", filename);
         return nullptr;
     }
 
     CREATE(board, BoardData, 1);
-    board->alias = strdup(name);
+    board->alias = name;
 
     /* Read in board info */
     while (get_line(fl, line)) {
         tag_argument(line, tag);
 
-        if (!strcasecmp(tag, "~~"))
+        if (matches(tag, "~~"))
             break;
 
         switch (toupper(*tag)) {
         case 'A':
-            if (!strcasecmp(tag, "alias")) {
-                if (strcasecmp(board->alias, line))
+            if (matches(tag, "alias")) {
+                if (board->alias != line)
                     log("SYSERR: Board alias in board file ({}) doesn't match entry in index ({})", line, board->alias);
             } else
                 goto bad_board_tag;
             break;
         case 'N':
-            if (!strcasecmp(tag, "number"))
-                board->number = atoi(line);
+            if (matches(tag, "number"))
+                board->number = svtoi(line);
             else
                 goto bad_board_tag;
             break;
         case 'P':
-            if (!strcasecmp(tag, "privilege"))
+            if (matches(tag, "privilege"))
                 parse_privilege(board, line);
             else
                 goto bad_board_tag;
             break;
         case 'T':
-            if (!strcasecmp(tag, "title"))
+            if (matches(tag, "title"))
                 board->title = strdup(line);
             else
                 goto bad_board_tag;
@@ -418,7 +399,7 @@ static BoardData *load_board(const char *name) {
     while (get_line(fl, line)) {
         tag_argument(line, tag);
 
-        if (!strcasecmp(tag, "~~")) {
+        if (matches(tag, "~~")) {
             msg = nullptr;
             continue;
         }
@@ -435,7 +416,7 @@ static BoardData *load_board(const char *name) {
 
         switch (toupper(*tag)) {
         case 'E':
-            if (!strcasecmp(tag, "edit")) {
+            if (matches(tag, "edit")) {
                 CREATE(edit, BoardMessageEdit, 1);
                 if (sscanf(line, "%s %ld", editname, &edit->time) == 2) {
                     edit->editor = strdup(editname);
@@ -449,33 +430,33 @@ static BoardData *load_board(const char *name) {
                 goto bad_msg_tag;
             break;
         case 'L':
-            if (!strcasecmp(tag, "level"))
-                msg->level = atoi(line);
+            if (matches(tag, "level"))
+                msg->level = svtoi(line);
             else
                 goto bad_msg_tag;
             break;
         case 'M':
-            if (!strcasecmp(tag, "message"))
+            if (matches(tag, "message"))
                 msg->message = fread_string(fl, "load_board");
             else
                 goto bad_msg_tag;
             break;
         case 'P':
-            if (!strcasecmp(tag, "poster"))
+            if (matches(tag, "poster"))
                 msg->poster = strdup(line);
             else
                 goto bad_msg_tag;
             break;
         case 'S':
-            if (!strcasecmp(tag, "subject"))
+            if (matches(tag, "subject"))
                 msg->subject = strdup(line);
-            else if (!strcasecmp(tag, "sticky"))
-                msg->sticky = atoi(line);
+            else if (matches(tag, "sticky"))
+                msg->sticky = svtoi(line);
             else
                 goto bad_msg_tag;
             break;
         case 'T':
-            if (!strcasecmp(tag, "time"))
+            if (matches(tag, "time"))
                 msg->time = atol(line);
             else
                 goto bad_msg_tag;
@@ -579,84 +560,90 @@ static bool reload_board(BoardData *board) {
 
 void save_board_index() {
     FILE *fl;
-    int i;
 
     if (!(fl = fopen(BOARD_INDEX_FILE, "w"))) {
         log("SYSERR: Unable to open board index file for writing.");
         return;
     }
 
-    for (i = 0; i < num_boards; ++i)
-        fprintf(fl, "%s\n", board_index[i]->alias);
+    for (int i = 0; i < num_boards; ++i)
+        fprintf(fl, "%s\n", board_index[i]->alias.c_str());
 
     fclose(fl);
 }
 
-static const char *print_privilege(BoardData *board, int priv) {
-    static char buf[MAX_INPUT_LENGTH];
-    size_t len;
+void save_board(BoardData *board) {
+    std::ofstream file(fmt::format("{}/{}.board", BOARD_PREFIX, board->alias));
+    if (!file.is_open()) {
+        log("SYSERR: Couldn't open board file for writing: {}", board->alias);
+        return;
+    }
 
-    sprintf(buf, "%d ", priv);
-    len = strlen(buf);
-    // sprint_rule(buf + len, sizeof(buf) - len, board->privileges[priv]);
+    file << fmt::format("number: {}\n", board->number);
+    file << fmt::format("alias: {}\n", board->alias);
+    file << fmt::format("title: {}\n", board->title);
+    for (int i = 0; i < NUM_BPRIV; ++i)
+        file << fmt::format("privilege: {}\n", i);
+    file << "~~\n";
 
-    return buf;
+    for (int i = 0; i < board->message_count; ++i) {
+        auto msg = board->messages[i];
+        file << fmt::format("level: {}\n", msg->level);
+        file << fmt::format("poster: {}\n", msg->poster);
+        file << fmt::format("time: {}\n", msg->time);
+        if (msg->sticky)
+            file << fmt::format("sticky: 1\n");
+        for (auto edit = msg->edits; edit; edit = edit->next)
+            file << fmt::format("edit: {} {}\n", edit->editor, edit->time);
+        file << fmt::format("subject: {}\n", filter_chars(buf, msg->subject, "\n"));
+        file << fmt::format("message:\n{}\n", filter_chars(buf, msg->message, "\r~"));
+        file << "~~\n";
+    }
+
+    file.close();
 }
 
-void save_board(BoardData *board) {
-    FILE *fl;
-    char filename[MAX_INPUT_LENGTH + 40];
-    char tempfilename[MAX_INPUT_LENGTH + 40];
-    BoardMessage *msg;
-    BoardMessageEdit *edit;
-    int i;
-
-    if (!board) {
-        log("SYSERR: NULL board passed to save_board()");
+void board_load(BoardData *board) {
+    std::ifstream file(fmt::format("{}/{}.board", BOARD_PREFIX, board->alias));
+    if (!file.is_open()) {
+        log("SYSERR: Couldn't open board file for reading: {}", board->alias);
         return;
     }
 
-    sprintf(filename, BOARD_PREFIX "/%s" BOARD_SUFFIX, board->alias);
-    sprintf(tempfilename, BOARD_PREFIX "/%s.tmp", board->alias);
+    std::string line;
+    while (std::getline(file, line)) {
+        auto tag = line.substr(0, line.find(':'));
+        auto value = line.substr(line.find(':') + 1);
 
-    if (!(fl = fopen(tempfilename, "w"))) {
-        log("SYSERR: Couldn't open temp board file {} for write", tempfilename);
-        return;
+        if (tag == "number") {
+            board->number = std::stoi(value);
+        } else if (tag == "alias") {
+            board->alias = value;
+        } else if (tag == "title") {
+            board->title = value;
+        } else if (tag == "privilege") {
+            parse_privilege(board, value);
+        } else if (tag == "level") {
+            auto msg = std::make_unique<BoardMessage>();
+            msg->level = std::stoi(value);
+            std::getline(file, line);
+            msg->poster = strdup(line.substr(line.find(':') + 1).c_str());
+            std::getline(file, line);
+            msg->time = std::stol(line.substr(line.find(':') + 1));
+            std::getline(file, line);
+            msg->subject = strdup(line.substr(line.find(':') + 1).c_str());
+            std::getline(file, line);
+            msg->message = strdup(line.substr(line.find(':') + 1).c_str());
+            board->messages[board->message_count++] = msg.release();
+        }
     }
 
-    fprintf(fl, "number: %d\n", board->number);
-    fprintf(fl, "alias: %s\n", board->alias);
-    fprintf(fl, "title: %s\n", board->title);
-    for (i = 0; i < NUM_BPRIV; ++i)
-        fprintf(fl, "privilege: %s\n", print_privilege(board, i));
-    fprintf(fl, "~~\n");
-
-    for (i = 0; i < board->message_count; ++i) {
-        msg = board->messages[i];
-        fprintf(fl, "level: %d\n", msg->level);
-        fprintf(fl, "poster: %s\n", msg->poster);
-        fprintf(fl, "time: %ld\n", msg->time);
-        if (msg->sticky)
-            fprintf(fl, "sticky: 1\n");
-        for (edit = msg->edits; edit; edit = edit->next)
-            fprintf(fl, "edit: %s %ld\n", edit->editor, edit->time);
-        fprintf(fl, "subject: %s\n", filter_chars(buf, msg->subject, "\n"));
-        fprintf(fl, "message:\n%s~\n", filter_chars(buf, msg->message, "\r~"));
-        fprintf(fl, "~~\n");
-    }
-
-    if (fclose(fl))
-        log("SYSERR: Error closing board file for {} after write", board->alias);
-    else if (rename(tempfilename, filename))
-        log("SYSERR: Error renaming temporary board file for {} after write", board->alias);
+    file.close();
 }
 
 /******* COMMAND INTERFACE *******/
 
 void look_at_board(CharData *ch, const BoardData *board, const ObjData *face) {
-    int i;
-    char buf[MAX_INPUT_LENGTH];
-
     if (!has_board_privilege(ch, board, BPRIV_READ)) {
         char_printf(ch, "The words don't seem to make any sense to you.\n");
         return;
@@ -665,11 +652,11 @@ void look_at_board(CharData *ch, const BoardData *board, const ObjData *face) {
     char_printf(ch, "There {} {} message{} on {}.\n", board->message_count == 1 ? "is" : "are", board->message_count,
                 board->message_count == 1 ? "" : "s", face ? face->short_description : "the board");
 
-    for (i = board->message_count - 1; i >= 0; --i) {
+    for (int i = board->message_count - 1; i >= 0; --i) {
         auto time = std::chrono::system_clock::from_time_t(board->messages[i]->time);
         paging_printf(ch, "{}{:-2d}" ANRM " : {:%c} : {:<12s}:: {}" ANRM "\n", board->messages[i]->sticky ? FCYN : "",
                       i + 1, time, board->messages[i]->poster,
-                      board->messages[i]->subject ? board->messages[i]->subject : "<no title>");
+                      board->messages[i]->subject.empty() ? "<no title>" : board->messages[i]->subject);
     }
 
     start_paging(ch);
@@ -678,67 +665,61 @@ void look_at_board(CharData *ch, const BoardData *board, const ObjData *face) {
 ACMD(do_boardadmin) {
     BoardData *board;
     int i, j;
-    // Rule *rule;
 
-    argument = any_one_arg(argument, arg);
-    skip_spaces(&argument);
+    auto arg = argument.shift();
+    auto board_name = argument.get();
 
-    if (!strcasecmp(arg, "delete")) {
-        if (!*argument)
+    if (matches(arg, "delete")) {
+        if (argument.empty())
             char_printf(ch, "Which board do you want to delete?\n");
-        else if (!(board = find_board(argument)))
-            char_printf(ch, "No such board: {}\n", argument);
+        else if (!(board = find_board(board_name)))
+            char_printf(ch, "No such board: {}\n", board);
         else if (!delete_board(board))
             char_printf(ch, "Unable to delete board {}.\n", board->alias);
         else {
-            auto name = std::string(GET_NAME(ch));
-            auto board_name = std::string(argument);
-            log(LogSeverity::Stat, std::max<int>(LVL_IMMORT, GET_INVIS_LEV(ch)), "(GC) {} deleted board {}.", name,
-                board_name);
+            log(LogSeverity::Stat, std::max<int>(LVL_IMMORT, GET_INVIS_LEV(ch)), "(GC) {} deleted board {}.",
+                GET_NAME(ch), board_name);
         }
     }
 
-    else if (!strcasecmp(arg, "create")) {
-        if (!*argument)
+    else if (matches(arg, "create")) {
+        if (board_name.empty())
             char_printf(ch, "What do you want the new board's alias to be?\n");
-        else if (!valid_alias(argument))
+        else if (!valid_alias(board_name))
             char_printf(ch, "Only letters, digits, and underscores are allowed in board aliases.\n");
         else {
-            board = new_board(argument);
+            board = new_board(board_name);
             char_printf(ch, "New board created.\n");
             log(LogSeverity::Stat, std::max<int>(LVL_IMMORT, GET_INVIS_LEV(ch)), "(GC) {} created board {}.",
-                GET_NAME(ch), argument);
+                GET_NAME(ch), board_name);
         }
     }
 
-    else if (!strcasecmp(arg, "reload")) {
-        if (!*argument)
+    else if (matches(arg, "reload")) {
+        if (board_name.empty())
             char_printf(ch, "Which board do you want to delete?\n");
-        else if (!(board = find_board(argument)))
-            char_printf(ch, "No such board: {}\n", argument);
+        else if (!(board = find_board(board_name)))
+            char_printf(ch, "No such board: {}\n", board_name);
         else if (!reload_board(board))
             char_printf(ch, "Unable to reload board {}.\n", board->alias);
         else
             log(LogSeverity::Stat, std::max<int>(LVL_IMMORT, GET_INVIS_LEV(ch)), "(GC) {} reloaded board {}.",
-                GET_NAME(ch), argument);
+                GET_NAME(ch), board_name);
     }
 
-    else if (!strcasecmp(arg, "title")) {
-        argument = any_one_arg(argument, arg);
-        skip_spaces(&argument);
-        if (!*arg)
+    else if (matches(arg, "title")) {
+        if (board_name.empty())
             char_printf(ch, "Which board's title do you want to change?\n");
-        else if (!(board = find_board(arg)))
-            char_printf(ch, "No such board: {}\n", arg);
+        else if (!(board = find_board(board_name)))
+            char_printf(ch, "No such board: {}\n", board_name);
         else {
-            char_printf(ch, "Board title changed from '{}' to '{}'.\n", board->title, argument);
-            free(board->title);
-            board->title = strdup(argument);
+            char_printf(ch, "Board title changed from '{}' to '{}'.\n", board->title, board_name);
+            board->title = board_name;
             save_board(board);
         }
     }
 
-    else if (is_abbrev(arg, "list")) {
+    else if (matches_start(arg, "list")) {
         char_printf(ch, "Num" ANRM " Msg" ANRM " Alias    " ANRM " Title              " ANRM);
         for (j = 0; j < NUM_BPRIV; ++j)
             char_printf(ch, " {:<4s}" ANRM, privilege_data[j].abbr);
@@ -757,11 +738,11 @@ ACMD(do_boardadmin) {
             char_printf(ch, " No boards defined.\n");
     }
 
-    else if (is_abbrev(arg, "info")) {
-        if (!*argument)
+    else if (matches_start(arg, "info")) {
+        if (board_name.empty())
             char_printf(ch, "Which board do you want info on?\n");
-        else if (!(board = find_board(argument)))
-            char_printf(ch, "No such board: {}\n", argument);
+        else if (!(board = find_board(board_name)))
+            char_printf(ch, "No such board: {}\n", board_name);
         else {
             char_printf(ch,
                         "Board          : " FYEL "{}" ANRM " (" FGRN "{:d}" ANRM
@@ -774,34 +755,28 @@ ACMD(do_boardadmin) {
                         "\n"
                         "Privileges     :\n",
                         board->alias, board->number, board->title, board->message_count, YESNO(board->locked));
-            // for (i = 0; i < NUM_BPRIV; ++i) {
-            //     rule_verbose(buf, sizeof(buf), board->privileges[i]);
-            //     char_printf(ch, "  %c%-11s : {}\n", UPPER(*privilege_data[i].alias), privilege_data[i].alias + 1,
-            //     buf);
-            // }
         }
     }
 
-    else if (is_abbrev(arg, "privilege")) {
-        argument = any_one_arg(argument, arg);
-        if (!*arg) {
+    else if (matches_start(arg, "privilege")) {
+        if (board_name.empty()) {
             char_printf(ch, "Which board's privileges do you want to change?\n");
             return;
         }
-        if (!(board = find_board(arg))) {
+        if (!(board = find_board(board_name))) {
             char_printf(ch, "No such board: {}\n", arg);
             return;
         }
-        argument = any_one_arg(argument, arg);
-        if (!*arg) {
+
+        if (board_name.empty()) {
             char_printf(ch, "Which privilege do you want to change?\n");
             return;
         }
-        if (!strcasecmp(arg, "all"))
+        if (matches(board_name, "all"))
             i = -1; /* Set all privileges at once */
         else {
             for (i = 0; i < NUM_BPRIV; ++i)
-                if (!strcasecmp(privilege_data[i].abbr, arg) || is_abbrev(privilege_data[i].alias, arg))
+                if (matches(privilege_data[i].abbr, arg) || matches_start(privilege_data[i].alias, arg))
                     break;
             if (i >= NUM_BPRIV) {
                 char_printf(ch, "Invalid privilege.  Allowed privileges:\n");
@@ -810,81 +785,60 @@ ACMD(do_boardadmin) {
                 return;
             }
         }
-        // if (!(rule = parse_rule(argument))) {
-        //     char_printf(ch, "Invalid rule format.\n");
-        //     return;
-        // }
-        // rule_verbose(buf, sizeof(buf), rule);
-        // if (i >= 0) {
-        //     char_printf(ch, "Set {}'s {} privilege to {}.\n", board->alias, privilege_data[i].alias, buf);
-        //     board->privileges[i] = rule;
-        // } else {
-        //     char_printf(ch, "Set {}'s privileges to {}.\n", board->alias, buf);
-        //     for (i = 0; i < NUM_BPRIV; ++i)
-        //         if (i == 0)
-        //             board->privileges[i] = rule;
-        //         else
-        //             board->privileges[i] = parse_rule(argument);
-        // }
         save_board(board);
     }
 
-    else if (is_abbrev(arg, "read")) {
-        argument = any_one_arg(argument, arg);
-        skip_spaces(&argument);
-        if (!*arg)
+    else if (matches_start(arg, "read")) {
+        auto post_number = argument.shift();
+        if (board_name.empty())
             char_printf(ch, "Which board do you want to view?\n");
-        else if (!(board = find_board(arg)))
+        else if (!(board = find_board(board_name)))
             char_printf(ch, "No such board: {}\n", arg);
-        else if (!*argument)
+        else if (argument.empty())
             look_at_board(ch, board, nullptr);
-        else if (!is_number(argument))
+        else if (!is_integer(post_number))
             char_printf(ch, "Which message do you want to read?\n");
         else
-            read_message(ch, board, atoi(argument));
+            read_message(ch, board, svtoi(post_number));
     }
 
-    else if (is_abbrev(arg, "edit")) {
-        argument = any_one_arg(argument, arg);
-        skip_spaces(&argument);
-        if (!*arg)
+    else if (matches_start(arg, "edit")) {
+        auto post_number = argument.shift();
+        if (board_name.empty())
             char_printf(ch, "On which board do you want to edit a message?\n");
-        else if (!(board = find_board(arg)))
+        else if (!(board = find_board(board_name)))
             char_printf(ch, "No such board: {}\n", arg);
-        else if (!*argument || !is_number(argument))
+        else if (post_number.empty() || !is_integer(post_number))
             char_printf(ch, "Which message do you want to edit?\n");
         else
-            edit_message(ch, board, atoi(argument));
+            edit_message(ch, board, svtoi(post_number));
     }
 
-    else if (is_abbrev(arg, "remove")) {
-        argument = any_one_arg(argument, arg);
-        skip_spaces(&argument);
-        if (!*arg)
+    else if (matches_start(arg, "remove")) {
+        auto post_number = argument.shift();
+        if (board_name.empty())
             char_printf(ch, "On which board do you want to remove a message?\n");
-        else if (!(board = find_board(arg)))
+        else if (!(board = find_board(board_name)))
             char_printf(ch, "No such board: {}\n", arg);
-        else if (!*argument || !is_number(argument))
+        else if (post_number.empty() || !is_integer(post_number))
             char_printf(ch, "Which message do you want to remove?\n");
         else
-            remove_message(ch, board, atoi(argument), nullptr);
+            remove_message(ch, board, svtoi(post_number), nullptr);
     }
 
-    else if (is_abbrev(arg, "write")) {
-        argument = any_one_arg(argument, arg);
-        skip_spaces(&argument);
-        if (!*arg)
+    else if (matches_start(arg, "write")) {
+        if (board_name.empty())
             char_printf(ch, "Which board do you want to write on?\n");
-        else if (!(board = find_board(arg)))
+        else if (!(board = find_board(board_name)))
             char_printf(ch, "No such board: {}\n", arg);
         else
-            write_message(ch, board, argument);
+            write_message(ch, board, argument.get());
     }
 
-    else if (is_abbrev(arg, "lock")) {
-        if (!*argument)
+    else if (matches_start(arg, "lock")) {
+        if (board_name.empty())
             char_printf(ch, "Which board do you want to toggle the lock on?\n");
-        else if (!(board = find_board(argument)))
+        else if (!(board = find_board(board_name)))
             char_printf(ch, "No such board: {}\n", arg);
         else {
             char_printf(ch, "The {} board is now {}locked.\n", board->alias,
@@ -954,7 +908,7 @@ void edit_message(CharData *ch, BoardData *board, int msgnum) {
         return;
     }
 
-    if (!strcasecmp(msg->poster, GET_NAME(ch))) {
+    if (matches(msg->poster, GET_NAME(ch))) {
         if (!has_board_privilege(ch, board, BPRIV_EDIT_OWN) && !has_board_privilege(ch, board, BPRIV_EDIT_ANY)) {
             char_printf(ch, "You can't edit your own posts on this board.\n");
             return;
@@ -970,7 +924,7 @@ void edit_message(CharData *ch, BoardData *board, int msgnum) {
     }
 
     if (msg->editing) {
-        char_printf(ch, "{} is currently editing that message.\n", capitalize(PERS(msg->editing, ch)));
+        char_printf(ch, "{} is currently editing that message.\n", capitalize_first(PERS(msg->editing, ch)));
         return;
     }
 
@@ -980,10 +934,10 @@ void edit_message(CharData *ch, BoardData *board, int msgnum) {
     CREATE(edit_data, board_editing_data, 1);
     edit_data->board = board;
     edit_data->message = msg;
-    edit_data->subject = strdup(msg->subject);
+    edit_data->subject = msg->subject;
     edit_data->sticky = msg->sticky && has_board_privilege(ch, board, BPRIV_WRITE_STICKY);
 
-    editor_init(ch->desc, &msg->message, MAX_MSG_LEN);
+    editor_init(ch->desc, msg->message, MAX_MSG_LEN);
     editor_set_begin_string(ch->desc, "Write your message.");
     editor_set_callback_data(ch->desc, edit_data, ED_FREE_DATA);
     editor_set_callback(ch->desc, ED_EXIT_SAVE, board_save);
@@ -1005,7 +959,7 @@ void remove_message(CharData *ch, BoardData *board, int msgnum, const ObjData *f
         return;
     }
 
-    if (!strcasecmp(msg->poster, GET_NAME(ch))) {
+    if (matches(msg->poster, GET_NAME(ch))) {
         if (!has_board_privilege(ch, board, BPRIV_REMOVE_OWN) && !has_board_privilege(ch, board, BPRIV_REMOVE_ANY)) {
             char_printf(ch, "You can't remove your own posts on this board.\n");
             return;
@@ -1021,7 +975,7 @@ void remove_message(CharData *ch, BoardData *board, int msgnum, const ObjData *f
     }
 
     if (msg->editing) {
-        char_printf(ch, "{} is currently editing that message.\n", capitalize(PERS(msg->editing, ch)));
+        char_printf(ch, "{} is currently editing that message.\n", capitalize_first(PERS(msg->editing, ch)));
         return;
     }
 
@@ -1032,7 +986,7 @@ void remove_message(CharData *ch, BoardData *board, int msgnum, const ObjData *f
     save_board(board);
 }
 
-void write_message(CharData *ch, BoardData *board, const char *subject) {
+void write_message(CharData *ch, BoardData *board, const std::string_view subject) {
     board_editing_data *edit_data;
 
     if (!board || board == &null_board) {
@@ -1054,9 +1008,9 @@ void write_message(CharData *ch, BoardData *board, const char *subject) {
 
     CREATE(edit_data, board_editing_data, 1);
     edit_data->board = board;
-    edit_data->subject = strdup(subject);
+    edit_data->subject = subject;
 
-    editor_init(ch->desc, nullptr, MAX_MSG_LEN);
+    editor_init(ch->desc, {}, MAX_MSG_LEN);
     editor_set_begin_string(ch->desc, "Write your message.");
     editor_set_callback_data(ch->desc, edit_data, ED_FREE_DATA);
     editor_set_callback(ch->desc, ED_EXIT_SAVE, board_save);
@@ -1076,23 +1030,22 @@ static EDITOR_FUNC(board_save) {
         desc_printf(d, "Message posted.\n");
 
         if (msg)
-            apply_message_edit(msg, d->character, edit_data->subject, edit->string);
+            apply_message_edit(msg, d->character, edit_data->subject, std::string(edit->string));
         else
-            msg = add_new_message(edit_data->board, d->character, edit_data->subject, edit->string);
+            msg = add_new_message(edit_data->board, d->character, edit_data->subject, std::string(edit->string));
 
         msg->sticky = edit_data->sticky;
 
-        edit->string = nullptr;
+        edit->string = {};
 
         fix_message_order(edit_data->board);
         save_board(edit_data->board);
     } else {
         desc_printf(d, "Post aborted.  Message not saved.\n");
-        free(edit_data->subject);
     }
 
     if (msg)
-        msg->editing = nullptr;
+        msg->editing = {};
     edit_data->board->editing--;
 
     return ED_PROCESSED;
@@ -1102,22 +1055,15 @@ static EDITOR_FUNC(board_special) {
     DescriptorData *d = edit->descriptor;
     board_editing_data *edit_data = (board_editing_data *)edit->data;
 
-    if (!edit->argument)
+    if (edit->argument.empty())
         return ED_IGNORED;
 
-    if (*edit->argument == 'u') {
-        char subject[MAX_INPUT_LENGTH], *s;
-
-        strcpy(subject, edit->argument + 1);
-        s = subject;
-        skip_spaces(&s);
-
-        if (edit_data->subject)
-            free(edit_data->subject);
-        edit_data->subject = strdup(s);
-
+    if (edit->argument[0] == 'u') {
+        auto s = edit->argument.substr(1);
+        skip_spaces(s);
+        edit_data->subject = s;
         desc_printf(d, "Message subject set to: {}\n", s);
-    } else if (*edit->argument == 'y') {
+    } else if (edit->argument[0] == 'y') {
         if (has_board_privilege(d->character, edit_data->board, BPRIV_WRITE_STICKY))
             desc_printf(d, "Message set as {}sticky.\n", (edit_data->sticky = !edit_data->sticky) ? "" : "non-");
         else
@@ -1135,8 +1081,8 @@ static EDITOR_FUNC(board_list) {
     time_t tm;
 
     tm = edit_data->message ? edit_data->message->time : time(0);
-    strftime(buf, 32, TIMEFMT_LOG, localtime(&tm));
-    desc_printf(d, "{}" AUND "{} by {} :: {:<30s}\n" ANRM, edit_data->sticky ? AHCYN : AFCYN, buf,
+    desc_printf(d, "{}" AUND "{} by {} :: {:<30s}\n" ANRM, edit_data->sticky ? AHCYN : AFCYN,
+                fmt::format(TIMEFMT_LOG, localtime(&tm)),
                 edit_data->message ? edit_data->message->poster : GET_NAME(d->character), edit_data->subject);
 
     return ED_IGNORED;
@@ -1185,20 +1131,20 @@ static EDITOR_FUNC(board_help) {
 ACMD(do_edit) {
     ObjData *obj;
 
-    argument = any_one_arg(argument, arg);
-    skip_spaces(&argument);
+    auto arg = argument.shift();
+    auto number = argument.get();
 
-    if (is_number(arg) &&
+    if (is_integer(arg) &&
         universal_find(find_vis_by_type(ch, ITEM_BOARD), FIND_OBJ_EQUIP | FIND_OBJ_ROOM | FIND_OBJ_WORLD, nullptr,
                        &obj) &&
         obj)
-        edit_message(ch, board(GET_OBJ_VAL(obj, VAL_BOARD_NUMBER)), atoi(arg));
+        edit_message(ch, board(GET_OBJ_VAL(obj, VAL_BOARD_NUMBER)), svtoi(arg));
     else if (!generic_find(arg, FIND_OBJ_EQUIP | FIND_OBJ_ROOM | FIND_OBJ_WORLD, ch, nullptr, &obj) || !obj)
         char_printf(ch, "What do you want to edit?\n");
     else if (GET_OBJ_TYPE(obj) != ITEM_BOARD)
         char_printf(ch, "You can only edit board messages.\n");
-    else if (!is_number(argument))
+    else if (!is_integer(number))
         char_printf(ch, "Which message do you want to edit?\n");
     else
-        edit_message(ch, board(GET_OBJ_VAL(obj, VAL_BOARD_NUMBER)), atoi(argument));
+        edit_message(ch, board(GET_OBJ_VAL(obj, VAL_BOARD_NUMBER)), svtoi(number));
 }

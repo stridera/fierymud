@@ -43,6 +43,7 @@
 #include "races.hpp"
 #include "regen.hpp"
 #include "skills.hpp"
+#include "string_utils.hpp"
 #include "structs.hpp"
 #include "sysdep.hpp"
 #include "textfiles.hpp"
@@ -51,7 +52,8 @@
 #include "weather.hpp"
 
 #include <algorithm>
-#include <math.h>
+#include <cmath>
+#include <fstream>
 #include <sys/stat.h>
 
 void init_clans(void);
@@ -66,11 +68,6 @@ void setup_drinkcon(ObjData *obj, int newliq);
 /***************************************************************************
  *  declarations of most of the 'global' variables                         *
  ***************************************************************************/
-char buf[MAX_STRING_LENGTH];
-char buf1[MAX_STRING_LENGTH];
-char buf2[MAX_STRING_LENGTH];
-char arg[MAX_STRING_LENGTH];
-
 RoomData *world = nullptr;                  /* array of rooms                 */
 int top_of_world = 0;                       /* ref to top element of world         */
 RoomEffectNode *room_effect_list = nullptr; /* list of room effects */
@@ -130,8 +127,8 @@ void discrete_load(FILE *fl, int mode);
 void parse_trigger(FILE *fl, int virtual_nr);
 void parse_room(FILE *fl, int virtual_nr);
 void parse_mobile(FILE *mob_f, int nr);
-char *parse_object(FILE *obj_f, int nr);
-void load_zones(FILE *fl, char *zonename);
+std::string_view parse_object(FILE *obj_f, int nr);
+void load_zones(FILE *fl, std::string_view zonename);
 void load_help(FILE *fl);
 void assign_mobiles(void);
 void assign_objects(void);
@@ -139,12 +136,12 @@ void assign_rooms(void);
 void assign_the_shopkeepers(void);
 int is_empty(int zone_nr);
 void reset_zone(int zone, byte pop);
-int file_to_string(const char *name, char *buf);
-int file_to_string_alloc(const char *name, char **buf);
+int file_to_string(const std::string_view name, std::string_view buf);
+int file_to_string_alloc(const std::string_view name, std::string_view buf);
 void check_start_rooms(void);
 void renum_world(void);
 void renum_zone_table(void);
-void log_zone_error(int zone, int cmd_no, const char *message);
+void log_zone_error(int zone, int cmd_no, const std::string_view message);
 void reset_time(void);
 void clear_char(CharData *ch);
 long get_set_exp(int level, int race, int class_num, int zone);
@@ -158,9 +155,9 @@ void sort_commands(void);
 void sort_spells(void);
 void load_banned(void);
 void Read_Xname_List(void);
-void boot_the_shops(FILE *shop_f, char *filename, int rec_count);
+void boot_the_shops(FILE *shop_f, std::string_view filename, int rec_count);
 int hsort(const void *a, const void *b);
-void boot_the_shops(FILE *shop_f, char *filename, int rec_count);
+void boot_the_shops(FILE *shop_f, std::string_view filename, int rec_count);
 void build_count(void);
 void load_stat_bonus(void);
 void clear_memory(CharData *ch);
@@ -416,7 +413,7 @@ int get_copper(int i)
         return 0;
 
     /*copper calculations */
-    copper = (random_number(1, 150)) * mob_proto[i].player.level;
+    copper = (random_number(1, 150))*mob_proto[i].player.level;
     sfactor = (int)((sfactor + cfactor + zfactor) / 3);
 
     copper = (int)((float)((sfactor / 100.0) * copper));
@@ -454,16 +451,15 @@ int get_ac(int level, int race, int class_num)
 */
 void boot_spell_dams() {
     int i;
-    FILE *ifptr;
-    char line[256];
-    const char *err = "Spell Dam";
-    if ((ifptr = fopen(SPELL_DAM_FILE, "r")) == nullptr) {
+    std::ifstream ifptr(SPELL_DAM_FILE);
+    if (!ifptr.is_open()) {
         log("No spells dam file it should be at lib/misc/spell_dam.");
         exit(1);
     } else {
-        get_line(ifptr, line);
-        get_line(ifptr, line);
-        get_line(ifptr, line);
+        std::string line;
+        std::getline(ifptr, line);
+        std::getline(ifptr, line);
+        std::getline(ifptr, line);
         /*
               log(line);
               get_line(ifptr, line);
@@ -471,12 +467,12 @@ void boot_spell_dams() {
               get_line(ifptr, line);
               log(line);
         */
-        if (strcasecmp(line, "spell_dam")) {
+        if (!matches(line, "spell_dam")) {
             log("Error in booting spell dams");
             /* return;
 	     */ }
             for (i = 1; i <= MAX_SPELLS; i++) {
-                get_line(ifptr, line);
+                std::getline(ifptr, line);
                 sscanf(line, "%hd %hd %hd %hd %hd %hd %hd %hd %hd %hd %hd %hd", &SD_SPELL(i), &SD_INTERN_DAM(i),
                        &SD_NPC_STATIC(i), &SD_NPC_NO_DICE(i), &SD_NPC_NO_FACE(i), &SD_PC_STATIC(i), &SD_PC_NO_DICE(i),
                        &SD_PC_NO_FACE(i), &SD_NPC_REDUCE_FACTOR(i), &SD_USE_BONUS(i), &SD_BONUS(i), &SD_LVL_MULT(i));
@@ -485,7 +481,7 @@ void boot_spell_dams() {
 
                 SD_NOTE(i) = fread_string(ifptr, err);
             }
-            fclose(ifptr);
+            ifptr.close();
     }
 }
 
@@ -557,7 +553,7 @@ void boot_db(void) {
 
     log("   Skills.");
     init_skills();
-	
+
     log("Assigning skills and spells to classes.");
     assign_class_skills();
 
@@ -631,31 +627,15 @@ void boot_db(void) {
     log("Boot db -- DONE.");
 }
 
-void free_extra_descriptions(ExtraDescriptionData *edesc) {
-    ExtraDescriptionData *enext;
-
-    for (; edesc; edesc = enext) {
-        enext = edesc->next;
-
-        if (edesc->keyword)
-            free(edesc->keyword);
-        if (edesc->description)
-            free(edesc->description);
-        free(edesc);
-    }
-}
-
 void copy_extra_descriptions(ExtraDescriptionData **to, ExtraDescriptionData *from) {
     ExtraDescriptionData *wpos;
 
-    CREATE(*to, ExtraDescriptionData, 1);
+    *to = std::make_unique<ExtraDescriptionData>().release();
     wpos = *to;
 
     for (; from; from = from->next, wpos = wpos->next) {
-        if (from->keyword)
-            wpos->keyword = strdup(from->keyword);
-        if (from->description)
-            wpos->description = strdup(from->description);
+        wpos->keyword = from->keyword;
+        wpos->description = from->description;
         if (from->next)
             CREATE(wpos->next, ExtraDescriptionData, 1);
     }
@@ -689,12 +669,6 @@ void destroy_db(void) {
 
     /* Rooms */
     for (cnt = 0; cnt <= top_of_world; cnt++) {
-        if (world[cnt].name)
-            free(world[cnt].name);
-        if (world[cnt].description)
-            free(world[cnt].description);
-        free_extra_descriptions(world[cnt].ex_description);
-
         /* free any assigned scripts */
         if (SCRIPT(&world[cnt])) {
             extract_script(SCRIPT(&world[cnt]));
@@ -707,10 +681,6 @@ void destroy_db(void) {
             if (!world[cnt].exits[itr])
                 continue;
 
-            if (world[cnt].exits[itr]->general_description)
-                free(world[cnt].exits[itr]->general_description);
-            if (world[cnt].exits[itr]->keyword)
-                free(world[cnt].exits[itr]->keyword);
             free(world[cnt].exits[itr]);
         }
     }
@@ -719,16 +689,6 @@ void destroy_db(void) {
 
     /* Objects */
     for (cnt = 0; cnt <= top_of_objt; cnt++) {
-        if (obj_proto[cnt].name)
-            free(obj_proto[cnt].name);
-        if (obj_proto[cnt].description)
-            free(obj_proto[cnt].description);
-        if (obj_proto[cnt].short_description)
-            free(obj_proto[cnt].short_description);
-        if (obj_proto[cnt].action_description)
-            free(obj_proto[cnt].action_description);
-        free_extra_descriptions(obj_proto[cnt].ex_description);
-
         /* free script proto list */
         free_proto_script(&obj_proto[cnt].proto_script);
     }
@@ -737,17 +697,6 @@ void destroy_db(void) {
 
     /* Mobiles */
     for (cnt = 0; cnt <= top_of_mobt; cnt++) {
-        if (mob_proto[cnt].player.namelist)
-            free(mob_proto[cnt].player.namelist);
-        if (mob_proto[cnt].player.title)
-            free(mob_proto[cnt].player.title);
-        if (mob_proto[cnt].player.short_descr)
-            free(mob_proto[cnt].player.short_descr);
-        if (mob_proto[cnt].player.long_descr)
-            free(mob_proto[cnt].player.long_descr);
-        if (mob_proto[cnt].player.description)
-            free(mob_proto[cnt].player.description);
-
         /* free script proto list */
         free_proto_script(&mob_proto[cnt].proto_script);
 
@@ -764,8 +713,6 @@ void destroy_db(void) {
 #define THIS_CMD zone_table[cnt].cmd[itr]
 
     for (cnt = 0; cnt <= top_of_zone_table; cnt++) {
-        if (zone_table[cnt].name)
-            free(zone_table[cnt].name);
         if (zone_table[cnt].cmd) {
             /* then free the command list */
             free(zone_table[cnt].cmd);
@@ -795,8 +742,6 @@ void destroy_db(void) {
                 i = trig_index[cnt]->proto->cmdlist;
                 while (i) {
                     j = i->next;
-                    if (i->cmd)
-                        free(i->cmd);
                     free(i);
                     i = j;
                 }
@@ -897,8 +842,8 @@ int count_hash_records(FILE *fl) {
 }
 
 void index_boot(int mode) {
-    const char *index_filename, *prefix;
-    FILE *index, *db_file;
+    std::string index_filename, prefix;
+    std::ifstream index, db_file;
     int rec_count = 0;
 
     switch (mode) {
@@ -931,20 +876,22 @@ void index_boot(int mode) {
 
     index_filename = INDEX_FILE;
 
-    sprintf(buf2, "%s/%s", prefix, index_filename);
+    std::string buf2 = fmt::format("{}/{}", prefix, index_filename);
 
-    if (!(index = fopen(buf2, "r"))) {
-        sprintf(buf1, "Error opening index file '%s'", buf2);
-        perror(buf1);
+    index.open(buf2);
+    if (!index.is_open()) {
+        std::string buf1 = fmt::format("Error opening index file '{}'", buf2);
+        perror(buf1.c_str());
         exit(1);
     }
 
     /* first, count the number of records in the file so we can malloc */
-    fscanf(index, "%s\n", buf1);
-    while (*buf1 != '$') {
-        sprintf(buf2, "%s/%s", prefix, buf1);
-        if (!(db_file = fopen(buf2, "r"))) {
-            perror(buf2);
+    std::string buf1;
+    while (std::getline(index, buf1) && buf1 != "$") {
+        buf2 = fmt::format("{}/{}", prefix, buf1);
+        db_file.open(buf2);
+        if (!db_file.is_open()) {
+            perror(buf2.c_str());
             log("file listed in index not found");
             exit(1);
         } else {
@@ -953,9 +900,7 @@ void index_boot(int mode) {
             else
                 rec_count += count_hash_records(db_file);
         }
-
-        fclose(db_file);
-        fscanf(index, "%s\n", buf1);
+        db_file.close();
     }
 
     /* Exit if 0 records, unless this is shops */
@@ -970,33 +915,34 @@ void index_boot(int mode) {
 
     switch (mode) {
     case DB_BOOT_TRG:
-        CREATE(trig_index, IndexData *, rec_count);
+        trig_index = std::make_unique<IndexData *[]>(rec_count);
         break;
     case DB_BOOT_WLD:
-        CREATE(world, RoomData, rec_count);
+        world = new RoomData[rec_count];
         break;
     case DB_BOOT_MOB:
-        CREATE(mob_proto, CharData, rec_count);
-        CREATE(mob_index, IndexData, rec_count);
+        mob_proto = new CharData[rec_count];
+        mob_index = new IndexData[rec_count];
         break;
     case DB_BOOT_OBJ:
-        CREATE(obj_proto, ObjData, rec_count);
-        CREATE(obj_index, IndexData, rec_count);
+        obj_proto = new ObjData[rec_count];
+        obj_index = new IndexData[rec_count];
         break;
     case DB_BOOT_ZON:
-        CREATE(zone_table, ZoneData, rec_count);
+        zone_table = new ZoneData[rec_count];
         break;
     case DB_BOOT_HLP:
-        CREATE(help_table, HelpIndexElement, rec_count * 2);
+        help_table = new HelpIndexElement[rec_count * 2];
         break;
     }
 
-    rewind(index);
-    fscanf(index, "%s\n", buf1);
-    while (*buf1 != '$') {
-        sprintf(buf2, "%s/%s", prefix, buf1);
-        if (!(db_file = fopen(buf2, "r"))) {
-            perror(buf2);
+    index.clear();
+    index.seekg(0, std::ios::beg);
+    while (std::getline(index, buf1) && buf1 != "$") {
+        buf2 = fmt::format("{}/{}", prefix, buf1);
+        db_file.open(buf2);
+        if (!db_file.is_open()) {
+            perror(buf2.c_str());
             exit(1);
         }
         switch (mode) {
@@ -1016,9 +962,7 @@ void index_boot(int mode) {
             boot_the_shops(db_file, buf2, rec_count);
             break;
         }
-
-        fclose(db_file);
-        fscanf(index, "%s\n", buf1);
+        db_file.close();
     }
 
     /* sort the help index */
@@ -1033,7 +977,7 @@ int tmp_debug = 0;
 void discrete_load(FILE *fl, int mode) {
     int nr = -1, last = 0;
     char line[256];
-    const char *modes[] = {"world", "mob", "obj", "ZON", "SHP", "HLP", "trg"};
+    const std::string_view modes[] = {"world", "mob", "obj", "ZON", "SHP", "HLP", "trg"};
     for (;;) {
         /*
          * we have to do special processing with the obj files because they have
@@ -1082,9 +1026,9 @@ void discrete_load(FILE *fl, int mode) {
     }
 }
 
-long asciiflag_conv(char *flag) {
+long asciiflag_conv(std::string_view flag) {
     long flags = 0;
-    char *p;
+    std::string_view p;
 
     if (is_integer(flag))
         flags = atol(flag);
@@ -1160,7 +1104,7 @@ void parse_room(FILE *fl, int virtual_nr) {
             setup_dir(fl, room_nr, atoi(line + 1));
             break;
         case 'E':
-            CREATE(new_descr, ExtraDescriptionData, 1);
+            new_descr = std::make_unique<ExtraDescriptionData>().release();
             new_descr->keyword = fread_string(fl, buf2);
             new_descr->description = fread_string(fl, buf2);
             new_descr->next = world[room_nr].ex_description;
@@ -1226,15 +1170,18 @@ void setup_dir(FILE *fl, int room, int dir) {
 /* make sure the start rooms exist & resolve their vnums to rnums */
 void check_start_rooms(void) {
 
-    if ((r_mortal_start_room = real_room(mortal_start_room)) < 0) {
+    r_mortal_start_room = real_room(mortal_start_room);
+    if (r_mortal_start_room < 0) {
         log("SYSERR:  Mortal start room does not exist.  Change in config.c.");
         exit(1);
     }
-    if ((r_immort_start_room = real_room(immort_start_room)) < 0) {
+    r_immort_start_room = real_room(immort_start_room);
+    if (r_immort_start_room < 0) {
         log("SYSERR:  Warning: Immort start room does not exist.  Change in config.c.");
         r_immort_start_room = r_mortal_start_room;
     }
-    if ((r_frozen_start_room = real_room(frozen_start_room)) < 0) {
+    r_frozen_start_room = real_room(frozen_start_room);
+    if (r_frozen_start_room < 0) {
         log("SYSERR:  Warning: Frozen start room does not exist.  Change in config.c.");
         r_frozen_start_room = r_mortal_start_room;
     }
@@ -1484,66 +1431,95 @@ void parse_simple_mob(FILE *mob_f, int i, int nr) {
  * function!  No other changes need to be made anywhere in the code.
  */
 
-#define CASE(test) if (!matched && !strcasecmp(keyword, test) && (matched = 1))
+#define CASE(test) if (!matched && matches(keyword, test) && (matched = 1))
 /* modified for the 100 attrib scale */
-void interpret_espec(char *keyword, char *value, int i, int nr) {
+void interpret_espec(std::string_view keyword, std::string_view value, int i, int nr) {
     int num_arg, matched = 0;
 
     num_arg = atoi(value);
 
-    CASE("BareHandAttack") {
+    if (!matched && matches(keyword, "BareHandAttack")) {
+        matched = 1;
         num_arg = std::clamp(num_arg, 0, 99);
         mob_proto[i].mob_specials.attack_type = num_arg;
     }
 
-    CASE("Str") {
+    if (!matched && matches(keyword, "Str")) {
+        matched = 1;
         num_arg = std::clamp(num_arg, 30, 100);
         mob_proto[i].natural_abils.str = num_arg;
     }
 
-    CASE("Int") {
+    if (!matched && matches(keyword, "Int")) {
+        matched = 1;
         num_arg = std::clamp(num_arg, 30, 100);
         mob_proto[i].natural_abils.intel = num_arg;
     }
 
-    CASE("Wis") {
+    if (!matched && matches(keyword, "Wis")) {
+        matched = 1;
         num_arg = std::clamp(num_arg, 30, 100);
         mob_proto[i].natural_abils.wis = num_arg;
     }
 
-    CASE("Dex") {
+    if (!matched && matches(keyword, "Dex")) {
+        matched = 1;
         num_arg = std::clamp(num_arg, 30, 100);
         mob_proto[i].natural_abils.dex = num_arg;
     }
 
-    CASE("Con") {
+    if (!matched && matches(keyword, "Con")) {
+        matched = 1;
         num_arg = std::clamp(num_arg, 30, 100);
         mob_proto[i].natural_abils.con = num_arg;
     }
 
-    CASE("Cha") {
+    if (!matched && matches(keyword, "Cha")) {
+        matched = 1;
         num_arg = std::clamp(num_arg, 30, 100);
         mob_proto[i].natural_abils.cha = num_arg;
     }
 
-    CASE("AFF2") { EFF_FLAGS(mob_proto + i)[1] = num_arg; }
+    if (!matched && matches(keyword, "AFF2")) {
+        matched = 1;
+        EFF_FLAGS(mob_proto + i)[1] = num_arg;
+    }
 
-    CASE("AFF3") { EFF_FLAGS(mob_proto + i)[2] = num_arg; }
+    if (!matched && matches(keyword, "AFF3")) {
+        matched = 1;
+        EFF_FLAGS(mob_proto + i)[2] = num_arg;
+    }
 
-    CASE("MOB2") { MOB_FLAGS(mob_proto + i)[1] = num_arg; }
+    if (!matched && matches(keyword, "MOB2")) {
+        matched = 1;
+        MOB_FLAGS(mob_proto + i)[1] = num_arg;
+    }
 
-    CASE("PERC") { GET_PERCEPTION(mob_proto + i) = num_arg; }
+    if (!matched && matches(keyword, "PERC")) {
+        matched = 1;
+        GET_PERCEPTION(mob_proto + i) = num_arg;
+    }
 
-    CASE("HIDE") { GET_HIDDENNESS(mob_proto + i) = num_arg; }
+    if (!matched && matches(keyword, "HIDE")) {
+        matched = 1;
+        GET_HIDDENNESS(mob_proto + i) = num_arg;
+    }
 
-    CASE("Lifeforce") { GET_LIFEFORCE(mob_proto + i) = num_arg; }
+    if (!matched && matches(keyword, "Lifeforce")) {
+        matched = 1;
+        GET_LIFEFORCE(mob_proto + i) = num_arg;
+    }
 
-    CASE("Composition") {
+    if (!matched && matches(keyword, "Composition")) {
+        matched = 1;
         BASE_COMPOSITION(mob_proto + i) = num_arg;
         GET_COMPOSITION(mob_proto + i) = num_arg;
     }
 
-    CASE("Stance") { GET_STANCE(mob_proto + i) = num_arg; }
+    if (!matched && matches(keyword, "Stance")) {
+        matched = 1;
+        GET_STANCE(mob_proto + i) = num_arg;
+    }
 
     if (!matched) {
         fprintf(stderr, "Warning: unrecognized espec keyword %s in mob #%d\n", keyword, nr);
@@ -1553,15 +1529,16 @@ void interpret_espec(char *keyword, char *value, int i, int nr) {
 #undef CASE
 #undef RANGE
 
-void parse_espec(char *buf, int i, int nr) {
-    char *ptr;
+void parse_espec(std::string_view buf, int i, int nr) {
+    std::string_view ptr;
 
-    if ((ptr = strchr(buf, ':')) != nullptr) {
+    if (auto pos = buf.find(':'); pos != std::string_view::npos) {
+        ptr = buf.substr(pos + 1);
         *(ptr++) = '\0';
         while (isspace(*ptr))
             ptr++;
     } else
-        ptr = strdup("");
+        ptr = "";
 
     interpret_espec(buf, ptr, i, nr);
 }
@@ -1572,7 +1549,7 @@ void parse_enhanced_mob(FILE *mob_f, int i, int nr) {
     parse_simple_mob(mob_f, i, nr);
 
     while (get_line(mob_f, line)) {
-        if (!strcasecmp(line, "E")) /* end of the ehanced section */
+        if (matches(line, "E")) /* end of the ehanced section */
             return;
         else if (*line == '#') { /* we've hit the next mob, maybe? */
             fprintf(stderr, "Unterminated E section in mob #%d\n", nr);
@@ -1600,14 +1577,14 @@ void parse_mobile(FILE *mob_f, int nr) {
 
     /***** String data *** */
     mob_proto[i].player.namelist = fread_string(mob_f, buf2);
-    tmpptr = mob_proto[i].player.short_descr = fread_string(mob_f, buf2);
-    if (tmpptr && *tmpptr)
-        if (!strcasecmp(fname(tmpptr), "a") || !strcasecmp(fname(tmpptr), "an") || !strcasecmp(fname(tmpptr), "the"))
-            *tmpptr = LOWER(*tmpptr);
+    mob_proto[i].player.short_descr = fread_string(mob_f, buf2);
+    if (!mob_proto[i].player.short_descr.empty()) {
+        if (string_in_list(fname(mob_proto[i].player.short_descr), {"a", "an", "the"})) {
+            mob_proto[i].player.short_descr[0] = std::tolower(mob_proto[i].player.short_descr[0]);
+        }
+    }
     mob_proto[i].player.long_descr = fread_string(mob_f, buf2);
     mob_proto[i].player.description = fread_string(mob_f, buf2);
-    mob_proto[i].player.title = nullptr;
-    mob_proto[i].player.prompt = nullptr;
 
     /* *** Numeric data *** */
     mob_proto[i].mob_specials.nr = i;
@@ -1681,7 +1658,7 @@ void verify_obj_spell(ObjData *obj, int valnum, bool zero_ok) {
 
 /* Do some post-definition processing on certain object types */
 void init_obj_proto(ObjData *obj) {
-    char *s;
+    std::string_view s;
     ExtraDescriptionData *ed;
 
     switch (GET_OBJ_TYPE(obj)) {
@@ -1693,23 +1670,15 @@ void init_obj_proto(ObjData *obj) {
     case ITEM_FOOD:
         /* Ensure that all food items have keyword "food". */
         if (!isname("food", obj->name)) {
-            /* Prepare the new aliases string */
-            /* length + "food" + space + terminator */
-            s = (char *)malloc(strlen(obj->name) + 4 + 1 + 1);
-            sprintf(s, "%s food", obj->name);
+            obj->name = fmt::format("{} food", obj->name);
 
             /* If there is an extra description whose keywords exactly
              * match the object's aliases, give it "food" as well. */
             for (ed = obj->ex_description; ed; ed = ed->next)
-                if (!strcasecmp(ed->keyword, obj->name)) {
-                    free(ed->keyword);
-                    ed->keyword = (char *)malloc(strlen(s) + 1);
-                    strcpy(ed->keyword, s);
+                if (ed->keyword == obj->name) {
+                    ed->keyword = obj->name;
                     break;
                 }
-
-            free(obj->name);
-            obj->name = s;
         }
         break;
     case ITEM_KEY:
@@ -1740,11 +1709,11 @@ void init_obj_proto(ObjData *obj) {
 }
 
 /* read all objects from obj file; generate index and prototypes */
-char *parse_object(FILE *obj_f, int nr) {
+std::string_view parse_object(std::ifstream &obj_f, int nr) {
     static int i = 0, retval;
     static char line[256];
     int t[10], j;
-    char *tmpptr;
+    std::string_view tmpptr;
     char f1[256], f2[256];
     ExtraDescriptionData *new_descr, *edx;
 
@@ -1759,154 +1728,173 @@ char *parse_object(FILE *obj_f, int nr) {
     sprintf(buf2, "object #%d", nr);
 
     /* *** string data *** */
-    if ((obj_proto[i].name = fread_string(obj_f, buf2)) == nullptr) {
+    obj_proto[i].name = fread_string(obj_f, buf2);
+    if (obj_proto[i].name.empty()) {
         fprintf(stderr, "Null obj name or format error at or near %s\n", buf2);
         exit(1);
     }
-    tmpptr = obj_proto[i].short_description = fread_string(obj_f, buf2);
-    if (*tmpptr)
-        if (!strcasecmp(fname(tmpptr), "a") || !strcasecmp(fname(tmpptr), "an") || !strcasecmp(fname(tmpptr), "the"))
-            *tmpptr = LOWER(*tmpptr);
+    obj_proto[i].short_description = fread_string(obj_f, buf2);
+    if (!obj_proto[i].short_description.empty())
+        if (string_in_list(fname(obj_proto[i].short_description), {"a", "an", "the"}))
+            obj_proto[i].short_description[0] = std::tolower(obj_proto[i].short_description[0]);
 
-    tmpptr = obj_proto[i].description = fread_string(obj_f, buf2);
-    if (tmpptr && *tmpptr)
-        *tmpptr = UPPER(*tmpptr);
+    obj_proto[i].description = fread_string(obj_f, buf2);
+    if (!obj_proto[i].description.empty())
+        obj_proto[i].description[0] = std::toupper(obj_proto[i].description[0]);
     obj_proto[i].action_description = fread_string(obj_f, buf2);
 
     /* *** numeric data *** */
-    if (!get_line(obj_f, line) || (retval = sscanf(line, " %d %s %s %d", t, f1, f2, t + 1)) != 4) {
+    if (!std::getline(obj_f, line) ||
+        (retval = sscanf(line.c_str(), " %d %255s %255s %d", &t[0], f1, f2, &t[1])) != 4) {
         if (retval == 3) {
-            sscanf(line, " %d %s %s", t, f1, f2);
+            sscanf(line.c_str(), " %d %s %s", t, f1, f2);
             t[1] = 0;
             fprintf(stderr, "Object #%d needs a level assigned to it.\n", nr);
         } else {
             fprintf(stderr, "Format error in first numeric line (expecting 4 args, got %d), %s\n", retval, buf2);
-            /* exit(1); */
         }
     }
-    obj_proto[i].obj_flags.type_flag = t[0];
-    obj_proto[i].obj_flags.extra_flags[0] = asciiflag_conv(f1);
-    obj_proto[i].obj_flags.wear_flags = asciiflag_conv(f2);
-    obj_proto[i].obj_flags.level = t[1]; /* Zantir 3/23/01 for level based objects */
-
-    if (!get_line(obj_f, line) ||
-        (retval = sscanf(line, "%d %d %d %d %d %d %d", t, t + 1, t + 2, t + 3, t + 4, t + 5, t + 6)) != 7) {
-        fprintf(stderr, "Format error in second numeric line (expecting 7 args, got %d), %s\n", retval, buf2);
-        /*exit(1); */
+    if (retval == 3) {
+        sscanf(line, " %d %s %s", t, f1, f2);
+        t[1] = 0;
+        fprintf(stderr, "Object #%d needs a level assigned to it.\n", nr);
+    } else {
+        fprintf(stderr, "Format error in first numeric line (expecting 4 args, got %d), %s\n", retval, buf2);
+        /* exit(1); */
     }
-    obj_proto[i].obj_flags.value[0] = t[0];
-    obj_proto[i].obj_flags.value[1] = t[1];
-    obj_proto[i].obj_flags.value[2] = t[2];
-    obj_proto[i].obj_flags.value[3] = t[3];
-    obj_proto[i].obj_flags.value[4] = t[4];
-    obj_proto[i].obj_flags.value[5] = t[5];
-    obj_proto[i].obj_flags.value[6] = t[6];
+}
+obj_proto[i].obj_flags.type_flag = t[0];
+obj_proto[i].obj_flags.extra_flags[0] = asciiflag_conv(f1);
+obj_proto[i].obj_flags.wear_flags = asciiflag_conv(f2);
+obj_proto[i].obj_flags.level = t[1]; /* Zantir 3/23/01 for level based objects */
 
-    if (!get_line(obj_f, line) || (retval = sscanf(line, "%f %d %d %d %d %d %d %d", &obj_proto[i].obj_flags.weight,
-                                                   t + 1, t + 2, t + 3, t + 4, t + 5, t + 6, t + 7)) != 8) {
-        fprintf(stderr, "Format error in third numeric line (expecting 8 args, got %d), %s\n", retval, buf2);
-        /*exit(1); */
+if (!std::getline(obj_f, line) ||
+    (retval = sscanf(line.c_str(), "%d %d %d %d %d %d %d", &t[0], &t[1], &t[2], &t[3], &t[4], &t[5], &t[6])) != 7) {
+    fprintf(stderr, "Format error in second numeric line (expecting 7 args, got %d), %s\n", retval, buf2);
+}
+fprintf(stderr, "Format error in second numeric line (expecting 7 args, got %d), %s\n", retval, buf2);
+/*exit(1); */
+}
+obj_proto[i].obj_flags.value[0] = t[0];
+obj_proto[i].obj_flags.value[1] = t[1];
+obj_proto[i].obj_flags.value[2] = t[2];
+obj_proto[i].obj_flags.value[3] = t[3];
+obj_proto[i].obj_flags.value[4] = t[4];
+obj_proto[i].obj_flags.value[5] = t[5];
+obj_proto[i].obj_flags.value[6] = t[6];
+
+if (!std::getline(obj_f, line) ||
+    (retval = sscanf(line.c_str(), "%f %d %d %d %d %d %d %d", &obj_proto[i].obj_flags.weight, &t[1], &t[2], &t[3],
+                     &t[4], &t[5], &t[6], &t[7])) != 8) {
+    fprintf(stderr, "Format error in third numeric line (expecting 8 args, got %d), %s\n", retval, buf2);
+}
+fprintf(stderr, "Format error in third numeric line (expecting 8 args, got %d), %s\n", retval, buf2);
+/*exit(1); */
+}
+
+obj_proto[i].obj_flags.effective_weight = obj_proto[i].obj_flags.weight;
+obj_proto[i].obj_flags.cost = t[1];
+obj_proto[i].obj_flags.timer = t[2];
+obj_proto[i].obj_flags.effect_flags[0] = t[3];
+/*    obj_proto[i].spell_component = t[4]; */
+/*    obj_proto[i].object_limitation = t[5]; */
+obj_proto[i].obj_flags.effect_flags[1] = t[6];
+obj_proto[i].obj_flags.effect_flags[2] = t[7];
+
+/* *** extra descriptions and affect fields *** */
+
+for (j = 0; j < MAX_OBJ_APPLIES; j++) {
+    obj_proto[i].applies[j].location = APPLY_NONE;
+    obj_proto[i].applies[j].modifier = 0;
+}
+
+strcat(buf2, ", after numeric constants (expecting E/A/#xxx)");
+j = 0;
+
+while (true) {
+    if (!std::getline(obj_f, line)) {
+        fprintf(stderr, "Format error in %s\n", buf2);
+        exit(1);
     }
-
-    obj_proto[i].obj_flags.effective_weight = obj_proto[i].obj_flags.weight;
-    obj_proto[i].obj_flags.cost = t[1];
-    obj_proto[i].obj_flags.timer = t[2];
-    obj_proto[i].obj_flags.effect_flags[0] = t[3];
-    /*    obj_proto[i].spell_component = t[4]; */
-    /*    obj_proto[i].object_limitation = t[5]; */
-    obj_proto[i].obj_flags.effect_flags[1] = t[6];
-    obj_proto[i].obj_flags.effect_flags[2] = t[7];
-
-    /* *** extra descriptions and affect fields *** */
-
-    for (j = 0; j < MAX_OBJ_APPLIES; j++) {
-        obj_proto[i].applies[j].location = APPLY_NONE;
-        obj_proto[i].applies[j].modifier = 0;
-    }
-
-    strcat(buf2, ", after numeric constants (expecting E/A/#xxx)");
-    j = 0;
-
-    for (;;) {
-        if (!get_line(obj_f, line)) {
-            fprintf(stderr, "Format error in %s\n", buf2);
+    switch (*line) {
+    case 'E':
+        new_descr = std::make_unique<ExtraDescriptionData>().release();
+        new_descr->keyword = fread_string(obj_f, buf2);
+        new_descr->description = fread_string(obj_f, buf2);
+        /* Put each extra desc at the end of the list as we read them.
+         * Otherwise they will be reversed (yes, we really don't want that -
+         * see act.informative.c, show_obj_to_char(), mode 5). */
+        if (obj_proto[i].ex_description != nullptr) {
+            edx = obj_proto[i].ex_description;
+            for (; edx->next; edx = edx->next)
+                ;
+            edx->next = new_descr;
+        } else
+            obj_proto[i].ex_description = new_descr;
+        break;
+    case 'A':
+        if (j >= MAX_OBJ_APPLIES) {
+            fprintf(stderr, "Too many A fields (%d max), %s\n", MAX_OBJ_APPLIES, buf2);
             exit(1);
         }
-        switch (*line) {
-        case 'E':
-            CREATE(new_descr, ExtraDescriptionData, 1);
-            new_descr->keyword = fread_string(obj_f, buf2);
-            new_descr->description = fread_string(obj_f, buf2);
-            /* Put each extra desc at the end of the list as we read them.
-             * Otherwise they will be reversed (yes, we really don't want that -
-             * see act.informative.c, show_obj_to_char(), mode 5). */
-            if ((edx = obj_proto[i].ex_description)) {
-                for (; edx->next; edx = edx->next)
-                    ;
-                edx->next = new_descr;
-            } else
-                obj_proto[i].ex_description = new_descr;
-            break;
-        case 'A':
-            if (j >= MAX_OBJ_APPLIES) {
-                fprintf(stderr, "Too many A fields (%d max), %s\n", MAX_OBJ_APPLIES, buf2);
-                exit(1);
-            }
 
-            if (!get_line(obj_f, line) || (retval = sscanf(line, " %d %d ", t, t + 1)) != 2) {
-                fprintf(stderr, "Format error in Affect line (expecting 2 args, got %d), %s\n", retval, buf2);
-                /*exit(1); */
-            }
-            /* get_line(obj_f, line);
-               sscanf(line, " %d %d ", t, t + 1); */
-            obj_proto[i].applies[j].location = t[0];
-            obj_proto[i].applies[j].modifier = t[1];
-            j++;
-            break;
-
-        case 'H': /* Hiddenness */
-            get_line(obj_f, line);
-            sscanf(line, "%d ", t);
-            obj_proto[i].obj_flags.hiddenness = t[0];
-            break;
-        case 'T': /* DG triggers */
-            dg_obj_trigger(line, &obj_proto[i]);
-            break;
-
-        case 'X':
-            get_line(obj_f, line);
-            sscanf(line, "%d ", t);
-            obj_proto[i].obj_flags.extra_flags[1] = t[0];
-            break;
-
-        case '$':
-        case '#':
-            init_obj_proto(&obj_proto[i]);
-            top_of_objt = i++;
-            return line;
-            break;
-        default:
-            fprintf(stderr, "Format error in %s\n", buf2);
-            exit(1);
-            break;
+        if (!std::getline(obj_f, line) || (retval = sscanf(line.c_str(), " %d %d ", &t[0], &t[1])) != 2) {
+            fprintf(stderr, "Format error in Affect line (expecting 2 args, got %d), %s\n", retval, buf2);
         }
+        fprintf(stderr, "Format error in Affect line (expecting 2 args, got %d), %s\n", retval, buf2);
+        /*exit(1); */
     }
+    /* get_line(obj_f, line);
+       sscanf(line, " %d %d ", t, t + 1); */
+    obj_proto[i].applies[j].location = t[0];
+    obj_proto[i].applies[j].modifier = t[1];
+    j++;
+    break;
+
+case 'H': /* Hiddenness */
+    get_line(obj_f, line);
+    sscanf(line, "%d ", t);
+    obj_proto[i].obj_flags.hiddenness = t[0];
+    break;
+case 'T': /* DG triggers */
+    dg_obj_trigger(line, &obj_proto[i]);
+    break;
+
+case 'X':
+    get_line(obj_f, line);
+    sscanf(line, "%d ", t);
+    obj_proto[i].obj_flags.extra_flags[1] = t[0];
+    break;
+
+case '$':
+case '#':
+    init_obj_proto(&obj_proto[i]);
+    top_of_objt = i++;
+    return line;
+    break;
+default:
+    fprintf(stderr, "Format error in %s\n", buf2);
+    exit(1);
+    break;
+}
+}
 }
 
 #define Z zone_table[zone]
 
 /* load the zone table and command tables */
-void load_zones(FILE *fl, char *zonename) {
+void load_zones(std::ifstream &fl, std::string_view zonename) {
     static int zone = 0;
     int cmd_no = 0, num_of_cmds = 0, line_num = 0, tmp, error;
-    char *ptr, buf[256], zname[256];
+    std::string_view ptr, buf[256], zname[256];
 
     strcpy(zname, zonename);
 
     while (get_line(fl, buf) && buf[0] != '$')
         num_of_cmds++;
 
-    rewind(fl);
+    fl.clear();
+    fl.seekg(0, std::ios::beg);
 
     if (num_of_cmds == 0) {
         fprintf(stderr, "%s is empty!\n", zname);
@@ -1923,7 +1911,7 @@ void load_zones(FILE *fl, char *zonename) {
     sprintf(buf2, "beginning of zone #%d", Z.number);
 
     line_num += get_line(fl, buf);
-    if ((ptr = strchr(buf, '~')) != nullptr) /* take off the '~' if it's there */
+    if (auto pos = buf.find('~'); pos != std::string_view::npos) /* take off the '~' if it's there */
         *ptr = '\0';
     Z.name = strdup(buf);
 
@@ -1933,57 +1921,57 @@ void load_zones(FILE *fl, char *zonename) {
         Z.zone_factor = 100;
 
     for (;;) {
-        if ((tmp = get_line(fl, buf)) == 0) {
+        if (!get_line(fl, buf)) {
             fprintf(stderr, "Format error in %s - premature end of file\n", zname);
             exit(0);
         }
         line_num += tmp;
         ptr = buf;
-        skip_spaces(&ptr);
+        skip_spaces(ptr);
 
-        if ((ZCMD.command = *ptr) == '*')
+        if (*ptr == '*') {
+            ZCMD.command = *ptr;
             continue;
 
-        ptr++;
+            ptr++;
 
-        if (ZCMD.command == 'S' || ZCMD.command == '$') {
-            ZCMD.command = 'S';
-            break;
-        }
-        error = 0;
-        if (ZCMD.command == 'F') { /* force mobile command */
-            skip_spaces(&ptr);
-            if (*ptr) {
-                tmp = *ptr;
-                ptr++;
-                skip_spaces(&ptr);
-                ZCMD.sarg = strdup(ptr);
-            } else
-                error = 1;
-        } else if (strchr("MOEPD", ZCMD.command) == nullptr) { /* a 3-arg command */
-            if (sscanf(ptr, " %d %d %d ", &tmp, &ZCMD.arg1, &ZCMD.arg2) != 3)
-                error = 1;
-        } else {
-            if (sscanf(ptr, " %d %d %d %d ", &tmp, &ZCMD.arg1, &ZCMD.arg2, &ZCMD.arg3) != 4)
-                error = 1;
+            if (ZCMD.command == 'S' || ZCMD.command == '$') {
+                ZCMD.command = 'S';
+                break;
+            }
+            error = 0;
+            if (ZCMD.command == 'F') { /* force mobile command */
+                skip_spaces(ptr);
+                if (*ptr) {
+                    tmp = *ptr;
+                    ptr++;
+                    skip_spaces(ptr);
+                    ZCMD.sarg = strdup(ptr);
+                } else
+                    error = 1;
+            } else if (strchr("MOEPD", ZCMD.command) == nullptr) { /* a 3-arg command */
+                if (sscanf(ptr, " %d %d %d ", &tmp, &ZCMD.arg1, &ZCMD.arg2) != 3)
+                    error = 1;
+            } else {
+                if (sscanf(ptr, " %d %d %d %d ", &tmp, &ZCMD.arg1, &ZCMD.arg2, &ZCMD.arg3) != 4)
+                    error = 1;
+            }
+
+            ZCMD.if_flag = tmp;
+
+            if (error) {
+                fprintf(stderr, "Format error in %s, line %d: '%s'\n", zname, line_num, buf);
+                exit(0);
+            }
+            ZCMD.line = line_num;
+            cmd_no++;
         }
 
-        ZCMD.if_flag = tmp;
-
-        if (error) {
-            fprintf(stderr, "Format error in %s, line %d: '%s'\n", zname, line_num, buf);
-            exit(0);
-        }
-        ZCMD.line = line_num;
-        cmd_no++;
+        top_of_zone_table = zone++;
     }
-
-    top_of_zone_table = zone++;
 }
 
-#undef Z
-
-void get_one_line(FILE *fl, char *line_buf) {
+void get_one_line(FILE *fl, std::string_view line_buf) {
     *line_buf = '\0';
 
     if (fgets(line_buf, READ_SIZE, fl) == nullptr) {
@@ -2070,7 +2058,7 @@ void free_help_table(void) {
  *  procedures for resetting, both play-time and boot-time                  *
  *********************************************************************** */
 
-int vnum_zone(char *searchname, CharData *ch) {
+int vnum_zone(std::string_view searchname, CharData *ch) {
     int nr, found = 0;
 
     for (nr = 0; nr <= top_of_zone_table; nr++) {
@@ -2085,7 +2073,7 @@ int vnum_zone(char *searchname, CharData *ch) {
 CharData *create_char(void) {
     CharData *ch;
 
-    CREATE(ch, CharData, 1);
+    ch = std::make_unique<CharData>().release();
     clear_char(ch);
     ch->next = character_list;
     character_list = ch;
@@ -2132,14 +2120,15 @@ CharData *read_mobile(int nr, int type) {
     CharData *mob;
 
     if (type == VIRTUAL) {
-        if ((i = real_mobile(nr)) < 0) {
+        i = real_mobile(nr);
+        if (i < 0) {
             sprintf(buf, "Mobile (V) %d does not exist in database.", nr);
             return (0);
         }
     } else
         i = nr;
 
-    CREATE(mob, CharData, 1);
+    mob = std::make_unique<CharData>().release();
     clear_char(mob);
     *mob = mob_proto[i];
 
@@ -2157,7 +2146,7 @@ CharData *read_mobile(int nr, int type) {
 ObjData *create_obj(void) {
     ObjData *obj;
 
-    CREATE(obj, ObjData, 1);
+    obj = std::make_unique<ObjData>();
     clear_object(obj);
     obj->next = object_list;
     object_list = obj;
@@ -2177,14 +2166,15 @@ ObjData *read_object(int nr, int type) {
         return nullptr;
     }
     if (type == VIRTUAL) {
-        if ((i = real_object(nr)) < 0) {
+        i = real_object(nr);
+        if (i < 0) {
             sprintf(buf, "Object (V) %d does not exist in database.", nr);
             return nullptr;
         }
     } else
         i = nr;
 
-    CREATE(obj, ObjData, 1);
+    obj = std::make_unique<ObjData>().release();
     clear_object(obj);
     *obj = obj_proto[i];
     obj->next = object_list;
@@ -2228,7 +2218,7 @@ void zone_update(void) {
                 zone_table[i].reset_mode) {
                 /* enqueue zone */
 
-                CREATE(update_u, ResetQElement, 1);
+                update_u = std::make_unique<ResetQElement>().release();
 
                 update_u->zone_to_reset = i;
                 update_u->next = 0;
@@ -2267,7 +2257,7 @@ void zone_update(void) {
         }
 }
 
-void log_zone_error(int zone, int cmd_no, const char *message) {
+void log_zone_error(int zone, int cmd_no, const std::string_view message) {
     log(LogSeverity::Stat, LVL_GOD, "SYSERR: error in zone file: {}", message);
     log(LogSeverity::Stat, LVL_GOD, "SYSERR: ...offending cmd: '{:c}' cmd in zone #{:d}, line {:d}", ZCMD.command,
         zone_table[zone].number, ZCMD.line);
@@ -2376,7 +2366,8 @@ void reset_zone(int zone, byte pop) {
         case 'P': /* object to object */
             if (obj_index[ZCMD.arg1].number < ZCMD.arg2) {
                 obj = read_object(ZCMD.arg1, REAL);
-                if (!(obj_to = find_obj_in_world(find_by_rnum(ZCMD.arg3)))) {
+                obj_to = find_obj_in_world(find_by_rnum(ZCMD.arg3));
+                if (!obj_to) {
                     ZONE_ERROR("target obj not found");
                     extract_obj(obj);
                     break;
@@ -2397,11 +2388,9 @@ void reset_zone(int zone, byte pop) {
                 obj = read_object(ZCMD.arg1, REAL);
 
                 if (GET_LEVEL(mob) < GET_OBJ_LEVEL(obj)) {
-                    char error_buf[2048];
-                    sprintf(error_buf,
-                            "Mob %s [%d] in room %d  cannot use object "
-                            "%s [%d] because its level is to low.",
-                            GET_NAME(mob), GET_MOB_VNUM(mob), mob->in_room, obj->short_description, GET_OBJ_VNUM(obj));
+                    log(LogSeverity::Warn, 101,
+                        "MOB {} [{}] in room {} cannot use object {} [{}] because its level is to low.", GET_NAME(mob),
+                        GET_MOB_VNUM(mob), mob->in_room, obj->short_description, GET_OBJ_VNUM(obj));
                 }
 
                 obj_to_char(obj, mob);
@@ -2434,7 +2423,8 @@ void reset_zone(int zone, byte pop) {
             break;
 
         case 'R': /* rem obj from room */
-            if ((obj = find_obj_in_list(world[ZCMD.arg1].contents, find_by_rnum(ZCMD.arg2))) != nullptr) {
+            obj = find_obj_in_list(world[ZCMD.arg1].contents, find_by_rnum(ZCMD.arg2));
+            if (obj != nullptr) {
                 obj_from_room(obj);
                 extract_obj(obj);
             }
@@ -2455,7 +2445,8 @@ void reset_zone(int zone, byte pop) {
                  * door will become unsynchronized. */
 
                 /* Make sure there is an actual destination room */
-                if ((other_room = world[ZCMD.arg1].exits[ZCMD.arg2]->to_room) != NOWHERE) {
+                other_room = world[ZCMD.arg1].exits[ZCMD.arg2]->to_room;
+                if (other_room != NOWHERE) {
 
                     /* Make sure the destination room is in a different zone */
                     if (world[other_room].zone != world[ZCMD.arg1].zone) {
@@ -2556,52 +2547,44 @@ int con_aff(CharData *ch) {
  ************************************************************************/
 
 /* read and allocate space for a '~'-terminated string from a given file */
-char *fread_string(FILE *fl, const char *error) {
-    char buf[MAX_STRING_LENGTH], tmp[512], *rslt;
-    char *point;
-    int done = 0, length = 0, templength = 0;
+std::string fread_string(FILE *fl, const std::string_view error) {
+    std::string result;
+    char tmp[512];
+    bool done = false;
 
-    *buf = '\0';
-
-    do {
-        if (!fgets(tmp, 512, fl)) {
-            fprintf(stderr, "SYSERR: fread_string: format error at or near %s\n", error);
+    while (!done) {
+        if (!fgets(tmp, sizeof(tmp), fl)) {
+            fprintf(stderr, "SYSERR: fread_string: format error at or near %s\n", error.data());
             exit(1);
         }
-        /* If there is a '~', end the string; else put an "\n" over the '\n'. */
-        if ((point = strchr(tmp, '~')) != nullptr) {
+
+        // If there is a '~', end the string; else put an "\n" over the '\n'.
+        if (char *point = strchr(tmp, '~'); point != nullptr) {
             *point = '\0';
-            done = 1;
+            done = true;
         } else {
-            point = tmp + strlen(tmp) - 1;
-            *(point++) = '\n';
-            *point = '\0';
+            size_t len = strlen(tmp);
+            if (len > 0 && tmp[len - 1] == '\n') {
+                tmp[len - 1] = '\0';
+                strcat(tmp, "\n");
+            }
         }
 
-        templength = strlen(tmp);
+        result += tmp;
 
-        if (length + templength >= MAX_STRING_LENGTH) {
+        if (result.size() >= MAX_STRING_LENGTH) {
             log("SYSERR: fread_string: string too large (db.c)");
-            log(error);
+            log(error.data());
             exit(1);
-        } else {
-            strcat(buf + length, tmp);
-            length += templength;
         }
-    } while (!done);
+    }
 
     // Strip trailing newlines.
-    while (length > 0 && (buf[length - 1] == '\n' || buf[length - 1] == '\r'))
-        buf[--length] = '\0';
+    while (!result.empty() && (result.back() == '\n' || result.back() == '\r')) {
+        result.pop_back();
+    }
 
-    /* allocate space for the new string and copy it */
-    if (strlen(buf) > 0) {
-        CREATE(rslt, char, length + 1);
-        strcpy(rslt, buf);
-    } else
-        rslt = nullptr;
-
-    return rslt;
+    return result;
 }
 
 /* release memory allocated for a char struct */
@@ -2625,9 +2608,6 @@ void free_char(CharData *ch) {
     }
     ch->see_spell = nullptr;
 
-    if (ch->casting.misc)
-        free(ch->casting.misc);
-
     if (ch->player_specials != nullptr && ch->player_specials != &dummy_mob) {
         free_trophy(ch);
         free_aliases(GET_ALIASES(ch));
@@ -2636,56 +2616,12 @@ void free_char(CharData *ch) {
         if (GET_CLAN_MEMBERSHIP(ch))
             GET_CLAN_MEMBERSHIP(ch)->player = nullptr;
 
-        if (GET_WIZ_TITLE(ch))
-            free(GET_WIZ_TITLE(ch));
-        if (GET_PERM_TITLES(ch)) {
-            for (i = 0; GET_PERM_TITLES(ch)[i]; ++i)
-                free(GET_PERM_TITLES(ch)[i]);
-            free(GET_PERM_TITLES(ch));
-        }
-        if (GET_POOFIN(ch))
-            free(GET_POOFIN(ch));
-        if (GET_POOFOUT(ch))
-            free(GET_POOFOUT(ch));
-        if (GET_HOST(ch))
-            free(GET_HOST(ch));
-
         if (GET_GRANT_CACHE(ch))
             free(GET_GRANT_CACHE(ch));
         if (GET_REVOKE_CACHE(ch))
             free(GET_REVOKE_CACHE(ch));
 
         free(ch->player_specials);
-    }
-
-    if (!IS_NPC(ch) || (IS_NPC(ch) && GET_MOB_RNUM(ch) == -1)) {
-        /* if this is a player, or a non-prototyped non-player, free all */
-        if (GET_NAMELIST(ch))
-            free(GET_NAMELIST(ch));
-        if (ch->player.title)
-            free(ch->player.title);
-        if (ch->player.prompt)
-            free(ch->player.prompt);
-        if (GET_NAME(ch))
-            free(GET_NAME(ch));
-        if (GET_LDESC(ch))
-            free(GET_LDESC(ch));
-        if (ch->player.description)
-            free(ch->player.description);
-    } else if ((i = GET_MOB_RNUM(ch)) > -1) {
-        /* otherwise, free strings only if the string is not pointing at proto */
-        if (ch->player.namelist && ch->player.namelist != mob_proto[i].player.namelist)
-            free(ch->player.namelist);
-        if (ch->player.title && ch->player.title != mob_proto[i].player.title)
-            free(ch->player.title);
-        if (ch->player.prompt && ch->player.prompt != mob_proto[i].player.prompt)
-            free(ch->player.prompt);
-        if (ch->player.short_descr && ch->player.short_descr != mob_proto[i].player.short_descr)
-            free(ch->player.short_descr);
-        if (GET_LDESC(ch) && GET_LDESC(ch) != mob_proto[i].player.long_descr)
-            free(GET_LDESC(ch));
-        if (ch->player.description && ch->player.description != mob_proto[i].player.description)
-            free(ch->player.description);
     }
 
     if (IS_NPC(ch))
@@ -2731,10 +2667,10 @@ void free_obj(ObjData *obj) {
 }
 
 /* read contents of a text file, alloc space, point buf to it */
-int file_to_string_alloc(const char *name, char **buf) {
+int file_to_string_alloc(const std::string_view name, std::string_view buf) {
     char temp[MAX_STRING_LENGTH];
 
-    if (*buf)
+    if (!buf.empty())
         free(*buf);
 
     if (file_to_string(name, temp) < 0) {
@@ -2747,42 +2683,33 @@ int file_to_string_alloc(const char *name, char **buf) {
 }
 
 /* read contents of a text file, and place in buf */
-int file_to_string(const char *name, char *buf) {
-    FILE *fl;
-    char tmp[READ_SIZE + 3];
-
-    *buf = '\0';
-
-    if (!(fl = fopen(name, "r"))) {
-        sprintf(tmp, "Error reading %s", name);
-        perror(tmp);
-        return (-1);
+int file_to_string(const std::string_view name, std::string_view buf) {
+    std::ifstream fl(std::string(name));
+    if (!fl.is_open()) {
+        fmt::print(stderr, "Error reading {}\n", name);
+        return -1;
     }
-    /*  Rewritten to truncate text files read in as opposed to overflowing
-     *  and crashing the mud.  Typed by Zzur, told to type by Gurlaek
-     *  10/4/99
-     */
-    while (fgets(tmp, READ_SIZE, fl)) {
-        tmp[strlen(tmp) - 1] = '\0';
-        strcat(tmp, "\n");
-        if (strlen(buf) + strlen(tmp) + 1 > MAX_STRING_LENGTH) {
-            fclose(fl);
+    std::string line;
+    while (std::getline(fl, line)) {
+        line += "\n";
+        if (buf.size() + line.size() + 1 > MAX_STRING_LENGTH) {
+            fl.close();
             return 0;
         }
         strcat(buf, tmp);
     }
-    fclose(fl);
+    fl.close();
     return (0);
 }
 
 /* Get the unix timestamp of the last file write. */
-time_t file_last_update(const char *name) {
+time_t file_last_update(const std::string_view name) {
     struct stat attr;
     stat(name, &attr);
     return attr.st_mtim.tv_sec;
 }
 
-/* clear some of the the working variables of a char */
+/* clear some of the the working variables of a std::string_view */
 void reset_char(CharData *ch) {
     int i;
 
@@ -3002,9 +2929,9 @@ void fread_to_eol(FILE *fp) {
 /*
  * Read one word (into static buffer).
  */
-char *fread_word(FILE *fp) {
+std::string_view fread_word(FILE *fp) {
     static char word[MAX_INPUT_LENGTH];
-    char *pword;
+    std::string_view pword;
     char cEnd;
 
     do {
@@ -3031,7 +2958,7 @@ char *fread_word(FILE *fp) {
 
     log("SYSERR: Fread_word: word too long.");
     exit(1);
-    return nullptr;
+    return {};
 }
 
 IndexData *get_obj_index(int vnum) {
@@ -3052,33 +2979,29 @@ IndexData *get_mob_index(int vnum) {
     return nullptr;
 }
 
-bool _parse_name(char *arg, char *name) {
-    int i;
-    char test[32];
-    const char *smart_ass[] = {"someone", "somebody", "me",   "self",      "all",   "group", "local", "them",
-                               "they",    "nobody",   "any",  "something", "other", "no",    "yes",   "north",
-                               "east",    "south",    "west", "up",        "down",  "shape", /* infra.. */
-                               "shadow",                                                     /* summon */
-                               "\n"};
+std::string _parse_name(std::string_view arg) {
+    const std::array<std::string_view, 22> smart_ass = {
+        "someone", "somebody", "me",  "self",  "all",  "group", "local", "them", "they", "nobody", "any",   "something",
+        "other",   "no",       "yes", "north", "east", "south", "west",  "up",   "down", "shape",  "shadow"};
 
-    test[0] = 0;
-    for (i = 0; (*name = *arg); arg++, i++, name++) {
-        *(test + i) = LOWER(*arg);
-        if ((*arg < 0) || !isalpha(*arg) || (i > 15) || (i && (*(test + i) != *arg)))
-            return (true);
+    std::string name;
+
+    for (char ch : arg) {
+        if (!isalpha(ch) || name.size() > 15) {
+            return {};
+        }
+        name.push_back(std::tolower(ch));
     }
 
-    if (i < 2)
-        return (true);
+    if (name.size() < 2) {
+        return {};
+    }
 
-    /* We need the case-insensitive search_block since arg can have uppercase */
-    for (i = 0; *cmd_info[i].command != '\n'; ++i)
-        if (!strcasecmp(arg, cmd_info[i].command))
-            return true;
-    if (search_block(arg, smart_ass, true) >= 0)
-        return true;
+    if (std::any_of(smart_ass.begin(), smart_ass.end(), [&](const std::string_view &s) { return s == name; })) {
+        return {};
+    }
 
-    return false;
+    return name;
 }
 
 /*
@@ -3086,35 +3009,22 @@ bool _parse_name(char *arg, char *name) {
  */
 
 /* Separate a 126-character id tag from the data it precedes */
-void tag_argument(char *argument, char *tag) {
-    char *tmp = argument, *ttag = tag, *wrt = argument;
-    int i;
+void tag_argument(std::string_view argument, std::string_view tag) {
+    auto tmp = argument.begin();
+    auto ttag = tag.begin();
+    auto wrt = argument.begin();
 
-    for (i = 0; i < 126 && *tmp && *tmp != ' ' && *tmp != ':'; i++)
-        *(ttag++) = *(tmp++);
-    *ttag = '\0';
-    while (*tmp == ':' || *tmp == ' ')
-        tmp++;
-
-    while (*tmp)
-        *(wrt++) = *(tmp++);
-    *wrt = '\0';
-}
-
-/* remove ^M's from file output */
-/* There is a *similar* function in Oasis, but it has a bug. */
-void kill_ems(char *str) {
-    char *ptr1, *ptr2;
-
-    ptr1 = str;
-    ptr2 = str;
-
-    while (*ptr1) {
-        if (*ptr1 == '\r')
-            ptr1++;
-        else {
-            *(ptr2++) = *(ptr1++);
-        }
+    for (int i = 0; i < 126 && tmp != argument.end() && *tmp != ' ' && *tmp != ':'; ++i, ++tmp, ++ttag) {
+        *ttag = *tmp;
     }
-    *ptr2 = '\0';
+    *ttag = '\0';
+
+    while (tmp != argument.end() && (*tmp == ':' || *tmp == ' ')) {
+        ++tmp;
+    }
+
+    while (tmp != argument.end()) {
+        *wrt++ = *tmp++;
+    }
+    *wrt = '\0';
 }

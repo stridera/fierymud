@@ -42,10 +42,10 @@
  * each compdef in the future.  At the same time, having an array
  * of structs will allow parse_composition() to simply call parse_obj_name(). */
 struct CompositionDef {
-    const char *name;
-    const char *massnoun;
-    const char *adjective;
-    const char *color;
+    const std::string_view name;
+    const std::string_view massnoun;
+    const std::string_view adjective;
+    const std::string_view color;
     int default_dtype;
     /* Helps determine whether physical attacks will "pass through" or "bounce
      * off". Also whether you leave a corpse behind. */
@@ -63,7 +63,7 @@ struct CompositionDef {
 };
 extern struct CompositionDef compositions[NUM_COMPOSITIONS];
 
-int parse_composition(CharData *ch, char *arg);
+int parse_composition(CharData *ch, std::string_view arg);
 void set_base_composition(CharData *ch, int newcomposition);
 void convert_composition(CharData *ch, int newcomposition);
 void list_olc_compositions(CharData *ch);

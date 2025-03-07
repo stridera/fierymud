@@ -63,8 +63,8 @@ CharData *combat_list = nullptr; /* head of l-list of fighting chars */
 CharData *next_combat_list = nullptr;
 
 /* External procedures */
-char *fread_action(FILE *fl, int nr);
-char *fread_string(FILE *fl, char *error);
+std::string_view fread_action(FILE *fl, int nr);
+std::string_view fread_string(FILE *fl, std::string_view error);
 void decrease_modifier(CharData *i, int spell);
 void check_new_surroundings(CharData *ch, bool old_room_was_dark, bool tx_obvious);
 bool in_memory(CharData *ch, CharData *tch);
@@ -429,8 +429,8 @@ bool area_attack_target(CharData *ch, CharData *tch) {
     return true;
 }
 
-char *fread_message(FILE *fl, int nr) {
-    char *action = fread_action(fl, nr);
+std::string_view fread_message(FILE *fl, int nr) {
+    std::string_view action = fread_action(fl, nr);
     if (action)
         return action;
     sprintf(buf, "ERROR!   Message #%d missing.", nr);
@@ -643,14 +643,9 @@ ObjData *make_corpse(CharData *ch, CharData *killer) {
 
     corpse->item_number = NOTHING;
     corpse->in_room = NOWHERE;
-    sprintf(buf2, "corpse %s", strip_ansi((ch)->player.namelist).c_str());
-    corpse->name = strdup(buf2);
-
-    sprintf(buf2, "&0The corpse of %s&0 is lying here.", GET_NAME(ch));
-    corpse->description = strdup(buf2);
-
-    sprintf(buf2, "the corpse of %s", GET_NAME(ch));
-    corpse->short_description = strdup(buf2);
+    corpse->name = fmt::format("corpse {}", GET_NAME(ch));
+    corpse->description = fmt::format("&0The corpse of {}&0 is lying here.", GET_NAME(ch));
+    corpse->short_description = fmt::format("the corpse of {}", GET_NAME(ch));
 
     GET_OBJ_TYPE(corpse) = ITEM_CONTAINER;
     SET_FLAG(GET_OBJ_FLAGS(corpse), ITEM_FLOAT);
@@ -1072,9 +1067,10 @@ void disburse_kill_exp(CharData *killer, CharData *vict) {
     /* cap for exp is in max_exp_gain() in gain_exp() */
 }
 
-char *replace_string(char *str, const char *weapon_singular, const char *weapon_plural) {
+std::string_view replace_string(std::string_view str, const std::string_view weapon_singular,
+                                const std::string_view weapon_plural) {
     static char buf[1024];
-    char *cp;
+    std::string_view cp;
 
     cp = buf;
 
@@ -1102,11 +1098,11 @@ char *replace_string(char *str, const char *weapon_singular, const char *weapon_
     return (buf);
 }
 
-static void append_damage_amount(char *b, const char *msg, int dam, int type) {
+static void append_damage_amount(std::string_view b, const std::string_view msg, int dam, int type) {
     /*
      * In comm.h, TO_ROOM is 1, TO_VICT is 2, TO_NOTVICT is 3, TO_CHAR is 4
      */
-    const char *colors[6] = {
+    const std::string_view colors[6] = {
         "", "&6", "&1", "&6", "&3", "&2", /* healing */
     };
     if (damage_amounts) {
@@ -1125,15 +1121,15 @@ static void append_damage_amount(char *b, const char *msg, int dam, int type) {
 
 /* message for doing damage with a weapon */
 void dam_message(int dam, CharData *ch, CharData *victim, int w_type) {
-    const char *msg;
+    const std::string_view msg;
     char b2[1024];
     int msgnum;
     int percent = 0;
 
     static struct dam_barehand {
-        char *to_room;
-        char *to_char;
-        char *to_victim;
+        std::string_view to_room;
+        std::string_view to_char;
+        std::string_view to_victim;
     } bare_attack[] = {{"$n threw $s punch just a little wide, missing $N completely.&0", /* 0: 0 */
                         "You thought you saw $N somewhere where $E wasn't.&0",
                         "$n takes aim at you, but loses communication with $s fists!&0"},
@@ -1170,9 +1166,9 @@ void dam_message(int dam, CharData *ch, CharData *victim, int w_type) {
                         "$n nails you in the throat, and you barely avoid choking to death!&0"}};
 
     static struct dam_fire_barehand {
-        char *to_room;
-        char *to_char;
-        char *to_victim;
+        std::string_view to_room;
+        std::string_view to_char;
+        std::string_view to_victim;
     } bare_fire_attack[] = {
         {"$n threw $s burning punch just a little wide, missing $N completely.&0", /* 0: 0 */
          "You thought you saw $N somewhere where $E wasn't.&0",
@@ -1210,9 +1206,9 @@ void dam_message(int dam, CharData *ch, CharData *victim, int w_type) {
          "$n nails you in the throat, and you barely avoid burning to death!&0"}};
 
     static struct dam_ice_barehand {
-        char *to_room;
-        char *to_char;
-        char *to_victim;
+        std::string_view to_room;
+        std::string_view to_char;
+        std::string_view to_victim;
     } bare_ice_attack[] = {
         {"$n threw $s burning punch just a little wide, missing $N completely.&0", /* 0: 0 */
          "You thought you saw $N somewhere where $E wasn't.&0",
@@ -1250,9 +1246,9 @@ void dam_message(int dam, CharData *ch, CharData *victim, int w_type) {
          "$n nails you in the throat, and you barely avoid freezing to death!&0"}};
 
     static struct dam_lightning_barehand {
-        char *to_room;
-        char *to_char;
-        char *to_victim;
+        std::string_view to_room;
+        std::string_view to_char;
+        std::string_view to_victim;
     } bare_lightning_attack[] = {
         {"$n threw $s burning punch just a little wide, missing $N completely.&0", /* 0: 0 */
          "You thought you saw $N somewhere where $E wasn't.&0",
@@ -1290,9 +1286,9 @@ void dam_message(int dam, CharData *ch, CharData *victim, int w_type) {
          "$n nails you in the throat, and you barely avoid being shocked to death!&0"}};
 
     static struct dam_acid_barehand {
-        char *to_room;
-        char *to_char;
-        char *to_victim;
+        std::string_view to_room;
+        std::string_view to_char;
+        std::string_view to_victim;
     } bare_acid_attack[] = {
         {"$n threw $s burning punch just a little wide, missing $N completely.&0", /* 0: 0 */
          "You thought you saw $N somewhere where $E wasn't.&0",
@@ -1330,9 +1326,9 @@ void dam_message(int dam, CharData *ch, CharData *victim, int w_type) {
          "$n nails you in the throat, and you barely avoid melting to death!&0"}};
 
     static struct dam_weapon_type {
-        char *to_room;
-        char *to_char;
-        char *to_victim;
+        std::string_view to_room;
+        std::string_view to_char;
+        std::string_view to_victim;
     } dam_weapons[] = {
 
         /* use #w for singular (i.e. "slash") and #W for plural (i.e. "slashes") */
@@ -1915,7 +1911,7 @@ bool dodge(CharData *ch, CharData *victim) {
 }
 
 int weapon_special(ObjData *wpn, CharData *ch) {
-    int (*name)(CharData *ch, void *me, int cmd, char *argument);
+    int (*name)(CharData *ch, void *me, int cmd, std::string_view argument);
 
     SPECIAL(lightning_weapon);
     SPECIAL(frost_weapon);
@@ -2147,12 +2143,12 @@ void hit(CharData *ch, CharData *victim, int type) {
         if (type == SKILL_KICK) {
             act(EVASIONCLR "Your foot passes harmlessly through $N" EVASIONCLR "!&0", false, ch, 0, victim, TO_CHAR);
             act(EVASIONCLR "$n&7&b sends $s foot whistling right through $N" EVASIONCLR ".&0", false, ch, 0, victim,
-            TO_NOTVICT);
+                TO_NOTVICT);
             act(EVASIONCLR "$n" EVASIONCLR " tries to kick you, but $s foot passes through you harmlessly.&0", false,
-            ch, 0, victim, TO_VICT);
+                ch, 0, victim, TO_VICT);
         } else
             damage_evasion_message(ch, victim, weapon, dtype);
-            
+
         set_fighting(victim, ch, true);
 
         /* Process Triggers - added here so they still process even if the attack is evaded */
@@ -2179,9 +2175,9 @@ void hit(CharData *ch, CharData *victim, int type) {
      * Some skills don't get a chance for riposte, parry, and dodge,
      * so short-circuit those function calls here.
      */
-    else if (type == SKILL_BACKSTAB || type == SKILL_2BACK || type == SKILL_BAREHAND || type == SKILL_KICK || no_defense_check ||
-             EFF_FLAGGED(ch, EFF_FIREHANDS) || EFF_FLAGGED(ch, EFF_ICEHANDS) || EFF_FLAGGED(ch, EFF_LIGHTNINGHANDS) ||
-             EFF_FLAGGED(ch, EFF_ACIDHANDS) ||
+    else if (type == SKILL_BACKSTAB || type == SKILL_2BACK || type == SKILL_BAREHAND || type == SKILL_KICK ||
+             no_defense_check || EFF_FLAGGED(ch, EFF_FIREHANDS) || EFF_FLAGGED(ch, EFF_ICEHANDS) ||
+             EFF_FLAGGED(ch, EFF_LIGHTNINGHANDS) || EFF_FLAGGED(ch, EFF_ACIDHANDS) ||
              (!riposte(ch, victim) && !parry(ch, victim) && !dodge(ch, victim) &&
               (!weapon || !weapon_special(weapon, ch)))) {
         /*
@@ -2230,7 +2226,7 @@ void hit(CharData *ch, CharData *victim, int type) {
         } else if (type == SKILL_KICK) {
             dam += (GET_SKILL(ch, SKILL_KICK) / 2);
             dam += stat_bonus[GET_DEX(ch)].todam;
-        
+
         } else if (type == SKILL_BAREHAND || EFF_FLAGGED(ch, EFF_FIREHANDS) || EFF_FLAGGED(ch, EFF_ICEHANDS) ||
                    EFF_FLAGGED(ch, EFF_LIGHTNINGHANDS) || EFF_FLAGGED(ch, EFF_ACIDHANDS))
             dam += GET_SKILL(ch, SKILL_BAREHAND) / 4 + random_number(1, GET_LEVEL(ch) / 3) + (GET_LEVEL(ch) / 2);
@@ -2448,7 +2444,6 @@ void perform_violence(void) {
 
 void pickup_dropped_weapon(CharData *ch) {
     ObjData *obj;
-    char arg[MAX_INPUT_LENGTH];
 
     ACMD(do_wield);
 
@@ -2532,10 +2527,10 @@ ACMD(do_aggr) {
         return;
     }
 
-    one_argument(argument, buf);
+    buf = argument.shift();
 
     /* No argument?   Check aggressiveness. */
-    if (!*buf) {
+    if (buf.empty()) {
         if (GET_AGGR_LEV(ch) <= 0) {
             char_printf(ch, "You are not aggressive to monsters.\n");
             return;

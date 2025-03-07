@@ -13,32 +13,13 @@
 #include "db.hpp"
 #include "dg_scripts.hpp"
 #include "handler.hpp"
+#include "logging.hpp"
 #include "screen.hpp"
 #include "structs.hpp"
 #include "sysdep.hpp"
 #include "utils.hpp"
-#include "logging.hpp"
 
-
-/* same as any_one_arg except that it stops at punctuation */
-char *any_one_name(char *argument, char *first_arg) {
-    char *arg;
-
-    /* Find first non blank */
-    while (isspace(*argument))
-        ++argument;
-
-    /* Find length of first word */
-    for (arg = first_arg;
-         *argument && !isspace(*argument) && (!ispunct(*argument) || *argument == '#' || *argument == '-');
-         arg++, argument++)
-        *arg = LOWER(*argument);
-    *arg = '\0';
-
-    return argument;
-}
-
-void sub_write_to_char(CharData *ch, char *tokens[], CharData *ctokens[], ObjData *otokens[], char type[]) {
+void sub_write_to_char(CharData *ch, std::string_view tokens[], CharData *ctokens[], ObjData *otokens[], char type[]) {
     char sb[MAX_STRING_LENGTH];
     int i;
 
@@ -107,20 +88,20 @@ void sub_write_to_char(CharData *ch, char *tokens[], CharData *ctokens[], ObjDat
     strcat(sb, tokens[i]);
     strcat(sb, "\n");
 
-    /* Want to capitalize it... by passing it through CAP, which will
+    /* Want to capitalize_first it... by passing it through CAP, which will
      * skip past any &D color codes.
      * However, if it starts with &0, that's the signal that the
-     * script writer does not want it capitalized. */
+     * script writer does not want it capitalize_firstd. */
     if ((sb[0] == CREL || sb[0] == CABS) && sb[1] == '0')
         char_printf(ch, sb);
     else
-        char_printf(ch, cap_by_color(sb));
+        char_printf(ch, capitalize_first(sb));
 }
 
-void sub_write(char *arg, CharData *ch, byte find_invis, int targets) {
+void sub_write(std::string_view arg, CharData *ch, byte find_invis, int targets) {
     char str[MAX_INPUT_LENGTH * 2];
     char type[MAX_INPUT_LENGTH], name[MAX_INPUT_LENGTH];
-    char *tokens[MAX_INPUT_LENGTH], *s, *p;
+    std::string_view tokens[MAX_INPUT_LENGTH], *s, *p;
     CharData *ctokens[MAX_INPUT_LENGTH];
     ObjData *otokens[MAX_INPUT_LENGTH];
 
@@ -129,7 +110,7 @@ void sub_write(char *arg, CharData *ch, byte find_invis, int targets) {
     int i;
     int olc = 0;
 
-    if (!arg)
+    if (arg.empty())
         return;
 
     tokens[0] = str;

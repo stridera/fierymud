@@ -20,13 +20,13 @@
 
 struct GrantType {
     int grant;
-    char *grantor;
+    std::string_view grantor;
     int level;
     GrantType *next;
 };
 
 struct privflagdef {
-    const char *desc;
+    const std::string_view desc;
     int level;
     PRIV_FUNC(*update_func);
 };

@@ -28,13 +28,12 @@ struct FindContext {
 
     CharData *ch;
     int number;
-    char *string;
+    std::string string;
 
     bool override;
 };
 
-#define NULL_FCONTEXT                                                                                                  \
-    { nullptr, nullptr, nullptr, 0, nullptr, false }
+#define NULL_FCONTEXT {nullptr, nullptr, nullptr, 0, "", false}
 
 #define DECLARE_ITERATOR_TYPE(prefix, var_name, type)                                                                  \
     struct prefix##_iterator {                                                                                         \
@@ -50,16 +49,15 @@ struct FindContext {
 DECLARE_ITERATOR_TYPE(obj, obj, ObjData *);
 DECLARE_ITERATOR_TYPE(char, ch, CharData *);
 
-#define NULL_ITER(defval)                                                                                              \
-    { defval, defval, 0, 0, nullptr, NULL_FCONTEXT, nullptr }
+#define NULL_ITER(defval) {defval, defval, 0, 0, nullptr, NULL_FCONTEXT, nullptr}
 
 #define NEXT_FUNC(iter) (((iter).next_func)(&(iter)))
 
-int grab_number(char **name);
+int grab_number(std::string_view name);
 
 FindContext find_vis(CharData *ch);
-FindContext find_by_name(char *name);
-FindContext find_vis_by_name(CharData *ch, char *name);
+FindContext find_by_name(const std::string_view &name);
+FindContext find_vis_by_name(CharData *ch, const std::string_view name);
 FindContext find_by_rnum(int rnum);
 FindContext find_by_vnum(int vnum);
 FindContext find_vis_by_vnum(CharData *ch, int vnum);
@@ -67,8 +65,8 @@ FindContext find_by_type(int type);
 FindContext find_vis_by_type(CharData *ch, int type);
 FindContext find_by_id(int id);
 FindContext find_vis_by_id(CharData *ch, int id);
-FindContext find_plr_by_name(char *name);
-FindContext find_vis_plr_by_name(CharData *ch, char *name);
+FindContext find_plr_by_name(const std::string_view name);
+FindContext find_vis_plr_by_name(CharData *ch, const std::string_view name);
 
 ObjData *find_obj_in_list(ObjData *list, FindContext context);
 ObjData *find_obj_in_list_recur(ObjData *list, FindContext context);
@@ -77,7 +75,7 @@ ObjData *find_obj_in_world(FindContext context);
 ObjData *find_obj_around_char(CharData *ch, FindContext context);
 ObjData *find_obj_around_obj(ObjData *obj, FindContext context);
 ObjData *find_obj_around_room(RoomData *room, FindContext context);
-ObjData *find_obj_for_mtrig(CharData *ch, char *name);
+ObjData *find_obj_for_mtrig(CharData *ch, std::string_view name);
 
 CharData *find_char_in_room(RoomData *room, FindContext context);
 CharData *find_char_in_world(FindContext context);
@@ -85,23 +83,23 @@ CharData *find_char_by_desc(FindContext context);
 CharData *find_char_around_char(CharData *ch, FindContext context);
 CharData *find_char_around_obj(ObjData *obj, FindContext context);
 CharData *find_char_around_room(RoomData *room, FindContext context);
-CharData *find_char_for_mtrig(CharData *ch, char *name);
+CharData *find_char_for_mtrig(CharData *ch, std::string_view name);
 
-ObjData *find_obj_for_keyword(ObjData *obj, const char *name);
-CharData *find_char_for_keyword(CharData *ch, const char *name);
+ObjData *find_obj_for_keyword(ObjData *obj, std::string_view name);
+CharData *find_char_for_keyword(CharData *ch, std::string_view name);
 
 obj_iterator find_objs_in_list(ObjData *list, FindContext context);
 
 /* find all dots */
 
-int find_all_dots(char **arg);
+int find_all_dots(std::string_view arg);
 
 #define FIND_INDIV 0
 #define FIND_ALL 1
 #define FIND_ALLDOT 2
 
 /* Generic Find */
-int generic_find(char *arg, int bitvector, CharData *ch, CharData **tar_ch, ObjData **tar_obj);
+int generic_find(std::string_view arg, int bitvector, CharData *ch, CharData **tar_ch, ObjData **tar_obj);
 int universal_find(FindContext context, int bitvector, CharData **tch, ObjData **tobj);
 obj_iterator find_objs(FindContext context, int bitvector);
 char_iterator find_chars(FindContext context, int bitvector);

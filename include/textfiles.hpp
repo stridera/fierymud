@@ -44,5 +44,5 @@ ACMD(do_reload);
 ACMD(do_textview);
 ACMD(do_tedit);
 void free_text_files();
-const char *get_text(int text);
+const std::string_view get_text(int text);
 time_t get_text_update_time(int text);

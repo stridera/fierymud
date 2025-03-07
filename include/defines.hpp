@@ -402,6 +402,8 @@
 #define COPPER 3
 #define NUM_COIN_TYPES 4
 
+
+
 // Effects
 /* Effect bits: used in CharData.char_specials.effects */
 /* WARNING: In the world files, NEVER set the bits marked "R" ("Reserved") */
@@ -1156,7 +1158,7 @@
 #define ITEM_ANTI_COLOSSAL 49
 #define ITEM_ANTI_TITANIC 50
 #define ITEM_ANTI_MOUNTAINOUS 51
-#define ITEM_ANTI_ARBOREAN 52   /* Not usable by Arboreans */
+#define ITEM_ANTI_ARBOREAN 52 /* Not usable by Arboreans */
 #define NUM_ITEM_FLAGS 53
 
 /* Modifier constants used with obj effects ('A' fields) */

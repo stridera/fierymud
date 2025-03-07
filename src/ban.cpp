@@ -22,90 +22,60 @@
 #include "sysdep.hpp"
 #include "utils.hpp"
 
-BanListElement *ban_list = nullptr;
-XName *xname_list = nullptr;
+#include <fstream>
 
-const char *ban_types[] = {"no", "new", "select", "all", "ERROR"};
+std::vector<BanListElement> ban_list;
+std::vector<std::string> xname_list;
+
+const std::string_view ban_types[] = {"no", "new", "select", "all", "ERROR"};
 
 void load_banned(void) {
     FILE *fl;
-    int i, date;
+    int date, type;
     char site_name[BANNED_SITE_LENGTH + 1], ban_type[100];
     char name[MAX_NAME_LENGTH + 1];
-    BanListElement *next_node;
 
-    ban_list = 0;
-
-    if (!(fl = fopen(BAN_FILE, "r"))) {
+    if (!(fl = fopen(BAN_FILE.data(), "r"))) {
         perror("Unable to open banfile");
         return;
     }
     while (fscanf(fl, " %s %s %d %s ", ban_type, site_name, &date, name) == 4) {
-        CREATE(next_node, BanListElement, 1);
-        strncpy(next_node->site, site_name, BANNED_SITE_LENGTH);
-        next_node->site[BANNED_SITE_LENGTH] = '\0';
-        strncpy(next_node->name, name, MAX_NAME_LENGTH);
-        next_node->name[MAX_NAME_LENGTH] = '\0';
-        next_node->date = date;
-
-        for (i = BAN_NOT; i <= BAN_ALL; i++)
-            if (!strcasecmp(ban_type, ban_types[i]))
-                next_node->type = i;
-
-        next_node->next = ban_list;
-        ban_list = next_node;
+        for (int i = BAN_NOT; i <= BAN_ALL; i++)
+            if (matches(ban_type, ban_types[i]))
+                type = i;
+        ban_list.emplace_back(std::string(site_name), type, date, name);
     }
 
     fclose(fl);
 }
 
-int isbanned(char *hostname) {
-    int i;
-    BanListElement *banned_node;
-    char *nextchar;
-
-    if (!hostname || !*hostname)
+bool isbanned(std::string_view hostname) {
+    if (hostname.empty())
         return (0);
 
-    i = 0;
-    for (nextchar = hostname; *nextchar; nextchar++)
-        *nextchar = LOWER(*nextchar);
-
-    for (banned_node = ban_list; banned_node; banned_node = banned_node->next)
-        if (strcasestr(hostname, banned_node->site)) /* if hostname is a substring */
-            i = std::max(i, banned_node->type);
-
-    return i;
-}
-
-void _write_one_node(FILE *fp, BanListElement *node) {
-    if (node) {
-        _write_one_node(fp, node->next);
-        fprintf(fp, "%s %s %ld %s\n", ban_types[node->type], node->site, (long)node->date, node->name);
-    }
+    for (const auto &banned_node : ban_list)
+        if (matches(hostname, banned_node.site)) /* if hostname is a substring */
+            return std::max(0, banned_node.type);
+    return BAN_NOT;
 }
 
 void write_ban_list(void) {
-    FILE *fl;
+    std::ofstream ban_file(BAN_FILE.data());
 
-    if (!(fl = fopen(BAN_FILE, "w"))) {
+    if (!ban_file.is_open()) {
         perror("write_ban_list");
         return;
     }
-    _write_one_node(fl, ban_list); /* recursively write from end to start */
-    fclose(fl);
-    return;
+    for (const auto &ban_node : ban_list)
+        ban_file << ban_types[ban_node.type] << ' ' << ban_node.site << ' ' << ban_node.date << ' ' << ban_node.name
+                 << '\n';
+
+    ban_file.close();
 }
 
 ACMD(do_ban) {
-    char flag[MAX_INPUT_LENGTH], site[MAX_INPUT_LENGTH], *nextchar;
-    int i;
-    BanListElement *ban_node;
-
-    *buf = '\0';
-
-    if (!*argument) {
-        if (!ban_list) {
+    if (argument.empty()) {
+        if (ban_list.empty()) {
             char_printf(ch, "No sites are banned.\n");
             return;
         }
@@ -114,82 +84,64 @@ ACMD(do_ban) {
         char_printf(ch, format, "---------------------------------", "---------------------------------",
                     "---------------------------------", "---------------------------------");
 
-        for (ban_node = ban_list; ban_node; ban_node = ban_node->next) {
-            if (ban_node->date) {
-                strftime(buf1, 11, TIMEFMT_DATE, localtime(&ban_node->date));
-                strcpy(site, buf1);
+        for (auto ban_node : ban_list) {
+            std::string_view site;
+            if (ban_node.date) {
+                site = fmt::format(TIMEFMT_DATE, fmt::localtime(ban_node.date));
             } else
-                strcpy(site, "Unknown");
-            char_printf(ch, format, ban_node->site, ban_types[ban_node->type], site, ban_node->name);
+                site = "Unknown";
+            char_printf(ch, format, ban_node.site, ban_types[ban_node.type], site, ban_node.name);
         }
+
         return;
     }
-    two_arguments(argument, flag, site);
-    if (!*site || !*flag) {
+    auto flag = argument.shift();
+    auto site = argument.shift();
+    if (site.empty() || flag.empty()) {
         char_printf(ch, "Usage: ban {all | select | new} site_name\n");
         return;
     }
-    if (!(!strcasecmp(flag, "select") || !strcasecmp(flag, "all") || !strcasecmp(flag, "new"))) {
+    if (!(matches(flag, "select") || matches(flag, "all") || matches(flag, "new"))) {
         char_printf(ch, "Flag must be ALL, SELECT, or NEW.\n");
         return;
     }
-    for (ban_node = ban_list; ban_node; ban_node = ban_node->next) {
-        if (!strcasecmp(ban_node->site, site)) {
+    for (auto ban_node : ban_list) {
+        if (matches(ban_node.site, site)) {
             char_printf(ch, "That site has already been banned -- unban it to change the ban type.\n");
             return;
         }
     }
 
-    CREATE(ban_node, BanListElement, 1);
-    strncpy(ban_node->site, site, BANNED_SITE_LENGTH);
-    for (nextchar = ban_node->site; *nextchar; nextchar++)
-        *nextchar = LOWER(*nextchar);
-    ban_node->site[BANNED_SITE_LENGTH] = '\0';
-    strncpy(ban_node->name, GET_NAME(ch), MAX_NAME_LENGTH);
-    ban_node->name[MAX_NAME_LENGTH] = '\0';
-    ban_node->date = time(0);
-
-    for (i = BAN_NEW; i <= BAN_ALL; i++)
-        if (!strcasecmp(flag, ban_types[i]))
-            ban_node->type = i;
-
-    ban_node->next = ban_list;
-    ban_list = ban_node;
+    int type = BAN_NEW;
+    for (int i = BAN_NOT; i <= BAN_ALL; i++)
+        if (matches(flag, ban_types[i]))
+            type = i;
+    ban_list.push_back(BanListElement(std::string(site), type, time(0), GET_NAME(ch)));
 
     log(LogSeverity::Stat, std::max<int>(LVL_GOD, GET_INVIS_LEV(ch)), "{} has banned {} for {} players.", GET_NAME(ch),
-        site, ban_types[ban_node->type]);
+        site, ban_types[type]);
     char_printf(ch, "Site banned.\n");
     write_ban_list();
 }
 
 ACMD(do_unban) {
-    char site[80];
-    BanListElement *ban_node, *temp;
-    int found = 0;
-
-    one_argument(argument, site);
-    if (!*site) {
+    auto site = argument.shift();
+    if (site.empty()) {
         char_printf(ch, "A site to unban might help.\n");
         return;
     }
-    ban_node = ban_list;
-    while (ban_node && !found) {
-        if (!strcasecmp(ban_node->site, site))
-            found = 1;
-        else
-            ban_node = ban_node->next;
-    }
-
-    if (!found) {
+    // Find and remove the ban_list in the std::vector
+    auto ban_node = std::find_if(ban_list.begin(), ban_list.end(),
+                                 [&site](const BanListElement &ban) { return matches(ban.site, site); });
+    if (ban_node == ban_list.end()) {
         char_printf(ch, "That site is not currently banned.\n");
         return;
     }
-    REMOVE_FROM_LIST(ban_node, ban_list, next);
+    ban_list.erase(ban_node);
     char_printf(ch, "Site unbanned.\n");
     log(LogSeverity::Stat, std::max<int>(LVL_GOD, GET_INVIS_LEV(ch)), "{} removed the {}-player ban on {}.",
         GET_NAME(ch), ban_types[ban_node->type], ban_node->site);
 
-    free(ban_node);
     write_ban_list();
 }
 
@@ -198,13 +150,8 @@ ACMD(do_unban) {
  *  Written by Sharon P. Goza						  *
  **************************************************************************/
 
-int Valid_Name(char *newname) {
-    int i;
+bool is_valid_name(std::string_view newname) {
     DescriptorData *dt;
-    XName *tmp_xname;
-    char tempname[MAX_NAME_LENGTH];
-    char invalid_name[MAX_NAME_LENGTH];
-
     /*
      * Make sure someone isn't trying to create this same name.  We want to
      * do a 'strcasecmp' so people can't do 'Bob' and 'BoB'.  The creating login
@@ -212,19 +159,15 @@ int Valid_Name(char *newname) {
      * prompt won't have characters yet.
      */
     for (dt = descriptor_list; dt; dt = dt->next) {
-        if (dt->character && GET_NAME(dt->character) && !strcasecmp(GET_NAME(dt->character), newname)) {
+        if (dt->character && !GET_NAME(dt->character).empty() && matches(GET_NAME(dt->character), newname)) {
             return (STATE(dt) == CON_PLAYING);
         }
     }
     /* return valid if list doesn't exist */
-    if (!xname_list) {
+    if (xname_list.empty()) {
         log("no xname_list found");
-        return 1;
+        return true;
     }
-    /* change to lowercase */
-    strcpy(tempname, newname);
-    for (i = 0; tempname[i]; i++)
-        tempname[i] = LOWER(tempname[i]);
 
     /* Does the desired name contain a string in the invalid list? */
 
@@ -236,157 +179,80 @@ int Valid_Name(char *newname) {
        doesn't contain '#' then we go on as usual. Original idea and
        code by Therlos on 1/13/99
      */
-    /* xnames is now a linked list --gurlaek 6/9/1999 */
-    for (tmp_xname = xname_list; tmp_xname; tmp_xname = tmp_xname->next) {
-        strcpy(invalid_name, tmp_xname->name);
+    for (auto invalid_name : xname_list) {
         if (invalid_name[0] == '#') {
-            int z = 0;
-            while (invalid_name[z + 1] != '\0') {
-                invalid_name[z] = invalid_name[z + 1];
-                z++;
-            }
-            invalid_name[z] = '\0';
-            if (strcasecmp(tempname, invalid_name) == 0)
-                return 0;
+            if (matches(invalid_name.substr(1), newname))
+                return false;
         } else {
-            if (strcasestr(tempname, invalid_name))
-                return 0;
+            if (matches(invalid_name, newname))
+                return false;
         }
     }
+
     /* is there a mobile with that name? */
-    for (i = 0; i < top_of_mobt; i++) {
-        if (isname(tempname, mob_proto[i].player.namelist))
-            return 0;
+    for (int i = 0; i < top_of_mobt; i++) {
+        if (isname(newname, mob_proto[i].player.namelist))
+            return false;
     }
 
-    return 1;
+    return true;
 }
 
 /* rewritten by gurlaek 6/9/1999 */
 void Read_Xname_List(void) {
-    FILE *fp;
-    /* MAX_NAME_LENGTH + 3 is for the # the NULL and the CR */
-    char string[MAX_NAME_LENGTH + 3];
-    XName *tmp_xname, *tmp2_xname;
+    std::ifstream fp(XNAME_FILE.data());
+    std::string string;
 
-    if (!(fp = fopen(XNAME_FILE, "r"))) {
+    if (!fp.is_open()) {
         perror("Unable to open invalid name file");
         return;
     }
-    /* build the xname linked list */
-    while (fgets(string, MAX_NAME_LENGTH + 3, fp) != nullptr) {
+    while (std::getline(fp, string)) {
         /* make sure we don't load a blank xname --gurlaek 6/12/1999 */
-        if ((strlen(string) - 1)) {
-            if (!xname_list) {
-                CREATE(xname_list, XName, 1);
-                strncpy(xname_list->name, string, strlen(string) - 1);
-                xname_list->next = nullptr;
-            } else {
-                CREATE(tmp_xname, XName, 1);
-                strncpy(tmp_xname->name, string, strlen(string) - 1);
-                tmp_xname->next = nullptr;
-                tmp2_xname = xname_list;
-                while (tmp2_xname->next) {
-                    tmp2_xname = tmp2_xname->next;
-                }
-                tmp2_xname->next = tmp_xname;
-            }
-        }
+        if (string.empty() || string[0] == '\n' || string[0] == '\r')
+            continue;
+
+        xname_list.push_back(string);
     }
 
-    fclose(fp);
+    fp.close();
 }
 
-void reload_xnames() {
-    XName *cur, *next;
-
-    for (cur = xname_list; cur; cur = next) {
-        next = cur->next;
-        free(cur);
-    }
-    xname_list = nullptr;
-    Read_Xname_List();
-}
+void reload_xnames() { Read_Xname_List(); }
 
 /* send rejected names to the xnames file */
-void send_to_xnames(char *name) {
-    FILE *xnames;
-    char input[MAX_NAME_LENGTH + 3];
-    char tempname[MAX_NAME_LENGTH + 3];
-    int i = 0;
-    XName *tmp_xname, *tmp2_xname;
+void send_to_xnames(std::string_view name) {
+    std::ofstream xnames(XNAME_FILE.data(), std::ios::app);
 
-    *input = '\0';
-    *tempname = '\0';
-
-    if (!(xnames = fopen(XNAME_FILE, "a"))) {
+    if (!xnames.is_open()) {
         log(LogSeverity::Warn, LVL_IMMORT, "SYSERR: Cannot open xnames file.\n");
         return;
     }
 
-    strcpy(tempname, name);
-    for (i = 0; tempname[i]; i++)
-        tempname[i] = LOWER(tempname[i]);
-
-    /* print it to the xnames file with # prepended and a \n appended */
-    fprintf(xnames, "#%s\n", tempname);
-
-    fclose(xnames);
-
-    sprintf(input, "#%s", tempname);
-
-    /* dynamicly add it to the xname_list -gurlaek 6/9/1999 */
-
-    if (!xname_list) {
-        CREATE(xname_list, XName, 1);
-        strncpy(xname_list->name, input, strlen(input));
-        xname_list->next = nullptr;
-    } else {
-        CREATE(tmp_xname, XName, 1);
-        strncpy(tmp_xname->name, input, strlen(input));
-        tmp_xname->next = nullptr;
-        tmp2_xname = xname_list;
-        while (tmp2_xname->next) {
-            tmp2_xname = tmp2_xname->next;
-        }
-        tmp2_xname->next = tmp_xname;
-    }
-}
-
-void free_invalid_list() {
-    XName *name, *next;
-    BanListElement *ban;
-
-    for (name = xname_list; name; name = next) {
-        next = name->next;
-        free(name);
-    }
-
-    while (ban_list) {
-        ban = ban_list;
-        ban_list = ban->next;
-        free(ban);
-    }
+    /* print it to the xnames file with # prepended */
+    auto tempname = to_lower(fmt::format("#{}\n", name));
+    xname_list.push_back(tempname);
+    xnames << tempname;
+    xnames.close();
 }
 
 ACMD(do_xnames) {
-    char flag[MAX_INPUT_LENGTH], name[MAX_INPUT_LENGTH];
+    auto flag = argument.shift();
+    auto name = argument.shift();
 
-    two_arguments(argument, flag, name);
-
-    if (*flag && !strcasecmp(flag, "reload")) {
+    if (!flag.empty() && matches(flag, "reload")) {
         reload_xnames();
         char_printf(ch, "Done.\n");
         return;
     }
 
-    if (!*flag || !*name) {
+    if (flag.empty() || name.empty()) {
         char_printf(ch, "Usage: xnames {add NAME | reload}\n");
         return;
     }
 
-    if (is_abbrev(flag, "add")) {
-        if (!Valid_Name(name)) {
+    if (matches(flag, "add")) {
+        if (!is_valid_name(name)) {
             char_printf(ch, "Name is already banned.\n");
             return;
         }

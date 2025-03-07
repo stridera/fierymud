@@ -34,22 +34,12 @@
 #include "sysdep.hpp"
 #include "utils.hpp"
 
-/* extern variables */
-void garble_text(char *string, int percent) {
-    char letters[] = "aeiousthpwxyz";
-    int i, len = strlen(string);
-
-    for (i = 0; i < len; ++i)
-        if (isalpha(string[i]) && random_number(0, 1) && random_number(0, 100) > percent)
-            string[i] = letters[random_number(0, 12)];
-}
-
 //  Drunk structure and releated code to slur a players speech if they are drunk. Zantir 3/23/01
-std::string drunken_speech(std::string speech, int drunkenness) {
+std::string drunken_speech(std::string_view speech, int drunkenness) {
     const struct {
         int min_drunk_level;
         int replacement_count;
-        const char *replacements[10];
+        const std::string_view replacements[10];
     } drunk_letters['z' - 'a' + 1] = {/* # of letters in alphabet */
                                       {3, 9, {"a", "a", "A", "aa", "ah", "Ah", "ao", "aw", "ahhhh"}},
                                       {8, 5, {"b", "b", "B", "B", "vb"}},
@@ -79,7 +69,7 @@ std::string drunken_speech(std::string speech, int drunkenness) {
                                       {2, 8, {"z", "ZzzZz", "Zzz", "szz", "sZZz", "ZSz", "zZ", "Z"}}};
 
     if (drunkenness <= 0)
-        return speech;
+        return std::string{speech};
 
     std::string drunkbuf;
     for (auto ch : speech) {
@@ -120,15 +110,15 @@ ACMD(do_desc) {
     if (GET_STANCE(ch) > STANCE_SLEEPING)
         act("$n appears rather introspective.", true, ch, nullptr, nullptr, TO_ROOM);
 
-    editor_init(ch->desc, &ch->player.description, maxlen);
+    editor_init(ch->desc, ch->player.description, maxlen);
     editor_set_begin_string(
         ch->desc, "Enter the text you'd like others to see when they look at you (limit %d lines).\n", maxlines);
     editor_set_max_lines(ch->desc, maxlines);
 }
 
 ACMD(do_say) {
-    std::string speech = delete_doubledollar(argument);
-    speech = trim(speech);
+    auto speech = std::string(argument.get());
+    delete_doubledollar(speech);
 
     if (EFF_FLAGGED(ch, EFF_SILENCE)) {
         char_printf(ch, "You lips move, but no sound forms.\n");
@@ -146,18 +136,18 @@ ACMD(do_say) {
         speech = strip_ansi(speech);
 
     speech = drunken_speech(speech, GET_COND(ch, DRUNK));
-    act("You say, '$T@0'", false, ch, nullptr, speech.c_str(), TO_CHAR | TO_OLC);
-    act("$n says, '$T@0'", false, ch, nullptr, speech.c_str(), TO_ROOM | TO_OLC);
+    act("You say, '$T@0'", false, ch, nullptr, speech, TO_CHAR | TO_OLC);
+    act("$n says, '$T@0'", false, ch, nullptr, speech, TO_ROOM | TO_OLC);
 
     /* trigger check */
-    speech_mtrigger(ch, speech.c_str());
-    speech_wtrigger(ch, speech.c_str());
+    speech_mtrigger(ch, speech);
+    speech_wtrigger(ch, speech);
 }
 
 ACMD(do_gsay) {
     CharData *k;
     GroupType *f;
-    std::string speech = std::string(trim(argument));
+    std::string speech = std::string(argument.get());
 
     if (!ch->group_master && !ch->groupees) {
         char_printf(ch, "But you are not the member of a group!\n");
@@ -197,7 +187,7 @@ ACMD(do_gsay) {
     }
 }
 
-static void perform_tell(CharData *ch, CharData *vict, std::string arg) {
+static void perform_tell(CharData *ch, CharData *vict, std::string_view arg) {
     std::string tell{arg};
     if (GET_LEVEL(REAL_CHAR(ch)) < LVL_IMMORT)
         tell = strip_ansi(tell);
@@ -205,15 +195,14 @@ static void perform_tell(CharData *ch, CharData *vict, std::string arg) {
     if (PRF_FLAGGED(ch, PRF_NOREPEAT))
         char_printf(ch, OK);
     else {
-        sprintf(buf, "@WYou tell $N@W, '%s@W'@0", tell.c_str());
-        act(buf, false, ch, nullptr, vict, TO_CHAR | TO_SLEEP | TO_OLC);
+        act(fmt::format("@WYou tell $N@W, '{}@W'@0", tell), false, ch, nullptr, vict, TO_CHAR | TO_SLEEP | TO_OLC);
     }
 
     if (vict->forward && !vict->desc)
         vict = vict->forward;
 
-    sprintf(buf, "@W$n@W tells you, '%s@W'@0", tell.c_str());
-    act(buf, false, REAL_CHAR(ch), nullptr, vict, TO_VICT | TO_SLEEP | TO_OLC);
+    auto msg = fmt::format("@W$n@W tells you, '{}@W'@0", tell);
+    act(msg, false, REAL_CHAR(ch), nullptr, vict, TO_VICT | TO_SLEEP | TO_OLC);
 
     /* No need to reply to mobs.  Doesn't matter since we use the IDNUM which is always 0 for mobs. */
     if (!IS_MOB(ch))
@@ -221,21 +210,22 @@ static void perform_tell(CharData *ch, CharData *vict, std::string arg) {
 
     afk_message(ch, vict);
     if (IS_MOB(vict)) {
-        speech_to_mtrigger(ch, vict, tell.c_str());
+        speech_to_mtrigger(ch, vict, tell);
     } else {
-        std::string formatted = format_act(buf, ch, 0, vict, vict);
-        add_retained_comms(vict, TYPE_RETAINED_TELLS, formatted.c_str());
+        std::string formatted = format_act(msg, ch, 0, vict, vict);
+        add_retained_comms(vict, TYPE_RETAINED_TELLS, formatted);
     }
 }
 
 ACMD(do_tell) {
     CharData *vict;
 
-    half_chop(argument, buf, buf2);
+    auto target = argument.shift();
+    auto message = argument.get();
 
-    if (!*buf || !*buf2)
+    if (target.empty() || message.empty())
         char_printf(ch, "Who do you wish to tell what??\n");
-    else if (!(vict = find_char_around_char(ch, find_vis_by_name(ch, buf))))
+    else if (!(vict = find_char_around_char(ch, find_vis_by_name(ch, target))))
         char_printf(ch, NOPERSON);
     else if (ch == vict)
         char_printf(ch, "You try to tell yourself something.\n");
@@ -259,18 +249,18 @@ ACMD(do_tell) {
     else {
         if (!speech_ok(ch, 0))
             return;
-        perform_tell(ch, vict, drunken_speech(buf2, GET_COND(ch, DRUNK)));
+        perform_tell(ch, vict, drunken_speech(message, GET_COND(ch, DRUNK)));
     }
 }
 
 ACMD(do_reply) {
     CharData *tch = character_list;
 
-    skip_spaces(&argument);
+    auto message = argument.get();
 
     if (GET_LAST_TELL(ch) == NOBODY)
         char_printf(ch, "You have no-one to reply to!\n");
-    else if (!*argument)
+    else if (message.empty())
         char_printf(ch, "What is your reply?\n");
     else {
         /*
@@ -288,14 +278,14 @@ ACMD(do_reply) {
         else if (PRF_FLAGGED(tch, PRF_NOTELL) && GET_LEVEL(ch) < LVL_GOD)
             char_printf(ch, "That person is now not listening to tells.\n");
         else if (speech_ok(ch, 0)) {
-            perform_tell(ch, tch, drunken_speech(argument, GET_COND(ch, DRUNK)));
+            perform_tell(ch, tch, drunken_speech(message, GET_COND(ch, DRUNK)));
         }
     }
 }
 
 ACMD(do_spec_comm) {
     CharData *vict;
-    const char *action_sing, *action_plur, *action_others;
+    std::string action_sing, action_plur, action_others;
 
     if (subcmd == SCMD_WHISPER) {
         action_sing = "whisper to";
@@ -307,11 +297,12 @@ ACMD(do_spec_comm) {
         action_others = "$n asks $N a question.";
     }
 
-    half_chop(argument, buf, buf2);
+    auto target = argument.shift();
+    auto message = argument.get();
 
-    if (!*buf || !*buf2)
+    if (target.empty() || message.empty())
         char_printf(ch, "Whom do you want to {}.. and what??\n", action_sing);
-    else if (!(vict = find_char_in_room(&world[ch->in_room], find_vis_by_name(ch, buf))))
+    else if (!(vict = find_char_in_room(&world[ch->in_room], find_vis_by_name(ch, target))))
         char_printf(ch, NOPERSON);
     else if (vict == ch)
         char_printf(ch, "You can't get your mouth close enough to your ear...\n");
@@ -322,18 +313,18 @@ ACMD(do_spec_comm) {
     else {
         if (!speech_ok(ch, 0))
             return;
-        sprintf(buf, "$n %s you, '%s@0'", action_plur, drunken_speech(buf2, GET_COND(ch, DRUNK)).c_str());
-        act(buf, false, ch, nullptr, vict, TO_VICT | TO_OLC);
+        auto msg = fmt::format("$n {} you, '{}@0'", action_plur, drunken_speech(message, GET_COND(ch, DRUNK)));
+        act(msg, false, ch, nullptr, vict, TO_VICT | TO_OLC);
         if (PRF_FLAGGED(ch, PRF_NOREPEAT))
             char_printf(ch, OK);
         else {
-            sprintf(buf, "You %s %s, '%s@0'", action_sing, GET_NAME(vict), buf2);
-            act(buf, false, ch, nullptr, nullptr, TO_CHAR | TO_OLC);
+            auto msg = fmt::format("You {} {}, '{}@0'", action_sing, GET_NAME(vict), message);
+            act(msg, false, ch, nullptr, nullptr, TO_CHAR | TO_OLC);
         }
         act(action_others, false, ch, nullptr, vict, TO_NOTVICT);
         afk_message(ch, vict);
         if (IS_MOB(vict))
-            speech_to_mtrigger(ch, vict, buf2);
+            speech_to_mtrigger(ch, vict, message);
     }
 }
 
@@ -341,15 +332,14 @@ ACMD(do_spec_comm) {
 
 ACMD(do_write) {
     ObjData *surface, *implement;
-    char *surface_name = buf1, *implement_name = buf2;
     CharData *dummy;
 
     if (!ch->desc)
         return;
 
-    argument = one_argument(argument, surface_name);
+    auto surface_name = argument.shift();
 
-    if (!*surface_name) {
+    if (surface_name.empty()) {
         char_printf(ch, "Write?  With what?  On what?  What are you trying to do?\n");
         return;
     }
@@ -362,14 +352,13 @@ ACMD(do_write) {
     }
 
     if (GET_OBJ_TYPE(surface) == ITEM_BOARD) {
-        skip_spaces(&argument);
-        write_message(ch, board(GET_OBJ_VAL(surface, VAL_BOARD_NUMBER)), argument);
+        write_message(ch, board(GET_OBJ_VAL(surface, VAL_BOARD_NUMBER)), argument.get());
         return;
     }
 
-    one_argument(argument, implement_name);
+    auto implement_name = argument.shift();
 
-    if (*implement_name) {
+    if (!implement_name.empty()) {
         generic_find(implement_name, FIND_OBJ_INV | FIND_OBJ_EQUIP, ch, &dummy, &implement);
         if (!implement) {
             char_printf(ch, "You can't find a {} to write with.\n", implement_name);
@@ -411,7 +400,7 @@ ACMD(do_write) {
 
     /* we can write - hooray! */
     char_printf(ch, "Write your note.  (/s saves /h for help)\n");
-    string_write(ch->desc, &surface->action_description, MAX_NOTE_LENGTH);
+    string_write(ch->desc, surface->action_description, MAX_NOTE_LENGTH);
     act("$n begins to jot down a note.", true, ch, nullptr, nullptr, TO_ROOM);
 }
 
@@ -419,29 +408,29 @@ ACMD(do_page) {
     DescriptorData *d;
     CharData *vict;
 
-    half_chop(argument, arg, buf2);
+    auto arg = argument.shift();
 
     if (IS_NPC(ch))
         char_printf(ch, "Monsters can't page.. go away.\n");
-    else if (!*arg)
+    else if (arg.empty())
         char_printf(ch, "Whom do you wish to page?\n");
     else {
-        sprintf(buf, "\007\007*%s* %s\n", GET_NAME(ch), buf2);
-        if (!strcasecmp(arg, "all")) {
+        auto page = fmt::format("\007\007*{}* {}\n", GET_NAME(ch), argument.get());
+        if (matches(arg, "all")) {
             if (GET_LEVEL(ch) > LVL_GOD) {
                 for (d = descriptor_list; d; d = d->next)
                     if (!d->connected && d->character)
-                        act(buf, false, ch, nullptr, d->character, TO_VICT);
+                        act(page, false, ch, nullptr, d->character, TO_VICT);
             } else
                 char_printf(ch, "You will never be godly enough to do that!\n");
             return;
         }
         if ((vict = find_char_around_char(ch, find_vis_by_name(ch, arg))) != nullptr) {
-            act(buf, false, ch, nullptr, vict, TO_VICT);
+            act(page, false, ch, nullptr, vict, TO_VICT);
             if (PRF_FLAGGED(ch, PRF_NOREPEAT))
                 char_printf(ch, OK);
             else
-                act(buf, false, ch, nullptr, vict, TO_CHAR);
+                act(page, false, ch, nullptr, vict, TO_CHAR);
             return;
         } else
             char_printf(ch, "There is no such person in the game!\n");
@@ -449,19 +438,18 @@ ACMD(do_page) {
 }
 
 ACMD(do_order) {
-    char name[100], message[256];
-    char buf[256];
     bool found = false, anyawake = false;
     int org_room;
     CharData *vict;
     FollowType *k;
 
-    half_chop(argument, name, message);
+    auto name = argument.shift();
+    auto message = argument.get();
 
-    if (!*name || !*message)
+    if (name.empty() || message.empty())
         char_printf(ch, "Order who to do what?\n");
     else if (!(vict = find_char_in_room(&world[ch->in_room], find_vis_by_name(ch, name))) &&
-             !is_abbrev(name, "followers"))
+             !matches_start(name, "followers"))
         char_printf(ch, "That person isn't here.\n");
     else if (ch == vict)
         char_printf(ch, "You obviously suffer from schizophrenia.\n");
@@ -475,11 +463,11 @@ ACMD(do_order) {
             act("$n gives $N an order.", false, ch, nullptr, vict, TO_ROOM);
 
             if (GET_STANCE(vict) < STANCE_RESTING) {
-                sprintf(buf, "$N is %s and can't hear you.", stance_types[GET_STANCE(vict)]);
-                act(buf, false, ch, nullptr, vict, TO_CHAR);
+                auto msg = fmt::format("$N is {} and can't hear you.", stance_types[GET_STANCE(vict)]);
+                act(msg, false, ch, nullptr, vict, TO_CHAR);
             } else {
-                sprintf(buf, "$N orders you to '%s'", message);
-                act(buf, false, vict, nullptr, ch, TO_CHAR);
+                auto msg = fmt::format("$N orders you to '{}'", message);
+                act(msg, false, vict, nullptr, ch, TO_CHAR);
                 if ((vict->master != ch) || !EFF_FLAGGED(vict, EFF_CHARM))
                     act("$n has an indifferent look.", false, vict, 0, 0, TO_ROOM);
                 else {
@@ -518,10 +506,7 @@ ACMD(do_order) {
  *********************************************************************/
 
 ACMD(do_gen_comm) {
-    extern int level_can_shout;
-    extern int holler_move_cost;
     DescriptorData *i;
-    char color_on[24];
     bool shapechanged = false;
 
     /* Array of flags which must _not_ be set in order for comm to be heard */
@@ -533,7 +518,7 @@ ACMD(do_gen_comm) {
      *           [2] message if you're not on the channel
      *           [3] a color string.
      */
-    static const char *com_msgs[][4] = {
+    constexpr std::string_view com_msgs[][4] = {
         {"You cannot holler!!\n", "holler", "", FYEL},
         {"You cannot shout!!\n", "shout", "Turn off your noshout flag first!\n", FYEL},
         {"You cannot gossip!!\n", "gossip", "You aren't even on the channel!\n", FYEL},
@@ -570,8 +555,7 @@ ACMD(do_gen_comm) {
         return;
     }
 
-    /* skip leading spaces */
-    std::string speech = std::string(trim(argument));
+    std::string_view speech = argument.get();
 
     /* make sure that there is something there to say! */
     if (speech.empty()) {
@@ -595,29 +579,28 @@ ACMD(do_gen_comm) {
     speech = drunken_speech(speech, GET_COND(ch, DRUNK));
 
     /* set up the color on code */
-    strcpy(color_on, com_msgs[subcmd][3]);
+    auto color_on = com_msgs[subcmd][3];
 
+    std::string msg;
     /* first, set up strings to be given to the communicator */
     if (PRF_FLAGGED(ch, PRF_NOREPEAT))
         char_printf(ch, OK);
     else {
         if (COLOR_LEV(ch) >= C_CMP)
-            sprintf(buf1, "%sYou %s, '%s%s%s'%s", color_on, com_msgs[subcmd][1], speech.c_str(), ANRM, color_on, ANRM);
+            msg = fmt::format("{}You {}, '{}{}{}'{}", color_on, com_msgs[subcmd][1], speech, ANRM, color_on, ANRM);
         else
-            sprintf(buf1, "You %s, '%s@0'", com_msgs[subcmd][1], speech.c_str());
-        act(buf1, false, ch, nullptr, nullptr, TO_CHAR | TO_SLEEP | TO_OLC);
+            msg = fmt::format("You {}, '{}@0'", com_msgs[subcmd][1], speech);
+        act(msg, false, ch, nullptr, nullptr, TO_CHAR | TO_SLEEP | TO_OLC);
     }
-
-    sprintf(buf, "$n %ss, '%s'", com_msgs[subcmd][1], speech.c_str());
 
     /*
      * If the gossiper is shapechanged and this descriptor can see both
      * the shapechanged mob and the original druid, then use show
      * both names instead of just the actual gossiper.
      */
-    if (subcmd == SCMD_GOSSIP && POSSESSED(ch) && GET_LEVEL(POSSESSOR(ch)) < 100 && GET_NAME(ch) && *GET_NAME(ch)) {
+    if (subcmd == SCMD_GOSSIP && POSSESSED(ch) && GET_LEVEL(POSSESSOR(ch)) < 100 && !GET_NAME(ch).empty()) {
         shapechanged = true;
-        sprintf(buf1, "%s (%s) gossips, '%s'\n", capitalize(GET_NAME(ch)), GET_NAME(POSSESSOR(ch)), speech.c_str());
+        msg = fmt::format("{} ({}) gossips, '{}'\n", capitalize_first(GET_NAME(ch)), GET_NAME(POSSESSOR(ch)), speech);
     }
 
     /* now send all the strings out */
@@ -647,11 +630,12 @@ ACMD(do_gen_comm) {
          * both names instead of just the actual gossiper.
          */
         if (shapechanged && CAN_SEE(i->character, ch) && CAN_SEE(i->character, POSSESSOR(ch)))
-            desc_printf(i, buf1);
+            desc_printf(i, msg);
         else {
-            act(buf, false, ch, nullptr, i->character, TO_VICT | TO_SLEEP | TO_OLC);
-            auto formatted = format_act(buf, ch, 0, i->character, i->character);
-            add_retained_comms(i->character, TYPE_RETAINED_GOSSIPS, formatted.c_str());
+            auto msg = fmt::format("$n {}s, '{}'", com_msgs[subcmd][1], speech);
+            act(msg, false, ch, nullptr, i->character, TO_VICT | TO_SLEEP | TO_OLC);
+            auto formatted = format_act(msg, ch, 0, i->character, i->character);
+            add_retained_comms(i->character, TYPE_RETAINED_GOSSIPS, formatted);
         }
         if (COLOR_LEV(i->character) >= C_NRM)
             desc_printf(i, ANRM);
@@ -660,61 +644,56 @@ ACMD(do_gen_comm) {
 
 ACMD(do_qcomm) {
     DescriptorData *i;
+    std::string qmsg;
 
     if (!PRF_FLAGGED(ch, PRF_QUEST)) {
         char_printf(ch, "You aren't even part of the quest!\n");
         return;
     }
-    std::string speech = std::string(trim(argument));
+    std::string speech = std::string(argument.get());
 
     if (speech.empty())
-        char_printf(ch, "{}? Yes, fine {} we must, but WHAT??\n", capitalize(CMD_NAME), CMD_NAME);
-    else if (speech_ok(ch, 0)) {
+        char_printf(ch, "{}? Yes, fine {} we must, but WHAT??\n", capitalize_first(CMD_NAME), CMD_NAME);
+    else if (EFF_FLAGGED(ch, EFF_SILENCE) && subcmd != SCMD_QSAY) {
+        char_printf(ch, "Your lips move, but no sound forms\n");
+        return;
+    } else if (speech_ok(ch, 0)) {
         speech = drunken_speech(speech, GET_COND(ch, DRUNK));
 
         if (PRF_FLAGGED(ch, PRF_NOREPEAT))
             char_printf(ch, OK);
         else {
-            if (subcmd == SCMD_QSAY) {
-                if (EFF_FLAGGED(ch, EFF_SILENCE)) {
-                    char_printf(ch, "Your lips move, but no sound forms\n");
-                    return;
-                }
-                sprintf(buf, "You quest-say, '%s@0'", speech.c_str());
-            } else
-                strcpy(buf, speech.c_str());
-            act(buf, false, ch, nullptr, speech, TO_CHAR | TO_OLC | TO_SLEEP);
+            if (subcmd == SCMD_QSAY)
+                act("You quest-say, '$T@0'", false, ch, nullptr, speech, TO_CHAR | TO_OLC | TO_SLEEP);
+            else
+                act(speech, false, ch, nullptr, speech, TO_CHAR | TO_OLC | TO_SLEEP);
         }
 
         if (subcmd == SCMD_QSAY) {
-            if (EFF_FLAGGED(ch, EFF_SILENCE)) {
-                char_printf(ch, "Your lips move, but no sound forms\n");
-                return;
-            }
-            sprintf(buf, "$n quest-says, '%s@0'", argument);
-        } else
-            strcpy(buf, argument);
+            qmsg = fmt::format("$n quest-says, '{}'", speech);
+        } else {
+            qmsg = fmt::format("$n {}s, '{}'", CMD_NAME, speech);
+        }
 
         for (i = descriptor_list; i; i = i->next)
             if (!i->connected && i != ch->desc && PRF_FLAGGED(i->character, PRF_QUEST))
-                act(buf, false, ch, nullptr, i->character, TO_VICT | TO_SLEEP | TO_OLC);
+                act(qmsg, false, ch, nullptr, i->character, TO_VICT | TO_SLEEP | TO_OLC);
     }
 }
 
 ACMD(do_report) {
-    char rbuf[MAX_INPUT_LENGTH];
+    auto arg = argument.shift();
 
-    one_argument(argument, arg);
-
-    sprintf(rbuf, "%s%sI have %s%d%s (%d) hit and %s%d%s (%d) movement points.", subcmd != SCMD_GREPORT ? arg : "",
-            subcmd != SCMD_GREPORT && *arg ? " " : "", status_string(GET_HIT(ch), GET_MAX_HIT(ch), STATUS_COLOR),
-            GET_HIT(ch), ANRM, GET_MAX_HIT(ch), status_string(GET_MOVE(ch), GET_MAX_MOVE(ch), STATUS_COLOR),
-            GET_MOVE(ch), ANRM, GET_MAX_MOVE(ch));
+    auto msg =
+        fmt::format("{}{}I have {}{}{} ({}) hit and {}{}{} ({}) movement points.", subcmd != SCMD_GREPORT ? arg : "",
+                    subcmd != SCMD_GREPORT && !arg.empty() ? " " : "",
+                    status_string(GET_HIT(ch), GET_MAX_HIT(ch), STATUS_COLOR), GET_HIT(ch), ANRM, GET_MAX_HIT(ch),
+                    status_string(GET_MOVE(ch), GET_MAX_MOVE(ch), STATUS_COLOR), GET_MOVE(ch), ANRM, GET_MAX_MOVE(ch));
 
     if (subcmd == SCMD_GREPORT)
-        do_gsay(ch, rbuf, 0, 0);
-    else if (*arg)
-        do_tell(ch, rbuf, 0, 0);
+        do_gsay(ch, {msg}, 0, 0);
+    else if (!arg.empty())
+        do_tell(ch, {msg}, 0, 0);
     else
-        do_say(ch, rbuf, 0, 0);
+        do_say(ch, {msg}, 0, 0);
 }

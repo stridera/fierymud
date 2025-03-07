@@ -17,31 +17,27 @@
 
 #define FORMAT_INDENT (1 << 0)
 
-void smash_tilde(char *str);
-int replace_str(char **string, const char *pattern, const char *replacement, int rep_all, int max_size);
-void format_text(char **ptr_string, int mode, DescriptorData *d, int maxlen);
-char *stripcr(char *dest, const char *src);
-char *next_line(char **src);
-char *cap_by_color(char *s);
-const char *capitalize(const char *s);
-bool isplural(const char *namelist);
-bool startsvowel(const char *s);
+void smash_tilde(std::string_view str);
+void format_text(std::string_view ptr_string, int mode, DescriptorData *d, int maxlen);
+std::string_view stripcr(std::string_view dest, const std::string_view src);
+bool isplural(const std::string_view namelist);
+bool startsvowel(const std::string_view s);
 
-char *with_indefinite_article(const char *s);
-const char *without_article(const char *s);
-const char *pluralize(const char *s);
+std::string with_indefinite_article(const std::string_view s);
+std::string without_article(const std::string_view s);
+std::string pluralize(const std::string_view s);
 
-int levenshtein_distance(const char *s1, const char *s2);
+int levenshtein_distance(const std::string_view s1, const std::string_view s2);
 
-void trim_spaces(char *buffer);
+void trim_spaces(std::string_view buffer);
 
 #define S_WHITESPACE " \t\n\v\f\r"
 #define S_DIGITS "1234567890"
-const char *skip_over(const char *string, const char *skip);
-const char *skip_chars(const char *string, char skip);
-const char *fetch_word(const char *string, char *buf, size_t space);
-char *strip_chars(char *str, const char *chars);
-char *filter_chars(char *buf, const char *src, const char *chars);
+std::string skip_over(const std::string_view string, const std::string_view skip);
+std::string skip_chars(const std::string_view string, const char skip);
+std::string_view fetch_word(std::string_view string, std::string &buf);
+std::string_view strip_chars(std::string_view str, const std::string_view chars);
+std::string_view filter_chars(const std::string_view src, const std::string_view chars);
 
 #define SB_EXTERNAL 0
 #define SB_USE_CAPS 1
@@ -51,12 +47,12 @@ char *filter_chars(char *buf, const char *src, const char *chars);
 #define SB_INITIAL_LINES_CAP 10
 
 struct ScreenBuf {
-    char *buf;
+    std::string_view buf;
     size_t capacity;
     size_t length;
     flagvector flags[FLAGVECTOR_SIZE(NUM_SB_FLAGS)];
 
-    char **lines;
+    std::string_view lines;
     size_t line_capacity;
     size_t line_count;
     size_t line_width;
@@ -65,8 +61,8 @@ struct ScreenBuf {
 };
 
 ScreenBuf *new_screen_buf(void);
-const char *sb_get_buffer(ScreenBuf *);
-void sb_use_buf(ScreenBuf *, char *buf, size_t buf_capacity);
+const std::string_view sb_get_buffer(ScreenBuf *);
+void sb_use_buf(ScreenBuf *, std::string_view buf, size_t buf_capacity);
 size_t sb_get_capacity(ScreenBuf *);
 size_t sb_get_length(ScreenBuf *);
 size_t sb_get_lines(ScreenBuf *);
@@ -74,10 +70,12 @@ size_t sb_get_width(ScreenBuf *);
 size_t sb_get_first_indentation(ScreenBuf *);
 size_t sb_get_other_indentation(ScreenBuf *);
 bool sb_using_capitalization(ScreenBuf *);
-const char *sb_get_line(ScreenBuf *, size_t line);
+const std::string_view sb_get_line(ScreenBuf *, size_t line);
 void sb_set_width(ScreenBuf *, size_t columns);
 void sb_set_first_indentation(ScreenBuf *, size_t indentation);
 void sb_set_other_indentation(ScreenBuf *, size_t indentation);
 void sb_use_capitalization(ScreenBuf *, bool);
-void sb_append(ScreenBuf *, const char *msg, ...) __attribute__((format(printf, 2, 3)));
+template <typename... Args> void sb_append(ScreenBuf *d, fmt::string_view str, Args &&...args) {
+    sb_append(d, fmt::vformat(str, fmt::make_format_args(args...)));
+}
 void free_screen_buf(ScreenBuf *);

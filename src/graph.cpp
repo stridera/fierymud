@@ -56,7 +56,7 @@ struct TrackNode {
 
 #define NOT_FOUND_TRACK -5000
 static BFSQueueStruct *queue_head_ = 0, *queue_tail_ = 0;
-CharData *find_race(char *arg, TrackInfo track, CharData *ch);
+CharData *find_race(std::string_view arg, TrackInfo track, CharData *ch);
 bool call_track(bool hunt, TrackInfo track, CharData *ch, CharData *victim, bool follow);
 bool cause_single_track(TrackInfo track, CharData *ch, CharData *victim, int track_room);
 
@@ -171,7 +171,7 @@ int find_first_step(int src, int target, CharData *tracker, int *distance) {
  * Also indicates the victim found.
  */
 
-int find_track_victim(CharData *ch, char *name, int maxdist, CharData **victim) {
+int find_track_victim(CharData *ch, std::string_view name, int maxdist, CharData **victim) {
     int i, cdist, roomschecked = 0, result = BFS_NO_PATH;
     bool found = false;
     TrackNode *start, *current, *new_node, *end;
@@ -181,7 +181,7 @@ int find_track_victim(CharData *ch, char *name, int maxdist, CharData **victim) 
         return BFS_ERROR;
 
     /* Did you say "track me"? */
-    if (!strcasecmp(name, "self") || !strcasecmp(name, "me")) {
+    if (matches(name, "self") || matches(name, "me")) {
         *victim = ch;
         return BFS_ALREADY_THERE;
     }
@@ -332,8 +332,8 @@ ACMD(do_track) {
     }
 
     /* Figure out who they're trying to track. */
-    one_argument(argument, arg);
-    if (!*arg) {
+    auto arg = argument.shift();
+    if (arg.empty()) {
         char_printf(ch, "Whom are you trying to track?\n");
         return;
     }
@@ -425,8 +425,8 @@ ACMD(do_hunt) {
         return;
     }
 
-    argument = one_argument(argument, arg);
-    if (!strcasecmp(" follow", argument) || !strcasecmp(" f", argument)) {
+    auto arg = argument.shift();
+    if (matches(" follow", argument) || matches(" f", argument)) {
         if (GET_CLASS(ch) != CLASS_HUNTER && (GET_LEVEL(ch) < LVL_IMMORT)) {
             char_printf(ch, "You do not have enough skills to follow someone after hunting.\n");
             return;
@@ -435,7 +435,7 @@ ACMD(do_hunt) {
     }
 
     /*check for second argument :follow */
-    if (!*arg) {
+    if (arg.empty()) {
         char_printf(ch, "Whom are you trying to hunt?\n");
         return;
     }

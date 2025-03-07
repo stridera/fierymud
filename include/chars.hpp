@@ -45,7 +45,7 @@
 #define MIN_ALIGNMENT (-1000)
 #define MAX_ALIGNMENT (1000)
 
-extern const char *stats_display;
+extern const std::string_view stats_display;
 extern int class_ok_race[NUM_RACES][NUM_CLASSES];
 
 int get_base_saves(CharData *ch, int type);
@@ -67,7 +67,7 @@ bool damage_evasion(CharData *ch, CharData *attacker, ObjData *weapon, int dtype
 
 void composition_check(CharData *ch);
 int susceptibility(CharData *ch, int dtype);
-const char *align_color(int align);
+const std::string_view align_color(int align);
 void critical_stance_message(CharData *ch);
 void alter_pos(CharData *ch, int newpos, int newstance);
 void hp_pos_check(CharData *ch, CharData *attacker, int dam);

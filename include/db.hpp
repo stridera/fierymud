@@ -19,6 +19,8 @@
 #include "sysdep.hpp"
 #include "zone.hpp"
 
+#include <string_view>
+
 /* arbitrary constants used by index_boot() (must be unique) */
 #define DB_BOOT_WLD 0
 #define DB_BOOT_MOB 1
@@ -29,47 +31,47 @@
 #define DB_BOOT_TRG 6
 
 /* names of various files and directories */
-static const char *INDEX_FILE = "index";              /* index of world files		*/
-static const char *MINDEX_FILE = "index.mini";        /* ... and for mini-mud-mode	*/
-static const char *WLD_PREFIX = "world/wld";          /* room definitions		*/
-static const char *MOB_PREFIX = "world/mob";          /* monster prototypes		*/
-static const char *OBJ_PREFIX = "world/obj";          /* object prototypes		*/
-static const char *ZON_PREFIX = "world/zon";          /* zon defs & command tables	*/
-static const char *SHP_PREFIX = "world/shp";          /* shop definitions		*/
-static const char *MOB_DIR = "world/prg";             /* Mob programs			*/
-static const char *TRG_PREFIX = "world/trg";          /* for script triggers          */
-static const char *HLP_PREFIX = "text/help";          /* for HELP <keyword>		*/
-static const char *PLR_PREFIX = "players";            /* player files directory       */
-static const char *CLAN_PREFIX = "etc/clans";         /* clan directory		*/
-static const char *CLAN_PREFIX_OLD = "etc/clans.old"; /* clan directory		*/
+constexpr std::string_view INDEX_FILE = "index";              /* index of world files		*/
+constexpr std::string_view MINDEX_FILE = "index.mini";        /* ... and for mini-mud-mode	*/
+constexpr std::string_view WLD_PREFIX = "world/wld";          /* room definitions		*/
+constexpr std::string_view MOB_PREFIX = "world/mob";          /* monster prototypes		*/
+constexpr std::string_view OBJ_PREFIX = "world/obj";          /* object prototypes		*/
+constexpr std::string_view ZON_PREFIX = "world/zon";          /* zon defs & command tables	*/
+constexpr std::string_view SHP_PREFIX = "world/shp";          /* shop definitions		*/
+constexpr std::string_view MOB_DIR = "world/prg";             /* Mob programs			*/
+constexpr std::string_view TRG_PREFIX = "world/trg";          /* for script triggers          */
+constexpr std::string_view HLP_PREFIX = "text/help";          /* for HELP <keyword>		*/
+constexpr std::string_view PLR_PREFIX = "players";            /* player files directory       */
+constexpr std::string_view CLAN_PREFIX = "etc/clans";         /* clan directory		*/
+constexpr std::string_view CLAN_PREFIX_OLD = "etc/clans.old"; /* clan directory		*/
 
-static const char *PLR_SUFFIX = ".plr";       /* player file suffix		*/
-static const char *POBJ_SUFFIX = ".objs";     /* player object file suffix	*/
-static const char *PNOTES_SUFFIX = ".notes";  /* player notes file suffix	*/
-static const char *PQUEST_SUFFIX = ".quest";  /* player quest file suffix	*/
-static const char *CLAN_SUFFIX = ".clan";     /* clan file suffix		*/
-static const char *PTEMP_SUFFIX = ".temp";    /* temporary file suffix	*/
-static const char *CORPSE_SUFFIX = ".corpse"; /* player corpse file suffix	*/
-static const char *PET_SUFFIX = ".pet";       /* Players pet file suffix */
+constexpr std::string_view PLR_SUFFIX = ".plr";       /* player file suffix		*/
+constexpr std::string_view POBJ_SUFFIX = ".objs";     /* player object file suffix	*/
+constexpr std::string_view PNOTES_SUFFIX = ".notes";  /* player notes file suffix	*/
+constexpr std::string_view PQUEST_SUFFIX = ".quest";  /* player quest file suffix	*/
+constexpr std::string_view CLAN_SUFFIX = ".clan";     /* clan file suffix		*/
+constexpr std::string_view PTEMP_SUFFIX = ".temp";    /* temporary file suffix	*/
+constexpr std::string_view CORPSE_SUFFIX = ".corpse"; /* player corpse file suffix	*/
+constexpr std::string_view PET_SUFFIX = ".pet";       /* Players pet file suffix */
 
-static const char *HELP_FILE = "text/help/help.hlp"; /* unified help file       */
+constexpr std::string_view HELP_FILE = "text/help/help.hlp"; /* unified help file       */
 
-static const char *ALL_QUEST_FILE = "misc/quests"; /*list of all available quests  */
-static const char *IDEA_FILE = "misc/ideas";       /* for the 'idea'-command	*/
-static const char *TYPO_FILE = "misc/typos";       /*         'typo'		*/
-static const char *BUG_FILE = "misc/bugs";         /*         'bug'		*/
-static const char *MESS_FILE = "misc/messages";    /* damage messages		*/
-static const char *SOCMESS_FILE = "misc/socials";  /* messgs for social acts	*/
-static const char *XNAME_FILE = "misc/xnames";     /* invalid name substrings	*/
+constexpr std::string_view ALL_QUEST_FILE = "misc/quests"; /*list of all available quests  */
+constexpr std::string_view IDEA_FILE = "misc/ideas";       /* for the 'idea'-command	*/
+constexpr std::string_view TYPO_FILE = "misc/typos";       /*         'typo'		*/
+constexpr std::string_view BUG_FILE = "misc/bugs";         /*         'bug'		*/
+constexpr std::string_view MESS_FILE = "misc/messages";    /* damage messages		*/
+constexpr std::string_view SOCMESS_FILE = "misc/socials";  /* messgs for social acts	*/
+constexpr std::string_view XNAME_FILE = "misc/xnames";     /* invalid name substrings	*/
 
-static const char *MAIL_FILE = "etc/plrmail";           /* for the mudmail system	*/
-static const char *BAN_FILE = "etc/badsites";           /* for the siteban system	*/
-static const char *HCONTROL_FILE = "etc/hcontrol";      /* for the house system		*/
-static const char *CCONTROL_FILE = "etc/ccontrol";      /* for the corpse save system   */
-static const char *CLAN_INDEX_FILE = "etc/clans/index"; /* list of clans	*/
-static const char *GROUP_FILE = "etc/cmdgroups";        /* for cmd group grant system	*/
+constexpr std::string_view MAIL_FILE = "etc/plrmail";           /* for the mudmail system	*/
+constexpr std::string_view BAN_FILE = "etc/badsites";           /* for the siteban system	*/
+constexpr std::string_view HCONTROL_FILE = "etc/hcontrol";      /* for the house system		*/
+constexpr std::string_view CCONTROL_FILE = "etc/ccontrol";      /* for the corpse save system   */
+constexpr std::string_view CLAN_INDEX_FILE = "etc/clans/index"; /* list of clans	*/
+constexpr std::string_view GROUP_FILE = "etc/cmdgroups";        /* for cmd group grant system	*/
 
-static const char *INFODUMP_PREFIX = "infodump";
+constexpr std::string_view INFODUMP_PREFIX = "infodump";
 
 /* public procedures in db.c */
 void boot_db(void);
@@ -78,15 +80,15 @@ void free_text_files(void);
 void zone_update(void);
 int real_room(int vnum);
 int real_quest(unsigned short vnum);
-char *fread_string(FILE *fl, const char *error);
-int vnum_room(char *searchname, CharData *ch);
-int vnum_zone(char *searchname, CharData *ch);
+std::string fread_string(FILE *fl, const std::string_view error);
+int vnum_room(std::string_view searchname, CharData *ch);
+int vnum_zone(std::string_view searchname, CharData *ch);
 
 void init_player(CharData *ch);
 CharData *create_char(void);
 CharData *read_mobile(int nr, int type);
 int real_mobile(int vnum);
-int vnum_mobile(char *searchname, CharData *ch);
+int vnum_mobile(std::string_view searchname, CharData *ch);
 void clear_char(CharData *ch);
 void reset_char(CharData *ch);
 void free_char(CharData *ch);
@@ -96,14 +98,13 @@ void clear_object(ObjData *obj);
 void free_obj(ObjData *obj);
 int real_object(int vnum);
 ObjData *read_object(int nr, int type);
-int vnum_object(char *searchname, CharData *ch);
-bool _parse_name(char *arg, char *name);
+int vnum_object(std::string_view searchname, CharData *ch);
+[[nodiscard]] std::string _parse_name(std::string_view arg);
 void start_player(CharData *ch);
 
-long asciiflag_conv(char *flag);
-void tag_argument(char *argument, char *tag);
-#define TAG_IS(tagname) (!strcasecmp(tag, tagname))
-void kill_ems(char *str);
+long asciiflag_conv(std::string_view flag);
+void tag_argument(std::string_view argument, std::string_view tag);
+#define TAG_IS(tagname) (matches(tag, tagname))
 void copy_extra_descriptions(ExtraDescriptionData **to, ExtraDescriptionData *from);
 
 #define MAX_VNUM 99999
@@ -111,7 +112,7 @@ void copy_extra_descriptions(ExtraDescriptionData **to, ExtraDescriptionData *fr
 #define VIRTUAL 1
 
 struct PlayerIndexElement {
-    char *name;
+    std::string name;
     long id;
     int level;
     int flags;
@@ -119,8 +120,8 @@ struct PlayerIndexElement {
 };
 
 struct HelpIndexElement {
-    char *keyword;
-    char *entry;
+    std::string_view keyword;
+    std::string_view entry;
     int min_level;
     int duplicate;
 };
@@ -133,11 +134,10 @@ struct HelpIndexElement {
 
 #define BANNED_SITE_LENGTH 50
 struct BanListElement {
-    char site[BANNED_SITE_LENGTH + 1];
+    std::string site;
     int type;
     time_t date;
-    char name[MAX_NAME_LENGTH + 1];
-    BanListElement *next;
+    std::string name;
 };
 
 // Global Variables
@@ -176,10 +176,3 @@ extern stat_bonus_type stat_bonus[101];
 
 extern message_list fight_messages[MAX_MESSAGES];
 extern SpellDamage spell_dam_info[MAX_SPELLS + 1];
-
-/* global buffering system */
-
-extern char buf[MAX_STRING_LENGTH];
-extern char buf1[MAX_STRING_LENGTH];
-extern char buf2[MAX_STRING_LENGTH];
-extern char arg[MAX_STRING_LENGTH];

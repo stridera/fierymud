@@ -32,6 +32,7 @@ extern CoinDef coindefs[NUM_COIN_TYPES];
 bool is_coin_name(const char *name, int cointype);
 #define COIN_COLOR(coin) (VALID_COIN(coin) ? coindefs[coin].color : "&9&b")
 #define COIN_INITIAL(coin) (VALID_COIN(coin) ? coindefs[coin].initial : "?")
+#define COIN_SCALE(coin) (VALID_COIN(coin) ? coindefs[coin].scale : 1)
 
 /* Old below */
 
@@ -48,8 +49,11 @@ bool is_coin_name(const char *name, int cointype);
     ((coins)[PLATINUM] * PLATINUM_SCALE + (coins)[GOLD] * GOLD_SCALE + (coins)[SILVER] * SILVER_SCALE +                \
      (coins)[COPPER] * COPPER_SCALE)
 
-void statemoney(char *buf, const int coins[]);
-bool parse_money(char **money, int coins[]);
-void briefmoney(char *buf, int spaces, int amt);
-void money_desc(int amount, const char **shortdesc, const char **keywords);
-ObjData *create_money(const int coins[]);
+[[nodiscard]] std::string statemoney(const Money coins) noexcept;
+[[nodiscard]] std::optional<Money> parse_money(std::string_view input) noexcept;
+[[nodiscard]] std::string briefmoney(int spaces, int amt) noexcept;
+[[nodiscard]] ObjData *create_money(const Money coins);
+[[nodiscard]] int parse_coin_type(std::string_view name) noexcept;
+
+// Charge a character an amount of money, returning true if successful.
+[[nodiscard]] bool charge_char(CharData *ch, int amount) noexcept;

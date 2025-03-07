@@ -35,18 +35,18 @@
 #include "sysdep.hpp"
 #include "utils.hpp"
 
-void sub_write(char *arg, CharData *ch, byte find_invis, int targets);
-long asciiflag_conv(char *flag);
-RoomData *get_room(char *name);
+void sub_write(std::string_view arg, CharData *ch, byte find_invis, int targets);
+long asciiflag_conv(std::string_view flag);
+RoomData *get_room(std::string_view name);
 int script_driver(void *go_address, TrigData *trig, int type, int mode);
-int get_room_location(char *name);
-FindContext find_dg_by_name(char *name);
+int get_room_location(std::string_view name);
+FindContext find_dg_by_name(std::string_view name);
 
-#define WCMD(name) void(name)(RoomData * room, TrigData * t, char *argument, int cmd, int subcmd)
+#define WCMD(name) void(name)(RoomData * room, TrigData * t, std::string_view argument, int cmd, int subcmd)
 
 struct WorldCommandInfo {
-    char *command;
-    void (*command_pointer)(RoomData *room, TrigData *t, char *argument, int cmd, int subcmd);
+    std::string_view command;
+    void (*command_pointer)(RoomData *room, TrigData *t, std::string_view argument, int cmd, int subcmd);
     int subcmd;
 };
 
@@ -55,17 +55,17 @@ struct WorldCommandInfo {
 #define SCMD_WECHOAROUND 1
 
 /* attaches room vnum to msg and sends it to script_log */
-void wld_log(RoomData *room, TrigData *t, char *msg) {
+void wld_log(RoomData *room, TrigData *t, std::string_view msg) {
     char buf[MAX_INPUT_LENGTH + 100];
 
-    void script_log(TrigData * t, char *msg);
+    void script_log(TrigData * t, std::string_view msg);
 
     sprintf(buf, "(TRG)(room %d): %s", room->vnum, msg);
     script_log(t, buf);
 }
 
 /* sends str to room */
-void act_to_room(char *str, RoomData *room) {
+void act_to_room(std::string_view str, RoomData *room) {
     /* no one is in the room */
     if (!room->people)
         return;
@@ -85,9 +85,9 @@ void act_to_room(char *str, RoomData *room) {
 WCMD(do_wasound) {
     int door;
 
-    skip_spaces(&argument);
+    skip_spaces(argument);
 
-    if (!*argument) {
+    if (argument.empty()) {
         wld_log(room, t, "wasound called with no argument");
         return;
     }
@@ -101,9 +101,9 @@ WCMD(do_wasound) {
 }
 
 WCMD(do_wecho) {
-    skip_spaces(&argument);
+    skip_spaces(argument);
 
-    if (!*argument)
+    if (argument.empty())
         wld_log(room, t, "wecho called with no args");
 
     else
@@ -116,14 +116,14 @@ WCMD(do_wsend) {
 
     msg = any_one_arg(argument, buf);
 
-    if (!*buf) {
+    if (buf.empty()) {
         wld_log(room, t, "wsend called with no args");
         return;
     }
 
-    skip_spaces(&msg);
+    skip_spaces(msg);
 
-    if (!*msg) {
+    if (msg.empty()) {
         wld_log(room, t, "wsend called without a message");
         return;
     }
@@ -144,9 +144,9 @@ WCMD(do_wzoneecho) {
     char zone_name[MAX_INPUT_LENGTH], buf[MAX_INPUT_LENGTH], *msg;
 
     msg = any_one_arg(argument, zone_name);
-    skip_spaces(&msg);
+    skip_spaces(msg);
 
-    if (!*zone_name || !*msg)
+    if (zone_name.empty() || msg.empty())
         wld_log(room, t, "wzoneecho called with too few args");
     else if (!isdigit(*zone_name)) {
         sprintf(buf, "wzoneecho called with invalid zone number \"%s\"", zone_name);
@@ -169,13 +169,13 @@ WCMD(do_wdoor) {
     Exit *exit;
     int dir, fd, to_room;
 
-    const char *door_field[] = {"purge", "description", "flags", "key", "name", "room", "\n"};
+    const std::string_view door_field[] = {"purge", "description", "flags", "key", "name", "room", "\n"};
 
     argument = two_arguments(argument, target, direction);
-    value = one_argument(argument, field);
-    skip_spaces(&value);
+    value = field = argument.shift();
+    skip_spaces(value);
 
-    if (!*target || !*direction || !*field) {
+    if (target.empty() || direction.empty() || field.empty()) {
         wld_log(room, t, "wdoor called with too few args");
         return;
     }
@@ -190,7 +190,7 @@ WCMD(do_wdoor) {
         return;
     }
 
-    if ((fd = searchblock(field, door_field, false)) == -1) {
+    if ((fd = search_block(field, door_field, false)) == -1) {
         wld_log(room, t, "wdoor: invalid field");
         return;
     }
@@ -200,10 +200,6 @@ WCMD(do_wdoor) {
     /* purge exit */
     if (fd == 0) {
         if (exit) {
-            if (exit->general_description)
-                free(exit->general_description);
-            if (exit->keyword)
-                free(exit->keyword);
             free(exit);
             rm->exits[dir] = nullptr;
         }
@@ -256,7 +252,7 @@ WCMD(do_wteleport) {
 
     two_arguments(argument, arg1, arg2);
 
-    if (!*arg1 || !*arg2) {
+    if (arg1.empty() || arg2.empty()) {
         wld_log(room, t, "wteleport called with too few args");
         return;
     }
@@ -266,7 +262,7 @@ WCMD(do_wteleport) {
     if (target == NOWHERE)
         wld_log(room, t, "wteleport target is an invalid room");
 
-    else if (!strcasecmp(arg1, "all")) {
+    else if (matches(arg1, "all")) {
         if (world[target].vnum == room->vnum) {
             wld_log(room, t, "wteleport all target is itself");
             return;
@@ -297,14 +293,14 @@ WCMD(do_wforce) {
     CharData *ch, *next_ch;
     char arg1[MAX_INPUT_LENGTH], *line;
 
-    line = one_argument(argument, arg1);
+    line = arg1 = argument.shift();
 
-    if (!*arg1 || !*line) {
+    if (arg1.empty() || line.empty()) {
         wld_log(room, t, "wforce called with too few args");
         return;
     }
 
-    if (!strcasecmp(arg1, "all")) {
+    if (matches(arg1, "all")) {
         for (ch = room->people; ch; ch = next_ch) {
             next_ch = ch->next_in_room;
 
@@ -333,7 +329,7 @@ WCMD(do_wexp) {
 
     two_arguments(argument, name, amount);
 
-    if (!*name || !*amount) {
+    if (name.empty() || amount.empty()) {
         wld_log(room, t, "wexp: too few arguments");
         return;
     }
@@ -348,13 +344,12 @@ WCMD(do_wexp) {
 
 /* purge all objects an npcs in room, or specified obj or mob */
 WCMD(do_wpurge) {
-    char arg[MAX_INPUT_LENGTH];
     CharData *ch, *next_ch;
     ObjData *obj, *next_obj;
 
-    one_argument(argument, arg);
+    auto arg = argument.shift();
 
-    if (!*arg) {
+    if (arg.empty()) {
         for (ch = room->people; ch; ch = next_ch) {
             next_ch = ch->next_in_room;
             if (IS_NPC(ch))
@@ -389,19 +384,19 @@ WCMD(do_wpurge) {
 /* loads a mobile or object into the room */
 WCMD(do_wload) {
     char arg1[MAX_INPUT_LENGTH], arg2[MAX_INPUT_LENGTH], arg3[MAX_INPUT_LENGTH], arg4[MAX_INPUT_LENGTH];
-    char *line;
+    std::string_view line;
     int number = 0, rnum;
     CharData *mob, *ch;
     ObjData *obj, *object2;
 
     line = two_arguments(argument, arg1, arg2);
 
-    if (!*arg1 || !*arg2 || !is_number(arg2) || ((number = atoi(arg2)) < 0)) {
+    if (arg1.empty() || arg2.empty() || !is_integer(arg2) || ((number = atoi(arg2)) < 0)) {
         wld_log(room, t, "wload: bad syntax");
         return;
     }
 
-    if (is_abbrev(arg1, "mob")) {
+    if (matches_start(arg1, "mob")) {
         if ((mob = read_mobile(number, VIRTUAL)) == nullptr) {
             wld_log(room, t, "wload: bad mob vnum");
             return;
@@ -414,7 +409,7 @@ WCMD(do_wload) {
         load_mtrigger(mob);
     }
 
-    else if (is_abbrev(arg1, "obj")) {
+    else if (matches_start(arg1, "obj")) {
         if ((obj = read_object(number, VIRTUAL)) == nullptr) {
             wld_log(room, t, "wload: bad obj vnum");
             return;
@@ -429,17 +424,17 @@ WCMD(do_wload) {
             obj_to_room(obj, rnum);
         } else {
             two_arguments(line, arg3, arg4);
-            if (is_abbrev(arg3, "mob")) {
+            if (matches_start(arg3, "mob")) {
                 if ((mob = find_char_around_room(room, find_dg_by_name(arg4)))) {
                     obj_to_char(obj, mob);
                 }
-            } else if (is_abbrev(arg3, "obj")) {
+            } else if (matches_start(arg3, "obj")) {
                 if ((object2 = find_obj_around_room(room, find_dg_by_name(arg4)))) {
                     obj_to_obj(obj, object2);
                 } else {
                     wld_log(room, t, "wload: no target found");
                 }
-            } else if (is_abbrev(arg3, "plr")) {
+            } else if (matches_start(arg3, "plr")) {
                 if ((ch = find_char_around_room(room, find_dg_by_name(arg4)))) {
                     obj_to_char(obj, ch);
                 } else {
@@ -461,7 +456,7 @@ WCMD(do_wheal) {
 
     two_arguments(argument, name, amount);
 
-    if (!*name || !*amount || !isdigit(*amount)) {
+    if (name.empty() || amount.empty() || !isdigit(*amount)) {
         wld_log(room, t, "wheal: bad syntax");
         return;
     }
@@ -487,10 +482,10 @@ WCMD(do_wdamage) {
 
     t->damdone = 0;
 
-    argument = one_argument(argument, name);
-    argument = one_argument(argument, amount);
+    name = argument.shift();
+    amount = argument.shift();
 
-    if (!*name || !*amount || !isdigit(*amount)) {
+    if (name.empty() || amount.empty() || !isdigit(*amount)) {
         wld_log(room, t, "wdamage: bad syntax");
         return;
     }
@@ -509,7 +504,7 @@ WCMD(do_wdamage) {
         return;
 
     /* Check for and use optional damage-type parameter */
-    argument = one_argument(argument, damtype);
+    damtype = argument.shift();
     if (*damtype) {
         dtype = parse_damtype(0, damtype);
         if (dtype == DAM_UNDEFINED) {
@@ -542,11 +537,11 @@ WCMD(do_wat) {
     char location[MAX_INPUT_LENGTH], arg2[MAX_INPUT_LENGTH];
     RoomData *r2;
 
-    void wld_command_interpreter(RoomData * room, TrigData * t, char *argument);
+    void wld_command_interpreter(RoomData * room, TrigData * t, std::string_view argument);
 
     half_chop(argument, location, arg2);
 
-    if (!*location || !*arg2 || (!isdigit(*location) && *location != UID_CHAR)) {
+    if (location.empty() || arg2.empty() || (!isdigit(*location) && *location != UID_CHAR)) {
         wld_log(room, t, "wat: bad syntax");
         return;
     }
@@ -565,14 +560,14 @@ WCMD(do_w_run_room_trig) {
     ScriptData *sc;
     TrigData *tr;
 
-    if (!*argument) {
+    if (argument.empty()) {
         wld_log(room, t, "w_run_room_trig called with no argument");
         return;
     }
 
-    one_argument(argument, arg1);
+    arg1 = argument.shift();
 
-    if (!*arg1 || !is_number(arg1)) {
+    if (arg1.empty() || !is_integer(arg1)) {
         wld_log(room, t, "w_run_room_trig: bad syntax");
         return;
     }
@@ -603,7 +598,7 @@ WCMD(do_wrent) {
 
     argument = any_one_arg(argument, arg);
 
-    if (!*arg) {
+    if (arg.empty()) {
         wld_log(room, t, "wrent called with no args");
         return;
     }
@@ -638,12 +633,11 @@ WCMD(do_wrent) {
  */
 WCMD(do_wskillset) {
     CharData *victim;
-    char arg[MAX_INPUT_LENGTH];
     int skspnum;
 
-    argument = one_argument(argument, arg);
+    auto arg = argument.shift();
 
-    if (!*arg) {
+    if (arg.empty()) {
         wld_log(room, t, "wskillset called with no arguments");
         return;
     }
@@ -656,7 +650,7 @@ WCMD(do_wskillset) {
     /*
      * we have a victim, do we have a valid skill?
      */
-    skip_spaces(&argument);
+    skip_spaces(argument);
     if ((skspnum = find_talent_num(argument, TALENT)) < 0) {
         /* no such spell/skill */
         sprintf(buf, "wskillset called with unknown skill/spell '%s'", argument);
@@ -699,14 +693,14 @@ const WorldCommandInfo wld_cmd_info[] = {
 /*
  *  This is the command interpreter used by rooms, called by script_driver.
  */
-void wld_command_interpreter(RoomData *room, TrigData *t, char *argument) {
+void wld_command_interpreter(RoomData *room, TrigData *t, std::string_view argument) {
     int cmd, length;
-    char *line, arg[MAX_INPUT_LENGTH];
+    std::string_view line, arg[MAX_INPUT_LENGTH];
 
-    skip_spaces(&argument);
+    skip_spaces(argument);
 
     /* just drop to next line for hitting CR */
-    if (!*argument)
+    if (argument.empty())
         return;
 
     line = any_one_arg(argument, arg);
@@ -716,7 +710,7 @@ void wld_command_interpreter(RoomData *room, TrigData *t, char *argument) {
         if (!strncasecmp(wld_cmd_info[cmd].command, arg, length))
             break;
 
-    if (*wld_cmd_info[cmd].command == '\n') {
+    if (wld_cmd_info[cmd].command.front() == '\n') {
         sprintf(buf2, "Unknown world cmd: '%s'", argument);
         wld_log(room, t, buf2);
     } else

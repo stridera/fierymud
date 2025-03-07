@@ -493,7 +493,7 @@ bool will_assist(CharData *ch, CharData *vict) {
         /* It would assist a peacekeeper or protector. */
         if (MOB_FLAGGED(vict, MOB_PEACEKEEPER) || MOB_FLAGGED(vict, MOB_PROTECTOR))
             return true;
-        /* A peacekeeper would assist against a badly-aligned char */
+        /* A peacekeeper would assist against a badly-aligned std::string_view */
         if (MOB_FLAGGED(ch, MOB_PEACEKEEPER) && abs(GET_ALIGNMENT(ch) - GET_ALIGNMENT(FIGHTING(vict))) > 1350)
             return true;
     }

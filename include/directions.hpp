@@ -15,7 +15,10 @@
 #include "structs.hpp"
 #include "sysdep.hpp"
 
-extern const char *dirs[NUM_OF_DIRS + 1];
-extern const char *capdirs[NUM_OF_DIRS + 1];
-extern const char *dirpreposition[NUM_OF_DIRS + 1];
-extern const int rev_dir[NUM_OF_DIRS];
+#include <array>
+
+constexpr std::array<std::string_view, NUM_OF_DIRS> dirs = {"north", "east", "south", "west", "up", "down"};
+constexpr std::string_view capdirs[NUM_OF_DIRS + 1] = {"N", "E", "S", "W", "U", "D", "\n"};
+constexpr std::string_view dirpreposition[NUM_OF_DIRS + 1] = {
+    "to the north", "to the east", "to the south", "to the west", "in the ceiling", "in the floor", "\n"};
+constexpr int rev_dir[NUM_OF_DIRS] = {SOUTH, WEST, NORTH, EAST, DOWN, UP};

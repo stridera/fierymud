@@ -11,6 +11,7 @@
  ***************************************************************************/
 
 #include "ai.hpp"
+#include "bitflags.hpp"
 #include "casting.hpp"
 #include "charsize.hpp"
 #include "clan.hpp"
@@ -62,38 +63,23 @@
 #include <time.h>
 #include <unistd.h>
 
-void garble_text(char *string, int percent);
-void dismount_char(CharData *ch);
-void check_new_surroundings(CharData *ch, bool old_room_was_dark, bool tx_obvious);
-
-int Valid_Name(char *newname);
-int reserved_word(char *argument);
-
-/* extern functions */
-void send_to_xnames(char *name);
-int find_zone(int num);
-void cure_laryngitis(CharData *ch);
-void reboot_mud_prep();
-void rebootwarning(int minutes);
-
-/* Internal funct */
-void do_wiztitle(char *outbuf, CharData *vict, char *argu);
-
 #define ZOCMD zone_table[zrnum].cmd[subcmd]
 
-void list_zone_commands_room(CharData *ch, char *buf, room_num rvnum) {
+std::string list_zone_commands_room(CharData *ch, room_num rvnum) {
+    std::string door_state;
+
     int zrnum = find_real_zone_by_room(rvnum);
-    int rrnum = real_room(rvnum), cmd_room = NOWHERE;
+    int rrnum = real_room(rvnum);
+    int cmd_room = NOWHERE;
     int subcmd = 0, count = 0;
 
     if (zrnum == NOWHERE || rrnum == NOWHERE) {
-        strcpy(buf, "No zone information available.\n");
-        return;
+        return "No zone information available.\n";
     }
 
     get_char_cols(ch);
 
-    sprintf(buf, "Zone commands in this room:%s\n", yel);
+    std::string output;
     while (ZOCMD.command != 'S') {
         switch (ZOCMD.command) {
         case 'M':
@@ -113,89 +99,109 @@ void list_zone_commands_room(CharData *ch, char *buf, room_num rvnum) {
             /* start listing */
             switch (ZOCMD.command) {
             case 'M':
-                sprintf(buf1, "%sLoad %s [%s%d%s], Max : %d\n", ZOCMD.if_flag ? " then " : "",
-                        mob_proto[ZOCMD.arg1].player.short_descr, cyn, mob_index[ZOCMD.arg1].vnum, yel, ZOCMD.arg2);
+                output += fmt::format("{}Load {} [{}], Max : {}\n", ZOCMD.if_flag ? " then " : "",
+                                      mob_proto[ZOCMD.arg1].player.short_descr, cyn, mob_index[ZOCMD.arg1].vnum, yel,
+                                      ZOCMD.arg2);
                 break;
             case 'G':
-                sprintf(buf1, "%sGive it %s [%s%d%s], Max : %d\n", ZOCMD.if_flag ? " then " : "",
-                        obj_proto[ZOCMD.arg1].short_description, cyn, obj_index[ZOCMD.arg1].vnum, yel, ZOCMD.arg2);
+                output += fmt::format("{}Give it {} [{}{}{}], Max : {}\n", ZOCMD.if_flag ? " then " : "",
+                                      obj_proto[ZOCMD.arg1].short_description, cyn, obj_index[ZOCMD.arg1].vnum, yel,
+                                      ZOCMD.arg2);
                 break;
             case 'O':
-                sprintf(buf1, "%sLoad %s [%s%d%s], Max : %d\n", ZOCMD.if_flag ? " then " : "",
-                        obj_proto[ZOCMD.arg1].short_description, cyn, obj_index[ZOCMD.arg1].vnum, yel, ZOCMD.arg2);
+                output += fmt::format("{}Load {} [{}], Max : {}\n", ZOCMD.if_flag ? " then " : "",
+                                      obj_proto[ZOCMD.arg1].short_description, cyn, obj_index[ZOCMD.arg1].vnum, yel,
+                                      ZOCMD.arg2);
                 break;
             case 'E':
-                sprintf(buf1, "%sEquip with %s [%s%d%s], %s, Max : %d\n", ZOCMD.if_flag ? " then " : "",
-                        obj_proto[ZOCMD.arg1].short_description, cyn, obj_index[ZOCMD.arg1].vnum, yel,
-                        equipment_types[ZOCMD.arg3], ZOCMD.arg2);
+                output += fmt::format("{}Equip with {} [{}], {}, Max : {}\n", ZOCMD.if_flag ? " then " : "",
+                                      obj_proto[ZOCMD.arg1].short_description, cyn, obj_index[ZOCMD.arg1].vnum, yel,
+                                      equipment_types[ZOCMD.arg3], ZOCMD.arg2);
                 break;
             case 'P':
-                sprintf(buf1, "%sPut %s [%s%d%s] in %s [%s%d%s], Max : %d\n", ZOCMD.if_flag ? " then " : "",
-                        obj_proto[ZOCMD.arg1].short_description, cyn, obj_index[ZOCMD.arg1].vnum, yel,
-                        obj_proto[ZOCMD.arg3].short_description, cyn, obj_index[ZOCMD.arg3].vnum, yel, ZOCMD.arg2);
+                output += fmt::format("{}Put {} [{}] in {} [{}], Max : {}\n", ZOCMD.if_flag ? " then " : "",
+                                      obj_proto[ZOCMD.arg1].short_description, cyn, obj_index[ZOCMD.arg1].vnum, yel,
+                                      obj_proto[ZOCMD.arg3].short_description, cyn, obj_index[ZOCMD.arg3].vnum, yel,
+                                      ZOCMD.arg2);
                 break;
             case 'R':
-                sprintf(buf1, "%sRemove %s [%s%d%s] from room.\n", ZOCMD.if_flag ? " then " : "",
-                        obj_proto[ZOCMD.arg2].short_description, cyn, obj_index[ZOCMD.arg2].vnum, yel);
+                output += fmt::format("{}Remove {} [{}] from room.\n", ZOCMD.if_flag ? " then " : "",
+                                      obj_proto[ZOCMD.arg2].short_description, cyn, obj_index[ZOCMD.arg2].vnum, yel);
                 break;
             case 'D':
-                sprintf(buf1, "%sSet door %s as %s.\n", ZOCMD.if_flag ? " then " : "", dirs[ZOCMD.arg2],
-                        ZOCMD.arg3 ? ((ZOCMD.arg3 == 1)
-                                          ? "closed"
-                                          : ((ZOCMD.arg3 == 2)
-                                                 ? "locked"
-                                                 : ((ZOCMD.arg3 == 3) ? "hidden"
-                                                                      : ((ZOCMD.arg3 == 4) ? "hidden/closed/locked"
-                                                                                           : "hidden/closed"))))
-                                   : "open");
+                switch (ZOCMD.arg3) {
+                case 0:
+                    door_state = "open";
+                    break;
+                case 1:
+                    door_state = "closed";
+                    break;
+                case 2:
+                    door_state = "locked";
+                    break;
+                case 3:
+                    door_state = "hidden";
+                    break;
+                case 4:
+                    door_state = "hidden/closed/locked";
+                    break;
+                default:
+                    door_state = "hidden/closed";
+                    break;
+                }
+                output +=
+                    fmt::format("{}Set door {} as {}.\n", ZOCMD.if_flag ? " then " : "", dirs[ZOCMD.arg2], door_state);
                 break;
             default:
-                strcpy(buf1, "<Unknown Command>\n");
+                output += "<Unknown Command>\n";
                 break;
             }
-            sprintf(buf, "%s%s%3d - %s%s", buf, nrm, count, yel, buf1);
+
+            output += fmt::format("{}{:3d} - {}\n", nrm, count, ZOCMD.command);
         }
         subcmd++;
     }
-    strcat(buf, nrm);
-    if (!count)
-        strcat(buf, "  None.\n");
+
+    if (!count) {
+        output += "  No commands for this room.\n";
+    }
+
+    return output;
 }
 
-void stat_extra_descs(ExtraDescriptionData *ed, CharData *ch, char *buf, bool showtext) {
+std::string stat_extra_descs(ExtraDescriptionData *ed, CharData *ch, bool showtext) {
     ExtraDescriptionData *desc;
     int count;
 
     if (!ed) {
-        strcpy(buf, "No extra descs.\n");
-        return;
+        return "No extra descs.\n";
     }
 
+    std::string output = "";
     if (showtext) {
-        strcpy(buf, "");
         for (desc = ed; desc; desc = desc->next)
-            sprintf(buf, "%s&4*&0 %s%s%s\n%s\n", buf, CLR(ch, FCYN), desc->keyword, CLR(ch, ANRM), desc->description);
+            output += fmt::format("&4*&0 {}{}{}\n{}\n", CLR(ch, FCYN), desc->keyword, CLR(ch, ANRM), desc->description);
     } else {
         count = 0;
         for (desc = ed; desc; desc = desc->next)
             count++;
-        sprintf(buf, "Extra desc%s (%d):%s\n", ed->next ? "s" : "", count, CLR(ch, FCYN));
+        output += fmt::format("Extra desc{} ({}) :{}\n", ed->next ? "s" : "", count, CLR(ch, FCYN));
         for (desc = ed; desc; desc = desc->next) {
             if (desc != ed)
-                strcat(buf, ",");
-            strcat(buf, " ");
-            strcat(buf, desc->keyword);
+                output += ", ";
+            output += desc->keyword;
         }
-        strcat(buf, CLR(ch, ANRM));
-        strcat(buf, "\n");
+        output += CLR(ch, ANRM);
+        output += "\n";
     }
+    return output;
 }
 
 void do_stat_room(CharData *ch, int rrnum) {
     RoomData *rm = &world[rrnum];
-    int i, found = 0;
-    ObjData *j = 0;
-    CharData *k = 0;
+    int found = 0;
+    ObjData *j = nullptr;
+    CharData *k = nullptr;
     RoomEffectNode *reff;
     const sectordef *sector;
     std::string resp;
@@ -207,65 +213,65 @@ void do_stat_room(CharData *ch, int rrnum) {
 
     resp += fmt::format("Room name: {}{}{}\n", CLR(ch, FCYN), rm->name, CLR(ch, ANRM));
 
-    sprintf(buf2, "%s%s&0 (%d mv)", sector->color, sector->name, sector->mv);
     resp += fmt::format("Zone: [{}], VNum: [{}{}{}], RNum: [{}], Sector: {}\n", rm->zone, CLR(ch, FGRN), rm->vnum,
-                        CLR(ch, ANRM), rrnum, buf2);
+                        CLR(ch, ANRM), rrnum, fmt::format("{}{}&0 ({} mv)", sector->color, sector->name, sector->mv));
 
-    sprintflag(buf2, rm->room_flags, NUM_ROOM_FLAGS, room_bits);
-    resp += fmt::format("SpecProc: {}, Flags: {}\n", (rm->func == nullptr) ? "None" : "Exists", buf2);
+    resp += fmt::format("SpecProc: {}, Flags: {}\n", (rm->func == nullptr) ? "None" : "Exists",
+                        sprintflag(rm->room_flags, NUM_ROOM_FLAGS, room_bits));
 
-    sprintflag(buf2, rm->room_effects, NUM_ROOM_EFF_FLAGS, room_effects);
-    resp += fmt::format("Room effects: {}\n", buf2);
+    resp += fmt::format("Room effects: {}\n", sprintflag(rm->room_effects, NUM_ROOM_EFF_FLAGS, room_effects));
 
     resp += fmt::format("Ambient Light : {}\n", rm->light);
 
-    resp += fmt::format("Description:\n{}\n", rm->description ? rm->description : "  None.");
-    stat_extra_descs(rm->ex_description, ch, buf, false);
-    resp += buf;
+    resp += fmt::format("Description:\n{}\n", rm->description.empty() ? " None." : rm->description);
+    resp += stat_extra_descs(rm->ex_description, ch, false);
 
-    sprintf(buf2, "Chars present:%s", CLR(ch, FYEL));
+    std::string chars_present = fmt::format("Chars present:{}", CLR(ch, FYEL));
     for (found = 0, k = rm->people; k; k = k->next_in_room) {
         if (!CAN_SEE(ch, k))
             continue;
-        sprintf(buf2, "%s%s %s(%s)", buf2, found++ ? "," : "", GET_NAME(k),
-                (!IS_NPC(k) ? "PC" : (!IS_MOB(k) ? "NPC" : "MOB")));
-        if (strlen(buf2) >= 62) {
-            resp += fmt::format("{}{}\n", buf2, k->next_in_room ? "," : "");
-            *buf2 = found = 0;
+
+        chars_present += fmt::format("{} {}({})", found++ ? "," : "", GET_NAME(k),
+                                     (!IS_NPC(k) ? "PC" : (!IS_MOB(k) ? "NPC" : "MOB")));
+        if (chars_present.length() >= 62) {
+            resp += fmt::format("{}{}\n", chars_present, k->next_in_room ? "," : "");
+            chars_present.clear();
+            found = 0;
         }
     }
-    if (*buf2)
-        resp += fmt::format("{}\n", buf2);
+    if (!chars_present.empty())
+        resp += fmt::format("{}\n", chars_present);
     resp += CLR(ch, ANRM);
 
     if (rm->contents) {
-        sprintf(buf2, "Contents:%s", CLR(ch, FGRN));
+        std::string contents = fmt::format("Contents:{}", CLR(ch, FGRN));
         for (found = 0, j = rm->contents; j; j = j->next_content) {
             if (!CAN_SEE_OBJ(ch, j))
                 continue;
-            sprintf(buf2, "%s%s %s", buf2, found++ ? "," : "", j->short_description);
-            if (strlen(buf2) >= 62) {
-                resp += fmt::format("{}{}\n", buf2, j->next_content ? "," : "");
-                *buf2 = found = 0;
+            contents += fmt::format("{} {}", found++ ? "," : "", j->short_description);
+            if (contents.length() >= 62) {
+                resp += fmt::format("{}{}\n", contents, j->next_content ? "," : "");
+                contents.clear();
+                found = 0;
             }
         }
 
-        if (*buf2)
-            resp += fmt::format("{}\n", buf2);
+        if (!contents.empty())
+            resp += fmt::format("{}\n", contents);
         resp += CLR(ch, ANRM);
     }
 
-    for (i = 0; i < NUM_OF_DIRS; i++) {
+    for (int i = 0; i < NUM_OF_DIRS; i++) {
         if (rm->exits[i]) {
-            if (rm->exits[i]->to_room == NOWHERE)
-                sprintf(buf1, " %sNONE%s", CLR(ch, FCYN), CLR(ch, ANRM));
-            else
-                sprintf(buf1, "%s%5d%s", CLR(ch, FCYN), world[rm->exits[i]->to_room].vnum, CLR(ch, ANRM));
-            sprintbit(rm->exits[i]->exit_info, exit_bits, buf2);
+            std::string to_room =
+                (rm->exits[i]->to_room == NOWHERE)
+                    ? fmt::format(" {}NONE{}", CLR(ch, FCYN), CLR(ch, ANRM))
+                    : fmt::format("{}{}{}", CLR(ch, FCYN), world[rm->exits[i]->to_room].vnum, CLR(ch, ANRM));
+            std::string exit_info = sprintbit(rm->exits[i]->exit_info, exit_bits);
             resp += fmt::format("Exit {}{:5}{}:  To: [{}], Key: [{:5}], Keywrd: {}, Type: {}\n", CLR(ch, FCYN), dirs[i],
-                                CLR(ch, ANRM), buf1, rm->exits[i]->key,
-                                rm->exits[i]->keyword ? rm->exits[i]->keyword : "None", buf2);
-            if (rm->exits[i]->general_description)
+                                CLR(ch, ANRM), to_room, rm->exits[i]->key,
+                                rm->exits[i]->keyword.empty() ? "None" : rm->exits[i]->keyword, exit_info);
+            if (!rm->exits[i]->general_description.empty())
                 resp += fmt::format("Extra Desc: {}\n", rm->exits[i]->general_description);
         }
     }
@@ -273,55 +279,44 @@ void do_stat_room(CharData *ch, int rrnum) {
     /* Mention spells/effects */
     for (reff = room_effect_list; reff; reff = reff->next) {
         if (reff->room == rrnum) {
-            sprinttype(reff->effect, room_effects, buf2);
-            resp += fmt::format("SPL: ({:3}) &6{:21}&0, sets {}\n", reff->timer, skills[reff->spell].name, buf2);
+            std::string effect = sprinttype(reff->effect, room_effects);
+            resp += fmt::format("SPL: ({:3}) &6{:21}&0, sets {}\n", reff->timer, skills[reff->spell].name, effect);
         }
     }
 
-    list_zone_commands_room(ch, buf, rm->vnum);
-    resp += buf;
+    resp += list_zone_commands_room(ch, rm->vnum);
 
     /* check the room for a script */
-    do_sstat_room(ch, buf, rm);
-    resp += buf;
+    resp += do_sstat_room(ch, rm);
 
-    page_string(ch, resp.c_str());
+    page_string(ch, resp);
 }
 
 // TODO: Update to return a string
-void stat_spellbook(ObjData *obj, char *buf) {
+std::string stat_spellbook(ObjData *obj) {
     int spage = 0, fpage = 0;
     SpellBookList *entry;
-    char list_buf[MAX_STRING_LENGTH];
 
-    list_buf[0] = 0;
-
-    strcpy(buf, "&7&b---Spellbook Contents---&0\n");
-
-    /* If we can't get a list of the spells in the book,
-     * we need to say *exactly* why. */
+    /* If we can't get a list of the spells in the book, we need to say *exactly* why. */
     if (!obj->spell_book) {
-        strcat(buf, "&1&b*&0 Its spell list is NULL.\n");
-        return;
+        return "&1&b*&0 Its spell list is NULL.\n";
     } else if (!obj->spell_book->spell) {
-        strcat(buf, "&1&b*&0 The first spell in its spell list is 0.\n");
-        return;
+        return "&1&b*&0 The first spell in its spell list is 0.\n";
     }
 
+    std::string output{"&7&b---Spellbook Contents---&0\n"};
     for (entry = obj->spell_book; entry; entry = entry->next) {
         spage = fpage + 1;
         fpage = fpage + entry->length;
-        sprintf(list_buf, "%s&6%3d-%3d)&0 &6&b%s&0\n", list_buf, spage, fpage, skills[entry->spell].name);
+        output += fmt::format("&6{:3d}-{:3d})&0 &6&b{}&0\n", spage, fpage, skills[entry->spell].name);
     }
 
     if ((GET_OBJ_VAL(obj, VAL_SPELLBOOK_PAGES) - fpage) > 1) {
-        sprintf(list_buf, "%s&6%3d-%3d)&0 &4&b--Blank--&0\n", list_buf, fpage + 1,
-                GET_OBJ_VAL(obj, VAL_SPELLBOOK_PAGES));
+        output += fmt::format("&6{:3d}-{:3d})&0 &4&b--Blank--&0\n", fpage + 1, GET_OBJ_VAL(obj, VAL_SPELLBOOK_PAGES));
     } else if ((GET_OBJ_VAL(obj, VAL_SPELLBOOK_PAGES) - fpage) == 1) {
-        sprintf(list_buf, "%s    &6%3d)&0 &4&b--Blank--&0\n", list_buf, GET_OBJ_VAL(obj, VAL_SPELLBOOK_PAGES));
+        output += fmt::format("    &6{:3d})&0 &4&b--Blank--&0\n", GET_OBJ_VAL(obj, VAL_SPELLBOOK_PAGES));
     }
-
-    strcat(buf, list_buf);
+    return output;
 }
 
 void do_stat_object(CharData *ch, ObjData *j) {
@@ -334,43 +329,44 @@ void do_stat_object(CharData *ch, ObjData *j) {
         return;
 
     vnum = GET_OBJ_VNUM(j);
-    resp +=
-        fmt::format("Name: '{}{}{}', Aliases: {}, Level: {}\n", CLR(ch, FYEL),
-                    j->short_description ? j->short_description : "<None>", CLR(ch, ANRM), j->name, GET_OBJ_LEVEL(j));
+    resp += fmt::format("Name: '{}{}{}', Aliases: {}, Level: {}\n", CLR(ch, FYEL),
+                        j->short_description.empty() ? "<None>" : j->short_description, CLR(ch, ANRM), j->name,
+                        GET_OBJ_LEVEL(j));
 
+    std::string spec_proc;
     if (GET_OBJ_RNUM(j) >= 0)
-        strcpy(buf2, obj_index[GET_OBJ_RNUM(j)].func ? "Exists" : "None");
+        spec_proc = obj_index[GET_OBJ_RNUM(j)].func ? "Exists" : "None";
     else
-        strcpy(buf2, "None");
+        spec_proc = "None";
     resp += fmt::format("VNum: [{}{:5d}{}], RNum: [{:5d}], Type: {}, SpecProc: {}\n", CLR(ch, FGRN), vnum,
-                        CLR(ch, ANRM), GET_OBJ_RNUM(j), OBJ_TYPE_NAME(j), buf2);
+                        CLR(ch, ANRM), GET_OBJ_RNUM(j), OBJ_TYPE_NAME(j), spec_proc);
 
-    resp += fmt::format("L-Des: {}\n", j->description ? j->description : "None");
+    resp += fmt::format("L-Des: {}\n", j->description.empty() ? "None" : j->description);
 
-    if (j->action_description)
+    if (!j->action_description.empty())
         resp += fmt::format("Action desc:\n{}{}{}\n", CLR(ch, FYEL), j->action_description, CLR(ch, ANRM));
 
-    sprintbit(j->obj_flags.wear_flags, wear_bits, buf1);
-    resp += fmt::format("Can be worn on: {}{}{}\n", CLR(ch, FCYN), buf1, CLR(ch, ANRM));
+    resp += fmt::format("Can be worn on: {}{}{}\n", CLR(ch, FCYN), sprintbit(j->obj_flags.wear_flags, wear_bits),
+                        CLR(ch, ANRM));
 
-    sprintflag(buf1, GET_OBJ_FLAGS(j), NUM_ITEM_FLAGS, extra_bits);
-    resp += fmt::format("Extra flags   : {}{}{}\n", CLR(ch, FGRN), buf1, CLR(ch, ANRM));
+    resp += fmt::format("Extra flags   : {}{}{}\n", CLR(ch, FGRN),
+                        sprintflag(GET_OBJ_FLAGS(j), NUM_ITEM_FLAGS, extra_bits), CLR(ch, ANRM));
 
-    *buf1 = '\0';
-    sprintflag(buf1, GET_OBJ_EFF_FLAGS(j), NUM_EFF_FLAGS, effect_flags);
-    resp += fmt::format("Spell Effects : {}{}{}\n", CLR(ch, FYEL), buf1, CLR(ch, ANRM));
+    resp += fmt::format("Spell Effects : {}{}{}\n", CLR(ch, FYEL),
+                        sprintflag(GET_OBJ_EFF_FLAGS(j), NUM_EFF_FLAGS, effect_flags), CLR(ch, ANRM));
 
     resp +=
         fmt::format("Weight: {:.2f}, Effective Weight: {:.2f}, Value: {}, Timer: {}, Decomp time: {}, Hiddenness: {}\n",
                     GET_OBJ_WEIGHT(j), GET_OBJ_EFFECTIVE_WEIGHT(j), GET_OBJ_COST(j), GET_OBJ_TIMER(j),
                     GET_OBJ_DECOMP(j), GET_OBJ_HIDDENNESS(j));
 
+    std::string room_str;
     if (j->in_room == NOWHERE)
-        strcpy(buf1, "Nowhere");
+        room_str = "Nowhere";
     else
-        sprintf(buf1, "%d", world[j->in_room].vnum);
+        room_str = fmt::format("Room: {}", world[j->in_room].vnum);
     resp +=
-        fmt::format("In room: {}, In object: {}, Carried by: {}, Worn by: {}\n", buf1,
+        fmt::format("In room: {}, In object: {}, Carried by: {}, Worn by: {}\n", room_str,
                     j->in_obj ? j->in_obj->short_description : "None",
                     j->carried_by ? GET_NAME(j->carried_by) : "Nobody", j->worn_by ? GET_NAME(j->worn_by) : "Nobody");
 
@@ -414,10 +410,11 @@ void do_stat_object(CharData *ch, ObjData *j) {
         break;
     case ITEM_CONTAINER:
         if (!IS_CORPSE(j)) {
-            sprintbit(GET_OBJ_VAL(j, VAL_CONTAINER_BITS), container_bits, buf2);
-            resp += fmt::format("Weight capacity: {}, Lock Type: {}, Key Num: {}, Weight Reduction: {}%, Corpse: {}\n",
-                                GET_OBJ_VAL(j, VAL_CONTAINER_CAPACITY), buf2, GET_OBJ_VAL(j, VAL_CONTAINER_KEY),
-                                GET_OBJ_VAL(j, VAL_CONTAINER_WEIGHT_REDUCTION), YESNO(IS_CORPSE(j)));
+
+            resp += fmt::format(
+                "Weight capacity: {}, Lock Type: {}, Key Num: {}, Weight Reduction: {}%, Corpse: {}\n",
+                GET_OBJ_VAL(j, VAL_CONTAINER_CAPACITY), sprintbit(GET_OBJ_VAL(j, VAL_CONTAINER_BITS), container_bits),
+                GET_OBJ_VAL(j, VAL_CONTAINER_KEY), GET_OBJ_VAL(j, VAL_CONTAINER_WEIGHT_REDUCTION), YESNO(IS_CORPSE(j)));
         } else {
             resp +=
                 fmt::format("Weight capacity: {}, Id: {}, Corpse: {}, Player Corpse: {}, Raisable: {}\n",
@@ -448,22 +445,19 @@ void do_stat_object(CharData *ch, ObjData *j) {
     case ITEM_PORTAL:
         resp += fmt::format("To room: {}\n", GET_OBJ_VAL(j, VAL_PORTAL_DESTINATION));
         if (GET_OBJ_VAL(j, VAL_PORTAL_ENTRY_MSG) >= 0) {
-            for (i = 0; i < GET_OBJ_VAL(j, VAL_PORTAL_ENTRY_MSG) && *portal_entry_messages[i] != '\n'; ++i)
+            for (i = 0; i < GET_OBJ_VAL(j, VAL_PORTAL_ENTRY_MSG) && i < portal_entry_messages.size(); ++i)
                 ;
-            if (*portal_entry_messages[i] != '\n')
-                resp += fmt::format("Entry-Room message: {}", portal_entry_messages[i]);
+            resp += fmt::format("Entry-Room message: {}", portal_entry_messages[i]);
         }
         if (GET_OBJ_VAL(j, VAL_PORTAL_CHAR_MSG) >= 0) {
-            for (i = 0; i < GET_OBJ_VAL(j, VAL_PORTAL_CHAR_MSG) && *portal_character_messages[i] != '\n'; ++i)
+            for (i = 0; i < GET_OBJ_VAL(j, VAL_PORTAL_CHAR_MSG) && i < portal_character_messages.size(); ++i)
                 ;
-            if (*portal_character_messages[i] != '\n')
-                resp += fmt::format("To-Char message   : {}", portal_character_messages[i]);
+            resp += fmt::format("To-Char message   : {}", portal_character_messages[i]);
         }
         if (GET_OBJ_VAL(j, VAL_PORTAL_EXIT_MSG) >= 0) {
-            for (i = 0; i < GET_OBJ_VAL(j, VAL_PORTAL_EXIT_MSG) && *portal_exit_messages[i] != '\n'; ++i)
+            for (i = 0; i < GET_OBJ_VAL(j, VAL_PORTAL_EXIT_MSG) && i < portal_exit_messages.size(); ++i)
                 ;
-            if (*portal_exit_messages[i] != '\n')
-                resp += fmt::format("Exit-Room message : {}", portal_exit_messages[i]);
+            resp += fmt::format("Exit-Room message : {}", portal_exit_messages[i]);
         }
         break;
     default:
@@ -479,16 +473,17 @@ void do_stat_object(CharData *ch, ObjData *j) {
      */
 
     if (j->contains) {
-        sprintf(buf1, "\nContents:%s", CLR(ch, FGRN));
+        auto buf1 = fmt::format("\nContents:%s", CLR(ch, FGRN));
         for (found = 0, j2 = j->contains; j2; j2 = j2->next_content) {
-            sprintf(buf1, "%s%s %s", buf1, found++ ? "," : "", j2->short_description);
-            if (strlen(buf1) >= 62) {
+            buf1 += fmt::format("{} {}", found++ ? "," : "", j2->short_description);
+            if (buf1.length() >= 62) {
                 resp += fmt::format("{}{}\n", buf1, j2->next_content ? "," : "");
-                *buf1 = found = 0;
+                buf1.clear();
+                found = 0;
             }
         }
 
-        if (*buf1)
+        if (!buf1.empty())
             resp += fmt::format("{}\n", buf1);
         resp += CLR(ch, ANRM);
     }
@@ -497,19 +492,16 @@ void do_stat_object(CharData *ch, ObjData *j) {
     resp += "Applies:";
     for (i = 0; i < MAX_OBJ_APPLIES; i++)
         if (j->applies[i].modifier) {
-            sprinttype(j->applies[i].location, apply_types, buf2);
             resp +=
                 fmt::format("{} {}", found++ ? "," : "", format_apply(j->applies[i].location, j->applies[i].modifier));
         }
     resp += fmt::format("{}\n", found ? "" : " None");
 
     if (GET_OBJ_TYPE(j) == ITEM_SPELLBOOK) {
-        stat_spellbook(j, buf);
-        resp += buf;
+        resp += stat_spellbook(j);
     }
 
-    stat_extra_descs(j->ex_description, ch, buf, false);
-    resp += buf;
+    resp += stat_extra_descs(j->ex_description, ch, false);
 
     /* Report any events attached. */
     if (j->events) {
@@ -525,57 +517,54 @@ void do_stat_object(CharData *ch, ObjData *j) {
     }
 
     /* check the object for a script */
-    do_sstat_object(ch, buf, j);
-    resp += buf;
+    resp += do_sstat_object(ch, j);
 
-    page_string(ch, resp.c_str());
+    page_string(ch, resp);
 }
 
 ACMD(do_estat) {
     ObjData *obj;
-    char *otarg;
+    std::string_view otarg;
     int tmp, r_num;
 
-    half_chop(argument, buf1, buf2);
+    auto buf1 = argument.shift();
+    auto buf2 = argument.get();
 
     if (!ch->desc)
         return;
 
-    if (subcmd == SCMD_RESTAT || !strcasecmp(buf1, "room")) {
-        if (subcmd == SCMD_RESTAT && *buf1)
-            tmp = isdigit(*buf1) ? real_room(atoi(buf1)) : NOWHERE;
-        else if (subcmd != SCMD_RESTAT && *buf2)
-            tmp = isdigit(*buf2) ? real_room(atoi(buf2)) : NOWHERE;
+    if (subcmd == SCMD_RESTAT || matches(buf1, "room")) {
+        if (subcmd == SCMD_RESTAT && !buf1.empty())
+            tmp = is_integer(buf1) ? real_room(svtoi(buf1)) : NOWHERE;
+        else if (subcmd != SCMD_RESTAT && !buf2.empty())
+            tmp = is_integer(buf2) ? real_room(svtoi(buf2)) : NOWHERE;
         else
             tmp = ch->in_room;
         if (tmp == NOWHERE)
             char_printf(ch, "No such room.\n");
         else {
-            stat_extra_descs(world[tmp].ex_description, ch, buf, true);
-            page_string(ch, buf);
+            page_string(ch, stat_extra_descs(world[tmp].ex_description, ch, true));
         }
     } else {
         if (subcmd == SCMD_OESTAT)
             otarg = buf1;
-        else if (!strcasecmp(buf1, "obj"))
+        else if (matches(buf1, "obj"))
             otarg = buf2;
         else
             otarg = buf1;
 
-        if (!*otarg) {
+        if (otarg.empty()) {
             char_printf(ch, "Usage: estat room [<vnum>]\n");
             char_printf(ch, "       estat obj <name>\n");
-        } else if (isdigit(*otarg)) {
-            tmp = atoi(otarg);
+        } else if (is_integer(otarg)) {
+            tmp = svtoi(otarg);
             if ((r_num = real_object(tmp)) < 0)
                 char_printf(ch, "There is no object with that number.\n");
             else {
-                stat_extra_descs(obj_proto[r_num].ex_description, ch, buf, true);
-                page_string(ch, buf);
+                page_string(ch, stat_extra_descs(obj_proto[r_num].ex_description, ch, true));
             }
         } else if ((obj = find_obj_around_char(ch, find_vis_by_name(ch, otarg)))) {
-            stat_extra_descs(obj->ex_description, ch, buf, true);
-            page_string(ch, buf);
+            page_string(ch, stat_extra_descs(obj->ex_description, ch, true));
         } else {
             char_printf(ch, "No such object around.\n");
         }
@@ -583,7 +572,7 @@ ACMD(do_estat) {
 }
 
 void do_stat_character(CharData *ch, CharData *k) {
-    int i, found, a, mprinted;
+    int i, a;
     GroupType *g;
     FollowType *fol;
     effect *eff;
@@ -607,12 +596,12 @@ void do_stat_character(CharData *ch, CharData *k) {
 
     /* Strings */
     if (IS_NPC(k)) {
-        resp += fmt::format("L-Des: {}\n", (GET_LDESC(k) ? GET_LDESC(k) : "<None>"));
-        if (k->player.description) {
+        resp += fmt::format("L-Des: {}\n", (GET_LDESC(k).empty() ? "<None>" : GET_LDESC(k)));
+        if (!k->player.description.empty()) {
             resp += fmt::format("Desc: {}\n", k->player.description);
         }
     } else
-        resp += fmt::format("Title: {}\n", (k->player.title ? k->player.title : "<None>"));
+        resp += fmt::format("Title: {}\n", (k->player.title.empty() ? "<None>" : k->player.title));
 
     /* Various character stats */
     resp += fmt::format("Race: {}, Race Align: {}, ", RACE_PLAINNAME(k), RACE_ALIGN_ABBR(k));
@@ -621,22 +610,22 @@ void do_stat_character(CharData *ch, CharData *k) {
         resp += fmt::format( "Deity: {}, ", GET_DIETY(ch) >= 0 ?
                 Dieties[(int) GET_DIETY(ch)].diety_name : "None");
     */
-    sprinttype(GET_SEX(k), genders, buf1);
-    resp += fmt::format("Size: {}, Gender: {}\n", capitalize(SIZE_DESC(k)), buf1);
-    resp += fmt::format("Life force: {}{}&0, Composition: {}{}&0\n", LIFEFORCE_COLOR(k), capitalize(LIFEFORCE_NAME(k)),
-                        COMPOSITION_COLOR(k), capitalize(COMPOSITION_NAME(k)));
+    resp += fmt::format("Size: {}, Gender: {}\n", capitalize_first(SIZE_DESC(k)), sprinttype(GET_SEX(k), genders));
+    resp +=
+        fmt::format("Life force: {}{}&0, Composition: {}{}&0\n", LIFEFORCE_COLOR(k),
+                    capitalize_first(LIFEFORCE_NAME(k)), COMPOSITION_COLOR(k), capitalize_first(COMPOSITION_NAME(k)));
     resp += fmt::format("Class: {}, Lev: [{}{:2d}{}], XP: [{}{:7}{}], Align: [{:4d}]\n", CLASS_FULL(k), CLR(ch, FYEL),
                         GET_LEVEL(k), CLR(ch, ANRM), CLR(ch, FYEL), GET_EXP(k), CLR(ch, ANRM), GET_ALIGNMENT(k));
 
     /* Player specific data. */
     if (!IS_NPC(k)) {
-        strftime(buf1, MAX_STRING_LENGTH, TIMEFMT_DATE, localtime(&(k->player.time.birth)));
-        strftime(buf2, MAX_STRING_LENGTH, TIMEFMT_DATE, localtime(&(k->player.time.logon)));
+        auto birthday = fmt::format(TIMEFMT_DATE, fmt::localtime(k->player.time.birth));
+        auto last_login = fmt::format(TIMEFMT_DATE, fmt::localtime(k->player.time.logon));
 
         resp += fmt::format(
             "Created: [{}], Last Logon: [{}], Played: [{}h {}m]\n"
             "Age: [{}], Homeroom: [{}]",
-            buf1, buf2, k->player.time.played / 3600, ((k->player.time.played / 3600) % 60), age(k).year,
+            birthday, last_login, k->player.time.played / 3600, ((k->player.time.played / 3600) % 60), age(k).year,
             GET_HOMEROOM(k));
 
         if (GET_CLAN(k)) {
@@ -646,12 +635,11 @@ void do_stat_character(CharData *ch, CharData *k) {
         /* Display OLC zones for immorts */
         if (GET_LEVEL(k) >= LVL_IMMORT) {
             OLCZoneList *zone;
-            *buf1 = '\0';
+            std::string zone_msg;
             for (zone = GET_OLC_ZONES(k); zone; zone = zone->next)
-                sprintf(buf1, "%s%d%s", buf1, zone->zone, zone->next ? ", " : "");
-            resp += fmt::format(", OLC Zones: [{}]", *buf1 ? buf1 : "NONE");
+                zone_msg += ("{}{}", zone->zone, zone->next ? ", " : "");
+            resp += fmt::format(", OLC Zones: [{}]", zone_msg.empty() ? "None" : zone_msg);
         }
-
         resp += "\n";
     }
 
@@ -689,12 +677,12 @@ void do_stat_character(CharData *ch, CharData *k) {
                         GET_RAGE(k));
 
     /* Status data. */
-    sprinttype(GET_POS(k), position_types, buf1);
-    sprinttype(GET_STANCE(k), stance_types, buf2);
-    resp += fmt::format("Pos: {} ({})", buf1, buf2);
+    auto position = sprinttype(GET_POS(k), position_types);
+    auto stance = sprinttype(GET_STANCE(k), stance_types);
+    resp += fmt::format("Pos: {} ({})", position, stance);
     if (IS_NPC(k)) {
-        sprinttype(k->mob_specials.default_pos, position_types, buf1);
-        resp += fmt::format(", Default Pos: {}", buf1);
+        position = sprinttype(k->mob_specials.default_pos, position_types);
+        resp += fmt::format(", Default Pos: {}", position);
     }
     resp += fmt::format(", Fighting: {}", FIGHTING(k) ? GET_NAME(FIGHTING(k)) : "<none>");
     if (k->forward)
@@ -702,100 +690,85 @@ void do_stat_character(CharData *ch, CharData *k) {
             fmt::format(", {} into: {}", GET_LEVEL(k) > LVL_IMMORT ? "Switched" : "Shapechanged", GET_NAME(k->forward));
     resp += "\n";
 
-    *buf2 = '\0';
+    std::string buf2;
     if (!IS_NPC(k))
-        sprintf(buf2, "Idle: [%d tic%s]", k->char_specials.timer, k->char_specials.timer == 1 ? "" : "s");
+        buf2 = fmt::format("Idle: [{} tic{}]", k->char_specials.timer, k->char_specials.timer == 1 ? "" : "s");
     if (k->desc) {
-        sprinttype(k->desc->connected, connected_types, buf1);
-        sprintf(buf2, "%s%sConnected: %s", buf2, *buf2 ? ", " : "", buf1);
+        auto connected = sprinttype(k->desc->connected, connected_types);
+        buf2 += fmt::format("{}Connected: {}", buf2.empty() ? "" : ", ", connected);
     }
     if (POSSESSED(k))
-        sprintf(buf2, "%s%s%s into by: %s", buf2, *buf2 ? ", " : "",
-                GET_LEVEL(POSSESSOR(k)) > LVL_IMMORT ? "Switched" : "Shapechanged", GET_NAME(POSSESSOR(k)));
-    if (*buf2)
+        buf2 += fmt::format("{}{} into by: {}", buf2.empty() ? "" : ", ",
+                            GET_LEVEL(POSSESSOR(k)) > LVL_IMMORT ? "Switched" : "Shapechanged", GET_NAME(POSSESSOR(k)));
+    if (!buf2.empty())
         resp += fmt::format("{}\n", buf2);
 
     if (IS_MOB(k)) {
+        std::string attack_type;
         if (k->mob_specials.attack_type >= 0 && k->mob_specials.attack_type <= TYPE_STAB - TYPE_HIT)
-            strcpy(buf2, attack_hit_text[k->mob_specials.attack_type].singular);
+            attack_type = attack_hit_text[k->mob_specials.attack_type].singular;
         else
-            strcpy(buf2, "<&1INVALID&0>");
+            attack_type = "<&1INVALID&0>";
         resp += fmt::format("Mob Spec-Proc: {}, NPC Bare Hand Dam: {}d{}, Attack type: {}\n",
                             (mob_index[GET_MOB_RNUM(k)].func ? "Exists" : "None"), k->mob_specials.damnodice,
-                            k->mob_specials.damsizedice, buf2);
+                            k->mob_specials.damsizedice, attack_type);
     }
 
     /* Character flags. */
     if (IS_NPC(k)) {
-        sprintflag(buf1, MOB_FLAGS(k), NUM_MOB_FLAGS, action_bits);
-        resp += fmt::format("NPC flags: {}{}{}\n", CLR(ch, FCYN), buf1, CLR(ch, ANRM));
+        auto mob_flags = sprintflag(MOB_FLAGS(k), NUM_MOB_FLAGS, action_bits);
+        resp += fmt::format("NPC flags: {}{}{}\n", CLR(ch, FCYN), mob_flags, CLR(ch, ANRM));
     } else {
-        sprintflag(buf2, PLR_FLAGS(k), NUM_PLR_FLAGS, player_bits);
-        resp += fmt::format("PLR: {}{}{}\n", CLR(ch, FCYN), buf2, CLR(ch, ANRM));
-        sprintflag(buf2, PRF_FLAGS(k), NUM_PRF_FLAGS, preference_bits);
-        resp += fmt::format("PRF: {}{}{}\n", CLR(ch, FGRN), buf2, CLR(ch, ANRM));
-        sprintflag(buf2, PRV_FLAGS(k), NUM_PRV_FLAGS, privilege_bits);
-        resp += fmt::format("PRV: {}{}{}\n", CLR(ch, FGRN), buf2, CLR(ch, ANRM));
+        auto plr_flags = sprintflag(PLR_FLAGS(k), NUM_PLR_FLAGS, player_bits);
+        resp += fmt::format("PLR: {}{}{}\n", CLR(ch, FCYN), plr_flags, CLR(ch, ANRM));
+        auto prf_flags = sprintflag(PRF_FLAGS(k), NUM_PRF_FLAGS, preference_bits);
+        resp += fmt::format("PRF: {}{}{}\n", CLR(ch, FGRN), prf_flags, CLR(ch, ANRM));
+        auto prv_flags = sprintflag(PRV_FLAGS(k), NUM_PRV_FLAGS, privilege_bits);
+        resp += fmt::format("PRV: {}{}{}\n", CLR(ch, FGRN), prv_flags, CLR(ch, ANRM));
     }
 
     /* Weight and objects. */
-    for (i = a = found = 0; i < NUM_WEARS; i++)
+    int total_weight = 0;
+    int worn_count = 0;
+    for (int i = 0; i < NUM_WEARS; i++) {
         if (GET_EQ(k, i)) {
-            ++found;
-            a += GET_OBJ_EFFECTIVE_WEIGHT(GET_EQ(k, i));
+            ++worn_count;
+            total_weight += GET_OBJ_EFFECTIVE_WEIGHT(GET_EQ(k, i));
         }
+    }
     resp += fmt::format(
         "Max Carry: {} ({} weight); "
         "Carried: {} ({:.2f} weight); "
         "Worn: {} ({} weight)\n",
-        CAN_CARRY_N(k), CAN_CARRY_W(k), IS_CARRYING_N(k), IS_CARRYING_W(k), found, a);
+        CAN_CARRY_N(k), CAN_CARRY_W(k), IS_CARRYING_N(k), IS_CARRYING_W(k), worn_count, total_weight);
 
     /* Conditions. */
-    resp += "Hunger: ";
-    if (GET_COND(k, FULL) < 0)
-        resp += "Off";
-    else
-        resp += fmt::format("{}", GET_COND(k, FULL));
-    resp += ", Thirst: ";
-    if (GET_COND(k, THIRST) < 0)
-        resp += "Off";
-    else
-        resp += fmt::format("{}", GET_COND(k, THIRST));
-    resp += ", Drunk: ";
-    if (GET_COND(k, DRUNK) < 0)
-        resp += "Off\n";
-    else
-        resp += fmt::format("{}\n", GET_COND(k, DRUNK));
+    resp += fmt::format("Hunger: {}, Thirst: {}, Drunk: {}\n",
+                        GET_COND(k, FULL) < 0 ? "Off" : std::to_string(GET_COND(k, FULL)),
+                        GET_COND(k, THIRST) < 0 ? "Off" : std::to_string(GET_COND(k, THIRST)),
+                        GET_COND(k, DRUNK) < 0 ? "Off" : std::to_string(GET_COND(k, DRUNK)));
 
     /* Group, follower, guard, etc. */
-    sprintf(buf1, "Consented: %s, Master is: %s, Followers are:", (CONSENT(ch) ? GET_NAME(CONSENT(ch)) : "<none>"),
-            (k->master ? GET_NAME(k->master) : "<none>"));
-
-    found = 0;
-    for (fol = k->followers; fol; fol = fol->next) {
-        if (strlen(buf1) + strlen(PERS(fol->follower, ch)) >= 78) {
-            resp += fmt::format("{}{}\n", buf1, found ? "," : "");
-            *buf1 = found = 0;
-        }
-        sprintf(buf1, "%s%s %s", buf1, found++ ? "," : "", PERS(fol->follower, ch));
+    std::string followers;
+    for (auto fol = k->followers; fol; fol = fol->next) {
+        if (!followers.empty())
+            followers += ", ";
+        followers += PERS(fol->follower, ch);
     }
-    if (*buf1)
-        resp += fmt::format("{}\n", buf1);
+    resp += fmt::format("Consented: {}, Master is: {}, Followers are: {}\n",
+                        (CONSENT(ch) ? GET_NAME(CONSENT(ch)) : "<none>"), (k->master ? GET_NAME(k->master) : "<none>"),
+                        followers.empty() ? "<none>" : followers);
 
     /* Group list */
-    sprintf(buf1, "&0&2&bGroup Master&0 is: %s, &0&2&bgroupees are:&0",
-            ((k->group_master) ? GET_NAME(k->group_master) : "<none>"));
-
-    found = 0;
-    for (g = k->groupees; g; g = g->next) {
-        if (strlen(buf1) + strlen(PERS(g->groupee, ch)) >= 78) {
-            resp += fmt::format("{}{}\n", buf1, found ? "," : "");
-            *buf1 = found = 0;
-        }
-        sprintf(buf1, "%s%s %s", buf1, found++ ? "," : "", PERS(g->groupee, ch));
+    std::string groupees;
+    for (auto g = k->groupees; g; g = g->next) {
+        if (!groupees.empty())
+            groupees += ", ";
+        groupees += PERS(g->groupee, ch);
     }
-    if (*buf1)
-        resp += fmt::format("{}\n", buf1);
+    resp +=
+        fmt::format("&0&2&bGroup Master&0 is: {}, &0&2&bgroupees are:&0 {}\n",
+                    ((k->group_master) ? GET_NAME(k->group_master) : "<none>"), groupees.empty() ? "<none>" : groupees);
 
     if (k->guarding || k->guarded_by)
         resp += fmt::format("Guarding: {}, Guarded by: {}\n", k->guarding ? GET_NAME(k->guarding) : "<none>",
@@ -805,15 +778,15 @@ void do_stat_character(CharData *ch, CharData *k) {
                             k->cornered_by ? GET_NAME(k->cornered_by) : "<none>");
 
     /* Effect bitvectors */
-    sprintflag(buf1, EFF_FLAGS(k), NUM_EFF_FLAGS, effect_flags);
-    resp += fmt::format("EFF: {}{}{}\n", CLR(ch, FYEL), buf1, CLR(ch, ANRM));
+    auto eff_flags = sprintflag(EFF_FLAGS(k), NUM_EFF_FLAGS, effect_flags);
+    resp += fmt::format("EFF: {}{}{}\n", CLR(ch, FYEL), eff_flags, CLR(ch, ANRM));
 
     /* NPC spell circle status */
     if (IS_NPC(k) && MEM_MODE(k) != MEM_NONE) {
-        const char *color;
         resp += "Spell slots available: ";
         auto slots = get_spell_slots_available(k);
         for (auto &slot : slots) {
+            std::string_view color;
             if (slot == 0)
                 color = CLR(ch, FRED);
             else if (slot == 1)
@@ -826,7 +799,7 @@ void do_stat_character(CharData *ch, CharData *k) {
     }
 
     /* List spells the character is affected by. */
-    for (eff = k->effects; eff; eff = eff->next) {
+    for (auto eff = k->effects; eff; eff = eff->next) {
         if (eff->duration < 0)
             resp += fmt::format("SPL: (perma) {}{:<21}{} ", CLR(ch, FCYN), skills[eff->type].name, CLR(ch, ANRM));
         else
@@ -835,8 +808,8 @@ void do_stat_character(CharData *ch, CharData *k) {
         if (eff->modifier)
             resp += fmt::format("{:+d} to {}", eff->modifier, apply_types[(int)eff->location]);
         if (HAS_FLAGS(eff->flags, NUM_EFF_FLAGS)) {
-            sprintflag(buf1, eff->flags, NUM_EFF_FLAGS, effect_flags);
-            resp += fmt::format("{}sets {}", eff->modifier ? ", " : "", buf1);
+            auto eff_flags = sprintflag(eff->flags, NUM_EFF_FLAGS, effect_flags);
+            resp += fmt::format("{}sets {}", eff->modifier ? ", " : "", eff_flags);
         }
         resp += "\n";
     }
@@ -844,8 +817,7 @@ void do_stat_character(CharData *ch, CharData *k) {
     /* Run through the quests the player is on */
     if (k->quests) {
         if (all_quests) {
-            quest = k->quests;
-            while (quest) {
+            for (auto quest = k->quests; quest; quest = quest->next) {
                 if ((a = real_quest(quest->quest_id)) >= 0) {
                     resp += fmt::format("Quest {}: ", all_quests[a].quest_name);
                     if (quest->stage == QUEST_SUCCESS)
@@ -855,7 +827,6 @@ void do_stat_character(CharData *ch, CharData *k) {
                     else
                         resp += fmt::format("Stage {}\n", quest->stage);
                 }
-                quest = quest->next;
             }
         } else
             log("SYSERR: do_stat_character: k->quests non-null but no quests exist (all_quests == NULL)");
@@ -863,7 +834,7 @@ void do_stat_character(CharData *ch, CharData *k) {
 
     /* Report any events attached. */
     if (k->events) {
-        e = k->events;
+        auto e = k->events;
         resp += fmt::format("Events: {}", eventname(e));
         while (e->next) {
             e = e->next;
@@ -875,7 +846,8 @@ void do_stat_character(CharData *ch, CharData *k) {
     }
 
     /* List cooldowns */
-    for (i = found = 0; i < NUM_COOLDOWNS; ++i) {
+    bool found = false;
+    for (int i = 0; i < NUM_COOLDOWNS; ++i) {
         if (!GET_COOLDOWN(k, i))
             continue;
         if (!found)
@@ -887,65 +859,67 @@ void do_stat_character(CharData *ch, CharData *k) {
 
     /* Check mobiles for a script */
     if (IS_NPC(k)) {
-        do_sstat_character(ch, buf, k);
-        resp += buf;
+        resp += do_sstat_character(ch, k);
     }
 
     /* List enemies the mob remembers */
-    mprinted = 0;
-    for (memory = MEMORY(k); memory; memory = memory->next) {
-        for (m = character_list; m; m = m->next)
+    bool mprinted = false;
+    for (auto memory = MEMORY(k); memory; memory = memory->next) {
+        for (auto m = character_list; m; m = m->next) {
             if (GET_IDNUM(m) == memory->id) {
                 if (!mprinted) {
                     resp += fmt::format("Remembered enemies: &2{}&0", GET_NAME(m));
-                    mprinted = 1;
+                    mprinted = true;
                 } else {
                     resp += fmt::format(", &2{}&0", GET_NAME(m));
                 }
                 break;
             }
+        }
     }
     if (mprinted)
         resp += "\n";
 
     /* List permanent player titles */
-    if (!IS_NPC(k) && GET_PERM_TITLES(k)) {
+    if (!IS_NPC(k) && !GET_PERM_TITLES(k).empty()) {
         resp += "Permanent Titles:\n";
-        for (i = 0; GET_PERM_TITLES(k)[i]; ++i)
-            resp += fmt::format("  P{}) {}\n", i + 1, GET_PERM_TITLES(k)[i]);
+        for (auto title : GET_PERM_TITLES(k)) {
+            resp += fmt::format("  {}\n", title);
+        }
     }
 
-    page_string(ch, resp.c_str());
+    page_string(ch, resp);
 }
 
 ACMD(do_stat) {
-    void do_stat_shop(CharData * ch, char *arg);
+    void do_stat_shop(CharData * ch, std::string_view arg);
     CharData *victim = 0;
     ObjData *obj = 0;
     int tmp;
 
-    half_chop(argument, buf1, buf2);
+    auto buf1 = argument.shift();
+    auto buf2 = argument.get();
 
-    if (subcmd == SCMD_RSTAT || is_abbrev(buf1, "room")) {
-        if (subcmd == SCMD_RSTAT && *buf1)
-            tmp = isdigit(*buf1) ? real_room(atoi(buf1)) : NOWHERE;
-        else if (subcmd != SCMD_RSTAT && *buf2)
-            tmp = isdigit(*buf2) ? real_room(atoi(buf2)) : NOWHERE;
+    if (subcmd == SCMD_RSTAT || matches_start(buf1, "room")) {
+        if (subcmd == SCMD_RSTAT && !buf1.empty())
+            tmp = is_integer(buf1) ? real_room(svtoi(buf1)) : NOWHERE;
+        else if (subcmd != SCMD_RSTAT && !buf2.empty())
+            tmp = is_integer(buf2) ? real_room(svtoi(buf2)) : NOWHERE;
         else
             tmp = ch->in_room;
         if (tmp == NOWHERE)
             char_printf(ch, "No such room.\n");
         else
             do_stat_room(ch, tmp);
-    } else if (subcmd == SCMD_SSTAT || is_abbrev(buf1, "shop")) {
+    } else if (subcmd == SCMD_SSTAT || matches_start(buf1, "shop")) {
         if (subcmd == SCMD_SSTAT)
             do_stat_shop(ch, buf1);
         else
             do_stat_shop(ch, buf2);
-    } else if (!*buf1) {
+    } else if (buf1.empty()) {
         char_printf(ch, "Stats on who or what?\n");
-    } else if (is_abbrev(buf1, "mob")) {
-        if (!*buf2)
+    } else if (matches_start(buf1, "mob")) {
+        if (buf2.empty())
             char_printf(ch, "Stats on which mobile?\n");
         else {
             if ((victim = find_char_around_char(ch, find_vis_by_name(ch, buf2))))
@@ -953,8 +927,8 @@ ACMD(do_stat) {
             else
                 char_printf(ch, "No such mobile around.\n");
         }
-    } else if (is_abbrev(buf1, "player")) {
-        if (!*buf2) {
+    } else if (matches_start(buf1, "player")) {
+        if (buf2.empty()) {
             char_printf(ch, "Stats on which player?\n");
         } else {
             if ((victim = find_char_around_char(ch, find_vis_plr_by_name(ch, buf2))))
@@ -962,8 +936,8 @@ ACMD(do_stat) {
             else
                 char_printf(ch, "No such player around.\n");
         }
-    } else if (is_abbrev(buf1, "file")) {
-        if (!*buf2) {
+    } else if (matches_start(buf1, "file")) {
+        if (buf2.empty()) {
             char_printf(ch, "Stats on which player?\n");
         } else {
             CREATE(victim, CharData, 1);
@@ -979,8 +953,8 @@ ACMD(do_stat) {
                 free(victim);
             }
         }
-    } else if (is_abbrev(buf1, "object")) {
-        if (!*buf2)
+    } else if (matches_start(buf1, "object")) {
+        if (buf2.empty())
             char_printf(ch, "Stats on which object?\n");
         else {
             if ((obj = find_obj_around_char(ch, find_vis_by_name(ch, buf2))))
@@ -1011,9 +985,9 @@ ACMD(do_olocate) {
     ObjData *obj;
     std::string response;
 
-    one_argument(argument, buf);
+    auto buf = argument.shift();
 
-    if (!*buf) {
+    if (buf.empty()) {
         char_printf(ch, "Search for what?\n");
         return;
     }
@@ -1044,7 +1018,7 @@ ACMD(do_olocate) {
             }
         }
     }
-    char_printf(ch, response.c_str());
+    char_printf(ch, response);
 }
 
 ACMD(do_vstat) {
@@ -1052,17 +1026,18 @@ ACMD(do_vstat) {
     ObjData *obj;
     int number, r_num;
 
-    two_arguments(argument, buf, buf2);
+    auto buf = argument.shift();
+    auto buf2 = argument.get();
 
-    if (subcmd == SCMD_VSTAT && (!*buf || !*buf2 || !isdigit(*buf2))) {
+    if (subcmd == SCMD_VSTAT && (buf.empty() || buf2.empty() || !is_integer(buf2))) {
         char_printf(ch, "Usage: vstat { obj | mob } <number>\n");
-    } else if (subcmd == SCMD_MSTAT && (!*buf || !isdigit(*buf))) {
+    } else if (subcmd == SCMD_MSTAT && (buf.empty() || !is_integer(buf))) {
         char_printf(ch, "Usage: mstat <number>\n");
-    } else if (subcmd == SCMD_OSTAT && (!*buf || !isdigit(*buf))) {
+    } else if (subcmd == SCMD_OSTAT && (buf.empty() || !is_integer(buf))) {
         char_printf(ch, "Usage: ostat <number>\n");
-    } else if ((number = (subcmd == SCMD_VSTAT ? atoi(buf2) : atoi(buf))) < 0) {
+    } else if ((number = (subcmd == SCMD_VSTAT ? svtoi(buf2) : svtoi(buf))) < 0) {
         char_printf(ch, "A NEGATIVE number??\n");
-    } else if (subcmd == SCMD_MSTAT || (subcmd == SCMD_VSTAT && is_abbrev(buf, "mob"))) {
+    } else if (subcmd == SCMD_MSTAT || (subcmd == SCMD_VSTAT && matches_start(buf, "mob"))) {
         if ((r_num = real_mobile(number)) < 0) {
             char_printf(ch, "There is no monster with that number.\n");
             return;
@@ -1071,7 +1046,7 @@ ACMD(do_vstat) {
         char_to_room(mob, 0);
         do_stat_character(ch, mob);
         extract_char(mob);
-    } else if (subcmd == SCMD_OSTAT || (subcmd == SCMD_VSTAT && is_abbrev(buf, "obj"))) {
+    } else if (subcmd == SCMD_OSTAT || (subcmd == SCMD_VSTAT && matches_start(buf, "obj"))) {
         if ((r_num = real_object(number)) < 0) {
             char_printf(ch, "There is no object with that number.\n");
             return;
@@ -1085,15 +1060,14 @@ ACMD(do_vstat) {
 
 ACMD(do_zstat) {
     int vnum, rnum;
-    char str[MAX_INPUT_LENGTH];
     ZoneData *z;
 
-    half_chop(argument, str, argument);
+    auto str = argument.shift();
 
-    if (!*str)
+    if (str.empty())
         vnum = IN_ZONE_VNUM(ch);
     else
-        vnum = atoi(str);
+        vnum = svtoi(str);
 
     rnum = find_zone(vnum);
     if (rnum == -1) {
@@ -1126,30 +1100,25 @@ ACMD(do_zstat) {
 }
 
 ACMD(do_players) {
-    int i, count = 0, buflen = 0;
-    const char *color;
+    int count = 0;
+    std::string_view color;
     long bitfield = 0;
 
-    any_one_arg(argument, arg);
+    auto arg = argument.shift();
 
     /* show usage */
-    if (strlen(arg) != 1 || !isalpha(*arg)) {
+    if (arg.length() != 1 || !isalpha(arg[0])) {
         char_printf(ch, "'players <letter>' shows all player names beginning with <letter>\n");
         return;
     }
 
-    *arg = tolower(*arg);
+    std::string output = fmt::format("Players starting with '{}':\n", arg);
 
     /* Go through all the names in the pfile */
-    for (i = 0; i <= top_of_p_table; i++) {
+    for (int i = 0; i <= top_of_p_table; i++) {
         /* Check if the first letter matches the argument */
-        if (tolower(*player_table[i].name) == *arg) {
+        if (matches(player_table[i].name, arg)) {
             ++count;
-
-            if (buflen > sizeof(buf) - 100) {
-                buflen += sprintf(buf + buflen, "\nToo many players!  Buffer full.");
-                break;
-            }
 
             bitfield = player_table[i].flags;
 
@@ -1161,25 +1130,25 @@ ACMD(do_players) {
                 color = FYEL;
             else
                 color = FGRN;
-            buflen += sprintf(buf + buflen, "  %s&b%-15.20s(%3d) &0%s", color, player_table[i].name,
-                              player_table[i].level, count % 3 ? "" : "\n");
+            output += fmt::format("  {}&b{:15.20}({:3d}) &0{}", color, player_table[i].name, player_table[i].level,
+                                  count % 3 ? "" : "\n");
         }
     }
 
     if (count == 0)
-        strcpy(buf, "No players for that letter.\n");
+        output += "No players for that letter.\n";
     else if (count % 3)
-        strcpy(buf + buflen, "\n");
+        output += "\n";
 
     /* Show the name list */
-    page_string(ch, buf);
+    page_string(ch, output);
 }
 
 ACMD(do_last) {
     CharData *victim;
 
-    one_argument(argument, arg);
-    if (!*arg) {
+    auto arg = argument.shift();
+    if (arg.empty()) {
         char_printf(ch, "For whom do you wish to search?\n");
         return;
     }
@@ -1212,7 +1181,7 @@ static std::string print_zone_to_buf(int zone) {
                        zone_table[zone].reset_mode, zone_table[zone].zone_factor, zone_table[zone].top);
 }
 
-void do_show_sectors(CharData *ch, char *argument) {
+void do_show_sectors(CharData *ch, Arguments argument) {
     (void)argument;
 
     int i;
@@ -1228,7 +1197,7 @@ void do_show_sectors(CharData *ch, char *argument) {
     start_paging(ch);
 }
 
-void do_show_compositions(CharData *ch, char *argument) {
+void do_show_compositions(CharData *ch, Arguments argument) {
     (void)argument;
 
     int i;
@@ -1242,29 +1211,27 @@ void do_show_compositions(CharData *ch, char *argument) {
     char_printf(ch, "---  -----------  -----  ------  -----  -----   ---  ----  -----  ----  ------\n");
     for (i = 0; i < NUM_COMPOSITIONS; i++) {
         char_printf(ch, "{:2d}.  {}{:<11}  {: 5d}  {: 6d}  {: 5d}  {: 5d}  {: 4d}  {: 4d}  {: 5d}  {: 4d}  {: 6d}&0\n",
-                    i, compositions[i].color, capitalize(compositions[i].name), compositions[i].sus_slash,
+                    i, compositions[i].color, capitalize_first(compositions[i].name), compositions[i].sus_slash,
                     compositions[i].sus_pierce, compositions[i].sus_crush, compositions[i].sus_shock,
                     compositions[i].sus_fire, compositions[i].sus_water, compositions[i].sus_cold,
                     compositions[i].sus_acid, compositions[i].sus_poison);
     }
 }
 
-void do_show_lifeforces(CharData *ch, char *argument) {
+void do_show_lifeforces(CharData *ch, Arguments argument) {
     (void)argument;
-
-    int i;
 
     char_printf(ch, "Idx  Life force   {}Heal&0  {}Disc.&0  {}Dispel&0  {}Mental&0\n", damtypes[DAM_HEAL].color,
                 damtypes[DAM_DISCORPORATE].color, damtypes[DAM_DISPEL].color, damtypes[DAM_MENTAL].color);
     char_printf(ch, "---  -----------  ----  -----  ------  ------\n");
-    for (i = 0; i < NUM_LIFEFORCES; i++) {
+    for (int i = 0; i < NUM_LIFEFORCES; i++) {
         char_printf(ch, "{:2d}.  {}{:<11}  {: 4d}  {: 5d}  {: 6d}  {: 6d}&0\n", i, lifeforces[i].color,
-                    capitalize(lifeforces[i].name), lifeforces[i].sus_heal, lifeforces[i].sus_discorporate,
+                    capitalize_first(lifeforces[i].name), lifeforces[i].sus_heal, lifeforces[i].sus_discorporate,
                     lifeforces[i].sus_dispel, lifeforces[i].sus_mental);
     }
 }
 
-void do_show_damtypes(CharData *ch, char *argument) {
+void do_show_damtypes(CharData *ch, Arguments argument) {
     int i;
 
     char_printf(ch, "Idx  Damage type      Verb 1st         Verb 2nd          Action \n");
@@ -1275,35 +1242,35 @@ void do_show_damtypes(CharData *ch, char *argument) {
     }
 }
 
-void do_show_zones(CharData *ch, char *argument) {
+void do_show_zones(CharData *ch, Arguments argument) {
     int zrnum;
     std::string zonebuf;
 
-    any_one_arg(argument, arg);
+    auto arg = argument.shift();
 
-    if (!strcasecmp(arg, ".")) {
+    if (matches(arg, ".")) {
         zonebuf += print_zone_to_buf(world[ch->in_room].zone);
-        char_printf(ch, zonebuf.c_str());
-    } else if (*arg && is_number(arg)) {
-        if ((zrnum = find_zone(atoi(arg))) == NOWHERE)
+        char_printf(ch, zonebuf);
+    } else if (!arg.empty() && is_integer(arg)) {
+        if ((zrnum = find_zone(svtoi(arg))) == NOWHERE)
             char_printf(ch, "That is not a valid zone.\n");
         else {
             zonebuf += print_zone_to_buf(zrnum);
-            char_printf(ch, zonebuf.c_str());
+            char_printf(ch, zonebuf);
         }
     } else {
         for (zrnum = 0; zrnum <= top_of_zone_table; ++zrnum)
             zonebuf += print_zone_to_buf(zrnum);
-        page_string(ch, zonebuf.c_str());
+        page_string(ch, zonebuf);
     }
 }
 
-void do_show_player(CharData *ch, char *argument) {
+void do_show_player(CharData *ch, Arguments argument) {
     CharData *vict;
 
-    one_argument(argument, arg);
+    auto arg = argument.shift();
 
-    if (!*arg) {
+    if (arg.empty()) {
         char_printf(ch, "A name would help.\n");
         return;
     }
@@ -1316,24 +1283,24 @@ void do_show_player(CharData *ch, char *argument) {
         free(vict);
         return;
     }
-    strftime(buf1, MAX_STRING_LENGTH, TIMEFMT_DATE, localtime(&(vict->player.time.birth)));
-    strftime(buf2, MAX_STRING_LENGTH, TIMEFMT_DATE, localtime(&(vict->player.time.logon)));
+    auto birthday = fmt::format(TIMEFMT_DATE, fmt::localtime(vict->player.time.birth));
+    auto last_login = fmt::format(TIMEFMT_DATE, fmt::localtime(vict->player.time.logon));
     char_printf(ch, "Player: {:<12s} ({}) [{:2d} {}] ({})\n", GET_NAME(vict), genders[(int)GET_SEX(vict)],
                 GET_LEVEL(vict), CLASS_ABBR(vict), RACE_ABBR(vict));
     char_printf(ch,
                 "Coins held:    [{:7d}p / {:7d}g / {:7d}s / {:7d}c]\n"
                 "Coins banked:  [{:7d}p / {:7d}g / {:7d}s / {:7d}c]\n"
                 "Exp: {:-8}   Align: {:-5d}\n"
-                "Started: {}   Last: {}   Played: {:3d}h {:2d}m\n",
+                "Started: {}   Last: {}   Played: {:3d}h {:2d}m\n\n",
                 GET_PLATINUM(vict), GET_GOLD(vict), GET_SILVER(vict), GET_COPPER(vict), GET_BANK_PLATINUM(vict),
                 GET_BANK_GOLD(vict), GET_BANK_SILVER(vict), GET_BANK_COPPER(vict), GET_EXP(vict), GET_ALIGNMENT(vict),
-                buf1, buf2, (int)(vict->player.time.played / 3600), (int)(vict->player.time.played / 60 % 60));
-    char_printf(ch, "\n");
+                birthday, last_login, (int)(vict->player.time.played / 3600),
+                (int)(vict->player.time.played / 60 % 60));
     send_save_description(vict, ch, false);
     free_char(vict);
 }
 
-void do_show_stats(CharData *ch, char *argument) {
+void do_show_stats(CharData *ch, Arguments argument) {
     int mobiles = 0;
     int players = 0;
     int connected = 0;
@@ -1369,31 +1336,27 @@ void do_show_stats(CharData *ch, char *argument) {
                 top_of_world + 1, top_of_zone_table + 1, buf_largecount, buf_switches, buf_overflows);
 }
 
-void do_show_errors(CharData *ch, char *argument) {
-    (void)argument;
-
-    int j, rn;
-
-    strcpy(buf, "Errant Rooms\n------------\n");
-    for (rn = 0; rn <= top_of_world; ++rn) {
-        buf2[0] = '\0';
-        for (j = 0; j < NUM_OF_DIRS; j++) {
+void do_show_errors(CharData *ch, Arguments argument) {
+    std::string output = "Errant Rooms\n------------\n";
+    for (int rn = 0; rn <= top_of_world; ++rn) {
+        std::string errors = "";
+        for (int j = 0; j < NUM_OF_DIRS; j++) {
             if (world[rn].exits[j]) {
                 if (world[rn].exits[j]->to_room == 0)
-                    snprintf(buf2, sizeof(buf2), "%s%s to void, ", buf2, dirs[j]);
-                if (world[rn].exits[j]->to_room == NOWHERE && !world[rn].exits[j]->general_description)
-                    snprintf(buf2, sizeof(buf2), "%s%s to NOWHERE, ", buf2, dirs[j]);
+                    errors += fmt::format("{} to void, ", dirs[j]);
+                if (world[rn].exits[j]->to_room == NOWHERE && world[rn].exits[j]->general_description.empty())
+                    errors += fmt::format("{} to NOWHERE, ", dirs[j]);
             }
         }
-        if (buf2[0]) {
-            buf2[strlen(buf2) - 2] = '\0'; /* cut off last comma */
-            sprintf(buf, "%s [%5d] %-30s %s\n", buf, world[rn].vnum, world[rn].name, buf2);
+        if (errors.length() > 0) {
+            errors = errors.substr(0, errors.length() - 2); /* cut off last comma */
+            output += fmt::format("[{:5}] {:30} {}\n", world[rn].vnum, world[rn].name, errors);
         }
     }
-    char_printf(ch, buf);
+    char_printf(ch, output);
 }
 
-void do_show_death(CharData *ch, char *argument) {
+void do_show_death(CharData *ch, Arguments argument) {
     (void)argument;
     std::string resp;
     int room, found;
@@ -1402,10 +1365,10 @@ void do_show_death(CharData *ch, char *argument) {
     for (room = 0, found = 0; room <= top_of_world; ++room)
         if (ROOM_FLAGGED(room, ROOM_DEATH))
             resp += fmt::format("{:2}: [{:5}] {}\n", ++found, world[room].vnum, world[room].name);
-    char_printf(ch, resp.c_str());
+    char_printf(ch, resp);
 }
 
-void do_show_godrooms(CharData *ch, char *argument) {
+void do_show_godrooms(CharData *ch, Arguments argument) {
     (void)argument;
     std::string resp;
     room_num room;
@@ -1415,50 +1378,51 @@ void do_show_godrooms(CharData *ch, char *argument) {
     for (room = 0, found = 0; room <= top_of_world; ++room)
         if (ROOM_FLAGGED(room, ROOM_GODROOM))
             resp += fmt::format("{:2}: [{:5}] {}\n", ++found, world[room].vnum, world[room].name);
-    char_printf(ch, resp.c_str());
+    char_printf(ch, resp);
 }
 
-void do_show_houses(CharData *ch, char *argument) {
+void do_show_houses(CharData *ch, Arguments argument) {
     (void)argument;
     extern void hcontrol_list_houses(CharData * ch);
 
     hcontrol_list_houses(ch);
 }
 
-void do_show_notes(CharData *ch, char *argument) {
+void do_show_notes(CharData *ch, Arguments argument) {
     FILE *notes;
     std::string resp;
 
-    any_one_arg(argument, arg);
+    auto arg = argument.shift();
 
-    if (!*arg) {
+    if (arg.empty()) {
         char_printf(ch, "A name would help.\n");
         return;
     }
-    if (!get_pfilename(arg, buf2, NOTES_FILE)) {
+    auto filename = get_pfilename(arg, NOTES_FILE);
+    if (filename.empty()) {
         char_printf(ch, "Couldn't find that player.\n");
         return;
     }
 
-    if (!(notes = fopen(buf2, "rt"))) {
+    if (!(notes = fopen(filename.c_str(), "rt"))) {
         char_printf(ch, "There are no notes for that file.\n");
         return;
     }
 
-    while (get_line(notes, buf2)) {
-        resp += buf2;
+    while (auto buf = get_line(notes)) {
+        resp += *buf;
         resp += "\n";
     }
 
     fclose(notes);
-    page_string(ch, resp.c_str());
+    page_string(ch, resp);
 }
 
-void do_show_classes(CharData *ch, char *argument) {
+void do_show_classes(CharData *ch, Arguments argument) {
     (void)argument;
     std::string resp;
     int i, chars;
-    const char *mem_mode;
+    std::string_view mem_mode;
 
     resp =
         "Class          Magic  Homeroom  Base Class  Max Subclass Level\n"
@@ -1471,24 +1435,23 @@ void do_show_classes(CharData *ch, char *argument) {
             mem_mode = "pray";
         else
             mem_mode = "none";
+        std::string buf1;
         if (classes[i].max_subclass_level > 0)
-            sprintf(buf1, "%-2d", classes[i].max_subclass_level);
+            buf1 = fmt::format("{:-2d}", classes[i].max_subclass_level);
         else
-            strcpy(buf1, "  ");
+            buf1 = "  ";
         resp += fmt::format(
             " {:>{}}  {:>5}  {:>8}  {:^10}  {}\n", classes[i].displayname, 12 + chars, mem_mode, classes[i].homeroom,
             classes[i].subclass_of == CLASS_UNDEFINED ? "" : classes[classes[i].subclass_of].plainname, buf1);
     }
-    page_string(ch, resp.c_str());
+    page_string(ch, resp);
 }
 
-void do_show_races(CharData *ch, char *argument) {
+void do_show_races(CharData *ch, Arguments argument) {
     int i, chars;
     std::string resp;
 
-    skip_spaces(&argument);
-
-    if (!*argument) {
+    if (argument.empty()) {
         resp =
             "Race                   Humanoid  Align    Size        HR/DR\n"
             "---------------------  --------  -------  ----------  ------\n";
@@ -1498,7 +1461,7 @@ void do_show_races(CharData *ch, char *argument) {
                                 YESNO(races[i].humanoid), races[i].def_align, sizes[races[i].def_size].name,
                                 races[i].bonus_hitroll, races[i].bonus_damroll);
         }
-    } else if ((i = parse_race(ch, ch, argument)) == RACE_UNDEFINED)
+    } else if ((i = parse_race(ch, ch, argument.get())) == RACE_UNDEFINED)
         return;
     else {
         RaceDef *race = &races[i];
@@ -1521,13 +1484,14 @@ void do_show_races(CharData *ch, char *argument) {
             compositions[race->def_composition].name, race->bonus_damroll, race->bonus_hitroll, race->mweight_lo,
             race->mweight_hi, race->fweight_lo, race->fweight_hi, race->mheight_lo, race->mheight_hi, race->fheight_lo,
             race->fheight_hi);
-        sprintflag(buf2, race->effect_flags, NUM_EFF_FLAGS, effect_flags);
+
         resp += fmt::format(
             "Attribute Scales  : Str  Dex  Int  Wis  Con  Cha\n"
             "                  : @c{:3}% {:3}% {:3}% {:3}% {:3}% {:3}%@0\n"
             "Perm. Effects     : @y{}@0\n",
             race->attrib_scales[0], race->attrib_scales[1], race->attrib_scales[2], race->attrib_scales[3],
-            race->attrib_scales[4], race->attrib_scales[5], buf2);
+            race->attrib_scales[4], race->attrib_scales[5],
+            sprintflag(race->effect_flags, NUM_EFF_FLAGS, effect_flags));
 
         resp += "Skills            : @c";
         for (i = 0; race->skills[i].skill; ++i)
@@ -1545,22 +1509,22 @@ void do_show_races(CharData *ch, char *argument) {
             race->exp_factor, race->hit_factor, race->hd_factor, race->dice_factor, race->copper_factor,
             race->ac_factor);
     }
-    page_string(ch, resp.c_str());
+    page_string(ch, resp);
 }
 
-void do_show_exp(CharData *ch, char *argument) {
+void do_show_exp(CharData *ch, Arguments argument) {
     int clazz, level;
     std::string resp;
 
-    any_one_arg(argument, arg);
+    auto arg = argument.shift();
 
-    if (!*arg) {
+    if (arg.empty()) {
         char_printf(ch, "Usage: show exp <class>\n");
         return;
     }
 
     for (clazz = 0; clazz < NUM_CLASSES; ++clazz) {
-        if (is_abbrev(arg, classes[clazz].name)) {
+        if (matches_start(arg, classes[clazz].name)) {
             resp =
                 "   Level           Experience Needed           Total\n"
                 " ---------         -----------------         ---------\n";
@@ -1568,14 +1532,14 @@ void do_show_exp(CharData *ch, char *argument) {
                 resp += fmt::format(" {:3} - {:3}                 {:9}         {:9}\n", level, level + 1,
                                     exp_next_level(level, clazz) - exp_next_level(level - 1, clazz),
                                     exp_next_level(level, clazz));
-            page_string(ch, resp.c_str());
+            page_string(ch, resp);
             return;
         }
     }
     char_printf(ch, "Invalid class.\n");
 }
 
-void do_show_snoop(CharData *ch, char *argument) {
+void do_show_snoop(CharData *ch, Arguments argument) {
     (void)argument;
     int i = 0;
     DescriptorData *d;
@@ -1598,30 +1562,31 @@ void do_show_snoop(CharData *ch, char *argument) {
         char_printf(ch, "No one is currently snooping.\n");
 }
 
-void do_show_sizes(CharData *ch, char *argument) {
+void do_show_sizes(CharData *ch, Arguments argument) {
     (void)argument;
     show_sizes(ch);
 }
 
 /* David Endre 2/23/99 To view basic files online */
-void do_show_file(CharData *ch, char *argument) {
+void do_show_file(CharData *ch, Arguments argument) {
     FILE *file;
-    int cur_line = 0, num_lines = 0, req_lines = 0, i;
+    int i;
+    int cur_line = 0, num_lines = 0, req_lines = 0;
     std::string filebuf;
     const struct file_struct {
-        const char *name;
+        std::string_view name;
         const char level;
-        const char *path;
+        std::string path;
     } fields[] = {{"bug", LVL_GOD, "../lib/misc/bugs"},      {"typo", LVL_GOD, "../lib/misc/typos"},
                   {"ideas", LVL_GOD, "../lib/misc/ideas"},   {"xnames", LVL_GOD, "../lib/misc/xnames"},
                   {"levels", LVL_GOD, "../log/levels"},      {"rip", LVL_GOD, "../log/rip"},
                   {"players", LVL_GOD, "../log/newplayers"}, {"rentgone", LVL_GOD, "../log/rentgone"},
                   {"godcmds", LVL_GOD, "../log/godcmds"},    {"syslog", LVL_GOD, "../syslog"},
-                  {"crash", LVL_GOD, "../syslog.CRASH"},     {nullptr, 0, "\n"}};
+                  {"crash", LVL_GOD, "../syslog.CRASH"},     {{}, 0, "\n"}};
 
-    argument = any_one_arg(argument, arg);
+    auto arg = argument.shift();
 
-    if (!*arg) {
+    if (arg.empty()) {
         char_printf(ch, "Usage: show file <name> <num lines>\n\nFile options:\n");
         for (i = 0; fields[i].level; ++i)
             if (fields[i].level <= GET_LEVEL(ch))
@@ -1629,11 +1594,11 @@ void do_show_file(CharData *ch, char *argument) {
         return;
     }
 
-    for (i = 0; fields[i].name; ++i)
-        if (!strncasecmp(arg, fields[i].name, strlen(arg)))
+    for (int i = 0; !fields[i].name.empty(); ++i)
+        if (arg == fields[i].name)
             break;
 
-    if (!fields[i].name) {
+    if (fields[i].name.empty()) {
         char_printf(ch, "That is not a valid option!\n");
         return;
     }
@@ -1642,22 +1607,20 @@ void do_show_file(CharData *ch, char *argument) {
         return;
     }
 
-    if (!*argument)
+    if (argument.empty())
         req_lines = 15; /* default is the last 15 lines */
     else
-        req_lines = atoi(argument);
+        req_lines = svtoi(arg);
 
     /* open the requested file */
-    if (!(file = fopen(fields[i].path, "r"))) {
+    if (!(file = fopen(fields[i].path.data(), "r"))) {
         log(LogSeverity::Warn, LVL_IMPL, "SYSERR: Error opening file {} using 'file' command.", fields[i].path);
         return;
     }
 
     /* count lines in requested file */
-    get_line(file, buf);
-    while (!feof(file)) {
+    while (get_line(file)) {
         num_lines++;
-        get_line(file, buf);
     }
     fclose(file);
 
@@ -1669,22 +1632,22 @@ void do_show_file(CharData *ch, char *argument) {
         req_lines = 500;
 
     /* close and re-open */
-    if (!(file = fopen(fields[i].path, "r"))) {
+    if (!(file = fopen(fields[i].path.data(), "r"))) {
         log(LogSeverity::Warn, LVL_IMPL, "SYSERR: Error opening file {} using 'file' command.", fields[i].path);
         return;
     }
 
     /* And print the requested lines */
-    get_line(file, buf);
-    for (cur_line = 0; !feof(file); get_line(file, buf)) {
+    std::optional<std::string> buf;
+    for (cur_line = 0, buf = get_line(file); buf; buf = get_line(file)) {
         ++cur_line;
         if (cur_line > num_lines - req_lines)
-            filebuf += fmt::format("{}\n", buf);
+            filebuf += fmt::format("{}\n", *buf);
     }
 
     fclose(file);
 
-    page_string(ch, filebuf.c_str());
+    page_string(ch, filebuf);
 }
 
 bool will_npcs_cast(int spell) {
@@ -1730,7 +1693,7 @@ void do_show_spell(CharData *ch, int spellnum) {
     spell = &skills[spellnum];
 
     /* Number and name */
-    char_printf(ch, "&2Spell #{:d}&0, &5&b{}&0\n", spellnum, capitalize(spell->name));
+    char_printf(ch, "&2Spell #{:d}&0, &5&b{}&0\n", spellnum, capitalize_first(spell->name));
 
     /* Stance */
     char_printf(ch, "Min pos     : {}\n", position_types[spell->minpos]);
@@ -1787,10 +1750,10 @@ void do_show_spell(CharData *ch, int spellnum) {
     char_printf(ch, "Quest       : {}\n", spell->quest ? "&2&bYes&0" : "&4&bNo&0");
 
     /* Wearoff message */
-    if (spell->wearoff && *(spell->wearoff)) {
-        char_printf(ch, "Wearoff     : &6{}&0\n", spell->wearoff);
-    } else
+    if (spell->wearoff.empty())
         char_printf(ch, "Wearoff     : -none-\n");
+    else
+        char_printf(ch, "Wearoff     : &6{}&0\n", spell->wearoff);
 
     /* Assignments */
     for (i = 0; i < NUM_CLASSES; i++)
@@ -1804,19 +1767,17 @@ void do_show_spell(CharData *ch, int spellnum) {
         char_printf(ch, "Assignments : -none-\n");
 }
 
-void do_show_skill(CharData *ch, char *argument) {
+void do_show_skill(CharData *ch, Arguments argument) {
     std::string resp;
     int skill_num, type, i, j;
     int skill_classes[NUM_CLASSES];
 
-    skip_spaces(&argument);
-
-    if (!*argument) {
+    if (argument.empty()) {
         char_printf(ch, "Usage: show skill <skill name>\n");
         return;
     }
 
-    if ((skill_num = find_talent_num(argument, 0)) < 0) {
+    if ((skill_num = find_talent_num(argument.get(), 0)) < 0) {
         char_printf(ch, "Unrecognized skill name.\n");
         return;
     }
@@ -1829,22 +1790,20 @@ void do_show_skill(CharData *ch, char *argument) {
         return;
     }
 
-    sprintbit(skill->targets, targets, buf2);
-
     resp += fmt::format(
         "Skill             : @y{}@0 (@g{}@0)\n"
         "Type              : @c{}@0\n"
         "Target Flags      : @c{}@0\n",
-        skill->name, skill_num, talent_types[type], buf2);
+        skill->name, skill_num, talent_types[type], sprintbit(skill->targets, targets));
 
     if (type == SKILL)
         resp += fmt::format("Humanoid only?    : @c{}@0\n", YESNO(skill->humanoid));
     else {
-        sprintbit(skill->routines, routines, buf1);
-        if (VALID_DAMTYPE(skill->damage_type))
-            sprintf(buf2, "%s%s", damtypes[skill->damage_type].color, damtypes[skill->damage_type].name);
-        else
-            sprintf(buf2, "@RINVALID (%d)", skill->damage_type);
+        auto damage_type = [&]() -> std::string {
+            if (VALID_DAMTYPE(skill->damage_type))
+                return fmt::format("{}{}", damtypes[skill->damage_type].color, damtypes[skill->damage_type].name);
+            return fmt::format("@RINVALID ({:d})", skill->damage_type);
+        }();
         resp += fmt::format(
             "Minimum position  : @c{}@0\n"
             "When fighting?    : @c{}@0\n"
@@ -1853,8 +1812,9 @@ void do_show_skill(CharData *ch, char *argument) {
             "Damage Type       : {}@0\n"
             "Quest only?       : @c{}@0\n"
             "Wear-off Message  : {}@0\n",
-            position_types[skill->minpos], YESNO(skill->fighting_ok), YESNO(skill->violent), buf1, buf2,
-            YESNO(skill->quest), skill->wearoff ? skill->wearoff : "@cNone.");
+            position_types[skill->minpos], YESNO(skill->fighting_ok), YESNO(skill->violent),
+            sprintbit(skill->routines, routines), damage_type, YESNO(skill->quest),
+            !skill->wearoff.empty() ? skill->wearoff : "@cNone.");
     }
 
     if (type == SPELL) {
@@ -1870,9 +1830,12 @@ void do_show_skill(CharData *ch, char *argument) {
             skill->mana_min, skill->mana_max, skill->mana_change, skill->addl_mem_time, skill->cast_time, skill->pages);
     }
 
-    sprintf(buf2, "(%s %d is lowest)", type == SPELL ? "circle" : "level",
-            type == SPELL ? level_to_circle(skill->lowest_level) : skill->lowest_level);
-    resp += fmt::format("Assignments       : @c{}@0\n", skill->lowest_level < LVL_IMMORT ? buf2 : "None.");
+    resp += fmt::format("Assignments       : ");
+    if (skill->lowest_level < LVL_IMMORT)
+        resp += fmt::format("@c({} {} is lowest)@0", type == SPELL ? "circle" : "level",
+                            type == SPELL ? level_to_circle(skill->lowest_level) : skill->lowest_level);
+    else
+        resp += "@cNone@0";
 
     if (skill->lowest_level < LVL_IMMORT) {
         for (i = 0; i < NUM_CLASSES; ++i)
@@ -1888,10 +1851,10 @@ void do_show_skill(CharData *ch, char *argument) {
         }
     }
 
-    char_printf(ch, resp.c_str());
+    char_printf(ch, resp);
 }
 
-void do_show_date_names(CharData *ch, char *argument) {
+void do_show_date_names(CharData *ch, Arguments argument) {
     int i;
 
     paging_printf(ch, "Day names:\n");
@@ -1904,7 +1867,7 @@ void do_show_date_names(CharData *ch, char *argument) {
     start_paging(ch);
 }
 
-void do_show_liquids(CharData *ch, char *argument) {
+void do_show_liquids(CharData *ch, Arguments argument) {
     int i;
 
     paging_printf(ch,
@@ -1923,12 +1886,10 @@ ACMD(do_show) {
     std::string resp;
     int i;
 
-    extern void show_shops(CharData * ch, char *argument);
-
     const struct show_struct {
-        const char *name;
+        std::string_view name;
         char level;
-        void (*command)(CharData *ch, char *argument);
+        void (*command)(CharData *ch, Arguments argument);
     } fields[] = {/* Keep this list alphabetized */
                   {"compositions", LVL_IMMORT, do_show_compositions},
                   {"classes", LVL_IMMORT, do_show_classes},
@@ -1957,26 +1918,24 @@ ACMD(do_show) {
                   {"spell", LVL_IMMORT, do_show_skill},
                   {"stats", LVL_IMMORT, do_show_stats},
                   {"zones", LVL_IMMORT, do_show_zones},
-                  {nullptr, 0, nullptr}};
+                  {{}, 0, nullptr}};
 
-    skip_spaces(&argument);
-
-    if (!*argument) {
+    if (argument.empty()) {
         resp = "Show options:\n";
         for (i = 0; fields[i].level; ++i)
             if (fields[i].level <= GET_LEVEL(ch))
                 resp += fmt::format("{:>15}{}", fields[i].name, (i + 1) % 5 ? "" : "\n");
         if (i % 5)
             resp += "\n";
-        char_printf(ch, resp.c_str());
+        char_printf(ch, resp);
         return;
     }
 
-    argument = any_one_arg(argument, arg);
+    auto arg = argument.shift();
 
-    for (i = 0; fields[i].name; ++i)
+    for (i = 0; !fields[i].name.empty(); ++i)
         if (fields[i].level <= GET_LEVEL(ch))
-            if (!strncasecmp(arg, fields[i].name, strlen(arg)))
+            if (matches(arg, fields[i].name))
                 break;
 
     if (GET_LEVEL(ch) < fields[i].level) {
@@ -1984,7 +1943,7 @@ ACMD(do_show) {
         return;
     }
 
-    if (!fields[i].name) {
+    if (fields[i].name.empty()) {
         char_printf(ch, "That's not something you can show.\n");
         return;
     }
@@ -2015,9 +1974,7 @@ void reboot_info(CharData *ch) {
         char_printf(ch, "{:d} hotboot{} since last shutdown.  Hotboot history:\n", num_hotboots,
                     num_hotboots == 1 ? "" : "s");
         for (s = 0; s < num_hotboots; ++s) {
-            strcpy(buf, ctime(&boot_time[s + 1]));
-            buf[strlen(buf) - 1] = '\0';
-            char_printf(ch, "  {}\n", buf);
+            char_printf(ch, "  {}\n",  ctime(&boot_time[s + 1]);
         }
     }
 }
@@ -2025,7 +1982,7 @@ void reboot_info(CharData *ch) {
 ACMD(do_world) {
     extern ACMD(do_date);
 
-    do_date(ch, nullptr, 0, SCMD_DATE);
+    do_date(ch, {}, 0, SCMD_DATE);
 
     std::string git_hash = "";
     if (environment != ENV_PROD || GET_LEVEL(ch) >= LVL_GOD) {
@@ -2034,22 +1991,21 @@ ACMD(do_world) {
             git_hash = fmt::format(" Git Hash: {}", git_hash);
     }
     std::string bd{get_build_date()};
-    char_printf(ch, "Build: {:d}  Compiled: {} {}\n", get_build_number(), bd.c_str(), git_hash.c_str());
-    do_date(ch, nullptr, 0, SCMD_UPTIME);
+    char_printf(ch, "Build: {:d}  Compiled: {} {}\n", get_build_number(), bd, git_hash);
+    do_date(ch, {}, 0, SCMD_UPTIME);
     char_printf(ch, "There are {:5d} rooms in {:3d} zones online.\n", top_of_world + 1, top_of_zone_table + 1);
 
     if (GET_LEVEL(ch) >= LVL_REBOOT_VIEW)
         reboot_info(ch);
 }
 
-bool get_infodump_filename(const char *name, char *filename) {
-    if (!name || !*name)
-        return false;
-    sprintf(filename, "%s/%s.txt", INFODUMP_PREFIX, name);
-    return true;
+std::string get_infodump_filename(const std::string_view name) {
+    if (name.empty())
+        return {};
+    return fmt::format("{}/{}.txt", INFODUMP_PREFIX, name);
 }
 
-void infodump_spellassign(CharData *ch, char *argument) {
+void infodump_spellassign(CharData *ch, Arguments argument) {
     char fname[MAX_INPUT_LENGTH];
     FILE *fl;
     int class_num, skill;
@@ -2103,24 +2059,24 @@ ACMD(do_infodump) {
     std::string resp;
     int i;
     const struct infodump_struct {
-        const char *name;
-        void (*command)(CharData *ch, char *argument);
+        const std::string_view name;
+        void (*command)(CharData *ch, Arguments argument);
     } fields[] = {/* Keep this list alphabetized */
                   {"spellassign", infodump_spellassign},
                   {nullptr, nullptr}};
-    skip_spaces(&argument);
+    skip_spaces(argument);
 
-    if (!*argument) {
+    if (argument.empty()) {
         resp = "Infodump options:\n";
         for (i = 0; fields[i].name; ++i)
             resp += fmt::format("{:>15}{}", fields[i].name, (i + 1) % 5 ? "" : "\n");
         if (i % 5)
             resp += "\n";
-        char_printf(ch, resp.c_str());
+        char_printf(ch, resp);
         return;
     }
 
-    argument = any_one_arg(argument, arg);
+    argument = auto arg = argument.shift();
 
     for (i = 0; fields[i].name; ++i)
         if (!strncasecmp(arg, fields[i].name, strlen(arg)))

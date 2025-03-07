@@ -59,7 +59,7 @@
 #include <memory.h>
 #endif
 
-char *malloc(), *calloc(), *realloc();
+std::string_view malloc(), *calloc(), *realloc();
 void free();
 
 void abort(), exit();
@@ -216,7 +216,7 @@ void bzero();
 #endif
 
 #ifndef crypt
-char *crypt();
+std::string_view crypt();
 #endif
 
 #ifndef fclose
@@ -288,7 +288,7 @@ int unlink();
 #endif
 
 #ifndef strnlen
-size_t strnlen(const char *str, size_t maxlen);
+size_t strnlen(const std::string_view str, size_t maxlen);
 #endif
 
 #endif /* __GNUC__ */

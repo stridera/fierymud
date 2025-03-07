@@ -30,9 +30,8 @@ bool affected_by_spell(CharData *ch, int type);
 void effect_join(CharData *ch, effect *eff, bool add_dur, bool avg_dur, bool add_mod, bool avg_mod, bool refresh);
 
 /* utility */
-int isname(const char *str, const char *namelist);
-std::string fname(std::string_view namelist);
-char *fname(const char *namelist);
+[[nodiscard]] bool isname(std::string_view str, std::string_view namelist);
+[[nodiscard]] std::string fname(std::string_view namelist);
 
 /* ******** objects *********** */
 
@@ -66,8 +65,7 @@ void update_char(CharData *ch);
 void char_from_room(CharData *ch);
 void char_to_room(CharData *ch, int room);
 void extract_char(CharData *ch);
-/* Buru 13/12/97 - coin converters */
-void money_convert(CharData *ch, int amount);
+
 void copper_to_coins(CharData *ch);
 void convert_coins_copper(CharData *ch);
 

@@ -24,7 +24,7 @@ struct Scribing {
     Scribing *next;
 };
 
-extern const char *circle_abbrev[NUM_SPELL_CIRCLES + 1];
+extern const std::string_view circle_abbrev[NUM_SPELL_CIRCLES + 1];
 extern int spells_of_circle[(LVL_IMPL + 1)][(NUM_SPELL_CIRCLES + 1)];
 
 /* Function prototypes */

@@ -25,13 +25,13 @@
 #include "sysdep.hpp"
 #include "utils.hpp"
 
-int find_help(char *keyword);
+int find_help(std::string_view keyword);
 
 void free_help(HelpIndexElement *help);
 
 /* function protos */
 void hedit_disp_menu(DescriptorData *d);
-void hedit_parse(DescriptorData *d, char *arg);
+void hedit_parse(DescriptorData *d, std::string_view arg);
 void hedit_setup_new(DescriptorData *d);
 void hedit_setup_existing(DescriptorData *d, int real_num);
 void hedit_save_to_disk(DescriptorData *d);
@@ -67,7 +67,7 @@ void hedit_setup_existing(DescriptorData *d, int real_num) {
 void hedit_save_internally(DescriptorData *d) {
     HelpIndexElement *new_help_table = nullptr;
     int i;
-    char *temp = nullptr;
+    std::string_view temp = nullptr;
 
     /* add a new help element into the list */
     if (OLC_ZNUM(d) > top_of_helpt) {
@@ -161,7 +161,7 @@ void hedit_disp_menu(DescriptorData *d) {
  * The main loop
  */
 
-void hedit_parse(DescriptorData *d, char *arg) {
+void hedit_parse(DescriptorData *d, std::string_view arg) {
     int i;
 
     switch (OLC_MODE(d)) {
@@ -214,7 +214,7 @@ void hedit_parse(DescriptorData *d, char *arg) {
         case 'N':
             OLC_ZNUM(d)++;
             for (; (OLC_ZNUM(d) <= top_of_helpt); OLC_ZNUM(d)++)
-                if (is_abbrev(OLC_STORAGE(d), help_table[OLC_ZNUM(d)].keyword))
+                if (matches_start(OLC_STORAGE(d), help_table[OLC_ZNUM(d)].keyword))
                     break;
             if (OLC_ZNUM(d) > top_of_helpt) {
                 if (find_help(OLC_STORAGE(d)) > NOTHING) {
@@ -284,7 +284,7 @@ void hedit_parse(DescriptorData *d, char *arg) {
         log(LogSeverity::Warn, LVL_ATTENDANT, "SYSERR: Reached HEDIT_ENTRY in hedit_parse");
         break;
     case HEDIT_MIN_LEVEL:
-        if (*arg) {
+        if (!arg.empty()) {
             i = atoi(arg);
             if ((i < 0) && (i > LVL_IMPL)) {
                 hedit_disp_menu(d);
@@ -304,7 +304,7 @@ void hedit_parse(DescriptorData *d, char *arg) {
     hedit_disp_menu(d);
 }
 
-int find_help(char *keyword) {
+int find_help(std::string_view keyword) {
     int chk, bot, top, mid, minlen;
 
     bot = 0;

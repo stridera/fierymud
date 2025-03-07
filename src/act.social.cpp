@@ -21,10 +21,12 @@
 #include "sysdep.hpp"
 #include "utils.hpp"
 
+#include <iostream>
+
 /* extern variables */
 
 /* extern functions */
-char *fread_action(FILE *fl, int nr);
+std::string_view fread_action(FILE *fl, int nr);
 
 /* local globals */
 static int list_top = -1;
@@ -38,20 +40,20 @@ struct social_messg {
     int min_victim_position; /* Position of victim */
 
     /* No argument was supplied */
-    char *char_no_arg;
-    char *others_no_arg;
+    std::string_view char_no_arg;
+    std::string_view others_no_arg;
 
     /* An argument was there, and a victim was found */
-    char *char_found; /* if NULL, read no further, ignore args */
-    char *others_found;
-    char *vict_found;
+    std::string_view char_found; /* if NULL, read no further, ignore args */
+    std::string_view others_found;
+    std::string_view vict_found;
 
     /* An argument was there, but no victim was found */
-    char *not_found;
+    std::string_view not_found;
 
     /* The victim turned out to be the character */
-    char *char_auto;
-    char *others_auto;
+    std::string_view char_auto;
+    std::string_view others_auto;
 } *soc_mess_list[MAX_SOCIALS];
 
 int find_action(int cmd) {
@@ -80,34 +82,30 @@ int find_action(int cmd) {
 
 ACMD(do_action) {
     int act_nr;
-    social_messg *action;
     CharData *vict;
 
     if ((act_nr = find_action(cmd)) < 0) {
         char_printf(ch, "That action is not supported.\n");
         return;
     }
-    action = soc_mess_list[act_nr];
+    social_messg *action = soc_mess_list[act_nr];
 
-    if (action->char_found)
-        one_argument(argument, buf);
-    else
-        *buf = '\0';
-
-    if (!*buf) {
+    if (action->char_found.empty() || argument.empty()) {
         char_printf(ch, action->char_no_arg);
         char_printf(ch, "\n");
-        if (action->others_no_arg)
+        if (!action->others_no_arg.empty())
             act(action->others_no_arg, action->hide, ch, 0, 0, TO_ROOM);
         return;
     }
-    if (!(vict = find_char_in_room(&world[ch->in_room], find_vis_by_name(ch, buf)))) {
+
+    auto arg = argument.shift();
+    if (!(vict = find_char_in_room(&world[ch->in_room], find_vis_by_name(ch, arg)))) {
         char_printf(ch, action->not_found);
         char_printf(ch, "\n");
     } else if (vict == ch) {
         char_printf(ch, action->char_auto);
         char_printf(ch, "\n");
-        if (action->others_auto)
+        if (!action->others_auto.empty())
             act(action->others_auto, action->hide, ch, 0, 0, TO_ROOM);
     } else {
         if (GET_POS(vict) < action->min_victim_position)
@@ -123,9 +121,9 @@ ACMD(do_action) {
 ACMD(do_insult) {
     CharData *victim;
 
-    one_argument(argument, arg);
+    auto arg = argument.shift();
 
-    if (*arg) {
+    if (!arg.empty()) {
         if (!(victim = find_char_in_room(&world[ch->in_room], find_vis_by_name(ch, arg))))
             char_printf(ch, "Can't hear you!\n");
         else {
@@ -162,7 +160,7 @@ ACMD(do_insult) {
         char_printf(ch, "I'm sure you don't want to insult *everybody*...\n");
 }
 
-char *fread_action(FILE *fl, int nr) {
+std::string_view fread_action(FILE *fl, int nr) {
     char buf[MAX_STRING_LENGTH], *rslt;
 
     fgets(buf, MAX_STRING_LENGTH, fl);
@@ -171,12 +169,9 @@ char *fread_action(FILE *fl, int nr) {
         exit(1);
     }
     if (*buf == '#')
-        return (nullptr);
+        return {};
     else {
-        *(buf + strlen(buf) - 1) = '\0';
-        CREATE(rslt, char, strlen(buf) + 1);
-        strcpy(rslt, buf);
-        return (rslt);
+        return buf;
     }
 }
 
@@ -187,13 +182,12 @@ void boot_social_messages(void) {
     social_messg *temp;
 
     /* open social file */
-    if (!(fl = fopen(SOCMESS_FILE, "r"))) {
-        sprintf(buf, "Can't open socials file '%s'", SOCMESS_FILE);
-        perror(buf);
+    if (!(fl = fopen(SOCMESS_FILE.data(), "r"))) {
+        std::cerr << "Can't open socials file " << SOCMESS_FILE << std::endl;
         exit(1);
     }
     /* count socials & allocate space */
-    for (nr = 0; *cmd_info[nr].command != '\n'; nr++)
+    for (nr = 0; cmd_info[nr].command != "\n"; nr++)
         if (cmd_info[nr].command_pointer == do_action) {
             list_top++;
         }
@@ -222,7 +216,7 @@ void boot_social_messages(void) {
         soc_mess_list[curr_soc]->char_found = fread_action(fl, nr);
 
         /* if no char_found, the rest is to be ignored */
-        if (!soc_mess_list[curr_soc]->char_found)
+        if (soc_mess_list[curr_soc]->char_found.empty())
             continue;
 
         soc_mess_list[curr_soc]->others_found = fread_action(fl, nr);
@@ -250,33 +244,12 @@ void boot_social_messages(void) {
     }
 }
 
-void free_action(social_messg *mess) {
-    if (mess->char_no_arg)
-        free(mess->char_no_arg);
-    if (mess->others_no_arg)
-        free(mess->others_no_arg);
-    if (mess->char_found)
-        free(mess->char_found);
-    if (mess->others_found)
-        free(mess->others_found);
-    if (mess->vict_found)
-        free(mess->vict_found);
-    if (mess->not_found)
-        free(mess->not_found);
-    if (mess->char_auto)
-        free(mess->char_auto);
-    if (mess->others_auto)
-        free(mess->others_auto);
-    memset(mess, 0, sizeof(social_messg));
-}
-
 void free_social_messages() {
     social_messg *mess;
     int i;
 
     for (i = 0; i <= list_top; i++) {
         mess = soc_mess_list[i];
-        free_action(mess);
         free(mess);
     }
 }

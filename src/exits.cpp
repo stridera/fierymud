@@ -14,15 +14,14 @@
 #include "db.hpp"
 #include "directions.hpp"
 #include "handler.hpp"
+#include "logging.hpp"
 #include "math.hpp"
 #include "rooms.hpp"
 #include "structs.hpp"
 #include "sysdep.hpp"
 #include "utils.hpp"
-#include "logging.hpp"
 
-
-const char *cmd_door[] = {"open", "close", "unlock", "lock", "pick"};
+const std::string_view cmd_door[] = {"open", "close", "unlock", "lock", "pick"};
 
 Exit *create_exit(int dest_room) {
     Exit *e;
@@ -35,7 +34,7 @@ Exit *create_exit(int dest_room) {
     return e;
 }
 
-bool exit_has_keyword(Exit *exit, const char *name) {
+bool exit_has_keyword(Exit *exit, const std::string_view name) {
     if (exit->keyword && *(exit->keyword))
         return isname(name, exit->keyword);
     return false;
@@ -57,11 +56,11 @@ Exit *opposite_exit(Exit *exit, room_num roomvnum, int dir) {
     return nullptr;
 }
 
-const char *exit_name(Exit *exit) { return exit->keyword ? fname(exit->keyword) : "door"; }
+const std::string_view exit_name(Exit *exit) { return exit->keyword ? fname(exit->keyword) : "door"; }
 
 #define SHOW_EXDESC_LEN 57
 
-const char *exit_dest_desc(Exit *e) {
+const std::string_view exit_dest_desc(Exit *e) {
     static char buf[MAX_STRING_LENGTH];
     int nlpos, len, showlen;
 

@@ -15,11 +15,12 @@
 #include "interpreter.hpp"
 #include "structs.hpp"
 #include "sysdep.hpp"
+#include "arguments.hpp"
 
 struct CommandGroup {
-    char *alias;
-    char *name;
-    char *description;
+    std::string_view alias;
+    std::string_view name;
+    std::string_view description;
     int minimum_level;
 };
 
@@ -36,11 +37,11 @@ extern CommandGroupInfo *grp_info;
 #define CMD_USEABLE_FOR_LEVEL(ch, cmd) (cmd_info[(cmd)].minimum_level <= GET_LEVEL(ch))
 
 ACMD(do_gedit);
-int find_command_group(const char *name);
+int find_command_group(const std::string_view name);
 int command_group_number(CommandGroup *group);
 bool can_use_command(CharData *ch, int cmd);
 void boot_command_groups();
-void gedit_parse(DescriptorData *d, char *arg);
+void gedit_parse(DescriptorData *d, std::string_view arg);
 void gedit_disp_menu(DescriptorData *d);
-void do_show_command_groups(CharData *ch, char *argument);
-void do_show_command(CharData *ch, char *argument);
+void do_show_command_groups(CharData *ch, Arguments argument);
+void do_show_command(CharData *ch, Arguments argument);

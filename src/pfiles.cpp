@@ -40,9 +40,9 @@ ACMD(do_tell);
 static void extract_unrentables(CharData *ch);
 static bool write_rent_code(FILE *fl, int rentcode);
 static bool write_object_record(ObjData *obj, FILE *fl, int location);
-int delete_objects_file(char *name);
+int delete_objects_file(std::string_view name);
 static void read_objects(CharData *ch, FILE *fl);
-static void list_objects(ObjData *obj, CharData *ch, int indent, int last_indent, const char *first_indent);
+static void list_objects(ObjData *obj, CharData *ch, int indent, int last_indent, const std::string_view first_indent);
 static bool load_binary_objects(CharData *ch);
 
 void save_player_objects(CharData *ch) {
@@ -260,7 +260,7 @@ static bool write_object_record(ObjData *obj, FILE *fl, int location) {
     return true;
 }
 
-void show_rent(CharData *ch, char *argument) {
+void show_rent(CharData *ch, std::string_view argument) {
     char name[MAX_INPUT_LENGTH];
     FILE *fl;
     CharData *tch;
@@ -269,7 +269,7 @@ void show_rent(CharData *ch, char *argument) {
 
     any_one_arg(argument, name);
 
-    if (!*name) {
+    if (name.empty()) {
         char_printf(ch, "Show rent for whom?\n");
         return;
     }
@@ -327,7 +327,8 @@ void show_rent(CharData *ch, char *argument) {
     extract_char(tch);
 }
 
-static void list_objects(ObjData *list, CharData *ch, int indent, int last_indent, const char *first_indent) {
+static void list_objects(ObjData *list, CharData *ch, int indent, int last_indent,
+                         const std::string_view first_indent) {
     ObjData *i, *j, *display;
     int pos, num;
     static char buf[100];
@@ -335,8 +336,7 @@ static void list_objects(ObjData *list, CharData *ch, int indent, int last_inden
 #define PRETTY_INDENTATION false
 #define OBJECTS_MATCH(x, y)                                                                                            \
     ((x)->item_number == (y)->item_number &&                                                                           \
-     ((x)->short_description == (y)->short_description ||                                                              \
-      !strcasecmp((x)->short_description, (y)->short_description)) &&                                                  \
+     ((x)->short_description == (y)->short_description || matches((x)->short_description, (y)->short_description)) &&  \
      (x)->contains == (y)->contains)
 
     /* Loop through the list of objects */
@@ -476,7 +476,7 @@ void save_pets(CharData *ch) {
     }
 }
 
-int delete_objects_file(char *name) {
+int delete_objects_file(std::string name) {
     char filename[50];
     FILE *fl;
 
@@ -613,24 +613,24 @@ bool build_object(FILE *fl, ObjData **objp, int *location) {
 
         while (get_line(fl, line)) {
             /* Only thing we care about is location, lets throw away the rest.*/
-            if (!strcasecmp(line, "~~"))
+            if (matches(line, "~~"))
                 break;
 
             tag_argument(line, tag);
             num = atoi(line);
 
-            if (!strcasecmp(tag, "effects"))
+            if (matches(tag, "effects"))
                 load_ascii_flags(GET_OBJ_EFF_FLAGS(obj), NUM_EFF_FLAGS, line);
-            else if (!strcasecmp(tag, "location"))
+            else if (matches(tag, "location"))
                 *location = atoi(line);
-            else if (!strcasecmp(tag, "extradesc"))
+            else if (matches(tag, "extradesc"))
                 // Quickly skip through these in case one of the lines starts with a keyword.
                 // Stop when we get to a line that ends with a ~
                 while (get_line(fl, line)) {
                     if (line[strlen(line) - 1] == '~')
                         break;
                 }
-            else if (!strcasecmp(tag, "spells")) {
+            else if (matches(tag, "spells")) {
                 for (last_spell = obj->spell_book; last_spell && last_spell->next; last_spell = last_spell->next)
                     ;
                 while (get_line(fl, line) && *line != '~') {
@@ -642,13 +642,13 @@ bool build_object(FILE *fl, ObjData **objp, int *location) {
                         obj->spell_book = spell;
                     last_spell = spell;
                 }
-            } else if (!strcasecmp(tag, "values")) {
+            } else if (matches(tag, "values")) {
                 num = 0;
                 while (get_line(fl, line) && *line != '~')
                     if (num < NUM_VALUES)
                         GET_OBJ_VAL(obj, num++) = atoi(line);
                 limit_obj_values(obj);
-            } else if (!strcasecmp(tag, "flags"))
+            } else if (matches(tag, "flags"))
                 load_ascii_flags(GET_OBJ_FLAGS(obj), NUM_ITEM_FLAGS, line);
         }
         return true;
@@ -658,7 +658,7 @@ bool build_object(FILE *fl, ObjData **objp, int *location) {
         obj->item_number = -1;
 
         while (get_line(fl, line)) {
-            if (!strcasecmp(line, "~~"))
+            if (matches(line, "~~"))
                 break;
 
             tag_argument(line, tag);
@@ -667,9 +667,9 @@ bool build_object(FILE *fl, ObjData **objp, int *location) {
 
             switch (UPPER(*tag)) {
             case 'A':
-                if (!strcasecmp(tag, "adesc"))
+                if (matches(tag, "adesc"))
                     obj->action_description = fread_string(fl, "build_object");
-                else if (!strcasecmp(tag, "applies")) {
+                else if (matches(tag, "applies")) {
                     while (get_line(fl, line) && *line != '~' && apply < MAX_OBJ_APPLIES) {
                         sscanf(line, "%d %d", &num, &num2);
                         obj->applies[apply].location = std::clamp(num, 0, NUM_APPLY_TYPES - 1);
@@ -680,23 +680,23 @@ bool build_object(FILE *fl, ObjData **objp, int *location) {
                     goto bad_tag;
                 break;
             case 'C':
-                if (!strcasecmp(tag, "cost"))
+                if (matches(tag, "cost"))
                     GET_OBJ_COST(obj) = std::max(0, num);
                 else
                     goto bad_tag;
                 break;
             case 'D':
-                if (!strcasecmp(tag, "desc"))
+                if (matches(tag, "desc"))
                     obj->description = strdup(line);
-                else if (!strcasecmp(tag, "decomp"))
+                else if (matches(tag, "decomp"))
                     GET_OBJ_DECOMP(obj) = std::max(0, num);
                 else
                     goto bad_tag;
                 break;
             case 'E':
-                if (!strcasecmp(tag, "effects"))
+                if (matches(tag, "effects"))
                     load_ascii_flags(GET_OBJ_EFF_FLAGS(obj), NUM_EFF_FLAGS, line);
-                else if (!strcasecmp(tag, "extradesc")) {
+                else if (matches(tag, "extradesc")) {
                     CREATE(desc, ExtraDescriptionData, 1);
                     desc->keyword = strdup(line);
                     desc->description = fread_string(fl, "build_object");
@@ -709,35 +709,35 @@ bool build_object(FILE *fl, ObjData **objp, int *location) {
                     goto bad_tag;
                 break;
             case 'F':
-                if (!strcasecmp(tag, "flags"))
+                if (matches(tag, "flags"))
                     load_ascii_flags(GET_OBJ_FLAGS(obj), NUM_ITEM_FLAGS, line);
                 else
                     goto bad_tag;
                 break;
             case 'H':
-                if (!strcasecmp(tag, "hiddenness"))
+                if (matches(tag, "hiddenness"))
                     GET_OBJ_HIDDENNESS(obj) = std::clamp(num, 0, 1000);
                 else
                     goto bad_tag;
                 break;
             case 'L':
-                if (!strcasecmp(tag, "location"))
+                if (matches(tag, "location"))
                     *location = num;
-                else if (!strcasecmp(tag, "level"))
+                else if (matches(tag, "level"))
                     GET_OBJ_LEVEL(obj) = std::clamp(num, 0, LVL_IMPL);
                 else
                     goto bad_tag;
                 break;
             case 'N':
-                if (!strcasecmp(tag, "name"))
+                if (matches(tag, "name"))
                     obj->name = strdup(line);
                 else
                     goto bad_tag;
                 break;
             case 'S':
-                if (!strcasecmp(tag, "shortdesc"))
+                if (matches(tag, "shortdesc"))
                     obj->short_description = strdup(line);
-                else if (!strcasecmp(tag, "spells")) {
+                else if (matches(tag, "spells")) {
                     for (last_spell = obj->spell_book; last_spell && last_spell->next; last_spell = last_spell->next)
                         ;
                     while (get_line(fl, line) && *line != '~') {
@@ -753,11 +753,11 @@ bool build_object(FILE *fl, ObjData **objp, int *location) {
                     goto bad_tag;
                 break;
             case 'T':
-                if (!strcasecmp(tag, "type"))
+                if (matches(tag, "type"))
                     GET_OBJ_TYPE(obj) = std::clamp(num, 0, NUM_ITEM_TYPES - 1);
-                else if (!strcasecmp(tag, "timer"))
+                else if (matches(tag, "timer"))
                     GET_OBJ_TIMER(obj) = std::max(0, num);
-                else if (!strcasecmp(tag, "triggers")) {
+                else if (matches(tag, "triggers")) {
                     if (!SCRIPT(obj))
                         CREATE(SCRIPT(obj), ScriptData, 1);
                     while (get_line(fl, line) && *line != '~') {
@@ -769,13 +769,13 @@ bool build_object(FILE *fl, ObjData **objp, int *location) {
                     goto bad_tag;
                 break;
             case 'V':
-                if (!strcasecmp(tag, "values")) {
+                if (matches(tag, "values")) {
                     num = 0;
                     while (get_line(fl, line) && *line != '~')
                         if (num < NUM_VALUES)
                             GET_OBJ_VAL(obj, num++) = atoi(line);
                     limit_obj_values(obj);
-                } else if (!strcasecmp(tag, "variables")) {
+                } else if (matches(tag, "variables")) {
                     if (!SCRIPT(obj))
                         CREATE(SCRIPT(obj), ScriptData, 1);
                     while (get_line(fl, line) && *line != '~') {
@@ -790,9 +790,9 @@ bool build_object(FILE *fl, ObjData **objp, int *location) {
                     goto bad_tag;
                 break;
             case 'W':
-                if (!strcasecmp(tag, "weight"))
+                if (matches(tag, "weight"))
                     GET_OBJ_EFFECTIVE_WEIGHT(obj) = GET_OBJ_WEIGHT(obj) = std::max<float>(0, f);
-                else if (!strcasecmp(tag, "wear"))
+                else if (matches(tag, "wear"))
                     GET_OBJ_WEAR(obj) = num;
                 else
                     goto bad_tag;
@@ -818,14 +818,15 @@ bool build_object(FILE *fl, ObjData **objp, int *location) {
     do {                                                                                                               \
         if (!obj->address)                                                                                             \
             obj->address = proto->address;                                                                             \
-        else if (!*obj->address || (proto->address && *proto->address && !strcasecmp(obj->address, proto->address))) { \
+        else if (obj.empty()->address ||                                                                               \
+                 (proto->address && *proto->address && matches(obj->address, proto->address))) {                       \
             free(obj->address);                                                                                        \
             obj->address = proto->address;                                                                             \
         }                                                                                                              \
     } while (false);
 #define CHECK_NULL_STR(address, str)                                                                                   \
     do {                                                                                                               \
-        if (!*obj->address) {                                                                                          \
+        if (obj.empty()->address) {                                                                                    \
             free(obj->address);                                                                                        \
             obj->address = nullptr;                                                                                    \
         }                                                                                                              \
@@ -1112,10 +1113,10 @@ void load_pets(CharData *ch) {
                     if (*tag == '$')
                         break;
 
-                    if (!strcasecmp(tag, "desc"))
+                    if (matches(tag, "desc"))
                         GET_DESCRIPTION(pet) = strdup(line);
-                    else if (!strcasecmp(tag, "namelist"))
-                        GET_NAMELIST(pet) = strdup(line);
+                    else if (matches(tag, "namelist"))
+                        pet->player.namelist = line;
                     else {
                         sprintf(buf, "SYSERR: Unknown tag %s in %s's pet file: %s", tag, GET_NAME(ch), line);
                         perror(buf);
@@ -1132,7 +1133,7 @@ void load_pets(CharData *ch) {
 static ObjData *restore_binary_object(obj_file_elem *store, int *locate) {
     ObjData *obj;
     int j = 0, rnum;
-    char *list_parse, *spell_parse, *list;
+    std::string_view list_parse, *spell_parse, *list;
     SpellBookList *entry;
 
     if ((rnum = real_object(store->item_number)) < 0)
@@ -1175,7 +1176,7 @@ static ObjData *restore_binary_object(obj_file_elem *store, int *locate) {
                     }
 
                     spell_parse = strsep(&list_parse, "_");
-                    if (!spell_parse || !*spell_parse) {
+                    if (!spell_parse || spell_parse.empty()) {
                         /* Corrupt spell list - just put magic missile */
                         entry->spell = SPELL_MAGIC_MISSILE;
                         entry->length = 1;
@@ -1183,7 +1184,7 @@ static ObjData *restore_binary_object(obj_file_elem *store, int *locate) {
                     } else {
                         entry->spell = atoi(spell_parse);
                         spell_parse = strsep(&list_parse, "_");
-                        if (!spell_parse || !*spell_parse) {
+                        if (!spell_parse || spell_parse.empty()) {
                             /* Length corrupt - just put 1 page */
                             entry->length = 1;
                             log("SYSERR: restore_binary_object() found corrupt spellbook list '{}'",
@@ -1399,7 +1400,7 @@ void extract_objects(CharData *ch) {
         extract_obj(ch->carrying);
 }
 
-static int gen_receptionist(CharData *ch, CharData *recep, int cmd, char *arg, int mode) {
+static int gen_receptionist(CharData *ch, CharData *recep, int cmd, std::string_view arg, int mode) {
     int quit_mode = QUIT_RENT;
 
     if (!ch->desc || IS_NPC(ch))
@@ -1450,7 +1451,7 @@ SPECIAL(cryogenicist) { return gen_receptionist(ch, (CharData *)me, cmd, argumen
 
 /* If quiet==true, minor feedback will be suppressed.
  * But not errors. */
-FILE *open_player_obj_file(const char *player_name, CharData *ch, bool quiet) {
+FILE *open_player_obj_file(const std::string_view player_name, CharData *ch, bool quiet) {
     FILE *fl;
     char filename[MAX_INPUT_LENGTH];
 
@@ -1483,7 +1484,7 @@ FILE *open_player_obj_file(const char *player_name, CharData *ch, bool quiet) {
  * restoring players from backups.  This function is used to convert the old
  * file into the ASCII format.
  */
-bool convert_player_obj_file(char *player_name, CharData *ch) {
+bool convert_player_obj_file(std::string_view player_name, CharData *ch) {
     FILE *fl, *fnew;
     char filename[MAX_INPUT_LENGTH];
     char tempfilename[MAX_INPUT_LENGTH];
@@ -1581,7 +1582,7 @@ void convert_player_obj_files(CharData *ch) {
                 top_of_p_table + 1 == 1 ? "" : "s", converted);
 }
 
-void convert_single_player_obj_file(CharData *ch, char *name) {
+void convert_single_player_obj_file(CharData *ch, std::string_view name) {
     if (!convert_player_obj_file(name, ch))
         char_printf(ch, "The object file was not converted.\n");
 }

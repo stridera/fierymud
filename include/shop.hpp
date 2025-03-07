@@ -20,7 +20,7 @@
 struct ShopBuyData {
     int type;
     int amount;
-    char *keywords;
+    std::string_view keywords;
 };
 #define BUY_AMOUNT(i) ((i).amount)
 #define BUY_TYPE(i) ((i).type)
@@ -30,26 +30,26 @@ struct ShopData {
     int vnum;       /* Virtual number of this shop		*/
     int *producing; /* Which item to produce (vnum)	*/
     int *amount;
-    float profit_buy;    /* Factor to multiply cost with		*/
-    float profit_sell;   /* Factor to multiply cost with		*/
-    ShopBuyData *type;   /* Which items to trade			*/
-    char *no_such_item1; /* Message if keeper hasn't got an item	*/
-    char *no_such_item2; /* Message if player hasn't got an item	*/
-    char *missing_cash1; /* Message if keeper hasn't got cash	*/
-    char *missing_cash2; /* Message if player hasn't got cash	*/
-    char *do_not_buy;    /* If keeper dosn't buy such things	*/
-    char *message_buy;   /* Message when player buys item	*/
-    char *message_sell;  /* Message when player sells item	*/
-    int temper1;         /* How does keeper react if no money	*/
-    int bitvector;       /* Can attack? Use bank? Cast here?	*/
-    int keeper;          /* The mobil who owns the shop (vnum)*/
-    int with_who;        /* Who does the shop trade with?	*/
-    int *in_room;        /* Where is the shop?			*/
-    int open1, open2;    /* When does the shop open?		*/
-    int close1, close2;  /* When does the shop close?		*/
-    int bankAccount;     /* Store all gold over 15000 (disabled)	*/
-    int lastsort;        /* How many items are sorted in inven?	*/
-    SPECIAL(*func);      /* Secondary spec_proc for shopkeeper	*/
+    float profit_buy;          /* Factor to multiply cost with		*/
+    float profit_sell;         /* Factor to multiply cost with		*/
+    ShopBuyData *type;         /* Which items to trade			*/
+    std::string no_such_item1; /* Message if keeper hasn't got an item	*/
+    std::string no_such_item2; /* Message if player hasn't got an item	*/
+    std::string missing_cash1; /* Message if keeper hasn't got cash	*/
+    std::string missing_cash2; /* Message if player hasn't got cash	*/
+    std::string do_not_buy;    /* If keeper dosn't buy such things	*/
+    std::string message_buy;   /* Message when player buys item	*/
+    std::string message_sell;  /* Message when player sells item	*/
+    int temper1;               /* How does keeper react if no money	*/
+    int bitvector;             /* Can attack? Use bank? Cast here?	*/
+    int keeper;                /* The mobil who owns the shop (vnum)*/
+    int with_who;              /* Who does the shop trade with?	*/
+    int *in_room;              /* Where is the shop?			*/
+    int open1, open2;          /* When does the shop open?		*/
+    int close1, close2;        /* When does the shop close?		*/
+    int bankAccount;           /* Store all gold over 15000 (disabled)	*/
+    int lastsort;              /* How many items are sorted in inven?	*/
+    SPECIAL(*func);            /* Secondary spec_proc for shopkeeper	*/
 };
 
 #define MAX_TRADE 5         /* List maximums for compatibility	*/
@@ -101,7 +101,7 @@ struct StackData {
 #define OPER_NOT 4
 #define MAX_OPER 4
 
-extern const char *operator_str[];
+extern const std::string_view operator_str[];
 
 #define SHOP_NUM(i) (shop_index[(i)].vnum)
 #define SHOP_KEEPER(i) (shop_index[(i)].keeper)
@@ -138,8 +138,8 @@ extern const char *operator_str[];
 #define SHOP_KILL_CHARS(i) (IS_SET(SHOP_BITVECTOR(i), WILL_START_FIGHT))
 #define SHOP_USES_BANK(i) (IS_SET(SHOP_BITVECTOR(i), WILL_BANK_MONEY))
 
-extern const char *trade_letters[];
-extern const char *shop_bits[];
+extern const std::string_view trade_letters[];
+extern const std::string_view shop_bits[];
 
 #define MIN_OUTSIDE_BANK 5000
 #define MAX_OUTSIDE_BANK 15000

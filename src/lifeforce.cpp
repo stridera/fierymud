@@ -13,11 +13,10 @@
 #include "lifeforce.hpp"
 
 #include "conf.hpp"
+#include "logging.hpp"
 #include "structs.hpp"
 #include "sysdep.hpp"
 #include "utils.hpp"
-#include "logging.hpp"
-
 
 /* Values:
  *
@@ -29,7 +28,7 @@ LifeDef lifeforces[NUM_LIFEFORCES] = {{"life", "&2&b", 100, 0, 0, 100},    {"und
                                       {"magic", "&4&b", 0, 120, 50, 0},    {"celestial", "&6", 100, 50, 0, 75},
                                       {"demonic", "&1&b", 100, 50, 0, 75}, {"elemental", "&3", 50, 100, 0, 50}};
 
-int parse_lifeforce(CharData *ch, char *arg) {
+int parse_lifeforce(CharData *ch, std::string_view arg) {
     return parse_obj_name(ch, arg, "life force", NUM_LIFEFORCES, lifeforces, sizeof(LifeDef));
 }
 

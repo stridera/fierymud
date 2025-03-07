@@ -32,7 +32,7 @@ ACMD(do_toggle) {
     CharData *tch;
 
     struct set_struct {
-        const char *cmd;
+        const std::string_view cmd;
         int level;
         int bitvector;
     }
@@ -83,7 +83,7 @@ ACMD(do_toggle) {
          * interpreter.h, even if you don't intend to use it. */
 
     };
-    const char *tog_messages[][2] = {
+    const std::string_view tog_messages[][2] = {
         /*00 */ {"You are now safe from summoning by other players.\n", "You may now be summoned by other players.\n"},
         /*01 */
         {"Nohassle disabled, mobs will attack you now.\n", "Nohassle enabled, mobs will leave you alone now.\n"},
@@ -116,7 +116,7 @@ ACMD(do_toggle) {
         {"You are no longer anonymous.\n", "You are now anonymous.\n"},
         /*18 */
         {"You will no longer see vnums.\n", "You will now see vnums.\n"},
-        /*19 */ {nullptr, nullptr},
+        /*19 */ {{}, {}},
         /*20 */
         {"Your area spells will now hit your race align in towns.\n",
          "Your area spells won't hit your race align in towns.\n"},
@@ -125,7 +125,7 @@ ACMD(do_toggle) {
         /*22 */
         {"You will now auto-engage upon being offensively cast upon.\n",
          "You will no longer auto-engage upon being offensively cast upon.\n"},
-        /*23 */ {nullptr, nullptr},
+        /*23 */ {{}, {}},
         /*24 */
         {"You will now let anyone follow you.\n", "You will now avoid attracting new followers.\n"},
         /*25 */
@@ -145,7 +145,7 @@ ACMD(do_toggle) {
         /*30 */
         {"You will no longer automatically loot treasure from corpses.\n",
          "You will now automatically loot treasure from corpses.\n"},
-        /*31 */ {nullptr, nullptr},
+        /*31 */ {{}, {}},
         /*32 */
         {"Objects will now stack in lists.\n", "Objects will no longer stack in lists.\n"},
         /*33 */
@@ -158,23 +158,23 @@ ACMD(do_toggle) {
         {"Your pet will no longer assist you as you fight.\n", "Your pet will now assist you as you fight.\n"},
     };
 
-    argument = one_argument(argument, arg);
+    auto arg = argument.shift();
     tch = REAL_CHAR(ch);
 
     /*
      * First, see if the player wants to toggle something.
      */
-    if (*arg)
+    if (!arg.empty())
         for (; *fields[i].cmd != '\n'; ++i)
-            if (is_abbrev(arg, fields[i].cmd))
+            if (matches_start(arg, fields[i].cmd))
                 if (GET_LEVEL(tch) >= fields[i].level || (i == SCMD_ANON && PRV_FLAGGED(tch, PRV_ANON_TOGGLE)))
                     if (i != SCMD_NOCLANCOMM || GET_CLAN(tch))
                         break;
 
-    if (!*arg || *fields[i].cmd == '\n') {
+    if (arg.empty() || *fields[i].cmd == '\n') {
         /* Show a player his/her fields. */
 
-        if (*arg) {
+        if (!arg.empty()) {
             if (GET_LEVEL(ch) < LVL_GOD || !(tch = find_char_around_char(ch, find_vis_by_name(ch, arg)))) {
                 char_printf(ch, "Toggle what!?\n");
                 return;
@@ -243,8 +243,8 @@ ACMD(do_toggle) {
 
     switch (i) {
     case SCMD_WIMPY:
-        one_argument(argument, arg);
-        if (!*arg) {
+        arg = argument.shift();
+        if (arg.empty()) {
             if (GET_WIMP_LEV(tch)) {
                 char_printf(ch, "Your current wimp level is {:d} hit points.\n", GET_WIMP_LEV(tch));
             } else
@@ -267,8 +267,8 @@ ACMD(do_toggle) {
             char_printf(ch, "Specify at how many hit points you want to wimp out at.  (0 to disable)\n");
         return;
     case SCMD_PAGELENGTH:
-        one_argument(argument, arg);
-        if (!*arg) {
+        arg = argument.shift();
+        if (arg.empty()) {
             if (GET_PAGE_LENGTH(tch) == 0) {
                 char_printf(ch, "Pagelength is turned off.\n");
             } else if (GET_PAGE_LENGTH(tch) > 0) {
@@ -293,7 +293,7 @@ ACMD(do_toggle) {
         return;
     case SCMD_AUTOINVIS:
         any_one_arg(argument, arg);
-        if (!*arg) {
+        if (arg.empty()) {
             if (GET_AUTOINVIS(tch) == -1)
                 char_printf(ch, "Autoinvis is off.\n");
             else if (GET_AUTOINVIS(tch) < -1 || GET_AUTOINVIS(tch) > GET_LEVEL(tch)) {
@@ -306,9 +306,9 @@ ACMD(do_toggle) {
         } else {
             if (isdigit(*arg) || *arg == '-')
                 i = atoi(arg);
-            else if (!strncasecmp(arg, "off", 4))
+            else if (matches(arg, "off"))
                 i = -1;
-            else if (!strncasecmp(arg, "on", 3))
+            else if (matches(arg, "on"))
                 i = GET_LEVEL(tch);
             else {
                 char_printf(ch, "Invalid input: autoinvis is a number between 0 and your level.\n");

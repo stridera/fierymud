@@ -114,21 +114,21 @@ void perform_put(CharData *ch, ObjData *obj, ObjData *cont) {
 */
 
 ACMD(do_put) {
-    char argbuf1[MAX_INPUT_LENGTH], *arg1 = argbuf1;
-    char argbuf2[MAX_INPUT_LENGTH], *arg2 = argbuf2;
     ObjData *obj, *next_obj, *cont;
     CharData *tmp_char;
     int obj_dotmode, cont_dotmode, found = 0;
 
-    two_arguments(argument, arg1, arg2);
-    obj_dotmode = find_all_dots(&arg1);
-    cont_dotmode = find_all_dots(&arg2);
+    auto arg1 = argument.shift();
+    auto arg2 = argument.shift();
 
-    if (!*arg1)
+    obj_dotmode = find_all_dots(arg1);
+    cont_dotmode = find_all_dots(arg2);
+
+    if (arg1.empty())
         char_printf(ch, "Put what in what?\n");
     else if (cont_dotmode != FIND_INDIV)
         char_printf(ch, "You can only put things into one container at a time.\n");
-    else if (!*arg2)
+    else if (arg2.empty())
         char_printf(ch, "What do you want to put {} in?\n", ((obj_dotmode == FIND_INDIV) ? "it" : "them"));
     else if (CONFUSED(ch))
         char_printf(ch, "You're too confused.\n");
@@ -168,8 +168,6 @@ ACMD(do_put) {
 }
 
 ACMD(do_stow) {
-    char argbuf1[MAX_INPUT_LENGTH], *arg1 = argbuf1;
-    char argbuf2[MAX_INPUT_LENGTH], *arg2 = argbuf2;
     ObjData *obj, *cont = nullptr;
     CharData *tch;
     int obj_dotmode, cont_dotmode;
@@ -181,25 +179,26 @@ ACMD(do_stow) {
         return;
     }
 
-    two_arguments(argument, arg1, arg2);
-    obj_dotmode = find_all_dots(&arg1);
-    cont_dotmode = find_all_dots(&arg2);
+    auto arg1 = argument.shift();
+    auto arg2 = argument.shift();
+    obj_dotmode = find_all_dots(arg1);
+    cont_dotmode = find_all_dots(arg2);
 
     if (!GET_SKILL(ch, SKILL_CONCEAL)) {
-        if (*arg2)
+        if (!arg2.empty())
             do_put(ch, argument, cmd, 0);
         else
             do_drop(ch, argument, cmd, SCMD_DROP);
-    } else if (!*arg1)
+    } else if (arg1.empty())
         char_printf(ch, "Stow what in what?\n");
     else if (obj_dotmode != FIND_INDIV)
         char_printf(ch, "You can only stow one item at a time.\n");
     else if (cont_dotmode != FIND_INDIV)
         char_printf(ch, "You'll need to break it into pieces to put it into more than one container!\n");
     else {
-        if (*arg2)
+        if (!arg2.empty())
             generic_find(arg2, FIND_OBJ_EQUIP | FIND_OBJ_INV | FIND_OBJ_ROOM, ch, &tch, &cont);
-        if (*arg2 && !cont)
+        if (!arg2.empty() && !cont)
             char_printf(ch, "You don't see {} {} here.\n", AN(arg2), arg2);
         else if (cont && GET_OBJ_TYPE(cont) != ITEM_CONTAINER)
             act("$p is not a container.", false, ch, cont, 0, TO_CHAR);
@@ -220,7 +219,7 @@ ACMD(do_stow) {
             else {
                 int roll = conceal_roll(ch, obj);
                 obj_from_char(obj);
-                if (!*arg2) {
+                if (arg2.empty()) {
                     obj_to_room(obj, ch->in_room);
                     act("You sneakily toss $p by your feet.", false, ch, obj, 0, TO_CHAR);
                 } else {
@@ -244,10 +243,10 @@ ACMD(do_stow) {
                     if (CAN_SEE(ch, tch) ? (GET_PERCEPTION(tch) < roll - 50 + random_number(0, 50))
                                          : (GET_PERCEPTION(tch) < roll / 2))
                         continue;
-                    if (!*arg2)
+                    if (arg2.empty())
                         act("$n tosses $p by $s feet.", false, ch, obj, tch, TO_VICT);
                     else {
-                        sprintf(buf, "%s looks around, furtively slipping $p into $P.", GET_NAME(ch));
+                        auto buf = fmt::format("{} looks around, furtively slipping $p into $P.", GET_NAME(ch));
                         act(buf, true, tch, obj, cont, TO_CHAR);
                     }
                 }
@@ -258,8 +257,8 @@ ACMD(do_stow) {
     }
 }
 
-void perform_drop(CharData *ch, ObjData *obj, byte mode, const char *verb) {
-    const char *sname = verb;
+void perform_drop(CharData *ch, ObjData *obj, byte mode, const std::string_view verb) {
+    std::string_view sname = verb;
     /* Possible modes here are SCMD_DROP, SCMD_JUNK, SCMD_DONATE,
      * and SCMD_LETDROP.  That last mode occurs when you tried to
      * give an object to someone who was insubstantial, so the
@@ -271,8 +270,7 @@ void perform_drop(CharData *ch, ObjData *obj, byte mode, const char *verb) {
      * so this comes before the trigger checks. */
 
     if (OBJ_FLAGGED(obj, ITEM_NODROP) && GET_LEVEL(ch) < 100) {
-        sprintf(buf, "You can't %s $p - it must be CURSED!", verb);
-        act(buf, false, ch, obj, 0, TO_CHAR);
+        act(fmt::format("You can't {} $p - it must be CURSED!", verb), false, ch, obj, 0, TO_CHAR);
         return;
     }
 
@@ -290,10 +288,8 @@ void perform_drop(CharData *ch, ObjData *obj, byte mode, const char *verb) {
     }
 
     if (mode != SCMD_LETDROP) {
-        sprintf(buf, "You %s $p.", sname);
-        act(buf, false, ch, obj, 0, TO_CHAR);
-        sprintf(buf, "$n %ss $p.", sname);
-        act(buf, !HIGHLY_VISIBLE(obj) || GET_INVIS_LEV(ch), ch, obj, 0, TO_ROOM);
+        act(fmt::format("You %s $p.", sname), false, ch, obj, 0, TO_CHAR);
+        act(fmt::format("$n %ss $p.", sname), !HIGHLY_VISIBLE(obj) || GET_INVIS_LEV(ch), ch, obj, 0, TO_ROOM);
     }
 
     if (mode != SCMD_JUNK && !RIGID(ch))
@@ -352,10 +348,8 @@ void drop_random_object(CharData *ch) {
 ACMD(do_drop) {
     ObjData *obj, *next_obj;
     int dotmode, amount, type, total;
-    const char *cmdname = "drop";
-    int coins[4] = {0, 0, 0, 0};
+    std::string cmdname = "drop";
     FindContext context;
-    char *name = arg;
 
     if (subcmd == SCMD_JUNK) {
         cmdname = "junk";
@@ -365,8 +359,9 @@ ACMD(do_drop) {
         }
     }
 
-    if (parse_money(&argument, coins)) {
-        if (!CASH_VALUE(coins)) {
+    if (auto money = parse_money(argument.get()); money) {
+        auto coins = *money;
+        if (CASH_VALUE(coins) == 0) {
             char_printf(ch, "You drop 0 coins.  Okaaayy...\n");
             return;
         }
@@ -383,14 +378,14 @@ ACMD(do_drop) {
         return;
     }
 
-    argument = one_argument(argument, name);
+    auto name = argument.shift();
 
-    if (!*name) {
+    if (name.empty()) {
         char_printf(ch, "What do you want to {}?\n", cmdname);
         return;
     }
 
-    dotmode = find_all_dots(&name);
+    dotmode = find_all_dots(name);
 
     if (dotmode == FIND_ALL) {
         if (subcmd == SCMD_JUNK)
@@ -404,7 +399,7 @@ ACMD(do_drop) {
             }
     } else if (dotmode == FIND_ALLDOT) {
         context = find_vis_by_name(ch, name);
-        if (!*name)
+        if (name.empty())
             char_printf(ch, "What do you want to {} all of?\n", cmdname);
         else if (!(obj = find_obj_in_list(ch->carrying, context)))
             char_printf(ch, "You don't seem to have any {}{}.\n", name, isplural(name) ? "" : "s");
@@ -416,11 +411,10 @@ ACMD(do_drop) {
             }
     } else {
         amount = 1;
-        if (is_number(name)) {
-            skip_spaces(&argument);
-            if (*argument) {
-                amount = atoi(name);
-                one_argument(argument, name);
+        if (is_integer(name)) {
+            if (!argument.empty()) {
+                amount = svtoi(name);
+                name = argument.shift();
             }
         }
         context = find_vis_by_name(ch, name);
@@ -428,7 +422,7 @@ ACMD(do_drop) {
         if (!amount)
             char_printf(ch, "So...you don't want to drop anything?\n");
         else if (!(obj = find_obj_in_list(ch->carrying, context)))
-            char_printf(ch, "You don't seem to have {} {}{}.\n", amount == 1 ? AN(name) : "any", arg,
+            char_printf(ch, "You don't seem to have {} {}{}.\n", amount == 1 ? AN(name) : "any", name,
                         amount == 1 || isplural(name) ? "" : "s");
         else {
             total = amount;
@@ -460,8 +454,8 @@ int check_container_give(ObjData *obj, CharData *ch, CharData *vict) {
         cont = obj->contains;
         while (cont) {
             if (GET_OBJ_LEVEL(cont) > GET_LEVEL(vict) + 15) {
-                sprintf(buf, "%s isn't experienced enough to use $p that is in $P.", GET_NAME(vict));
-                act(buf, false, ch, cont, obj, TO_CHAR);
+                act(fmt::format("{} isn't experienced enough to use $p that is in $P.", GET_NAME(vict)), false, ch,
+                    cont, obj, TO_CHAR);
                 return 1;
             }
             if (GET_OBJ_TYPE(cont) == ITEM_CONTAINER) {
@@ -548,10 +542,10 @@ int perform_give(CharData *ch, CharData *vict, ObjData *obj, int silent) {
 }
 
 /* utility function for give */
-CharData *give_find_vict(CharData *ch, char *arg) {
+CharData *give_find_vict(CharData *ch, std::string_view arg) {
     CharData *vict;
 
-    if (!*arg) {
+    if (arg.empty()) {
         char_printf(ch, "To who?\n");
         return nullptr;
     } else if (!(vict = find_char_in_room(&world[ch->in_room], find_vis_by_name(ch, arg)))) {
@@ -564,15 +558,15 @@ CharData *give_find_vict(CharData *ch, char *arg) {
         return vict;
 }
 
-void perform_give_money(CharData *ch, CharData *vict, int coins[]) {
+void perform_give_money(CharData *ch, CharData *vict, Money coins) {
     bool afford = true;
-    int amount = 0, i;
+    int amount = 0;
     ObjData *obj;
 
-    for (i = 0; i <= 3; i++)
-        amount = amount + coins[i];
+    for (int i = 0; i < NUM_COIN_TYPES; ++i)
+        amount += coins[i];
 
-    if (amount <= 0) {
+    if (amount == 0) {
         char_printf(ch, "Heh heh heh ... we are jolly funny today, eh?\n");
         return;
     }
@@ -613,17 +607,9 @@ void perform_give_money(CharData *ch, CharData *vict, int coins[]) {
     if (PRF_FLAGGED(ch, PRF_NOREPEAT))
         char_printf(ch, OK);
     else {
-        strcpy(buf, "You give $n ");
-        statemoney(buf + strlen(buf), coins);
-        strcat(buf, ".");
-        act(buf, false, vict, 0, ch, TO_VICT);
+        act(fmt::format("You give $n {}.", statemoney(coins)), false, vict, 0, ch, TO_VICT);
     }
-
-    strcpy(buf, "$n gives you ");
-    statemoney(buf + strlen(buf), coins);
-    strcat(buf, ".");
-    act(buf, false, ch, 0, vict, TO_VICT);
-
+    act(fmt::format("$n gives you {}.", statemoney(coins)), false, ch, 0, vict, TO_VICT);
     act("$n gives some coins to $N.", true, ch, 0, vict, TO_NOTVICT);
 
     GET_PLATINUM(vict) += coins[PLATINUM];
@@ -643,38 +629,35 @@ ACMD(do_give) {
     int amount = 1, dotmode, result = GIVE_FAIL_DONTHAVE, i, counter = 0;
     CharData *vict;
     ObjData *obj, *next_obj, *ref_obj = nullptr;
-    int cash[NUM_COIN_TYPES] = {0};
-    char *name = strdup(arg);
     std::string item_list;
     std::unordered_map<ObjData *, int> vnums;
     int vnum;
 
-    if (parse_money(&argument, cash)) {
-        one_argument(argument, name);
+    auto name = argument.shift();
+    if (auto cash_opt = parse_money(argument.get()); cash_opt) {
+        auto cash = *cash_opt;
+        name = argument.shift();
         if (!(vict = give_find_vict(ch, name)))
             return;
         perform_give_money(ch, vict, cash);
         return;
     }
 
-    argument = one_argument(argument, name);
-
-    if (!*name) {
+    if (name.empty()) {
         char_printf(ch, "Give what to who?\n");
         return;
     }
 
-    if (is_number(name)) {
-        amount = atoi(name);
-        argument = one_argument(argument, name);
+    if (is_integer(name)) {
+        amount = svtoi(name);
+        name = argument.shift();
     }
 
     /* And who are we giving this to? */
-    one_argument(argument, buf1);
-    if (!(vict = give_find_vict(ch, buf1)))
+    if (!(vict = give_find_vict(ch, argument.shift())))
         return;
 
-    dotmode = find_all_dots(&name);
+    dotmode = find_all_dots(name);
 
     if (amount <= 0) {
         act("You give nothing to $N.", false, ch, 0, vict, TO_CHAR);
@@ -704,7 +687,7 @@ ACMD(do_give) {
             else if (result == GIVE_FAIL_FULL)
                 break;
             auto it = std::find_if(vnums.begin(), vnums.end(), [&obj](const auto &pair) {
-                return !strcmp(pair.first->short_description, obj->short_description);
+                return matches(pair.first->short_description, obj->short_description);
             });
             if (it == vnums.end()) {
                 vnums.insert(std::make_pair(obj, 1));
@@ -716,7 +699,7 @@ ACMD(do_give) {
         char_printf(ch, "You are too confused for such juggling.\n");
         return;
     } else {
-        if (dotmode == FIND_ALLDOT && !*name) {
+        if (dotmode == FIND_ALLDOT && name.empty()) {
             char_printf(ch, "All of what?\n");
             return;
         }
@@ -733,7 +716,7 @@ ACMD(do_give) {
                     break;
                 ++counter;
                 auto it = std::find_if(vnums.begin(), vnums.end(), [&obj](const auto &pair) {
-                    return !strcmp(pair.first->short_description, obj->short_description);
+                    return matches(pair.first->short_description, obj->short_description);
                 });
                 if (it == vnums.end()) {
                     vnums.insert(std::make_pair(obj, 1));
@@ -759,12 +742,13 @@ ACMD(do_give) {
                 act("$n gives $p to $N.", !HIGHLY_VISIBLE(obj_ref2) || GET_INVIS_LEV(ch), ch, obj_ref2, vict,
                     TO_NOTVICT);
             } else {
-                sprintf(buf, "You give $p to $N. (x%d)", qty);
-                act(buf, false, ch, obj_ref2, vict, TO_CHAR);
-                sprintf(buf, "$n gives you $p. (x%d)", qty);
-                act(buf, false, ch, obj_ref2, vict, TO_VICT);
-                sprintf(buf, "$n gives $p to $N. (x%d)", qty);
-                act(buf, !HIGHLY_VISIBLE(obj_ref2) || GET_INVIS_LEV(ch), ch, obj_ref2, vict, TO_NOTVICT);
+                ;
+                act(fmt::format("You give $p to $N. (x%d)", qty), false, ch, obj_ref2, vict, TO_CHAR);
+                ;
+                act(fmt::format("$n gives you $p. (x%d)", qty), false, ch, obj_ref2, vict, TO_VICT);
+                ;
+                act(fmt::format("$n gives $p to $N. (x%d)", qty), !HIGHLY_VISIBLE(obj_ref2) || GET_INVIS_LEV(ch), ch,
+                    obj_ref2, vict, TO_NOTVICT);
             }
         }
     }
@@ -781,9 +765,9 @@ ACMD(do_drink) {
         return;
     }
 
-    one_argument(argument, arg);
+    auto arg = argument.shift();
 
-    if (!*arg) {
+    if (arg.empty()) {
         char_printf(ch, "Drink from what?\n");
         return;
     }
@@ -826,7 +810,7 @@ ACMD(do_drink) {
         return;
 
     if (subcmd == SCMD_DRINK) {
-        sprintf(buf, "$n drinks %s from $p.", LIQ_NAME(GET_OBJ_VAL(temp, VAL_DRINKCON_LIQUID)));
+        auto buf = fmt::format("$n drinks {} from $p.", LIQ_NAME(GET_OBJ_VAL(temp, VAL_DRINKCON_LIQUID)));
         act(buf, true, ch, temp, 0, TO_ROOM);
 
         char_printf(ch, "You drink the {}.\n", LIQ_NAME(GET_OBJ_VAL(temp, VAL_DRINKCON_LIQUID)));
@@ -889,9 +873,9 @@ ACMD(do_eat) {
         return;
     }
 
-    one_argument(argument, arg);
+    auto arg = argument.shift();
 
-    if (!*arg) {
+    if (arg.empty()) {
         char_printf(ch, "Eat what?\n");
         return;
     }
@@ -987,14 +971,15 @@ ACMD(do_pour) {
         char_printf(ch, "You can't coordinate the maneuver while fighting!\n");
         return;
     }
-    two_arguments(argument, arg1, arg2);
+    auto from_container = argument.shift();
+    auto to_container = argument.shift();
 
     if (subcmd == SCMD_POUR) {
-        if (!*arg1) { /* No arguments */
+        if (from_container.empty()) { /* No arguments */
             act("From what do you want to pour?", false, ch, 0, 0, TO_CHAR);
             return;
         }
-        if (!(from_obj = find_obj_in_list(ch->carrying, find_vis_by_name(ch, arg1)))) {
+        if (!(from_obj = find_obj_in_list(ch->carrying, find_vis_by_name(ch, from_container)))) {
             act("You can't find it!", false, ch, 0, 0, TO_CHAR);
             return;
         }
@@ -1004,11 +989,11 @@ ACMD(do_pour) {
         }
     }
     if (subcmd == SCMD_FILL) {
-        if (!*arg1) { /* no arguments */
+        if (from_container.empty()) { /* no arguments */
             char_printf(ch, "What do you want to fill?  And what are you filling it from?\n");
             return;
         }
-        if (!(to_obj = find_obj_in_list(ch->carrying, find_vis_by_name(ch, arg1)))) {
+        if (!(to_obj = find_obj_in_list(ch->carrying, find_vis_by_name(ch, from_container)))) {
             char_printf(ch, "You can't find it!\n");
             return;
         }
@@ -1016,12 +1001,12 @@ ACMD(do_pour) {
             act("You can't fill $p!", false, ch, to_obj, 0, TO_CHAR);
             return;
         }
-        if (!*arg2) { /* no 2nd argument */
+        if (to_container.empty()) { /* no 2nd argument */
             act("What do you want to fill $p from?", false, ch, to_obj, 0, TO_CHAR);
             return;
         }
-        if (!(from_obj = find_obj_in_list(world[ch->in_room].contents, find_vis_by_name(ch, arg2)))) {
-            char_printf(ch, "There doesn't seem to be {} {} here.\n", AN(arg2), arg2);
+        if (!(from_obj = find_obj_in_list(world[ch->in_room].contents, find_vis_by_name(ch, to_container)))) {
+            char_printf(ch, "There doesn't seem to be {} {} here.\n", AN(to_container), to_container);
             return;
         }
         if (GET_OBJ_TYPE(from_obj) != ITEM_FOUNTAIN) {
@@ -1034,17 +1019,17 @@ ACMD(do_pour) {
         return;
     }
     if (subcmd == SCMD_POUR) { /* pour */
-        if (!*arg2) {
+        if (to_container.empty()) {
             act("Where do you want it?  Out or in what?", false, ch, 0, 0, TO_CHAR);
             return;
         }
-        if (!strcasecmp(arg2, "out")) {
+        if (matches(to_container, "out")) {
             act("$n empties $p.", false, ch, from_obj, 0, TO_ROOM);
             act("You empty $p.", false, ch, from_obj, 0, TO_CHAR);
             liquid_from_container(from_obj, GET_OBJ_VAL(from_obj, VAL_DRINKCON_REMAINING));
             return;
         }
-        if (!(to_obj = find_obj_in_list(ch->carrying, find_vis_by_name(ch, arg2)))) {
+        if (!(to_obj = find_obj_in_list(ch->carrying, find_vis_by_name(ch, to_container)))) {
             act("You can't find it!", false, ch, 0, 0, TO_CHAR);
             return;
         }
@@ -1067,7 +1052,8 @@ ACMD(do_pour) {
         return;
     }
     if (subcmd == SCMD_POUR)
-        char_printf(ch, "You pour the {} into the {}.\n", LIQ_NAME(GET_OBJ_VAL(from_obj, VAL_DRINKCON_LIQUID)), arg2);
+        char_printf(ch, "You pour the {} into the {}.\n", LIQ_NAME(GET_OBJ_VAL(from_obj, VAL_DRINKCON_LIQUID)),
+                    to_container);
     if (subcmd == SCMD_FILL) {
         act("You gently fill $p from $P.", false, ch, to_obj, from_obj, TO_CHAR);
         act("$n gently fills $p from $P.", !HIGHLY_VISIBLE(to_obj) || GET_INVIS_LEV(ch), ch, to_obj, from_obj, TO_ROOM);
@@ -1087,7 +1073,7 @@ ACMD(do_pour) {
 }
 
 void wear_message(CharData *ch, ObjData *obj, int where) {
-    const char *wear_messages[][2] = {
+    const std::string_view wear_messages[][2] = {
         {"$n starts using $p as a light.", "You start using $p as a light."},
         {"$n slides $p onto $s right ring finger.", "You slide $p onto your right ring finger."},
         {"$n slides $p onto $s left ring finger.", "You slide $p onto your left ring finger."},
@@ -1143,16 +1129,16 @@ bool perform_wear(CharData *ch,           /* Who is trying to wear something */
     return true;
 }
 
-int find_eq_pos(CharData *ch, ObjData *obj, char *arg) {
+int find_eq_pos(CharData *ch, ObjData *obj, std::string_view arg) {
     int where = -1;
 
-    static const char *keywords[] = {"!RESERVED!", "finger",     "!RESERVED!", "neck",       "!RESERVED!", "body",
-                                     "head",       "legs",       "feet",       "hands",      "arms",       "shield",
-                                     "about",      "waist",      "wrist",      "!RESERVED!", "!RESERVED!", "!RESERVED!",
-                                     "!RESERVED!", "!RESERVED!", "!RESERVED!", "eyes",       "face",       "ear",
-                                     "!RESERVED!", "badge",      "belt",       "hover",      "\n"};
+    static const std::array<std::string_view, 28> keywords = {
+        "!RESERVED!", "finger",     "!RESERVED!", "neck",       "!RESERVED!", "body",       "head",
+        "legs",       "feet",       "hands",      "arms",       "shield",     "about",      "waist",
+        "wrist",      "!RESERVED!", "!RESERVED!", "!RESERVED!", "!RESERVED!", "!RESERVED!", "!RESERVED!",
+        "eyes",       "face",       "ear",        "!RESERVED!", "badge",      "belt",       "hover"};
 
-    if (!arg || !*arg) {
+    if (arg.empty()) {
         if (CAN_WEAR(obj, ITEM_WEAR_FINGER))
             where = WEAR_FINGER_R;
         if (CAN_WEAR(obj, ITEM_WEAR_NECK))
@@ -1197,7 +1183,7 @@ int find_eq_pos(CharData *ch, ObjData *obj, char *arg) {
     } else {
         /* 2/6/02 - DCE Put in a check for !. Players could wear item !,
            and it would put the item in the light position. */
-        if (!strcasecmp(arg, "!") || (where = search_block(arg, keywords, false)) < 0) {
+        if (matches(arg, "!") || (where = search_block(arg, keywords, false)) < 0) {
             char_printf(ch, "'{}'?  What part of your body is THAT?\n", arg);
         }
     }
@@ -1206,25 +1192,25 @@ int find_eq_pos(CharData *ch, ObjData *obj, char *arg) {
 }
 
 ACMD(do_wear) {
-    char argbuf1[MAX_INPUT_LENGTH], *arg1 = argbuf1;
-    char argbuf2[MAX_INPUT_LENGTH], *arg2 = argbuf2;
     ObjData *obj, *next_obj;
     int where, dotmode, wearable_items = 0, worn_items = 0;
-
-    two_arguments(argument, arg1, arg2);
 
     if (GET_RACE(ch) == RACE_ANIMAL) {
         char_printf(ch, "Animals can't wear clothes!\n");
         return;
     }
 
-    if (!*arg1) {
+    if (argument.empty()) {
         char_printf(ch, "Wear what?\n");
         return;
     }
-    dotmode = find_all_dots(&arg1);
 
-    if (*arg2 && (dotmode != FIND_INDIV)) {
+    auto arg1 = argument.shift();
+    auto arg2 = argument.shift();
+
+    dotmode = find_all_dots(arg1);
+
+    if (!arg2.empty() && (dotmode != FIND_INDIV)) {
         char_printf(ch, "You can't specify the same body location for more than one item!\n");
         return;
     }
@@ -1235,7 +1221,7 @@ ACMD(do_wear) {
         }
         for (obj = ch->carrying; obj; obj = next_obj) {
             next_obj = obj->next_content;
-            if (CAN_SEE_OBJ(ch, obj) && (where = find_eq_pos(ch, obj, 0)) >= 0) {
+            if (CAN_SEE_OBJ(ch, obj) && (where = find_eq_pos(ch, obj, {})) >= 0) {
                 wearable_items++;
                 if (perform_wear(ch, obj, where, true))
                     worn_items++;
@@ -1246,7 +1232,7 @@ ACMD(do_wear) {
     }
 
     else if (dotmode == FIND_ALLDOT) {
-        if (!*arg1) {
+        if (arg1.empty()) {
             char_printf(ch, "Wear all of what?\n");
             return;
         }
@@ -1259,7 +1245,7 @@ ACMD(do_wear) {
         else {
             while (obj) {
                 next_obj = find_obj_in_list(obj->next_content, find_vis_by_name(ch, arg1));
-                if ((where = find_eq_pos(ch, obj, 0)) >= 0) {
+                if ((where = find_eq_pos(ch, obj, {})) >= 0) {
                     if (perform_wear(ch, obj, where, true))
                         worn_items++;
                 }
@@ -1279,7 +1265,7 @@ ACMD(do_wear) {
         obj = confused_inventory_switch(ch, obj);
         if ((where = find_eq_pos(ch, obj, arg2)) >= 0)
             perform_wear(ch, obj, where, false);
-        else if (!*arg2)
+        else if (arg2.empty())
             act("You can't wear $p.", false, ch, obj, 0, TO_CHAR);
     }
 }
@@ -1288,14 +1274,14 @@ ACMD(do_wield) {
     ObjData *obj;
     int hands_used, weapon_hands_used;
 
-    one_argument(argument, arg);
+    auto arg = argument.shift();
 
     /* Basic checks first */
 
     if (GET_RACE(ch) == RACE_ANIMAL)
         return;
 
-    if (!*arg) {
+    if (arg.empty()) {
         char_printf(ch, "Wield what?\n");
         return;
     }
@@ -1365,9 +1351,9 @@ ACMD(do_light) {
     ObjData *obj;
     FindContext find_darklights;
 
-    one_argument(argument, arg);
+    auto arg = argument.shift();
 
-    if (!*arg) {
+    if (arg.empty()) {
         if (subcmd == SCMD_EXTINGUISH)
             char_printf(ch, "Extinguish what?\n");
         else
@@ -1447,12 +1433,12 @@ ACMD(do_grab) {
     ObjData *obj;
     FindContext find_darklights;
 
-    one_argument(argument, arg);
+    auto arg = argument.shift();
 
     find_darklights = find_by_name(arg);
     find_darklights.obj_func = match_light_by_name;
 
-    if (!*arg)
+    if (arg.empty())
         char_printf(ch, "Hold what?\n");
     else if (!(obj = find_obj_in_list(ch->carrying, find_vis_by_name(ch, arg))) &&
              !(obj = find_obj_in_list(ch->carrying, find_darklights)))
@@ -1494,20 +1480,20 @@ void perform_remove(CharData *ch, int pos) {
 ACMD(do_remove) {
     ObjData *obj;
     int where, dotmode, found;
-    char *name = arg;
 
     if (GET_RACE(ch) == RACE_ANIMAL) {
         char_printf(ch, "Animals can't wear clothes!\n");
         return;
     }
 
-    argument = one_argument(argument, name);
+    auto name = argument.shift();
+    auto target = argument.try_shift_number();
 
-    if (!*name) {
+    if (name.empty()) {
         char_printf(ch, "Remove what?\n");
         return;
     }
-    dotmode = find_all_dots(&name);
+    dotmode = find_all_dots(name);
 
     if (dotmode == FIND_ALL) {
         found = 0;
@@ -1521,7 +1507,7 @@ ACMD(do_remove) {
     }
 
     else if (dotmode == FIND_ALLDOT) {
-        if (!*name)
+        if (name.empty())
             char_printf(ch, "Remove all of what?\n");
         else {
             found = 0;
@@ -1535,15 +1521,14 @@ ACMD(do_remove) {
         }
     }
 
-    else if (is_number(name) &&
+    else if (is_integer(name) &&
              universal_find(find_vis_by_type(ch, ITEM_BOARD), FIND_OBJ_EQUIP | FIND_OBJ_ROOM | FIND_OBJ_WORLD, nullptr,
                             &obj) &&
              obj)
-        remove_message(ch, board(GET_OBJ_VAL(obj, VAL_BOARD_NUMBER)), atoi(name), obj);
-    else if (is_number(argument) &&
-             generic_find(name, FIND_OBJ_EQUIP | FIND_OBJ_ROOM | FIND_OBJ_WORLD, ch, nullptr, &obj) && obj &&
+        remove_message(ch, board(GET_OBJ_VAL(obj, VAL_BOARD_NUMBER)), svtoi(name), obj);
+    else if (target && generic_find(name, FIND_OBJ_EQUIP | FIND_OBJ_ROOM | FIND_OBJ_WORLD, ch, nullptr, &obj) && obj &&
              GET_OBJ_TYPE(obj) == ITEM_BOARD)
-        remove_message(ch, board(GET_OBJ_VAL(obj, VAL_BOARD_NUMBER)), atoi(argument), obj);
+        remove_message(ch, board(GET_OBJ_VAL(obj, VAL_BOARD_NUMBER)), *target, obj);
     else if (!(obj = (find_obj_in_eq(ch, &where, find_vis_by_name(ch, name)))))
         char_printf(ch, "You don't seem to be using {} {}.\n", AN(name), name);
     else
@@ -1603,10 +1588,8 @@ bool check_get_disarmed_obj(CharData *ch, CharData *last_to_hold, ObjData *obj) 
                 } else {
                     act("$n tries to grab $p!", false, ch, obj, 0, TO_ROOM);
 
-                    strcpy(Gbuf4, "No you don't!! That belongs to me!");
-                    do_say(last_to_hold, Gbuf4, cmd_say, 0);
-                    strcpy(Gbuf4, GET_NAME(ch));
-                    do_action(last_to_hold, Gbuf4, cmd_glare, 0);
+                    do_say(last_to_hold, Arguments("No you don't!! That belongs to me!"), cmd_say, 0);
+                    do_action(last_to_hold, Arguments(GET_NAME(ch)), cmd_glare, 0);
 
                     act("$N plants $Mself directly in front of $n, blocking $m.", false, ch, 0, last_to_hold,
                         TO_NOTVICT);
@@ -1616,8 +1599,7 @@ bool check_get_disarmed_obj(CharData *ch, CharData *last_to_hold, ObjData *obj) 
                         TO_CHAR);
                     retval = true;
 
-                    /* Delay them so they can't spam grab attempts and bypass this
-                     * too easily */
+                    /* Delay them so they can't spam grab attempts and bypass this too easily */
                     WAIT_STATE(ch, PULSE_VIOLENCE + 1);
                 }
             }
@@ -1635,7 +1617,7 @@ ACMD(do_conceal) {
     CharData *tch;
     extern void appear(CharData * ch);
 
-    one_argument(argument, arg);
+    auto arg = argument.shift();
     if (CONFUSED(ch)) {
         char_printf(ch, "You're too confused to hide things.\n");
         return;
@@ -1643,9 +1625,9 @@ ACMD(do_conceal) {
 
     if (!GET_SKILL(ch, SKILL_CONCEAL))
         char_printf(ch, "You aren't skilled enough to conceal an item.\n");
-    else if (!*arg)
+    else if (arg.empty())
         char_printf(ch, "What do you want to conceal?\n");
-    else if (!strcasecmp(arg, "all") || !strncasecmp(arg, "all.", 4))
+    else if (matches(arg, "all") || matches_start(arg, "all."))
         char_printf(ch, "You can't conceal multiple items at once.\n");
     else if (ch->in_room == NOWHERE ||
              !(obj = find_obj_in_list(world[ch->in_room].contents, find_vis_by_name(ch, arg))))
@@ -1725,11 +1707,11 @@ ACMD(do_conceal) {
 ACMD(do_touch) {
     ObjData *obj;
 
-    one_argument(argument, arg);
+    auto arg = argument.shift();
 
-    if (!*arg)
+    if (arg.empty())
         char_printf(ch, "Touch what?\n");
-    else if (!strcasecmp(arg, "all") || !strncasecmp(arg, "all.", 4))
+    else if (matches(arg, "all") || matches(arg, "all."))
         char_printf(ch, "One at a time...\n");
     else if (ch->in_room == NOWHERE ||
              !(obj = find_obj_in_list(world[ch->in_room].contents, find_vis_by_name(ch, arg))))
@@ -1754,12 +1736,12 @@ ACMD(do_touch) {
 ACMD(do_compare) {
     ObjData *obj1, *obj2, *temp;
 
-    two_arguments(argument, buf1, buf2);
+    auto buf1 = argument.shift();
+    auto buf2 = argument.shift();
 
-    if (!*buf1 || !*buf2)
+    if (buf1.empty() || buf2.empty())
         char_printf(ch, "Compare what?\n");
-    else if (!strcasecmp(buf1, "all") || !strncasecmp(buf1, "all.", 4) || !strcasecmp(buf2, "all") ||
-             !strncasecmp(buf2, "all.", 4))
+    else if (matches(buf1, "all") || matches(buf1, "all.") || matches(buf2, "all") || matches(buf2, "all."))
         char_printf(ch, "You can only compare two items at a time!\n");
     else if (!(obj1 = find_obj_in_list(ch->carrying, find_vis_by_name(ch, buf1))))
         char_printf(ch, "You don't have a {}.\n", buf1);
@@ -1880,16 +1862,15 @@ ACMD(do_create) {
                 if (!ch)
                     return;
 
-                one_argument(argument, arg);
+                auto arg = argument.shift();
 
-                if (!*(arg)) {
+                if (arg.empty()) {
                     char_printf(ch, "What are you trying to create?\n");
                     return;
                 }
 
-                half_chop(arg, buf, buf2);
-                while (*minor_creation_items[i] != '\n') {
-                    if (is_abbrev(arg, minor_creation_items[i])) {
+                while (minor_creation_items[i] != "\n") {
+                    if (matches_start(arg, minor_creation_items[i])) {
                         found = 1;
                         break;
                     } else

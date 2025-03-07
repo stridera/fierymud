@@ -12,6 +12,7 @@
 
 #include "act.hpp"
 
+#include "bitflags.hpp"
 #include "board.hpp"
 #include "casting.hpp"
 #include "charsize.hpp"
@@ -60,8 +61,8 @@
 /* global */
 int boot_high = 0;
 
-void print_spells_in_book(CharData *ch, ObjData *obj, char *dest_buf);
-void look_at_target(CharData *ch, char *arg);
+void print_spells_in_book(CharData *ch, ObjData *obj, std::string_view dest_buf);
+void look_at_target(CharData *ch, std::string_view arg);
 int ideal_mountlevel(CharData *ch);
 int ideal_tamelevel(CharData *ch);
 int mountlevel(CharData *ch);
@@ -93,8 +94,8 @@ bool senses_living_only(CharData *ch, CharData *vict, int basepct) {
     return senses_living(ch, vict, basepct);
 }
 
-const char *relative_location_str(int bits) {
-    const char *obj_relative[] = {"(carried)", "(here)", "(used)", "(somewhere)"};
+const std::string_view relative_location_str(int bits) {
+    const std::string_view obj_relative[] = {"(carried)", "(here)", "(used)", "(somewhere)"};
 
     switch (bits) {
     case FIND_OBJ_INV:
@@ -108,23 +109,23 @@ const char *relative_location_str(int bits) {
     }
 }
 
-/* Component function of print_obj_to_char */
+// Component function of print_obj_to_std::string_view
 static void print_note_to_char(ObjData *obj, CharData *ch) {
     if (obj->ex_description)
         char_printf(ch, obj->ex_description->description);
-    if (obj->action_description)
+    if (!obj->action_description.empty())
         char_printf(ch, "{}{}", obj->ex_description ? "There is something written upon it:\n\n" : "",
                     obj->action_description);
     else
         char_printf(ch, "It's blank.\n");
 }
 
-/* Component function of print_obj_to_char */
+// Component function of print_obj_to_std::string_view
 static void print_obj_vnum_to_char(ObjData *obj, CharData *ch) {
     char_printf(ch, " @W[@B{:d}@W]@0", GET_OBJ_VNUM(obj));
 }
 
-/* Component function of print_obj_to_char */
+// Component function of print_obj_to_std::string_view
 static void print_obj_flags_to_char(ObjData *obj, CharData *ch) {
     /* Small local buffer.   Increase the size when adding additional flags */
     std::string response;
@@ -159,10 +160,10 @@ static void print_obj_flags_to_char(ObjData *obj, CharData *ch) {
         response += " &6&b(&0&5hovering&6&b)&0";
 
     /* Should be safe; shouldn't be any % symbols from above */
-    char_printf(ch, response.c_str());
+    char_printf(ch, response);
 }
 
-/* Component function of print_obj_to_char */
+// Component function of print_obj_to_std::string_view
 static void print_obj_auras_to_char(ObjData *obj, CharData *ch) {
     if (OBJ_EFF_FLAGGED(obj, EFF_BLESS)) {
         if (OBJ_FLAGGED(obj, ITEM_ANTI_GOOD))
@@ -173,7 +174,7 @@ static void print_obj_auras_to_char(ObjData *obj, CharData *ch) {
 }
 
 /* Show one of an obj's desc to a char; uses SHOW_ flags */
-void print_obj_to_char(ObjData *obj, CharData *ch, int mode, char *additional_args) {
+void print_obj_to_char(ObjData *obj, CharData *ch, int mode, std::string_view additional_args) {
     bool show_flags = IS_SET(mode, SHOW_FLAGS);
 
     /* Remove the flags from the show mode */
@@ -181,14 +182,14 @@ void print_obj_to_char(ObjData *obj, CharData *ch, int mode, char *additional_ar
 
     switch (mode) {
     case SHOW_SHORT_DESC:
-        if (obj->short_description)
+        if (!obj->short_description.empty())
             char_printf(ch, obj->short_description);
         if (show_flags && PRF_FLAGGED(ch, PRF_SHOWVNUMS))
             print_obj_vnum_to_char(obj, ch);
         break;
 
     case SHOW_LONG_DESC:
-        if (obj->description)
+        if (!obj->description.empty())
             char_printf(ch, obj->description);
         if (show_flags && PRF_FLAGGED(ch, PRF_SHOWVNUMS))
             print_obj_vnum_to_char(obj, ch);
@@ -196,19 +197,19 @@ void print_obj_to_char(ObjData *obj, CharData *ch, int mode, char *additional_ar
 
     case SHOW_BASIC_DESC:
     case SHOW_FULL_DESC:
-        if (!look_otrigger(obj, ch, arg, additional_args))
+        if (!look_otrigger(obj, ch, "", additional_args))
             return;
-        if (obj->ex_description && !(GET_OBJ_TYPE(obj) == ITEM_BOARD && is_number(additional_args)))
+        if (obj->ex_description && !(GET_OBJ_TYPE(obj) == ITEM_BOARD && is_integer(additional_args)))
             char_printf(ch, "{}\n", obj->ex_description->description);
         if (GET_OBJ_TYPE(obj) == ITEM_DRINKCON)
             char_printf(ch, "It looks like a drink container.");
         else if (GET_OBJ_TYPE(obj) == ITEM_SPELLBOOK)
-            print_spells_in_book(ch, obj, nullptr);
+            print_spells_in_book(ch, obj, {});
         else if (GET_OBJ_TYPE(obj) == ITEM_NOTE)
             print_note_to_char(obj, ch);
         else if (GET_OBJ_TYPE(obj) == ITEM_BOARD) {
-            if (is_number(additional_args))
-                read_message(ch, board(GET_OBJ_VAL(obj, VAL_BOARD_NUMBER)), atoi(additional_args));
+            if (is_integer(additional_args))
+                read_message(ch, board(GET_OBJ_VAL(obj, VAL_BOARD_NUMBER)), svtoi(additional_args));
             else
                 look_at_board(ch, board(GET_OBJ_VAL(obj, VAL_BOARD_NUMBER)), obj);
         } else if (!obj->ex_description)
@@ -237,10 +238,10 @@ void list_obj_to_char(ObjData *list, CharData *ch, int mode) {
      * accessed from raw_mode. */
     REMOVE_BIT(mode, SHOW_MASK);
 
-#define STRINGS_MATCH(x, y, member) ((x)->member == (y)->member || !strcasecmp((x)->member, (y)->member))
+#define STRINGS_MATCH(x, y, member) ((x)->member == (y)->member || matches((x)->member, (y)->member))
 #define OBJECTS_MATCH(x, y)                                                                                            \
     ((x)->item_number == (y)->item_number &&                                                                           \
-     (mode == SHOW_LONG_DESC ? STRINGS_MATCH((x), (y), description) : STRINGS_MATCH((x), (y), short_description)))
+     (mode == SHOW_LONG_DESC ? x->description == y->description : x->short_description == y->short_description))
 
     /* Loop through the list of objects */
     for (i = list; i; i = i->next_content) {
@@ -273,7 +274,7 @@ void list_obj_to_char(ObjData *list, CharData *ch, int mode) {
         if (num > 0) {
             if (num != 1)
                 char_printf(ch, "[{}] ", num);
-            print_obj_to_char(display, ch, raw_mode, nullptr);
+            print_obj_to_char(display, ch, raw_mode, {});
             found = true;
         }
     }
@@ -281,16 +282,15 @@ void list_obj_to_char(ObjData *list, CharData *ch, int mode) {
         char_printf(ch, "  Nothing.\n");
 
 #undef STRINGS_MATCH
-#undef CHARS_MATCH
 }
 
-/* Component function for print_char_to_char */
+// Component function for print_char_to_char */
 static void print_char_vnum_to_char(CharData *targ, CharData *ch) {
     if (IS_NPC(targ))
         char_printf(ch, "@W[@B{:5d}@W]@0 ", GET_MOB_VNUM(targ));
 }
 
-/* Component function for print_char_to_char */
+// Component function for print_char_to_char */
 static void print_char_position_to_char(CharData *targ, CharData *ch) {
     if (GET_POS(targ) < 0 || GET_POS(targ) >= NUM_POSITIONS || GET_STANCE(targ) < 0 ||
         GET_STANCE(targ) >= NUM_STANCES) {
@@ -328,11 +328,11 @@ static void print_char_position_to_char(CharData *targ, CharData *ch) {
                     : stance_types[(int)GET_STANCE(targ)]);
 }
 
-/* Component function for print_char_to_char */
+// Component function for print_char_to_char */
 static void print_char_long_desc_to_char(CharData *targ, CharData *ch) {
     char buf[513];
 
-    if (IS_NPC(targ) && !MOB_FLAGGED(targ, MOB_PLAYER_PHANTASM) && GET_LDESC(targ) &&
+    if (IS_NPC(targ) && !MOB_FLAGGED(targ, MOB_PLAYER_PHANTASM) && !GET_LDESC(targ).empty() &&
         GET_POS(targ) == GET_DEFAULT_POS(targ) && GET_STANCE(targ) != STANCE_FIGHTING &&
         !EFF_FLAGGED(targ, EFF_MINOR_PARALYSIS) && !EFF_FLAGGED(targ, EFF_MAJOR_PARALYSIS) &&
         !EFF_FLAGGED(targ, EFF_MESMERIZED)) {
@@ -341,12 +341,10 @@ static void print_char_long_desc_to_char(CharData *targ, CharData *ch) {
     }
 
     if (IS_NPC(targ) && !MOB_FLAGGED(targ, MOB_PLAYER_PHANTASM))
-        snprintf(buf, sizeof(buf), "%s", GET_SHORT(targ));
+        char_printf(ch, "{}", capitalize_first(targ->player.short_descr));
     else
-        snprintf(buf, sizeof(buf), "@0%s%s%s @W(@0%s@W)@0 @L(@0%s@L)@0", GET_NAME(targ), GET_TITLE(targ) ? " " : "",
-                 GET_TITLE(targ) ? GET_TITLE(targ) : "", RACE_ABBR(targ), SIZE_DESC(targ));
-
-    char_printf(ch, cap_by_color(buf));
+        char_printf(ch, "@0{}{}{} @W(@0{}@W)@0 @L(@0{}@L)@0", GET_NAME(targ), GET_TITLE(targ).empty() ? "" : " ",
+                    GET_TITLE(targ).empty() ? "" : GET_TITLE(targ), RACE_ABBR(targ), SIZE_DESC(targ));
 
     if (RIDDEN_BY(targ) && RIDDEN_BY(targ)->in_room == targ->in_room && !IS_NPC(targ))
         char_printf(ch, " is here, ridden by {}.", RIDING(targ) == ch ? "you" : PERS(RIDDEN_BY(targ), ch));
@@ -355,7 +353,7 @@ static void print_char_long_desc_to_char(CharData *targ, CharData *ch) {
         char_printf(ch, " is here, mounted upon {}.", RIDING(targ) == ch ? "you" : PERS(RIDING(targ), ch));
 
     else if (EFF_FLAGGED(targ, EFF_MINOR_PARALYSIS) || EFF_FLAGGED(targ, EFF_MAJOR_PARALYSIS)) {
-        /* The spell of entangle can set major or minor paralysis. */
+        // The spell of entangle can set major or minor paralysis. */
         if (affected_by_spell(targ, SPELL_ENTANGLE))
             char_printf(ch, " is here, {}.",
                         EFF_FLAGGED(targ, EFF_MAJOR_PARALYSIS) ? "held still by thick vines"
@@ -380,7 +378,7 @@ static void print_char_long_desc_to_char(CharData *targ, CharData *ch) {
         char_printf(ch, " is here struggling with thin air.");
 }
 
-/* Component function for print_char_to_char */
+// Component function for print_char_to_std::string_view
 static void print_char_flags_to_char(CharData *targ, CharData *ch) {
     /* Small local buf.   Make bigger if more flags are added */
     std::string resp;
@@ -433,19 +431,17 @@ static void print_char_flags_to_char(CharData *targ, CharData *ch) {
         resp += fmt::format(" (@mCasting{}{}@0)", PRF_FLAGGED(ch, PRF_HOLYLIGHT) ? " " : "",
                             PRF_FLAGGED(ch, PRF_HOLYLIGHT) ? skill_name(targ->casting.spell) : "");
 
-    char_printf(ch, resp.c_str());
+    char_printf(ch, resp);
 }
 
-const char *status_string(int cur, int max, int mode) {
+const std::string_view status_string(int cur, int max, int mode) {
     struct {
-        const char *pre;
-        const char *color;
-        const char *cond;
-        const char *post;
+        std::string_view pre;
+        std::string_view color;
+        std::string_view cond;
+        std::string_view post;
     } css;
     int percent;
-    static char retbuf[64][3];
-    static int lastbuf = -1;
 
 #define STRINGS(a, b, c, d)                                                                                            \
     do {                                                                                                               \
@@ -454,10 +450,6 @@ const char *status_string(int cur, int max, int mode) {
         css.cond = c;                                                                                                  \
         css.post = d;                                                                                                  \
     } while (0)
-
-    /* Choose which static buffer to use. */
-    if (++lastbuf >= 3)
-        lastbuf = 0;
 
     if (max > 0)
         percent = (100 * cur) / max;
@@ -485,59 +477,49 @@ const char *status_string(int cur, int max, int mode) {
     case STATUS_COLOR:
         return css.color;
     case STATUS_ALIAS:
-        sprintf(retbuf[lastbuf], "%s%s" ANRM, css.color, css.cond);
-        break;
+        return fmt::format("{}{}" ANRM, css.color, css.cond);
     case STATUS_PHRASE:
     default:
-        sprintf(retbuf[lastbuf], "%s %s%s%s%s" ANRM ".", css.pre, css.color, css.cond, *css.post ? " " : "", css.post);
-        break;
+        return fmt::format("{} {}{}{}{}" ANRM ".", css.pre, css.color, css.cond, css.post.empty() ? "" : " ", css.post);
     }
-
-    return retbuf[lastbuf];
-
 #undef STRINGS
 }
 
-/* Component function for print_char_to_char */
+// Component function for print_char_to_std::string_view
 static void print_char_appearance_to_char(CharData *targ, CharData *ch) {
-    char buf[16];
 
-    strncpy(buf, HSSH(targ), sizeof(buf));
-    buf[15] = '\0';
+    auto pronoun = HSSH(targ);
 
-    /* Size and composition */
+    // Size and composition
     if (GET_COMPOSITION(targ) == COMP_FLESH)
-        char_printf(ch, "{} is {}{}&0 in size.\n", cap_by_color(buf), SIZE_COLOR(targ), SIZE_DESC(targ));
+        char_printf(ch, "{} is {}{}&0 in size.\n", capitalize_first(pronoun), SIZE_COLOR(targ), SIZE_DESC(targ));
     else if (GET_COMPOSITION(targ) == COMP_ETHER)
-        char_printf(ch, "{} is {}{}&0 in size, and is {}insubstantial&0.\n", cap_by_color(buf), SIZE_COLOR(targ),
-                    SIZE_DESC(targ), COMPOSITION_COLOR(targ));
+        char_printf(ch, "{} is {}{}&0 in size, and is {}insubstantial&0.\n", capitalize_first(pronoun),
+                    SIZE_COLOR(targ), SIZE_DESC(targ), COMPOSITION_COLOR(targ));
     else
-        char_printf(ch, "{} is {}{}&0 in size, and is composed of {}{}&0.\n", cap_by_color(buf), SIZE_COLOR(targ),
-                    SIZE_DESC(targ), COMPOSITION_COLOR(targ), COMPOSITION_MASS(targ));
+        char_printf(ch, "{} is {}{}&0 in size, and is composed of {}{}&0.\n", capitalize_first(pronoun),
+                    SIZE_COLOR(targ), SIZE_DESC(targ), COMPOSITION_COLOR(targ), COMPOSITION_MASS(targ));
 }
 
-/* Component function for print_char_to_char */
+// Component function for print_char_to_std::string_view
 static void print_char_riding_status_to_char(CharData *targ, CharData *ch) {
-    char buf[257];
 
     if (RIDING(targ) && RIDING(targ)->in_room == targ->in_room) {
         if (RIDING(targ) == ch)
             act("$e is riding on you.", false, targ, 0, ch, TO_VICT);
         else {
-            sprintf(buf, "$e is riding on %s.", PERS(RIDING(targ), ch));
-            act(buf, false, targ, 0, ch, TO_VICT);
+            act(fmt::format("$e is riding on %s.", PERS(RIDING(targ), ch)), false, targ, 0, ch, TO_VICT);
         }
     } else if (RIDDEN_BY(targ) && RIDDEN_BY(targ)->in_room == targ->in_room) {
         if (RIDDEN_BY(targ) == ch)
             act("You are mounted upon $m.", false, targ, 0, ch, TO_VICT);
         else {
-            sprintf(buf, "%s is mounted upon $m.", PERS(RIDDEN_BY(targ), ch));
-            act(buf, false, targ, 0, ch, TO_VICT);
+            act(fmt::format("%s is mounted upon $m.", PERS(RIDDEN_BY(targ), ch)), false, targ, 0, ch, TO_VICT);
         }
     }
 }
 
-/* Component function for print_char_to_char */
+// Component function for print_char_to_std::string_view
 static void print_char_equipment_to_char(CharData *targ, CharData *ch) {
     int j;
     bool found = false;
@@ -552,14 +534,14 @@ static void print_char_equipment_to_char(CharData *targ, CharData *ch) {
         for (j = 0; j < NUM_WEARS; j++)
             if (GET_EQ(targ, wear_order_index[j]) && CAN_SEE_OBJ(ch, GET_EQ(targ, wear_order_index[j]))) {
                 char_printf(ch, where[wear_order_index[j]]);
-                print_obj_to_char(GET_EQ(targ, wear_order_index[j]), ch, SHOW_SHORT_DESC | SHOW_FLAGS, nullptr);
+                print_obj_to_char(GET_EQ(targ, wear_order_index[j]), ch, SHOW_SHORT_DESC | SHOW_FLAGS, {});
             }
     }
 }
 
-/* Component function for print_char_to_char */
+// Component function for print_char_to_std::string_view
 static void print_char_spells_to_char(CharData *targ, CharData *ch) {
-    /* Things you can only see with detect magic */
+    // Things you can only see with detect magic
     if (EFF_FLAGGED(ch, EFF_DETECT_MAGIC) || PRF_FLAGGED(ch, PRF_HOLYLIGHT)) {
         if (affected_by_spell(targ, SPELL_ARMOR))
             act("A &7&btranslucent shimmering aura&0 surrounds $M.&0", true, ch, 0, targ, TO_CHAR);
@@ -587,7 +569,7 @@ static void print_char_spells_to_char(CharData *targ, CharData *ch) {
             act("A &3&bclarity&0 of mind surrounds $M.&0", true, ch, 0, targ, TO_CHAR);
     }
 
-    /* AC protection spells */
+    // AC protection spells
     if (EFF_FLAGGED(targ, EFF_STONE_SKIN))
         act("&9&b$S body seems to be made of stone!&0", true, ch, 0, targ, TO_CHAR);
     if (affected_by_spell(targ, SPELL_BARKSKIN))
@@ -607,7 +589,7 @@ static void print_char_spells_to_char(CharData *targ, CharData *ch) {
     if (EFF_FLAGGED(targ, EFF_EXPOSED))
         act("&9&bThere is a hole in $S armor!&0", true, ch, 0, targ, TO_CHAR);
 
-    /* Miscellaneous spell effects */
+    // Miscellaneous spell effects
     if (EFF_FLAGGED(targ, EFF_BLIND))
         act("$S &0&b&9dull &0eyes suggest $E is blind!&0", true, ch, 0, targ, TO_CHAR);
     if (EFF_FLAGGED(targ, EFF_CONFUSION)) {
@@ -644,7 +626,7 @@ static void print_char_spells_to_char(CharData *targ, CharData *ch) {
     if (EFF_FLAGGED(targ, EFF_MAJOR_GLOBE))
         act("&1&b$S body is encased in shimmering globe of force!&0", true, ch, 0, targ, TO_CHAR);
     if (EFF_FLAGGED(targ, EFF_MINOR_PARALYSIS) || EFF_FLAGGED(targ, EFF_MAJOR_PARALYSIS)) {
-        /* The spell of entangle can set major or minor paralysis. */
+        // The spell of entangle can set major or minor paralysis.
         if (affected_by_spell(targ, SPELL_ENTANGLE)) {
             if (EFF_FLAGGED(targ, EFF_MAJOR_PARALYSIS))
                 act("&2$E is held fast by &bthick twining vines&0&2.&0", true, ch, 0, targ, TO_CHAR);
@@ -672,7 +654,7 @@ static void print_char_spells_to_char(CharData *targ, CharData *ch) {
     if (affected_by_spell(targ, SPELL_MAGIC_TORCH))
         act("$E is being followed by a &1bright glowing light&0.", true, ch, 0, targ, TO_CHAR);
 
-    /* Other miscellaneous effects */
+    // Other miscellaneous effects
     if (EFF_FLAGGED(ch, EFF_DETECT_POISON) && EFF_FLAGGED(targ, EFF_POISON))
         act("You sense @Mpoison@0 coursing through $S veins.", true, ch, 0, targ, TO_CHAR);
     if (EFF_FLAGGED(targ, EFF_ON_FIRE))
@@ -683,17 +665,17 @@ static void print_char_spells_to_char(CharData *targ, CharData *ch) {
         act("$S entire body &0&bglows&0&6 faintly!&0", true, ch, 0, targ, TO_CHAR);
 }
 
-/* Show a character to another character; uses SHOW_ flags */
+// Show a character to another character; uses SHOW_ flags
 void print_char_to_char(CharData *targ, CharData *ch, int mode) {
     bool show_flags = IS_SET(mode, SHOW_FLAGS);
 
-    /* Remove the flags from the show mode. */
+    // Remove the flags from the show mode.
     REMOVE_BIT(mode, SHOW_MASK);
     switch (mode) {
     case SHOW_SHORT_DESC:
         if (show_flags && PRF_FLAGGED(ch, PRF_SHOWVNUMS))
             print_char_vnum_to_char(targ, ch);
-        if (GET_SHORT(targ))
+        if (!GET_SHORT(targ).empty())
             char_printf(ch, GET_SHORT(targ));
         if (show_flags)
             print_char_flags_to_char(targ, ch);
@@ -712,14 +694,14 @@ void print_char_to_char(CharData *targ, CharData *ch, int mode) {
         break;
 
     case SHOW_FULL_DESC:
-        if (targ->player.description)
-            char_printf(ch, "{}\r\n", targ->player.description);
-        else
+        if (targ->player.description.empty())
             char_printf(ch, "You see nothing special about {}.\n", HMHR(targ));
-        /* Fall through */
+        else
+            char_printf(ch, "{}\r\n", targ->player.description);
+        // Fall through
     case SHOW_BASIC_DESC:
-        strcpy(buf, GET_NAME(targ));
-        char_printf(ch, "{} {}\n", cap_by_color(buf), status_string(GET_HIT(targ), GET_MAX_HIT(targ), STATUS_PHRASE));
+        char_printf(ch, "{} {}\n", capitalize_first(GET_NAME(targ)),
+                    status_string(GET_HIT(targ), GET_MAX_HIT(targ), STATUS_PHRASE));
         print_char_appearance_to_char(targ, ch);
         print_char_spells_to_char(targ, ch);
         if (mode == SHOW_FULL_DESC) {
@@ -733,7 +715,7 @@ void print_char_to_char(CharData *targ, CharData *ch, int mode) {
     }
 }
 
-/* Component function of list_char_to_char */
+// Component function of list_char_to_std::string_view
 static void print_life_sensed_msg(CharData *ch, int num_sensed) {
 #define SENSELIFECLR "&7&b"
 
@@ -754,9 +736,9 @@ static void print_life_sensed_msg(CharData *ch, int num_sensed) {
 #undef SENSELIFECLR
 }
 
-/* Component function of list_char_to_char */
+// Component function of list_char_to_std::string_vie
 static void print_char_infra_to_char(CharData *targ, CharData *ch, int mode) {
-    /* Remove the flags from the show mode. */
+    // Remove the flags from the show mode.
     REMOVE_BIT(mode, SHOW_MASK);
 
     if (mode != SHOW_LONG_DESC)
@@ -767,27 +749,37 @@ static void print_char_infra_to_char(CharData *targ, CharData *ch, int mode) {
                     RIDING(targ) == ch ? "you.@0" : "a ", RIDING(targ) == ch ? "" : SIZE_DESC(RIDING(targ)),
                     RIDING(targ) == ch ? "" : "-sized creature");
     else
-        char_printf(ch, "@rThe red shape of a {:c}{}&0&1 living being{} is here.&0\n", LOWER(*SIZE_DESC(targ)),
-                    SIZE_DESC(targ) + 1, EFF_FLAGGED(targ, EFF_INFRAVISION) ? " &bwith glowing red eyes&0&1" : "");
+        char_printf(ch, "@rThe red shape of a {:c}{}&0&1 living being{} is here.&0\n", LOWER(SIZE_DESC(targ)[0]),
+                    SIZE_DESC(targ).substr(1),
+                    EFF_FLAGGED(targ, EFF_INFRAVISION) ? " &bwith glowing red eyes&0&1" : "");
 }
 
-/* Prints a list of chars to another char; uses SHOW_ flags */
+bool chars_match(CharData *x, CharData *y, int mode) {
+    if (GET_MOB_VNUM(x) != GET_MOB_VNUM(y) || FIGHTING(x) != FIGHTING(y) || CASTING(x) != CASTING(y))
+        return false;
+
+    if (mode == SHOW_SHORT_DESC)
+        return x->player.short_descr == y->player.short_descr;
+    else
+        return x->player.long_descr == y->player.long_descr;
+}
+
+bool can_see(CharData *ch, CharData *targ) {
+    if (targ == ch)
+        return true;
+
+    return CAN_SEE(ch, targ) || CAN_SEE_BY_INFRA(ch, targ);
+}
+
+// Prints a list of chars to another char; uses SHOW_ flags
 void list_char_to_char(CharData *list, CharData *ch, int mode) {
     CharData *i, *j, *display;
     int num_seen;
-    int num_sensed = 0; /* How many characters will you detect only via sense life? */
+    int num_sensed = 0; // How many characters will you detect only via sense life?
     int raw_mode = mode;
 
-    /* Remove the flags from the show mode.   The flags can still be
-     * accessed in raw_mode */
+    // Remove the flags from the show mode.   The flags can still accessed in raw_mode
     REMOVE_BIT(mode, SHOW_MASK);
-
-#define STRINGS_MATCH(x, y, member)                                                                                    \
-    ((x)->player.member == (y)->player.member || !strcasecmp((x)->player.member, (y)->player.member))
-#define CHARS_MATCH(x, y)                                                                                              \
-    (GET_MOB_VNUM(x) == GET_MOB_VNUM(y) && FIGHTING(x) == FIGHTING(y) && CASTING(x) == CASTING(y) &&                   \
-     (mode == SHOW_SHORT_DESC ? STRINGS_MATCH((x), (y), short_descr) : STRINGS_MATCH((x), (y), long_descr)) &&         \
-     ((CAN_SEE(ch, (x)) && CAN_SEE(ch, (y))) || (CAN_SEE_BY_INFRA(ch, (x)) && CAN_SEE_BY_INFRA(ch, (y)))))
 
     for (i = list; i; i = i->next_in_room) {
         if (ch == i && IS_SET(raw_mode, SHOW_SKIP_SELF))
@@ -812,14 +804,14 @@ void list_char_to_char(CharData *list, CharData *ch, int mode) {
         if (IS_NPC(i) && IS_SET(raw_mode, SHOW_STACK) && !PRF_FLAGGED(ch, PRF_EXPAND_MOBS)) {
             /* Check the list to see if we've already counted this char */
             for (j = list; j != i; j = j->next_in_room)
-                if (CHARS_MATCH(i, j))
+                if (chars_match(i, j, mode))
                     break; /* found a matching char   */
             if (i != j)
                 continue; /* we counted char j earlier in the list */
 
             /* Count matching chars, including this one */
             for (display = j = i; j; j = j->next_in_room)
-                if (CHARS_MATCH(i, j)) {
+                if (chars_match(i, j, mode) && can_see(ch, i) && can_see(ch, j)) {
                     ++num_seen;
                     /* If the original char can't be seen, switch it for this one */
                     if (display == i && !CAN_SEE(ch, display))
@@ -843,17 +835,14 @@ void list_char_to_char(CharData *list, CharData *ch, int mode) {
 
     if (num_sensed > 0)
         print_life_sensed_msg(ch, num_sensed);
-
-#undef STRINGS_MATCH
-#undef CHARS_MATCH
 }
 
 ACMD(do_trophy) {
     CharData *tch;
 
-    one_argument(argument, arg);
+    auto arg = argument.shift();
 
-    if (GET_LEVEL(ch) >= LVL_IMMORT && *arg) {
+    if (GET_LEVEL(ch) >= LVL_IMMORT && !arg.empty()) {
         if (!(tch = find_char_around_char(ch, find_vis_by_name(ch, arg)))) {
             char_printf(ch, "There's nobody here by that name.\n");
             return;
@@ -867,40 +856,37 @@ ACMD(do_trophy) {
 
 ACMD(do_viewdam) {
 
-    const char *nrm = CLR(ch, ANRM);
-    const char *grn = CLR(ch, FGRN);
-    const char *red = CLR(ch, FRED);
-    const char *bld = CLR(ch, ABLD);
+    const std::string_view nrm = CLR(ch, ANRM);
+    const std::string_view grn = CLR(ch, FGRN);
+    const std::string_view red = CLR(ch, FRED);
+    const std::string_view bld = CLR(ch, ABLD);
     int i;
     bool use = false;
 
-    one_argument(argument, arg);
-    if (!*arg)
+    auto arg = argument.shift();
+    if (arg.empty())
         use = true;
 
-    sprintf(buf2, "&0&4Fiery Spells, List of Damages&0\n");
-    snprintf(buf2, sizeof(buf2),
-             "%s%sSPELL                         ID %sNPC%s%s- DI FA RF   "
-             "%sPC%s%s- DI FA %sB%s%s-LM   MAX   ON/OFF %sINT%s%s- ON/OFF%s\n",
-             buf2, red, bld, nrm, red, bld, nrm, red, bld, nrm, red, bld, nrm, red, nrm);
-    if (is_number(arg)) {
-        if (is_number(arg)) {
-            i = atoi(arg);
-            if ((i < MAX_SKILLS) && (i > 0)) {
-                if (strcasecmp(skills[i].name, "!UNUSED!")) {
-                    char_printf(ch, "{}{}{:>22}{:-8d}{:-3d}{:-3d}{:-8d}{:-3d}{:-5d}{:-4d}{-3d}{:>12}{}{} \n", buf2, grn,
-                                (skills[i].name), SD_SPELL(i), SD_NPC_NO_DICE(i), SD_NPC_NO_FACE(i),
-                                SD_NPC_REDUCE_FACTOR(i), SD_PC_NO_DICE(i), SD_PC_NO_FACE(i), SD_LVL_MULT(i),
-                                SD_BONUS(i), (SD_USE_BONUS(i) ? "true" : "false"),
-                                (SD_INTERN_DAM(i) ? "true" : "false"), nrm);
-                    return;
-                }
+    std::string output = "&0&4Fiery Spells, List of Damages&0\n";
+    output += fmt::format(
+        "{}SPELL                         ID {}NPC{}{}- DI FA RF   "
+        "{}PC{}{}- DI FA {}B{}{}-LM   MAX   ON/OFF {}INT{}{}- ON/OFF{}\n",
+        red, bld, nrm, red, bld, nrm, red, bld, nrm, red, bld, nrm, red, nrm);
+    if (is_integer(arg)) {
+        i = svtoi(arg);
+        if ((i < MAX_SKILLS) && (i > 0)) {
+            if (!matches(skills[i].name, "!UNUSED!")) {
+                char_printf(ch, "{}{}{:>22}{:-8d}{:-3d}{:-3d}{:-8d}{:-3d}{:-5d}{:-4d}{-3d}{:>12}{}{} \n", output, grn,
+                            (skills[i].name), SD_SPELL(i), SD_NPC_NO_DICE(i), SD_NPC_NO_FACE(i),
+                            SD_NPC_REDUCE_FACTOR(i), SD_PC_NO_DICE(i), SD_PC_NO_FACE(i), SD_LVL_MULT(i), SD_BONUS(i),
+                            (SD_USE_BONUS(i) ? "true" : "false"), (SD_INTERN_DAM(i) ? "true" : "false"), nrm);
+                return;
             }
         }
 
-    } else if (!strcasecmp("all", arg)) {
+    } else if (matches("all", arg)) {
         for (i = 1; i <= MAX_SPELLS; i++) {
-            if (strcasecmp(skills[i].name, "!UNUSED!")) {
+            if (!matches(skills[i].name, "!UNUSED!")) {
                 char_printf(ch, "{}{:>22}{:-8d}{:-3d}{:-3d}{:-8d}{:-3d}{:-5d}{:-4d}{-3d}{}{}\n", grn, skills[i].name,
                             SD_SPELL(i), SD_NPC_NO_DICE(i), SD_NPC_NO_FACE(i), SD_NPC_REDUCE_FACTOR(i),
                             SD_PC_NO_DICE(i), SD_PC_NO_FACE(i), SD_LVL_MULT(i), SD_BONUS(i),
@@ -915,11 +901,12 @@ ACMD(do_viewdam) {
                 continue;
             if (!(SD_INTERN_DAM(i)))
                 continue;
-            sprintf(buf2, "%s%s%-22s%-8d%-3d%-3d%-8d%-3d%-5d%-4d%-3d%s%s\n", buf2, grn, (skills[i].name), SD_SPELL(i),
-                    SD_NPC_NO_DICE(i), SD_NPC_NO_FACE(i), SD_NPC_REDUCE_FACTOR(i), SD_PC_NO_DICE(i), SD_PC_NO_FACE(i),
-                    SD_LVL_MULT(i), SD_BONUS(i), (SD_USE_BONUS(i) ? "true" : "false"), nrm);
+            output +=
+                fmt::format("{}{:22}{:8}{:3}{:3}{:8}{:3}{:5}{:4}{:3}{}{}\n", grn, skills[i].name, SD_SPELL(i),
+                            SD_NPC_NO_DICE(i), SD_NPC_NO_FACE(i), SD_NPC_REDUCE_FACTOR(i), SD_PC_NO_DICE(i),
+                            SD_PC_NO_FACE(i), SD_LVL_MULT(i), SD_BONUS(i), (SD_USE_BONUS(i) ? "true" : "false"), nrm);
         }
-        page_string(ch, buf2);
+        page_string(ch, output);
         return;
     }
 
@@ -930,21 +917,20 @@ ACMD(do_viewdam) {
 }
 
 /* search_for_doors() - returns true if a door was located. */
-static int search_for_doors(CharData *ch, char *arg) {
+static int search_for_doors(CharData *ch, std::string_view arg) {
     int door;
     for (door = 0; door < NUM_OF_DIRS; ++door)
         if (CH_EXIT(ch, door) && CH_EXIT(ch, door)->to_room != NOWHERE &&
             IS_SET(CH_EXIT(ch, door)->exit_info, EX_HIDDEN)) {
             if (GET_LEVEL(ch) >= LVL_IMMORT ||
-                (CH_EXIT(ch, door)->keyword && arg && isname(arg, CH_EXIT(ch, door)->keyword)) ||
+                (!CH_EXIT(ch, door)->keyword.empty() && !arg.empty() && isname(arg, CH_EXIT(ch, door)->keyword)) ||
                 GET_INT(ch) > random_number(0, 200)) {
-                std::string kw{CH_EXIT(ch, door)->keyword ? CH_EXIT(ch, door)->keyword : "door"};
+                std::string kw{CH_EXIT(ch, door)->keyword.empty() ? "door" : CH_EXIT(ch, door)->keyword};
                 std::string::size_type pos = kw.find(" ");
                 kw = kw.substr(0, pos);
-                char_printf(ch, "You have found{} hidden {} {}.&0", isplural(kw.c_str()) ? "" : " a", kw,
-                            dirpreposition[door]);
-                auto exit_str = fmt::format("$n has found{} hidden {} {}.", isplural(kw.c_str()) ? "" : " a", kw,
-                                            dirpreposition[door]);
+                char_printf(ch, "You have found{} hidden {} {}.&0", isplural(kw) ? "" : " a", kw, dirpreposition[door]);
+                auto exit_str =
+                    fmt::format("$n has found{} hidden {} {}.", isplural(kw) ? "" : " a", kw, dirpreposition[door]);
 
                 act(exit_str, false, ch, nullptr, nullptr, TO_ROOM);
                 REMOVE_BIT(CH_EXIT(ch, door)->exit_info, EX_HIDDEN);
@@ -986,9 +972,9 @@ ACMD(do_search) {
         }
     }
 
-    one_argument(argument, arg);
+    auto arg = argument.shift();
 
-    if (!*arg)
+    if (arg.empty())
         k = world[ch->in_room].contents;
     else {
         generic_find(arg, FIND_OBJ_INV | FIND_OBJ_EQUIP | FIND_OBJ_ROOM, ch, &j, &k);
@@ -1080,7 +1066,7 @@ ACMD(do_exits) {
         send_full_exits(ch, ch->in_room);
 }
 
-/* Shows a room to a char */
+// Shows a room to a std::string_view
 void print_room_to_char(room_num room_nr, CharData *ch, bool ignore_brief) {
     if (IS_DARK(room_nr) && !CAN_SEE_IN_DARK(ch)) {
         /* The dark version... you can't see much, but you might see exits to
@@ -1095,9 +1081,10 @@ void print_room_to_char(room_num room_nr, CharData *ch, bool ignore_brief) {
 
     /* The lighted version */
     if (PRF_FLAGGED(ch, PRF_ROOMFLAGS)) {
-        sprintflag(buf, ROOM_FLAGS(room_nr), NUM_ROOM_FLAGS, room_bits);
-        sprintf(buf1, "%s%s", sectors[SECT(room_nr)].color, sectors[SECT(room_nr)].name);
-        char_printf(ch, "@L[@0{:5}@L]@W {} @L[@0{}@0: {}@L]@0\n", world[room_nr].vnum, world[room_nr].name, buf1, buf);
+        auto flag_string = sprintflag(ROOM_FLAGS(room_nr), NUM_ROOM_FLAGS, room_bits);
+        auto output = fmt::format("{}{}", sectors[SECT(room_nr)].color, sectors[SECT(room_nr)].name);
+        char_printf(ch, "@L[@0{:5}@L]@W {} @L[@0{}@0: {}@L]@0\n", world[room_nr].vnum, world[room_nr].name, flag_string,
+                    output);
     } else
         char_printf(ch, "{}{}{}\n", CLR(ch, FCYN), world[room_nr].name, CLR(ch, ANRM));
 
@@ -1184,10 +1171,10 @@ void look_in_direction(CharData *ch, int dir) {
     if (exit) {
         if (ROOM_EFF_FLAGGED(CH_NROOM(ch), ROOM_EFF_ISOLATION))
             char_printf(ch, "You peer beyond a veil of &5isolation&0...\n");
-        if (exit->general_description)
-            char_printf(ch, "{}\n", exit->general_description);
-        else
+        if (exit->general_description.empty())
             char_printf(ch, "You see nothing special.\n");
+        else
+            char_printf(ch, "{}\n", exit->general_description);
 
         /* If the exit is hidden, we don't want to display any info! */
         if (EXIT_IS_HIDDEN(exit) && GET_LEVEL(ch) < LVL_IMMORT) {
@@ -1209,8 +1196,8 @@ void look_in_direction(CharData *ch, int dir) {
 }
 
 /* Component function for look_in_obj */
-static const char *describe_fullness(int remaining, int capacity) {
-    const char *fullness;
+static const std::string_view describe_fullness(int remaining, int capacity) {
+    std::string_view fullness;
     switch ((remaining * 3) / capacity) {
     case 0:
         fullness = "less than half ";
@@ -1227,12 +1214,12 @@ static const char *describe_fullness(int remaining, int capacity) {
     return fullness;
 }
 
-void look_in_obj(CharData *ch, char *arg) {
+void look_in_obj(CharData *ch, std::string_view arg) {
     ObjData *obj = nullptr;
     CharData *dummy = nullptr;
     int bits;
 
-    if (!*arg)
+    if (arg.empty())
         char_printf(ch, "Look in what?\n");
     else if (!(bits = generic_find(arg, FIND_OBJ_INV | FIND_OBJ_ROOM | FIND_OBJ_EQUIP, ch, &dummy, &obj)))
         char_printf(ch, "There doesn't seem to be {} {} here.\n", AN(arg), arg);
@@ -1260,19 +1247,19 @@ void look_in_obj(CharData *ch, char *arg) {
         char_printf(ch, "There's nothing inside that!\n");
 }
 
-static char *find_exdesc(char *word, ExtraDescriptionData *list) {
+static std::string_view find_exdesc(std::string_view word, ExtraDescriptionData *list) {
     ExtraDescriptionData *i;
 
     for (i = list; i; i = i->next)
         if (isname(word, i->keyword))
             return (i->description);
 
-    return nullptr;
+    return {};
 }
 
-static bool consider_obj_exdesc(ObjData *obj, char *arg, CharData *ch, char *additional_args) {
-    char *desc;
-    if ((desc = find_exdesc(arg, obj->ex_description)) != nullptr) {
+static bool consider_obj_exdesc(ObjData *obj, std::string_view arg, CharData *ch, std::string_view additional_args) {
+    std::string_view desc;
+    if ((desc = find_exdesc(arg, obj->ex_description)) != "") {
         if (desc == obj->ex_description->description)
             /* First extra desc: show object normally */
             print_obj_to_char(obj, ch, SHOW_FULL_DESC, additional_args);
@@ -1286,10 +1273,10 @@ static bool consider_obj_exdesc(ObjData *obj, char *arg, CharData *ch, char *add
     } else if (!isname(arg, obj->name))
         return false;
     else if (GET_OBJ_TYPE(obj) == ITEM_NOTE) {
-        print_obj_to_char(obj, ch, SHOW_FULL_DESC, nullptr);
+        print_obj_to_char(obj, ch, SHOW_FULL_DESC, {});
     } else if (GET_OBJ_TYPE(obj) == ITEM_BOARD) {
-        if (is_number(additional_args))
-            read_message(ch, board(GET_OBJ_VAL(obj, VAL_BOARD_NUMBER)), atoi(additional_args));
+        if (is_integer(additional_args))
+            read_message(ch, board(GET_OBJ_VAL(obj, VAL_BOARD_NUMBER)), svtoi(additional_args));
         else
             look_at_board(ch, board(GET_OBJ_VAL(obj, VAL_BOARD_NUMBER)), obj);
     } else {
@@ -1305,22 +1292,17 @@ static bool consider_obj_exdesc(ObjData *obj, char *arg, CharData *ch, char *add
  * matches the target.   First, see if there is another char in the room
  * with the name.   Then check local objs for exdescs.
  */
-void look_at_target(CharData *ch, char *argument) {
-    int bits, j;
+void look_at_target(CharData *ch, std::string arg) {
     CharData *found_char = nullptr;
     ObjData *obj = nullptr, *found_obj = nullptr;
-    char *desc;
-    char arg[MAX_INPUT_LENGTH];
-    char *number;
+    std::string_view desc;
 
-    if (!*argument) {
+    if (arg.empty()) {
         char_printf(ch, "Look at what?\n");
         return;
     }
 
-    number = one_argument(argument, arg);
-
-    bits =
+    int bits =
         generic_find(arg, FIND_OBJ_INV | FIND_OBJ_ROOM | FIND_OBJ_EQUIP | FIND_CHAR_ROOM, ch, &found_char, &found_obj);
 
     /* Is the target a character? */
@@ -1336,35 +1318,35 @@ void look_at_target(CharData *ch, char *argument) {
         return;
     }
     /* Does the argument match an extra desc in the room? */
-    if ((desc = find_exdesc(arg, world[ch->in_room].ex_description)) != nullptr) {
+    if ((desc = find_exdesc(arg, world[ch->in_room].ex_description)) != "") {
         page_string(ch, desc);
         return;
     }
 
     /* Does the argument match an extra desc in the char's equipment? */
-    for (j = 0; j < NUM_WEARS; j++)
+    for (int j = 0; j < NUM_WEARS; j++)
         if (GET_EQ(ch, j) && CAN_SEE_OBJ(ch, GET_EQ(ch, j))) {
-            if (consider_obj_exdesc(GET_EQ(ch, j), arg, ch, number))
+            if (consider_obj_exdesc(GET_EQ(ch, j), arg, ch, arg))
                 return;
         }
 
     /* Does the argument match an extra desc in the char's inventory? */
     for (obj = ch->carrying; obj; obj = obj->next_content)
         if (CAN_SEE_OBJ(ch, obj)) {
-            if (consider_obj_exdesc(obj, arg, ch, number))
+            if (consider_obj_exdesc(obj, arg, ch, arg))
                 return;
         }
 
     /* Does the argument match an extra desc of an object in the room? */
     for (obj = world[ch->in_room].contents; obj; obj = obj->next_content)
         if (CAN_SEE_OBJ(ch, obj)) {
-            if (consider_obj_exdesc(obj, arg, ch, number))
+            if (consider_obj_exdesc(obj, arg, ch, arg))
                 return;
         }
 
     /* If an object was found back in generic_find */
     if (bits) {
-        print_obj_to_char(found_obj, ch, SHOW_FULL_DESC, number);
+        print_obj_to_char(found_obj, ch, SHOW_FULL_DESC, arg);
     } else
         char_printf(ch, "You do not see that here.\n");
 }
@@ -1372,7 +1354,7 @@ void look_at_target(CharData *ch, char *argument) {
 #define MAX_FARSEE_DISTANCE 4
 static void do_farsee(CharData *ch, int dir) {
     int original, distance;
-    static const char *farsee_desc[MAX_FARSEE_DISTANCE + 1] = {
+    static const std::string_view farsee_desc[MAX_FARSEE_DISTANCE + 1] = {
         "far beyond reason ", "ridiculously far ", "even farther ", "farther ", "",
     };
 
@@ -1413,7 +1395,7 @@ static void do_farsee(CharData *ch, int dir) {
 }
 
 ACMD(do_read) {
-    skip_spaces(&argument);
+    auto arg = std::string(argument.get());
 
     if (EFF_FLAGGED(ch, EFF_BLIND))
         char_printf(ch, YOU_ARE_BLIND);
@@ -1421,30 +1403,27 @@ ACMD(do_read) {
         char_printf(ch, "Your view is obscured by a thick fog.\n");
     else if (IS_DARK(ch->in_room) && !CAN_SEE_IN_DARK(ch))
         char_printf(ch, "It is too dark to read.\n");
-    else if (!*argument)
+    else if (arg.empty())
         char_printf(ch, "Read what?\n");
-    else if (is_number(argument)) {
+    else if (is_integer(arg)) {
         ObjData *obj;
         universal_find(find_vis_by_type(ch, ITEM_BOARD), FIND_OBJ_EQUIP | FIND_OBJ_ROOM | FIND_OBJ_WORLD, nullptr,
                        &obj);
         if (obj)
-            read_message(ch, board(GET_OBJ_VAL(obj, VAL_BOARD_NUMBER)), atoi(argument));
+            read_message(ch, board(GET_OBJ_VAL(obj, VAL_BOARD_NUMBER)), std::stoi(arg));
         else
-            look_at_target(ch, argument);
+            look_at_target(ch, arg);
     } else
-        look_at_target(ch, argument);
+        look_at_target(ch, arg);
 }
 
 ACMD(do_look) {
-
     int look_type;
-    char *orig_arg = argument;
 
     if (!ch->desc)
         return;
 
-    argument = any_one_arg(argument, arg);
-    skip_spaces(&argument);
+    auto arg = argument.shift();
 
     if (GET_STANCE(ch) < STANCE_SLEEPING)
         char_printf(ch, "You can't see anything but stars!\n");
@@ -1454,28 +1433,28 @@ ACMD(do_look) {
         char_printf(ch, YOU_ARE_BLIND);
     else if (ROOM_EFF_FLAGGED(ch->in_room, ROOM_EFF_FOG) && !PRF_FLAGGED(ch, PRF_HOLYLIGHT))
         char_printf(ch, "Your view is obscured by a thick fog.\n");
-    else if (!*arg) {
+    else if (arg.empty()) {
         /* If the room is dark, look_at_room() will handle it. */
         look_at_room(ch, true);
     } else if (IS_DARK(ch->in_room) && !CAN_SEE_IN_DARK(ch)) {
         char_printf(ch, "It is too dark to see anything.\n");
-    } else if (is_abbrev(arg, "in"))
-        look_in_obj(ch, argument);
-    else if ((look_type = searchblock(arg, dirs, false)) >= 0)
+    } else if (matches_start(arg, "in"))
+        look_in_obj(ch, argument.get());
+    else if ((look_type = parse_direction(arg)) >= 0)
         look_in_direction(ch, look_type);
-    else if (is_abbrev(arg, "at"))
-        look_at_target(ch, argument);
+    else if (matches_start(arg, "at"))
+        look_at_target(ch, argument.get());
     else
-        look_at_target(ch, orig_arg);
+        look_at_target(ch, arg);
 }
 
 ACMD(do_examine) {
     CharData *vict;
     ObjData *obj;
 
-    one_argument(argument, arg);
+    auto arg = argument.shift();
 
-    if (!*arg) {
+    if (arg.empty()) {
         char_printf(ch, "Examine what?\n");
         return;
     }
@@ -1513,18 +1492,15 @@ void identify_obj(ObjData *obj, CharData *ch, int location) {
 
     /* Describe any non-wield wearing positions (and not take) */
     if ((i = obj->obj_flags.wear_flags & (~ITEM_WEAR_WIELD & ~ITEM_WEAR_2HWIELD & ~ITEM_WEAR_TAKE))) {
-        sprintbit(i, wear_bits, buf);
-        char_printf(ch, "Item is worn: {}\n", buf);
+        char_printf(ch, "Item is worn: {}\n", sprintbit(i, wear_bits));
     }
 
     /* Describe extra flags (hum, !drop, class/align restrictions, etc.) */
-    sprintflag(buf, GET_OBJ_FLAGS(obj), NUM_ITEM_FLAGS, extra_bits);
-    char_printf(ch, "Item is: {}\n", buf);
+    char_printf(ch, "Item is: {}\n", sprintflag(GET_OBJ_FLAGS(obj), NUM_ITEM_FLAGS, extra_bits));
 
     /* Tell about spell effects here */
     if (HAS_FLAGS(GET_OBJ_EFF_FLAGS(obj), NUM_EFF_FLAGS)) {
-        sprintflag(buf, GET_OBJ_EFF_FLAGS(obj), NUM_EFF_FLAGS, effect_flags);
-        char_printf(ch, "Item provides: {}\n", buf);
+        char_printf(ch, "Item provides: {}\n", sprintflag(GET_OBJ_EFF_FLAGS(obj), NUM_EFF_FLAGS, effect_flags));
     }
 
     char_printf(ch, "Weight: {:.2f}, Effective Weight: {:.2f},  Value: {:d}, Level: {:d}\n", GET_OBJ_WEIGHT(obj),
@@ -1606,9 +1582,9 @@ ACMD(do_identify) {
         return;
     }
 
-    one_argument(argument, arg);
+    auto arg = argument.shift();
 
-    if (!*arg) {
+    if (arg.empty()) {
         char_printf(ch, "Identify what?\n");
         return;
     }
@@ -1628,11 +1604,9 @@ ACMD(do_identify) {
 
     /* Partial identification */
     if (GET_CLASS(ch) == CLASS_THIEF || GET_OBJ_LEVEL(obj) < GET_LEVEL(ch) + 11) {
-        strcpy(buf, obj->short_description);
-        cap_by_color(buf);
-        char_printf(ch, "{}{}{} look{} like {}.\n", buf, bits == FIND_OBJ_INV ? "" : " ",
-                    bits == FIND_OBJ_INV ? "" : relative_location_str(bits), isplural(obj->name) ? "" : "s",
-                    OBJ_TYPE_DESC(obj));
+        char_printf(ch, "{}{}{} look{} like {}.\n", capitalize_first(obj->short_description),
+                    bits == FIND_OBJ_INV ? "" : " ", bits == FIND_OBJ_INV ? "" : relative_location_str(bits),
+                    isplural(obj->name) ? "" : "s", OBJ_TYPE_DESC(obj));
         return;
     }
 
@@ -1643,8 +1617,8 @@ ACMD(do_inventory) {
     CharData *vict = nullptr;
 
     /* Immortals can target another character to see their inventory */
-    one_argument(argument, arg);
-    if (*arg && GET_LEVEL(ch) >= LVL_IMMORT) {
+    auto arg = argument.shift();
+    if (!arg.empty() && GET_LEVEL(ch) >= LVL_IMMORT) {
         if (!(vict = find_char_around_char(ch, find_vis_by_name(ch, arg)))) {
             char_printf(ch, NOPERSON);
             return;
@@ -1662,14 +1636,14 @@ ACMD(do_inventory) {
 
 ACMD(do_equipment) {
     int i, found = 0;
-    one_argument(argument, arg);
+    auto arg = argument.shift();
 
     char_printf(ch, "You are using:\n");
     for (i = 0; i < NUM_WEARS; i++) {
         if (GET_EQ(ch, wear_order_index[i])) {
             if (CAN_SEE_OBJ(ch, GET_EQ(ch, wear_order_index[i]))) {
                 char_printf(ch, where[wear_order_index[i]]);
-                print_obj_to_char(GET_EQ(ch, wear_order_index[i]), ch, SHOW_SHORT_DESC | SHOW_FLAGS, nullptr);
+                print_obj_to_char(GET_EQ(ch, wear_order_index[i]), ch, SHOW_SHORT_DESC | SHOW_FLAGS, {});
                 found = true;
             } else {
                 char_printf(ch, "{}Something.\n", where[wear_order_index[i]]);
@@ -1685,7 +1659,7 @@ ACMD(do_equipment) {
 }
 
 ACMD(do_time) {
-    const char *suf;
+    std::string_view suffix;
     int weekday, day;
 
     /* 35 days in a month */
@@ -1697,44 +1671,46 @@ ACMD(do_time) {
     day = time_info.day + 1; /* day in [1..35] */
 
     if (day == 1)
-        suf = "st";
+        suffix = "st";
     else if (day == 2)
-        suf = "nd";
+        suffix = "nd";
     else if (day == 3)
-        suf = "rd";
+        suffix = "rd";
     else if (day < 20)
-        suf = "th";
+        suffix = "th";
     else if ((day % 10) == 1)
-        suf = "st";
+        suffix = "st";
     else if ((day % 10) == 2)
-        suf = "nd";
+        suffix = "nd";
     else if ((day % 10) == 3)
-        suf = "rd";
+        suffix = "rd";
     else
-        suf = "th";
+        suffix = "th";
 
-    char_printf(ch, "The {}{} Day of the {}, Year {}.\n", day, suf, month_name[(int)time_info.month], time_info.year);
+    char_printf(ch, "The {}{} Day of the {}, Year {}.\n", day, suffix, month_name[(int)time_info.month],
+                time_info.year);
 
     if (time_info.month < 0 || time_info.month > 15)
         log("SYSERR:act.inf:do_time:time_info.month is reporting month {:d} out of range!", time_info.month);
 }
 
 ACMD(do_weather) {
-    *buf2 = '\0';
 
-    strcat(buf2, temperature_message(zone_table[IN_ZONE_RNUM(ch)].temperature));
+    std::string output = std::string(temperature_message(zone_table[IN_ZONE_RNUM(ch)].temperature));
     if (GET_LEVEL(ch) >= LVL_IMMORT)
         /* Cut off the original newline. */
-        sprintf(buf2 + strlen(buf2) - 2, " (%d degrees)\n", zone_table[IN_ZONE_RNUM(ch)].temperature);
+        output = fmt::format("{} ({:d} degrees)\n", output.substr(0, output.size() - 1),
+                             zone_table[IN_ZONE_RNUM(ch)].temperature);
 
-    strcat(buf2, wind_message(zone_table[IN_ZONE_RNUM(ch)].wind_speed, zone_table[IN_ZONE_RNUM(ch)].wind_speed));
+    output += wind_message(zone_table[IN_ZONE_RNUM(ch)].wind_speed, zone_table[IN_ZONE_RNUM(ch)].wind_speed);
     if (GET_LEVEL(ch) >= LVL_IMMORT && zone_table[IN_ZONE_RNUM(ch)].wind_speed != WIND_NONE)
         /* Cut off the original newline. */
-        sprintf(buf2 + strlen(buf2) - 2, " (%s)\n", dirs[zone_table[IN_ZONE_RNUM(ch)].wind_dir]);
+        output =
+            fmt::format("{} ({})\n", output.substr(0, output.size() - 1), dirs[zone_table[IN_ZONE_RNUM(ch)].wind_dir]);
 
-    strcat(buf2, precipitation_message(&zone_table[IN_ZONE_RNUM(ch)], zone_table[IN_ZONE_RNUM(ch)].precipitation));
+    output += precipitation_message(&zone_table[IN_ZONE_RNUM(ch)], zone_table[IN_ZONE_RNUM(ch)].precipitation);
 
-    char_printf(ch, "{}It is {}.\n", buf2, seasons[hemispheres[IN_HEMISPHERE(ch)].season]);
+    char_printf(ch, "{}It is {}.\n", output, seasons[hemispheres[IN_HEMISPHERE(ch)].season]);
 }
 
 ACMD(do_help) {
@@ -1743,9 +1719,7 @@ ACMD(do_help) {
     if (!ch->desc)
         return;
 
-    skip_spaces(&argument);
-
-    if (!*argument) {
+    if (argument.empty()) {
         page_string(ch, get_text(TEXT_HELP));
         return;
     }
@@ -1754,9 +1728,11 @@ ACMD(do_help) {
         return;
     }
 
+    auto arg = argument.get();
+
     bot = 0;
     top = top_of_helpt;
-    minlen = strlen(argument);
+    minlen = arg.length();
 
     for (;;) {
         mid = (bot + top) / 2;
@@ -1764,9 +1740,9 @@ ACMD(do_help) {
         if (bot > top) {
             char_printf(ch, "There is no help on that word.\n");
             return;
-        } else if (!(chk = strncasecmp(argument, help_table[mid].keyword, minlen))) {
+        } else if (!(chk = strncasecmp(arg.data(), help_table[mid].keyword.data(), minlen))) {
             /* trace backwards to find first matching entry. Thanks Jeff Fink! */
-            while ((mid > 0) && (!(chk = strncasecmp(argument, help_table[mid - 1].keyword, minlen))))
+            while ((mid > 0) && (!(chk = strncasecmp(arg.data(), help_table[mid - 1].keyword.data(), minlen))))
                 mid--;
             /* Added level check */
             if (GET_LEVEL(ch) >= help_table[mid].min_level) {
@@ -1784,402 +1760,170 @@ ACMD(do_help) {
     }
 }
 
-/* Construct a single line of the who list, which depicts a mortal, and
- * concatenate it to a buffer. */
-
-static void cat_mortal_wholine(char *mbuf, const char *title, CharData *ch, const bool show_as_anon,
+/* Construct a single line of the who list, which depicts a mortal, and concatenate it to a buffer. */
+std::string cat_mortal_wholine(const std::string_view title, CharData *ch, const bool show_as_anon,
                                const bool show_area_in, const bool show_full_class, const bool show_color_nameflags) {
+    std::string output;
     if (show_as_anon)
-        sprintf(mbuf, "%s&0[%s] %s%s&0 %s&0", mbuf, "&9&b-Anon-&0",
-                !show_color_nameflags           ? ""
-                : PLR_FLAGGED(ch, PLR_FROZEN)   ? "&6&b"
-                : PLR_FLAGGED(ch, PLR_NEWNAME)  ? "&1&b"
-                : PLR_FLAGGED(ch, PLR_NAPPROVE) ? "&3&b"
-                                                : "",
-                GET_NAME(ch), title);
+        output += fmt::format("&0[{}] {}{}&0 {}&0", "&9&b-Anon-&0",
+                              !show_color_nameflags           ? ""
+                              : PLR_FLAGGED(ch, PLR_FROZEN)   ? "&6&b"
+                              : PLR_FLAGGED(ch, PLR_NEWNAME)  ? "&1&b"
+                              : PLR_FLAGGED(ch, PLR_NAPPROVE) ? "&3&b"
+                                                              : "",
+                              GET_NAME(ch), title);
     else if (IS_STARSTAR(ch))
-        sprintf(mbuf, "%s&0[%s%c%s] %s%s&0 %s%s&0&9&b(&0%s&0&9&b)&0", mbuf,
-                show_full_class ? CLASS_WIDE(ch) : CLASS_ABBR(ch), PRF_FLAGGED(ch, PRF_ANON) ? '*' : ' ',
-                classes[(int)GET_CLASS(ch)].stars,
-                !show_color_nameflags           ? ""
-                : PLR_FLAGGED(ch, PLR_FROZEN)   ? "&6&b"
-                : PLR_FLAGGED(ch, PLR_NEWNAME)  ? "&1&b"
-                : PLR_FLAGGED(ch, PLR_NAPPROVE) ? "&3&b"
-                                                : "",
-                GET_NAME(ch), title, strlen(title) ? " " : "", RACE_ABBR(ch));
+        output +=
+            fmt::format("&0[{}{}{}] {}{}&0 {}{}&0&9&b(&0{}&0&9&b)&0", show_full_class ? CLASS_WIDE(ch) : CLASS_ABBR(ch),
+                        PRF_FLAGGED(ch, PRF_ANON) ? '*' : ' ', classes[(int)GET_CLASS(ch)].stars,
+                        !show_color_nameflags           ? ""
+                        : PLR_FLAGGED(ch, PLR_FROZEN)   ? "&6&b"
+                        : PLR_FLAGGED(ch, PLR_NEWNAME)  ? "&1&b"
+                        : PLR_FLAGGED(ch, PLR_NAPPROVE) ? "&3&b"
+                                                        : "",
+                        GET_NAME(ch), title, title.empty() ? "" : " ", RACE_ABBR(ch));
     else
-        sprintf(mbuf, "%s&0[%s%c%2d] %s%s&0 %s%s&0&9&b(&0%s&0&9&b)&0", mbuf,
-                show_full_class ? CLASS_WIDE(ch) : CLASS_ABBR(ch), PRF_FLAGGED(ch, PRF_ANON) ? '*' : ' ', GET_LEVEL(ch),
-                !show_color_nameflags           ? ""
-                : PLR_FLAGGED(ch, PLR_FROZEN)   ? "&6&b"
-                : PLR_FLAGGED(ch, PLR_NEWNAME)  ? "&1&b"
-                : PLR_FLAGGED(ch, PLR_NAPPROVE) ? "&3&b"
-                                                : "",
-                GET_NAME(ch), title, strlen(title) ? " " : "", RACE_ABBR(ch));
+        output += fmt::format("&0[{}{}{:2d}] {}{}&0 {}{}&0&9&b(&0{}&0&9&b)&0",
+                              show_full_class ? CLASS_WIDE(ch) : CLASS_ABBR(ch), PRF_FLAGGED(ch, PRF_ANON) ? '*' : ' ',
+                              GET_LEVEL(ch),
+                              !show_color_nameflags           ? ""
+                              : PLR_FLAGGED(ch, PLR_FROZEN)   ? "&6&b"
+                              : PLR_FLAGGED(ch, PLR_NEWNAME)  ? "&1&b"
+                              : PLR_FLAGGED(ch, PLR_NAPPROVE) ? "&3&b"
+                                                              : "",
+                              GET_NAME(ch), title, title.empty() ? "" : " ", RACE_ABBR(ch));
 
     if (show_area_in)
-        sprintf(mbuf + strlen(mbuf), " (%s)", zone_table[world[IN_ROOM(ch)].zone].name);
+        output += fmt::format(" ({})", zone_table[world[IN_ROOM(ch)].zone].name);
+    return output;
 }
 
-const char *WHO_USAGE = "Usage: who [minlev-maxlev] [-qrzw] [-n name] [-c classes]\n";
+const std::string_view WHO_USAGE = "Usage: who [minlev-maxlev] [-qrzw] [-n name] [-c classes]\n";
 
-ACMD(do_who) {
-    DescriptorData *d;
-    CharData *wch;
-    char Imm_buf_title[MAX_STRING_LENGTH];
-    char Imm_buf[MAX_STRING_LENGTH];
-    char buf[MAX_STRING_LENGTH];
-    char buf2[MAX_STRING_LENGTH];
-    char buf1[MAX_STRING_LENGTH];
-    char arg[MAX_STRING_LENGTH];
-    char Mort_buf_title[MAX_STRING_LENGTH];
-    char Mort_buf[MAX_STRING_LENGTH];
-    char name_search[MAX_NAME_LENGTH + 1];
-    char mode;
-    char a[120];
-    char check[3];
-    int low = 0, high = LVL_IMPL, showclass = CLASS_UNDEFINED;
-    bool who_room = false, who_zone = false, who_quest = 0;
+void do_who(CharData *ch, Arguments argument, int cmd, int subcmd) {
+    constexpr std::array<std::string_view, 6> wiz_levels = {"   &0&7&bAvatar&0   ", " &0&1QuasiDeity&0 ",
+                                                            " &0&2MinorDeity&0 ",   " &0&1&bMajorDeity&0 ",
+                                                            " &0&3SoulForger&0 ",   "  &0&9&bOverlord&0  "};
+
+    std::string imm_buf, mort_buf, name_search;
+    std::optional<int> low, high;
+    int show_class = CLASS_UNDEFINED;
+    bool who_room = false, who_zone = false, who_quest = false;
     bool outlaws = false, noimm = false, nomort = false;
     bool who_where = false, level_range = false;
-    bool show_as_anon = false, show_area_in = false;
-    int b, c, e;
-    int Wizards = 0, Mortals = 0;
+    int wizards = 0, mortals = 0;
 
-    const char *WizLevels[LVL_IMPL - (LVL_IMMORT - 1)] = {"   &0&7&bAvatar&0   ", " &0&1QuasiDeity&0 ",
-                                                          " &0&2MinorDeity&0 ",   " &0&1&bMajorDeity&0 ",
-                                                          " &0&3SoulForger&0 ",   "  &0&9&bOverlord&0  "};
+    auto buf = argument.shift();
 
-    /* Set string buffers empty */
-    buf[0] = buf1[0] = buf2[0] = arg[0] = Imm_buf_title[0] = Imm_buf[0] = Mort_buf_title[0] = Mort_buf[0] = 0;
+    while (!argument.empty()) {
+        auto arg = argument.shift();
 
-    skip_spaces(&argument);
-    strcpy(buf, argument);
-    name_search[0] = 0;
-
-    while (*buf) {
-        half_chop(buf, arg, buf1);
-        if (isdigit(*arg)) {
-            sscanf(arg, "%d-%d", &low, &high);
-            strcpy(buf, buf1);
+        if (std::isdigit(arg[0])) {
+            auto dash_pos = arg.find('-');
+            if (dash_pos != std::string::npos) {
+                low = svtoi(arg.substr(0, dash_pos));
+                high = svtoi(arg.substr(dash_pos + 1));
+            }
             level_range = true;
-        } else if (*arg == '-') {
-            mode = *(arg + 1); /* just in case; we destroy arg in the switch */
-            switch (mode) {
-                /* 'o' - show only outlaws */
+        } else if (arg[0] == '-') {
+            switch (arg[1]) {
             case 'o':
                 outlaws = true;
-                strcpy(buf, buf1);
                 break;
-                /* 'z' - show only folks in the same zone as me */
             case 'z':
-                if (pk_allowed && GET_LEVEL(ch) < LVL_IMMORT) {
-                    who_zone = false;
-                    char_printf(ch, "Wouldn't you like to know?\n");
-                    return;
-                } else {
-                    who_zone = true;
-                    strcpy(buf, buf1);
-                }
+                who_zone = GET_LEVEL(ch) >= LVL_IMMORT;
                 break;
-                /* 'q' - show only folks with (quest) flag */
             case 'q':
                 who_quest = true;
-                strcpy(buf, buf1);
                 break;
-                /* 'l' - show only folks within a certain level range */
-            case 'l':
-                half_chop(buf1, arg, buf);
-                sscanf(arg, "%d-%d", &low, &high);
+            case 'l': {
+                auto dash_pos = buf.find('-');
+                if (dash_pos != std::string::npos) {
+                    low = svtoi(buf.substr(0, dash_pos));
+                    high = svtoi(buf.substr(dash_pos + 1));
+                }
                 level_range = true;
                 break;
-                /* 'n' - show only someone with a specific name */
-                /* BUG (?) - if no name matches, it then goes on to check titles? */
+            }
             case 'n':
-                half_chop(buf1, name_search, buf);
+                name_search = argument.shift();
                 break;
-                /* 'r' - show only people in the same room with me */
             case 'r':
                 who_room = true;
-                strcpy(buf, buf1);
                 break;
-                /* 'w' - show where people are, by putting their area name after their
-                 * name */
             case 'w':
                 who_where = true;
-                strcpy(buf, buf1);
                 break;
-                /* 'c' - show only people of a specific class */
             case 'c':
-                half_chop(buf1, arg, buf);
-                showclass = parse_class(0, 0, arg);
+                show_class = parse_class(0, 0, argument.shift());
                 break;
             default:
                 char_printf(ch, WHO_USAGE);
                 return;
-                break;
-            } /* end of switch (mode) */
+            }
         } else {
-            /* Arguments were provided, but not switches, so assume that the
-             * caller wants to search by name */
-            if (!(wch = find_char_by_desc(find_vis_plr_by_name(ch, buf)))) {
+            auto wch = find_char_by_desc(find_vis_plr_by_name(ch, arg));
+            if (!wch) {
                 char_printf(ch, NOPERSON);
                 return;
             }
-
-            strcpy(buf, "***\n");
-            if (GET_LEVEL(wch) >= LVL_IMMORT) {
-                sprintf(buf, "%s%s[%s] %s %s", buf, CLRLV(ch, ADAR, C_SPR),
-                        GET_WIZ_TITLE(wch) ? GET_WIZ_TITLE(wch) : WizLevels[GET_LEVEL(wch) - LVL_IMMORT], GET_NAME(wch),
-                        GET_TITLE(wch) ? GET_TITLE(wch) : "");
-            } else {
-                cat_mortal_wholine(
-                    buf, buf2, wch,
-                    PRF_FLAGGED(wch, PRF_ANON) && GET_LEVEL(ch) < LVL_IMMORT && wch != ch, /* show_as_anon */
-                    ((!pk_allowed && !PRF_FLAGGED(wch, PRF_ANON)) || wch == ch || GET_LEVEL(ch) >= LVL_IMMORT) &&
-                        who_where,              /* show_area_in */
-                    true,                       /* show_full_class */
-                    GET_LEVEL(ch) >= LVL_IMMORT /* show mortal name flag colors (freeze, rename) */
-                );
-            }
-            if (PRF_FLAGGED(wch, PRF_AFK)) {
-                strcat(buf, " (AFK)");
-            }
-            char_printf(ch, "\n***\n");
+            auto title = GET_TITLE(wch);
+            auto display_name =
+                GET_LEVEL(wch) >= LVL_IMMORT
+                    ? fmt::format("[{}] {} {}",
+                                  GET_WIZ_TITLE(wch).empty() ? wiz_levels[GET_LEVEL(wch) - LVL_IMMORT]
+                                                             : GET_WIZ_TITLE(wch),
+                                  GET_NAME(wch), title.empty() ? "" : title)
+                    : cat_mortal_wholine(title, wch,
+                                         PRF_FLAGGED(wch, PRF_ANON) && GET_LEVEL(ch) < LVL_IMMORT && wch != ch,
+                                         who_where, true, GET_LEVEL(ch) >= LVL_IMMORT);
+            char_printf(ch, "{}\n", display_name);
             return;
         }
-    } /* end while arg process */
-
-    /* begin "who" with no args */
-
-    if (environment == ENV_PROD) {
-        strcpy(Imm_buf_title, "*** Active deities on FieryMud:\n\n");
-        strcpy(Mort_buf_title, "*** Active players on FieryMud:\n\n");
-    } else {
-        strcpy(buf, environments[environment]);
-        sprintf(Imm_buf_title, "*** Active %s deities on Fiery%sMud:\n\n", buf, buf);
-        sprintf(Mort_buf_title, "*** Active %s players on Fiery%sMud:\n\n", buf, buf);
     }
 
-    for (d = descriptor_list; d; d = d->next) {
-        /* Check various reasons we should skip this player... */
-        if (!IS_PLAYING(d)) {
-            continue;
-        }
-        if (d->original) {
-            wch = d->original;
-        } else if (!(wch = d->character)) {
-            continue;
-        }
-        if (!CAN_SEE(ch, wch)) {
-            continue;
-        }
-        if (GET_LEVEL(wch) < low || GET_LEVEL(wch) > high) {
-            continue;
-        }
-        if ((noimm && GET_LEVEL(wch) >= LVL_IMMORT) || (nomort && GET_LEVEL(wch) < LVL_IMMORT)) {
-            continue;
-        }
-        if (*name_search && strcasecmp(GET_NAME(wch), name_search) &&
-            (!GET_TITLE(wch) || !strcasestr(GET_TITLE(wch), name_search))) {
-            continue;
-        }
-        if (outlaws && !PLR_FLAGGED(wch, PLR_KILLER) && !PLR_FLAGGED(wch, PLR_THIEF)) {
-            continue;
-        }
-        if (who_quest && !PRF_FLAGGED(wch, PRF_QUEST)) {
-            continue;
-        }
-        if (who_zone && (world[ch->in_room].zone != world[wch->in_room].zone ||
-                         (EFF_FLAGGED(wch, EFF_STEALTH) && GET_HIDDENNESS(wch)))) {
-            continue;
-        }
-        if (who_room && (wch->in_room != ch->in_room)) {
-            continue;
-        }
-        if (showclass != CLASS_UNDEFINED && showclass != GET_CLASS(wch)) {
-            continue;
-        }
-        if ((GET_LEVEL(ch) < LVL_IMMORT) && (PRF_FLAGGED(wch, PRF_ANON)) &&
-            (showclass != CLASS_UNDEFINED || level_range)) {
-            continue;
-        }
+    std::string title_imm = "*** Active deities on FieryMud:\n\n";
+    std::string title_mort = "*** Active players on FieryMud:\n\n";
 
-        /* Prepare the string that will represent this player in the who list: buf2
-         */
-        buf2[0] = 0;
+    for (auto *d = descriptor_list; d; d = d->next) {
+        if (!IS_PLAYING(d))
+            continue;
+        auto *wch = d->original ? d->original : d->character;
+        if (!wch || !CAN_SEE(ch, wch))
+            continue;
+        if ((low && GET_LEVEL(wch) < *low) || (high && GET_LEVEL(wch) > *high))
+            continue;
+        if ((noimm && GET_LEVEL(wch) >= LVL_IMMORT) || (nomort && GET_LEVEL(wch) < LVL_IMMORT))
+            continue;
+        if (!name_search.empty() && GET_NAME(wch) != name_search &&
+            (GET_TITLE(wch).empty() || GET_TITLE(wch).find(name_search) == std::string::npos))
+            continue;
 
-        /* First put on the player's title. */
-        if (GET_TITLE(wch))
-            strcpy(a, GET_TITLE(wch));
-        else
-            *a = '\0';
-
-        /* The title can take up a maximum of 45 spaces.  That's spaces, not
-         * characters, so the following loops examine &X color codes as they try to
-         * put the longest title possible that doesn't exceed 45. */
-        c = 0;
-        for (b = 0; a[b] != '\0'; b++) {
-            /*This little section uncounts any ansi numbers */
-            sprintf(check, "%c%c", ((b - 1) > 0) ? a[(b - 1)] : a[0], a[b]);
-            if (check[0] == CREL || check[0] == CABS) {
-                e = 49;
-                while (e < 58) {
-                    if (check[1] == (char)e) {
-                        c = c + 2;
-                    }
-                    e++;
-                }
-            }
-
-            if (check[1] == (char)98 && check[0] == CREL) {
-                c = c + 2;
-            }
-            /*end of ansi uncounting */
-
-            if (std::max(0, (b - c)) <= 45) {
-                sprintf(buf2, "%s%c", buf2, a[b]);
-            } else {
-                break;
-            }
-        }
-
+        std::string display_line;
         if (GET_LEVEL(wch) >= LVL_IMMORT) {
-
-            /* Display an immortal */
-
-            sprintf(Imm_buf, "%s%s&0[%s] %s %s", Imm_buf, CLRLV(ch, ADAR, C_SPR),
-                    GET_WIZ_TITLE(wch) ? GET_WIZ_TITLE(wch) : WizLevels[GET_LEVEL(wch) - LVL_IMMORT], GET_NAME(wch),
-                    GET_TITLE(wch) ? GET_TITLE(wch) : "");
-            Wizards++;
+            display_line = fmt::format(
+                "[{}] {} {}", GET_WIZ_TITLE(wch).empty() ? wiz_levels[GET_LEVEL(wch) - LVL_IMMORT] : GET_WIZ_TITLE(wch),
+                GET_NAME(wch), GET_TITLE(wch));
+            imm_buf += display_line + "\n";
+            ++wizards;
         } else {
-
-            /* Display a mortal */
-
-            /* Decide what details to display */
-
-            show_area_in = false;
-            show_as_anon = false;
-
-            if (GET_LEVEL(ch) >= LVL_IMMORT || ch == wch || (!PRF_FLAGGED(wch, PRF_ANON) && !pk_allowed)) {
-                show_area_in = who_where;
-            } else if (PRF_FLAGGED(wch, PRF_ANON)) {
-                show_as_anon = true;
-            }
-
-            cat_mortal_wholine(Mort_buf, buf2, wch, show_as_anon, show_area_in, showclass != CLASS_UNDEFINED,
-                               GET_LEVEL(ch) >= LVL_IMMORT);
-
-            Mortals++;
+            bool show_as_anon = PRF_FLAGGED(wch, PRF_ANON) && GET_LEVEL(ch) < LVL_IMMORT;
+            bool show_area_in = who_where;
+            display_line = cat_mortal_wholine(GET_TITLE(wch), wch, show_as_anon, show_area_in,
+                                              show_class != CLASS_UNDEFINED, GET_LEVEL(ch) >= LVL_IMMORT);
+            mort_buf += display_line + "\n";
+            ++mortals;
         }
-
-        buf[0] = 0;
-
-        if (GET_INVIS_LEV(wch))
-            sprintf(buf, "%s (i%d)", buf, GET_INVIS_LEV(wch));
-        else if (EFF_FLAGGED(wch, EFF_INVISIBLE))
-            strcat(buf, " (invis)");
-
-        if (PLR_FLAGGED(wch, PLR_MAILING))
-            strcat(buf, " (mailing)");
-        else if (PLR_FLAGGED(wch, PLR_WRITING))
-            strcat(buf, " (writing)");
-        else if (wch->desc && EDITING(wch->desc))
-            strcat(buf, " (writing)");
-
-        if (GET_LEVEL(ch) >= LVL_IMMORT) {
-            switch (STATE(d)) {
-            case CON_OEDIT:
-                strcat(buf, " (Object Edit)");
-                break;
-            case CON_MEDIT:
-                strcat(buf, " (Mobile Edit)");
-                break;
-            case CON_ZEDIT:
-                strcat(buf, " (Zone Edit)");
-                break;
-            case CON_SEDIT:
-                strcat(buf, " (Shop Edit)");
-                break;
-            case CON_REDIT:
-                strcat(buf, " (Room Edit)");
-                break;
-            case CON_TRIGEDIT:
-                strcat(buf, " (Trigger Edit)");
-                break;
-            case CON_HEDIT:
-                strcat(buf, " (Help Edit)");
-                break;
-            case CON_SDEDIT:
-                strcat(buf, " (Skill Edit)");
-                break;
-            case CON_GEDIT:
-                strcat(buf, " (Grant Edit)");
-                break;
-            }
-        }
-
-        if (IS_HIDDEN(wch)) {
-            if (GET_LEVEL(ch) >= LVL_IMMORT)
-                sprintf(buf, "%s (h%ld)", buf, GET_HIDDENNESS(wch));
-            else
-                strcat(buf, " (hidden)");
-        }
-        if (PRF_FLAGGED(wch, PRF_DEAF))
-            strcat(buf, " (deaf)");
-        if (PRF_FLAGGED(wch, PRF_NOTELL))
-            strcat(buf, " (notell)");
-        if (PRF_FLAGGED(wch, PRF_QUEST))
-            strcat(buf, " (quest)");
-        if (PLR_FLAGGED(wch, PLR_THIEF))
-            strcat(buf, " (THIEF)");
-        if (GET_LEVEL(wch) >= LVL_IMMORT)
-            strcat(buf, CLRLV(ch, ANRM, C_SPR));
-        if (PRF_FLAGGED(wch, PRF_AFK))
-            strcat(buf, " (AFK)"); /* do check so mortals cant see if immos afk? */
-        strcat(buf, "\n");
-
-        if (GET_LEVEL(wch) >= LVL_IMMORT)
-            strcat(Imm_buf, buf);
-        else
-            strcat(Mort_buf, buf);
-    } /* end of for */
-
-    /* To allow for flexibility, add the title strings now */
-    if (Mortals) {
-        strcat(Mort_buf_title, Mort_buf);
-        strcpy(Mort_buf, Mort_buf_title);
-    }
-    if (Wizards) {
-        strcat(Imm_buf_title, Imm_buf);
-        strcpy(Imm_buf, Imm_buf_title);
-        if (Mortals)
-            strcat(Imm_buf, "\n");
-        strcat(Imm_buf, Mort_buf);
-        strcpy(Mort_buf, Imm_buf);
     }
 
-    if ((Wizards + Mortals) == 0)
-        strcpy(buf, "No wizards or mortals are currently visible to you.\n");
-
-    if (Wizards)
-        sprintf(buf, "\nThere %s %d visible deit%s%s", (Wizards == 1 ? "is" : "are"), Wizards,
-                (Wizards == 1 ? "y" : "ies"), (Mortals ? " and there" : "."));
-
-    if (Mortals) {
-        sprintf(buf, "%s %s %d visible mortal%s.\n", (Wizards ? buf : "\nThere"), (Mortals == 1 ? "is" : "are"),
-                Mortals, (Mortals == 1 ? "" : "s"));
-    }
-
-    if (!Mortals && Wizards)
-        strcat(buf, "\n");
-    strcat(buf, "\n");
-    if ((Wizards + Mortals) > boot_high)
-        boot_high = Wizards + Mortals;
-    sprintf(buf, "%sThere is a boot-time high of %d player%s.\n", buf, boot_high, (boot_high == 1 ? "" : "s"));
-
-    strcat(Mort_buf, buf);
-    page_string(ch, Mort_buf);
+    std::string final_output = (wizards ? title_imm + imm_buf + "\n" : "") + (mortals ? title_mort + mort_buf : "");
+    if (wizards == 0 && mortals == 0)
+        final_output = "No wizards or mortals are currently visible to you.\n";
+    final_output += fmt::format("There {} {} visible deity{} and {} visible mortal{}.\n", wizards == 1 ? "is" : "are",
+                                wizards, wizards == 1 ? "y" : "ies", mortals, mortals == 1 ? "" : "s");
+    final_output += fmt::format("There is a boot-time high of {} player{}.\n",
+                                boot_high = std::max(boot_high, wizards + mortals), boot_high == 1 ? "" : "s");
+    page_string(ch, final_output);
 }
 
 char iplist[300][40];
@@ -2223,235 +1967,113 @@ static void sortc(int l, int u) {
     sortc(j + 1, u);
 }
 
-#define USERS_FORMAT                                                                                                   \
-    "format: users [-l minlevel[-maxlevel]] [-n name] [-h host] [-c "                                                  \
-    "classlist]\n              [-o] [-p] [-i]\n"
-
+#define USERS_FORMAT "format: users [-l minlevel[-maxlevel]] [-n name] [-h host] [-c classlist] [-o] [-p] [-i]\n"
 ACMD(do_users) {
-    char line[200], line2[220], idletime[10], classname[20];
-    char state[30], *timeptr, mode, hostnum[40];
-    char roomstuff[200], room[26], nametrun[11], client[100]; /* Changed position to 17 from 9 cuz
-                                                                  mortally wounded was over flowing */
-    char ipbuf[MAX_STRING_LENGTH], userbuf[MAX_STRING_LENGTH];
-    char name_search[MAX_INPUT_LENGTH], host_search[MAX_INPUT_LENGTH];
-    const char *format;
-    CharData *tch;
-    DescriptorData *d;
-    size_t i;
-    int low = 0, high = LVL_IMPL, num_can_see = 0;
-    int showclass = CLASS_UNDEFINED, outlaws = 0, playing = 0, deadweight = 0, ipsort = 0;
-    int counter = 0, forcnt, cntr;
-    char color[10];
-    int repeats[300];
+    constexpr std::array<std::string_view, 6> connected_types = {"Playing",       "At menu",        "Disconnected",
+                                                                 "Creating char", "Object Editing", "Mobile Editing"};
 
-    host_search[0] = name_search[0] = '\0';
-    *ipbuf = '\0';
-    *userbuf = '\0';
+    std::string userbuf, name_search, host_search;
+    std::optional<int> low, high;
+    int show_class = CLASS_UNDEFINED, num_can_see = 0;
+    bool outlaws = false, playing = false, deadweight = false, ipsort = false;
 
-    strcpy(buf, argument);
-    while (*buf) {
-        half_chop(buf, arg, buf1);
-        if (*arg == '-') {
-            mode = *(arg + 1); /* just in case; we destroy arg in the switch */
-            switch (mode) {
+    while (!argument.empty()) {
+        auto arg = argument.shift();
+
+        if (arg[0] == '-') {
+            switch (arg[1]) {
             case 'o':
             case 'k':
-                outlaws = 1;
-                playing = 1;
-                strcpy(buf, buf1);
+                outlaws = true;
+                playing = true;
                 break;
             case 'p':
-                playing = 1;
-                strcpy(buf, buf1);
+                playing = true;
                 break;
             case 'd':
-                deadweight = 1;
-                strcpy(buf, buf1);
+                deadweight = true;
                 break;
-            case 'l':
-                playing = 1;
-                half_chop(buf1, arg, buf);
-                sscanf(arg, "%d-%d", &low, &high);
+            case 'l': {
+                arg = argument.shift();
+                auto dash_pos = arg.find('-');
+                if (dash_pos != std::string_view::npos) {
+                    low = svtoi(arg.substr(0, dash_pos));
+                    high = svtoi(arg.substr(dash_pos + 1));
+                } else {
+                    low = svtoi(arg);
+                }
+                playing = true;
                 break;
+            }
             case 'n':
-                playing = 1;
-                half_chop(buf1, name_search, buf);
+                name_search = argument.shift();
+                playing = true;
                 break;
             case 'h':
-                playing = 1;
-                half_chop(buf1, host_search, buf);
+                host_search = argument.shift();
+                playing = true;
                 break;
             case 'c':
-                playing = 1;
-                half_chop(buf1, arg, buf);
-                showclass = parse_class(0, 0, arg);
+                show_class = parse_class(0, 0, argument.shift());
+                playing = true;
                 break;
             case 'i':
-                ipsort = 1;
-                for (i = 0; i <= 300; i++) {
-                    *iplist[i] = '\0';
-                    *userlist[i] = '\0';
-                    repeats[i] = 0;
-                }
-                strcpy(buf, buf1);
+                ipsort = true;
                 break;
             default:
                 char_printf(ch, USERS_FORMAT);
                 return;
-                break;
-            } /* end of switch */
-
-        } else { /* endif */
+            }
+        } else {
             char_printf(ch, USERS_FORMAT);
             return;
         }
-    } /* end while (parser) */
-
-    strcpy(line, "Soc  Username    User's Host   Idl  Login        RoomNo/RoomName      Client\n");
-    strcat(line, "--- ---------- --------------- --- -------- ------------------------- ---------\n");
-    strcpy(userbuf, line);
-
-    one_argument(argument, arg);
-
-    for (d = descriptor_list; d; d = d->next) {
-        if ((STATE(d) != CON_PLAYING) && playing)
-            continue;
-        if ((STATE(d) == CON_PLAYING) && deadweight)
-            continue;
-        if (STATE(d) == CON_PLAYING) {
-            if (d->original)
-                tch = d->original;
-            else if (!(tch = d->character))
-                continue;
-
-            if (*host_search && !strcasestr(d->host, host_search))
-                continue;
-            if (*name_search && strcasecmp(GET_NAME(tch), name_search))
-                continue;
-            if (!CAN_SEE(ch, tch) || GET_LEVEL(tch) < low || GET_LEVEL(tch) > high)
-                continue;
-            if (outlaws && !PLR_FLAGGED(tch, PLR_KILLER) && !PLR_FLAGGED(tch, PLR_THIEF))
-                continue;
-            if (showclass != CLASS_UNDEFINED && showclass != GET_CLASS(tch))
-                continue;
-            if (GET_INVIS_LEV(ch) > GET_LEVEL(ch))
-                continue;
-
-            if (d->original)
-                sprintf(classname, "[%2d %s]", GET_LEVEL(d->original), CLASS_ABBR(d->original));
-            else
-                sprintf(classname, "[%2d %s]", GET_LEVEL(d->character), CLASS_ABBR(d->character));
-        } else
-            strcpy(classname, "  ---  ");
-
-        timeptr = asctime(localtime(&d->login_time));
-        timeptr += 11;
-        *(timeptr + 8) = '\0';
-
-        if (!d->connected && d->original)
-            strcpy(state, "Switched");
-        else
-            strcpy(state, connected_types[d->connected]);
-
-        if (d->original && !d->connected)
-            sprintf(idletime, "%3d", d->original->char_specials.timer * SECS_PER_MUD_HOUR / SECS_PER_REAL_MIN);
-        else if (d->character && !d->connected)
-            sprintf(idletime, "%3d", d->character->char_specials.timer * SECS_PER_MUD_HOUR / SECS_PER_REAL_MIN);
-        else
-            strcpy(idletime, "");
-
-        format = "%3d %-10s %-14s %-3s %-8s %-25s&0 %-9s\n";
-
-        hostnum[0] = '\0';
-        roomstuff[0] = '\0';
-        room[0] = '\0';
-        nametrun[0] = '\0';
-        client[0] = '\0';
-
-        strcat(room, state);
-
-        if (*d->host) {
-            strcat(hostnum, d->host);
-            if (ipsort) {
-                strcpy(iplist[counter], hostnum);
-            }
-        } else {
-            strcat(hostnum, " Unknown Host");
-        }
-
-        if (d->connected) {
-            sprintf(line2, "%s%s%s", CLRLV(ch, FGRN, C_SPR), hostnum, CLRLV(ch, ANRM, C_SPR));
-            strcpy(hostnum, line2);
-        }
-
-        /* Going to have to truncate room name and player names!! */
-        std::string clientStr = d->character->player_specials ? d->character->player_specials->client : "Unknown";
-        if (d->character && GET_NAME(d->character)) {
-            if (d->original) {
-                if ((d->original->in_room != NOWHERE) && (d->connected == 0)) {
-                    sprintf(roomstuff, "%d/%s", world[d->original->in_room].vnum,
-                            strip_ansi(world[d->original->in_room].name).c_str());
-                    *(room) = '\0';
-                    strncat(room, roomstuff, sizeof(room) - 1);
-                    room[sizeof(room) - 1] = '\0';
-                }
-                strncpy(client, clientStr.c_str(), sizeof(client) - 1);
-                strncat(nametrun, GET_NAME(d->original), sizeof(nametrun) - 1);
-                sprintf(line, format, d->desc_num, nametrun, hostnum, idletime, timeptr, room, client);
-            } else {
-                if ((d->character->in_room != NOWHERE) && (d->connected == 0)) {
-                    sprintf(roomstuff, "%d/%s", world[d->character->in_room].vnum,
-                            strip_ansi(world[d->character->in_room].name).c_str());
-                    *(room) = '\0';
-                    strncat(room, roomstuff, sizeof(room) - 1);
-                    room[sizeof(room) - 1] = '\0';
-                }
-                strncpy(client, clientStr.c_str(), sizeof(client) - 1);
-                strncat(nametrun, GET_NAME(d->character), sizeof(nametrun) - 1);
-                sprintf(line, format, d->desc_num, nametrun, hostnum, idletime, timeptr, room, client);
-            }
-        } else
-            sprintf(line, format, d->desc_num, "  ---   ", hostnum, idletime, timeptr, " At menu screen or Other ",
-                    "   -None   ");
-
-        if (d->connected || (!d->connected && CAN_SEE(ch, d->character))) {
-            if (ipsort) {
-                strcpy(userlist[counter], strip_ansi(line).c_str());
-            } else {
-                sprintf(userbuf, "%s%s", userbuf, line);
-            }
-            num_can_see++;
-        }
-        counter++;
-    } /*end descriptor loop */
-
-    if (ipsort) {
-        sortc(0, counter);
-        for (forcnt = 0; forcnt <= counter; forcnt++) {
-            for (cntr = 0; cntr <= counter; cntr++)
-                if (strcasecmp(iplist[forcnt], iplist[cntr]) == 0)
-                    repeats[forcnt]++;
-        }
-        for (forcnt = 0; forcnt <= counter; forcnt++)
-            if (*userlist[forcnt]) {
-                if (forcnt > 0) {
-                    if (strcasecmp(iplist[forcnt], iplist[forcnt - 1]) != 0) {
-                        if (strcasecmp(color, "&7") == 0)
-                            strcpy(color, "&7&b");
-                        else
-                            strcpy(color, "&7");
-                    }
-                    if (repeats[forcnt] == 3)
-                        strcpy(color, "&1&b");
-                    sprintf(userbuf, "%s%s%s&0", userbuf, color, userlist[forcnt]);
-                } else {
-                    strcpy(color, "&7");
-                    sprintf(userbuf, "%s%s%s&0", userbuf, color, userlist[forcnt]);
-                }
-            }
     }
 
-    sprintf(userbuf, "%s\n%d visible sockets connected.\n", userbuf, num_can_see);
+    std::string_view header =
+        "Soc  Username    User's Host   Idl  Login        RoomNo/RoomName      Client\n"
+        "--- ---------- --------------- --- -------- ------------------------- ---------\n";
+    userbuf = header;
+
+    for (auto *d = descriptor_list; d; d = d->next) {
+        if ((STATE(d) != CON_PLAYING && playing) || (STATE(d) == CON_PLAYING && deadweight))
+            continue;
+        auto *tch = d->original ? d->original : d->character;
+        if (!tch || (!host_search.empty() && matches(d->host, host_search)) ||
+            (!name_search.empty() && !matches(GET_NAME(tch), name_search)))
+            continue;
+        if (!CAN_SEE(ch, tch) || (low && GET_LEVEL(tch) < *low) || (high && GET_LEVEL(tch) > *high))
+            continue;
+        if (outlaws && !PLR_FLAGGED(tch, PLR_KILLER) && !PLR_FLAGGED(tch, PLR_THIEF))
+            continue;
+        if (show_class != CLASS_UNDEFINED && show_class != GET_CLASS(tch))
+            continue;
+        if (GET_INVIS_LEV(tch) > GET_LEVEL(ch))
+            continue;
+
+        std::string_view classname = fmt::format("[{:2d} {}]", GET_LEVEL(tch), CLASS_ABBR(tch));
+        std::string_view idletime =
+            fmt::format("{:3d}", tch->char_specials.timer * SECS_PER_MUD_HOUR / SECS_PER_REAL_MIN);
+        std::string_view state = d->original && !d->connected ? "Switched" : connected_types[STATE(d)];
+        std::string_view login_time = std::string(asctime(localtime(&d->login_time))).substr(11, 8);
+        std::string_view hostnum = d->host ? d->host : "Unknown Host";
+
+        std::string room = "";
+        if (STATE(d) == CON_PLAYING) {
+            room_num location = d->original ? d->original->in_room : d->character->in_room;
+            if (location != NOWHERE)
+                room = fmt::format("{}/{}", world[location].vnum, strip_ansi(world[location].name));
+        }
+
+        std::string_view client =
+            d->character && d->character->player_specials ? d->character->player_specials->client : "Unknown";
+
+        userbuf += fmt::format("{:3d} {:<10} {:<15} {:<3} {:<8} {:<25} {:<9}\n", d->desc_num, GET_NAME(tch), hostnum,
+                               idletime, login_time, room, client);
+        num_can_see++;
+    }
+
+    userbuf += fmt::format("\n{} visible sockets connected.\n", num_can_see);
     page_string(ch, userbuf);
 }
 
@@ -2476,11 +2098,11 @@ ACMD(do_gen_ps) {
     }
 }
 
-static void perform_mortal_where(CharData *ch, char *arg) {
+static void perform_mortal_where(CharData *ch, std::string_view arg) {
     CharData *i;
     DescriptorData *d;
 
-    if (!*arg) {
+    if (arg.empty()) {
         char_printf(ch, "Players in your zone\n--------------------\n");
         for (d = descriptor_list; d; d = d->next)
             if (!d->connected) {
@@ -2523,13 +2145,13 @@ static void print_object_location(int num, ObjData *obj, CharData *ch, int recur
         paging_printf(ch, "in an unknown location\n");
 }
 
-static void perform_immort_where(CharData *ch, char *arg) {
+static void perform_immort_where(CharData *ch, std::string_view arg) {
     CharData *i;
     ObjData *k;
     DescriptorData *d;
     int num = 0, found = 0;
 
-    if (!*arg) {
+    if (arg.empty()) {
         char_printf(ch, "Players\n-------\n");
         for (d = descriptor_list; d; d = d->next)
             if (!d->connected) {
@@ -2563,7 +2185,7 @@ static void perform_immort_where(CharData *ch, char *arg) {
 }
 
 ACMD(do_where) {
-    one_argument(argument, arg);
+    auto arg = argument.shift();
 
     if (GET_LEVEL(ch) >= LVL_IMMORT)
         perform_immort_where(ch, arg);
@@ -2571,14 +2193,15 @@ ACMD(do_where) {
         perform_mortal_where(ch, arg);
 }
 
-ACMD(do_consider) {
+void do_consider(CharData *ch, Arguments argument, int cmd, int subcmd) {
     CharData *victim;
-    int diff, mountdiff, tamediff, mountmsg = 0;
-    int apparent_vlvl;
+    int diff, mountdiff, tamediff;
+    bool mountmsg = false;
+    std::string buf;
 
-    one_argument(argument, buf);
+    auto arg = argument.shift();
 
-    if (!(victim = find_char_in_room(&world[ch->in_room], find_vis_by_name(ch, buf)))) {
+    if (!(victim = find_char_in_room(&world[ch->in_room], find_vis_by_name(ch, arg)))) {
         char_printf(ch, "Consider killing who?\n");
         return;
     }
@@ -2588,7 +2211,7 @@ ACMD(do_consider) {
     }
 
     /* Our mob level difficulties are a bit warped, so adjust. */
-    apparent_vlvl = GET_LEVEL(victim);
+    int apparent_vlvl = GET_LEVEL(victim);
     if (GET_LEVEL(ch) > 20)
         apparent_vlvl += 9;
     else if (GET_LEVEL(ch) > 10)
@@ -2628,27 +2251,26 @@ ACMD(do_consider) {
         char_printf(ch, "This thing will kill you so FAST it's not EVEN funny!\n");
 
     if (GET_LEVEL(victim) < LVL_IMMORT && IS_NPC(victim) && MOB_FLAGGED(victim, MOB_MOUNTABLE)) {
-        mountmsg = 1;
+        mountmsg = true;
         mountdiff = mountlevel(victim) - ideal_mountlevel(ch);
-        sprintf(buf, "$E looks %s",
-                mountdiff > MOUNT_LEVEL_FUDGE ? "impossible to ride"
-                : mountdiff < 1               ? "easy to ride"
-                : mountdiff < 2               ? "tough to ride"
-                : mountdiff < 4               ? "hard to ride"
-                                              : "difficult to ride");
+        buf = fmt::format("$E looks {}", mountdiff > MOUNT_LEVEL_FUDGE ? "impossible to ride"
+                                         : mountdiff < 1               ? "easy to ride"
+                                         : mountdiff < 2               ? "tough to ride"
+                                         : mountdiff < 4               ? "hard to ride"
+                                                                       : "difficult to ride");
     }
     if (mountmsg && GET_SKILL(ch, SKILL_TAME) > 0 &&
         !(EFF_FLAGGED(victim, EFF_TAMED) || EFF_FLAGGED(victim, EFF_TAMED))) {
         tamediff = mountlevel(victim) - ideal_tamelevel(ch);
-        sprintf(buf, "%s, and %s", buf,
-                tamediff > MOUNT_LEVEL_FUDGE ? "impossible to tame"
-                : tamediff < 2               ? "easy to tame"
-                : tamediff < 3               ? "tough to tame"
-                : tamediff < 4               ? "hard to tame"
-                                             : "difficult to tame");
+        buf = fmt::format("{}, and {}", buf,
+                          tamediff > MOUNT_LEVEL_FUDGE ? "impossible to tame"
+                          : tamediff < 2               ? "easy to tame"
+                          : tamediff < 3               ? "tough to tame"
+                          : tamediff < 4               ? "hard to tame"
+                                                       : "difficult to tame");
     }
     if (mountmsg) {
-        sprintf(buf, "%s.", buf);
+        buf = fmt::format("{}", buf);
         act(buf, false, ch, 0, victim, TO_CHAR);
     }
 }
@@ -2656,9 +2278,9 @@ ACMD(do_consider) {
 ACMD(do_diagnose) {
     CharData *vict;
 
-    one_argument(argument, buf);
+    auto buf = argument.shift();
 
-    if (*buf) {
+    if (!buf.empty()) {
         if (!(vict = find_char_in_room(&world[ch->in_room], find_vis_by_name(ch, buf))))
             char_printf(ch, NOPERSON);
         else
@@ -2669,21 +2291,20 @@ ACMD(do_diagnose) {
         char_printf(ch, "Diagnose who?\n");
 }
 
-static const char *ctypes[] = {"off", "sparse", "normal", "complete", "\n"};
-
+static const std::array<std::string_view, 5> ctypes = {"off", "sparse", "normal", "complete", "\n"};
 ACMD(do_color) {
     int tp;
 
     if (IS_NPC(ch))
         return;
 
-    one_argument(argument, arg);
+    auto arg = argument.shift();
 
-    if (!*arg) {
+    if (arg.empty()) {
         char_printf(ch, "Your current color level is {}.\n", ctypes[COLOR_LEV(ch)]);
         return;
     }
-    if ((tp = searchblock(arg, ctypes, false) == -1)) {
+    if ((tp = search_block(arg, ctypes, false) == -1)) {
         char_printf(ch, "Usage: color { Off | Sparse | Normal | Complete }\n");
         return;
     }
@@ -2707,9 +2328,9 @@ ACMD(do_commands) {
 
     int num_elements, column_height, box_height, num_xcolumns, num_rows, cont;
 
-    one_argument(argument, arg);
+    auto arg = argument.shift();
 
-    if (*arg && GET_LEVEL(ch) >= LVL_IMMORT) {
+    if (!arg.empty() && GET_LEVEL(ch) >= LVL_IMMORT) {
         if (!(vict = find_char_by_desc(find_vis_by_name(ch, arg))) || IS_NPC(vict)) {
             char_printf(ch, "Who is that?\n");
             return;
@@ -2735,7 +2356,7 @@ ACMD(do_commands) {
         i = cmd_sort_info[cmd_num].sort_pos;
         if (cmd_info[i].minimum_level >= 0 && can_use_command(vict, i) &&
             (cmd_info[i].minimum_level >= LVL_IMMORT) == wizhelp && (wizhelp || socials == cmd_sort_info[i].is_social))
-            commands.push_back(cmd_info[i].command);
+            commands.emplace_back(cmd_info[i].command);
     }
 
     size_t max_command_len = std::ranges::max_element(commands, std::ranges::less(), &std::string::length)->length();
@@ -2747,10 +2368,10 @@ ACMD(do_commands) {
             resp += "\r\n";
     }
 
-    page_string(ch, resp.c_str());
+    page_string(ch, resp);
 }
 
-const char *save_message(int save) {
+const std::string_view save_message(int save) {
     if (save < -19)
         return "Awesome!";
     else if (save < -15)
@@ -2767,7 +2388,7 @@ const char *save_message(int save) {
         return "Cursed";
 }
 
-const char *align_message(int align) {
+const std::string_view align_message(int align) {
     if (align <= -350)
         return "Evil";
     else if (align < 350)
@@ -2776,8 +2397,8 @@ const char *align_message(int align) {
         return "Good";
 }
 
-const char *hitdam_message(int value) {
-    const char *messages[] = {
+const std::string_view hitdam_message(int value) {
+    const std::string_view messages[] = {
         "Bad", "Poor", "Average", "Fair", "Good", "Very Good",
     };
 
@@ -2790,7 +2411,7 @@ const char *hitdam_message(int value) {
     return messages[value / 5];
 }
 
-const char *armor_message(int ac) {
+const std::string_view armor_message(int ac) {
     if (ac <= -100)
         return "Stronger than dragon armor!";
     else if (ac < -80)
@@ -2817,7 +2438,7 @@ const char *armor_message(int ac) {
         return "That birthday suit provides great protection!";
 }
 
-const char *perception_message(int perception) {
+const std::string_view perception_message(int perception) {
     if (perception <= 0)
         return "unconcious";
     else if (perception <= 50)
@@ -2842,7 +2463,7 @@ const char *perception_message(int perception) {
         return "all-seeing";
 }
 
-const char *hiddenness_message(int hiddenness) {
+const std::string_view hiddenness_message(int hiddenness) {
     if (hiddenness <= 0)
         return "visible";
     else if (hiddenness <= 150)
@@ -2861,7 +2482,7 @@ const char *hiddenness_message(int hiddenness) {
         return "godlike";
 }
 
-const char *ability_message(int value) {
+const std::string_view ability_message(int value) {
     if (value > 90)
         return rolls_abils_result[0];
     else if (value > 80)
@@ -2874,8 +2495,8 @@ const char *ability_message(int value) {
         return rolls_abils_result[4];
 }
 
-const char *hp_regen_message(int regen) {
-    const char *messages[] = {
+const std::string_view hp_regen_message(int regen) {
+    const std::string_view messages[] = {
         "Bad",
         "Average",
         "Good",
@@ -2891,8 +2512,8 @@ const char *hp_regen_message(int regen) {
     return messages[regen / 25];
 }
 
-const char *focus_message(int focus) {
-    const char *messages[] = {
+const std::string_view focus_message(int focus) {
+    const std::string_view messages[] = {
         "Bad",
         "Average",
         "Good",
@@ -2934,9 +2555,9 @@ long xp_percentage(CharData *ch) {
     }
 }
 
-const char *exp_message(CharData *ch) {
+const std::string_view exp_message(CharData *ch) {
     long percent, current, total, etl;
-    const char *messages[] = {
+    const std::string_view messages[] = {
         "&4You still have a very long way to go to your next level.&0",
         "&4You have gained some progress towards your next level.&0",
         "&6You are about one-quarter of the way to your next level.&0",
@@ -2978,7 +2599,7 @@ const char *exp_message(CharData *ch) {
         return "&1You are somewhere along the way to your next level.&0";
 }
 
-const char *exp_bar(CharData *ch, int length, int gradations, int sub_gradations, bool color) {
+const std::string_view exp_bar(CharData *ch, int length, int gradations, int sub_gradations, bool color) {
     static char bar[120];
     int i;
     int grad_count, length_per_grad, distance;
@@ -3088,10 +2709,9 @@ const char *exp_bar(CharData *ch, int length, int gradations, int sub_gradations
     return bar;
 }
 
-const char *cooldown_bar(CharData *ch, int cooldown, int length, int gradations, bool color) {
-    static char bar[120];
-    char *p = bar;
-    int i, grad_count, length_per_grad, distance, current, total;
+std::string cooldown_bar(CharData *ch, int cooldown, int length, int gradations, bool color) {
+    std::string bar;
+    int grad_count, length_per_grad, distance, current, total;
     float percent = 0.0f;
 
     length = std::clamp(length, 1, 80);
@@ -3104,37 +2724,34 @@ const char *cooldown_bar(CharData *ch, int cooldown, int length, int gradations,
         length_per_grad = length / gradations;
         /* round to the closest length_per_grad */
         distance = (grad_count / length_per_grad) * length_per_grad;
-        percent = current / (float)total;
+        percent = static_cast<float>(current) / total;
     }
 
     /* Just in case. */
     distance = std::clamp(distance, 0, length);
 
-    memset(bar, '\0', sizeof(bar));
-
     if (color) {
         if (current == 0 || total == 0)
-            strcpy(bar, AFCYN);
+            bar += AFCYN;
         else if (percent < 0.33f)
-            strcpy(bar, AFGRN);
+            bar += AFGRN;
         else if (percent < 0.66f)
-            strcpy(bar, AFYEL);
+            bar += AFYEL;
         else
-            strcpy(bar, AFRED);
-        p += strlen(bar);
+            bar += AFRED;
     }
 
-    for (i = 0; i < length; ++i) {
+    for (int i = 0; i < length; ++i) {
         if (total == 0 || current == 0 || i > distance)
-            *(p++) = '-';
+            bar += '-';
         else if (i == distance)
-            p += sprintf(p, "%s*%s", color ? FWHT : "", color ? FBLU : "");
+            bar += fmt::format("{}*{}", color ? FWHT : "", color ? FBLU : "");
         else
-            *(p++) = '=';
+            bar += '=';
     }
 
     if (color)
-        strcpy(p, ANRM);
+        bar += ANRM;
 
     return bar;
 }
@@ -3231,8 +2848,8 @@ static void show_saves(CharData *ch, CharData *tch, bool verbose) {
 }
 
 #define COIN_FMT "{}{} " ANRM "{}"
-#define PURSE_ELEMS(ch, coin) COIN_COLOR(coin), GET_PURSE_COINS(ch, coin), capitalize(COIN_NAME(coin))
-#define BANK_ELEMS(ch, coin) COIN_COLOR(coin), GET_ACCOUNT_COINS(ch, coin), capitalize(COIN_NAME(coin))
+#define PURSE_ELEMS(ch, coin) COIN_COLOR(coin), GET_PURSE_COINS(ch, coin), capitalize_first(COIN_NAME(coin))
+#define BANK_ELEMS(ch, coin) COIN_COLOR(coin), GET_ACCOUNT_COINS(ch, coin), capitalize_first(COIN_NAME(coin))
 
 static void show_coins(CharData *ch, CharData *tch) {
     char_printf(ch,
@@ -3243,34 +2860,36 @@ static void show_coins(CharData *ch, CharData *tch) {
 }
 
 static void show_conditions(CharData *ch, CharData *tch, bool verbose) {
-    buf[0] = '\0';
+    std::string buf;
     if (verbose) {
         if (GET_COND(tch, FULL) < 6 && GET_COND(tch, FULL) > -1) {
             if (!GET_COND(tch, FULL))
-                strcat(buf, "You are hungry.");
+                buf += "You are hungry.";
             else
-                strcat(buf, "You're a little hungry.");
+                buf += "You're a little hungry.";
             if (GET_COND(tch, THIRST) < 6 && GET_COND(tch, THIRST) > -1)
-                strcat(buf, "  ");
+                buf += "  ";
             else
-                strcat(buf, "\n");
+                buf += "\n";
         }
         if (GET_COND(tch, THIRST) < 6 && GET_COND(tch, THIRST) > -1) {
             if (!GET_COND(tch, THIRST))
-                strcat(buf, "You are thirsty.\n");
+                buf += "You are thirsty.\n";
             else
-                strcat(buf, "You're a little thirsty.\n");
+                buf += "You're a little thirsty.\n";
         }
         if (GET_COND(tch, DRUNK) > 6)
-            strcat(buf, "You are drunk.\n");
+            buf += "You are drunk.\n";
         else if (GET_COND(tch, DRUNK) > 0)
-            strcat(buf, "You're a little bit intoxicated.\n");
-    } else
-        /* the number 0 looks like the letter O */
+            buf += "You're a little bit intoxicated.\n";
+    } else {
         char_printf(ch, "Hunger: {:d}{}  Thirst: {:d}  Drunkenness: {:d}\n",
                     GET_COND(tch, FULL) < 0 ? 0 : 24 - GET_COND(tch, FULL), GET_COND(tch, FULL) < 0 ? "ff" : "",
                     GET_COND(tch, THIRST) < 0 ? 0 : 24 - GET_COND(tch, THIRST), GET_COND(tch, THIRST) < 0 ? "ff" : "",
                     GET_COND(tch, DRUNK) < 0 ? 0 : GET_COND(tch, DRUNK), GET_COND(tch, DRUNK) < 0 ? "ff" : "");
+    }
+    if (!buf.empty())
+        char_printf(ch, "{}\n", buf);
 }
 
 static void show_exp(CharData *ch, CharData *tch) {
@@ -3321,46 +2940,50 @@ ACMD(do_score) {
     TimeInfoData real_time_passed(time_t t2, time_t t1);
     CharData *tch;
 
-    std::string buf;
+    auto arg = argument.shift();
 
-    one_argument(argument, arg);
-
-    if ((GET_LEVEL(ch) >= LVL_IMMORT) && (*arg)) {
+    if ((GET_LEVEL(ch) >= LVL_IMMORT) && (!arg.empty())) {
         if (!(tch = find_char_around_char(ch, find_vis_by_name(ch, arg)))) {
             char_printf(ch, "There's nobody here by that name.\n");
             return;
         }
-    } else
+    } else {
         tch = ch;
+    }
 
-    buf = fmt::format("@0{:<{}}Character attributes for {}\n\n", "", std::max(0, (45 - ansi_strlen(GET_NAME(tch))) / 2),
-                      GET_NAME(tch));
+    std::string buf = fmt::format("@0{:<{}}Character attributes for {}\n\n", "",
+                                  std::max(0, (45 - ansi_strlen(GET_NAME(tch))) / 2), GET_NAME(tch));
 
     if (EFF_FLAGGED(tch, EFF_ON_FIRE))
         buf += "                     &3*&1*&3&b* &0&7&bYou are on &1&bFIRE&7! &3*&0&1*&3*\n\n";
 
-    if (IS_STARSTAR(tch))
-        sprintf(buf1, " &9&b{&0%s&9&b}&0", CLASS_STARS(tch));
-    buf += fmt::format("Level: @Y{}@0{}  Class: {}", GET_LEVEL(tch), IS_STARSTAR(tch) ? buf1 : "", CLASS_FULL(tch));
+    if (IS_STARSTAR(tch)) {
+        buf += fmt::format(" &9&b{{&0{}&9&b}}&0", CLASS_STARS(tch));
+    }
+    buf += fmt::format("Level: @Y{}@0{}  Class: {}", GET_LEVEL(tch), IS_STARSTAR(tch) ? buf : "", CLASS_FULL(tch));
 
-    sprinttype(GET_SEX(tch), genders, buf1);
+    auto gender = sprinttype(GET_SEX(tch), genders);
     if (GET_COMPOSITION(tch) != COMP_FLESH || BASE_COMPOSITION(tch) != COMP_FLESH || GET_LIFEFORCE(tch) != LIFE_LIFE) {
-        if (GET_COMPOSITION(tch) == BASE_COMPOSITION(tch))
-            *buf2 = '\0';
-        else if (!VALID_COMPOSITIONNUM(BASE_COMPOSITION(tch)))
-            strcpy(buf2, "@YInvalid!@0");
-        else
-            sprintf(buf2, "%s%s", compositions[BASE_COMPOSITION(tch)].color,
-                    capitalize(compositions[BASE_COMPOSITION(tch)].name));
+        std::string buf2;
+        if (GET_COMPOSITION(tch) == BASE_COMPOSITION(tch)) {
+            buf2 = "";
+        } else if (!VALID_COMPOSITIONNUM(BASE_COMPOSITION(tch))) {
+            buf2 = "@YInvalid!@0";
+        } else {
+            buf2 = fmt::format("{}{}", compositions[BASE_COMPOSITION(tch)].color,
+                               capitalize_first(compositions[BASE_COMPOSITION(tch)].name));
+        }
         buf += fmt::format(
             "  Size: &3{}&0  Gender: &3{}&0\n"
             "Race: {}  Life force: {}{}&0  "
             "Composition: {}{}&0{}&0{}{}&0\n",
-            capitalize(SIZE_DESC(tch)), buf1, RACE_ABBR(tch), LIFEFORCE_COLOR(tch), capitalize(LIFEFORCE_NAME(tch)),
-            COMPOSITION_COLOR(tch), capitalize(COMPOSITION_NAME(tch)), *buf2 ? "(" : "", buf2, *buf2 ? ")" : "");
-    } else
-        buf +=
-            fmt::format("  Race: {}  Size: &3{}&0  Gender: &3{}&0\n", RACE_ABBR(tch), capitalize(SIZE_DESC(tch)), buf1);
+            capitalize_first(SIZE_DESC(tch)), gender, RACE_ABBR(tch), LIFEFORCE_COLOR(tch),
+            capitalize_first(LIFEFORCE_NAME(tch)), COMPOSITION_COLOR(tch), capitalize_first(COMPOSITION_NAME(tch)),
+            !buf2.empty() ? "(" : "", buf2, !buf2.empty() ? ")" : "");
+    } else {
+        buf += fmt::format("  Race: {}  Size: &3{}&0  Gender: &3{}&0\n", RACE_ABBR(tch),
+                           capitalize_first(SIZE_DESC(tch)), gender);
+    }
 
     buf += fmt::format(
         "Age: &3&b{}&0&3 year{}&0, &3&b{}&0&3 month{}&0  "
@@ -3376,9 +2999,9 @@ ACMD(do_score) {
 
     buf = "Status: ";
 
-    if (GET_POS(tch) == POS_FLYING)
+    if (GET_POS(tch) == POS_FLYING) {
         buf += "&6&bFlying&0\n";
-    else
+    } else {
         switch (GET_STANCE(tch)) {
         case STANCE_DEAD:
             buf += "&9&bDead&0\n";
@@ -3393,9 +3016,9 @@ ACMD(do_score) {
             buf += "&6&bStunned&0\n";
             break;
         case STANCE_SLEEPING:
-            if (IN_ROOM(tch) != NOWHERE && IS_WATER(IN_ROOM(tch)))
+            if (IN_ROOM(tch) != NOWHERE && IS_WATER(IN_ROOM(tch))) {
                 buf += "&4Sleeping&0\n";
-            else
+            } else {
                 switch (GET_POS(tch)) {
                 case POS_STANDING:
                     buf += "&3Standing here sleeping&0\n";
@@ -3413,11 +3036,12 @@ ACMD(do_score) {
                     buf += "&1Invalid&0\n";
                     break;
                 }
+            }
             break;
         case STANCE_RESTING:
-            if (IN_ROOM(tch) != NOWHERE && IS_WATER(IN_ROOM(tch)))
+            if (IN_ROOM(tch) != NOWHERE && IS_WATER(IN_ROOM(tch))) {
                 buf += "&4Resting&0\n";
-            else
+            } else {
                 switch (GET_POS(tch)) {
                 case POS_STANDING:
                     buf += "&3Standing here relaxed&0\n";
@@ -3426,11 +3050,12 @@ ACMD(do_score) {
                     buf += "&3&bResting&0\n";
                     break;
                 }
+            }
             break;
         case STANCE_ALERT:
-            if (IN_ROOM(tch) != NOWHERE && IS_WATER(IN_ROOM(tch)))
+            if (IN_ROOM(tch) != NOWHERE && IS_WATER(IN_ROOM(tch))) {
                 buf += "&4Floating&0\n";
-            else
+            } else {
                 switch (GET_POS(tch)) {
                 case POS_STANDING:
                     buf += "&3Standing&0\n";
@@ -3448,6 +3073,7 @@ ACMD(do_score) {
                     buf += "&1Invalid&0\n";
                     break;
                 }
+            }
             break;
         case STANCE_FIGHTING:
             buf += "&1&bFighting&0\n";
@@ -3456,6 +3082,7 @@ ACMD(do_score) {
             buf += "&1Invalid&0\n";
             break;
         }
+    }
 
     char_printf(ch, buf);
 
@@ -3469,13 +3096,14 @@ ACMD(do_score) {
 
     show_conditions(ch, tch, true);
     speech_report(ch, tch);
-    if (GET_LEVEL(tch) < LVL_IMMORT)
+    if (GET_LEVEL(tch) < LVL_IMMORT) {
         show_exp(ch, REAL_CHAR(tch));
+    }
     show_active_spells(ch, tch);
 }
 
-#define MAX_CIRCLE 14
-#define MAX_SPELLS_PER_CIRCLE 30
+constexpr int MAX_CIRCLE = 14;
+constexpr int MAX_SPELLS_PER_CIRCLE = 30;
 
 /* do_spells
  *
@@ -3488,149 +3116,96 @@ ACMD(do_score) {
  */
 
 ACMD(do_spells) {
-    int circle_spells[MAX_CIRCLE][MAX_SPELLS_PER_CIRCLE];
-    int i, j, k, circle, skillnum, sphere, max_vis_circle, xcircle = 0, numspellsknown = 0;
-    char *s_circle = nullptr, *s_vict = nullptr;
-    CharData *tch;
-    char arg1[MAX_INPUT_LENGTH], arg2[MAX_INPUT_LENGTH];
+    int circle_spells[MAX_CIRCLE][MAX_SPELLS_PER_CIRCLE] = {};
+    int numspellsknown = 0;
+    int max_vis_circle = std::min(NUM_SPELL_CIRCLES, (GET_LEVEL(ch) - 1) / 8 + 1);
+    CharData *tch = ch;
 
-    /* Extract the arguments of the command */
-    argument = any_one_arg(argument, arg1);
-    one_argument(argument, arg2);
+    auto arg1 = argument.shift();
+    auto arg2 = argument.shift();
 
-    /* Determine the intent of the arguments */
-    if (*arg1) {
-        if (*arg2) {
+    std::optional<int> xcircle;
+    std::optional<std::string_view> s_vict;
+
+    if (!arg1.empty()) {
+        if (!arg2.empty()) {
             s_vict = arg1;
-            s_circle = arg2;
-        } else if (isdigit(*arg1))
-            s_circle = arg1;
-        else
+            xcircle = svtoi(arg2);
+        } else if (std::isdigit(arg1[0])) {
+            xcircle = svtoi(arg1);
+        } else {
             s_vict = arg1;
+        }
     }
 
-    /* Determine whose spells shall be displayed */
     if (s_vict) {
         if (GET_LEVEL(ch) < LVL_IMMORT) {
             char_printf(ch, "That isn't a spell circle.\n");
             return;
         }
-        if (!(tch = find_char_around_char(ch, find_vis_by_name(ch, s_vict)))) {
+        if (!(tch = find_char_around_char(ch, find_vis_by_name(ch, *s_vict)))) {
             char_printf(ch, "There's nobody here by that name.\n");
             return;
         }
-    } else
-        tch = ch;
+    }
 
-    /* Determine the maximum circle to be displayed */
-    max_vis_circle = std::min(NUM_SPELL_CIRCLES, (GET_LEVEL(tch) - 1) / 8 + 1);
-
-    if (s_circle) {
-        xcircle = atoi(s_circle);
-        if (xcircle < 1) {
+    if (xcircle) {
+        if (*xcircle < 1 || *xcircle > max_vis_circle) {
             char_printf(ch, "The spell circle must be a number between 1 and {:d}.\n", max_vis_circle);
-            return;
-        } else if (xcircle > max_vis_circle) {
-            if (tch == ch)
-                char_printf(ch, "You only know spells up to circle {:d}.\n", max_vis_circle);
-            else
-                char_printf(ch, "{} only knows spells up to circle {:d}.\n", cap_by_color(GET_NAME(tch)),
-                            max_vis_circle);
             return;
         }
     }
 
-    /* Is this character in a class or a race with spells? */
     if (!IS_SPELLCASTER(tch)) {
-        if (tch == ch)
-            char_printf(ch, "You don't know any spells.\n");
-        else {
-            char_printf(ch, "Being a{} {}, {} has no spells.\n", startsvowel(CLASS_NAME(tch)) ? "n" : "",
-                        CLASS_NAME(tch), GET_NAME(tch));
-        }
+        char_printf(ch, tch == ch ? "You don't know any spells.\n" : "Being a{} {}, {} has no spells.\n",
+                    startsvowel(CLASS_NAME(tch)) ? "n" : "", CLASS_NAME(tch), GET_NAME(tch));
         return;
     }
 
-    /* Collect and count the spells known by the victim. */
-
-    memset(&circle_spells, 0, sizeof(circle_spells));
-
-    for (k = 0; k <= TOP_SKILL; ++k) {
-        i = skill_sort_info[k];
+    for (int k = 0; k <= TOP_SKILL; ++k) {
+        int i = skill_sort_info[k];
         if (!IS_SPELL(i))
             continue;
+
+        int circle = -1;
         if (skills[i].min_level[GET_CLASS(tch)] < LVL_IMMORT && GET_SKILL(tch, i) > 0 &&
             skills[i].min_level[GET_CLASS(tch)] <= skills[i].min_race_level[GET_RACE(tch)]) {
             circle = (skills[i].min_level[GET_CLASS(tch)] - 1) / 8;
-            for (j = 0; circle_spells[circle][j] && j < MAX_SPELLS_PER_CIRCLE && circle < max_vis_circle; ++j)
-                ;
-            if (!xcircle || xcircle == circle + 1)
-                numspellsknown++;
-            circle_spells[circle][j] = i;
-
         } else if (skills[i].min_race_level[GET_RACE(tch)] < LVL_IMMORT && GET_SKILL(tch, i) > 0) {
             circle = (skills[i].min_race_level[GET_RACE(tch)] - 1) / 8;
-            for (j = 0; circle_spells[circle][j] && j < MAX_SPELLS_PER_CIRCLE && circle < max_vis_circle; ++j)
+        }
+
+        if (circle >= 0) {
+            int j;
+            for (j = 0; circle_spells[circle][j] && j < circle < max_vis_circle; ++j)
                 ;
-            if (!xcircle || xcircle == circle + 1)
+            if (!xcircle || *xcircle == circle + 1)
                 numspellsknown++;
             circle_spells[circle][j] = i;
         }
     }
 
-    /* No spells known? */
-
     if (!numspellsknown) {
-        if (xcircle) {
-            if (tch == ch)
-                char_printf(ch, "You don't know any spells in circle {:d}.\n", xcircle);
-            else
-                char_printf(ch, "{} doesn't know any spells in circle {:d}.\n", cap_by_color(GET_NAME(tch)), xcircle);
-        } else {
-            if (tch == ch)
-                char_printf(ch, "You don't know any spells.\n");
-            else
-                char_printf(ch, "{} doesn't know any spells.\n", cap_by_color(GET_NAME(tch)));
-        }
+        char_printf(ch, xcircle ? "{} doesn't know any spells in circle {:d}.\n" : "{} doesn't know any spells.\n",
+                    capitalize_first(GET_NAME(tch)), xcircle ? *xcircle : 0);
         return;
     }
 
-    /* ALL TEXT FROM THIS POINT ON IS PAGED */
+    paging_printf(
+        ch, xcircle ? "{} knows of the following {} in &4&bcircle {:d}&0:\n\n" : "{} knows of the following {}:\n\n",
+        capitalize_first(GET_NAME(tch)), numspellsknown == 1 ? "spell" : "spells", xcircle ? *xcircle : 0);
 
-    /* Produce the introductory statement. */
-
-    if (xcircle) {
-        if (tch == ch)
-            paging_printf(ch, "You know of the following {} in &4&bcircle {:d}&0:\n\n",
-                          numspellsknown == 1 ? "spell" : "spells", xcircle);
-        else
-            paging_printf(ch, "{} knows of the following {} in &4&bcircle {:d}&0:\n\n", cap_by_color(GET_NAME(tch)),
-                          numspellsknown == 1 ? "spell" : "spells", xcircle);
-    } else {
-        if (tch == ch)
-            paging_printf(ch, "You know of the following {}:\n\n", numspellsknown == 1 ? "spell" : "spells");
-        else
-            paging_printf(ch, "{} knows of the following {}:\n\n", GET_NAME(tch),
-                          numspellsknown == 1 ? "spell" : "spells");
-    }
-
-    /* List the spells. */
-
-    for (i = 0; i < max_vis_circle; ++i) {
+    for (int i = 0; i < max_vis_circle; ++i) {
         if (circle_spells[i][0]) {
-            if (xcircle && xcircle != i + 1)
+            if (xcircle && *xcircle != i + 1)
                 continue;
-            for (j = 0; circle_spells[i][j]; ++j) {
-                if (j == 0 && !xcircle)
-                    sprintf(buf, "&4&bCircle %2d&0:", i + 1);
-                else
-                    sprintf(buf, "          ");
-                skillnum = circle_spells[i][j];
-                sphere = skill_to_sphere(skillnum);
-
-                paging_printf(ch, fmt::format("{} {}{:<30} {}{}&0\n", buf, skills[skillnum].quest ? "&6*&0" : "",
-                                              ellipsis(skills[skillnum].name, 25), spheres[sphere].color,
-                                              spheres[sphere].name));
+            for (int j = 0; circle_spells[i][j]; ++j) {
+                paging_printf(ch, "{} {}{:<30} {}{}&0\n",
+                              j == 0 && !xcircle ? fmt::format("&4&bCircle {:2d}&0:", i + 1) : "          ",
+                              skills[circle_spells[i][j]].quest ? "&6*&0" : "",
+                              ellipsis(skills[circle_spells[i][j]].name, 25),
+                              spheres[skill_to_sphere(circle_spells[i][j])].color,
+                              spheres[skill_to_sphere(circle_spells[i][j])].name);
             }
         }
     }
@@ -3648,101 +3223,96 @@ ACMD(do_spells) {
  * for each class.  Also, "listspells circle" will list the spells and
  * their circles for each class.
  */
-
 ACMD(do_listspells) {
-    int circle_spells[MAX_CIRCLE][MAX_SPELLS_PER_CIRCLE];
-    int i, j, k, circle, class_num, page_length;
-    int magic_class_index[NUM_CLASSES], num_magic_classes;
-    /* 20000 bytes is not enough: */
-    char mybuf[50000];
+    int circle_spells[MAX_CIRCLE][MAX_SPELLS_PER_CIRCLE] = {};
+    int num_magic_classes = 0;
+    std::array<int, NUM_CLASSES> magic_class_index;
 
     if (!ch || IS_NPC(ch))
         return;
 
-    one_argument(argument, arg);
+    auto arg = argument.shift();
 
-    if (!*arg) {
+    if (arg.empty()) {
         char_printf(ch, "Usage: listspells <class> | all | circles\n");
         return;
     }
 
-    class_num = parse_class(0, 0, arg);
+    int class_num = parse_class(0, 0, arg);
 
-    /* Figure out the magical classes */
-    num_magic_classes = 0;
-    for (i = 0; i < NUM_CLASSES; i++) {
+    // Figure out the magical classes
+    for (int i = 0; i < NUM_CLASSES; ++i) {
         if (classes[i].magical) {
             magic_class_index[num_magic_classes++] = i;
         }
     }
 
-    if (!num_magic_classes) {
+    if (num_magic_classes == 0) {
         char_printf(ch, "There are no spellcasting classes.\n");
         return;
     }
 
-    /*
-     * The argument wasn't a class.   Try and see if it's "all" or "circles" to list all spells.
-     */
+    // The argument wasn't a class. Try and see if it's "all" or "circles" to list all spells.
     if (class_num == CLASS_UNDEFINED) {
-        circle = is_abbrev(arg, "circles");
-        if (GET_LEVEL(ch) >= LVL_HEAD_B && (circle || is_abbrev(arg, "all"))) {
-            *mybuf = '\0';
-            page_length = GET_PAGE_LENGTH(REAL_CHAR(ch));
-            for (k = 0, j = 0; k <= TOP_SKILL; ++k) {
-                i = skill_sort_info[k];
-                if (!IS_SPELL(i))
+        bool circle = matches_start(arg, "circles");
+        if (GET_LEVEL(ch) >= LVL_HEAD_B && (circle || matches_start(arg, "all"))) {
+            std::string mybuf;
+            int page_length = GET_PAGE_LENGTH(REAL_CHAR(ch));
+            for (int k = 0, j = 0; k <= TOP_SKILL; ++k) {
+                int i = skill_sort_info[k];
+                if (!IS_SPELL(i) || skills[i].name[0] == '!')
                     continue;
-                if (*skills[i].name == '!')
-                    continue;
-                /* Tack on the table header for each page. */
+
+                // Tack on the table header for each page.
                 if (!(page_length > 1 ? (j % (page_length - 1)) : j)) {
-                    strcat(mybuf, "&4&uSpell               &0&u");
-                    for (class_num = 0; class_num < num_magic_classes; ++class_num)
-                        snprintf(mybuf, sizeof(mybuf), "%s %2.2s", mybuf,
-                                 strip_ansi(classes[magic_class_index[class_num]].abbrev).c_str());
-                    strcat(mybuf, "&0\n");
+                    mybuf += "&4&uSpell               &0&u";
+                    for (int class_num = 0; class_num < num_magic_classes; ++class_num)
+                        mybuf += fmt::format(" {:2.2s}", strip_ansi(classes[magic_class_index[class_num]].abbrev));
+                    mybuf += "&0\n";
                 }
                 ++j;
 
-                snprintf(mybuf, sizeof(mybuf) - 4, "%s%-20.20s ", mybuf, skills[i].name);
-                for (class_num = 0; class_num < num_magic_classes; ++class_num)
+                mybuf += fmt::format("{:<20.20} ", skills[i].name);
+                for (int class_num = 0; class_num < num_magic_classes; ++class_num) {
                     if (skills[i].min_level[magic_class_index[class_num]] < LVL_IMMORT) {
                         if (circle)
-                            snprintf(mybuf, sizeof(mybuf), "%s&3%2d ", mybuf,
-                                     (skills[i].min_level[magic_class_index[class_num]] - 1) / 8 + 1);
+                            mybuf += fmt::format("&3{:2d} ",
+                                                 (skills[i].min_level[magic_class_index[class_num]] - 1) / 8 + 1);
                         else
-                            snprintf(mybuf, sizeof(mybuf), "%s&3%2d ", mybuf,
-                                     skills[i].min_level[magic_class_index[class_num]]);
-                    } else
-                        strcat(mybuf, "&0 0 ");
-                strcat(mybuf, "&0\n");
+                            mybuf += fmt::format("&3{:2d} ", skills[i].min_level[magic_class_index[class_num]]);
+                    } else {
+                        mybuf += "&0 0 ";
+                    }
+                }
+                mybuf += "&0\n";
             }
             page_string(ch, mybuf);
-        } else
+        } else {
             char_printf(ch, "Invalid class.\n");
+        }
         return;
     }
 
-    /* A class was specified. */
-    memset(&circle_spells, 0, sizeof(circle_spells));
-
-    *mybuf = '\0';
-
-    for (i = 1; i <= MAX_SPELLS; ++i)
+    // A class was specified.
+    for (int i = 1; i <= MAX_SPELLS; ++i) {
         if (skills[i].min_level[class_num] < LVL_IMMORT) {
-            circle = (skills[i].min_level[class_num] - 1) / 8;
-            for (j = 0; circle_spells[circle][j] && j < MAX_SPELLS_PER_CIRCLE && circle < MAX_CIRCLE; ++j)
-                ;
+            int circle = (skills[i].min_level[class_num] - 1) / 8;
+            int j = 0;
+            while (circle_spells[circle][j] && j < circle < MAX_CIRCLE) {
+                ++j;
+            }
             circle_spells[circle][j] = i;
         }
+    }
 
-    for (i = 0; i < MAX_CIRCLE; ++i) {
-        sprintf(mybuf, "%s&4&bCircle %d:&0\n", mybuf, i + 1);
-        for (j = 0; circle_spells[i][j]; ++j)
-            sprintf(mybuf, "%s%s%s\n", mybuf, skills[circle_spells[i][j]].name,
-                    skills[circle_spells[i][j]].quest ? "*" : "");
-        strcat(mybuf, "\n");
+    std::string mybuf;
+    for (int i = 0; i < MAX_CIRCLE; ++i) {
+        mybuf += fmt::format("&4&bCircle {}:&0\n", i + 1);
+        for (int j = 0; circle_spells[i][j]; ++j) {
+            mybuf +=
+                fmt::format("{}{}\n", skills[circle_spells[i][j]].name, skills[circle_spells[i][j]].quest ? "*" : "");
+        }
+        mybuf += "\n";
     }
 
     page_string(ch, mybuf);
@@ -3756,9 +3326,9 @@ ACMD(do_skills) {
     bool godpeek;
     std::string result;
 
-    one_argument(argument, arg);
+    auto arg = argument.shift();
 
-    if ((GET_LEVEL(ch) >= LVL_IMMORT) && (*arg)) {
+    if ((GET_LEVEL(ch) >= LVL_IMMORT) && !arg.empty()) {
         if ((tch = find_char_around_char(ch, find_vis_by_name(ch, arg)))) {
             if (IS_NPC(tch)) {
                 char_printf(ch, "Sadly, this does not work for NPCs.\n");
@@ -3784,7 +3354,7 @@ ACMD(do_skills) {
         i = skill_sort_info[x];
         if (!IS_SKILL(i))
             continue;
-        if (*skills[i].name == '!')
+        if (skills[i].name[0] == '!')
             continue;
         if (GET_SKILL(tch, i) <= 0)
             continue;
@@ -3815,7 +3385,7 @@ static int scan_chars(CharData *ch, int room, int dis, int dir, int seen_any) {
      * change the maxdis values in do_scan and add any necessary distance
      * values here.
      */
-    const char *distance[] = {
+    const std::string_view distance[] = {
         "right", "immediately", "close by", "a ways off", "far far", "very far", "astoundingly far", "impossibly far",
     };
 
@@ -3904,8 +3474,8 @@ ACMD(do_scan) {
         }
     }
 
-    any_one_arg(argument, arg);
-    if (*arg && (only_dir = searchblock(arg, dirs, false)) == -1) {
+    auto arg = argument.shift();
+    if (!arg.empty() && (only_dir = search_block(arg, dirs, false)) == -1) {
         char_printf(ch, "That is not a direction.\n");
         return;
     }
@@ -3962,12 +3532,8 @@ ACMD(do_scan) {
 ACMD(do_innate) {
     CharData *vict;
     ObjData *obj;
-    *buf = '\0';
 
-    argument = delimited_arg(argument, arg, '\'');
-    skip_spaces(&argument);
-
-    if (!*arg) {
+    if (argument.empty()) {
         char_printf(ch, "You have the following innate skills and effects:\n");
         if (GET_RACE(ch) == RACE_NYMPH) {
             char_printf(ch, " ascen\n");
@@ -4048,29 +3614,32 @@ ACMD(do_innate) {
             char_printf(ch, " ultravision*\n");
         char_printf(ch, "Effects marked with a * are always present.\n");
     } else {
-        if (is_abbrev(arg, "bodyslam") && GET_SKILL(ch, SKILL_BODYSLAM)) {
+        auto arg = argument.shift();
+
+        if (matches_start(arg, "bodyslam") && GET_SKILL(ch, SKILL_BODYSLAM)) {
             char_printf(ch, "Usage: bodyslam <victim>\n");
             return;
         }
 
-        if (is_abbrev(arg, "breathe") && (GET_SKILL(ch, SKILL_BREATHE_FIRE) || GET_SKILL(ch, SKILL_BREATHE_FROST) ||
-                                          GET_SKILL(ch, SKILL_BREATHE_ACID) || GET_SKILL(ch, SKILL_BREATHE_GAS) ||
-                                          GET_SKILL(ch, SKILL_BREATHE_LIGHTNING))) {
+        if (matches_start(arg, "breathe") && (GET_SKILL(ch, SKILL_BREATHE_FIRE) || GET_SKILL(ch, SKILL_BREATHE_FROST) ||
+                                              GET_SKILL(ch, SKILL_BREATHE_ACID) || GET_SKILL(ch, SKILL_BREATHE_GAS) ||
+                                              GET_SKILL(ch, SKILL_BREATHE_LIGHTNING))) {
             char_printf(ch, "Usage: breathe <fire|gas|frost|acid|lightning>\n");
             return;
         }
 
-        if (is_abbrev(arg, "doorbash") && GET_SKILL(ch, SKILL_DOORBASH)) {
+        if (matches_start(arg, "doorbash") && GET_SKILL(ch, SKILL_DOORBASH)) {
             char_printf(ch, "Usage: doorbash <direction>\n");
             return;
         }
 
-        if (is_abbrev(arg, "darkness")) {
+        if (matches_start(arg, "darkness")) {
             if (GET_RACE(ch) == RACE_DROW || GET_RACE(ch) == RACE_FAERIE_UNSEELIE || GET_LEVEL(ch) > LVL_IMMORT) {
                 if (!GET_COOLDOWN(ch, CD_INNATE_DARKNESS) || GET_LEVEL(ch) > LVL_IMMORT) {
-                    if (*argument) {
-                        if (!(obj = find_obj_in_list(ch->carrying, find_vis_by_name(ch, argument)))) {
-                            obj = find_obj_in_list(world[ch->in_room].contents, find_vis_by_name(ch, argument));
+                    if (!argument.empty()) {
+                        auto target = argument.shift();
+                        if (!(obj = find_obj_in_list(ch->carrying, find_vis_by_name(ch, target)))) {
+                            obj = find_obj_in_list(world[ch->in_room].contents, find_vis_by_name(ch, target));
                         }
                         if (obj) {
                             call_magic(ch, 0, obj, SPELL_DARKNESS, GET_LEVEL(ch), CAST_SPELL);
@@ -4099,13 +3668,13 @@ ACMD(do_innate) {
             }
         }
 
-        if (is_abbrev(arg, "detect") || is_abbrev(arg, "infravision") || is_abbrev(arg, "ultravision") ||
-            is_abbrev(arg, "protection") || is_abbrev(arg, "sense")) {
+        if (matches_start(arg, "detect") || matches_start(arg, "infravision") || matches_start(arg, "ultravision") ||
+            matches_start(arg, "protection") || matches_start(arg, "sense")) {
             char_printf(ch, "This innate is always present.\n");
             return;
         }
 
-        if (is_abbrev(arg, "invisible")) {
+        if (matches_start(arg, "invisible")) {
             if (GET_RACE(ch) == RACE_DUERGAR || GET_LEVEL(ch) > LVL_IMMORT) {
                 if (EFF_FLAGGED(ch, EFF_INVISIBLE))
                     char_printf(ch, "You already invisible.\n");
@@ -4124,7 +3693,7 @@ ACMD(do_innate) {
             }
         }
 
-        if (is_abbrev(arg, "feather fall")) {
+        if (matches_start(arg, "feather fall")) {
             if (GET_RACE(ch) == RACE_DROW || GET_LEVEL(ch) > LVL_IMMORT) {
                 if (EFF_FLAGGED(ch, EFF_FEATHER_FALL) || GET_LEVEL(ch) > LVL_IMMORT)
                     char_printf(ch, "You already levitating.\n");
@@ -4143,12 +3712,12 @@ ACMD(do_innate) {
             }
         }
 
-        if (is_abbrev(arg, "roar") && GET_SKILL(ch, SKILL_ROAR)) {
+        if (matches_start(arg, "roar") && GET_SKILL(ch, SKILL_ROAR)) {
             char_printf(ch, "Usage: roar\n");
             return;
         }
 
-        if (is_abbrev(arg, "chaz")) {
+        if (matches_start(arg, "chaz")) {
             if (GET_RACE(ch) == RACE_ORC || GET_LEVEL(ch) > LVL_IMMORT) {
                 if (!GET_COOLDOWN(ch, CD_INNATE_CHAZ) || GET_LEVEL(ch) > LVL_IMMORT) {
                     call_magic(ch, ch, 0, SPELL_INN_CHAZ, GET_LEVEL(ch), CAST_SPELL);
@@ -4167,7 +3736,7 @@ ACMD(do_innate) {
 
         /*new innates*/
 
-        if (is_abbrev(arg, "syll")) {
+        if (matches_start(arg, "syll")) {
             if (GET_RACE(ch) == RACE_ELF || GET_LEVEL(ch) > LVL_IMMORT) {
                 if (!GET_COOLDOWN(ch, CD_INNATE_SYLL) || GET_LEVEL(ch) > LVL_IMMORT) {
                     call_magic(ch, ch, 0, SPELL_INN_SYLL, GET_LEVEL(ch), CAST_SPELL);
@@ -4183,7 +3752,7 @@ ACMD(do_innate) {
                 return;
             }
         }
-        if (is_abbrev(arg, "brill")) {
+        if (matches_start(arg, "brill")) {
             if (GET_RACE(ch) == RACE_GNOME || GET_RACE(ch) == RACE_SVERFNEBLIN || GET_LEVEL(ch) > LVL_IMMORT) {
                 if (!GET_COOLDOWN(ch, CD_INNATE_BRILL) || GET_LEVEL(ch) > LVL_IMMORT) {
                     call_magic(ch, ch, 0, SPELL_INN_BRILL, GET_LEVEL(ch), CAST_SPELL);
@@ -4199,7 +3768,7 @@ ACMD(do_innate) {
                 return;
             }
         }
-        if (is_abbrev(arg, "tass")) {
+        if (matches_start(arg, "tass")) {
             if (GET_RACE(ch) == RACE_DWARF || GET_RACE(ch) == RACE_DUERGAR || GET_LEVEL(ch) > LVL_IMMORT) {
                 if (!GET_COOLDOWN(ch, CD_INNATE_TASS) || GET_LEVEL(ch) > LVL_IMMORT) {
                     call_magic(ch, ch, 0, SPELL_INN_TASS, GET_LEVEL(ch), CAST_SPELL);
@@ -4216,7 +3785,7 @@ ACMD(do_innate) {
             }
         }
         /*
-        if (is_abbrev(arg, "tren")) {
+        if (matches_start(arg, "tren")) {
             if (GET_RACE(ch) == RACE_ELF || GET_LEVEL(ch) > LVL_IMMORT) {
                 if (!GET_COOLDOWN(ch, CD_INNATE_TREN) || GET_LEVEL(ch) > LVL_IMMORT) {
                     call_magic(ch, ch, 0, SPELL_INN_TREN, GET_LEVEL(ch), CAST_SPELL);
@@ -4232,7 +3801,7 @@ ACMD(do_innate) {
             }
         }
         */
-        if (is_abbrev(arg, "ascen")) {
+        if (matches_start(arg, "ascen")) {
             if (GET_RACE(ch) == RACE_NYMPH || GET_LEVEL(ch) > LVL_IMMORT) {
                 if (!GET_COOLDOWN(ch, CD_INNATE_ASCEN) || GET_LEVEL(ch) > LVL_IMMORT) {
                     call_magic(ch, ch, 0, SPELL_INN_ASCEN, GET_LEVEL(ch), CAST_SPELL);
@@ -4248,7 +3817,7 @@ ACMD(do_innate) {
                 return;
             }
         }
-        if (is_abbrev(arg, "harness")) {
+        if (matches_start(arg, "harness")) {
             if (GET_RACE(ch) == RACE_ELF || GET_RACE(ch) == RACE_FAERIE_SEELIE ||
                 GET_RACE(ch) == RACE_FAERIE_UNSEELIE || GET_LEVEL(ch) > LVL_IMMORT) {
                 if (!GET_COOLDOWN(ch, CD_INNATE_HARNESS) || GET_LEVEL(ch) > LVL_IMMORT) {
@@ -4266,23 +3835,24 @@ ACMD(do_innate) {
             }
         }
 
-        if (is_abbrev(arg, "sweep") && GET_SKILL(ch, SKILL_SWEEP)) {
+        if (matches_start(arg, "sweep") && GET_SKILL(ch, SKILL_SWEEP)) {
             char_printf(ch, "Usage: sweep\n");
             return;
         }
 
-        if (is_abbrev(arg, "create") && GET_RACE(ch) == RACE_GNOME) {
+        if (matches_start(arg, "create") && GET_RACE(ch) == RACE_GNOME) {
             char_printf(ch, "Usage: create <object>\n");
             return;
         }
 
-        if (is_abbrev(arg, "illumination")) {
+        if (matches_start(arg, "illumination")) {
             if (GET_RACE(ch) == RACE_FAERIE_SEELIE || GET_LEVEL(ch) > LVL_IMMORT) {
                 if (!GET_COOLDOWN(ch, CD_INNATE_ILLUMINATION) || GET_LEVEL(ch) > LVL_IMMORT) {
                     if (!ROOM_EFF_FLAGGED(ch->in_room, ROOM_EFF_FOG)) {
-                        if (*argument) {
-                            if (!(obj = find_obj_in_list(ch->carrying, find_vis_by_name(ch, argument)))) {
-                                obj = find_obj_in_list(world[ch->in_room].contents, find_vis_by_name(ch, argument));
+                        if (!argument.empty()) {
+                            auto target = argument.shift();
+                            if (!(obj = find_obj_in_list(ch->carrying, find_vis_by_name(ch, target)))) {
+                                obj = find_obj_in_list(world[ch->in_room].contents, find_vis_by_name(ch, target));
                             }
                             if (obj) {
                                 call_magic(ch, 0, obj, SPELL_ILLUMINATION, GET_LEVEL(ch), CAST_SPELL);
@@ -4314,11 +3884,12 @@ ACMD(do_innate) {
             }
         }
 
-        if (is_abbrev(arg, "faerie step")) {
+        if (matches_start(arg, "faerie step")) {
             if (GET_RACE(ch) == RACE_FAERIE_SEELIE || GET_RACE(ch) == RACE_FAERIE_UNSEELIE ||
                 GET_LEVEL(ch) > LVL_IMMORT) {
-                if (*argument) {
-                    vict = find_char_around_char(ch, find_vis_by_name(ch, argument));
+                if (!argument.empty()) {
+                    auto target = argument.shift();
+                    vict = find_char_around_char(ch, find_vis_by_name(ch, target));
                     if (!GET_COOLDOWN(ch, CD_INNATE_FAERIE_STEP) || GET_LEVEL(ch) > LVL_IMMORT) {
                         if (!vict) {
                             char_printf(ch, "Who are you trying to step to?\n");
@@ -4343,7 +3914,7 @@ ACMD(do_innate) {
             }
         }
 
-        if (is_abbrev(arg, "blinding beauty")) {
+        if (matches_start(arg, "blinding beauty")) {
             if (GET_RACE(ch) == RACE_NYMPH || GET_LEVEL(ch) > LVL_IMMORT) {
                 if (!GET_COOLDOWN(ch, CD_INNATE_BLINDING_BEAUTY) || GET_LEVEL(ch) > LVL_IMMORT) {
                     call_magic(ch, ch, 0, SPELL_BLINDING_BEAUTY, GET_LEVEL(ch), CAST_SPELL);
@@ -4360,7 +3931,7 @@ ACMD(do_innate) {
             }
         }
 
-        if (is_abbrev(arg, "statue")) {
+        if (matches_start(arg, "statue")) {
             if (GET_RACE(ch) == RACE_GNOME || GET_RACE(ch) == RACE_SVERFNEBLIN || GET_LEVEL(ch) > LVL_IMMORT) {
                 if (!GET_COOLDOWN(ch, CD_INNATE_STATUE) || GET_LEVEL(ch) > LVL_IMMORT) {
                     call_magic(ch, ch, 0, SPELL_STATUE, GET_LEVEL(ch), CAST_SPELL);
@@ -4377,7 +3948,7 @@ ACMD(do_innate) {
             }
         }
 
-        if (is_abbrev(arg, "barkskin")) {
+        if (matches_start(arg, "barkskin")) {
             if (GET_RACE(ch) == RACE_ARBOREAN || GET_LEVEL(ch) > LVL_IMMORT) {
                 if (!GET_COOLDOWN(ch, CD_INNATE_BARKSKIN) || GET_LEVEL(ch) > LVL_IMMORT) {
                     call_magic(ch, ch, 0, SPELL_BARKSKIN, GET_LEVEL(ch), CAST_SPELL);
@@ -4399,7 +3970,6 @@ ACMD(do_innate) {
 }
 
 ACMD(do_songs) {
-    int i;
     bool found = false;
     CharData *tch = ch;
 
@@ -4408,25 +3978,26 @@ ACMD(do_songs) {
         return;
     }
 
-    one_argument(argument, arg);
-    if (GET_LEVEL(ch) >= LVL_IMMORT && *arg) {
+    std::string_view arg = argument.shift();
+    if (GET_LEVEL(ch) >= LVL_IMMORT && !arg.empty()) {
         if (!(tch = find_char_around_char(ch, find_vis_by_name(ch, arg)))) {
             char_printf(ch, NOPERSON);
             return;
         }
     }
 
+    std::string buf;
     if (ch == tch)
-        strcpy(buf, "You know the following songs:\n");
+        buf = "You know the following songs:\n";
     else
-        sprintf(buf, "%s knows the following songs:\n", capitalize(GET_NAME(tch)));
+        buf = fmt::format("{} knows the following songs:\n", capitalize_first(GET_NAME(tch)));
 
-    for (i = MAX_SKILLS + 1; i <= MAX_CHANTS; ++i) {
-        if (*skills[i].name == '!')
+    for (int i = MAX_SKILLS + 1; i <= MAX_CHANTS; ++i) {
+        if (skills[i].name[0] == '!')
             continue;
         if (GET_SKILL(tch, i) <= 0)
             continue;
-        sprintf(buf, "%s  %s\n", buf, skills[i].name);
+        buf += fmt::format("  {}\n", skills[i].name);
         found = true;
     }
 
@@ -4437,7 +4008,6 @@ ACMD(do_songs) {
 }
 
 ACMD(do_music) {
-    int i;
     bool found = false;
     CharData *tch = ch;
 
@@ -4446,25 +4016,26 @@ ACMD(do_music) {
         return;
     }
 
-    one_argument(argument, arg);
-    if (GET_LEVEL(ch) >= LVL_IMMORT && *arg) {
+    std::string_view arg = argument.shift();
+    if (GET_LEVEL(ch) >= LVL_IMMORT && !arg.empty()) {
         if (!(tch = find_char_around_char(ch, find_vis_by_name(ch, arg)))) {
             char_printf(ch, NOPERSON);
             return;
         }
     }
 
+    std::string buf;
     if (ch == tch)
-        strcpy(buf, "You know the following music:\n");
+        buf = "You know the following music:\n";
     else
-        sprintf(buf, "%s knows the following music:\n", capitalize(GET_NAME(tch)));
+        buf = fmt::format("{} knows the following music:\n", capitalize_first(GET_NAME(tch)));
 
-    for (i = MAX_SKILLS + 1; i <= MAX_SONGS; ++i) {
-        if (*skills[i].name == '!')
+    for (int i = MAX_SKILLS + 1; i <= MAX_SONGS; ++i) {
+        if (skills[i].name[0] == '!')
             continue;
         if (GET_SKILL(tch, i) <= 0)
             continue;
-        sprintf(buf, "%s  %s\n", buf, skills[i].name);
+        buf += fmt::format("  {}\n", skills[i].name);
         found = true;
     }
 
@@ -4477,9 +4048,9 @@ ACMD(do_music) {
 ACMD(do_last_tells) {
     CharData *tch;
 
-    one_argument(argument, arg);
+    std::string_view arg = argument.shift();
 
-    if (GET_LEVEL(ch) >= LVL_IMMORT && *arg) {
+    if (GET_LEVEL(ch) >= LVL_IMMORT && !arg.empty()) {
         if (!(tch = find_char_around_char(ch, find_vis_by_name(ch, arg)))) {
             char_printf(ch, "There's nobody here by that name.\n");
             return;
@@ -4494,9 +4065,9 @@ ACMD(do_last_tells) {
 ACMD(do_last_gossips) {
     CharData *tch;
 
-    one_argument(argument, arg);
+    std::string_view arg = argument.shift();
 
-    if (GET_LEVEL(ch) >= LVL_IMMORT && *arg) {
+    if (GET_LEVEL(ch) >= LVL_IMMORT && !arg.empty()) {
         if (!(tch = find_char_around_char(ch, find_vis_by_name(ch, arg)))) {
             char_printf(ch, "There's nobody here by that name.\n");
             return;

@@ -15,6 +15,9 @@
 #include "structs.hpp"
 #include "sysdep.hpp"
 
+#include <fmt/format.h>
+#include <string_view>
+
 enum EditorCommandEnum {
     ED_BEGIN,
     ED_CLEAR,        /* /c */
@@ -46,20 +49,20 @@ enum ed_cleanup_action { ED_NO_ACTION, ED_FREE_DATA, NUM_ED_CLEANUP_ACTIONS };
 struct EditorContext {
     DescriptorData *descriptor;
 
-    char *string;
+    std::string_view string;
     size_t max_length;
     size_t max_lines;
     void *data;
 
     enum EditorCommandEnum command;
-    const char *argument;
+    const std::string_view argument;
 };
 
 struct EditorData {
     bool started;
-    char *string;
-    char **destination;
-    char *begin_string;
+    std::string_view string;
+    std::string_view destination;
+    std::string_view begin_string;
     size_t length;
     size_t max_length;
     size_t lines;
@@ -84,11 +87,14 @@ EDITOR_FUNC(editor_default_exit);
 EDITOR_FUNC(editor_default_spellcheck);
 EDITOR_FUNC(editor_default_other);
 
-const DescriptorData *editor_edited_by(char **message);
-void editor_interpreter(DescriptorData *d, char *line);
-void editor_init(DescriptorData *d, char **string, size_t max_length);
+const DescriptorData *editor_edited_by(std::string_view message);
+void editor_interpreter(DescriptorData *d, std::string_view line);
+void editor_init(DescriptorData *d, std::string_view string, size_t max_length);
 void editor_set_callback_data(DescriptorData *d, void *data, enum ed_cleanup_action action);
 void editor_set_callback(DescriptorData *d, enum EditorCommandEnum type, EDITOR_FUNC(*callback));
 void editor_set_max_lines(DescriptorData *d, size_t max_lines);
-void editor_set_begin_string(DescriptorData *d, const char *string, ...) __attribute__((format(printf, 2, 3)));
+
+template <typename... Args> void editor_set_begin_string(DescriptorData *d, fmt::string_view str, Args &&...args) {
+    editor_set_begin_string(d, fmt::vformat(str, fmt::make_format_args(args...)));
+}
 void editor_cleanup(DescriptorData *d);
