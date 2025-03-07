@@ -1784,7 +1784,7 @@ std::string_view parse_object(std::ifstream &obj_f, int nr) {
     if (!std::getline(obj_f, line) ||
         (retval = sscanf(line.c_str(), " %d %255s %255s %d", &t[0], f1, f2, &t[1])) != 4) {
         if (retval == 3) {
-            sscanf(line.c_str(), " %d %s %s", t, f1, f2);
+            sscanf(line.c_str(), " %d %255s %255s", &t[0], f1, f2);
             t[1] = 0;
             log(LogSeverity::Warn, LVL_GOD, "Object #{} needs a level assigned to it.", nr);
         } else {
@@ -1802,6 +1802,10 @@ std::string_view parse_object(std::ifstream &obj_f, int nr) {
         (retval = sscanf(line.c_str(), "%d %d %d %d %d %d %d", &t[0], &t[1], &t[2], &t[3], &t[4], &t[5], &t[6])) != 7) {
         log(LogSeverity::Error, LVL_GOD, "Format error in second numeric line (expecting 7 args, got {}), {}", 
             retval, buf2);
+        // Set default values to avoid undefined behavior
+        for (int idx = 0; idx < 7; idx++) {
+            if (idx >= retval) t[idx] = 0;
+        }
     }
 
     obj_proto[i].obj_flags.value[0] = t[0];
@@ -1817,6 +1821,11 @@ std::string_view parse_object(std::ifstream &obj_f, int nr) {
                          &t[4], &t[5], &t[6], &t[7])) != 8) {
         log(LogSeverity::Error, LVL_GOD, "Format error in third numeric line (expecting 8 args, got {}), {}", 
             retval, buf2);
+        // Set default values to avoid undefined behavior
+        if (retval < 1) obj_proto[i].obj_flags.weight = 0.0f;
+        for (int idx = 1; idx <= 7; idx++) {
+            if (idx >= retval) t[idx] = 0;
+        }
     }
 
 obj_proto[i].obj_flags.effective_weight = obj_proto[i].obj_flags.weight;
@@ -1868,6 +1877,10 @@ while (true) {
         if (!std::getline(obj_f, line) || (retval = sscanf(line.c_str(), " %d %d ", &t[0], &t[1])) != 2) {
             log(LogSeverity::Error, LVL_GOD, "Format error in Affect line (expecting 2 args, got {}), {}", 
                 retval, buf2);
+            // Set default values to avoid undefined behavior
+            if (retval < 1) t[0] = 0;
+            if (retval < 2) t[1] = 0;
+            // Don't increment j, so we don't add this invalid apply
         } else {
             obj_proto[i].applies[j].location = t[0];
             obj_proto[i].applies[j].modifier = t[1];
