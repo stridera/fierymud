@@ -976,7 +976,7 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, std::s
 
             /* Generate a random number */
             else
-                sprintf(str, "%d", ((num = svtoi(field)) > 0) ? random_number(1, num) : 0);
+                str = fmt::format("{}", ((num = svtoi(field)) > 0) ? random_number(1, num) : 0);
         }
 
         /* Static functions */
