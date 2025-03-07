@@ -1015,25 +1015,25 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, std::s
 
                 /* %get.obj_count[VNUM]% is the number of objects with VNUM in game */
             } else if (matches(field, "obj_count")) {
-                if (num = real_object(svtoi(value)) >= 0)
+                if ((num = real_object(svtoi(value))) >= 0)
                     str = fmt::format("{}", obj_index[num].number);
                 else
                     strcpy(str, "0");
                 /* %get.mob_count[VNUM]% is the number of mobiles with VNUM in game */
             } else if (matches(field, "mob_count")) {
-                if (num = real_mobile(svtoi(value)) >= 0)
+                if ((num = real_mobile(svtoi(value))) >= 0)
                     str = fmt::format("{}", mob_index[num].number);
                 else
                     strcpy(str, "0");
                 /* %get.room[VNUM]% returns a UID variable pointing to that room */
             } else if (matches(field, "room")) {
-                if (num = real_room(svtoi(value)) >= 0)
+                if ((num = real_room(svtoi(value))) >= 0)
                     ROOM_UID_VAR(str, num);
                 else
                     strcpy(str, "0");
                 /* %get.people[VNUM]% is the number of people in room */
             } else if (matches(field, "people")) {
-                if (is_positive_integer(value) && (num = real_room(svtoi(value)) >= 0)) {
+                if (is_positive_integer(value) && ((num = real_room(svtoi(value))) >= 0)) {
                     ch = world[num].people;
                     for (num = 0; ch; ch = ch->next_in_room)
                         if (!GET_INVIS_LEV(ch))
@@ -1045,7 +1045,7 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, std::s
                     script_log(trig, buf2);
                 }
             } else if (matches(field, "opposite_dir")) {
-                if (num = search_block(value, dirs, false) >= 0)
+                if ((num = search_block(value, dirs, false)) >= 0)
                     strcpy(str, dirs[rev_dir[num]]);
                 else {
                     /*
@@ -1230,7 +1230,7 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, std::s
             }
         } else if (matches(field, "flagged")) {
             if (IS_NPC(c)) {
-                if (num = search_block(value, action_bits, false) >= 0)
+                if ((num = search_block(value, action_bits, false)) >= 0)
                     strcpy(str, MOB_FLAGGED(c, num) ? "1" : "0");
                 else {
                     strcpy(str, "0");
@@ -1238,9 +1238,9 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, std::s
                     script_log(trig, buf2);
                 }
             } else {
-                if (num = search_block(value, player_bits, false) >= 0)
+                if ((num = search_block(value, player_bits, false)) >= 0)
                     strcpy(str, PLR_FLAGGED(c, (1 << num)) ? "1" : "0");
-                else if (num = search_block(value, preference_bits, false) >= 0)
+                else if ((num = search_block(value, preference_bits, false)) >= 0)
                     strcpy(str, PRF_FLAGGED(c, (1 << num)) ? "1" : "0");
                 else {
                     strcpy(str, "0");
@@ -1252,7 +1252,7 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, std::s
             sprintflag(str, EFF_FLAGS(c), NUM_EFF_FLAGS, effect_flags);
 
         else if (matches(field, "aff_flagged") || matches(field, "eff_flagged")) {
-            if (num = search_block(value, effect_flags, false) >= 0)
+            if ((num = search_block(value, effect_flags, false)) >= 0)
                 strcpy(str, EFF_FLAGGED(c, num) ? "1" : "0");
             else {
                 strcpy(str, "0");
@@ -1269,7 +1269,7 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, std::s
                     strcat(str, " ");
                 }
         } else if (matches(field, "has_spell")) {
-            if (num = find_talent_num(value, 0) >= 0)
+            if ((num = find_talent_num(value, 0)) >= 0)
                 strcpy(str, affected_by_spell(c, num) ? "1" : "0");
             else {
                 strcpy(str, "0");
@@ -1399,7 +1399,7 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, std::s
                     if (GET_EQ(c, pos))
                         ++num;
                 str = fmt::format("{}", num);
-            } else if (pos = search_block(value, wear_positions, true) >= 0)
+            } else if ((pos = search_block(value, wear_positions, true)) >= 0)
                 UID_VAR(str, GET_EQ(c, pos));
             else
                 strcpy(str, "0");
@@ -1523,7 +1523,7 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, std::s
         else if (matches(field, "hiddenness"))
             str = fmt::format("{}", GET_OBJ_HIDDENNESS(o));
         else if (matches(field, "affect") || matches(field, "effect")) {
-            if (!is_positive_integer(value) || (num = svtoi(value) > 5))
+            if (!is_positive_integer(value) || ((num = svtoi(value)) > 5))
                 *str = '\0';
             else
                 str = fmt::format("{:+d} {}", o->applies[num].modifier, apply_types[(int)o->applies[num].location]);
@@ -1534,7 +1534,7 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, std::s
         else if (matches(field, "flags"))
             sprintflag(str, GET_OBJ_FLAGS(o), NUM_ITEM_FLAGS, extra_bits);
         else if (matches(field, "flagged")) {
-            if (num = search_block(value, extra_bits, false) >= 0)
+            if ((num = search_block(value, extra_bits, false)) >= 0)
                 strcpy(str, OBJ_FLAGGED(o, num) ? "1" : "0");
             else {
                 strcpy(str, "0");
@@ -1545,7 +1545,7 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, std::s
             sprintflag(str, GET_OBJ_EFF_FLAGS(o), NUM_EFF_FLAGS, effect_flags);
 
         else if (matches(field, "has_spell")) {
-            if (num = search_block(value, effect_flags, false) >= 0)
+            if ((num = search_block(value, effect_flags, false)) >= 0)
                 strcpy(str, OBJ_EFF_FLAGGED(o, num) ? "1" : "0");
             else {
                 strcpy(str, "0");
@@ -1614,7 +1614,7 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, std::s
         else if (matches(field, "flags"))
             sprintflag(str, r->room_flags, NUM_ROOM_FLAGS, room_bits);
         else if (matches(field, "flagged")) {
-            if (num = search_block(value, room_bits, false) >= 0)
+            if ((num = search_block(value, room_bits, false)) >= 0)
                 strcpy(str, IS_FLAGGED(r->room_flags, num) ? "1" : "0");
             else {
                 strcpy(str, "0");
@@ -1624,7 +1624,7 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, std::s
         } else if (matches(field, "effects") || matches(field, "affects"))
             sprintflag(str, r->room_effects, NUM_ROOM_EFF_FLAGS, room_effects);
         else if (matches(field, "has_effect") || matches(field, "has_affect")) {
-            if (num = search_block(value, room_effects, false) >= 0)
+            if ((num = search_block(value, room_effects, false)) >= 0)
                 strcpy(str, IS_FLAGGED(r->room_effects, num) ? "1" : "0");
             else {
                 strcpy(str, "0");
