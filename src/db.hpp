@@ -20,6 +20,9 @@
 #include "zone.hpp"
 
 #include <string_view>
+#include <fstream>
+#include <array>
+#include <algorithm>
 
 /* arbitrary constants used by index_boot() (must be unique) */
 #define DB_BOOT_WLD 0
@@ -80,7 +83,7 @@ void free_text_files(void);
 void zone_update(void);
 int real_room(int vnum);
 int real_quest(unsigned short vnum);
-std::string fread_string(FILE *fl, const std::string_view error);
+std::string fread_string(std::ifstream &fl, const std::string_view error);
 int vnum_room(std::string_view searchname, CharData *ch);
 int vnum_zone(std::string_view searchname, CharData *ch);
 

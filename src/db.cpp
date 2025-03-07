@@ -134,8 +134,8 @@ void assign_rooms(void);
 void assign_the_shopkeepers(void);
 int is_empty(int zone_nr);
 void reset_zone(int zone, byte pop);
-int file_to_string(const std::string_view name, std::string_view buf);
-int file_to_string_alloc(const std::string_view name, std::string_view buf);
+int file_to_string(const std::string_view name, std::string &buf);
+int file_to_string_alloc(const std::string_view name, std::string &buf);
 void check_start_rooms(void);
 void renum_world(void);
 void renum_zone_table(void);
@@ -840,8 +840,7 @@ int count_hash_records(FILE *fl) {
 }
 
 void index_boot(int mode) {
-    std::string index_filename, prefix;
-    std::ifstream index, db_file;
+    std::string_view prefix;
     int rec_count = 0;
 
     switch (mode) {
@@ -867,30 +866,26 @@ void index_boot(int mode) {
         prefix = HLP_PREFIX;
         break;
     default:
-        log("SYSERR: Unknown subcommand to index_boot!");
+        log(LogSeverity::Error, LVL_GOD, "SYSERR: Unknown subcommand to index_boot!");
         exit(1);
         break;
     }
 
-    index_filename = INDEX_FILE;
+    std::string index_path = fmt::format("{}/{}", prefix, INDEX_FILE);
 
-    std::string buf2 = fmt::format("{}/{}", prefix, index_filename);
-
-    index.open(buf2);
+    std::ifstream index(index_path);
     if (!index.is_open()) {
-        std::string buf1 = fmt::format("Error opening index file '{}'", buf2);
-        perror(buf1.c_str());
+        log(LogSeverity::Error, LVL_GOD, "Error opening index file '{}'", index_path);
         exit(1);
     }
 
-    /* first, count the number of records in the file so we can malloc */
-    std::string buf1;
-    while (std::getline(index, buf1) && buf1 != "$") {
-        buf2 = fmt::format("{}/{}", prefix, buf1);
-        db_file.open(buf2);
+    /* first, count the number of records in the file so we can allocate memory */
+    std::string filename;
+    while (std::getline(index, filename) && filename != "$") {
+        std::string file_path = fmt::format("{}/{}", prefix, filename);
+        std::ifstream db_file(file_path);
         if (!db_file.is_open()) {
-            perror(buf2.c_str());
-            log("file listed in index not found");
+            log(LogSeverity::Error, LVL_GOD, "File listed in index not found: {}", file_path);
             exit(1);
         } else {
             if (mode == DB_BOOT_ZON)
@@ -905,12 +900,13 @@ void index_boot(int mode) {
     if (!rec_count) {
         if (mode == DB_BOOT_SHP)
             return;
-        log("SYSERR: boot error - 0 records counted");
+        log(LogSeverity::Error, LVL_GOD, "SYSERR: boot error - 0 records counted");
         exit(1);
     }
 
     rec_count++;
 
+    // Allocate memory for the appropriate data structures
     switch (mode) {
     case DB_BOOT_TRG:
         trig_index = std::make_unique<IndexData *[]>(rec_count);
@@ -934,15 +930,17 @@ void index_boot(int mode) {
         break;
     }
 
+    // Reset file position and process each file
     index.clear();
     index.seekg(0, std::ios::beg);
-    while (std::getline(index, buf1) && buf1 != "$") {
-        buf2 = fmt::format("{}/{}", prefix, buf1);
-        db_file.open(buf2);
+    while (std::getline(index, filename) && filename != "$") {
+        std::string file_path = fmt::format("{}/{}", prefix, filename);
+        std::ifstream db_file(file_path);
         if (!db_file.is_open()) {
-            perror(buf2.c_str());
+            log(LogSeverity::Error, LVL_GOD, "Error opening file: {}", file_path);
             exit(1);
         }
+        
         switch (mode) {
         case DB_BOOT_TRG:
         case DB_BOOT_WLD:
@@ -951,13 +949,13 @@ void index_boot(int mode) {
             discrete_load(db_file, mode);
             break;
         case DB_BOOT_ZON:
-            load_zones(db_file, buf2);
+            load_zones(db_file, file_path);
             break;
         case DB_BOOT_HLP:
             load_help(db_file);
             break;
         case DB_BOOT_SHP:
-            boot_the_shops(db_file, buf2, rec_count);
+            boot_the_shops(db_file, file_path, rec_count);
             break;
         }
         db_file.close();
@@ -965,40 +963,44 @@ void index_boot(int mode) {
 
     /* sort the help index */
     if (mode == DB_BOOT_HLP) {
-        qsort(help_table, top_of_helpt, sizeof(HelpIndexElement), hsort);
+        std::sort(help_table, help_table + top_of_helpt, 
+                 [](const HelpIndexElement &a, const HelpIndexElement &b) {
+                     return strcasecmp(a.keyword.data(), b.keyword.data()) < 0;
+                 });
         top_of_helpt--;
     }
 }
 
 int tmp_debug = 0;
 
-void discrete_load(FILE *fl, int mode) {
+void discrete_load(std::ifstream &fl, int mode) {
     int nr = -1, last = 0;
-    char line[256];
-    const std::string_view modes[] = {"world", "mob", "obj", "ZON", "SHP", "HLP", "trg"};
+    std::string line;
+    const std::array<std::string_view, 7> modes = {"world", "mob", "obj", "ZON", "SHP", "HLP", "trg"};
+    
     for (;;) {
         /*
          * we have to do special processing with the obj files because they have
          * no end-of-record marker :(
          */
         if (mode != DB_BOOT_OBJ || nr < 0) {
-            tmp_debug++;
-            if (!get_line(fl, line)) {
-                fprintf(stderr, "Format error after %s #%d\n", modes[mode], nr);
-                fprintf(stderr, "Offending line: '%s'in file down list%d\n", line, tmp_debug);
+            if (!std::getline(fl, line)) {
+                log(LogSeverity::Error, LVL_GOD, "Format error after {} #{}", modes[mode], nr);
                 exit(1);
             }
         }
-        if (*line == '$')
+        
+        if (line == "$")
             return;
 
-        if (*line == '#') {
+        if (!line.empty() && line[0] == '#') {
             last = nr;
-            if (sscanf(line, "#%d", &nr) != 1) {
-                fprintf(stderr, "Format error after %s #%d\n", modes[mode], last);
-                fprintf(stderr, "Offending line: '%s'\n", line);
+            if (sscanf(line.c_str(), "#%d", &nr) != 1) {
+                log(LogSeverity::Error, LVL_GOD, "Format error after {} #{}: '{}'", 
+                    modes[mode], last, line);
                 exit(1);
             }
+            
             if (nr >= 198999)
                 return;
             else
@@ -1013,12 +1015,12 @@ void discrete_load(FILE *fl, int mode) {
                     parse_mobile(fl, nr);
                     break;
                 case DB_BOOT_OBJ:
-                    strcpy(line, parse_object(fl, nr));
+                    line = parse_object(fl, nr);
                     break;
                 }
         } else {
-            fprintf(stderr, "Format error in %s file near %s #%d\n", modes[mode], modes[mode], nr);
-            fprintf(stderr, "Offending line: '%s'\n", line);
+            log(LogSeverity::Error, LVL_GOD, "Format error in {} file near {} #{}: '{}'", 
+                modes[mode], modes[mode], nr, line);
             exit(1);
         }
     }
@@ -1041,11 +1043,17 @@ long asciiflag_conv(std::string_view flag) {
     return flags;
 }
 
-char fread_letter(FILE *fp) {
+char fread_letter(std::ifstream &fp) {
     char c;
     do {
-        c = getc(fp);
-    } while (isspace(c));
+        fp.get(c);
+    } while (isspace(c) && fp.good());
+    
+    if (!fp.good()) {
+        log(LogSeverity::Error, LVL_GOD, "SYSERR: fread_letter: EOF encountered");
+        exit(1);
+    }
+    
     return c;
 }
 
@@ -1969,60 +1977,60 @@ void load_zones(std::ifstream &fl, std::string_view zonename) {
     }
 }
 
-void get_one_line(FILE *fl, std::string_view line_buf) {
-    *line_buf = '\0';
-
-    if (fgets(line_buf, READ_SIZE, fl) == nullptr) {
-        log("error reading help file: not terminated with $?");
+void get_one_line(std::ifstream &fl, std::string &line_buf) {
+    if (!std::getline(fl, line_buf)) {
+        log(LogSeverity::Error, LVL_GOD, "Error reading help file: not terminated with $?");
         exit(1);
     }
-
-    line_buf[strlen(line_buf) - 1] = '\0'; /* take off the trailing \n */
 }
 
-void load_help(FILE *fl) {
-    char key[READ_SIZE + 1], next_key[READ_SIZE + 1], entry[32384];
-    char line[READ_SIZE + 1], *scan;
+void load_help(std::ifstream &fl) {
+    std::string key, next_key, entry, line;
     HelpIndexElement el;
 
-    /* get the first keyword line */
-    get_one_line(fl, key);
-
-    if (!strlen(key)) {
-        log("Illegal blank line in help file");
+    // Get the first keyword line
+    if (!std::getline(fl, key) || key.empty()) {
+        log(LogSeverity::Error, LVL_GOD, "Illegal blank line in help file");
         abort();
     }
-    while (*key != '$') {
-        /* read in the corresponding help entry */
-        strcpy(entry, strcat(key, "\n"));
-        get_one_line(fl, line);
-        while (*line != '#') {
-            strcat(entry, strcat(line, "\n"));
-            get_one_line(fl, line);
+    
+    while (key != "$") {
+        // Read in the corresponding help entry
+        entry = key + "\n";
+        
+        std::getline(fl, line);
+        while (!line.empty() && line[0] != '#') {
+            entry += line + "\n";
+            std::getline(fl, line);
         }
 
+        // Parse level requirement
         el.min_level = 0;
-        if ((*line == '#') && (*(line + 1) != 0))
-            el.min_level = atoi((line + 1));
+        if (!line.empty() && line[0] == '#' && line.size() > 1) {
+            el.min_level = std::stoi(line.substr(1));
+        }
 
         el.min_level = std::clamp(el.min_level, 0, LVL_IMPL);
 
-        /* now, add the entry to the index with each keyword on the keyword line */
+        // Add the entry to the index with each keyword on the keyword line
         el.duplicate = 0;
-        el.entry = strdup(entry);
-        scan = one_word(key, next_key);
-        while (*next_key) {
-            el.keyword = strdup(next_key);
+        el.entry = strdup(entry.c_str());
+        
+        std::string_view key_view = key;
+        std::string_view scan = key_view;
+        
+        while (true) {
+            scan = one_word(scan, next_key);
+            if (next_key.empty()) break;
+            
+            el.keyword = strdup(next_key.c_str());
             help_table[top_of_helpt++] = el;
             el.duplicate++;
-            scan = one_word(scan, next_key);
         }
 
-        /* get next keyword line (or $) */
-        get_one_line(fl, key);
-
-        if (!strlen(key)) {
-            log("Illegal blank line in help file");
+        // Get next keyword line (or $)
+        if (!std::getline(fl, key) || key.empty()) {
+            log(LogSeverity::Error, LVL_GOD, "Illegal blank line in help file");
             abort();
         }
     }
@@ -2545,39 +2553,32 @@ int con_aff(CharData *ch) {
  ************************************************************************/
 
 /* read and allocate space for a '~'-terminated string from a given file */
-std::string fread_string(FILE *fl, const std::string_view error) {
+std::string fread_string(std::ifstream &fl, const std::string_view error) {
     std::string result;
-    char tmp[512];
+    std::string line;
     bool done = false;
 
     while (!done) {
-        if (!fgets(tmp, sizeof(tmp), fl)) {
-            fprintf(stderr, "SYSERR: fread_string: format error at or near %s\n", error.data());
+        if (!std::getline(fl, line)) {
+            log(LogSeverity::Error, LVL_GOD, "SYSERR: fread_string: format error at or near {}", error);
             exit(1);
         }
 
-        // If there is a '~', end the string; else put an "\n" over the '\n'.
-        if (char *point = strchr(tmp, '~'); point != nullptr) {
-            *point = '\0';
+        // If there is a '~', end the string
+        if (auto pos = line.find('~'); pos != std::string::npos) {
+            result += line.substr(0, pos);
             done = true;
         } else {
-            size_t len = strlen(tmp);
-            if (len > 0 && tmp[len - 1] == '\n') {
-                tmp[len - 1] = '\0';
-                strcat(tmp, "\n");
-            }
+            result += line + "\n";
         }
 
-        result += tmp;
-
         if (result.size() >= MAX_STRING_LENGTH) {
-            log("SYSERR: fread_string: string too large (db.c)");
-            log(error.data());
+            log(LogSeverity::Error, LVL_GOD, "SYSERR: fread_string: string too large at {}", error);
             exit(1);
         }
     }
 
-    // Strip trailing newlines.
+    // Strip trailing newlines
     while (!result.empty() && (result.back() == '\n' || result.back() == '\r')) {
         result.pop_back();
     }
@@ -2665,39 +2666,36 @@ void free_obj(ObjData *obj) {
 }
 
 /* read contents of a text file, alloc space, point buf to it */
-int file_to_string_alloc(const std::string_view name, std::string_view buf) {
-    char temp[MAX_STRING_LENGTH];
-
-    if (!buf.empty())
-        free(*buf);
-
-    if (file_to_string(name, temp) < 0) {
-        *buf = "";
+int file_to_string_alloc(const std::string_view name, std::string &buf) {
+    buf.clear();
+    
+    if (file_to_string(name, buf) < 0) {
+        buf = "";
         return -1;
-    } else {
-        *buf = strdup(temp);
-        return 0;
     }
+    
+    return 0;
 }
 
 /* read contents of a text file, and place in buf */
-int file_to_string(const std::string_view name, std::string_view buf) {
+int file_to_string(const std::string_view name, std::string &buf) {
     std::ifstream fl(std::string(name));
     if (!fl.is_open()) {
         fmt::print(stderr, "Error reading {}\n", name);
         return -1;
     }
+    
+    buf.clear();
     std::string line;
     while (std::getline(fl, line)) {
-        line += "\n";
-        if (buf.size() + line.size() + 1 > MAX_STRING_LENGTH) {
+        buf += line + "\n";
+        if (buf.size() + 1 > MAX_STRING_LENGTH) {
             fl.close();
             return 0;
         }
-        strcat(buf, tmp);
     }
     fl.close();
-    return (0);
+    return 0;
 }
 
 /* Get the unix timestamp of the last file write. */
@@ -2866,42 +2864,43 @@ int real_object(int vnum) {
 /*
  * Read a number from a file.
  */
-int fread_number(FILE *fp) {
-    int number;
-    bool sign;
+int fread_number(std::ifstream &fp) {
+    int number = 0;
+    bool sign = false;
     char c;
 
+    // Skip whitespace
     do {
-        c = getc(fp);
-    } while (isspace(c));
+        fp.get(c);
+    } while (isspace(c) && fp.good());
 
-    number = 0;
-
-    sign = false;
+    // Check for sign
     if (c == '+') {
-        c = getc(fp);
+        fp.get(c);
     } else if (c == '-') {
         sign = true;
-        c = getc(fp);
+        fp.get(c);
     }
 
     if (!isdigit(c)) {
-        log("Fread_number: bad format.");
+        log(LogSeverity::Error, LVL_GOD, "Fread_number: bad format.");
         exit(1);
     }
 
-    while (isdigit(c)) {
-        number = number * 10 + c - '0';
-        c = getc(fp);
+    // Parse digits
+    while (isdigit(c) && fp.good()) {
+        number = number * 10 + (c - '0');
+        fp.get(c);
     }
 
     if (sign)
-        number = 0 - number;
+        number = -number;
 
+    // Handle composite numbers (n|m means n+m)
     if (c == '|')
         number += fread_number(fp);
     else if (c != ' ')
-        ungetc(c, fp);
+        fp.putback(c);
 
     return number;
 }
@@ -2909,54 +2908,73 @@ int fread_number(FILE *fp) {
 /*
  * Read to end of line (for comments).
  */
-void fread_to_eol(FILE *fp) {
-    char c;
-
-    do {
-        c = getc(fp);
-    } while (c != '\n' && c != '\r');
-
-    do {
-        c = getc(fp);
-    } while (c == '\n' || c == '\r');
-
-    ungetc(c, fp);
-    return;
+void fread_to_eol(std::ifstream &fp) {
+    std::string dummy;
+    std::getline(fp, dummy);
 }
 
 /*
  * Read one word (into static buffer).
  */
-std::string_view fread_word(FILE *fp) {
+std::string fread_word(std::ifstream &fp) {
     static char word[MAX_INPUT_LENGTH];
-    std::string_view pword;
     char cEnd;
+    int i = 0;
 
+    // Skip whitespace
     do {
-        cEnd = getc(fp);
-    } while (isspace(cEnd));
+        fp.get(cEnd);
+    } while (isspace(cEnd) && fp.good());
 
+    if (!fp.good()) {
+        log(LogSeverity::Error, LVL_GOD, "SYSERR: Fread_word: EOF encountered");
+        exit(1);
+    }
+
+    // Check for quoted word
     if (cEnd == '\'' || cEnd == '"') {
-        pword = word;
-    } else {
-        word[0] = cEnd;
-        pword = word + 1;
-        cEnd = ' ';
-    }
-
-    for (; pword < word + MAX_INPUT_LENGTH; pword++) {
-        *pword = getc(fp);
-        if (cEnd == ' ' ? isspace(*pword) || *pword == '~' : *pword == cEnd) {
-            if (cEnd == ' ' || cEnd == '~')
-                ungetc(*pword, fp);
-            *pword = '\0';
-            return word;
+        char quote = cEnd;
+        
+        // Read until closing quote
+        while (i < MAX_INPUT_LENGTH - 1) {
+            fp.get(word[i]);
+            if (!fp.good() || word[i] == quote)
+                break;
+            i++;
         }
+        
+        if (i == MAX_INPUT_LENGTH - 1) {
+            log(LogSeverity::Error, LVL_GOD, "SYSERR: Fread_word: word too long.");
+            exit(1);
+        }
+        
+        word[i] = '\0';
+    } else {
+        // First character is already read
+        word[0] = cEnd;
+        i = 1;
+        
+        // Read until whitespace or ~
+        while (i < MAX_INPUT_LENGTH - 1) {
+            fp.get(word[i]);
+            if (!fp.good() || isspace(word[i]) || word[i] == '~')
+                break;
+            i++;
+        }
+        
+        if (i == MAX_INPUT_LENGTH - 1) {
+            log(LogSeverity::Error, LVL_GOD, "SYSERR: Fread_word: word too long.");
+            exit(1);
+        }
+        
+        // Put back the terminating character
+        if (fp.good())
+            fp.putback(word[i]);
+            
+        word[i] = '\0';
     }
 
-    log("SYSERR: Fread_word: word too long.");
-    exit(1);
-    return {};
+    return word;
 }
 
 IndexData *get_obj_index(int vnum) {
