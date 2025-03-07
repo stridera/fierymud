@@ -843,6 +843,18 @@ int count_hash_records(std::ifstream &fl) {
     return count;
 }
 
+std::optional<std::string> get_line(std::ifstream &fl) {
+    std::string temp;
+    
+    while (std::getline(fl, temp)) {
+        if (!temp.empty() && temp[0] != '*') {
+            return temp;
+        }
+    }
+    
+    return std::nullopt;
+}
+
 void index_boot(int mode) {
     std::string_view prefix;
     int rec_count = 0;
