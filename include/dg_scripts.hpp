@@ -235,7 +235,24 @@ void free_varlist(TriggerVariableData *vd);
 void free_proto_script(TriggerPrototypeList **list);
 bool format_script(DescriptorData *d, int indent_quantum);
 
-void add_var(TriggerVariableData **var_list, const std::string_view name, const std::string_view value);
+void add_var(TriggerVariableData **var_list, const std::string_view name, const std::string_view value) {
+    TriggerVariableData *vd;
+
+    for (vd = *var_list; vd && !matches(vd->name, name); vd = vd->next)
+        ;
+
+    if (vd) {
+        vd->value = value;
+    } else {
+        CREATE(vd, TriggerVariableData, 1);
+
+        vd->name = name;
+        vd->value = value;
+
+        vd->next = *var_list;
+        *var_list = vd;
+    }
+}
 int remove_var(TriggerVariableData **var_list, const std::string_view name);
 
 /* Macros for scripts */

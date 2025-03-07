@@ -155,9 +155,9 @@ RoomData *find_room(int n) {
 RoomData *get_room(std::string_view name) {
     int nr;
 
-    if (name[0] == UID_CHAR)
+    if (!name.empty() && name[0] == UID_CHAR)
         return find_room(svtoi(name.substr(1)));
-    else if (is_integer(name) && (nr = real_room(svtoi(name))) != NOWHERE) {
+    else if (!name.empty() && is_integer(name) && (nr = real_room(svtoi(name))) != NOWHERE) {
         return &world[nr];
     } else {
         return nullptr;
@@ -308,9 +308,9 @@ void find_uid_name(std::string_view uid, std::string &name) {
     CharData *ch;
     ObjData *obj;
 
-    if ((ch = find_char_in_world(find_by_name(uid))) != nullptr) {
+    if ((ch = find_char_in_world(find_by_name(std::string(uid)))) != nullptr) {
         name = GET_NAMELIST(ch);
-    } else if ((obj = find_obj_in_world(find_by_name(uid))) != nullptr) {
+    } else if ((obj = find_obj_in_world(find_by_name(std::string(uid)))) != nullptr) {
         name = obj->name;
     } else {
         name = fmt::format("uid = {}, (not found)", uid.substr(1));
@@ -429,12 +429,12 @@ ACMD(do_attach) {
     loc = loc_name.empty() ? -1 : svtoi(loc_name);
 
     if (matches_start(arg, "mtr")) {
-        if ((victim = find_char_around_char(ch, find_vis_by_name(ch, targ_name))) != nullptr) {
+        if ((victim = find_char_around_char(ch, find_vis_by_name(ch, std::string(targ_name)))) != nullptr) {
             if (IS_NPC(victim)) {
 
                 /* have a valid mob, now get trigger */
                 rn = real_trigger(tn);
-                if ((rn >= 0) && (trig = read_trigger(rn))) {
+                if (rn >= 0 && (trig = read_trigger(rn)) != nullptr) {
 
                     if (!SCRIPT(victim))
                         CREATE(SCRIPT(victim), ScriptData, 1);
@@ -450,11 +450,11 @@ ACMD(do_attach) {
     }
 
     else if (matches_start(arg, "otr")) {
-        if ((obj = find_obj_around_char(ch, find_vis_by_name(ch, targ_name))) != nullptr) {
+        if ((obj = find_obj_around_char(ch, find_vis_by_name(ch, std::string(targ_name)))) != nullptr) {
 
             /* have a valid obj, now get trigger */
             rn = trig_index[tn] ? tn : -1;
-            if ((rn >= 0) && (trig = read_trigger(rn))) {
+            if (rn >= 0 && (trig = read_trigger(rn)) != nullptr) {
 
                 if (!SCRIPT(obj))
                     CREATE(SCRIPT(obj), ScriptData, 1);
@@ -470,11 +470,11 @@ ACMD(do_attach) {
 
     else if (matches_start(arg, "wtr")) {
         if (is_integer(targ_name) && targ_name.find('.') == std::string_view::npos) {
-            if ((room = find_target_room(ch, targ_name)) != NOWHERE) {
+            if ((room = find_target_room(ch, std::string(targ_name))) != NOWHERE) {
 
                 /* have a valid room, now get trigger */
                 rn = trig_index[tn] ? tn : -1;
-                if ((rn >= 0) && (trig = read_trigger(rn))) {
+                if (rn >= 0 && (trig = read_trigger(rn)) != nullptr) {
 
                     if (!(world[room].script))
                         CREATE(world[room].script, ScriptData, 1);
@@ -593,7 +593,7 @@ ACMD(do_detach) {
 
     else {
         if (matches_start(arg1, "mob")) {
-            if ((victim = find_char_around_char(ch, find_vis_by_name(ch, arg2))) == nullptr) {
+            if ((victim = find_char_around_char(ch, find_vis_by_name(ch, std::string(arg2)))) == nullptr) {
                 char_printf(ch, "No such mobile around.\n");
             } else if (arg3.empty()) {
                 char_printf(ch, "You must specify a trigger to remove.\n");
@@ -603,7 +603,7 @@ ACMD(do_detach) {
         }
 
         else if (matches_start(arg1, "object")) {
-            if ((obj = find_obj_around_char(ch, find_vis_by_name(ch, arg2))) == nullptr) {
+            if ((obj = find_obj_around_char(ch, find_vis_by_name(ch, std::string(arg2)))) == nullptr) {
                 char_printf(ch, "No such object around.\n");
             } else if (arg3.empty()) {
                 char_printf(ch, "You must specify a trigger to remove.\n");
@@ -611,17 +611,17 @@ ACMD(do_detach) {
                 trigger = arg3;
             }
         } else {
-            if ((obj = find_obj_in_eq(ch, nullptr, find_vis_by_name(ch, arg1))) != nullptr) {
+            if ((obj = find_obj_in_eq(ch, nullptr, find_vis_by_name(ch, std::string(arg1)))) != nullptr) {
                 // Do nothing
-            } else if ((obj = find_obj_in_list(ch->carrying, find_vis_by_name(ch, arg1))) != nullptr) {
+            } else if ((obj = find_obj_in_list(ch->carrying, find_vis_by_name(ch, std::string(arg1)))) != nullptr) {
                 // Do nothing
-            } else if ((victim = find_char_in_room(&world[ch->in_room], find_vis_by_name(ch, arg1))) != nullptr) {
+            } else if ((victim = find_char_in_room(&world[ch->in_room], find_vis_by_name(ch, std::string(arg1)))) != nullptr) {
                 // Do nothing
-            } else if ((obj = find_obj_in_list(world[IN_ROOM(ch)].contents, find_vis_by_name(ch, arg1))) != nullptr) {
+            } else if ((obj = find_obj_in_list(world[IN_ROOM(ch)].contents, find_vis_by_name(ch, std::string(arg1)))) != nullptr) {
                 // Do nothing
-            } else if ((victim = find_char_around_char(ch, find_vis_by_name(ch, arg1))) != nullptr) {
+            } else if ((victim = find_char_around_char(ch, find_vis_by_name(ch, std::string(arg1)))) != nullptr) {
                 // Do nothing
-            } else if ((obj = find_obj_in_world(find_vis_by_name(ch, arg1))) != nullptr) {
+            } else if ((obj = find_obj_in_world(find_vis_by_name(ch, std::string(arg1)))) != nullptr) {
                 // Do nothing
             } else {
                 char_printf(ch, "Nothing around by that name.\n");
@@ -843,40 +843,41 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, std::s
      * being requested, we need to actually locate the character, object,
      * or room.
      */
-    if (vd && !(name = vd->value).empty()) {
+    if (vd && !vd->value.empty()) {
+        name = vd->value;
         switch (type) {
         case MOB_TRIGGER:
-            if ((o = find_obj_in_eq(ch, nullptr, find_by_name(name))) != nullptr) {
+            if ((o = find_obj_in_eq(ch, nullptr, find_by_name(std::string(name)))) != nullptr) {
                 // Do nothing
-            } else if ((o = find_obj_in_list(ch->carrying, find_by_name(name))) != nullptr) {
+            } else if ((o = find_obj_in_list(ch->carrying, find_by_name(std::string(name)))) != nullptr) {
                 // Do nothing
-            } else if ((c = find_char_in_room(&world[ch->in_room], find_by_name(name))) != nullptr) {
+            } else if ((c = find_char_in_room(&world[ch->in_room], find_by_name(std::string(name)))) != nullptr) {
                 // Do nothing
-            } else if ((o = find_obj_in_list(world[IN_ROOM(ch)].contents, find_by_name(name))) != nullptr) {
+            } else if ((o = find_obj_in_list(world[IN_ROOM(ch)].contents, find_by_name(std::string(name)))) != nullptr) {
                 // Do nothing
-            } else if ((c = find_char_in_world(find_by_name(name))) != nullptr) {
+            } else if ((c = find_char_in_world(find_by_name(std::string(name)))) != nullptr) {
                 // Do nothing
-            } else if ((o = find_obj_in_world(find_by_name(name))) != nullptr) {
+            } else if ((o = find_obj_in_world(find_by_name(std::string(name)))) != nullptr) {
                 // Do nothing
-            } else if ((r = get_room(name)) != nullptr) {
+            } else if ((r = get_room(std::string(name))) != nullptr) {
                 // Do nothing
             }
             break;
         case OBJ_TRIGGER:
-            if ((o = find_obj_around_obj(obj, find_by_name(name))) != nullptr) {
+            if ((o = find_obj_around_obj(obj, find_by_name(std::string(name)))) != nullptr) {
                 // Do nothing
-            } else if ((c = find_char_around_obj(obj, find_dg_by_name(name))) != nullptr) {
+            } else if ((c = find_char_around_obj(obj, find_dg_by_name(std::string(name)))) != nullptr) {
                 // Do nothing
-            } else if ((r = get_room(name)) != nullptr) {
+            } else if ((r = get_room(std::string(name))) != nullptr) {
                 // Do nothing
             }
             break;
         case WLD_TRIGGER:
-            if ((c = find_char_around_room(room, find_dg_by_name(name))) != nullptr) {
+            if ((c = find_char_around_room(room, find_dg_by_name(std::string(name)))) != nullptr) {
                 // Do nothing
-            } else if ((o = find_obj_around_room(room, find_by_name(name))) != nullptr) {
+            } else if ((o = find_obj_around_room(room, find_by_name(std::string(name)))) != nullptr) {
                 // Do nothing
-            } else if ((r = get_room(name)) != nullptr) {
+            } else if ((r = get_room(std::string(name))) != nullptr) {
                 // Do nothing
             }
             break;
@@ -948,13 +949,13 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, std::s
             else if (matches(field, "room_in_zone")) {
                 if (type == MOB_TRIGGER && ch->in_room != NOWHERE)
                     num = world[ch->in_room].zone;
-                else if (type == OBJ_TRIGGER && (num = obj_room(obj)) != NOWHERE)
+                else if (type == OBJ_TRIGGER && obj != nullptr && (num = obj_room(obj)) != NOWHERE)
                     num = world[num].zone;
                 else if (type == WLD_TRIGGER)
                     num = room->zone;
                 else
                     num = -1;
-                if (num >= 0 && (num = get_random_room_in_zone(num)) >= 0)
+                if (num >= 0 && (num = get_random_room_in_zone(num)) != NOWHERE && num >= 0)
                     str = fmt::format("{}", world[num].vnum);
                 else
                     strcpy(str, "-1");
@@ -962,60 +963,60 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, std::s
 
             /* Generate a random number */
             else
-                str = fmt::format("{}", ((num = svtoi(field)) > 0) ? random_number(1, num) : 0);
+                str = fmt::format("{}", (!field.empty() && (num = svtoi(field)) > 0) ? random_number(1, num) : 0);
         }
 
         /* Static functions */
         else if (matches(var, "get")) {
             /* %get.obj_shortdesc[VNUM]% */
             if (matches(field, "obj_shortdesc")) {
-                if (is_positive_integer(value) && (num = real_object(svtoi(value))) >= 0)
+                if (!value.empty() && is_positive_integer(value) && (num = real_object(svtoi(value))) >= 0)
                     strcpy(str, obj_proto[num].short_description);
                 else
                     str = fmt::format("[no description for object {}]", value);
 
             } else if (matches(field, "obj_noadesc")) {
                 /* %get.obj_noadesc[VNUM]% */
-                if (is_positive_integer(value) && (num = real_object(svtoi(value))) >= 0)
+                if (!value.empty() && is_positive_integer(value) && (num = real_object(svtoi(value))) >= 0)
                     strcpy(str, without_article(obj_proto[num].short_description));
                 else
                     sprintf(str, "[no description for object %s]", value);
 
             } else if (matches(field, "obj_pldesc")) {
                 /* %get.obj_pldesc[VNUM]% */
-                if (is_positive_integer(value) && (num = real_object(svtoi(value))) >= 0)
+                if (!value.empty() && is_positive_integer(value) && (num = real_object(svtoi(value))) >= 0)
                     strcpy(str, pluralize(obj_proto[num].short_description));
                 else
                     sprintf(str, "[no description for object %s]", value);
 
                 /* %get.mob_shortdesc[VNUM]% */
             } else if (matches(field, "mob_shortdesc")) {
-                if (is_positive_integer(value) && (num = real_mobile(svtoi(value))) >= 0)
+                if (!value.empty() && is_positive_integer(value) && (num = real_mobile(svtoi(value))) >= 0)
                     strcpy(str, mob_proto[num].player.short_descr);
                 else
                     sprintf(str, "[no description for mobile %s]", value);
 
                 /* %get.obj_count[VNUM]% is the number of objects with VNUM in game */
             } else if (matches(field, "obj_count")) {
-                if ((num = real_object(svtoi(value))) >= 0)
+                if (!value.empty() && (num = real_object(svtoi(value))) >= 0)
                     str = fmt::format("{}", obj_index[num].number);
                 else
                     strcpy(str, "0");
                 /* %get.mob_count[VNUM]% is the number of mobiles with VNUM in game */
             } else if (matches(field, "mob_count")) {
-                if ((num = real_mobile(svtoi(value))) >= 0)
+                if (!value.empty() && (num = real_mobile(svtoi(value))) >= 0)
                     str = fmt::format("{}", mob_index[num].number);
                 else
                     strcpy(str, "0");
                 /* %get.room[VNUM]% returns a UID variable pointing to that room */
             } else if (matches(field, "room")) {
-                if ((num = real_room(svtoi(value))) >= 0)
+                if (!value.empty() && (num = real_room(svtoi(value))) >= 0)
                     ROOM_UID_VAR(str, num);
                 else
                     strcpy(str, "0");
                 /* %get.people[VNUM]% is the number of people in room */
             } else if (matches(field, "people")) {
-                if (is_positive_integer(value) && ((num = real_room(svtoi(value))) >= 0)) {
+                if (!value.empty() && is_positive_integer(value) && ((num = real_room(svtoi(value))) >= 0)) {
                     ch = world[num].people;
                     for (num = 0; ch; ch = ch->next_in_room)
                         if (!GET_INVIS_LEV(ch))
@@ -1027,7 +1028,7 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, std::s
                     script_log(trig, buf2);
                 }
             } else if (matches(field, "opposite_dir")) {
-                if ((num = search_block(value, dirs, false)) >= 0)
+                if (!value.empty() && (num = search_block(std::string(value), dirs, false)) >= 0)
                     strcpy(str, dirs[rev_dir[num]]);
                 else {
                     /*
@@ -1212,7 +1213,7 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, std::s
             }
         } else if (matches(field, "flagged")) {
             if (IS_NPC(c)) {
-                if ((num = search_block(value, action_bits, false)) >= 0)
+                if (!value.empty() && (num = search_block(std::string(value), action_bits, false)) >= 0)
                     strcpy(str, MOB_FLAGGED(c, num) ? "1" : "0");
                 else {
                     strcpy(str, "0");
@@ -1220,9 +1221,9 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, std::s
                     script_log(trig, buf2);
                 }
             } else {
-                if ((num = search_block(value, player_bits, false)) >= 0)
+                if (!value.empty() && (num = search_block(std::string(value), player_bits, false)) >= 0)
                     strcpy(str, PLR_FLAGGED(c, (1 << num)) ? "1" : "0");
-                else if ((num = search_block(value, preference_bits, false)) >= 0)
+                else if (!value.empty() && (num = search_block(std::string(value), preference_bits, false)) >= 0)
                     strcpy(str, PRF_FLAGGED(c, (1 << num)) ? "1" : "0");
                 else {
                     strcpy(str, "0");
@@ -1234,7 +1235,7 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, std::s
             sprintflag(str, EFF_FLAGS(c), NUM_EFF_FLAGS, effect_flags);
 
         else if (matches(field, "aff_flagged") || matches(field, "eff_flagged")) {
-            if ((num = search_block(value, effect_flags, false)) >= 0)
+            if (!value.empty() && (num = search_block(std::string(value), effect_flags, false)) >= 0)
                 strcpy(str, EFF_FLAGGED(c, num) ? "1" : "0");
             else {
                 strcpy(str, "0");
@@ -1251,7 +1252,7 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, std::s
                     strcat(str, " ");
                 }
         } else if (matches(field, "has_spell")) {
-            if ((num = find_talent_num(value, 0)) >= 0)
+            if (!value.empty() && (num = find_talent_num(std::string(value), 0)) >= 0)
                 strcpy(str, affected_by_spell(c, num) ? "1" : "0");
             else {
                 strcpy(str, "0");
@@ -1381,7 +1382,7 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, std::s
                     if (GET_EQ(c, pos))
                         ++num;
                 str = fmt::format("{}", num);
-            } else if ((pos = search_block(value, wear_positions, true)) >= 0)
+            } else if (!value.empty() && (pos = search_block(std::string(value), wear_positions, true)) >= 0)
                 UID_VAR(str, GET_EQ(c, pos));
             else
                 strcpy(str, "0");
@@ -1505,18 +1506,18 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, std::s
         else if (matches(field, "hiddenness"))
             str = fmt::format("{}", GET_OBJ_HIDDENNESS(o));
         else if (matches(field, "affect") || matches(field, "effect")) {
-            if (!is_positive_integer(value) || ((num = svtoi(value)) > 5))
+            if (value.empty() || !is_positive_integer(value) || ((num = svtoi(value)) > 5))
                 *str = '\0';
             else
                 str = fmt::format("{:+d} {}", o->applies[num].modifier, apply_types[(int)o->applies[num].location]);
         } else if (matches(field, "affect_value") || matches(field, "effect_value"))
-            str = fmt::format("{}", (is_positive_integer(value) && ((num = svtoi(value)) <= 5)) ? o->applies[num].modifier : 0);
+            str = fmt::format("{}", (!value.empty() && is_positive_integer(value) && ((num = svtoi(value)) <= 5)) ? o->applies[num].modifier : 0);
 
         /* Flags */
         else if (matches(field, "flags"))
             sprintflag(str, GET_OBJ_FLAGS(o), NUM_ITEM_FLAGS, extra_bits);
         else if (matches(field, "flagged")) {
-            if ((num = search_block(value, extra_bits, false)) >= 0)
+            if (!value.empty() && (num = search_block(std::string(value), extra_bits, false)) >= 0)
                 strcpy(str, OBJ_FLAGGED(o, num) ? "1" : "0");
             else {
                 strcpy(str, "0");
@@ -1527,7 +1528,7 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, std::s
             sprintflag(str, GET_OBJ_EFF_FLAGS(o), NUM_EFF_FLAGS, effect_flags);
 
         else if (matches(field, "has_spell")) {
-            if ((num = search_block(value, effect_flags, false)) >= 0)
+            if (!value.empty() && (num = search_block(std::string(value), effect_flags, false)) >= 0)
                 strcpy(str, OBJ_EFF_FLAGGED(o, num) ? "1" : "0");
             else {
                 strcpy(str, "0");
@@ -1596,7 +1597,7 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, std::s
         else if (matches(field, "flags"))
             sprintflag(str, r->room_flags, NUM_ROOM_FLAGS, room_bits);
         else if (matches(field, "flagged")) {
-            if ((num = search_block(value, room_bits, false)) >= 0)
+            if (!value.empty() && (num = search_block(std::string(value), room_bits, false)) >= 0)
                 strcpy(str, IS_FLAGGED(r->room_flags, num) ? "1" : "0");
             else {
                 strcpy(str, "0");
@@ -1606,7 +1607,7 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, std::s
         } else if (matches(field, "effects") || matches(field, "affects"))
             sprintflag(str, r->room_effects, NUM_ROOM_EFF_FLAGS, room_effects);
         else if (matches(field, "has_effect") || matches(field, "has_affect")) {
-            if ((num = search_block(value, room_effects, false)) >= 0)
+            if (!value.empty() && (num = search_block(std::string(value), room_effects, false)) >= 0)
                 strcpy(str, IS_FLAGGED(r->room_effects, num) ? "1" : "0");
             else {
                 strcpy(str, "0");
@@ -1658,7 +1659,7 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, std::s
         }
 
         /* Exits can have values (which are actually sub-sub-variables)  */
-        else if ((num = search_block(field, dirs, true)) >= 0) {
+        else if (!field.empty() && (num = search_block(std::string(field), dirs, true)) >= 0) {
             if (!r->exits[num])
                 strcpy(str, "-1");
             else if (value.empty()) /* %room.DIR% is a vnum */
@@ -1888,7 +1889,8 @@ void eval_op(std::string_view op, std::string_view lhs, std::string_view rhs, st
     }
 
     else if (matches("/", op)) {
-        result = fmt::format("{}", (n = svtoi(rhs)) != 0 ? (svtoi(lhs) / n) : 0);
+        n = svtoi(rhs);
+        result = fmt::format("{}", n != 0 ? (svtoi(lhs) / n) : 0);
     }
 
     else if (matches("+", op)) {
