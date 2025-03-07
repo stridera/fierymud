@@ -1,5 +1,6 @@
 
 #include "dg_scripts.hpp"
+#include <fmt/core.h>
 
 #include "ai.hpp"
 #include "casting.hpp"
@@ -578,7 +579,7 @@ ACMD(do_detach) {
     CharData *victim = nullptr;
     ObjData *obj = nullptr;
     RoomData *room;
-    std::string_view trigger = 0;
+    std::string_view trigger;
 
     auto arg1 = argument.shift();
     auto arg2 = argument.shift();
@@ -767,7 +768,7 @@ int get_random_room_in_zone(int znum) {
 
 /* sets str to be the value of var.field */
 void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, std::string_view var, std::string_view field,
-                      std::string_view value, std::string_view str) {
+                      std::string_view value, std::string &str) {
     TriggerVariableData *vd;
     CharData *ch, *c = nullptr;
     ObjData *obj, *o = nullptr;
@@ -1885,23 +1886,23 @@ void eval_op(std::string_view op, std::string_view lhs, std::string_view rhs, st
     }
 
     else if (matches("/=", op)) {
-        sprintf(result, "%c", strcasestr(lhs, rhs) ? '1' : '0');
+        result = fmt::format("{}", strcasestr(lhs, rhs) ? '1' : '0');
 
     else if (matches("*", op))
-        sprintf(result, "%d", svtoi(lhs) * svtoi(rhs));
+        result = fmt::format("{}", svtoi(lhs) * svtoi(rhs));
 
     else if (matches("/", op)) {
-        sprintf(result, "%d", ((n = svtoi(rhs)) != 0) ? (svtoi(lhs) / n) : 0);
+        result = fmt::format("{}", ((n = svtoi(rhs)) != 0) ? (svtoi(lhs) / n) : 0);
 
     else if (matches("+", op))
-        sprintf(result, "%d", svtoi(lhs) + svtoi(rhs));
+        result = fmt::format("{}", svtoi(lhs) + svtoi(rhs));
 
     else if (matches("-", op))
-        sprintf(result, "%d", svtoi(lhs) - svtoi(rhs));
+        result = fmt::format("{}", svtoi(lhs) - svtoi(rhs));
 
     else if (matches("!", op)) {
         if (is_num(rhs))
-            sprintf(result, "%d", !svtoi(rhs));
+            result = fmt::format("{}", !svtoi(rhs));
         else
             sprintf(result, "%d", rhs.empty());
     }
