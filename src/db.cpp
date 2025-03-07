@@ -125,7 +125,7 @@ void discrete_load(std::ifstream &fl, int mode);
 void parse_trigger(std::ifstream &fl, int virtual_nr);
 void parse_room(std::ifstream &fl, int virtual_nr);
 void parse_mobile(std::ifstream &mob_f, int nr);
-std::string_view parse_object(std::ifstream &obj_f, int nr);
+std::string parse_object(std::ifstream &obj_f, int nr);
 void load_zones(std::ifstream &fl, std::string_view zonename);
 void load_help(std::ifstream &fl);
 void assign_mobiles(void);
@@ -1769,7 +1769,7 @@ void init_obj_proto(ObjData *obj) {
 }
 
 /* read all objects from obj file; generate index and prototypes */
-std::string_view parse_object(std::ifstream &obj_f, int nr) {
+std::string parse_object(std::ifstream &obj_f, int nr) {
     static int i = 0, retval;
     int t[10], j;
     std::string_view tmpptr;
@@ -1805,7 +1805,7 @@ std::string_view parse_object(std::ifstream &obj_f, int nr) {
 
     /* *** numeric data *** */
     if (!std::getline(obj_f, line) ||
-        (retval = sscanf(line.c_str(), " %d %s %s %d", &t[0], f1, f2, &t[1])) != 4) {
+        (retval = sscanf(line.c_str(), " %d %255s %255s %d", &t[0], f1, f2, &t[1])) != 4) {
         if (retval == 3) {
             sscanf(line.c_str(), " %d %255s %255s", &t[0], f1, f2);
             t[1] = 0;
