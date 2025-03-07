@@ -309,6 +309,7 @@ void do_stat_trigger(CharData *ch, TrigData *trig) {
 
 /* find the name of what the uid points to */
 void find_uid_name(std::string_view uid, std::string &name) {
+    name.clear();
     CharData *ch;
     ObjData *obj;
 
@@ -770,6 +771,7 @@ int get_random_room_in_zone(int znum) {
 /* sets str to be the value of var.field */
 void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, std::string_view var, std::string_view field,
                       std::string_view value, std::string &str) {
+    str.clear();
     TriggerVariableData *vd;
     CharData *ch, *c = nullptr;
     ObjData *obj, *o = nullptr;
