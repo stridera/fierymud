@@ -125,7 +125,7 @@ void discrete_load(FILE *fl, int mode);
 void parse_trigger(std::ifstream &fl, int virtual_nr);
 void parse_room(std::ifstream &fl, int virtual_nr);
 void parse_mobile(std::ifstream &mob_f, int nr);
-std::string_view parse_object(FILE *obj_f, int nr);
+std::string_view parse_object(std::ifstream &obj_f, int nr);
 void load_zones(FILE *fl, std::string_view zonename);
 void load_help(FILE *fl);
 void assign_mobiles(void);
