@@ -288,10 +288,10 @@ void do_stat_trigger(CharData *ch, TrigData *trig) {
         sprintbit(GET_TRIG_TYPE(trig), trig_types, buf);
     }
 
-    sprintf(sb, "Trigger Type: %s, Numeric Arg: %d, Arg list: %s\n", buf, GET_TRIG_NARG(trig),
-            ((GET_TRIG_ARG(trig) && *GET_TRIG_ARG(trig)) ? GET_TRIG_ARG(trig) : "None"));
+    sb = fmt::format("Trigger Type: {}, Numeric Arg: {}, Arg list: {}\n", buf, GET_TRIG_NARG(trig),
+                     ((GET_TRIG_ARG(trig) && *GET_TRIG_ARG(trig)) ? GET_TRIG_ARG(trig) : "None"));
 
-    strcat(sb, "Commands:\n\n");
+    sb += "Commands:\n\n";
 
     cmd_list = trig->cmdlist;
     while (cmd_list) {
@@ -314,7 +314,7 @@ void find_uid_name(std::string_view uid, std::string_view name) {
     else if ((obj = find_obj_in_world(find_by_name(uid))))
         strcpy(name, obj->name);
     else
-        sprintf(name, "uid = %s, (not found)", uid + 1);
+        name = fmt::format("uid = {}, (not found)", uid.substr(1));
 }
 
 /* general function to display stats on script sc */
@@ -327,25 +327,23 @@ std::string script_stat(CharData *ch, ScriptData *sc) {
 
     get_char_cols(ch);
 
-    buf += sprintf(buf, "Global Variables: %s\n", sc->global_vars ? "" : "None");
+    buf += fmt::format("Global Variables: {}\n", sc->global_vars ? "" : "None");
 
     for (tv = sc->global_vars; tv; tv = tv->next) {
         if (*(tv->value) == UID_CHAR) {
             find_uid_name(tv->value, name);
-            buf += sprintf(buf, "    %15s:  %s\n", tv->name, name);
+            buf += fmt::format("    {:15}:  {}\n", tv->name, name);
         } else
-            buf += sprintf(buf, "    %15s:  %s\n", tv->name, tv->value);
+            buf += fmt::format("    {:15}:  {}\n", tv->name, tv->value);
     }
 
     for (t = TRIGGERS(sc); t; t = t->next) {
-        buf += sprintf(buf, "%s", t_listdisplay(t->nr, ++found));
+        buf += t_listdisplay(t->nr, ++found);
 
 #if 1
         if (GET_TRIG_WAIT(t)) {
-            buf += sprintf(buf,
-                           "  Wait: %ld, Current line: %s\n"
-                           "  Variables: %s\n",
-                           event_time(GET_TRIG_WAIT(t)), t->curr_state->cmd, GET_TRIG_VARS(t) ? "" : "None");
+            buf += fmt::format("  Wait: {}, Current line: {}\n  Variables: {}\n",
+                               event_time(GET_TRIG_WAIT(t)), t->curr_state->cmd, GET_TRIG_VARS(t) ? "" : "None");
 
             for (tv = GET_TRIG_VARS(t); tv; tv = tv->next) {
                 if (*(tv->value) == UID_CHAR) {

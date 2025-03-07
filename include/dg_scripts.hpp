@@ -264,10 +264,8 @@ int remove_var(TriggerVariableData **var_list, const std::string_view name);
 #define SCRIPT_CHECK(go, type) (SCRIPT(go) && IS_SET(SCRIPT_TYPES(SCRIPT(go)), type))
 #define TRIGGER_CHECK(t, type) (IS_SET(GET_TRIG_TYPE(t), type) && !GET_TRIG_DEPTH(t))
 
-#define ADD_UID_VAR(trig, go, name)                                                                                    \
-    {                                                                                                                  \
-        add_var(&GET_TRIG_VARS(trig), name, fmt::format("{}{}", UID_CHAR, GET_ID(go)));                                \
-    }
+#define ADD_UID_VAR(trig, go, name) \
+    add_var(&GET_TRIG_VARS(trig), name, fmt::format("{}{}", UID_CHAR, GET_ID(go)))
 
 /* typedefs that the dg functions rely on */
 // typedef struct index_data index_data;
