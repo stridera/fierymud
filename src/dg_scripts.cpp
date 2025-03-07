@@ -2130,26 +2130,26 @@ CmdlistElement *find_else_end(TrigData *trig, CmdlistElement *cl, void *go, Scri
 /* processes any 'wait' commands in a trigger */
 void process_wait(void *go, TrigData *trig, int type, std::string_view cmd, CmdlistElement *cl) {
     std::string buf;
-    char *arg;
-    WaitEventData *wait_event_obj;
-    long time, hr, min, ntime;
-    char c;
+    std::string_view arg;
+    long time = 0, hr = 0, min = 0, ntime = 0;
+    char c = '\0';
 
     arg = any_one_arg(cmd, buf);
-    skip_spaces(arg);
+    arg = trim(arg);
 
     if (arg.empty()) {
-        sprintf(buf2, "Wait w/o an arg: '%s'", cl->cmd);
-        script_log(trig, buf2);
+        script_log(trig, fmt::format("Wait w/o an arg: '{}'", cl->cmd));
         return;
     }
-
-    else if (matches(arg, "until ")) {
+    else if (matches_start(arg, "until ")) {
+        std::string until_arg(arg.substr(6));
         /* valid forms of time are 14:30 and 1430 */
-        if (sscanf(arg, "until %ld:%ld", &hr, &min) == 2)
+        if (sscanf(until_arg.c_str(), "%ld:%ld", &hr, &min) == 2)
             min += (hr * 60);
-        else
+        else {
+            hr = svtoi(until_arg);
             min = (hr % 100) + ((hr / 100) * 60);
+        }
 
         /* calculate the pulse of the day of "until" time */
         ntime = (min * SECS_PER_MUD_HOUR * PASSES_PER_SEC) / 60;
@@ -2163,22 +2163,24 @@ void process_wait(void *go, TrigData *trig, int type, std::string_view cmd, Cmdl
         else
             time = ntime - time;
     }
-
     else {
-        if (sscanf(arg, "%ld %c", &time, &c) == 2) {
+        std::string time_arg(arg);
+        if (sscanf(time_arg.c_str(), "%ld %c", &time, &c) == 2) {
             if (c == 't')
                 time *= PULSES_PER_MUD_HOUR;
             else if (c == 's')
                 time *= PASSES_PER_SEC;
+        } else {
+            time = svtoi(arg);
         }
     }
 
-    CREATE(wait_event_obj, WaitEventData, 1);
+    auto wait_event_obj = std::make_unique<WaitEventData>();
     wait_event_obj->trigger = trig;
     wait_event_obj->go = go;
     wait_event_obj->type = type;
 
-    GET_TRIG_WAIT(trig) = event_create(EVENT_TRIGGER_WAIT, trig_wait_event, wait_event_obj, true, nullptr, time);
+    GET_TRIG_WAIT(trig) = event_create(EVENT_TRIGGER_WAIT, trig_wait_event, wait_event_obj.release(), true, nullptr, time);
     trig->curr_state = cl->next;
 }
 
