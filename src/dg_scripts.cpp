@@ -237,16 +237,15 @@ void script_trigger_check(void) {
 }
 
 EVENTFUNC(trig_wait_event) {
-    WaitEventData *wait_event_obj = (WaitEventData *)event_obj;
-    TrigData *trig;
-    void *go;
-    int type;
-
-    trig = wait_event_obj->trigger;
-    go = wait_event_obj->go;
-    type = wait_event_obj->type;
+    auto wait_event_obj = static_cast<WaitEventData *>(event_obj);
+    TrigData *trig = wait_event_obj->trigger;
+    void *go = wait_event_obj->go;
+    int type = wait_event_obj->type;
 
     GET_TRIG_WAIT(trig) = nullptr;
+    
+    // Free the event data
+    delete wait_event_obj;
 
     script_driver(&go, trig, type, TRIG_RESTART);
     return EVENT_FINISHED;
@@ -254,21 +253,19 @@ EVENTFUNC(trig_wait_event) {
 
 /* wait for casts...*/
 void pause_while_casting(void *go, TrigData *trig, int type, CmdlistElement *cl) {
-    WaitEventData *wait_event_obj;
-    long time = 10L;
-
-    CREATE(wait_event_obj, WaitEventData, 1);
+    auto wait_event_obj = std::make_unique<WaitEventData>();
     wait_event_obj->trigger = trig;
     wait_event_obj->go = go;
     wait_event_obj->type = type;
 
-    GET_TRIG_WAIT(trig) = event_create(EVENT_TRIGGER_WAIT, trig_wait_event, wait_event_obj, true, nullptr, time);
+    GET_TRIG_WAIT(trig) = event_create(EVENT_TRIGGER_WAIT, trig_wait_event, wait_event_obj.release(), true, nullptr, 10L);
     trig->curr_state = cl;
 }
 
 void do_stat_trigger(CharData *ch, TrigData *trig) {
     CmdlistElement *cmd_list;
-    char sb[MAX_STRING_LENGTH_BIG];
+    std::string sb;
+    std::string buf;
 
     if (!trig) {
         log("SYSERR: NULL trigger passed to do_stat_trigger.");
@@ -296,13 +293,11 @@ void do_stat_trigger(CharData *ch, TrigData *trig) {
 
     sb += "Commands:\n\n";
 
-    cmd_list = trig->cmdlist;
-    while (cmd_list) {
+    for (cmd_list = trig->cmdlist; cmd_list; cmd_list = cmd_list->next) {
         if (cmd_list->cmd) {
-            strcat(sb, escape_ansi(cmd_list->cmd));
-            strcat(sb, "\n");
+            sb += escape_ansi(cmd_list->cmd);
+            sb += "\n";
         }
-        cmd_list = cmd_list->next;
     }
     page_string(ch, sb);
 }
@@ -314,9 +309,9 @@ void find_uid_name(std::string_view uid, std::string &name) {
     ObjData *obj;
 
     if ((ch = find_char_in_world(find_by_name(uid))) != nullptr) {
-        strcpy(name, GET_NAMELIST(ch));
+        name = GET_NAMELIST(ch);
     } else if ((obj = find_obj_in_world(find_by_name(uid))) != nullptr) {
-        strcpy(name, obj->name);
+        name = obj->name;
     } else {
         name = fmt::format("uid = {}, (not found)", uid.substr(1));
     }
@@ -326,8 +321,9 @@ void find_uid_name(std::string_view uid, std::string &name) {
 std::string script_stat(CharData *ch, ScriptData *sc) {
     TriggerVariableData *tv;
     TrigData *t;
-    char name[MAX_INPUT_LENGTH];
+    std::string name;
     int found = 0;
+    std::string buf;
     extern std::string_view t_listdisplay(int nr, int index);
 
     get_char_cols(ch);
@@ -345,7 +341,6 @@ std::string script_stat(CharData *ch, ScriptData *sc) {
     for (t = TRIGGERS(sc); t; t = t->next) {
         buf += t_listdisplay(t->nr, ++found);
 
-#if 1
         if (GET_TRIG_WAIT(t)) {
             buf += fmt::format("  Wait: {}, Current line: {}\n  Variables: {}\n",
                                event_time(GET_TRIG_WAIT(t)), t->curr_state->cmd, GET_TRIG_VARS(t) ? "" : "None");
@@ -358,8 +353,9 @@ std::string script_stat(CharData *ch, ScriptData *sc) {
                     buf += fmt::format("    {:15}:  {}\n", tv->name, tv->value);
             }
         }
-#endif
     }
+    
+    return buf;
 }
 
 std::string do_sstat_room(CharData *ch, RoomData *rm) {
@@ -498,24 +494,7 @@ ACMD(do_attach) {
 }
 
 /* adds a variable with given name and value to trigger */
-void add_var(TriggerVariableData **var_list, const std::string_view name, const std::string_view value) {
-    TriggerVariableData *vd;
-
-    for (vd = *var_list; vd && !matches(vd->name, name); vd = vd->next)
-        ;
-
-    if (vd) {
-        vd->value = value;
-    } else {
-        CREATE(vd, TriggerVariableData, 1);
-
-        vd->name = name;
-        vd->value = value;
-
-        vd->next = *var_list;
-        *var_list = vd;
-    }
-}
+void add_var(TriggerVariableData **var_list, const std::string_view name, const std::string_view value);
 
 /*
  *  removes the trigger specified by name, and the script of o if
@@ -778,6 +757,7 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, std::s
     RoomData *room, *r = nullptr;
     std::string_view name;
     int num;
+    char uid_buf[20];
 
     /*
      * First see if there is a local variable with the specified name.
@@ -836,13 +816,16 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, std::s
             if (matches(var, "self")) {
                 switch (type) {
                 case MOB_TRIGGER:
-                    UID_VAR(str, ch);
+                    UID_VAR(uid_buf, ch);
+                    str = uid_buf;
                     break;
                 case OBJ_TRIGGER:
-                    UID_VAR(str, obj);
+                    UID_VAR(uid_buf, obj);
+                    str = uid_buf;
                     break;
                 case WLD_TRIGGER:
-                    ROOM_UID_VAR(str, real_room(room->vnum));
+                    ROOM_UID_VAR(uid_buf, real_room(room->vnum));
+                    str = uid_buf;
                     break;
                 }
             }
@@ -850,8 +833,7 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, std::s
              * that was done by a wdamage, mdamage, or odamage command. */
             else if (matches(var, "damdone")) {
                 str = fmt::format("{}", trig->damdone);
-            } else
-                *str = '\0';
+            }
         }
         return;
     }
@@ -1718,179 +1700,187 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, std::s
 }
 
 /* substitutes any variables into line and returns it as buf */
-void var_subst(void *go, ScriptData *sc, TrigData *trig, int type, std::string_view line, std::string_view buf) {
-    char tmp[MAX_INPUT_LENGTH], repl_str[MAX_INPUT_LENGTH], value[MAX_INPUT_LENGTH];
-    std::string_view var, *field, *subfield, *p;
+void var_subst(void *go, ScriptData *sc, TrigData *trig, int type, std::string_view line, std::string &buf) {
+    std::string tmp(line);
+    std::string repl_str;
+    std::string value;
+    std::string_view var, field, subfield;
+    size_t p_pos = 0;
     int left, len;
 
     /* Skip if no %'s */
-    if (!strchr(line, '%')) {
-        strcpy(buf, line);
+    if (line.find('%') == std::string_view::npos) {
+        buf = line;
         return;
     }
 
-    p = strcpy(tmp, line);
-    value[0] = '\0';
-
+    value.clear();
+    buf.clear();
     left = MAX_INPUT_LENGTH - 1;
 
-    while (*p && (left > 0)) {
-
+    while (p_pos < tmp.size() && (left > 0)) {
         /* Copy until we find the first % */
-        while (*p && (*p != '%') && (left > 0)) {
-            *(buf++) = *(p++);
-            left--;
+        size_t percent_pos = tmp.find('%', p_pos);
+        if (percent_pos == std::string::npos) {
+            // No more percent signs, copy the rest
+            buf.append(tmp.substr(p_pos));
+            break;
         }
-
-        *buf = '\0';
-
-        /* double % */
-        if (*p && (*(++p) == '%') && (left > 0)) {
-            *(buf++) = *(p++);
-            *buf = '\0';
-            left--;
+        
+        // Copy everything up to the percent
+        buf.append(tmp.substr(p_pos, percent_pos - p_pos));
+        p_pos = percent_pos + 1;
+        
+        // Check for double %
+        if (p_pos < tmp.size() && tmp[p_pos] == '%') {
+            buf.push_back('%');
+            p_pos++;
             continue;
         }
-
-        else if (*p && (left > 0)) {
-
-            /* search until end of var or beginning of field */
-            for (var = p; *p && (*p != '%') && (*p != '.'); ++p)
-                ;
-
-            field = p;
-            if (*p == '.') {
-                *(p++) = '\0';
-
-                /* search until end of field or beginning of subfield/value */
-                for (field = p; *p && (*p != '%') && (*p != '['); ++p)
-                    ;
-
-                subfield = p;
-                if (*p == '[') {
-                    *(p++) = '\0';
-
-                    /* search until the end of the value */
-                    for (subfield = p; *p && (*p != ']'); ++p)
-                        ;
-
-                    if (*p == ']')
-                        *(p++) = '\0';
-                    else if (*p == '%')
-                        *p = '\0'; /* but don't increment p yet */
-
-                    var_subst(go, sc, trig, type, subfield, value);
+        
+        if (p_pos < tmp.size()) {
+            // Find end of variable name
+            size_t var_end = tmp.find_first_of(".%", p_pos);
+            if (var_end == std::string::npos) {
+                var_end = tmp.size();
+            }
+            
+            var = std::string_view(tmp).substr(p_pos, var_end - p_pos);
+            p_pos = var_end;
+            
+            field = {};
+            subfield = {};
+            
+            // Check for field
+            if (p_pos < tmp.size() && tmp[p_pos] == '.') {
+                p_pos++; // Skip the dot
+                
+                // Find end of field
+                size_t field_end = tmp.find_first_of("[%", p_pos);
+                if (field_end == std::string::npos) {
+                    field_end = tmp.size();
+                }
+                
+                field = std::string_view(tmp).substr(p_pos, field_end - p_pos);
+                p_pos = field_end;
+                
+                // Check for subfield
+                if (p_pos < tmp.size() && tmp[p_pos] == '[') {
+                    p_pos++; // Skip the [
+                    
+                    // Find end of subfield
+                    size_t subfield_end = tmp.find_first_of("]%", p_pos);
+                    if (subfield_end == std::string::npos) {
+                        subfield_end = tmp.size();
+                    }
+                    
+                    subfield = std::string_view(tmp).substr(p_pos, subfield_end - p_pos);
+                    p_pos = subfield_end;
+                    
+                    if (p_pos < tmp.size() && tmp[p_pos] == ']') {
+                        p_pos++; // Skip the ]
+                    }
+                    
+                    if (!subfield.empty()) {
+                        var_subst(go, sc, trig, type, subfield, value);
+                    }
                 }
             }
-
-            *(p++) = '\0';
-
+            
+            // Skip the closing %
+            if (p_pos < tmp.size() && tmp[p_pos] == '%') {
+                p_pos++;
+            }
+            
             find_replacement(go, sc, trig, type, var, field, value, repl_str);
-
-            strncat(buf, repl_str, left);
-            len = strlen(repl_str);
-            buf += len;
-            left -= len;
+            
+            buf.append(repl_str);
+            left -= repl_str.size();
         }
     }
 }
 
 /* returns 1 if string is all digits, else 0 */
 int is_num(std::string_view num) {
-    if (*num == '\0')
+    if (num.empty())
         return false;
 
-    if (*num == '+' || *num == '-')
-        ++num;
+    size_t start = 0;
+    if (num[0] == '+' || num[0] == '-')
+        start = 1;
 
-    for (; *num != '\0'; ++num)
-        if (!is_integer(num))
-            return false;
-
-    return true;
+    return std::all_of(num.begin() + start, num.end(), ::isdigit);
 }
 
 /* evaluates 'lhs op rhs', and copies to result */
 void eval_op(std::string_view op, std::string_view lhs, std::string_view rhs, std::string &result, void *go,
              ScriptData *sc, TrigData *trig) {
     result.clear();
-    std::string_view p;
     int n;
 
     /* strip off extra spaces at begin and end */
-    while (*lhs && isspace(*lhs))
-        lhs++;
-    while (*rhs && isspace(*rhs))
-        rhs++;
-
-    for (p = lhs; *p; p++)
-        ;
-    for (--p; isspace(*p) && (p > lhs); *p-- = '\0')
-        ;
-    for (p = rhs; *p; p++)
-        ;
-    for (--p; isspace(*p) && (p > rhs); *p-- = '\0')
-        ;
+    lhs = trim(lhs);
+    rhs = trim(rhs);
 
     /* find the op, and figure out the value */
     if (matches("||", op)) {
-        if ((lhs.empty() || (*lhs == '0')) && (rhs.empty() || (*rhs == '0')))
-            strcpy(result, "0");
+        if ((lhs.empty() || (lhs[0] == '0')) && (rhs.empty() || (rhs[0] == '0')))
+            result = "0";
         else
-            strcpy(result, "1");
+            result = "1";
     }
 
     else if (matches("&&", op)) {
-        if (lhs.empty() || (*lhs == '0') || rhs.empty() || (*rhs == '0'))
-            strcpy(result, "0");
+        if (lhs.empty() || (lhs[0] == '0') || rhs.empty() || (rhs[0] == '0'))
+            result = "0";
         else
-            strcpy(result, "1");
+            result = "1";
     }
 
     else if (matches("==", op)) {
         if (is_num(lhs) && is_num(rhs))
-            sprintf(result, "%d", svtoi(lhs) == svtoi(rhs));
+            result = fmt::format("{}", svtoi(lhs) == svtoi(rhs));
         else
-            sprintf(result, "%d", matches(lhs, rhs));
+            result = fmt::format("{}", matches(lhs, rhs));
     }
 
     else if (matches("!=", op)) {
         if (is_num(lhs) && is_num(rhs))
-            sprintf(result, "%d", svtoi(lhs) != svtoi(rhs));
+            result = fmt::format("{}", svtoi(lhs) != svtoi(rhs));
         else
-            sprintf(result, "%d", strcasecmp(lhs, rhs));
+            result = fmt::format("{}", strcasecmp(lhs.data(), rhs.data()));
     }
 
     else if (matches("<=", op)) {
         if (is_num(lhs) && is_num(rhs))
-            sprintf(result, "%d", svtoi(lhs) <= svtoi(rhs));
+            result = fmt::format("{}", svtoi(lhs) <= svtoi(rhs));
         else
-            sprintf(result, "%d", strcasecmp(lhs, rhs) <= 0);
+            result = fmt::format("{}", strcasecmp(lhs.data(), rhs.data()) <= 0);
     }
 
     else if (matches(">=", op)) {
         if (is_num(lhs) && is_num(rhs))
-            sprintf(result, "%d", svtoi(lhs) >= svtoi(rhs));
+            result = fmt::format("{}", svtoi(lhs) >= svtoi(rhs));
         else
-            sprintf(result, "%d", strcasecmp(lhs, rhs) <= 0);
+            result = fmt::format("{}", strcasecmp(lhs.data(), rhs.data()) <= 0);
     }
 
     else if (matches("<", op)) {
         if (is_num(lhs) && is_num(rhs))
-            sprintf(result, "%d", svtoi(lhs) < svtoi(rhs));
+            result = fmt::format("{}", svtoi(lhs) < svtoi(rhs));
         else
-            sprintf(result, "%d", strcasecmp(lhs, rhs) < 0);
+            result = fmt::format("{}", strcasecmp(lhs.data(), rhs.data()) < 0);
     }
 
     else if (matches(">", op)) {
         if (is_num(lhs) && is_num(rhs))
-            sprintf(result, "%d", svtoi(lhs) > svtoi(rhs));
+            result = fmt::format("{}", svtoi(lhs) > svtoi(rhs));
         else
-            sprintf(result, "%d", strcasecmp(lhs, rhs) > 0);
+            result = fmt::format("{}", strcasecmp(lhs.data(), rhs.data()) > 0);
     }
 
     else if (matches("/=", op)) {
-        result = fmt::format("{}", strcasestr(lhs, rhs) ? '1' : '0');
+        result = fmt::format("{}", strcasestr(lhs.data(), rhs.data()) ? '1' : '0');
     }
 
     else if (matches("*", op)) {
@@ -1914,7 +1904,7 @@ void eval_op(std::string_view op, std::string_view lhs, std::string_view rhs, st
             result = fmt::format("{}", !svtoi(rhs));
         }
         else
-            sprintf(result, "%d", rhs.empty());
+            result = fmt::format("{}", rhs.empty());
     }
 }
 
@@ -1923,15 +1913,18 @@ void eval_op(std::string_view op, std::string_view lhs, std::string_view rhs, st
  * end quote, or the last non-null char in p.
  */
 std::string_view matching_quote(std::string_view p) {
-    for (p++; *p && (*p != '"'); p++) {
-        if (*p == '\\')
-            p++;
+    if (p.empty() || p[0] != '"')
+        return p;
+        
+    size_t pos = 1;
+    while (pos < p.size() && p[pos] != '"') {
+        if (p[pos] == '\\' && pos + 1 < p.size())
+            pos += 2;
+        else
+            pos++;
     }
-
-    if (p.empty())
-        p--;
-
-    return p;
+    
+    return p.data() + (pos < p.size() ? pos : p.size() - 1);
 }
 
 /*
@@ -1939,37 +1932,43 @@ std::string_view matching_quote(std::string_view p) {
  * matching closing paren, or the last non-null char in p.
  */
 std::string_view matching_paren(std::string_view p) {
-    int i;
-
-    for (p++, i = 1; *p && i; p++) {
-        if (*p == '(')
+    if (p.empty() || p[0] != '(')
+        return p;
+        
+    int i = 1;
+    size_t pos = 1;
+    
+    while (pos < p.size() && i > 0) {
+        if (p[pos] == '(')
             i++;
-        else if (*p == ')')
+        else if (p[pos] == ')')
             i--;
-        else if (*p == '"')
-            p = matching_quote(p);
+        else if (p[pos] == '"') {
+            auto quote_end = matching_quote(p.substr(pos));
+            pos += (quote_end - p.substr(pos).data());
+        }
+        
+        pos++;
     }
-
-    return --p;
+    
+    return p.data() + (pos > 0 ? pos - 1 : 0);
 }
 
 /* evaluates line, and returns answer in result */
-void eval_expr(std::string_view line, std::string_view result, void *go, ScriptData *sc, TrigData *trig, int type) {
-    char expr[MAX_INPUT_LENGTH], *p;
+void eval_expr(std::string_view line, std::string &result, void *go, ScriptData *sc, TrigData *trig, int type) {
+    std::string expr;
 
-    while (*line && isspace(*line))
-        line++;
+    line = trim(line);
 
     if (eval_lhs_op_rhs(line, result, go, sc, trig, type))
-        ;
+        return;
 
-    else if (*line == '(') {
-        p = strcpy(expr, line);
-        p = matching_paren(expr);
-        *p = '\0';
-        eval_expr(expr + 1, result, go, sc, trig, type);
+    if (!line.empty() && line[0] == '(') {
+        expr = line;
+        auto p = matching_paren(expr);
+        expr = expr.substr(1, p - expr.data() - 1);
+        eval_expr(expr, result, go, sc, trig, type);
     }
-
     else
         var_subst(go, sc, trig, type, line, result);
 }
@@ -1978,10 +1977,11 @@ void eval_expr(std::string_view line, std::string_view result, void *go, ScriptD
  * evaluates expr if it is in the form lhs op rhs, and copies
  * answer in result.  returns 1 if expr is evaluated, else 0
  */
-int eval_lhs_op_rhs(std::string_view expr, std::string_view result, void *go, ScriptData *sc, TrigData *trig,
+int eval_lhs_op_rhs(std::string_view expr, std::string &result, void *go, ScriptData *sc, TrigData *trig,
                     int type) {
-    std::string_view p, *tokens[MAX_INPUT_LENGTH];
-    char line[MAX_INPUT_LENGTH], lhr[MAX_INPUT_LENGTH], rhr[MAX_INPUT_LENGTH];
+    std::vector<std::string_view> tokens;
+    std::string line(expr);
+    std::string lhr, rhr;
     int i, j;
 
     /*
@@ -1990,55 +1990,60 @@ int eval_lhs_op_rhs(std::string_view expr, std::string_view result, void *go, Sc
      */
     static std::string_view ops[] = {"||", "&&", "==", "!=", "<=", ">=", "<", ">", "/=", "-", "+", "/", "*", "!", "\n"};
 
-    p = strcpy(line, expr);
-
     /*
      * initialize tokens, an array of pointers to locations
      * in line where the ops could possibly occur.
      */
-    for (j = 0; *p; j++) {
-        tokens[j] = p;
-        if (*p == '(')
-            p = matching_paren(p) + 1;
-        else if (*p == '"')
-            p = matching_quote(p) + 1;
-        else if (isalnum(*p))
-            for (p++; *p && (isalnum(*p) || isspace(*p)); p++)
-                ;
+    for (size_t pos = 0; pos < line.size(); ) {
+        tokens.push_back(std::string_view(line).substr(pos));
+        
+        if (line[pos] == '(') {
+            std::string_view sv(line);
+            auto p = matching_paren(sv.substr(pos));
+            pos += (p - sv.substr(pos).data()) + 1;
+        }
+        else if (line[pos] == '"') {
+            std::string_view sv(line);
+            auto p = matching_quote(sv.substr(pos));
+            pos += (p - sv.substr(pos).data()) + 1;
+        }
+        else if (isalnum(line[pos])) {
+            pos++;
+            while (pos < line.size() && (isalnum(line[pos]) || isspace(line[pos])))
+                pos++;
+        }
         else
-            p++;
+            pos++;
     }
-    tokens[j] = nullptr;
 
-    for (i = 0; *ops[i] != '\n'; i++)
-        for (j = 0; tokens[j]; j++)
-            if (matches(ops[i], tokens[j])) {
-                *tokens[j] = '\0';
-                p = tokens[j] + strlen(ops[i]);
-
-                eval_expr(line, lhr, go, sc, trig, type);
-                eval_expr(p, rhr, go, sc, trig, type);
-                eval_op(ops[i], lhr, rhr, result, go, sc, trig);
+    for (i = 0; ops[i] != "\n"; i++) {
+        for (j = 0; j < tokens.size(); j++) {
+            if (tokens[j].size() >= ops[i].size() && 
+                matches(ops[i], tokens[j].substr(0, ops[i].size()))) {
+                
+                std::string_view lhs = expr.substr(0, tokens[j].data() - expr.data());
+                std::string_view rhs = tokens[j].substr(ops[i].size());
+                
+                eval_expr(lhs, lhr, go, sc, trig, type);
+                eval_expr(rhs, rhr, go, sc, trig, type);
+                eval_op(ops[i], lhr, rhs, result, go, sc, trig);
 
                 return 1;
             }
+        }
+    }
 
     return 0;
 }
 
 /* returns 1 if cond is true, else 0 */
 int process_if(std::string_view cond, void *go, ScriptData *sc, TrigData *trig, int type) {
-    char result[MAX_INPUT_LENGTH], *p;
+    std::string result;
 
     eval_expr(cond, result, go, sc, trig, type);
+    result = trim(result);
 
-    p = result;
-    skip_spaces(p);
-
-    if (p.empty() || *p == '0')
-        return 0;
-    else
-        return 1;
+    return !result.empty() && result != "0";
 }
 
 /*
@@ -2179,13 +2184,13 @@ void process_wait(void *go, TrigData *trig, int type, std::string_view cmd, Cmdl
 
 /* processes a script set command */
 void process_set(ScriptData *sc, TrigData *trig, std::string_view cmd) {
+    std::string_view arg, name, value;
+    
     value = two_arguments(cmd, arg, name);
-
-    skip_spaces(value);
+    value = trim(value);
 
     if (name.empty()) {
-        buf2 = fmt::format("Set w/o an arg: '{}'", cmd);
-        script_log(trig, buf2);
+        script_log(trig, fmt::format("Set w/o an arg: '{}'", cmd));
         return;
     }
 
@@ -2194,13 +2199,14 @@ void process_set(ScriptData *sc, TrigData *trig, std::string_view cmd) {
 
 /* processes a script eval command */
 void process_eval(void *go, ScriptData *sc, TrigData *trig, int type, std::string_view cmd) {
+    std::string_view arg, name, expr;
+    std::string result;
+    
     expr = two_arguments(cmd, arg, name);
-
-    skip_spaces(expr);
+    expr = trim(expr);
 
     if (name.empty()) {
-        buf2 = fmt::format("Eval w/o an arg: '{}'", cmd);
-        script_log(trig, buf2);
+        script_log(trig, fmt::format("Eval w/o an arg: '{}'", cmd));
         return;
     }
 
@@ -2213,13 +2219,12 @@ void process_eval(void *go, ScriptData *sc, TrigData *trig, int type, std::strin
  * returns the new value for the script to return.
  */
 int process_return(TrigData *trig, std::string_view cmd) {
-    char arg1[MAX_INPUT_LENGTH], arg2[MAX_INPUT_LENGTH];
+    std::string_view arg1, arg2;
 
-    two_arguments(cmd, arg1, arg2);
+    arg2 = two_arguments(cmd, arg1, arg2);
 
     if (arg2.empty()) {
-        buf2 = fmt::format("Return w/o an arg: '{}'", cmd);
-        script_log(trig, buf2);
+        script_log(trig, fmt::format("Return w/o an arg: '{}'", cmd));
         return 1;
     }
 
@@ -2231,13 +2236,14 @@ int process_return(TrigData *trig, std::string_view cmd) {
  * or the local vars of trig if not found in global list.
  */
 void process_unset(ScriptData *sc, TrigData *trig, std::string_view cmd) {
-    var = any_one_arg(cmd, arg);
-
-    skip_spaces(var);
+    std::string buf;
+    std::string_view var;
+    
+    var = any_one_arg(cmd, buf);
+    var = trim(var);
 
     if (var.empty()) {
-        buf2 = fmt::format("Unset w/o an arg: '{}'", cmd);
-        script_log(trig, buf2);
+        script_log(trig, fmt::format("Unset w/o an arg: '{}'", cmd));
         return;
     }
 
@@ -2250,27 +2256,27 @@ void process_unset(ScriptData *sc, TrigData *trig, std::string_view cmd) {
  */
 void process_global(ScriptData *sc, TrigData *trig, std::string_view cmd) {
     TriggerVariableData *vd;
-    varlist = any_one_arg(cmd, arg);
-
-    skip_spaces(varlist);
+    std::string buf;
+    std::string_view varlist, arg;
+    
+    varlist = any_one_arg(cmd, buf);
+    varlist = trim(varlist);
 
     if (varlist.empty()) {
-        buf2 = fmt::format("Global w/o an arg: '{}'", cmd);
-        script_log(trig, buf2);
+        script_log(trig, fmt::format("Global w/o an arg: '{}'", cmd));
         return;
     }
 
-    while (*varlist) {
-        varlist = any_one_arg(varlist, arg);
-        skip_spaces(varlist);
+    while (!varlist.empty()) {
+        arg = any_one_arg(varlist, buf);
+        varlist = trim(varlist);
 
         for (vd = GET_TRIG_VARS(trig); vd; vd = vd->next)
             if (matches(vd->name, arg))
                 break;
 
         if (!vd) {
-            buf2 = fmt::format("Local var '{}' not found in global call", arg);
-            script_log(trig, buf2);
+            script_log(trig, fmt::format("Local var '{}' not found in global call", arg));
             continue;
         }
 
@@ -2299,11 +2305,13 @@ int script_driver(void *go_address, TrigData *trig, int type, int mode) {
     static int depth = 0;
     int ret_val = 1;
     CmdlistElement *cl;
-    char cmd[MAX_INPUT_LENGTH], *p;
-    ScriptData *sc = 0;
+    std::string cmd;
+    std::string_view p;
+    ScriptData *sc = nullptr;
     CmdlistElement *temp;
     unsigned long loops = 0;
     void *go = nullptr;
+    std::string buf;
 
     void obj_command_interpreter(ObjData * obj, TrigData * t, std::string_view argument);
     void wld_command_interpreter(RoomData * room, TrigData * t, std::string_view argument);
@@ -2311,12 +2319,15 @@ int script_driver(void *go_address, TrigData *trig, int type, int mode) {
     if (depth > MAX_SCRIPT_DEPTH) {
         switch (type) {
         case MOB_TRIGGER:
+            go = *(CharData **)go_address;
             buf = fmt::format("Triggers recursed beyond maximum allowed depth on mob {}", GET_MOB_VNUM((CharData *)go));
             break;
         case OBJ_TRIGGER:
+            go = *(ObjData **)go_address;
             buf = fmt::format("Triggers recursed beyond maximum allowed depth on obj {}", GET_OBJ_VNUM((ObjData *)go));
             break;
         case WLD_TRIGGER:
+            go = *(RoomData **)go_address;
             buf = fmt::format("Triggers recursed beyond maximum allowed depth in room {}", ((RoomData *)go)->vnum);
             break;
         }
@@ -2366,55 +2377,57 @@ int script_driver(void *go_address, TrigData *trig, int type, int mode) {
                 return ret_val;
             }
         }
-        for (p = cl->cmd; *p && isspace(*p); p++)
-            ;
+        
+        p = cl->cmd;
+        p = trim_left(p);
 
-        if (*p == '*')
+        if (p.empty() || p[0] == '*')
             continue;
 
-        else if (matches(p, "if ")) {
-            if (process_if(p + 3, go, sc, trig, type))
+        if (matches_start(p, "if ")) {
+            if (process_if(p.substr(3), go, sc, trig, type))
                 GET_TRIG_DEPTH(trig)++;
             else
                 cl = find_else_end(trig, cl, go, sc, type);
         }
-
-        else if (matches("elseif ", p) || matches("else", p)) {
-            /* If not in an if-block, ignore the extra 'else[if]' and warn about it.
-             */
+        else if (matches_start(p, "elseif ") || matches_start(p, "else")) {
+            /* If not in an if-block, ignore the extra 'else[if]' and warn about it. */
             if (GET_TRIG_DEPTH(trig) == 1) {
                 script_log(trig, "'else' without 'if'.");
                 continue;
             }
             cl = find_end(trig, cl);
             GET_TRIG_DEPTH(trig)--;
-        } else if (matches("while ", p)) {
+        } 
+        else if (matches_start(p, "while ")) {
             temp = find_done(cl);
             if (!temp) {
                 script_log(trig, "'while' without 'done'.");
                 return ret_val;
-            } else if (process_if(p + 6, go, sc, trig, type)) {
+            } else if (process_if(p.substr(6), go, sc, trig, type)) {
                 temp->original = cl;
             } else {
                 cl = temp;
                 loops = 0;
             }
-        } else if (matches("switch ", p)) {
-            cl = find_case(trig, cl, go, sc, type, p + 7);
-        } else if (matches("end", p)) {
+        } 
+        else if (matches_start(p, "switch ")) {
+            cl = find_case(trig, cl, go, sc, type, p.substr(7));
+        } 
+        else if (matches_start(p, "end")) {
             if (GET_TRIG_DEPTH(trig) == 1) {
                 script_log(trig, "'end' without 'if'.");
                 continue;
             }
             GET_TRIG_DEPTH(trig)--;
-        } else if (matches("done", p)) {
+        } 
+        else if (matches_start(p, "done")) {
             /* if in a while loop, cl->original is non-NULL */
             if (cl->original) {
                 std::string_view orig_cmd = cl->original->cmd;
-                while (*orig_cmd && isspace(*orig_cmd))
-                    orig_cmd++;
+                orig_cmd = trim_left(orig_cmd);
 
-                if (cl->original && process_if(orig_cmd + 6, go, sc, trig, type)) {
+                if (cl->original && process_if(orig_cmd.substr(6), go, sc, trig, type)) {
                     cl = cl->original;
                     temp = find_done(cl);
                     loops++;
@@ -2430,51 +2443,46 @@ int script_driver(void *go_address, TrigData *trig, int type, int mode) {
                     }
                 }
             }
-        } else if (matches("break", p)) {
+        } 
+        else if (matches_start(p, "break")) {
             cl = find_done(cl);
-        } else if (matches("case", p)) {
+        } 
+        else if (matches_start(p, "case")) {
             /* Do nothing, this allows multiple cases to a single instance */
         }
-
         else {
             var_subst(go, sc, trig, type, p, cmd);
 
-            if (matches(cmd, "eval "))
+            if (matches_start(cmd, "eval "))
                 process_eval(go, sc, trig, type, cmd);
-
-            else if (matches(cmd, "halt"))
+            else if (matches_start(cmd, "halt"))
                 break;
-
-            else if (matches(cmd, "global "))
+            else if (matches_start(cmd, "global "))
                 process_global(sc, trig, cmd);
-
-            else if (matches(cmd, "return "))
+            else if (matches_start(cmd, "return "))
                 ret_val = process_return(trig, cmd);
-
-            else if (matches(cmd, "set "))
+            else if (matches_start(cmd, "set "))
                 process_set(sc, trig, cmd);
-
-            else if (matches(cmd, "unset "))
+            else if (matches_start(cmd, "unset "))
                 process_unset(sc, trig, cmd);
-
-            else if (matches(cmd, "wait ")) {
+            else if (matches_start(cmd, "wait ")) {
                 process_wait(go, trig, type, cmd, cl);
                 depth--;
                 return ret_val;
             }
-
-            else
+            else {
                 switch (type) {
-            case MOB_TRIGGER:
-                command_interpreter((CharData *)go, cmd);
-                break;
-            case OBJ_TRIGGER:
-                obj_command_interpreter((ObjData *)go, trig, cmd);
-                break;
-            case WLD_TRIGGER:
-                wld_command_interpreter((RoomData *)go, trig, cmd);
-                break;
+                case MOB_TRIGGER:
+                    command_interpreter((CharData *)go, cmd);
+                    break;
+                case OBJ_TRIGGER:
+                    obj_command_interpreter((ObjData *)go, trig, cmd);
+                    break;
+                case WLD_TRIGGER:
+                    wld_command_interpreter((RoomData *)go, trig, cmd);
+                    break;
                 }
+            }
         }
     }
     trig->running = false;
