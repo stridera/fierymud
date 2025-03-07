@@ -1805,7 +1805,7 @@ std::string_view parse_object(std::ifstream &obj_f, int nr) {
 
     /* *** numeric data *** */
     if (!std::getline(obj_f, line) ||
-        (retval = sscanf(line.c_str(), " %d %255s %255s %d", &t[0], f1, f2, &t[1])) != 4) {
+        (retval = sscanf(line.c_str(), " %d %s %s %d", &t[0], f1, f2, &t[1])) != 4) {
         if (retval == 3) {
             sscanf(line.c_str(), " %d %255s %255s", &t[0], f1, f2);
             t[1] = 0;
@@ -1822,7 +1822,7 @@ std::string_view parse_object(std::ifstream &obj_f, int nr) {
     obj_proto[i].obj_flags.level = t[1]; /* Zantir 3/23/01 for level based objects */
 
     if (!std::getline(obj_f, line) ||
-        (retval = sscanf(line.c_str(), "%d %d %d %d %d %d %d", &t[0], &t[1], &t[2], &t[3], &t[4], &t[5], &t[6])) != 7) {
+        (retval = sscanf(line.c_str(), " %d %d %d %d %d %d %d", &t[0], &t[1], &t[2], &t[3], &t[4], &t[5], &t[6])) != 7) {
         log(LogSeverity::Error, LVL_GOD, "Format error in second numeric line (expecting 7 args, got {}), {}", retval,
             buf2);
         // Set default values to avoid undefined behavior
@@ -1841,7 +1841,7 @@ std::string_view parse_object(std::ifstream &obj_f, int nr) {
     obj_proto[i].obj_flags.value[6] = t[6];
 
     if (!std::getline(obj_f, line) ||
-        (retval = sscanf(line.c_str(), "%f %d %d %d %d %d %d %d", &obj_proto[i].obj_flags.weight, &t[1], &t[2], &t[3],
+        (retval = sscanf(line.c_str(), " %f %d %d %d %d %d %d %d", &obj_proto[i].obj_flags.weight, &t[1], &t[2], &t[3],
                          &t[4], &t[5], &t[6], &t[7])) != 8) {
         log(LogSeverity::Error, LVL_GOD, "Format error in third numeric line (expecting 8 args, got {}), {}", retval,
             buf2);
@@ -1900,7 +1900,7 @@ std::string_view parse_object(std::ifstream &obj_f, int nr) {
                 exit(1);
             }
 
-            if (!std::getline(obj_f, line) || (retval = sscanf(line.c_str(), " %d %d ", &t[0], &t[1])) != 2) {
+            if (!std::getline(obj_f, line) || (retval = sscanf(line.c_str(), " %d %d", &t[0], &t[1])) != 2) {
                 log(LogSeverity::Error, LVL_GOD, "Format error in Affect line (expecting 2 args, got {}), {}", retval,
                     buf2);
                 // Set default values to avoid undefined behavior
