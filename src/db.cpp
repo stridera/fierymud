@@ -845,13 +845,13 @@ int count_hash_records(std::ifstream &fl) {
 
 std::optional<std::string> get_line(std::ifstream &fl) {
     std::string temp;
-    
+
     while (std::getline(fl, temp)) {
         if (!temp.empty() && temp[0] != '*') {
             return temp;
         }
     }
-    
+
     return std::nullopt;
 }
 
@@ -956,7 +956,7 @@ void index_boot(int mode) {
             log(LogSeverity::Error, LVL_GOD, "Error opening file: {}", file_path);
             exit(1);
         }
-        
+
         switch (mode) {
         case DB_BOOT_TRG:
         case DB_BOOT_WLD:
@@ -979,10 +979,9 @@ void index_boot(int mode) {
 
     /* sort the help index */
     if (mode == DB_BOOT_HLP) {
-        std::sort(help_table, help_table + top_of_helpt, 
-                 [](const HelpIndexElement &a, const HelpIndexElement &b) {
-                     return strcasecmp(a.keyword.data(), b.keyword.data()) < 0;
-                 });
+        std::sort(help_table, help_table + top_of_helpt, [](const HelpIndexElement &a, const HelpIndexElement &b) {
+            return strcasecmp(a.keyword.data(), b.keyword.data()) < 0;
+        });
         top_of_helpt--;
     }
 }
@@ -993,7 +992,7 @@ void discrete_load(std::ifstream &fl, int mode) {
     int nr = -1, last = 0;
     std::string line;
     const std::array<std::string_view, 7> modes = {"world", "mob", "obj", "ZON", "SHP", "HLP", "trg"};
-    
+
     for (;;) {
         /*
          * we have to do special processing with the obj files because they have
@@ -1005,18 +1004,17 @@ void discrete_load(std::ifstream &fl, int mode) {
                 exit(1);
             }
         }
-        
+
         if (line == "$")
             return;
 
         if (!line.empty() && line[0] == '#') {
             last = nr;
             if (sscanf(line.c_str(), "#%d", &nr) != 1) {
-                log(LogSeverity::Error, LVL_GOD, "Format error after {} #{}: '{}'", 
-                    modes[mode], last, line);
+                log(LogSeverity::Error, LVL_GOD, "Format error after {} #{}: '{}'", modes[mode], last, line);
                 exit(1);
             }
-            
+
             if (nr >= 198999)
                 return;
             else
@@ -1035,8 +1033,8 @@ void discrete_load(std::ifstream &fl, int mode) {
                     break;
                 }
         } else {
-            log(LogSeverity::Error, LVL_GOD, "Format error in {} file near {} #{}: '{}'", 
-                modes[mode], modes[mode], nr, line);
+            log(LogSeverity::Error, LVL_GOD, "Format error in {} file near {} #{}: '{}'", modes[mode], modes[mode], nr,
+                line);
             exit(1);
         }
     }
@@ -1064,12 +1062,12 @@ char fread_letter(std::ifstream &fp) {
     do {
         fp.get(c);
     } while (isspace(c) && fp.good());
-    
+
     if (!fp.good()) {
         log(LogSeverity::Error, LVL_GOD, "SYSERR: fread_letter: EOF encountered");
         exit(1);
     }
-    
+
     return c;
 }
 
@@ -1106,7 +1104,7 @@ void parse_room(std::ifstream &fl, int virtual_nr) {
         log(LogSeverity::Error, LVL_GOD, "Unexpected end of file in room #{}", virtual_nr);
         exit(1);
     }
-    
+
     /* t[0] is the zone number; ignored with the zone-file system */
     /* room_flags is a flagvector array */
     world[room_nr].room_flags[0] = asciiflag_conv(flags);
@@ -1131,7 +1129,7 @@ void parse_room(std::ifstream &fl, int virtual_nr) {
             log(LogSeverity::Error, LVL_GOD, "{}", error_msg);
             exit(1);
         }
-        
+
         switch (*line) {
         case 'D':
             setup_dir(fl, room_nr, atoi(line.c_str() + 1));
@@ -1170,7 +1168,8 @@ void setup_dir(std::ifstream &fl, int room, int dir) {
     sprintf(buf2, "room #%d, direction D%d", world[room].vnum, dir);
     /* added by gurlaek to stop memory leaks detected by insure++ 8/26/1999 */
     if (world[room].exits[dir]) {
-        log(LogSeverity::Warn, LVL_GOD, "SYSERR:db.c:setup_dir:creating direction [{}] for room {} twice!", dir, world[room].vnum);
+        log(LogSeverity::Warn, LVL_GOD, "SYSERR:db.c:setup_dir:creating direction [{}] for room {} twice!", dir,
+            world[room].vnum);
     } else {
         world[room].exits[dir] = create_exit(NOWHERE);
     }
@@ -1183,12 +1182,12 @@ void setup_dir(std::ifstream &fl, int room, int dir) {
         log(LogSeverity::Error, LVL_GOD, "Format error, {}", buf2);
         exit(1);
     }
-    
+
     if (sscanf(line.c_str(), " %d %d %d ", t, t + 1, t + 2) != 3) {
         log(LogSeverity::Error, LVL_GOD, "Format error, {}", buf2);
         exit(1);
     }
-    
+
     if (t[0] == 1)
         world[room].exits[dir]->exit_info = EX_ISDOOR;
     else if (t[0] == 2)
@@ -1788,7 +1787,7 @@ std::string_view parse_object(std::ifstream &obj_f, int nr) {
             t[1] = 0;
             log(LogSeverity::Warn, LVL_GOD, "Object #{} needs a level assigned to it.", nr);
         } else {
-            log(LogSeverity::Error, LVL_GOD, "Format error in first numeric line (expecting 4 args, got {}), {}", 
+            log(LogSeverity::Error, LVL_GOD, "Format error in first numeric line (expecting 4 args, got {}), {}",
                 retval, buf2);
         }
     }
@@ -1800,11 +1799,12 @@ std::string_view parse_object(std::ifstream &obj_f, int nr) {
 
     if (!std::getline(obj_f, line) ||
         (retval = sscanf(line.c_str(), "%d %d %d %d %d %d %d", &t[0], &t[1], &t[2], &t[3], &t[4], &t[5], &t[6])) != 7) {
-        log(LogSeverity::Error, LVL_GOD, "Format error in second numeric line (expecting 7 args, got {}), {}", 
-            retval, buf2);
+        log(LogSeverity::Error, LVL_GOD, "Format error in second numeric line (expecting 7 args, got {}), {}", retval,
+            buf2);
         // Set default values to avoid undefined behavior
         for (int idx = 0; idx < 7; idx++) {
-            if (idx >= retval) t[idx] = 0;
+            if (idx >= retval)
+                t[idx] = 0;
         }
     }
 
@@ -1819,104 +1819,108 @@ std::string_view parse_object(std::ifstream &obj_f, int nr) {
     if (!std::getline(obj_f, line) ||
         (retval = sscanf(line.c_str(), "%f %d %d %d %d %d %d %d", &obj_proto[i].obj_flags.weight, &t[1], &t[2], &t[3],
                          &t[4], &t[5], &t[6], &t[7])) != 8) {
-        log(LogSeverity::Error, LVL_GOD, "Format error in third numeric line (expecting 8 args, got {}), {}", 
-            retval, buf2);
+        log(LogSeverity::Error, LVL_GOD, "Format error in third numeric line (expecting 8 args, got {}), {}", retval,
+            buf2);
         // Set default values to avoid undefined behavior
-        if (retval < 1) obj_proto[i].obj_flags.weight = 0.0f;
+        if (retval < 1)
+            obj_proto[i].obj_flags.weight = 0.0f;
         for (int idx = 1; idx <= 7; idx++) {
-            if (idx >= retval) t[idx] = 0;
+            if (idx >= retval)
+                t[idx] = 0;
         }
     }
 
-obj_proto[i].obj_flags.effective_weight = obj_proto[i].obj_flags.weight;
-obj_proto[i].obj_flags.cost = t[1];
-obj_proto[i].obj_flags.timer = t[2];
-obj_proto[i].obj_flags.effect_flags[0] = t[3];
-/*    obj_proto[i].spell_component = t[4]; */
-/*    obj_proto[i].object_limitation = t[5]; */
-obj_proto[i].obj_flags.effect_flags[1] = t[6];
-obj_proto[i].obj_flags.effect_flags[2] = t[7];
+    obj_proto[i].obj_flags.effective_weight = obj_proto[i].obj_flags.weight;
+    obj_proto[i].obj_flags.cost = t[1];
+    obj_proto[i].obj_flags.timer = t[2];
+    obj_proto[i].obj_flags.effect_flags[0] = t[3];
+    /*    obj_proto[i].spell_component = t[4]; */
+    /*    obj_proto[i].object_limitation = t[5]; */
+    obj_proto[i].obj_flags.effect_flags[1] = t[6];
+    obj_proto[i].obj_flags.effect_flags[2] = t[7];
 
-/* *** extra descriptions and affect fields *** */
+    /* *** extra descriptions and affect fields *** */
 
-for (j = 0; j < MAX_OBJ_APPLIES; j++) {
-    obj_proto[i].applies[j].location = APPLY_NONE;
-    obj_proto[i].applies[j].modifier = 0;
-}
-
-strcat(buf2, ", after numeric constants (expecting E/A/#xxx)");
-j = 0;
-
-while (true) {
-    if (!std::getline(obj_f, line)) {
-        log(LogSeverity::Error, LVL_GOD, "Format error in {}", buf2);
-        exit(1);
+    for (j = 0; j < MAX_OBJ_APPLIES; j++) {
+        obj_proto[i].applies[j].location = APPLY_NONE;
+        obj_proto[i].applies[j].modifier = 0;
     }
-    switch (*line) {
-    case 'E':
-        new_descr = std::make_unique<ExtraDescriptionData>().release();
-        new_descr->keyword = fread_string(obj_f, buf2);
-        new_descr->description = fread_string(obj_f, buf2);
-        /* Put each extra desc at the end of the list as we read them.
-         * Otherwise they will be reversed (yes, we really don't want that -
-         * see act.informative.c, show_obj_to_char(), mode 5). */
-        if (obj_proto[i].ex_description != nullptr) {
-            edx = obj_proto[i].ex_description;
-            for (; edx->next; edx = edx->next)
-                ;
-            edx->next = new_descr;
-        } else
-            obj_proto[i].ex_description = new_descr;
-        break;
-    case 'A':
-        if (j >= MAX_OBJ_APPLIES) {
-            log(LogSeverity::Error, LVL_GOD, "Too many A fields ({} max), {}", MAX_OBJ_APPLIES, buf2);
+
+    strcat(buf2, ", after numeric constants (expecting E/A/#xxx)");
+    j = 0;
+
+    while (true) {
+        if (!std::getline(obj_f, line)) {
+            log(LogSeverity::Error, LVL_GOD, "Format error in {}", buf2);
             exit(1);
         }
+        switch (*line) {
+        case 'E':
+            new_descr = std::make_unique<ExtraDescriptionData>().release();
+            new_descr->keyword = fread_string(obj_f, buf2);
+            new_descr->description = fread_string(obj_f, buf2);
+            /* Put each extra desc at the end of the list as we read them.
+             * Otherwise they will be reversed (yes, we really don't want that -
+             * see act.informative.c, show_obj_to_char(), mode 5). */
+            if (obj_proto[i].ex_description != nullptr) {
+                edx = obj_proto[i].ex_description;
+                for (; edx->next; edx = edx->next)
+                    ;
+                edx->next = new_descr;
+            } else
+                obj_proto[i].ex_description = new_descr;
+            break;
+        case 'A':
+            if (j >= MAX_OBJ_APPLIES) {
+                log(LogSeverity::Error, LVL_GOD, "Too many A fields ({} max), {}", MAX_OBJ_APPLIES, buf2);
+                exit(1);
+            }
 
-        if (!std::getline(obj_f, line) || (retval = sscanf(line.c_str(), " %d %d ", &t[0], &t[1])) != 2) {
-            log(LogSeverity::Error, LVL_GOD, "Format error in Affect line (expecting 2 args, got {}), {}", 
-                retval, buf2);
-            // Set default values to avoid undefined behavior
-            if (retval < 1) t[0] = 0;
-            if (retval < 2) t[1] = 0;
-            // Don't increment j, so we don't add this invalid apply
-        } else {
-            obj_proto[i].applies[j].location = t[0];
-            obj_proto[i].applies[j].modifier = t[1];
-            j++;
+            if (!std::getline(obj_f, line) || (retval = sscanf(line.c_str(), " %d %d ", &t[0], &t[1])) != 2) {
+                log(LogSeverity::Error, LVL_GOD, "Format error in Affect line (expecting 2 args, got {}), {}", retval,
+                    buf2);
+                // Set default values to avoid undefined behavior
+                if (retval < 1)
+                    t[0] = 0;
+                if (retval < 2)
+                    t[1] = 0;
+                // Don't increment j, so we don't add this invalid apply
+            } else {
+                obj_proto[i].applies[j].location = t[0];
+                obj_proto[i].applies[j].modifier = t[1];
+                j++;
+            }
+            break;
+
+        case 'H': /* Hiddenness */
+            if (auto line_opt = get_line(obj_f)) {
+                sscanf(line_opt->c_str(), "%d ", t);
+                obj_proto[i].obj_flags.hiddenness = t[0];
+            }
+            break;
+        case 'T': /* DG triggers */
+            dg_obj_trigger(line, &obj_proto[i]);
+            break;
+
+        case 'X':
+            if (auto line_opt = get_line(obj_f)) {
+                sscanf(line_opt->c_str(), "%d ", t);
+                obj_proto[i].obj_flags.extra_flags[1] = t[0];
+            }
+            break;
+
+        case '$':
+        case '#':
+            init_obj_proto(&obj_proto[i]);
+            top_of_objt = i++;
+            return line;
+            break;
+        default:
+            log(LogSeverity::Error, LVL_GOD, "Format error in {}", buf2);
+            exit(1);
+            break;
         }
-        break;
-
-case 'H': /* Hiddenness */
-    if (auto line_opt = get_line(obj_f)) {
-        sscanf(line_opt->c_str(), "%d ", t);
-        obj_proto[i].obj_flags.hiddenness = t[0];
     }
-    break;
-case 'T': /* DG triggers */
-    dg_obj_trigger(line, &obj_proto[i]);
-    break;
-
-case 'X':
-    if (auto line_opt = get_line(obj_f)) {
-        sscanf(line_opt->c_str(), "%d ", t);
-        obj_proto[i].obj_flags.extra_flags[1] = t[0];
-    }
-    break;
-
-case '$':
-case '#':
-    init_obj_proto(&obj_proto[i]);
-    top_of_objt = i++;
-    return line;
-    break;
-default:
-    log(LogSeverity::Error, LVL_GOD, "Format error in {}", buf2);
-    exit(1);
-    break;
-    }
-  }
 }
 
 #define Z zone_table[zone]
@@ -1954,7 +1958,7 @@ void load_zones(std::ifstream &fl, std::string_view zonename) {
 
     std::getline(fl, buf);
     line_num++;
-    
+
     // Process zone name
     if (auto pos = buf.find('~'); pos != std::string::npos) {
         buf = buf.substr(0, pos);
@@ -1963,10 +1967,10 @@ void load_zones(std::ifstream &fl, std::string_view zonename) {
 
     std::getline(fl, buf);
     line_num++;
-    
+
     // Parse zone parameters
-    if (sscanf(buf.c_str(), " %d %d %d %d %d %d", &Z.top, &Z.lifespan, &Z.reset_mode, 
-               &Z.zone_factor, &Z.hemisphere, &Z.climate) != 6) {
+    if (sscanf(buf.c_str(), " %d %d %d %d %d %d", &Z.top, &Z.lifespan, &Z.reset_mode, &Z.zone_factor, &Z.hemisphere,
+               &Z.climate) != 6) {
         // Handle older zone file format
         if (sscanf(buf.c_str(), " %d %d %d %d", &Z.top, &Z.lifespan, &Z.reset_mode, &Z.zone_factor) != 4) {
             Z.zone_factor = 100;
@@ -1983,7 +1987,7 @@ void load_zones(std::ifstream &fl, std::string_view zonename) {
             exit(0);
         }
         line_num++;
-        
+
         // Skip leading whitespace
         size_t pos = buf.find_first_not_of(" \t");
         if (pos != std::string::npos) {
@@ -2006,7 +2010,7 @@ void load_zones(std::ifstream &fl, std::string_view zonename) {
 
         ZCMD.command = buf[0];
         error = 0;
-        
+
         // Process command arguments
         if (ZCMD.command == 'F') { /* force mobile command */
             if (buf.size() > 1) {
@@ -2031,11 +2035,10 @@ void load_zones(std::ifstream &fl, std::string_view zonename) {
         ZCMD.if_flag = tmp;
 
         if (error) {
-            log(LogSeverity::Error, LVL_GOD, "Format error in {}, line {}: '{}'", 
-                zonename, line_num, buf);
+            log(LogSeverity::Error, LVL_GOD, "Format error in {}, line {}: '{}'", zonename, line_num, buf);
             exit(0);
         }
-        
+
         ZCMD.line = line_num;
         cmd_no++;
     }
@@ -2059,11 +2062,11 @@ void load_help(std::ifstream &fl) {
         log(LogSeverity::Error, LVL_GOD, "Illegal blank line in help file");
         abort();
     }
-    
+
     while (key != "$") {
         // Read in the corresponding help entry
         entry = key + "\n";
-        
+
         std::getline(fl, line);
         while (!line.empty() && line[0] != '#') {
             entry += line + "\n";
@@ -2081,14 +2084,15 @@ void load_help(std::ifstream &fl) {
         // Add the entry to the index with each keyword on the keyword line
         el.duplicate = 0;
         el.entry = strdup(entry.c_str());
-        
+
         std::string_view key_view = key;
         std::string_view scan = key_view;
-        
+
         while (true) {
             scan = one_word(scan, next_key);
-            if (next_key.empty()) break;
-            
+            if (next_key.empty())
+                break;
+
             el.keyword = strdup(next_key.c_str());
             help_table[top_of_helpt++] = el;
             el.duplicate++;
@@ -2655,7 +2659,6 @@ std::string fread_string(std::ifstream &fl, const std::string_view error) {
 /* release memory allocated for a char struct */
 void free_char(CharData *ch) {
     int i;
-    KnowSpell *tmp, *tmp2;
 
     /* Generally speaking, extract_char() should have called char_from_room()
      * which would have cleared all battling variables.  So if ch is *still*
@@ -2667,11 +2670,7 @@ void free_char(CharData *ch) {
         effect_remove(ch, ch->effects);
 
     /* free spell recognition list if it exists */
-    for (tmp = ch->see_spell; tmp; tmp = tmp2) {
-        tmp2 = tmp->next;
-        free(tmp);
-    }
-    ch->see_spell = nullptr;
+    ch->see_spell.clear();
 
     if (ch->player_specials != nullptr && ch->player_specials != &dummy_mob) {
         free_trophy(ch);
@@ -2734,12 +2733,12 @@ void free_obj(ObjData *obj) {
 /* read contents of a text file, alloc space, point buf to it */
 int file_to_string_alloc(const std::string_view name, std::string &buf) {
     buf.clear();
-    
+
     if (file_to_string(name, buf) < 0) {
         buf = "";
         return -1;
     }
-    
+
     return 0;
 }
 
@@ -2750,7 +2749,7 @@ int file_to_string(const std::string_view name, std::string &buf) {
         log(LogSeverity::Error, LVL_GOD, "Error reading {}", name);
         return -1;
     }
-    
+
     buf.clear();
     std::string line;
     while (std::getline(fl, line)) {
@@ -3000,7 +2999,7 @@ std::string fread_word(std::ifstream &fp) {
     // Check for quoted word
     if (cEnd == '\'' || cEnd == '"') {
         char quote = cEnd;
-        
+
         // Read until closing quote
         while (i < MAX_INPUT_LENGTH - 1) {
             fp.get(word[i]);
@@ -3008,18 +3007,18 @@ std::string fread_word(std::ifstream &fp) {
                 break;
             i++;
         }
-        
+
         if (i == MAX_INPUT_LENGTH - 1) {
             log(LogSeverity::Error, LVL_GOD, "SYSERR: Fread_word: word too long.");
             exit(1);
         }
-        
+
         word[i] = '\0';
     } else {
         // First character is already read
         word[0] = cEnd;
         i = 1;
-        
+
         // Read until whitespace or ~
         while (i < MAX_INPUT_LENGTH - 1) {
             fp.get(word[i]);
@@ -3027,16 +3026,16 @@ std::string fread_word(std::ifstream &fp) {
                 break;
             i++;
         }
-        
+
         if (i == MAX_INPUT_LENGTH - 1) {
             log(LogSeverity::Error, LVL_GOD, "SYSERR: Fread_word: word too long.");
             exit(1);
         }
-        
+
         // Put back the terminating character
         if (fp.good())
             fp.putback(word[i]);
-            
+
         word[i] = '\0';
     }
 
