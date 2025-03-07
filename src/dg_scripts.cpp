@@ -1,6 +1,7 @@
 
 #include "dg_scripts.hpp"
 #include <fmt/core.h>
+#include <fmt/format.h>
 
 #include "ai.hpp"
 #include "casting.hpp"
@@ -579,7 +580,7 @@ ACMD(do_detach) {
     CharData *victim = nullptr;
     ObjData *obj = nullptr;
     RoomData *room;
-    std::string_view trigger;
+    std::string trigger;
 
     auto arg1 = argument.shift();
     auto arg2 = argument.shift();
@@ -1887,22 +1888,28 @@ void eval_op(std::string_view op, std::string_view lhs, std::string_view rhs, st
 
     else if (matches("/=", op)) {
         result = fmt::format("{}", strcasestr(lhs, rhs) ? '1' : '0');
+    }
 
-    else if (matches("*", op))
+    else if (matches("*", op)) {
         result = fmt::format("{}", svtoi(lhs) * svtoi(rhs));
+    }
 
     else if (matches("/", op)) {
         result = fmt::format("{}", ((n = svtoi(rhs)) != 0) ? (svtoi(lhs) / n) : 0);
+    }
 
-    else if (matches("+", op))
+    else if (matches("+", op)) {
         result = fmt::format("{}", svtoi(lhs) + svtoi(rhs));
+    }
 
-    else if (matches("-", op))
+    else if (matches("-", op)) {
         result = fmt::format("{}", svtoi(lhs) - svtoi(rhs));
+    }
 
     else if (matches("!", op)) {
-        if (is_num(rhs))
+        if (is_num(rhs)) {
             result = fmt::format("{}", !svtoi(rhs));
+        }
         else
             sprintf(result, "%d", rhs.empty());
     }
