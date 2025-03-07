@@ -155,7 +155,7 @@ void load_banned(void);
 void Read_Xname_List(void);
 void boot_the_shops(std::ifstream &shop_f, std::string_view filename, int rec_count);
 int hsort(const void *a, const void *b);
-void boot_the_shops(FILE *shop_f, std::string_view filename, int rec_count);
+void boot_the_shops(std::ifstream &shop_f, std::string_view filename, int rec_count);
 void build_count(void);
 void load_stat_bonus(void);
 void clear_memory(CharData *ch);
