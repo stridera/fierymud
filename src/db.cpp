@@ -119,12 +119,12 @@ int no_mail = 0; /* mail disabled?                 */
 
 ResetQType reset_q; /* queue of zones to be reset         */
 
-void setup_dir(FILE *fl, int room, int dir);
+void setup_dir(std::ifstream &fl, int room, int dir);
 void index_boot(int mode);
 void discrete_load(FILE *fl, int mode);
-void parse_trigger(FILE *fl, int virtual_nr);
-void parse_room(FILE *fl, int virtual_nr);
-void parse_mobile(FILE *mob_f, int nr);
+void parse_trigger(std::ifstream &fl, int virtual_nr);
+void parse_room(std::ifstream &fl, int virtual_nr);
+void parse_mobile(std::ifstream &mob_f, int nr);
 std::string_view parse_object(FILE *obj_f, int nr);
 void load_zones(FILE *fl, std::string_view zonename);
 void load_help(FILE *fl);
@@ -1074,20 +1074,21 @@ char fread_letter(std::ifstream &fp) {
 }
 
 /* load the rooms */
-void parse_room(FILE *fl, int virtual_nr) {
+void parse_room(std::ifstream &fl, int virtual_nr) {
     static int room_nr = 0, zone = 0;
     int t[10], i;
-    char line[256], flags[128];
+    std::string line;
+    char flags[128];
     ExtraDescriptionData *new_descr;
     char letter;
 
     if (virtual_nr <= (zone ? zone_table[zone - 1].top : -1)) {
-        fprintf(stderr, "Room #%d is below zone %d.\n", virtual_nr, zone);
+        log(LogSeverity::Error, LVL_GOD, "Room #{} is below zone {}", virtual_nr, zone);
         exit(1);
     }
     while (virtual_nr > zone_table[zone].top)
         if (++zone > top_of_zone_table) {
-            fprintf(stderr, "Room %d is outside of any zone.\n", virtual_nr);
+            log(LogSeverity::Error, LVL_GOD, "Room {} is outside of any zone", virtual_nr);
             exit(1);
         }
     world[room_nr].zone = zone;
@@ -1095,10 +1096,17 @@ void parse_room(FILE *fl, int virtual_nr) {
     world[room_nr].name = fread_string(fl, buf2);
     world[room_nr].description = fread_string(fl, buf2);
 
-    if (!get_line(fl, line) || sscanf(line, " %d %s %d ", t, flags, t + 2) != 3) {
-        fprintf(stderr, "Format error in room #%d\n", virtual_nr);
+    if (auto line_opt = get_line(fl)) {
+        line = *line_opt;
+        if (sscanf(line.c_str(), " %d %s %d ", t, flags, t + 2) != 3) {
+            log(LogSeverity::Error, LVL_GOD, "Format error in room #{}", virtual_nr);
+            exit(1);
+        }
+    } else {
+        log(LogSeverity::Error, LVL_GOD, "Unexpected end of file in room #{}", virtual_nr);
         exit(1);
     }
+    
     /* t[0] is the zone number; ignored with the zone-file system */
     /* room_flags is a flagvector array */
     world[room_nr].room_flags[0] = asciiflag_conv(flags);
@@ -1114,16 +1122,19 @@ void parse_room(FILE *fl, int virtual_nr) {
 
     world[room_nr].ex_description = nullptr;
 
-    sprintf(buf, "Format error in room #%d (expecting D/E/S)", virtual_nr);
+    std::string error_msg = fmt::format("Format error in room #{} (expecting D/E/S)", virtual_nr);
 
     for (;;) {
-        if (!get_line(fl, line)) {
-            fprintf(stderr, "%s\n", buf);
+        if (auto line_opt = get_line(fl)) {
+            line = *line_opt;
+        } else {
+            log(LogSeverity::Error, LVL_GOD, "{}", error_msg);
             exit(1);
         }
+        
         switch (*line) {
         case 'D':
-            setup_dir(fl, room_nr, atoi(line + 1));
+            setup_dir(fl, room_nr, atoi(line.c_str() + 1));
             break;
         case 'E':
             new_descr = std::make_unique<ExtraDescriptionData>().release();
@@ -1134,17 +1145,17 @@ void parse_room(FILE *fl, int virtual_nr) {
             break;
         case 'S': /* end of room */
             letter = fread_letter(fl);
-            ungetc(letter, fl);
+            fl.putback(letter);
             while (letter == 'T') {
                 dg_read_trigger(fl, &world[room_nr], WLD_TRIGGER);
                 letter = fread_letter(fl);
-                ungetc(letter, fl);
+                fl.putback(letter);
             }
             top_of_world = room_nr++;
             return;
             break;
         default:
-            fprintf(stderr, "%s\n", buf);
+            log(LogSeverity::Error, LVL_GOD, "{}", error_msg);
             exit(1);
             break;
         }
@@ -1152,28 +1163,32 @@ void parse_room(FILE *fl, int virtual_nr) {
 }
 
 /* read direction data */
-void setup_dir(FILE *fl, int room, int dir) {
+void setup_dir(std::ifstream &fl, int room, int dir) {
     int t[5];
-    char line[256];
+    std::string line;
 
     sprintf(buf2, "room #%d, direction D%d", world[room].vnum, dir);
     /* added by gurlaek to stop memory leaks detected by insure++ 8/26/1999 */
     if (world[room].exits[dir]) {
-        log("SYSERR:db.c:setup_dir:creating direction [{:d}] for room {:d} twice!", dir, world[room].vnum);
+        log(LogSeverity::Warn, LVL_GOD, "SYSERR:db.c:setup_dir:creating direction [{}] for room {} twice!", dir, world[room].vnum);
     } else {
         world[room].exits[dir] = create_exit(NOWHERE);
     }
     world[room].exits[dir]->general_description = fread_string(fl, buf2);
     world[room].exits[dir]->keyword = fread_string(fl, buf2);
 
-    if (!get_line(fl, line)) {
-        fprintf(stderr, "Format error, %s\n", buf2);
+    if (auto line_opt = get_line(fl)) {
+        line = *line_opt;
+    } else {
+        log(LogSeverity::Error, LVL_GOD, "Format error, {}", buf2);
         exit(1);
     }
-    if (sscanf(line, " %d %d %d ", t, t + 1, t + 2) != 3) {
-        fprintf(stderr, "Format error, %s\n", buf2);
+    
+    if (sscanf(line.c_str(), " %d %d %d ", t, t + 1, t + 2) != 3) {
+        log(LogSeverity::Error, LVL_GOD, "Format error, {}", buf2);
         exit(1);
     }
+    
     if (t[0] == 1)
         world[room].exits[dir]->exit_info = EX_ISDOOR;
     else if (t[0] == 2)
@@ -1584,7 +1599,7 @@ void parse_enhanced_mob(FILE *mob_f, int i, int nr) {
     exit(1);
 }
 
-void parse_mobile(FILE *mob_f, int nr) {
+void parse_mobile(std::ifstream &mob_f, int nr) {
     static int i = 0;
     int j, t[10];
     char line[256], *tmpptr, letter;
@@ -1825,7 +1840,7 @@ j = 0;
 
 while (true) {
     if (!std::getline(obj_f, line)) {
-        fprintf(stderr, "Format error in %s\n", buf2);
+        log(LogSeverity::Error, LVL_GOD, "Format error in {}", buf2);
         exit(1);
     }
     switch (*line) {
@@ -2719,7 +2734,7 @@ int file_to_string_alloc(const std::string_view name, std::string &buf) {
 int file_to_string(const std::string_view name, std::string &buf) {
     std::ifstream fl(std::string(name));
     if (!fl.is_open()) {
-        fmt::print(stderr, "Error reading {}\n", name);
+        log(LogSeverity::Error, LVL_GOD, "Error reading {}", name);
         return -1;
     }
     
