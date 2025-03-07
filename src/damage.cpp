@@ -262,13 +262,14 @@ void damage_evasion_message(CharData *ch, CharData *vict, ObjData *weapon, int d
         }
         break;
     case DAM_POISON:
-        sprintf(buf, EVASIONCLR "$n" EVASIONCLR " tries to %s $N" EVASIONCLR ", but $E is immune!&0",
-                damtypes[damtype].verb1st);
-        act(buf, false, ch, 0, vict, TO_NOTVICT);
-        sprintf(buf, EVASIONCLR "You try to %s $N" EVASIONCLR ", but $E is immune!&0", damtypes[damtype].verb1st);
-        act(buf, false, ch, 0, vict, TO_CHAR);
-        sprintf(buf, EVASIONCLR "$n" EVASIONCLR " tries to %s you, but you are immune!&0", damtypes[damtype].verb1st);
-        act(buf, false, ch, 0, vict, TO_VICT);
+        act(fmt::format(EVASIONCLR "$n" EVASIONCLR " tries to {} $N" EVASIONCLR ", but $E is immune!&0",
+                        damtypes[damtype].verb1st),
+            false, ch, 0, vict, TO_NOTVICT);
+        act(fmt::format(EVASIONCLR "You try to {} $N" EVASIONCLR ", but $E is immune!&0", damtypes[damtype].verb1st),
+            false, ch, 0, vict, TO_CHAR);
+        act(fmt::format(EVASIONCLR "$n" EVASIONCLR " tries to {} you, but you are immune!&0",
+                        damtypes[damtype].verb1st),
+            false, ch, 0, vict, TO_VICT);
         break;
     case DAM_SHOCK:
     case DAM_FIRE:
@@ -279,27 +280,30 @@ void damage_evasion_message(CharData *ch, CharData *vict, ObjData *weapon, int d
     case DAM_ALIGN:
     case DAM_DISPEL:
     case DAM_DISCORPORATE:
-    default:
+    default: {
+        std::string buf;
         if (random_number(1, 3) == 1)
-            sprintf(buf, EVASIONCLR "$n" EVASIONCLR " tries to %s $N" EVASIONCLR ", but $E is completely unaffected!&0",
-                    damtypes[damtype].verb1st);
+            buf = fmt::format(EVASIONCLR "$n" EVASIONCLR " tries to %s $N" EVASIONCLR
+                                         ", but $E is completely unaffected!&0",
+                              damtypes[damtype].verb1st);
         else
-            sprintf(buf, EVASIONCLR "$n" EVASIONCLR "'s %s has no effect on $N" EVASIONCLR "!&0",
-                    damtypes[damtype].action);
+            buf = fmt::format(EVASIONCLR "$n" EVASIONCLR "'s %s has no effect on $N" EVASIONCLR "!&0",
+                              damtypes[damtype].action);
         act(buf, false, ch, 0, vict, TO_NOTVICT);
         if (random_number(1, 3) == 1)
-            sprintf(buf, EVASIONCLR "You try to %s $N" EVASIONCLR ", but $E is completely unaffected!&0",
-                    damtypes[damtype].verb1st);
+            buf = fmt::format(EVASIONCLR "You try to %s $N" EVASIONCLR ", but $E is completely unaffected!&0",
+                              damtypes[damtype].verb1st);
         else
-            sprintf(buf, EVASIONCLR "Your %s has no effect on $N" EVASIONCLR "!&0", damtypes[damtype].action);
+            buf = fmt::format(EVASIONCLR "Your %s has no effect on $N" EVASIONCLR "!&0", damtypes[damtype].action);
         act(buf, false, ch, 0, vict, TO_CHAR);
         if (random_number(1, 3) == 1)
-            sprintf(buf, EVASIONCLR "$n" EVASIONCLR " tries to %s you, but you are completely unaffected!&0",
-                    damtypes[damtype].verb1st);
+            buf = fmt::format(EVASIONCLR "$n" EVASIONCLR " tries to %s you, but you are completely unaffected!&0",
+                              damtypes[damtype].verb1st);
         else
-            sprintf(buf, EVASIONCLR "$n" EVASIONCLR "'s %s has no effect on you!&0", damtypes[damtype].action);
+            buf = fmt::format(EVASIONCLR "$n" EVASIONCLR "'s %s has no effect on you!&0", damtypes[damtype].action);
         act(buf, false, ch, 0, vict, TO_VICT);
         break;
+    }
     }
 }
 

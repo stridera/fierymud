@@ -10,8 +10,6 @@
  *  CircleMUD is based on DikuMUD, Copyright (C) 1990, 1991.               *
  ***************************************************************************/
 
-#define __DB_C__
-
 #include "db.hpp"
 
 #include "board.hpp"

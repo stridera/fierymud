@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.14)
 project(fierymud)
 
 set(CMAKE_CXX_STANDARD 23)
-set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+# set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 add_compile_options(-Werror -Wno-format-overflow -Wno-format-truncation -Wno-write-strings -Wno-unused-variable)
 # add_compile_options(-Werror -Wall -Wextra) # Ideal end state
@@ -28,10 +28,10 @@ add_compile_options(-g)
 # set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -fno-omit-frame-pointer -fsanitize=leak -fsanitize=address -fsanitize=undefined ")
 set(CMAKE_C_COMPILER gcc)
 
-include_directories(include)
+include_directories(src/)
 FILE(GLOB sources src/*.cpp)
 add_executable(fierymud ${sources})
 
-target_link_libraries(fierymud PRIVATE version crypt fmt::fmt nlohmann_json::nlohmann_json)# asio::asio)
+target_link_libraries(fierymud PRIVATE version crypt fmt::fmt nlohmann_json::nlohmann_json magic_enum::magic_enum)# asio::asio)
 
 install (TARGETS fierymud DESTINATION bin)
