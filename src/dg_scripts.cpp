@@ -350,9 +350,9 @@ std::string script_stat(CharData *ch, ScriptData *sc) {
             for (tv = GET_TRIG_VARS(t); tv; tv = tv->next) {
                 if (*(tv->value) == UID_CHAR) {
                     find_uid_name(tv->value, name);
-                    buf += sprintf(buf, "    %15s:  %s\n", tv->name, name);
+                    buf += fmt::format("    {:15}:  {}\n", tv->name, name);
                 } else
-                    buf += sprintf(buf, "    %15s:  %s\n", tv->name, tv->value);
+                    buf += fmt::format("    {:15}:  {}\n", tv->name, tv->value);
             }
         }
 #endif
@@ -726,7 +726,7 @@ int remove_var(TriggerVariableData **var_list, const std::string_view name) {
  *  Will eventually allow on-line view of script errors.
  */
 void script_log(TrigData *t, std::string_view msg) {
-    char buf[256];
+    std::string buf;
 
     if (t)
         log(LogSeverity::Stat, LVL_GOD, "ERROR trigger {:d} ({}): {}", GET_TRIG_VNUM(t), GET_TRIG_NAME(t), msg);
@@ -845,7 +845,7 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, std::s
             /* General scripting variable "damdone", which is the amount of damage
              * that was done by a wdamage, mdamage, or odamage command. */
             else if (matches(var, "damdone")) {
-                sprintf(str, "%d", trig->damdone);
+                str = fmt::format("{}", trig->damdone);
             } else
                 *str = '\0';
         }
@@ -915,22 +915,22 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, std::s
 
         if (matches(var, "time")) {
             if (matches(field, "hour"))
-                sprintf(str, "%d", time_info.hours);
+                str = fmt::format("{}", time_info.hours);
             else if (matches(field, "day"))
-                sprintf(str, "%d", time_info.day);
+                str = fmt::format("{}", time_info.day);
             else if (matches(field, "month"))
-                sprintf(str, "%d", time_info.month);
+                str = fmt::format("{}", time_info.month);
             else if (matches(field, "year"))
-                sprintf(str, "%d", time_info.year);
+                str = fmt::format("{}", time_info.year);
             else if (matches(field, "stamp")) {
                 num = time_info.year * SECS_PER_MUD_YEAR + time_info.month * SECS_PER_MUD_MONTH +
                       time_info.day * SECS_PER_MUD_DAY + time_info.hours * SECS_PER_MUD_HOUR;
                 /* Only game-hour granularity is available in triggers. */
                 num /= SECS_PER_MUD_HOUR;
-                sprintf(str, "%d", num);
+                str = fmt::format("{}", num);
             } else {
                 *str = '\0';
-                sprintf(buf2, "Unknown time field '%s'", field);
+                buf2 = fmt::format("Unknown time field '{}'", field);
                 script_log(trig, buf2);
             }
         }
@@ -955,7 +955,7 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, std::s
                     num = random_number(0, top_of_world);
                 } while (ROOM_FLAGGED(num, ROOM_PRIVATE) || ROOM_FLAGGED(num, ROOM_DEATH) ||
                          ROOM_FLAGGED(num, ROOM_GODROOM));
-                sprintf(str, "%d", world[num].vnum);
+                str = fmt::format("{}", world[num].vnum);
             }
 
             /* Pick a random room in the zone */
@@ -969,7 +969,7 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, std::s
                 else
                     num = -1;
                 if (num >= 0 && ((num = get_random_room_in_zone(num)) >= 0))
-                    sprintf(str, "%d", world[num].vnum);
+                    str = fmt::format("{}", world[num].vnum);
                 else
                     strcpy(str, "-1");
             }
@@ -986,7 +986,7 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, std::s
                 if (is_positive_integer(value) && ((num = real_object(svtoi(value))) >= 0))
                     strcpy(str, obj_proto[num].short_description);
                 else
-                    sprintf(str, "[no description for object %s]", value);
+                    str = fmt::format("[no description for object {}]", value);
 
             } else if (matches(field, "obj_noadesc")) {
                 /* %get.obj_noadesc[VNUM]% */
@@ -1012,13 +1012,13 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, std::s
                 /* %get.obj_count[VNUM]% is the number of objects with VNUM in game */
             } else if (matches(field, "obj_count")) {
                 if ((num = real_object(svtoi(value))) >= 0)
-                    sprintf(str, "%d", obj_index[num].number);
+                    str = fmt::format("{}", obj_index[num].number);
                 else
                     strcpy(str, "0");
                 /* %get.mob_count[VNUM]% is the number of mobiles with VNUM in game */
             } else if (matches(field, "mob_count")) {
                 if ((num = real_mobile(svtoi(value))) >= 0)
-                    sprintf(str, "%d", mob_index[num].number);
+                    str = fmt::format("{}", mob_index[num].number);
                 else
                     strcpy(str, "0");
                 /* %get.room[VNUM]% returns a UID variable pointing to that room */
@@ -1034,10 +1034,10 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, std::s
                     for (num = 0; ch; ch = ch->next_in_room)
                         if (!GET_INVIS_LEV(ch))
                             ++num;
-                    sprintf(str, "%d", num);
+                    str = fmt::format("{}", num);
                 } else {
                     *str = '\0';
-                    sprintf(buf2, "get.people[%s]: room '-1' does not exist", value);
+                    buf2 = fmt::format("get.people[{}]: room '-1' does not exist", value);
                     script_log(trig, buf2);
                 }
             } else if (matches(field, "opposite_dir")) {
@@ -1053,10 +1053,10 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, std::s
                     *str = '\0';
                 }
             } else if (matches(field, "uidchar"))
-                sprintf(str, "%c", UID_CHAR);
+                str = fmt::format("{}", UID_CHAR);
             else {
                 *str = '\0';
-                sprintf(buf2, "Unknown get field: '%s'", field);
+                buf2 = fmt::format("Unknown get field: '{}'", field);
                 script_log(trig, buf2);
             }
         }
@@ -1071,7 +1071,7 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, std::s
             }
 
             else if (matches(field, "length"))
-                sprintf(str, "%zu", strlen(value));
+                str = fmt::format("{}", strlen(value));
 
             else if (matches(field, "tolower")) {
                 do {
@@ -1095,7 +1095,7 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, std::s
 
             else {
                 strcpy(str, value);
-                sprintf(buf2, "Unknown string field: '%s'", field);
+                buf2 = fmt::format("Unknown string field: '{}'", field);
                 script_log(trig, buf2);
             }
 
@@ -1129,9 +1129,9 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, std::s
 
         /* Identifying numbers */
         else if (matches(field, "vnum"))
-            sprintf(str, "%d", GET_MOB_VNUM(c));
+            str = fmt::format("{}", GET_MOB_VNUM(c));
         else if (matches(field, "id"))
-            sprintf(str, "%ld", GET_ID(c));
+            str = fmt::format("{}", GET_ID(c));
 
         /* Attributes */
         else if (matches(field, "sex") || matches(field, "gender"))
@@ -1142,76 +1142,76 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, std::s
         } else if (matches(field, "race"))
             strcpy(str, races[(int)GET_RACE(c)].name);
         else if (matches(field, "level"))
-            sprintf(str, "%d", GET_LEVEL(c));
+            str = fmt::format("{}", GET_LEVEL(c));
 
         else if (matches(field, "weight"))
-            sprintf(str, "%d", GET_WEIGHT(c));
+            str = fmt::format("{}", GET_WEIGHT(c));
         else if (matches(field, "height"))
-            sprintf(str, "%d", GET_HEIGHT(c));
+            str = fmt::format("{}", GET_HEIGHT(c));
         else if (matches(field, "size"))
-            sprintf(str, "%s", SIZE_DESC(c));
+            str = fmt::format("{}", SIZE_DESC(c));
 
         else if (matches(field, "cha"))
-            sprintf(str, "%d", GET_VIEWED_CHA(c));
+            str = fmt::format("{}", GET_VIEWED_CHA(c));
         else if (matches(field, "str"))
-            sprintf(str, "%d", GET_VIEWED_STR(c));
+            str = fmt::format("{}", GET_VIEWED_STR(c));
         else if (matches(field, "int"))
-            sprintf(str, "%d", GET_VIEWED_INT(c));
+            str = fmt::format("{}", GET_VIEWED_INT(c));
         else if (matches(field, "wis"))
-            sprintf(str, "%d", GET_VIEWED_WIS(c));
+            str = fmt::format("{}", GET_VIEWED_WIS(c));
         else if (matches(field, "con"))
-            sprintf(str, "%d", GET_VIEWED_CON(c));
+            str = fmt::format("{}", GET_VIEWED_CON(c));
         else if (matches(field, "dex"))
-            sprintf(str, "%d", GET_VIEWED_DEX(c));
+            str = fmt::format("{}", GET_VIEWED_DEX(c));
 
         else if (matches(field, "real_cha"))
-            sprintf(str, "%d", GET_CHA(c));
+            str = fmt::format("{}", GET_CHA(c));
         else if (matches(field, "real_str"))
-            sprintf(str, "%d", GET_STR(c));
+            str = fmt::format("{}", GET_STR(c));
         else if (matches(field, "real_int"))
-            sprintf(str, "%d", GET_INT(c));
+            str = fmt::format("{}", GET_INT(c));
         else if (matches(field, "real_wis"))
-            sprintf(str, "%d", GET_WIS(c));
+            str = fmt::format("{}", GET_WIS(c));
         else if (matches(field, "real_con"))
-            sprintf(str, "%d", GET_CON(c));
+            str = fmt::format("{}", GET_CON(c));
         else if (matches(field, "real_dex"))
-            sprintf(str, "%d", GET_DEX(c));
+            str = fmt::format("{}", GET_DEX(c));
 
         else if (matches(field, "hit"))
-            sprintf(str, "%d", GET_HIT(c));
+            str = fmt::format("{}", GET_HIT(c));
         else if (matches(field, "maxhit"))
-            sprintf(str, "%d", GET_MAX_HIT(c));
+            str = fmt::format("{}", GET_MAX_HIT(c));
         else if (matches(field, "move"))
-            sprintf(str, "%d", GET_MOVE(c));
+            str = fmt::format("{}", GET_MOVE(c));
         else if (matches(field, "maxmove"))
-            sprintf(str, "%d", GET_MAX_MOVE(c));
+            str = fmt::format("{}", GET_MAX_MOVE(c));
         else if (matches(field, "armor"))
-            sprintf(str, "%d", GET_AC(c));
+            str = fmt::format("{}", GET_AC(c));
         else if (matches(field, "hitroll"))
-            sprintf(str, "%d", GET_HITROLL(c));
+            str = fmt::format("{}", GET_HITROLL(c));
         else if (matches(field, "damroll"))
-            sprintf(str, "%d", GET_DAMROLL(c));
+            str = fmt::format("{}", GET_DAMROLL(c));
         else if (matches(field, "exp"))
-            sprintf(str, "%ld", GET_EXP(c));
+            str = fmt::format("{}", GET_EXP(c));
         else if (matches(field, "perception"))
-            sprintf(str, "%ld", GET_PERCEPTION(c));
+            str = fmt::format("{}", GET_PERCEPTION(c));
         else if (matches(field, "hiddenness"))
-            sprintf(str, "%ld", GET_HIDDENNESS(c));
+            str = fmt::format("{}", GET_HIDDENNESS(c));
         else if (matches(field, "align") || matches(field, "alignment"))
-            sprintf(str, "%d", GET_ALIGNMENT(c));
+            str = fmt::format("{}", GET_ALIGNMENT(c));
         else if (matches(field, "composition"))
             strcpy(str, compositions[(int)GET_COMPOSITION(c)].name);
         else if (matches(field, "lifeforce"))
             strcpy(str, lifeforces[(int)GET_LIFEFORCE(c)].name);
 
         else if (is_coin_name(field, PLATINUM))
-            sprintf(str, "%d", GET_PLATINUM(c));
+            str = fmt::format("{}", GET_PLATINUM(c));
         else if (is_coin_name(field, GOLD))
-            sprintf(str, "%d", GET_GOLD(c));
+            str = fmt::format("{}", GET_GOLD(c));
         else if (is_coin_name(field, SILVER))
-            sprintf(str, "%d", GET_SILVER(c));
+            str = fmt::format("{}", GET_SILVER(c));
         else if (is_coin_name(field, COPPER))
-            sprintf(str, "%d", GET_COPPER(c));
+            str = fmt::format("{}", GET_COPPER(c));
 
         /* Flags */
         else if (matches(field, "flags")) {
@@ -1230,7 +1230,7 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, std::s
                     strcpy(str, MOB_FLAGGED(c, num) ? "1" : "0");
                 else {
                     strcpy(str, "0");
-                    sprintf(buf2, "unrecognized NPC flag '%s' to %%%s.flagged[]%%", value, var);
+                    buf2 = fmt::format("unrecognized NPC flag '{}' to %{}%.flagged[]%", value, var);
                     script_log(trig, buf2);
                 }
             } else {
@@ -1240,7 +1240,7 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, std::s
                     strcpy(str, PRF_FLAGGED(c, (1 << num)) ? "1" : "0");
                 else {
                     strcpy(str, "0");
-                    sprintf(buf2, "unrecognized player or preference flag '%s' to %%%s.flagged[]%%", value, var);
+                    buf2 = fmt::format("unrecognized player or preference flag '{}' to %{}%.flagged[]%", value, var);
                     script_log(trig, buf2);
                 }
             }
@@ -1252,7 +1252,7 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, std::s
                 strcpy(str, EFF_FLAGGED(c, num) ? "1" : "0");
             else {
                 strcpy(str, "0");
-                sprintf(buf2, "unrecognized effect flag '%s' to %%%s.eff_flagged[]%%", value, var);
+                buf2 = fmt::format("unrecognized effect flag '{}' to %{}%.eff_flagged[]%", value, var);
                 script_log(trig, buf2);
             }
 
@@ -1269,7 +1269,7 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, std::s
                 strcpy(str, affected_by_spell(c, num) ? "1" : "0");
             else {
                 strcpy(str, "0");
-                sprintf(buf2, "unrecognized spell '%s' to %%%s.has_spell[]%%", value, var);
+                buf2 = fmt::format("unrecognized spell '{}' to %{}%.has_spell[]%", value, var);
                 script_log(trig, buf2);
             }
         }
@@ -1348,7 +1348,7 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, std::s
             } else if (IS_NPC(c))
                 strcpy(str, "0");
             else
-                sprintf(str, "%d", quest_stage(c, value));
+                str = fmt::format("{}", quest_stage(c, value));
         }
 
         else if (matches(field, "has_completed")) {
@@ -1374,7 +1374,7 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, std::s
         /* Object relationships */
         else if (matches(field, "inventory")) {
             if (matches(value, "count"))
-                sprintf(str, "%d", IS_CARRYING_N(c));
+                str = fmt::format("{}", IS_CARRYING_N(c));
             else if (*value) {
                 /* An argument was given: find a specific object. */
                 num = svtoi(value);
@@ -1394,7 +1394,7 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, std::s
                 for (num = pos = 0; pos < NUM_WEARS; ++pos)
                     if (GET_EQ(c, pos))
                         ++num;
-                sprintf(str, "%d", num);
+                str = fmt::format("{}", num);
             } else if ((pos = search_block(value, wear_positions, true)) >= 0)
                 UID_VAR(str, GET_EQ(c, pos));
             else
@@ -1432,7 +1432,7 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, std::s
             if (talent < 0)
                 strcpy(str, "0");
             else
-                sprintf(str, "%d", GET_SKILL(c, talent));
+                str = fmt::format("{}", GET_SKILL(c, talent));
         }
 
         else if (matches(field, "clan")) {
@@ -1441,7 +1441,7 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, std::s
             else
                 *str = '\0';
         } else if (matches(field, "clan_rank"))
-            sprintf(str, "%d", IS_NPC(c) ? 0 : GET_CLAN_RANK(c));
+            str = fmt::format("{}", IS_NPC(c) ? 0 : GET_CLAN_RANK(c));
 
         else if (matches(field, "can_be_seen"))
             strcpy(str, type == MOB_TRIGGER && !CAN_SEE(ch, c) ? "0" : "1");
@@ -1461,7 +1461,7 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, std::s
                     }
                     /* Looking for a specific mobile: give count if it exists */
                     else if (node->kill_type == TROPHY_MOBILE && node->id == num) {
-                        sprintf(str, "%d", (int)node->amount);
+                        str = fmt::format("{}", (int)node->amount);
                         break;
                     }
                 }
@@ -1473,7 +1473,7 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, std::s
 
         else {
             *str = '\0';
-            sprintf(buf2, "Unknown char field: '%s'", field);
+            buf2 = fmt::format("Unknown char field: '{}'", field);
             script_log(trig, buf2);
         }
     }
@@ -1489,42 +1489,42 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, std::s
 
         /* Identifying numbers */
         else if (matches(field, "vnum"))
-            sprintf(str, "%d", GET_OBJ_VNUM(o));
+            str = fmt::format("{}", GET_OBJ_VNUM(o));
         else if (matches(field, "type"))
             strcpy(str, OBJ_TYPE_NAME(o));
         else if (matches(field, "id"))
-            sprintf(str, "%ld", GET_ID(o));
+            str = fmt::format("{}", GET_ID(o));
 
         /* Numerical attributes */
         else if (matches(field, "weight"))
-            sprintf(str, "%.2f", o->obj_flags.weight);
+            str = fmt::format("{:.2f}", o->obj_flags.weight);
         else if (matches(field, "cost"))
-            sprintf(str, "%d", GET_OBJ_COST(o));
+            str = fmt::format("{}", GET_OBJ_COST(o));
         else if (matches(field, "cost_per_day") || matches(field, "rent"))
             strcpy(str, "0");
         else if (matches(field, "level"))
-            sprintf(str, "%d", GET_OBJ_LEVEL(o));
+            str = fmt::format("{}", GET_OBJ_LEVEL(o));
         else if (matches(field, "val0"))
-            sprintf(str, "%d", GET_OBJ_VAL(o, 0));
+            str = fmt::format("{}", GET_OBJ_VAL(o, 0));
         else if (matches(field, "val1"))
-            sprintf(str, "%d", GET_OBJ_VAL(o, 1));
+            str = fmt::format("{}", GET_OBJ_VAL(o, 1));
         else if (matches(field, "val2"))
-            sprintf(str, "%d", GET_OBJ_VAL(o, 2));
+            str = fmt::format("{}", GET_OBJ_VAL(o, 2));
         else if (matches(field, "val3"))
-            sprintf(str, "%d", GET_OBJ_VAL(o, 3));
+            str = fmt::format("{}", GET_OBJ_VAL(o, 3));
         else if (matches(field, "timer"))
-            sprintf(str, "%d", GET_OBJ_TIMER(o));
+            str = fmt::format("{}", GET_OBJ_TIMER(o));
         else if (matches(field, "decomp"))
-            sprintf(str, "%d", GET_OBJ_DECOMP(o));
+            str = fmt::format("{}", GET_OBJ_DECOMP(o));
         else if (matches(field, "hiddenness"))
-            sprintf(str, "%ld", GET_OBJ_HIDDENNESS(o));
+            str = fmt::format("{}", GET_OBJ_HIDDENNESS(o));
         else if (matches(field, "affect") || matches(field, "effect")) {
             if (!is_positive_integer(value) || ((num = svtoi(value)) > 5))
                 *str = '\0';
             else
-                sprintf(str, "%+d %s", o->applies[num].modifier, apply_types[(int)o->applies[num].location]);
+                str = fmt::format("{:+d} {}", o->applies[num].modifier, apply_types[(int)o->applies[num].location]);
         } else if (matches(field, "affect_value") || matches(field, "effect_value"))
-            sprintf(str, "%d", (is_positive_integer(value) && ((num = svtoi(value)) <= 5)) ? o->applies[num].modifier : 0);
+            str = fmt::format("{}", (is_positive_integer(value) && ((num = svtoi(value)) <= 5)) ? o->applies[num].modifier : 0);
 
         /* Flags */
         else if (matches(field, "flags"))
@@ -1534,7 +1534,7 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, std::s
                 strcpy(str, OBJ_FLAGGED(o, num) ? "1" : "0");
             else {
                 strcpy(str, "0");
-                sprintf(buf2, "unrecognized object extra bit '%s' to %%%s.flagged[]%%", value, var);
+                buf2 = fmt::format("unrecognized object extra bit '{}' to %{}%.flagged[]%", value, var);
                 script_log(trig, buf2);
             }
         } else if (matches(field, "spells"))
@@ -1545,7 +1545,7 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, std::s
                 strcpy(str, OBJ_EFF_FLAGGED(o, num) ? "1" : "0");
             else {
                 strcpy(str, "0");
-                sprintf(buf2, "unrecognized effect flag '%s' to %%%s.has_spell[]%%", value, var);
+                buf2 = fmt::format("unrecognized effect flag '{}' to %{}%.has_spell[]%", value, var);
                 script_log(trig, buf2);
             }
         }
@@ -1588,7 +1588,7 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, std::s
 
         else {
             *str = '\0';
-            sprintf(buf2, "trigger type: %d. unknown object field: '%s'", type, field);
+            buf2 = fmt::format("trigger type: {}. unknown object field: '{}'", type, field);
             script_log(trig, buf2);
         }
     }
@@ -1601,9 +1601,9 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, std::s
             strcpy(str, r->name);
 
         else if (matches(field, "vnum"))
-            sprintf(str, "%d", r->vnum);
+            str = fmt::format("{}", r->vnum);
         else if (matches(field, "sector"))
-            sprintf(str, "%s", sectors[r->sector_type].name);
+            str = fmt::format("{}", sectors[r->sector_type].name);
         else if (matches(field, "is_dark"))
             strcpy(str, r->light > 0 ? "1" : "0");
 
@@ -1614,7 +1614,7 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, std::s
                 strcpy(str, IS_FLAGGED(r->room_flags, num) ? "1" : "0");
             else {
                 strcpy(str, "0");
-                sprintf(buf2, "unrecognized room flag '%s' to %%%s.flagged%%", value, var);
+                buf2 = fmt::format("unrecognized room flag '{}' to %{}%.flagged%", value, var);
                 script_log(trig, buf2);
             }
         } else if (matches(field, "effects") || matches(field, "affects"))
@@ -1624,7 +1624,7 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, std::s
                 strcpy(str, IS_FLAGGED(r->room_effects, num) ? "1" : "0");
             else {
                 strcpy(str, "0");
-                sprintf(buf2, "unrecognized room effect flag '%s' to %%%s.has_effect%%", value, var);
+                buf2 = fmt::format("unrecognized room effect flag '{}' to %{}%.has_effect%", value, var);
                 script_log(trig, buf2);
             }
         }
@@ -1676,14 +1676,14 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, std::s
             if (!r->exits[num])
                 strcpy(str, "-1");
             else if (value.empty()) /* %room.DIR% is a vnum */
-                sprintf(str, "%d", r->exits[num]->to_room != NOWHERE ? world[r->exits[num]->to_room].vnum : -1);
+                str = fmt::format("{}", r->exits[num]->to_room != NOWHERE ? world[r->exits[num]->to_room].vnum : -1);
             else if (matches(value, "room")) { /* %room.DIR[room]% */
                 if (r->exits[num]->to_room != NOWHERE)
                     ROOM_UID_VAR(str, r->exits[num]->to_room);
                 else
                     strcpy(str, "0");
             } else if (matches(value, "key")) /* %room.DIR[key]% */
-                sprintf(str, "%d", r->exits[num]->key);
+                str = fmt::format("{}", r->exits[num]->key);
             else if (matches(value, "bits")) /* %room.DIR[bits]% */
                 sprintbit(r->exits[num]->exit_info, exit_bits, str);
             else
@@ -1705,7 +1705,7 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, std::s
          * access a subfield on a non-UID variable, log an error.
          */
         if (vd && vd->value) {
-            sprintf(buf2, "attempt to access field '%s' on %s variable '%s'", field,
+            buf2 = fmt::format("attempt to access field '{}' on {} variable '{}'", field,
                     vd.empty()->value ? "empty" : (*vd->value == UID_CHAR ? "previously extracted UID" : "non-UID"),
                     var);
             script_log(trig, buf2);
@@ -2113,7 +2113,8 @@ CmdlistElement *find_else_end(TrigData *trig, CmdlistElement *cl, void *go, Scri
 
 /* processes any 'wait' commands in a trigger */
 void process_wait(void *go, TrigData *trig, int type, std::string_view cmd, CmdlistElement *cl) {
-    char buf[MAX_INPUT_LENGTH], *arg;
+    std::string buf;
+    char *arg;
     WaitEventData *wait_event_obj;
     long time, hr, min, ntime;
     char c;
@@ -2172,7 +2173,7 @@ void process_set(ScriptData *sc, TrigData *trig, std::string_view cmd) {
     skip_spaces(value);
 
     if (name.empty()) {
-        sprintf(buf2, "Set w/o an arg: '%s'", cmd);
+        buf2 = fmt::format("Set w/o an arg: '{}'", cmd);
         script_log(trig, buf2);
         return;
     }
@@ -2187,7 +2188,7 @@ void process_eval(void *go, ScriptData *sc, TrigData *trig, int type, std::strin
     skip_spaces(expr);
 
     if (name.empty()) {
-        sprintf(buf2, "Eval w/o an arg: '%s'", cmd);
+        buf2 = fmt::format("Eval w/o an arg: '{}'", cmd);
         script_log(trig, buf2);
         return;
     }
@@ -2206,7 +2207,7 @@ int process_return(TrigData *trig, std::string_view cmd) {
     two_arguments(cmd, arg1, arg2);
 
     if (arg2.empty()) {
-        sprintf(buf2, "Return w/o an arg: '%s'", cmd);
+        buf2 = fmt::format("Return w/o an arg: '{}'", cmd);
         script_log(trig, buf2);
         return 1;
     }
@@ -2224,7 +2225,7 @@ void process_unset(ScriptData *sc, TrigData *trig, std::string_view cmd) {
     skip_spaces(var);
 
     if (var.empty()) {
-        sprintf(buf2, "Unset w/o an arg: '%s'", cmd);
+        buf2 = fmt::format("Unset w/o an arg: '{}'", cmd);
         script_log(trig, buf2);
         return;
     }
@@ -2243,7 +2244,7 @@ void process_global(ScriptData *sc, TrigData *trig, std::string_view cmd) {
     skip_spaces(varlist);
 
     if (varlist.empty()) {
-        sprintf(buf2, "Global w/o an arg: '%s'", cmd);
+        buf2 = fmt::format("Global w/o an arg: '{}'", cmd);
         script_log(trig, buf2);
         return;
     }
@@ -2257,7 +2258,7 @@ void process_global(ScriptData *sc, TrigData *trig, std::string_view cmd) {
                 break;
 
         if (!vd) {
-            sprintf(buf2, "Local var '%s' not found in global call", arg);
+            buf2 = fmt::format("Local var '{}' not found in global call", arg);
             script_log(trig, buf2);
             continue;
         }
@@ -2299,13 +2300,13 @@ int script_driver(void *go_address, TrigData *trig, int type, int mode) {
     if (depth > MAX_SCRIPT_DEPTH) {
         switch (type) {
         case MOB_TRIGGER:
-            sprintf(buf, "Triggers recursed beyond maximum allowed depth on mob %d", GET_MOB_VNUM((CharData *)go));
+            buf = fmt::format("Triggers recursed beyond maximum allowed depth on mob {}", GET_MOB_VNUM((CharData *)go));
             break;
         case OBJ_TRIGGER:
-            sprintf(buf, "Triggers recursed beyond maximum allowed depth on obj %d", GET_OBJ_VNUM((ObjData *)go));
+            buf = fmt::format("Triggers recursed beyond maximum allowed depth on obj {}", GET_OBJ_VNUM((ObjData *)go));
             break;
         case WLD_TRIGGER:
-            sprintf(buf, "Triggers recursed beyond maximum allowed depth in room %d", ((RoomData *)go)->vnum);
+            buf = fmt::format("Triggers recursed beyond maximum allowed depth in room {}", ((RoomData *)go)->vnum);
             break;
         }
         script_log(trig, buf);
