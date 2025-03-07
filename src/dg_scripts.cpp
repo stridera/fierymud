@@ -159,6 +159,7 @@ RoomData *get_room(std::string_view name) {
         return &world[nr];
     } else {
         return nullptr;
+    }
 }
 
 /* finds room rnum by name.  returns NOWHERE if not found */
@@ -305,7 +306,7 @@ void do_stat_trigger(CharData *ch, TrigData *trig) {
 }
 
 /* find the name of what the uid points to */
-void find_uid_name(std::string_view uid, std::string_view name) {
+void find_uid_name(std::string_view uid, std::string &name) {
     CharData *ch;
     ObjData *obj;
 
@@ -1883,13 +1884,13 @@ void eval_op(std::string_view op, std::string_view lhs, std::string_view rhs, st
             sprintf(result, "%d", strcasecmp(lhs, rhs) > 0);
     }
 
-    else if (matches("/=", op))
+    else if (matches("/=", op)) {
         sprintf(result, "%c", strcasestr(lhs, rhs) ? '1' : '0');
 
     else if (matches("*", op))
         sprintf(result, "%d", svtoi(lhs) * svtoi(rhs));
 
-    else if (matches("/", op))
+    else if (matches("/", op)) {
         sprintf(result, "%d", ((n = svtoi(rhs)) != 0) ? (svtoi(lhs) / n) : 0);
 
     else if (matches("+", op))
