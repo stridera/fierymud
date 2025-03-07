@@ -1811,8 +1811,9 @@ int is_num(std::string_view num) {
 }
 
 /* evaluates 'lhs op rhs', and copies to result */
-void eval_op(std::string_view op, std::string_view lhs, std::string_view rhs, std::string_view result, void *go,
+void eval_op(std::string_view op, std::string_view lhs, std::string_view rhs, std::string &result, void *go,
              ScriptData *sc, TrigData *trig) {
+    result.clear();
     std::string_view p;
     int n;
 
