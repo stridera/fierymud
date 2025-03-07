@@ -155,7 +155,7 @@ RoomData *get_room(std::string_view name) {
 
     if (name[0] == UID_CHAR)
         return find_room(svtoi(name.substr(1)));
-    else if (is_integer(name) && ((nr = real_room(svtoi(name))) != NOWHERE))
+    else if (is_integer(name) && ((nr = real_room(svtoi(name))) != NOWHERE)) {
         return &world[nr];
     } else {
         return nullptr;
@@ -313,8 +313,9 @@ void find_uid_name(std::string_view uid, std::string_view name) {
         strcpy(name, GET_NAMELIST(ch));
     } else if ((obj = find_obj_in_world(find_by_name(uid)))) {
         strcpy(name, obj->name);
-    else
+    } else {
         name = fmt::format("uid = {}, (not found)", uid.substr(1));
+    }
 }
 
 /* general function to display stats on script sc */
@@ -611,34 +612,37 @@ ACMD(do_detach) {
         if (matches_start(arg1, "mob")) {
             if (!(victim = find_char_around_char(ch, find_vis_by_name(ch, arg2)))) {
                 char_printf(ch, "No such mobile around.\n");
-            else if (arg3.empty())
+            } else if (arg3.empty()) {
                 char_printf(ch, "You must specify a trigger to remove.\n");
-            else
+            } else {
                 trigger = arg3;
+            }
         }
 
         else if (matches_start(arg1, "object")) {
             if (!(obj = find_obj_around_char(ch, find_vis_by_name(ch, arg2)))) {
                 char_printf(ch, "No such object around.\n");
-            else if (arg3.empty())
+            } else if (arg3.empty()) {
                 char_printf(ch, "You must specify a trigger to remove.\n");
-            else
+            } else {
                 trigger = arg3;
+            }
         } else {
             if ((obj = find_obj_in_eq(ch, nullptr, find_vis_by_name(ch, arg1)))) {
-                ;
-            else if ((obj = find_obj_in_list(ch->carrying, find_vis_by_name(ch, arg1)))) {
-                ;
-            else if ((victim = find_char_in_room(&world[ch->in_room], find_vis_by_name(ch, arg1)))) {
-                ;
-            else if ((obj = find_obj_in_list(world[IN_ROOM(ch)].contents, find_vis_by_name(ch, arg1)))) {
-                ;
-            else if ((victim = find_char_around_char(ch, find_vis_by_name(ch, arg1)))) {
-                ;
-            else if ((obj = find_obj_in_world(find_vis_by_name(ch, arg1)))) {
-                ;
-            else
+                // Do nothing
+            } else if ((obj = find_obj_in_list(ch->carrying, find_vis_by_name(ch, arg1)))) {
+                // Do nothing
+            } else if ((victim = find_char_in_room(&world[ch->in_room], find_vis_by_name(ch, arg1)))) {
+                // Do nothing
+            } else if ((obj = find_obj_in_list(world[IN_ROOM(ch)].contents, find_vis_by_name(ch, arg1)))) {
+                // Do nothing
+            } else if ((victim = find_char_around_char(ch, find_vis_by_name(ch, arg1)))) {
+                // Do nothing
+            } else if ((obj = find_obj_in_world(find_vis_by_name(ch, arg1)))) {
+                // Do nothing
+            } else {
                 char_printf(ch, "Nothing around by that name.\n");
+            }
 
             trigger = arg2;
         }
@@ -856,35 +860,38 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, std::s
         switch (type) {
         case MOB_TRIGGER:
             if ((o = find_obj_in_eq(ch, nullptr, find_by_name(name)))) {
-                ;
-            else if ((o = find_obj_in_list(ch->carrying, find_by_name(name)))) {
-                ;
-            else if ((c = find_char_in_room(&world[ch->in_room], find_by_name(name)))) {
-                ;
-            else if ((o = find_obj_in_list(world[IN_ROOM(ch)].contents, find_by_name(name)))) {
-                ;
-            else if ((c = find_char_in_world(find_by_name(name)))) {
-                ;
-            else if ((o = find_obj_in_world(find_by_name(name)))) {
-                ;
-            else if ((r = get_room(name))) {
-                ;
+                // Do nothing
+            } else if ((o = find_obj_in_list(ch->carrying, find_by_name(name)))) {
+                // Do nothing
+            } else if ((c = find_char_in_room(&world[ch->in_room], find_by_name(name)))) {
+                // Do nothing
+            } else if ((o = find_obj_in_list(world[IN_ROOM(ch)].contents, find_by_name(name)))) {
+                // Do nothing
+            } else if ((c = find_char_in_world(find_by_name(name)))) {
+                // Do nothing
+            } else if ((o = find_obj_in_world(find_by_name(name)))) {
+                // Do nothing
+            } else if ((r = get_room(name))) {
+                // Do nothing
+            }
             break;
         case OBJ_TRIGGER:
             if ((o = find_obj_around_obj(obj, find_by_name(name)))) {
-                ;
-            else if ((c = find_char_around_obj(obj, find_dg_by_name(name)))) {
-                ;
-            else if ((r = get_room(name))) {
-                ;
+                // Do nothing
+            } else if ((c = find_char_around_obj(obj, find_dg_by_name(name)))) {
+                // Do nothing
+            } else if ((r = get_room(name))) {
+                // Do nothing
+            }
             break;
         case WLD_TRIGGER:
             if ((c = find_char_around_room(room, find_dg_by_name(name)))) {
-                ;
-            else if ((o = find_obj_around_room(room, find_by_name(name)))) {
-                ;
-            else if ((r = get_room(name))) {
-                ;
+                // Do nothing
+            } else if ((o = find_obj_around_room(room, find_by_name(name)))) {
+                // Do nothing
+            } else if ((r = get_room(name))) {
+                // Do nothing
+            }
             break;
         }
     }
@@ -2437,7 +2444,7 @@ int script_driver(void *go_address, TrigData *trig, int type, int mode) {
             else if (matches(cmd, "unset "))
                 process_unset(sc, trig, cmd);
 
-            else if (matches(cmd, "wait "){
+            else if (matches(cmd, "wait ")) {
                 process_wait(go, trig, type, cmd, cl);
                 depth--;
                 return ret_val;
