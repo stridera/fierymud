@@ -121,13 +121,13 @@ ResetQType reset_q; /* queue of zones to be reset         */
 
 void setup_dir(std::ifstream &fl, int room, int dir);
 void index_boot(int mode);
-void discrete_load(FILE *fl, int mode);
+void discrete_load(std::ifstream &fl, int mode);
 void parse_trigger(std::ifstream &fl, int virtual_nr);
 void parse_room(std::ifstream &fl, int virtual_nr);
 void parse_mobile(std::ifstream &mob_f, int nr);
 std::string_view parse_object(std::ifstream &obj_f, int nr);
-void load_zones(FILE *fl, std::string_view zonename);
-void load_help(FILE *fl);
+void load_zones(std::ifstream &fl, std::string_view zonename);
+void load_help(std::ifstream &fl);
 void assign_mobiles(void);
 void assign_objects(void);
 void assign_rooms(void);
@@ -153,7 +153,7 @@ void sort_commands(void);
 void sort_spells(void);
 void load_banned(void);
 void Read_Xname_List(void);
-void boot_the_shops(FILE *shop_f, std::string_view filename, int rec_count);
+void boot_the_shops(std::ifstream &shop_f, std::string_view filename, int rec_count);
 int hsort(const void *a, const void *b);
 void boot_the_shops(FILE *shop_f, std::string_view filename, int rec_count);
 void build_count(void);
@@ -471,7 +471,7 @@ void boot_spell_dams() {
 	     */ }
             for (i = 1; i <= MAX_SPELLS; i++) {
                 std::getline(ifptr, line);
-                sscanf(line, "%hd %hd %hd %hd %hd %hd %hd %hd %hd %hd %hd %hd", &SD_SPELL(i), &SD_INTERN_DAM(i),
+                sscanf(line.c_str(), "%hd %hd %hd %hd %hd %hd %hd %hd %hd %hd %hd %hd", &SD_SPELL(i), &SD_INTERN_DAM(i),
                        &SD_NPC_STATIC(i), &SD_NPC_NO_DICE(i), &SD_NPC_NO_FACE(i), &SD_PC_STATIC(i), &SD_PC_NO_DICE(i),
                        &SD_PC_NO_FACE(i), &SD_NPC_REDUCE_FACTOR(i), &SD_USE_BONUS(i), &SD_BONUS(i), &SD_LVL_MULT(i));
                 if (SD_NPC_REDUCE_FACTOR(i) == 0)
@@ -1285,19 +1285,25 @@ void renum_zone_table(void) {
 }
 
 #define OLC_MOB(d) ((d)->olc->mob)
-void parse_simple_mob(FILE *mob_f, int i, int nr) {
+void parse_simple_mob(std::ifstream &mob_f, int i, int nr) {
     int j, t[10];
-    char line[256];
+    std::string line;
     long k = 0;
     CharData *mobproto;
     extern void roll_natural_abils(CharData * ch);
 
-    get_line(mob_f, line);
-    if (sscanf(line, " %d %d %d %dd%d+%d %dd%d+%d ", t, t + 1, t + 2, t + 3, t + 4, t + 5, t + 6, t + 7, t + 8) != 9) {
-        fprintf(stderr,
-                "Format error in mob #%d, first line after S flag\n"
-                "...expecting line of form '# # # #d#+# #d#+#'\n",
-                nr);
+    if (auto line_opt = get_line(mob_f)) {
+        line = *line_opt;
+    } else {
+        log(LogSeverity::Error, LVL_GOD, "Unexpected end of file in mob #{}", nr);
+        exit(1);
+    }
+    
+    if (sscanf(line.c_str(), " %d %d %d %dd%d+%d %dd%d+%d ", t, t + 1, t + 2, t + 3, t + 4, t + 5, t + 6, t + 7, t + 8) != 9) {
+        log(LogSeverity::Error, LVL_GOD, 
+            "Format error in mob #{}, first line after S flag\n"
+            "...expecting line of form '# # # #d#+# #d#+#'",
+            nr);
         exit(1);
     }
     GET_LEVEL(mob_proto + i) = t[0];
@@ -1331,14 +1337,20 @@ void parse_simple_mob(FILE *mob_f, int i, int nr) {
     mob_proto[i].mob_specials.ex_damsizedice = t[7];
     mob_proto[i].mob_specials.ex_damroll = t[8];
 
-    get_line(mob_f, line);
-    if (sscanf(line, " %d %d %d %d %d %d", t, t + 1, t + 2, t + 3, t + 4, t + 5) > 5) {
+    if (auto line_opt = get_line(mob_f)) {
+        line = *line_opt;
+    } else {
+        log(LogSeverity::Error, LVL_GOD, "Unexpected end of file in mob #{}", nr);
+        exit(1);
+    }
+    
+    if (sscanf(line.c_str(), " %d %d %d %d %d %d", t, t + 1, t + 2, t + 3, t + 4, t + 5) > 5) {
         GET_ZONE(mob_proto + i) = t[4];
         GET_EX_COPPER(mob_proto + i) = t[0];
         GET_EX_SILVER(mob_proto + i) = t[1];
         GET_EX_GOLD(mob_proto + i) = t[2];
         GET_EX_PLATINUM(mob_proto + i) = t[3];
-    } else if (sscanf(line, " %d %d %d %d", t, t + 1, t + 2, t + 3) > 3) {
+    } else if (sscanf(line.c_str(), " %d %d %d %d", t, t + 1, t + 2, t + 3) > 3) {
         GET_ZONE(mob_proto + i) = t[2];
         GET_EX_GOLD(mob_proto + i) = t[0];
         GET_EX_PLATINUM(mob_proto + i) = t[1];
@@ -1348,8 +1360,14 @@ void parse_simple_mob(FILE *mob_f, int i, int nr) {
         GET_EX_PLATINUM(mob_proto + i) = 0;
     }
 
-    get_line(mob_f, line);
-    if ((sscanf(line, " %d %d %d %d %d %d %d %d ", t, t + 1, t + 2, t + 3, t + 4, t + 5, t + 6, t + 7)) > 3) {
+    if (auto line_opt = get_line(mob_f)) {
+        line = *line_opt;
+    } else {
+        log(LogSeverity::Error, LVL_GOD, "Unexpected end of file in mob #{}", nr);
+        exit(1);
+    }
+    
+    if ((sscanf(line.c_str(), " %d %d %d %d %d %d %d %d ", t, t + 1, t + 2, t + 3, t + 4, t + 5, t + 6, t + 7)) > 3) {
         mob_proto[i].player.class_num = t[3];
         mob_proto[i].player.race = t[4];
         mob_proto[i].player.race_align = t[5];
@@ -1579,30 +1597,31 @@ void parse_espec(std::string_view buf, int i, int nr) {
     interpret_espec(buf, ptr, i, nr);
 }
 
-void parse_enhanced_mob(FILE *mob_f, int i, int nr) {
-    char line[256];
+void parse_enhanced_mob(std::ifstream &mob_f, int i, int nr) {
+    std::string line;
 
     parse_simple_mob(mob_f, i, nr);
 
-    while (get_line(mob_f, line)) {
+    while (auto line_opt = get_line(mob_f)) {
+        line = *line_opt;
         if (matches(line, "E")) /* end of the ehanced section */
             return;
-        else if (*line == '#') { /* we've hit the next mob, maybe? */
-            fprintf(stderr, "Unterminated E section in mob #%d\n", nr);
+        else if (!line.empty() && line[0] == '#') { /* we've hit the next mob, maybe? */
+            log(LogSeverity::Error, LVL_GOD, "Unterminated E section in mob #{}", nr);
             exit(1);
         } else
             parse_espec(line, i, nr);
     }
 
-    fprintf(stderr, "Unexpected end of file reached after mob #%d\n", nr);
+    log(LogSeverity::Error, LVL_GOD, "Unexpected end of file reached after mob #{}", nr);
     exit(1);
 }
 
 void parse_mobile(std::ifstream &mob_f, int nr) {
     static int i = 0;
     int j, t[10];
-    char line[256], *tmpptr, letter;
-    char f1[128], f2[128];
+    std::string line;
+    char f1[128], f2[128], letter;
 
     mob_index[i].vnum = nr;
     mob_index[i].number = 0;
@@ -1624,8 +1643,14 @@ void parse_mobile(std::ifstream &mob_f, int nr) {
 
     /* *** Numeric data *** */
     mob_proto[i].mob_specials.nr = i;
-    get_line(mob_f, line);
-    sscanf(line, "%s %s %d %c", f1, f2, t + 2, &letter);
+    if (auto line_opt = get_line(mob_f)) {
+        line = *line_opt;
+    } else {
+        log(LogSeverity::Error, LVL_GOD, "Unexpected end of file in mob #{}", nr);
+        exit(1);
+    }
+    
+    sscanf(line.c_str(), "%s %s %d %c", f1, f2, t + 2, &letter);
     MOB_FLAGS(mob_proto + i)[0] = asciiflag_conv(f1);
     SET_FLAG(MOB_FLAGS(mob_proto + i), MOB_ISNPC);
     EFF_FLAGS(mob_proto + i)[0] = asciiflag_conv(f2);
@@ -1640,17 +1665,17 @@ void parse_mobile(std::ifstream &mob_f, int nr) {
         break;
         /* add new mob types here.. */
     default:
-        fprintf(stderr, "Unsupported mob type '%c' in mob #%d\n", letter, nr);
+        log(LogSeverity::Error, LVL_GOD, "Unsupported mob type '{}' in mob #{}", letter, nr);
         exit(1);
         break;
     }
 
     letter = fread_letter(mob_f);
-    ungetc(letter, mob_f);
+    mob_f.putback(letter);
     while (letter == 'T') {
         dg_read_trigger(mob_f, &mob_proto[i], MOB_TRIGGER);
         letter = fread_letter(mob_f);
-        ungetc(letter, mob_f);
+        mob_f.putback(letter);
     }
 
     mob_proto[i].affected_abils = mob_proto[i].natural_abils;
@@ -1664,9 +1689,9 @@ void parse_mobile(std::ifstream &mob_f, int nr) {
     if (letter == '>') {
         while (fread_letter(mob_f) != '|')
             ;
-        fprintf(stderr, "Mob %d has a mobprog still!\n", nr);
+        log(LogSeverity::Warn, LVL_GOD, "Mob {} has a mobprog still!", nr);
     } else
-        ungetc(letter, mob_f);
+        mob_f.putback(letter);
 
     if (mob_proto[i].mob_specials.default_pos < 0 || mob_proto[i].mob_specials.default_pos >= NUM_POSITIONS) {
         mob_proto[i].mob_specials.default_pos = POS_STANDING;
@@ -2766,7 +2791,7 @@ int file_to_string(const std::string_view name, std::string &buf) {
 /* Get the unix timestamp of the last file write. */
 time_t file_last_update(const std::string_view name) {
     struct stat attr;
-    stat(name, &attr);
+    stat(std::string(name).c_str(), &attr);
     return attr.st_mtim.tv_sec;
 }
 
