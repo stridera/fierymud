@@ -1776,43 +1776,30 @@ std::string_view parse_object(std::ifstream &obj_f, int nr) {
             fprintf(stderr, "Format error in first numeric line (expecting 4 args, got %d), %s\n", retval, buf2);
         }
     }
-    if (retval == 3) {
-        sscanf(line, " %d %s %s", t, f1, f2);
-        t[1] = 0;
-        fprintf(stderr, "Object #%d needs a level assigned to it.\n", nr);
-    } else {
-        fprintf(stderr, "Format error in first numeric line (expecting 4 args, got %d), %s\n", retval, buf2);
-        /* exit(1); */
+
+    obj_proto[i].obj_flags.type_flag = t[0];
+    obj_proto[i].obj_flags.extra_flags[0] = asciiflag_conv(f1);
+    obj_proto[i].obj_flags.wear_flags = asciiflag_conv(f2);
+    obj_proto[i].obj_flags.level = t[1]; /* Zantir 3/23/01 for level based objects */
+
+    if (!std::getline(obj_f, line) ||
+        (retval = sscanf(line.c_str(), "%d %d %d %d %d %d %d", &t[0], &t[1], &t[2], &t[3], &t[4], &t[5], &t[6])) != 7) {
+        fprintf(stderr, "Format error in second numeric line (expecting 7 args, got %d), %s\n", retval, buf2);
     }
-}
-obj_proto[i].obj_flags.type_flag = t[0];
-obj_proto[i].obj_flags.extra_flags[0] = asciiflag_conv(f1);
-obj_proto[i].obj_flags.wear_flags = asciiflag_conv(f2);
-obj_proto[i].obj_flags.level = t[1]; /* Zantir 3/23/01 for level based objects */
 
-if (!std::getline(obj_f, line) ||
-    (retval = sscanf(line.c_str(), "%d %d %d %d %d %d %d", &t[0], &t[1], &t[2], &t[3], &t[4], &t[5], &t[6])) != 7) {
-    fprintf(stderr, "Format error in second numeric line (expecting 7 args, got %d), %s\n", retval, buf2);
-}
-fprintf(stderr, "Format error in second numeric line (expecting 7 args, got %d), %s\n", retval, buf2);
-/*exit(1); */
-}
-obj_proto[i].obj_flags.value[0] = t[0];
-obj_proto[i].obj_flags.value[1] = t[1];
-obj_proto[i].obj_flags.value[2] = t[2];
-obj_proto[i].obj_flags.value[3] = t[3];
-obj_proto[i].obj_flags.value[4] = t[4];
-obj_proto[i].obj_flags.value[5] = t[5];
-obj_proto[i].obj_flags.value[6] = t[6];
+    obj_proto[i].obj_flags.value[0] = t[0];
+    obj_proto[i].obj_flags.value[1] = t[1];
+    obj_proto[i].obj_flags.value[2] = t[2];
+    obj_proto[i].obj_flags.value[3] = t[3];
+    obj_proto[i].obj_flags.value[4] = t[4];
+    obj_proto[i].obj_flags.value[5] = t[5];
+    obj_proto[i].obj_flags.value[6] = t[6];
 
-if (!std::getline(obj_f, line) ||
-    (retval = sscanf(line.c_str(), "%f %d %d %d %d %d %d %d", &obj_proto[i].obj_flags.weight, &t[1], &t[2], &t[3],
-                     &t[4], &t[5], &t[6], &t[7])) != 8) {
-    fprintf(stderr, "Format error in third numeric line (expecting 8 args, got %d), %s\n", retval, buf2);
-}
-fprintf(stderr, "Format error in third numeric line (expecting 8 args, got %d), %s\n", retval, buf2);
-/*exit(1); */
-}
+    if (!std::getline(obj_f, line) ||
+        (retval = sscanf(line.c_str(), "%f %d %d %d %d %d %d %d", &obj_proto[i].obj_flags.weight, &t[1], &t[2], &t[3],
+                         &t[4], &t[5], &t[6], &t[7])) != 8) {
+        fprintf(stderr, "Format error in third numeric line (expecting 8 args, got %d), %s\n", retval, buf2);
+    }
 
 obj_proto[i].obj_flags.effective_weight = obj_proto[i].obj_flags.weight;
 obj_proto[i].obj_flags.cost = t[1];
@@ -1862,16 +1849,12 @@ while (true) {
 
         if (!std::getline(obj_f, line) || (retval = sscanf(line.c_str(), " %d %d ", &t[0], &t[1])) != 2) {
             fprintf(stderr, "Format error in Affect line (expecting 2 args, got %d), %s\n", retval, buf2);
+        } else {
+            obj_proto[i].applies[j].location = t[0];
+            obj_proto[i].applies[j].modifier = t[1];
+            j++;
         }
-        fprintf(stderr, "Format error in Affect line (expecting 2 args, got %d), %s\n", retval, buf2);
-        /*exit(1); */
-    }
-    /* get_line(obj_f, line);
-       sscanf(line, " %d %d ", t, t + 1); */
-    obj_proto[i].applies[j].location = t[0];
-    obj_proto[i].applies[j].modifier = t[1];
-    j++;
-    break;
+        break;
 
 case 'H': /* Hiddenness */
     get_line(obj_f, line);
@@ -1898,8 +1881,8 @@ default:
     fprintf(stderr, "Format error in %s\n", buf2);
     exit(1);
     break;
-}
-}
+    }
+  }
 }
 
 #define Z zone_table[zone]
