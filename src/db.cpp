@@ -828,14 +828,18 @@ void reset_time(void) {
 }
 
 /* function to count how many hash-mark delimited records exist in a file */
-int count_hash_records(FILE *fl) {
-    char buf[128];
+int count_hash_records(std::ifstream &fl) {
+    std::string line;
     int count = 0;
+    auto pos = fl.tellg();
 
-    while (fgets(buf, 128, fl))
-        if (*buf == '#')
+    while (std::getline(fl, line)) {
+        if (!line.empty() && line[0] == '#')
             count++;
+    }
 
+    fl.clear();
+    fl.seekg(pos, std::ios::beg);
     return count;
 }
 
@@ -1892,89 +1896,122 @@ default:
 void load_zones(std::ifstream &fl, std::string_view zonename) {
     static int zone = 0;
     int cmd_no = 0, num_of_cmds = 0, line_num = 0, tmp, error;
-    std::string_view ptr, buf[256], zname[256];
+    std::string buf;
+    std::string_view ptr;
 
-    strcpy(zname, zonename);
-
-    while (get_line(fl, buf) && buf[0] != '$')
+    // First pass: count commands
+    auto start_pos = fl.tellg();
+    while (std::getline(fl, buf) && buf != "$")
         num_of_cmds++;
 
     fl.clear();
-    fl.seekg(0, std::ios::beg);
+    fl.seekg(start_pos, std::ios::beg);
 
     if (num_of_cmds == 0) {
-        fprintf(stderr, "%s is empty!\n", zname);
+        log(LogSeverity::Error, LVL_GOD, "{} is empty!", zonename);
         exit(0);
-    } else
+    } else {
         CREATE(Z.cmd, ResetCommand, num_of_cmds);
+    }
 
-    line_num += get_line(fl, buf);
+    // Read zone header
+    std::getline(fl, buf);
+    line_num++;
 
-    if (sscanf(buf, "#%d", &Z.number) != 1) {
-        fprintf(stderr, "Format error in %s, line %d\n", zname, line_num);
+    if (sscanf(buf.c_str(), "#%d", &Z.number) != 1) {
+        log(LogSeverity::Error, LVL_GOD, "Format error in {}, line {}", zonename, line_num);
         exit(0);
     }
-    sprintf(buf2, "beginning of zone #%d", Z.number);
 
-    line_num += get_line(fl, buf);
-    if (auto pos = buf.find('~'); pos != std::string_view::npos) /* take off the '~' if it's there */
-        *ptr = '\0';
-    Z.name = strdup(buf);
+    std::getline(fl, buf);
+    line_num++;
+    
+    // Process zone name
+    if (auto pos = buf.find('~'); pos != std::string::npos) {
+        buf = buf.substr(0, pos);
+    }
+    Z.name = strdup(buf.c_str());
 
-    line_num += get_line(fl, buf);
-    if (sscanf(buf, " %d %d %d %d %d %d", &Z.top, &Z.lifespan, &Z.reset_mode, &Z.zone_factor, &Z.hemisphere,
-               &Z.climate) != 4)
-        Z.zone_factor = 100;
+    std::getline(fl, buf);
+    line_num++;
+    
+    // Parse zone parameters
+    if (sscanf(buf.c_str(), " %d %d %d %d %d %d", &Z.top, &Z.lifespan, &Z.reset_mode, 
+               &Z.zone_factor, &Z.hemisphere, &Z.climate) != 6) {
+        // Handle older zone file format
+        if (sscanf(buf.c_str(), " %d %d %d %d", &Z.top, &Z.lifespan, &Z.reset_mode, &Z.zone_factor) != 4) {
+            Z.zone_factor = 100;
+        }
+        // Set default values for hemisphere and climate if not specified
+        Z.hemisphere = 0;
+        Z.climate = 0;
+    }
 
+    // Process zone commands
     for (;;) {
-        if (!get_line(fl, buf)) {
-            fprintf(stderr, "Format error in %s - premature end of file\n", zname);
+        if (!std::getline(fl, buf)) {
+            log(LogSeverity::Error, LVL_GOD, "Format error in {} - premature end of file", zonename);
             exit(0);
         }
-        line_num += tmp;
-        ptr = buf;
-        skip_spaces(ptr);
-
-        if (*ptr == '*') {
-            ZCMD.command = *ptr;
-            continue;
-
-            ptr++;
-
-            if (ZCMD.command == 'S' || ZCMD.command == '$') {
-                ZCMD.command = 'S';
-                break;
-            }
-            error = 0;
-            if (ZCMD.command == 'F') { /* force mobile command */
-                skip_spaces(ptr);
-                if (*ptr) {
-                    tmp = *ptr;
-                    ptr++;
-                    skip_spaces(ptr);
-                    ZCMD.sarg = strdup(ptr);
-                } else
-                    error = 1;
-            } else if (strchr("MOEPD", ZCMD.command) == nullptr) { /* a 3-arg command */
-                if (sscanf(ptr, " %d %d %d ", &tmp, &ZCMD.arg1, &ZCMD.arg2) != 3)
-                    error = 1;
-            } else {
-                if (sscanf(ptr, " %d %d %d %d ", &tmp, &ZCMD.arg1, &ZCMD.arg2, &ZCMD.arg3) != 4)
-                    error = 1;
-            }
-
-            ZCMD.if_flag = tmp;
-
-            if (error) {
-                fprintf(stderr, "Format error in %s, line %d: '%s'\n", zname, line_num, buf);
-                exit(0);
-            }
-            ZCMD.line = line_num;
-            cmd_no++;
+        line_num++;
+        
+        // Skip leading whitespace
+        size_t pos = buf.find_first_not_of(" \t");
+        if (pos != std::string::npos) {
+            buf = buf.substr(pos);
         }
 
-        top_of_zone_table = zone++;
+        if (buf.empty())
+            continue;
+
+        if (buf[0] == '*') {
+            ZCMD.command = '*';
+            cmd_no++;
+            continue;
+        }
+
+        if (buf[0] == 'S' || buf[0] == '$') {
+            ZCMD.command = 'S';
+            break;
+        }
+
+        ZCMD.command = buf[0];
+        error = 0;
+        
+        // Process command arguments
+        if (ZCMD.command == 'F') { /* force mobile command */
+            if (buf.size() > 1) {
+                pos = buf.find_first_not_of(" \t", 1);
+                if (pos != std::string::npos) {
+                    tmp = buf[pos];
+                    ZCMD.sarg = strdup(buf.substr(pos + 1).c_str());
+                } else {
+                    error = 1;
+                }
+            } else {
+                error = 1;
+            }
+        } else if (strchr("MOEPD", ZCMD.command) == nullptr) { /* a 3-arg command */
+            if (sscanf(buf.c_str() + 1, " %d %d %d", &tmp, &ZCMD.arg1, &ZCMD.arg2) != 3)
+                error = 1;
+        } else {
+            if (sscanf(buf.c_str() + 1, " %d %d %d %d", &tmp, &ZCMD.arg1, &ZCMD.arg2, &ZCMD.arg3) != 4)
+                error = 1;
+        }
+
+        ZCMD.if_flag = tmp;
+
+        if (error) {
+            log(LogSeverity::Error, LVL_GOD, "Format error in {}, line {}: '{}'", 
+                zonename, line_num, buf);
+            exit(0);
+        }
+        
+        ZCMD.line = line_num;
+        cmd_no++;
     }
+
+    top_of_zone_table = zone++;
 }
 
 void get_one_line(std::ifstream &fl, std::string &line_buf) {
