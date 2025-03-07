@@ -1733,11 +1733,11 @@ void init_obj_proto(ObjData *obj) {
 /* read all objects from obj file; generate index and prototypes */
 std::string_view parse_object(std::ifstream &obj_f, int nr) {
     static int i = 0, retval;
-    static char line[256];
     int t[10], j;
     std::string_view tmpptr;
     char f1[256], f2[256];
     ExtraDescriptionData *new_descr, *edx;
+    std::string line;
 
     obj_index[i].vnum = nr;
     obj_index[i].number = 0;
@@ -1752,7 +1752,7 @@ std::string_view parse_object(std::ifstream &obj_f, int nr) {
     /* *** string data *** */
     obj_proto[i].name = fread_string(obj_f, buf2);
     if (obj_proto[i].name.empty()) {
-        fprintf(stderr, "Null obj name or format error at or near %s\n", buf2);
+        log(LogSeverity::Error, LVL_GOD, "Null obj name or format error at or near {}", buf2);
         exit(1);
     }
     obj_proto[i].short_description = fread_string(obj_f, buf2);
@@ -1771,9 +1771,10 @@ std::string_view parse_object(std::ifstream &obj_f, int nr) {
         if (retval == 3) {
             sscanf(line.c_str(), " %d %s %s", t, f1, f2);
             t[1] = 0;
-            fprintf(stderr, "Object #%d needs a level assigned to it.\n", nr);
+            log(LogSeverity::Warn, LVL_GOD, "Object #{} needs a level assigned to it.", nr);
         } else {
-            fprintf(stderr, "Format error in first numeric line (expecting 4 args, got %d), %s\n", retval, buf2);
+            log(LogSeverity::Error, LVL_GOD, "Format error in first numeric line (expecting 4 args, got {}), {}", 
+                retval, buf2);
         }
     }
 
@@ -1784,7 +1785,8 @@ std::string_view parse_object(std::ifstream &obj_f, int nr) {
 
     if (!std::getline(obj_f, line) ||
         (retval = sscanf(line.c_str(), "%d %d %d %d %d %d %d", &t[0], &t[1], &t[2], &t[3], &t[4], &t[5], &t[6])) != 7) {
-        fprintf(stderr, "Format error in second numeric line (expecting 7 args, got %d), %s\n", retval, buf2);
+        log(LogSeverity::Error, LVL_GOD, "Format error in second numeric line (expecting 7 args, got {}), {}", 
+            retval, buf2);
     }
 
     obj_proto[i].obj_flags.value[0] = t[0];
@@ -1798,7 +1800,8 @@ std::string_view parse_object(std::ifstream &obj_f, int nr) {
     if (!std::getline(obj_f, line) ||
         (retval = sscanf(line.c_str(), "%f %d %d %d %d %d %d %d", &obj_proto[i].obj_flags.weight, &t[1], &t[2], &t[3],
                          &t[4], &t[5], &t[6], &t[7])) != 8) {
-        fprintf(stderr, "Format error in third numeric line (expecting 8 args, got %d), %s\n", retval, buf2);
+        log(LogSeverity::Error, LVL_GOD, "Format error in third numeric line (expecting 8 args, got {}), {}", 
+            retval, buf2);
     }
 
 obj_proto[i].obj_flags.effective_weight = obj_proto[i].obj_flags.weight;
@@ -1843,12 +1846,13 @@ while (true) {
         break;
     case 'A':
         if (j >= MAX_OBJ_APPLIES) {
-            fprintf(stderr, "Too many A fields (%d max), %s\n", MAX_OBJ_APPLIES, buf2);
+            log(LogSeverity::Error, LVL_GOD, "Too many A fields ({} max), {}", MAX_OBJ_APPLIES, buf2);
             exit(1);
         }
 
         if (!std::getline(obj_f, line) || (retval = sscanf(line.c_str(), " %d %d ", &t[0], &t[1])) != 2) {
-            fprintf(stderr, "Format error in Affect line (expecting 2 args, got %d), %s\n", retval, buf2);
+            log(LogSeverity::Error, LVL_GOD, "Format error in Affect line (expecting 2 args, got {}), {}", 
+                retval, buf2);
         } else {
             obj_proto[i].applies[j].location = t[0];
             obj_proto[i].applies[j].modifier = t[1];
@@ -1857,18 +1861,20 @@ while (true) {
         break;
 
 case 'H': /* Hiddenness */
-    get_line(obj_f, line);
-    sscanf(line, "%d ", t);
-    obj_proto[i].obj_flags.hiddenness = t[0];
+    if (auto line_opt = get_line(obj_f)) {
+        sscanf(line_opt->c_str(), "%d ", t);
+        obj_proto[i].obj_flags.hiddenness = t[0];
+    }
     break;
 case 'T': /* DG triggers */
     dg_obj_trigger(line, &obj_proto[i]);
     break;
 
 case 'X':
-    get_line(obj_f, line);
-    sscanf(line, "%d ", t);
-    obj_proto[i].obj_flags.extra_flags[1] = t[0];
+    if (auto line_opt = get_line(obj_f)) {
+        sscanf(line_opt->c_str(), "%d ", t);
+        obj_proto[i].obj_flags.extra_flags[1] = t[0];
+    }
     break;
 
 case '$':
@@ -1878,7 +1884,7 @@ case '#':
     return line;
     break;
 default:
-    fprintf(stderr, "Format error in %s\n", buf2);
+    log(LogSeverity::Error, LVL_GOD, "Format error in {}", buf2);
     exit(1);
     break;
     }
