@@ -45,6 +45,7 @@
 #include "races.hpp"
 #include "rogue.hpp"
 #include "screen.hpp"
+#include "shop.hpp"
 #include "skills.hpp"
 #include "sorcerer.hpp"
 #include "spell_mem.hpp"
@@ -99,7 +100,7 @@ std::string list_zone_commands_room(CharData *ch, room_num rvnum) {
             /* start listing */
             switch (ZOCMD.command) {
             case 'M':
-                output += fmt::format("{}Load {} [{}], Max : {}\n", ZOCMD.if_flag ? " then " : "",
+                output += fmt::format("{}Load {} [{}{}{}], Max : {}\n", ZOCMD.if_flag ? " then " : "",
                                       mob_proto[ZOCMD.arg1].player.short_descr, cyn, mob_index[ZOCMD.arg1].vnum, yel,
                                       ZOCMD.arg2);
                 break;
@@ -109,23 +110,23 @@ std::string list_zone_commands_room(CharData *ch, room_num rvnum) {
                                       ZOCMD.arg2);
                 break;
             case 'O':
-                output += fmt::format("{}Load {} [{}], Max : {}\n", ZOCMD.if_flag ? " then " : "",
+                output += fmt::format("{}Load {} [{}{}{}], Max : {}\n", ZOCMD.if_flag ? " then " : "",
                                       obj_proto[ZOCMD.arg1].short_description, cyn, obj_index[ZOCMD.arg1].vnum, yel,
                                       ZOCMD.arg2);
                 break;
             case 'E':
-                output += fmt::format("{}Equip with {} [{}], {}, Max : {}\n", ZOCMD.if_flag ? " then " : "",
+                output += fmt::format("{}Equip with {} [{}{}{}], {}, Max : {}\n", ZOCMD.if_flag ? " then " : "",
                                       obj_proto[ZOCMD.arg1].short_description, cyn, obj_index[ZOCMD.arg1].vnum, yel,
                                       equipment_types[ZOCMD.arg3], ZOCMD.arg2);
                 break;
             case 'P':
-                output += fmt::format("{}Put {} [{}] in {} [{}], Max : {}\n", ZOCMD.if_flag ? " then " : "",
+                output += fmt::format("{}Put {} [{}{}{}] in {} [{}{}{}], Max : {}\n", ZOCMD.if_flag ? " then " : "",
                                       obj_proto[ZOCMD.arg1].short_description, cyn, obj_index[ZOCMD.arg1].vnum, yel,
                                       obj_proto[ZOCMD.arg3].short_description, cyn, obj_index[ZOCMD.arg3].vnum, yel,
                                       ZOCMD.arg2);
                 break;
             case 'R':
-                output += fmt::format("{}Remove {} [{}] from room.\n", ZOCMD.if_flag ? " then " : "",
+                output += fmt::format("{}Remove {} [{}{}{}] from room.\n", ZOCMD.if_flag ? " then " : "",
                                       obj_proto[ZOCMD.arg2].short_description, cyn, obj_index[ZOCMD.arg2].vnum, yel);
                 break;
             case 'D':
@@ -628,8 +629,9 @@ void do_stat_character(CharData *ch, CharData *k) {
             birthday, last_login, k->player.time.played / 3600, ((k->player.time.played / 3600) % 60), age(k).year,
             GET_HOMEROOM(k));
 
-        if (GET_CLAN(k)) {
-            resp += fmt::format(", Clan: [{}], Rank: [{}]", GET_CLAN(k)->abbreviation, GET_CLAN_RANK(k));
+        if (auto clan_membership = GET_CLAN_MEMBERSHIP(k)) {
+            resp +=
+                fmt::format(", Clan: [{}], Rank: [{}]", clan_membership->clan.lock()->abbreviation, GET_CLAN_RANK(k));
         }
 
         /* Display OLC zones for immorts */
@@ -1974,7 +1976,7 @@ void reboot_info(CharData *ch) {
         char_printf(ch, "{:d} hotboot{} since last shutdown.  Hotboot history:\n", num_hotboots,
                     num_hotboots == 1 ? "" : "s");
         for (s = 0; s < num_hotboots; ++s) {
-            char_printf(ch, "  {}\n",  ctime(&boot_time[s + 1]);
+            char_printf(ch, "  {}\n", ctime(&boot_time[s + 1]));
         }
     }
 }
@@ -1982,7 +1984,7 @@ void reboot_info(CharData *ch) {
 ACMD(do_world) {
     extern ACMD(do_date);
 
-    do_date(ch, {}, 0, SCMD_DATE);
+    do_date(ch, {""}, 0, SCMD_DATE);
 
     std::string git_hash = "";
     if (environment != ENV_PROD || GET_LEVEL(ch) >= LVL_GOD) {
@@ -1992,7 +1994,7 @@ ACMD(do_world) {
     }
     std::string bd{get_build_date()};
     char_printf(ch, "Build: {:d}  Compiled: {} {}\n", get_build_number(), bd, git_hash);
-    do_date(ch, {}, 0, SCMD_UPTIME);
+    do_date(ch, {""}, 0, SCMD_UPTIME);
     char_printf(ch, "There are {:5d} rooms in {:3d} zones online.\n", top_of_world + 1, top_of_zone_table + 1);
 
     if (GET_LEVEL(ch) >= LVL_REBOOT_VIEW)
@@ -2006,17 +2008,17 @@ std::string get_infodump_filename(const std::string_view name) {
 }
 
 void infodump_spellassign(CharData *ch, Arguments argument) {
-    char fname[MAX_INPUT_LENGTH];
     FILE *fl;
     int class_num, skill;
     bool startedclass;
 
-    if (!get_infodump_filename("spellassign", fname)) {
+    auto fname = get_infodump_filename("spellassign");
+    if (fname.empty()) {
         char_printf(ch, "ERROR: Could not get the output filename.\n");
         return;
     }
 
-    if (!(fl = fopen(fname, "w"))) {
+    if (!(fl = fopen(fname.c_str(), "w"))) {
         char_printf(ch, "ERROR: Could not write file {}.\n", fname);
         return;
     }
@@ -2052,19 +2054,14 @@ void infodump_spellassign(CharData *ch, Arguments argument) {
     char_printf(ch, "Dumped spell assignments to {}\n", fname);
 }
 
-/* The purpose of info dumps is to output game data in a format that will
- * be easily parsable by other programs. */
+/* The purpose of info dumps is to output game data in a format that will  be easily parsable by other programs. */
 
 ACMD(do_infodump) {
     std::string resp;
     int i;
-    const struct infodump_struct {
-        const std::string_view name;
-        void (*command)(CharData *ch, Arguments argument);
-    } fields[] = {/* Keep this list alphabetized */
-                  {"spellassign", infodump_spellassign},
-                  {nullptr, nullptr}};
-    skip_spaces(argument);
+    const std::array<infodump_struct, 2> fields = {{
+        {"spellassign", infodump_spellassign},
+    }};
 
     if (argument.empty()) {
         resp = "Infodump options:\n";
@@ -2082,7 +2079,7 @@ ACMD(do_infodump) {
         if (!strncasecmp(arg, fields[i].name, strlen(arg)))
             break;
 
-    if (!fields[i].name) {
+    if (fields[i].name.empty()) {
         char_printf(ch, "That's not something you can infodump.\n");
         return;
     }

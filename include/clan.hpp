@@ -130,7 +130,7 @@ constexpr struct {
 };
 
 #define GET_CLAN_MEMBERSHIP(ch) ((ch)->player_specials->clan_memberships)
-#define GET_CLAN(ch) (GET_CLAN_MEMBERSHIP(ch) ? GET_CLAN_MEMBERSHIP(ch)->clan : nullptr)
+#define GET_CLAN(ch) (GET_CLAN_MEMBERSHIP(ch) ? GET_CLAN_MEMBERSHIP(ch)->clan.lock() : nullptr)
 #define GET_CLAN_RANK(ch) (GET_CLAN_MEMBERSHIP(ch) ? GET_CLAN_MEMBERSHIP(ch)->rank : RANK_NONE)
 #define GET_CLAN_TITLE(ch) (IS_CLAN_MEMBER(ch) ? GET_CLAN(ch)->ranks[GET_CLAN_RANK(ch) - 1].title : "")
 #define MEMBER_CAN(member, priv)                                                                                       \

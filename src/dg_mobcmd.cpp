@@ -80,13 +80,10 @@ void mob_log(CharData *mob, std::string_view msg) {
     script_log((TrigData *)nullptr, buf);
 }
 
-int find_mob_target_room(CharData *ch, std::string_view rawroomstr) {
+int find_mob_target_room(CharData *ch, std::string_view roomstr) {
     int location;
     CharData *target_char;
     ObjData *target_obj;
-    char roomstr[MAX_INPUT_LENGTH];
-
-    one_argument(rawroomstr, roomstr);
 
     if (roomstr.empty())
         return NOWHERE;
@@ -118,7 +115,6 @@ int find_mob_target_room(CharData *ch, std::string_view rawroomstr) {
 /* mob commands */
 
 ACMD(do_mdamage) {
-    char name[MAX_INPUT_LENGTH], amount[MAX_INPUT_LENGTH], damtype[MAX_INPUT_LENGTH];
     int dam = 0, dtype = DAM_UNDEFINED, *damdone = nullptr;
     TrigData *t;
     CharData *victim;
@@ -135,7 +131,7 @@ ACMD(do_mdamage) {
         }
     }
 
-    name = argument.shift();
+    auto name = argument.shift();
     if (damdone)
         *damdone = 0;
     else {
@@ -147,25 +143,18 @@ ACMD(do_mdamage) {
         return;
     }
 
-    amount = argument.shift();
+    auto amount_opt = argument.try_shift_number();
 
-    if (amount.empty()) {
-        mob_log(ch, "mdamage called without second argument (amount)");
-        return;
-    }
-
-    if (!isdigit(*amount)) {
-        sprintf(buf, "mdamage called with invalid second argument (\"%s\") - not a number", amount);
-        mob_log(ch, buf);
+    if (!amount_opt) {
+        mob_log(ch, "mdamage called with invalid second argument (amount)");
         return;
     }
 
     /* hitpoint is a short signed int */
-    dam = std::clamp(atoi(amount), -32767, 32767);
+    dam = std::clamp(*amount_opt, -32767, 32767);
 
     if (!(victim = find_char_for_mtrig(ch, name))) {
-        sprintf(buf, "mdamage: victim (%s) not found", name);
-        mob_log(ch, buf);
+        mob_log(ch, fmt::format("mdamage: victim ({}) not found", name));
         return;
     }
 
@@ -173,15 +162,12 @@ ACMD(do_mdamage) {
         return;
 
     /* Check for and use optional damage-type parameter */
-    damtype = argument.shift();
-    if (*damtype) {
+    auto damtype = argument.shift();
+    if (!damtype.empty()) {
         dtype = parse_damtype(0, damtype);
         if (dtype == DAM_UNDEFINED) {
-            sprintf(buf,
-                    "mdamage called with invalid third argument (\"%s\") - not a "
-                    "damage type",
-                    damtype);
-            mob_log(ch, buf);
+            mob_log(ch,
+                    fmt::format("mdamage called with invalid third argument (\"{}\") - not a damage type", damtype));
             return;
         }
         dam = dam * susceptibility(victim, dtype) / 100;

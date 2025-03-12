@@ -99,7 +99,6 @@ int is_ok_char(CharData *keeper, CharData *ch, int shop_nr) {
 int is_open(CharData *keeper, int shop_nr, int msg) {
     std::string buf;
 
-    *buf = 0;
     if (SHOP_OPEN1(shop_nr) > time_info.hours)
         buf = msg_not_open_yet;
     else if (SHOP_CLOSE1(shop_nr) < time_info.hours) {
@@ -158,54 +157,52 @@ int find_oper_num(char token) {
     int index;
 
     for (index = 0; index <= MAX_OPER; index++)
-        if (strchr(operator_str[index], token))
+        if (operator_str[index].find(token) != std::string_view::npos)
             return (index);
     return (NOTHING);
 }
 
 int evaluate_expression(ObjData *obj, std::string_view expr) {
-    StackData ops, vals;
-    std::string_view ptr, *end, name[200];
+    StackData ops = {0}, vals = {0};
+    std::string_view::const_iterator ptr = expr.begin(), end;
+    std::string name;
     int temp, index;
 
-    if (!expr)
+    if (expr.empty() || !isalpha(*expr.begin()))
         return true;
 
-    if (!isalpha(*expr))
-        return true;
-
-    ops.len = vals.len = 0;
-    ptr = expr;
-    while (*ptr) {
-        if (isspace(*ptr))
-            ptr++;
-        else {
+    while (ptr != expr.end()) {
+        if (isspace(*ptr)) {
+            ++ptr;
+        } else {
             if ((temp = find_oper_num(*ptr)) == NOTHING) {
                 end = ptr;
-                while (*ptr && !isspace(*ptr) && (find_oper_num(*ptr) == NOTHING))
-                    ptr++;
-                strncpy(name, end, ptr - end);
-                name[ptr - end] = 0;
-                for (index = 0; *extra_bits[index] != '\n'; index++)
+                while (ptr != expr.end() && !isspace(*ptr) && (find_oper_num(*ptr) == NOTHING))
+                    ++ptr;
+                name.assign(end, ptr);
+                for (index = 0; *extra_bits[index] != '\n'; ++index) {
                     if (matches(name, extra_bits[index])) {
                         push(&vals, OBJ_FLAGGED(obj, index));
                         break;
                     }
+                }
                 if (*extra_bits[index] == '\n')
                     push(&vals, isname(name, obj->name));
             } else {
-                if (temp != OPER_OPEN_PAREN)
+                if (temp != OPER_OPEN_PAREN) {
                     while (top(&ops) > temp)
                         evaluate_operation(&ops, &vals);
+                }
 
                 if (temp == OPER_CLOSE_PAREN) {
                     if ((temp = pop(&ops)) != OPER_OPEN_PAREN) {
                         log("Illegal parenthesis in shop keyword expression");
-                        return (false);
+                        return false;
                     }
-                } else
+                } else {
                     push(&ops, temp);
-                ptr++;
+                }
+                ++ptr;
             }
         }
     }
@@ -214,9 +211,9 @@ int evaluate_expression(ObjData *obj, std::string_view expr) {
     temp = pop(&vals);
     if (top(&vals) != NOTHING) {
         log("Extra operands left on shop keyword expression stack");
-        return (false);
+        return false;
     }
-    return (temp);
+    return temp;
 }
 
 /* trade_with()
@@ -289,8 +286,7 @@ int shop_producing(ObjData *item, int shop_nr) {
 
 int transaction_amt(std::string_view arg) {
     int num;
-    one_argument(arg, buf);
-    if (!buf.empty())
+    if (!arg.empty())
         if ((is_integer(buf))) {
             num = atoi(buf);
             if ((strlen(arg)) > 3)
@@ -302,23 +298,23 @@ int transaction_amt(std::string_view arg) {
     return (1);
 }
 
-std::string_view times_message(ObjData *obj, std::string_view name, int num) {
-    static char buf[256];
-    std::string_view ptr;
+std::string times_message(ObjData *obj, std::string_view name, int num) {
+    std::string buf;
 
     if (obj)
-        strcpy(buf, obj->short_description);
+        buf = obj->short_description;
     else {
-        if ((ptr = strchr(name, '.')) == nullptr)
-            ptr = name;
+        auto pos = name.find('.');
+        if (pos == std::string_view::npos)
+            buf = name;
         else
-            ptr++;
-        strncpy(buf, ptr, 200);
-        buf[199] = 0;
+            buf = name.substr(pos + 1);
+        if (buf.size() > 200)
+            buf.resize(200);
     }
 
     if (num > 1)
-        sprintf(END_OF(buf), " (x %d)", num);
+        buf += fmt::format(" (x {})", num);
     return buf;
 }
 
@@ -532,15 +528,13 @@ void shopping_buy(std::string_view arg, CharData *ch, CharData *keeper, int shop
         sort_keeper_objs(keeper, shop_nr);
 
     if ((buynum = transaction_amt(arg)) < 0) {
-        sprintf(buf, "%s A negative amount?   Try selling me something.", GET_NAME(ch));
-        do_tell(keeper, buf, cmd_tell, 0);
+        do_tell(keeper, {"A negative amount?   Try selling me something."}, cmd_tell, 0);
         return;
     }
 
     /* Did buyer specify anything to buy? */
     if (arg.empty()) {
-        sprintf(buf, "%s What do you want to buy?", GET_NAME(ch));
-        do_tell(keeper, buf, cmd_tell, 0);
+        do_tell(keeper, {"What do you want to buy?"}, cmd_tell, 0);
         return;
     }
 
@@ -555,15 +549,15 @@ void shopping_buy(std::string_view arg, CharData *ch, CharData *keeper, int shop
 
     /* Can the buyer afford the item? */
     if ((buy_price(ch, keeper, obj, shop_nr) > GET_CASH(ch)) && !IS_GOD(ch)) {
-        sprintf(buf, shop_index[shop_nr].missing_cash2, GET_NAME(ch));
-        do_tell(keeper, buf, cmd_tell, 0);
+        auto msg = fmt::vformat(shop_index[shop_nr].missing_cash2, fmt::make_format_args(GET_NAME(ch)));
+        do_tell(keeper, {msg}, cmd_tell, 0);
 
         switch (SHOP_BROKE_TEMPER(shop_nr)) {
         case 0:
-            do_action(keeper, GET_NAME(ch), cmd_snicker, 0);
+            do_action(keeper, {GET_NAME(ch)}, cmd_snicker, 0);
             return;
         case 1:
-            do_echo(keeper, strdup("smokes on his joint."), cmd_emote, SCMD_EMOTE);
+            do_echo(keeper, {"smokes on his joint."}, cmd_emote, SCMD_EMOTE);
             return;
         default:
             return;
@@ -669,14 +663,14 @@ void shopping_buy(std::string_view arg, CharData *ch, CharData *keeper, int shop
 }
 
 ObjData *get_selling_obj(CharData *ch, std::string_view name, CharData *keeper, int shop_nr, int msg) {
-    char buf[MAX_STRING_LENGTH];
     ObjData *obj;
     int result;
+    std::string response;
 
     if (!(obj = find_obj_in_list(ch->carrying, find_vis_by_name(ch, name)))) {
         if (msg) {
-            sprintf(buf, shop_index[shop_nr].no_such_item2, GET_NAME(ch));
-            do_tell(keeper, buf, cmd_tell, 0);
+            response = fmt::vformat(shop_index[shop_nr].no_such_item2, fmt::make_format_args(GET_NAME(ch)));
+            do_tell(keeper, response, cmd_tell, 0);
         }
         return (0);
     }
@@ -685,18 +679,18 @@ ObjData *get_selling_obj(CharData *ch, std::string_view name, CharData *keeper, 
 
     switch (result) {
     case OBJECT_NOTOK:
-        sprintf(buf, shop_index[shop_nr].do_not_buy, GET_NAME(ch));
+        response = fmt::vformat(shop_index[shop_nr].do_not_buy, fmt::make_format_args(GET_NAME(ch)));
         break;
     case OBJECT_DEAD:
-        sprintf(buf, "%s %s", GET_NAME(ch), msg_no_used_wandstaff);
+        response = fmt::format("{} {}", GET_NAME(ch), msg_no_used_wandstaff);
         break;
     default:
         log("Illegal return value of {:d} from trade_with() (shop.c)", result);
-        sprintf(buf, "%s An error has occurred.", GET_NAME(ch));
+        response = fmt::format("{} An error has occurred.", GET_NAME(ch));
         break;
     }
     if (msg)
-        do_tell(keeper, buf, cmd_tell, 0);
+        do_tell(keeper, response, cmd_tell, 0);
     return (0);
 }
 

@@ -271,8 +271,7 @@ void hcontrol_list_houses(CharData *ch) {
     char_printf(ch, buf);
 }
 
-void hcontrol_build_house(CharData *ch, std::string_view arg) {
-    char arg1[MAX_INPUT_LENGTH];
+void hcontrol_build_house(CharData *ch, Arguments arg) {
     HouseControlRec temp_house;
     int virt_house, real_house, real_atrium, virt_atrium, exit_num;
     long owner;
@@ -283,12 +282,12 @@ void hcontrol_build_house(CharData *ch, std::string_view arg) {
     }
 
     /* first arg: house's vnum */
-    arg = one_argument(arg, arg1);
+    auto arg1 = arg.shift();
     if (arg1.empty()) {
         char_printf(ch, HCONTROL_FORMAT);
         return;
     }
-    virt_house = atoi(arg1);
+    virt_house = svtoi(arg1);
     if ((real_house = real_room(virt_house)) < 0) {
         char_printf(ch, "No such room exists.\n");
         return;
@@ -299,7 +298,7 @@ void hcontrol_build_house(CharData *ch, std::string_view arg) {
     }
 
     /* second arg: direction of house's exit */
-    arg = one_argument(arg, arg1);
+    arg1 = arg.shift();
     if (arg1.empty()) {
         char_printf(ch, HCONTROL_FORMAT);
         return;
@@ -322,7 +321,7 @@ void hcontrol_build_house(CharData *ch, std::string_view arg) {
     }
 
     /* third arg: player's name */
-    arg = one_argument(arg, arg1);
+    arg1 = arg.shift();
     if (arg1.empty()) {
         char_printf(ch, HCONTROL_FORMAT);
         return;
@@ -352,163 +351,161 @@ void hcontrol_build_house(CharData *ch, std::string_view arg) {
     House_save_control();
 }
 
-void hcontrol_destroy_house(CharData *ch, std::string_view arg) {
-    int i, j;
-    int real_atrium, real_house;
+void hcontrol_destroy_house(CharData *ch, Arguments arg) {
+    {
+        int i, j;
+        int real_atrium, real_house;
 
-    if (arg.empty()) {
-        char_printf(ch, HCONTROL_FORMAT);
-        return;
-    }
-    if ((i = find_house(atoi(arg))) < 0) {
-        char_printf(ch, "Unknown house.\n");
-        return;
-    }
-    if ((real_atrium = real_room(house_control[i].atrium)) < 0)
-        log("SYSERR: House had invalid atrium!");
-    else
-        REMOVE_FLAG(ROOM_FLAGS(real_atrium), ROOM_ATRIUM);
-
-    if ((real_house = real_room(house_control[i].vnum)) < 0)
-        log("SYSERR: House had invalid vnum!");
-    else {
-        REMOVE_FLAG(ROOM_FLAGS(real_house), ROOM_HOUSE);
-        REMOVE_FLAG(ROOM_FLAGS(real_house), ROOM_PRIVATE);
-        REMOVE_FLAG(ROOM_FLAGS(real_house), ROOM_HOUSE_CRASH);
-    }
-
-    House_delete_file(house_control[i].vnum);
-
-    for (j = i; j < num_of_houses - 1; j++)
-        house_control[j] = house_control[j + 1];
-
-    num_of_houses--;
-
-    char_printf(ch, "House deleted.\n");
-    House_save_control();
-
-    /*
-     * Now, reset the ROOM_ATRIUM flag on all existing houses' atriums,
-     * just in case the house we just deleted shared an atrium with another
-     * house.   --JE 9/19/94
-     */
-    for (i = 0; i < num_of_houses; i++)
-        if ((real_atrium = real_room(house_control[i].atrium)) >= 0)
-            SET_FLAG(ROOM_FLAGS(real_atrium), ROOM_ATRIUM);
-}
-
-void hcontrol_pay_house(CharData *ch, std::string_view arg) {
-    int i;
-
-    if (arg.empty())
-        char_printf(ch, HCONTROL_FORMAT);
-    else if ((i = find_house(atoi(arg))) < 0)
-        char_printf(ch, "Unknown house.\n");
-    else {
-        log(LogSeverity::Stat, std::max<int>(LVL_IMMORT, GET_INVIS_LEV(ch)), "Payment for house {} collected by {}.",
-            arg, GET_NAME(ch));
-
-        house_control[i].last_payment = time(0);
-        House_save_control();
-        char_printf(ch, "Payment recorded.\n");
-    }
-}
-
-/* The hcontrol command itself, used by imms to create/destroy houses */
-ACMD(do_hcontrol) {
-    char arg1[MAX_INPUT_LENGTH], arg2[MAX_INPUT_LENGTH];
-
-    half_chop(argument, arg1, arg2);
-
-    if (matches_start(arg1, "build"))
-        hcontrol_build_house(ch, arg2);
-    else if (matches_start(arg1, "destroy"))
-        hcontrol_destroy_house(ch, arg2);
-    else if (matches_start(arg1, "pay"))
-        hcontrol_pay_house(ch, arg2);
-    else if (matches_start(arg1, "show"))
-        hcontrol_list_houses(ch);
-    else
-        char_printf(ch, HCONTROL_FORMAT);
-}
-
-/* The house command, used by mortal house owners to assign guests */
-ACMD(do_house) {
-    int i, j, id;
-    std::string_view temp;
-
-    auto arg = argument.shift();
-
-    if (!ROOM_FLAGGED(ch->in_room, ROOM_HOUSE))
-        char_printf(ch, "You must be in your house to set guests.\n");
-    else if ((i = find_house(world[ch->in_room].vnum)) < 0)
-        char_printf(ch, "Um.. this house seems to be screwed up.\n");
-    else if (GET_IDNUM(ch) != house_control[i].owner)
-        char_printf(ch, "Only the primary owner can set guests.\n");
-    else if (arg.empty()) {
-        char_printf(ch, "Guests of your house:\n");
-        if (house_control[i].num_of_guests == 0)
-            char_printf(ch, "   None.\n");
-        else
-            for (j = 0; j < house_control[i].num_of_guests; j++) {
-                strcpy(buf, NAME(house_control[i].guests[j]));
-                char_printf(ch, strcat(capitalize_first(buf), "\n"));
-            }
-    } else if ((id = get_id_by_name(arg)) < 0)
-        char_printf(ch, "No such player.\n");
-    else if (id == GET_IDNUM(ch))
-        char_printf(ch, "It's your house!\n");
-    else {
-        for (j = 0; j < house_control[i].num_of_guests; j++)
-            if (house_control[i].guests[j] == id) {
-                for (; j < house_control[i].num_of_guests; j++)
-                    house_control[i].guests[j] = house_control[i].guests[j + 1];
-                house_control[i].num_of_guests--;
-                House_save_control();
-                char_printf(ch, "Guest deleted.\n");
-                return;
-            }
-        if (house_control[i].num_of_guests == MAX_GUESTS) {
-            char_printf(ch, "You have too many guests already.\n");
+        if (arg.empty()) {
+            char_printf(ch, HCONTROL_FORMAT);
             return;
         }
-        j = house_control[i].num_of_guests++;
-        house_control[i].guests[j] = id;
+        if ((i = find_house(atoi(arg))) < 0) {
+            char_printf(ch, "Unknown house.\n");
+            return;
+        }
+        if ((real_atrium = real_room(house_control[i].atrium)) < 0)
+            log("SYSERR: House had invalid atrium!");
+        else
+            REMOVE_FLAG(ROOM_FLAGS(real_atrium), ROOM_ATRIUM);
+
+        if ((real_house = real_room(house_control[i].vnum)) < 0)
+            log("SYSERR: House had invalid vnum!");
+        else {
+            REMOVE_FLAG(ROOM_FLAGS(real_house), ROOM_HOUSE);
+            REMOVE_FLAG(ROOM_FLAGS(real_house), ROOM_PRIVATE);
+            REMOVE_FLAG(ROOM_FLAGS(real_house), ROOM_HOUSE_CRASH);
+        }
+
+        House_delete_file(house_control[i].vnum);
+
+        for (j = i; j < num_of_houses - 1; j++)
+            house_control[j] = house_control[j + 1];
+
+        num_of_houses--;
+
+        char_printf(ch, "House deleted.\n");
         House_save_control();
-        char_printf(ch, "Guest added.\n");
+
+        /*
+         * Now, reset the ROOM_ATRIUM flag on all existing houses' atriums,
+         * just in case the house we just deleted shared an atrium with another
+         * house.   --JE 9/19/94
+         */
+        for (i = 0; i < num_of_houses; i++)
+            if ((real_atrium = real_room(house_control[i].atrium)) >= 0)
+                SET_FLAG(ROOM_FLAGS(real_atrium), ROOM_ATRIUM);
     }
-}
 
-/* Misc. administrative functions */
+    void hcontrol_pay_house(CharData * ch, Arguments arg) {
+        int i;
 
-/* crash-save all the houses */
-void House_save_all(void) {
-    int i;
-    int real_house;
+        if (arg.empty())
+            char_printf(ch, HCONTROL_FORMAT);
+        else if ((i = find_house(atoi(arg))) < 0)
+            char_printf(ch, "Unknown house.\n");
+        else {
+            log(LogSeverity::Stat, std::max<int>(LVL_IMMORT, GET_INVIS_LEV(ch)),
+                "Payment for house {} collected by {}.", arg, GET_NAME(ch));
 
-    for (i = 0; i < num_of_houses; i++)
-        if ((real_house = real_room(house_control[i].vnum)) != NOWHERE)
-            if (ROOM_FLAGGED(real_house, ROOM_HOUSE_CRASH))
-                House_crashsave(house_control[i].vnum);
-}
+            house_control[i].last_payment = time(0);
+            House_save_control();
+            char_printf(ch, "Payment recorded.\n");
+        }
+    }
 
-/* note: arg passed must be house vnum, so there. */
-int House_can_enter(CharData *ch, int house) {
-    int i, j;
+    /* The hcontrol command itself, used by imms to create/destroy houses */
+    ACMD(do_hcontrol) {
+        auto command = argument.shift();
+        if (matches_start(command, "build"))
+            hcontrol_build_house(ch, argument);
+        else if (matches_start(command, "destroy"))
+            hcontrol_destroy_house(ch, argument);
+        else if (matches_start(command, "pay"))
+            hcontrol_pay_house(ch, argument);
+        else if (matches_start(command, "show"))
+            hcontrol_list_houses(ch);
+        else
+            char_printf(ch, HCONTROL_FORMAT);
+    }
 
-    if (GET_LEVEL(ch) >= LVL_GRGOD || (i = find_house(house)) < 0)
-        return 1;
+    /* The house command, used by mortal house owners to assign guests */
+    ACMD(do_house) {
+        int i, j, id;
+        std::string_view temp;
 
-    switch (house_control[i].mode) {
-    case HOUSE_PRIVATE:
-        if (GET_IDNUM(ch) == house_control[i].owner)
+        auto arg = argument.shift();
+
+        if (!ROOM_FLAGGED(ch->in_room, ROOM_HOUSE))
+            char_printf(ch, "You must be in your house to set guests.\n");
+        else if ((i = find_house(world[ch->in_room].vnum)) < 0)
+            char_printf(ch, "Um.. this house seems to be screwed up.\n");
+        else if (GET_IDNUM(ch) != house_control[i].owner)
+            char_printf(ch, "Only the primary owner can set guests.\n");
+        else if (arg.empty()) {
+            char_printf(ch, "Guests of your house:\n");
+            if (house_control[i].num_of_guests == 0)
+                char_printf(ch, "   None.\n");
+            else
+                for (j = 0; j < house_control[i].num_of_guests; j++) {
+                    strcpy(buf, NAME(house_control[i].guests[j]));
+                    char_printf(ch, strcat(capitalize_first(buf), "\n"));
+                }
+        } else if ((id = get_id_by_name(arg)) < 0)
+            char_printf(ch, "No such player.\n");
+        else if (id == GET_IDNUM(ch))
+            char_printf(ch, "It's your house!\n");
+        else {
+            for (j = 0; j < house_control[i].num_of_guests; j++)
+                if (house_control[i].guests[j] == id) {
+                    for (; j < house_control[i].num_of_guests; j++)
+                        house_control[i].guests[j] = house_control[i].guests[j + 1];
+                    house_control[i].num_of_guests--;
+                    House_save_control();
+                    char_printf(ch, "Guest deleted.\n");
+                    return;
+                }
+            if (house_control[i].num_of_guests == MAX_GUESTS) {
+                char_printf(ch, "You have too many guests already.\n");
+                return;
+            }
+            j = house_control[i].num_of_guests++;
+            house_control[i].guests[j] = id;
+            House_save_control();
+            char_printf(ch, "Guest added.\n");
+        }
+    }
+
+    /* Misc. administrative functions */
+
+    /* crash-save all the houses */
+    void House_save_all(void) {
+        int i;
+        int real_house;
+
+        for (i = 0; i < num_of_houses; i++)
+            if ((real_house = real_room(house_control[i].vnum)) != NOWHERE)
+                if (ROOM_FLAGGED(real_house, ROOM_HOUSE_CRASH))
+                    House_crashsave(house_control[i].vnum);
+    }
+
+    /* note: arg passed must be house vnum, so there. */
+    int House_can_enter(CharData * ch, int house) {
+        int i, j;
+
+        if (GET_LEVEL(ch) >= LVL_GRGOD || (i = find_house(house)) < 0)
             return 1;
-        for (j = 0; j < house_control[i].num_of_guests; j++)
-            if (GET_IDNUM(ch) == house_control[i].guests[j])
-                return 1;
-        return 0;
-        break;
-    }
 
-    return 0;
-}
+        switch (house_control[i].mode) {
+        case HOUSE_PRIVATE:
+            if (GET_IDNUM(ch) == house_control[i].owner)
+                return 1;
+            for (j = 0; j < house_control[i].num_of_guests; j++)
+                if (GET_IDNUM(ch) == house_control[i].guests[j])
+                    return 1;
+            return 0;
+            break;
+        }
+
+        return 0;
+    }
