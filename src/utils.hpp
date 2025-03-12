@@ -85,25 +85,6 @@ void drop_core(CharData *ch, const std::string_view desc);
 #define BFS_ALREADY_THERE -2
 #define BFS_NO_PATH -3
 
-/* mud-life time */
-#define HOURS_PER_DAY 24
-#define DAYS_PER_WEEK 7
-#define WEEKS_PER_MONTH 5
-#define DAYS_PER_MONTH (DAYS_PER_WEEK * WEEKS_PER_MONTH)
-#define MONTHS_PER_YEAR 16
-#define WEEKS_PER_YEAR (WEEKS_PER_MONTH * MONTHS_PER_YEAR)
-#define DAYS_PER_YEAR (DAYS_PER_MONTH * DAYS_PER_MONTH)
-#define SECS_PER_MUD_HOUR 75
-#define SECS_PER_MUD_DAY (HOURS_PER_DAY * SECS_PER_MUD_HOUR)
-#define SECS_PER_MUD_MONTH (DAYS_PER_MONTH * SECS_PER_MUD_DAY)
-#define SECS_PER_MUD_YEAR (MONTHS_PER_YEAR * SECS_PER_MUD_MONTH)
-
-/* real-life time (remember Real Life?) */
-#define SECS_PER_REAL_MIN 60
-#define SECS_PER_REAL_HOUR (60 * SECS_PER_REAL_MIN)
-#define SECS_PER_REAL_DAY (24 * SECS_PER_REAL_HOUR)
-#define SECS_PER_REAL_YEAR (365 * SECS_PER_REAL_DAY)
-
 /* string utils **********************************************************/
 
 #define YESNO(a) ((a) ? "YES" : "NO")

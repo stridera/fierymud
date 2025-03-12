@@ -260,7 +260,7 @@ static bool write_object_record(ObjData *obj, FILE *fl, int location) {
     return true;
 }
 
-void show_rent(CharData *ch, std::string_view argument) {
+void show_rent(CharData *ch, Arguments argument) {
     char name[MAX_INPUT_LENGTH];
     FILE *fl;
     CharData *tch;

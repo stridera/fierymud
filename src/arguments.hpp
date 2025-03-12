@@ -23,6 +23,9 @@ class Arguments {
     // std::string copy constructor
     Arguments(const std::string &argument) : arg(argument) {}
 
+    // Const char* constructor
+    Arguments(const char *argument) : arg(argument) {}
+
     // Get the current argument list.
     [[nodiscard]] std::string_view get() const { return trim(arg); }
 

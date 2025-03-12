@@ -50,7 +50,6 @@ struct ClanRank {
 };
 
 struct Clan {
-    /* Identifying characteristics */
     unsigned int number;
     std::string name;
     std::string abbreviation;
@@ -68,7 +67,7 @@ struct Clan {
     std::vector<ClanMembership> members;
 };
 
-struct ClanMembership {
+class ClanMembership {
     CharData *player;
     std::string name;
     std::weak_ptr<Clan> clan; // Avoid circular reference
@@ -78,6 +77,16 @@ struct ClanMembership {
         ClanMembership *alts;
         ClanMembership *member;
     } relation;
+
+  public:
+    ClanMembership(CharData *ch, std::shared_ptr<Clan> clan, unsigned int rank)
+        : player(ch), clan(clan), rank(rank), since(time(0)) {
+        name = ch->player.short_descr;
+    }
+    inline std::string rank_title() const { return clan.lock()->ranks[rank].title; }
+    inline std::string clan_name() const { return clan.lock()->name; }
+    inline std::string clan_abbr() const { return clan.lock()->abbreviation; }
+    inline std::string clan_desc() const { return clan.lock()->description; }
 };
 
 // Target Group.  This is used to determine who can use a command.

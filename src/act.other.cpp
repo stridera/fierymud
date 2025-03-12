@@ -121,7 +121,7 @@ ACMD(do_guard) {
 
     if (matches(arg, "off"))
         vict = ch;
-    else if (!(vict = find_char_in_room(&world[ch->in_room], find_vis_by_name(ch, arg).value_or(nullptr)))) {
+    else if (!(vict = find_char_in_room(&world[ch->in_room], find_vis_by_name(ch, arg)))) {
         char_printf(ch, "That person is not here.\n");
         return;
     }
@@ -483,8 +483,8 @@ ACMD(do_shapechange) {
             GET_ALIGNMENT(player) = GET_ALIGNMENT(ch);
 
             if (GET_LEVEL(player) < LVL_IMMORT) {
-                i = GET_COOLDOWN(player, CD_SHAPECHANGE) / (1 * MUD_HR);
-                SET_COOLDOWN(player, CD_SHAPECHANGE, std::clamp(i, 1, 5) * MUD_HR);
+                i = GET_COOLDOWN(player, CD_SHAPECHANGE) / (1 MUD_HR);
+                SET_COOLDOWN(player, CD_SHAPECHANGE, std::clamp(i, 1, 5) * 1 MUD_HR);
             }
 
             player->desc = ch->desc;
@@ -970,7 +970,7 @@ ACMD(do_unbind) {
             WAIT_STATE(ch, PULSE_VIOLENCE * 3);
         return;
     } else {
-        if (!(vict = find_char_in_room(&world[ch->in_room], find_vis_by_name(ch, arg).value_or(nullptr)))) {
+        if (!(vict = find_char_in_room(&world[ch->in_room], find_vis_by_name(ch, arg)))) {
             char_printf(ch, "Unbind who?\n");
             return;
         }
@@ -1165,7 +1165,7 @@ ACMD(do_steal) {
     auto obj_name = argument.shift();
     auto vict_name = argument.shift();
 
-    if (!(vict = find_char_in_room(&world[ch->in_room], find_vis_by_name(ch, vict_name).value_or(nullptr)))) {
+    if (!(vict = find_char_in_room(&world[ch->in_room], find_vis_by_name(ch, vict_name)))) {
         char_printf(ch, "Steal what from who?\n");
         return;
     } else if (vict == ch) {
@@ -1222,7 +1222,8 @@ ACMD(do_steal) {
                 GET_GOLD(vict) -= coins[GOLD];
                 GET_PLATINUM(ch) += coins[PLATINUM];
                 GET_PLATINUM(vict) -= coins[PLATINUM];
-                char_printf(ch, "Woohoo! You stole {}.\n", statemoney(Money{coins[PLATINUM], coins[GOLD], coins[SILVER], coins[COPPER]}));
+                char_printf(ch, "Woohoo! You stole {}.\n",
+                            statemoney(Money{coins[PLATINUM], coins[GOLD], coins[SILVER], coins[COPPER]}));
             } else {
                 char_printf(ch, "You couldn't get any coins...\n");
             }
@@ -1232,7 +1233,7 @@ ACMD(do_steal) {
     } else {
 
         /* If not money, look for an item in the victim's inventory */
-        if (!(obj = find_obj_in_list(vict->carrying, find_vis_by_name(ch, obj_name).value_or(nullptr)))) {
+        if (!(obj = find_obj_in_list(vict->carrying, find_vis_by_name(ch, obj_name)))) {
 
             /* If not an item in inventory, look for an equipped item */
             for (eq_pos = 0; eq_pos < NUM_WEARS; eq_pos++)
@@ -1530,7 +1531,7 @@ ACMD(do_consent) {
 
     if (matches(arg, "off"))
         target = ch; /* consent self to turn it off */
-    else if (!(target = find_char_around_char(ch, find_vis_by_name(ch, arg).value_or(nullptr)))) {
+    else if (!(target = find_char_around_char(ch, find_vis_by_name(ch, arg)))) {
         char_printf(ch, NOPERSON);
         return;
     }
@@ -1719,9 +1720,10 @@ ACMD(do_group) {
             }
             if (d->original) {
                 gch = d->original;
-            } else if (!(gch = d->character.value_or(nullptr))) {
+            } else if (!(gch = d->character)) {
                 continue;
             }
+
             if (!CAN_SEE(ch, gch)) {
                 continue;
             }
@@ -1810,34 +1812,21 @@ void split_coins(CharData *ch, Money coins, unsigned int mode) {
     int i, j, count, remainder_start[NUM_COIN_TYPES];
     Money share;
     GroupType *g;
-    CharData *master;
 
-    static CharData **members;
-    static int max_members = 0;
+    std::vector<CharData *> members;
 
-    if (!max_members) {
-        max_members = 16;
-        CREATE(members, CharData *, max_members, CharData *);
-    }
-
-    master = ch->group_master ? ch->group_master : ch;
+    auto master = ch->group_master ? ch->group_master : ch;
 
     if (CAN_SEE(ch, master) && ch->in_room == master->in_room) {
-        count = 1;
-        members[0] = master;
-    } else {
-        count = 0;
+        members.push_back(master);
     }
 
     for (g = master->groupees; g; g = g->next)
         if (CAN_SEE(ch, g->groupee) && ch->in_room == g->groupee->in_room) {
-            if (count >= max_members) {
-                max_members *= 2;
-                RECREATE(members, CharData *, max_members, CharData *);
-            }
-            members[count++] = g->groupee;
+            members.push_back(g->groupee);
         }
 
+    count = members.size();
     if (count == 1) {
         if (!IS_SET(mode, FAIL_SILENTLY))
             char_printf(ch, "But you're the only one in your group here!\n");
@@ -1928,7 +1917,7 @@ ACMD(do_use) {
         switch (subcmd) {
         case SCMD_RECITE:
         case SCMD_QUAFF:
-            if (!(mag_item = find_obj_in_list(ch->carrying, find_vis_by_name(ch, arg).value_or(nullptr)))) {
+            if (!(mag_item = find_obj_in_list(ch->carrying, find_vis_by_name(ch, arg)))) {
                 char_printf(ch, "You don't seem to have {} {}.\n", AN(arg), arg);
                 return;
             }
@@ -2266,8 +2255,7 @@ void summon_mount(CharData *ch, int mob_vnum, int base_hp, int base_mv) {
     CharData *mount = nullptr;
 
     if (!ch || (ch->in_room == NOWHERE))
-        /* The summoner died in the meantime.  Its events should have been
-         * pulled, but why trust that */
+        /* The summoner died in the meantime.  Its events should have been pulled, but why trust that */
         return;
 
     mount = read_mobile(mob_vnum, VIRTUAL);
@@ -2364,7 +2352,7 @@ ACMD(do_layhand) {
      */
     if (!arg.empty()) {
         /* If a target was specified, attempt to use that. */
-        if (!(vict = find_char_in_room(&world[ch->in_room], find_vis_by_name(ch, arg).value_or(nullptr)))) {
+        if (!(vict = find_char_in_room(&world[ch->in_room], find_vis_by_name(ch, arg)))) {
             char_printf(ch, NOPERSON);
             return;
         }
@@ -2419,7 +2407,7 @@ ACMD(do_layhand) {
     damage(ch, vict, dam, SKILL_LAY_HANDS);
 
     if (GET_LEVEL(ch) < LVL_GOD)
-        SET_COOLDOWN(ch, CD_LAY_HANDS, 4 * MUD_HR);
+        SET_COOLDOWN(ch, CD_LAY_HANDS, 4 MUD_HR);
 }
 
 /***************************************************************************
@@ -2567,7 +2555,7 @@ ACMD(do_first_aid) {
     improve_skill(ch, SKILL_FIRST_AID);
 
     if (GET_LEVEL(ch) < LVL_IMMORT)
-        SET_COOLDOWN(ch, CD_FIRST_AID, 24 * MUD_HR);
+        SET_COOLDOWN(ch, CD_FIRST_AID, 24 MUD_HR);
 }
 
 /***************************************************************************
@@ -2589,7 +2577,7 @@ ACMD(do_ignore) {
         tch->player_specials->ignored = nullptr;
         return;
     }
-    if (!(target = find_char_around_char(ch, find_vis_by_name(ch, arg).value_or(nullptr))) || IS_NPC(target)) {
+    if (!(target = find_char_around_char(ch, find_vis_by_name(ch, arg))) || IS_NPC(target)) {
         char_printf(ch, NOPERSON);
         return;
     }
@@ -2609,7 +2597,7 @@ ACMD(do_point) {
         return;
     }
 
-    if (!(found = generic_find(arg, FIND_OBJ_ROOM | FIND_CHAR_ROOM, ch, &tch, &tobj).value_or(0))) {
+    if (!(found = generic_find(arg, FIND_OBJ_ROOM | FIND_CHAR_ROOM, ch, &tch, &tobj))) {
         char_printf(ch, "Can't find that!\n");
         return;
     }

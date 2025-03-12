@@ -1588,8 +1588,8 @@ bool check_get_disarmed_obj(CharData *ch, CharData *last_to_hold, ObjData *obj) 
                 } else {
                     act("$n tries to grab $p!", false, ch, obj, 0, TO_ROOM);
 
-                    do_say(last_to_hold, Arguments("No you don't!! That belongs to me!"), cmd_say, 0);
-                    do_action(last_to_hold, Arguments(GET_NAME(ch)), cmd_glare, 0);
+                    do_say(last_to_hold, "No you don't!! That belongs to me!", cmd_say, 0);
+                    do_action(last_to_hold, GET_NAME(ch), cmd_glare, 0);
 
                     act("$N plants $Mself directly in front of $n, blocking $m.", false, ch, 0, last_to_hold,
                         TO_NOTVICT);

@@ -102,7 +102,7 @@ struct OLCSaveInfo {
  * Exported globals.
  */
 
-extern const std::string_view nrm, *grn, *cyn, *yel, *blk, *red;
+extern const std::string_view nrm, grn, cyn, yel, blk, red;
 extern OLCSaveInfo *olc_save_list;
 
 /*

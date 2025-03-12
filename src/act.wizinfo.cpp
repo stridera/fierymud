@@ -606,11 +606,6 @@ void do_stat_character(CharData *ch, CharData *k) {
 
     /* Various character stats */
     resp += fmt::format("Race: {}, Race Align: {}, ", RACE_PLAINNAME(k), RACE_ALIGN_ABBR(k));
-    /*
-      if (!IS_NPC(k))
-        resp += fmt::format( "Deity: {}, ", GET_DIETY(ch) >= 0 ?
-                Dieties[(int) GET_DIETY(ch)].diety_name : "None");
-    */
     resp += fmt::format("Size: {}, Gender: {}\n", capitalize_first(SIZE_DESC(k)), sprinttype(GET_SEX(k), genders));
     resp +=
         fmt::format("Life force: {}{}&0, Composition: {}{}&0\n", LIFEFORCE_COLOR(k),
@@ -629,9 +624,8 @@ void do_stat_character(CharData *ch, CharData *k) {
             birthday, last_login, k->player.time.played / 3600, ((k->player.time.played / 3600) % 60), age(k).year,
             GET_HOMEROOM(k));
 
-        if (auto clan_membership = GET_CLAN_MEMBERSHIP(k)) {
-            resp +=
-                fmt::format(", Clan: [{}], Rank: [{}]", clan_membership->clan.lock()->abbreviation, GET_CLAN_RANK(k));
+        if (auto membership = get_clan_membership(k)) {
+            resp += fmt::format(", Clan: [{}], Rank: [{}]", membership->clan_abbr(), membership->rank_title());
         }
 
         /* Display OLC zones for immorts */
@@ -1997,88 +1991,55 @@ std::string get_infodump_filename(const std::string_view name) {
         return {};
     return fmt::format("{}/{}.txt", INFODUMP_PREFIX, name);
 }
-
 void infodump_spellassign(CharData *ch, Arguments argument) {
-    FILE *fl;
-    int class_num, skill;
-    bool startedclass;
-
-    auto fname = get_infodump_filename("spellassign");
-    if (fname.empty()) {
-        char_printf(ch, "ERROR: Could not get the output filename.\n");
+    std::ofstream file(get_infodump_filename("spellassign"));
+    if (!file.is_open()) {
+        char_printf(ch, "ERROR: Could not write file.\n");
         return;
     }
 
-    if (!(fl = fopen(fname.c_str(), "w"))) {
-        char_printf(ch, "ERROR: Could not write file {}.\n", fname);
-        return;
-    }
-
-    /* WRITING SPELL CLASS ASSIGNMENTS */
-
-    /* We're only writing as much info as we currently know we need.
-     *
-     * With any luck, we can add more info on to each line if we decide there's
-     * a need for it, and not break any pre-existing scripts that may be used on
-     * this dump file. The trick is not to modify any existing fields!
-     *
-     * ONLY add more to the end.
-     *
-     * Current fields:  SPELLNAME,CIRCLE,ISQUEST?
-     */
-    for (class_num = 0; class_num < NUM_CLASSES; class_num++) {
-        startedclass = false;
-        for (skill = 1; skill <= MAX_SPELLS; skill++) {
+    for (int class_num = 0; class_num < NUM_CLASSES; class_num++) {
+        bool startedclass = false;
+        for (int skill = 1; skill <= MAX_SPELLS; skill++) {
             if (skills[skill].min_level[class_num] < LVL_IMMORT) {
                 if (!startedclass) {
-                    fprintf(fl, "beginclass %s\n", classes[class_num].name);
+                    file << "beginclass " << classes[class_num].name << "\n";
                     startedclass = true;
                 }
-                fprintf(fl, "%s,%d,%s\n", skills[skill].name, level_to_circle(skills[skill].min_level[class_num]),
-                        skills[skill].quest ? "true" : "false");
+                file << skills[skill].name << "," << level_to_circle(skills[skill].min_level[class_num]) << ","
+                     << (skills[skill].quest ? "true" : "false") << "\n";
             }
         }
         if (startedclass)
-            fprintf(fl, "endclass\n\n");
+            file << "endclass\n\n";
     }
-    fclose(fl);
-    char_printf(ch, "Dumped spell assignments to {}\n", fname);
+    file.close();
+    char_printf(ch, "Dumped spell assignments to file.\n");
 }
 
-/* The purpose of info dumps is to output game data in a format that will  be easily parsable by other programs. */
-
 ACMD(do_infodump) {
-    std::string resp;
-    int i;
-    const std::array<infodump_struct, 2> fields = {{
+    const std::array<std::pair<std::string_view, void (*)(CharData *ch, Arguments argument)>, 1> fields = {{
         {"spellassign", infodump_spellassign},
     }};
 
     if (argument.empty()) {
-        resp = "Infodump options:\n";
-        for (i = 0; fields[i].name; ++i)
-            resp += fmt::format("{:>15}{}", fields[i].name, (i + 1) % 5 ? "" : "\n");
-        if (i % 5)
+        std::string resp = "Infodump options:\n";
+        for (size_t i = 0; i < fields.size(); ++i)
+            resp += fmt::format("{:>15}{}", fields[i].first, (i + 1) % 5 ? "" : "\n");
+        if (fields.size() % 5)
             resp += "\n";
         char_printf(ch, resp);
         return;
     }
 
-    argument = auto arg = argument.shift();
+    auto arg = argument.shift();
 
-    for (i = 0; fields[i].name; ++i)
-        if (!strncasecmp(arg, fields[i].name, strlen(arg)))
-            break;
-
-    if (fields[i].name.empty()) {
-        char_printf(ch, "That's not something you can infodump.\n");
-        return;
+    for (const auto &field : fields) {
+        if (matches(arg, field.first)) {
+            field.second(ch, argument);
+            return;
+        }
     }
 
-    if (!fields[i].command) {
-        char_printf(ch, "Error identifying what you wanted to dump.\n");
-        return;
-    }
-
-    (fields[i].command)(ch, argument);
+    char_printf(ch, "That's not something you can infodump.\n");
 }

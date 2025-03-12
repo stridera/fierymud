@@ -1652,8 +1652,8 @@ int enter_player_game(DescriptorData *d) {
     GET_QUIT_REASON(d->character) = QUIT_AUTOSAVE;
 
     // A couple of hacks to reconnect things if the player logged out to the menu and then re-entered the game
-    if (GET_CLAN_MEMBERSHIP(d->character))
-        GET_CLAN_MEMBERSHIP(d->character)->player = d->character;
+    if (get_clan_membership(d->character))
+        get_clan_membership(d->character)->player = d->character;
 
     // restart cooldowns
     for (int i = 0; i < NUM_COOLDOWNS; ++i)
@@ -2900,8 +2900,8 @@ void nanny(DescriptorData *d, std::string_view arg) {
                 STATE(d) = CON_CLOSE;
                 return;
             }
-            if (GET_CLAN_MEMBERSHIP(d->character))
-                revoke_clan_membership(GET_CLAN_MEMBERSHIP(d->character));
+            if (get_clan_membership(d->character))
+                revoke_clan_membership(get_clan_membership(d->character));
 
             if ((player_i = get_ptable_by_name(GET_NAME(d->character))) >= 0) {
                 SET_BIT(player_table[player_i].flags, PINDEX_DELETED);

@@ -118,7 +118,7 @@ void sub_write(std::string_view arg, CharData *ch, byte find_invis, int targets)
     for (i = 0, p = arg, s = str; *p;) {
         ctokens[i] = nullptr;
         otokens[i] = nullptr;
-        switch (*p) {
+        switch (p.front()) {
         case '~':
         case '@':
         case '^':

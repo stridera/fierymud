@@ -40,7 +40,7 @@ bool build_object(FILE *fl, ObjData **obj, int *location);
 void extract_objects(CharData *ch);
 bool write_objects(ObjData *obj, FILE *fl, int location);
 void auto_save_all(void);
-void show_rent(CharData *ch, std::string_view argument);
+void show_rent(CharData *ch, Arguments argument);
 bool delete_player_obj_file(CharData *ch);
 FILE *open_player_obj_file(const std::string_view player_name, CharData *ch, bool quiet);
 void convert_player_obj_files(CharData *ch);

@@ -183,7 +183,7 @@ void free_trigger(TrigData *trig) {
 }
 
 /* for mobs and rooms: */
-void dg_read_trigger(FILE *fp, void *proto, int type) {
+void dg_read_trigger(std::ifstream &fp, void *proto, int type) {
     char line[256];
     char junk[8];
     int vnum, rnum, count;

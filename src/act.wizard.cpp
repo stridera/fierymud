@@ -1479,29 +1479,15 @@ ACMD(do_zreset) {
         char_printf(ch, "Invalid zone number.\n");
 }
 
-static std::string_view center_wiztitle(std::string_view wiztitle, int len, int noansi_len) {
-    char centerbuf[MAX_INPUT_LENGTH];
-    int i;
-    bool add_zero;
+static std::string center_wiztitle(std::string_view wiztitle, int len, int noansi_len) {
+    bool add_zero = (len < 2 || wiztitle[len - 1] != '0' || (wiztitle[len - 2] != CREL && wiztitle[len - 2] != CABS));
+    std::string centerbuf(WIZ_TITLE_WIDTH + (add_zero ? 2 : 0), ' ');
 
-    /* If the wiztitle doesn't end in &0, put it on. */
-    add_zero = (len < 2 || wiztitle[len - 1] != '0' || (wiztitle[len - 2] != CREL && wiztitle[len - 2] != CABS));
-
-    sprintf(centerbuf + ((WIZ_TITLE_WIDTH - noansi_len) / 2), "%s%s", wiztitle, add_zero ? "&0" : "");
-
-    /* +2 for the &0 we just tacked on */
-    if (add_zero)
-        len += 2;
-
-    for (i = 0; i < (WIZ_TITLE_WIDTH - noansi_len) / 2; ++i) {
-        centerbuf[i] = ' ';
-        centerbuf[WIZ_TITLE_WIDTH - 1 + (len - noansi_len) - i] = ' ';
+    std::copy(wiztitle.begin(), wiztitle.end(), centerbuf.begin() + (WIZ_TITLE_WIDTH - noansi_len) / 2);
+    if (add_zero) {
+        centerbuf[WIZ_TITLE_WIDTH + (len - noansi_len) / 2 + wiztitle.size()] = '&';
+        centerbuf[WIZ_TITLE_WIDTH + (len - noansi_len) / 2 + wiztitle.size() + 1] = '0';
     }
-
-    /* if odd-lengthed string, need an extra space to cover up \0 */
-    if (noansi_len & 1)
-        centerbuf[WIZ_TITLE_WIDTH - 1 + (len - noansi_len) - i] = ' ';
-    centerbuf[WIZ_TITLE_WIDTH + (len - noansi_len)] = '\0';
 
     return centerbuf;
 }
@@ -2891,8 +2877,8 @@ ACMD(do_terminate) {
             return;
         }
         /* delete and purge */
-        if (GET_CLAN_MEMBERSHIP(victim))
-            revoke_clan_membership(GET_CLAN_MEMBERSHIP(victim));
+        if (get_clan_membership(victim))
+            revoke_clan_membership(get_clan_membership(victim));
         SET_FLAG(PLR_FLAGS(victim), PLR_DELETED);
         save_player_char(victim);
         delete_player_obj_file(victim);

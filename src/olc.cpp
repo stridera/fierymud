@@ -30,7 +30,6 @@
 #include "sysdep.hpp"
 #include "utils.hpp"
 
-std::string_view nrm, grn, cyn, yel, blk, red;
 OLCSaveInfo *olc_save_list;
 const std::string_view save_info_msg[5] = {"Rooms", "Objects", "Zone info", "Mobiles", "Shops"};
 OLCSCommandData olc_scmd_info[] = {{"room", CON_REDIT},      {"room", CON_ZEDIT}, {"object", CON_OEDIT},

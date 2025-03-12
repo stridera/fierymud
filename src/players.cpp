@@ -1246,8 +1246,8 @@ void load_ascii_flags(flagvector flags[], int num_flags, std::string_view line) 
 static void load_clan(std::string_view line, CharData *ch) {
     Clan *clan = find_clan(line);
     ch->player_specials->clan = find_clan_membership_in_clan(GET_NAME(ch), clan);
-    if (GET_CLAN_MEMBERSHIP(ch))
-        GET_CLAN_MEMBERSHIP(ch)->player = ch;
+    if (get_clan_membership(ch))
+        get_clan_membership(ch)->player = ch;
 }
 
 void add_perm_title(CharData *ch, std::string_view line) { GET_PERM_TITLES(ch).push_back(std::string(line)); }

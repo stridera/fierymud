@@ -49,6 +49,11 @@
 #include "sysdep.hpp"
 #include "utils.hpp"
 
+#include <algorithm>  // for std::min
+#include <fmt/core.h> // For fmt::format
+#include <fstream>
+#include <string>
+
 /* function protos */
 void sdedit_disp_menu(DescriptorData *d);
 void sdedit_parse(DescriptorData *d, std::string_view arg);
@@ -67,110 +72,91 @@ void sdedit_setup_existing(DescriptorData *d, int real_num) {
     *spell = spell_dam_info[real_num];
     OLC_SD(d) = spell;
     OLC_VAL(d) = 0;
-    if (spell->note)
-        OLC_SD(d)->note = strdup(spell->note); /*duplicate the dynamic part */
+    OLC_SD(d)->note = spell->note;
     sdedit_disp_menu(d);
 }
 
 void sdedit_disp_menu(DescriptorData *d) {
-    char cbuf2[600];
+    std::string menu_text;
+    std::string details_text;
     SpellDamage *spell;
-    const std::string_view nrm = CLR(d->character, ANRM);
-    const std::string_view yel = CLR(d->character, FYEL);
-    const std::string_view grn = CLR(d->character, FGRN);
-    const std::string_view red = CLR(d->character, FRED);
     spell = OLC_SD(d);
 
-    sprintf(buf,
-            "Editing Spell: %s%-21s%s %s%d%s\n\n"
-            "         %sDAMAGES TO NPC:%s\n\n"
-            "%s1%s) Number of dice to be used:        %s%d%s\n"
-            "%s2%s) Number on the face of the dice:   %s%d%s\n"
-            "%sR%s) %% dmg to NPCs 100 full effect :   %s%d%s\n"
-            "%sA%s) NPC Static number                 %s%d%s\n"
-            "         %sDAMAGES TO PC:%s\n\n"
-            "%s3%s) Number of dice to be used:        %s%d%s\n"
-            "%s4%s) Number on the face of the dice:   %s%d%s\n"
-            "%sB%s) PC Static number:                 %s%d%s\n"
-            "         %sGENERAL TO BOTH:%s\n\n",
-            grn, (skills[spell->spell].name), nrm, grn, spell->spell, nrm, red, nrm, yel, nrm, grn, spell->npc_no_dice,
-            grn,
-            /*2 */ yel, nrm, grn, spell->npc_no_face, nrm,
-            /*R*/ yel, nrm, grn, spell->npc_reduce_factor, nrm, /*A*/ yel, nrm, grn, spell->npc_static, nrm, red, nrm,
-            /*3 */ yel, nrm, grn, spell->pc_no_dice, nrm,
-            /*4 */ yel, nrm, grn, spell->pc_no_face, nrm,
-            /*B*/ yel, nrm, grn, spell->pc_static, nrm, red, nrm);
+    menu_text = fmt::format(
+        "Editing Spell: {0}{1}{2} {3}{4}{5}\n\n"
+        "         {6}DAMAGES TO NPC:{7}\n\n"
+        "{8}1{9}) Number of dice to be used:        {10}{11}{12}\n"
+        "{13}2{14}) Number on the face of the dice:   {15}{16}{17}\n"
+        "{18}R{19}) % dmg to NPCs 100 full effect :   {20}{21}{22}\n"
+        "{23}A{24}) NPC Static number                 {25}{26}{27}\n"
+        "         {28}DAMAGES TO PC:{29}\n\n"
+        "{30}3{31}) Number of dice to be used:        {32}{33}{34}\n"
+        "{35}4{36}) Number on the face of the dice:   {37}{38}{39}\n"
+        "{40}B{41}) PC Static number:                 {42}{43}{44}\n"
+        "         {45}GENERAL TO BOTH:{46}\n\n",
+        grn, skills[spell->spell].name, nrm, grn, spell->spell, nrm, red, nrm, yel, nrm, grn, spell->npc_no_dice, nrm,
+        /*2*/ yel, nrm, grn, spell->npc_no_face, nrm,
+        /*R*/ yel, nrm, grn, spell->npc_reduce_factor, nrm,
+        /*A*/ yel, nrm, grn, spell->npc_static, nrm, red, nrm,
+        /*3*/ yel, nrm, grn, spell->pc_no_dice, nrm,
+        /*4*/ yel, nrm, grn, spell->pc_no_face, nrm,
+        /*B*/ yel, nrm, grn, spell->pc_static, nrm, red, nrm);
 
-    sprintf(cbuf2,
-            "%s5%s) Max Bonus possible:               %s%d%s\n"
-            "%sT%s) Toggle Wether to use Max Bonus:   %s%s%s\n"
-            "%sI%s) Toggle Internal Damage On/Off:    %s%s%s\n"
-            "%sE%s) LVL Multiplie		%s%d%s\n"
-            "%sN%s) Edit Spell Note.\n"
-            "%sQ%s) Quit\n"
-            "\n"
-            "%sUSED BY PC to NPC%s: - %sNPC + std::min(Max_bonus, level/2) + "
-            "NPC_STATIC%s\n"
-            "%sUSED BY NPC to PC%s: - %sNPC + std::min(Max_bonus, level/2) + "
-            "NPC_STATIC%s\n"
-            "%sUSED BY PC to PC %s: - %sPC  + std::min(Max_bonus, level/4) + "
-            "PC_STATIC%s\n\n"
-            "%sSpell Note:%s\n"
-            "%s%s%s\n"
-            "\n"
-            "Enter choice:\n",
-            /*5 */ yel, nrm, grn, spell->max_bonus, nrm,
-            /*Bonus */ yel, nrm, grn, (spell->use_bonus ? "true" : "false"), nrm,
-            /*Intern*/ yel, nrm, grn, (spell->intern_dam ? "true" : "false"), nrm,
-            /*E*/ yel, nrm, grn, spell->lvl_mult, nrm, yel, nrm, yel, nrm, yel, nrm, grn, nrm, yel, nrm, grn, nrm, yel,
-            nrm, grn, nrm, red, nrm, grn, (spell->note ? spell->note : ""), nrm);
-    char_printf(d->character, buf);
-    char_printf(d->character, cbuf2);
+    details_text = fmt::format(
+        "{0}5{1}) Max Bonus possible:               {2}{3}{4}\n"
+        "{5}T{6}) Toggle Wether to use Max Bonus:   {7}{8}{9}\n"
+        "{10}I{11}) Toggle Internal Damage On/Off:    {12}{13}{14}\n"
+        "{15}E{16}) LVL Multiplie\t\t{17}{18}{19}\n"
+        "{20}N{21}) Edit Spell Note.\n"
+        "{22}Q{23}) Quit\n"
+        "\n"
+        "{24}USED BY PC to NPC{25}: - {26}NPC + std::min(Max_bonus, level/2) + NPC_STATIC{27}\n"
+        "{28}USED BY NPC to PC{29}: - {30}NPC + std::min(Max_bonus, level/2) + NPC_STATIC{31}\n"
+        "{32}USED BY PC to PC {33}: - {34}PC  + std::min(Max_bonus, level/4) + PC_STATIC{35}\n\n"
+        "{36}Spell Note:{37}\n"
+        "{38}{39}{40}\n"
+        "\n"
+        "Enter choice:\n",
+        /*5*/ yel, nrm, grn, spell->max_bonus, nrm,
+        /*Bonus*/ yel, nrm, grn, (spell->use_bonus ? "true" : "false"), nrm,
+        /*Intern*/ yel, nrm, grn, (spell->intern_dam ? "true" : "false"), nrm,
+        /*E*/ yel, nrm, grn, spell->lvl_mult, nrm, yel, nrm, yel, nrm, yel, nrm, grn, nrm, yel, nrm, grn, nrm, yel, nrm,
+        grn, nrm, red, nrm, grn, spell->note, nrm);
+
+    char_printf(d->character, menu_text);
+    char_printf(d->character, details_text);
 
     OLC_MODE(d) = SDEDIT_MAIN_MENU;
 }
 
 void sdedit_save_internally(DescriptorData *d) {
-
     SpellDamage *spell = nullptr;
     spell = OLC_SD(d);
 
-    /*free old note first!! */
-
-    if (spell_dam_info[OLC_SD(d)->spell].note)
-        free(spell_dam_info[OLC_SD(d)->spell].note);
     spell_dam_info[OLC_SD(d)->spell] = *spell;
-
-    /*copy over new sring */
-
-    if (spell->note)
-        spell_dam_info[OLC_SD(d)->spell].note = strdup(spell->note);
+    spell_dam_info[OLC_SD(d)->spell].note = spell->note;
 }
-
-/*------------------------------------------------------------------------*/
 
 void sdedit_save_to_disk(DescriptorData *d) {
     sh_int i;
-    FILE *ifptr;
+    std::ofstream outfile(SPELL_DAM_FILE);
 
-    if ((ifptr = fopen(SPELL_DAM_FILE, "w")) == nullptr) {
-        log(LogSeverity::Stat, LVL_IMPL, "Error writting spell dam file\n");
+    if (!outfile) {
+        log(LogSeverity::Stat, LVL_IMPL, "Error writing spell damage file");
     } else {
-
-        fprintf(ifptr, "Spell dam file:\n");
-        fprintf(ifptr,
-                "spell, intern, npc_static, npc_no_dice, npc_no_face, "
-                "pc_static, pc_no_face, "
-                "pc_no_dice, npc_reduce, use_bonus, bonus, lvl_mult\n");
-        fprintf(ifptr, "spell_dam\n");
+        outfile << "Spell dam file:\n";
+        outfile << "spell, intern, npc_static, npc_no_dice, npc_no_face, "
+                << "pc_static, pc_no_face, pc_no_dice, npc_reduce, use_bonus, bonus, lvl_mult\n";
+        outfile << "spell_dam\n";
 
         for (i = 1; i <= MAX_SPELLS; i++) {
-            fprintf(ifptr, "%hd %hd %hd %hd %hd %hd %hd %hd %hd %hd %hd %hd\n", i, SD_INTERN_DAM(i), SD_NPC_STATIC(i),
-                    SD_NPC_NO_DICE(i), SD_NPC_NO_FACE(i), SD_PC_STATIC(i), SD_PC_NO_DICE(i), SD_PC_NO_FACE(i),
-                    SD_NPC_REDUCE_FACTOR(i), SD_USE_BONUS(i), SD_BONUS(i), SD_LVL_MULT(i));
-            fprintf(ifptr, "%s~\n", (SD_NOTE(i) ? SD_NOTE(i) : ""));
+            outfile << i << " " << SD_INTERN_DAM(i) << " " << SD_NPC_STATIC(i) << " " << SD_NPC_NO_DICE(i) << " "
+                    << SD_NPC_NO_FACE(i) << " " << SD_PC_STATIC(i) << " " << SD_PC_NO_DICE(i) << " " << SD_PC_NO_FACE(i)
+                    << " " << SD_NPC_REDUCE_FACTOR(i) << " " << SD_USE_BONUS(i) << " " << SD_BONUS(i) << " "
+                    << SD_LVL_MULT(i) << "\n";
+            outfile << SD_NOTE(i) << "~\n";
         }
-        fclose(ifptr);
+        outfile.close();
     }
 }
 
@@ -179,7 +165,7 @@ void sdedit_parse(DescriptorData *d, std::string_view arg) {
 
     switch (OLC_MODE(d)) {
     case SDEDIT_MAIN_MENU:
-        switch (*arg) {
+        switch (arg.front()) {
         case 'q':
         case 'Q':
             if (OLC_VAL(d)) {
@@ -269,53 +255,47 @@ void sdedit_parse(DescriptorData *d, std::string_view arg) {
         return;
 
     case SDEDIT_NPC_NO_DICE_ENTRY:
-        OLC_SD(d)->npc_no_dice = atoi(arg);
+        OLC_SD(d)->npc_no_dice = atoi(arg.data());
         break;
 
     case SDEDIT_NPC_NO_FACE_ENTRY:
-        OLC_SD(d)->npc_no_face = atoi(arg);
+        OLC_SD(d)->npc_no_face = atoi(arg.data());
         break;
 
     case SDEDIT_PC_NO_DICE_ENTRY:
-        OLC_SD(d)->pc_no_dice = atoi(arg);
+        OLC_SD(d)->pc_no_dice = atoi(arg.data());
         break;
 
     case SDEDIT_LVL_MULT_MENU:
-        OLC_SD(d)->lvl_mult = atoi(arg);
+        OLC_SD(d)->lvl_mult = atoi(arg.data());
         break;
 
     case SDEDIT_NOTE:
-        if (OLC_SD(d)->note)
-            free(OLC_SD(d)->note);
-        if (!arg.empty())
-            OLC_SD(d)->note = strdup(arg);
-        else
-            OLC_SD(d)->note = nullptr;
-        break;
+        OLC_SD(d)->note = arg.data();
 
     case SDEDIT_PC_STATIC:
-        OLC_SD(d)->pc_static = atoi(arg);
+        OLC_SD(d)->pc_static = atoi(arg.data());
         break;
 
     case SDEDIT_NPC_STATIC:
-        OLC_SD(d)->npc_static = atoi(arg);
+        OLC_SD(d)->npc_static = atoi(arg.data());
         break;
 
     case SDEDIT_PC_NO_FACE_ENTRY:
-        OLC_SD(d)->pc_no_face = atoi(arg);
+        OLC_SD(d)->pc_no_face = atoi(arg.data());
         break;
 
     case SDEDIT_NPC_REDUCE_FACTOR:
-        OLC_SD(d)->npc_reduce_factor = atoi(arg);
+        OLC_SD(d)->npc_reduce_factor = atoi(arg.data());
         break;
 
     case SDEDIT_MAX_BONUS:
-        OLC_SD(d)->max_bonus = atoi(arg);
+        OLC_SD(d)->max_bonus = atoi(arg.data());
         break;
 
         return;
     case SDEDIT_CONFIRM_SAVESTRING:
-        switch (*arg) {
+        switch (arg.front()) {
         case 'y':
         case 'Y':
             sdedit_save_internally(d);

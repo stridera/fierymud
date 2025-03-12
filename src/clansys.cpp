@@ -360,7 +360,7 @@ ClanMembership *find_clan_membership(const std::string_view name) {
     return nullptr;
 }
 
-bool revoke_clan_membership(ClanMembership *member) {
+bool revoke_clan_membership(std::shared_ptr<ClanMembership> member) {
     ClanMembership *p;
     Clan *clan;
     int i;
@@ -368,7 +368,7 @@ bool revoke_clan_membership(ClanMembership *member) {
     if (!member)
         return false;
 
-    clan = member->clan;
+    clan = member->get_clan();
 
     /* Remove from clan lists */
     if (IS_ALT_RANK(member->rank)) {
@@ -477,6 +477,6 @@ unsigned int days_until_reapply(const ClanMembership *member) {
 }
 
 PRIV_FUNC(clan_admin_check) {
-    if (PRV_FLAGGED(ch, PRV_CLAN_ADMIN) && GET_CLAN_MEMBERSHIP(ch))
-        revoke_clan_membership(GET_CLAN_MEMBERSHIP(ch));
+    if (PRV_FLAGGED(ch, PRV_CLAN_ADMIN) && get_clan_membership(ch))
+        revoke_clan_membership(get_clan_membership(ch));
 }

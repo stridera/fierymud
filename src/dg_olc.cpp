@@ -313,8 +313,6 @@ void trigedit_save(DescriptorData *d) {
     DescriptorData *dsc;
     FILE *trig_file;
     int zone, top;
-    char buf[MAX_CMD_LENGTH];
-    char fname[MAX_INPUT_LENGTH];
 
     auto get_next_arg = [&]() {
         s = s.substr(s.find(' ') + 1);
@@ -466,7 +464,7 @@ void trigedit_save(DescriptorData *d) {
     zone = zone_table[OLC_ZNUM(d)].number;
     top = zone_table[OLC_ZNUM(d)].top;
 
-    fname = fmt::format("{}/{}.new", TRG_PREFIX, zone);
+    auto fname = fmt::format("{}/{}.new", TRG_PREFIX, zone);
     if (!(trig_file = fopen(fname, "w"))) {
         log(LogSeverity::Warn, std::max<int>(LVL_GOD, GET_INVIS_LEV(d->character)),
             "SYSERR: OLC: Can't open trig file \"{}\"", fname);
@@ -488,9 +486,8 @@ void trigedit_save(DescriptorData *d) {
                     "%s~\n"
                     "%d %s %d\n"
                     "%s~\n",
-                    (GET_TRIG_NAME(trig)) ? (GET_TRIG_NAME(trig)) : "unknown trigger", trig->attach_type,
-                    sprintbits(GET_TRIG_TYPE(trig)).c_str(), GET_TRIG_NARG(trig),
-                    !GET_TRIG_ARG(trig).empty() ? GET_TRIG_ARG(trig).c_str() : "");
+                    (!GET_TRIG_NAME(trig).empty()) ? (GET_TRIG_NAME(trig)) : "unknown trigger", trig->attach_type,
+                    sprintbits(GET_TRIG_TYPE(trig)), GET_TRIG_NARG(trig), GET_TRIG_ARG(trig));
 
             /* Build the text for the script */
             std::string script_text;
@@ -501,15 +498,15 @@ void trigedit_save(DescriptorData *d) {
             if (script_text.empty())
                 script_text = "* Empty script";
 
-            fprintf(trig_file, "%s~\n", script_text.c_str());
+            fprintf(trig_file, "%s~\n", script_text);
         }
     }
 
     fprintf(trig_file, "$~\n");
     fclose(trig_file);
 
-    snprintf(buf, sizeof(buf), "%s/%d.trg", TRG_PREFIX, zone);
-    rename(fname, buf);
+    auto new_filename = fmt::format("{}/{}.trg", TRG_PREFIX, zone);
+    rename(fname, new_filename);
 }
 
 void dg_olc_script_free(DescriptorData *d) {

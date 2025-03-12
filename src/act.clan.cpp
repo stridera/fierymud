@@ -301,7 +301,7 @@ CLANCMD(clan_alt) {
         char_printf(ch, "There's no one online by the name of {}.\n", target);
     else if (ch == tch)
         char_printf(ch, "You want to be your own alt?\n");
-    else if (GET_CLAN_MEMBERSHIP(tch))
+    else if (get_clan_membership(tch))
         char_printf(ch, "{} is already in a clan!\n", GET_NAME(tch));
     else if (!IS_CLAN_SUPERADMIN(ch) && !IS_CLAN_ADMIN(ch) && strcasecmp(ch->desc->host, tch->desc->host))
         char_printf(ch, "{} was not found logged in as your alt.\n", GET_NAME(tch));
@@ -322,7 +322,7 @@ CLANCMD(clan_alt) {
         alt->relation.member = member;
         member->relation.alts = alt;
         alt->player = tch;
-        GET_CLAN_MEMBERSHIP(tch) = alt;
+        get_clan_membership(tch) = alt;
         save_player_char(tch);
         save_clan(clan);
     }
@@ -353,7 +353,7 @@ CLANCMD(clan_apply) {
     member->rank = RANK_APPLICANT;
     member->since = time(0);
     member->player = ch;
-    GET_CLAN_MEMBERSHIP(ch) = member;
+    get_clan_membership(ch) = member;
     add_clan_membership(clan, member);
     save_player_char(ch);
     save_clan(clan);
@@ -562,7 +562,7 @@ CLANCMD(clan_priv) {
 }
 
 static void show_clan_info(CharData *ch, const Clan *clan) {
-    const ClanMembership *member = GET_CLAN_MEMBERSHIP(ch);
+    const ClanMembership *member = get_clan_membership(ch);
     size_t i, j;
     bool show_all =
         ((member && member->clan == clan && OUTRANKS(member->rank, RANK_APPLICANT)) || IS_CLAN_SUPERADMIN(ch));
@@ -637,14 +637,14 @@ static void show_clan_member_status(CharData *ch, CharData *tch) {
         char_printf(ch, "{} {} a clan super-administrator.\n", ch == tch ? "You" : GET_NAME(tch),
                     ch == tch ? "are" : "is");
     else if (IS_CLAN_REJECT(tch)) {
-        unsigned int days = days_until_reapply(GET_CLAN_MEMBERSHIP(tch));
+        unsigned int days = days_until_reapply(get_clan_membership(tch));
         char_printf(ch, "{} {} rejected from {} and may re-apply in {:d} day{}.\n", ch == tch ? "You" : GET_NAME(tch),
                     ch == tch ? "were" : "was", GET_CLAN(tch)->name, days, days == 1 ? "" : "s");
     } else if (IS_CLAN_ADMIN(tch))
         char_printf(ch, "{} {} an administrator for {}.\n", ch == tch ? "You" : GET_NAME(tch), ch == tch ? "are" : "is",
                     GET_CLAN(tch)->name);
     else if (IS_CLAN_MEMBER(tch) || IS_CLAN_ALT(tch) || IS_CLAN_APPLICANT(tch)) {
-        auto since = std::format("{:%a, %d %b %Y}", std::localtime(&GET_CLAN_MEMBERSHIP(tch)->since));
+        auto since = std::format("{:%a, %d %b %Y}", std::localtime(&get_clan_membership(tch)->since));
         paging_printf(ch,
                       "Clan membership status for {}:\n"
                       "  Clan: {}\n",
@@ -654,7 +654,7 @@ static void show_clan_member_status(CharData *ch, CharData *tch) {
                           IS_CLAN_LEADER(tch) ? " (Leader)" : "");
         else if (IS_CLAN_ALT(tch))
             paging_printf(ch, "  Alt rank: {:d} ({})\n", GET_CLAN_RANK(tch) - ALT_RANK_OFFSET,
-                          GET_CLAN_MEMBERSHIP(tch)->relation.member->name);
+                          get_clan_membership(tch)->relation.member->name);
         else if (IS_CLAN_APPLICANT(tch))
             paging_printf(ch, "  Rank: Applicant\n");
         paging_printf(ch, "  Member since: {}\n", since);
@@ -672,14 +672,14 @@ static void show_clan_member_status(CharData *ch, CharData *tch) {
                 paging_printf(ch, "  Privileges: {}\n", sb_get_buffer(sb));
                 free_screen_buf(sb);
             }
-            if (GET_CLAN_MEMBERSHIP(tch)->relation.alts) {
+            if (get_clan_membership(tch)->relation.alts) {
                 ClanMembership *alt;
                 ScreenBuf *sb = new_screen_buf();
                 int seen = 0;
                 const size_t len = strlen("  Alts: ");
                 sb_set_first_indentation(sb, len);
                 sb_set_other_indentation(sb, len);
-                for (alt = GET_CLAN_MEMBERSHIP(tch)->relation.alts; alt; alt = alt->next)
+                for (alt = get_clan_membership(tch)->relation.alts; alt; alt = alt->next)
                     sb_append(sb, "{}{}", seen++ ? ", " : "", alt->name);
                 /* skip over the first 8 spaces (dummy indentation) */
                 paging_printf(ch, "  Alts: {}\n", sb_get_buffer(sb));
@@ -780,7 +780,7 @@ CLANCMD(clan_quit) {
         log(LogSeverity::Stat, LVL_GOD, "(CLAN) {} quits {}.", GET_NAME(ch), clan->name);
         clan_notification(clan, ch, "{} has quit your clan.", GET_NAME(ch));
     }
-    revoke_clan_membership(GET_CLAN_MEMBERSHIP(ch));
+    revoke_clan_membership(get_clan_membership(ch));
 }
 
 CLANCMD(clan_reject) {
@@ -916,7 +916,7 @@ CLANCMD(clan_who) {
                 send_clan_who_header(ch);
                 found = true;
             }
-            send_clan_who_line(ch, GET_CLAN_MEMBERSHIP(tch));
+            send_clan_who_line(ch, get_clan_membership(tch));
         }
     }
 
@@ -1050,7 +1050,7 @@ ACMD(do_clan) {
     }
 
     clan = GET_CLAN(ch);
-    member = GET_CLAN_MEMBERSHIP(ch);
+    member = get_clan_membership(ch);
 
     /* Determine which command to invoke */
     auto arg = argument.shift();
@@ -1135,8 +1135,8 @@ ACMD(do_ctell) {
     else if (IS_CLAN_APPLICANT(me))
         char_printf(ch, "You're not part of a clan.\n");
     else if (CAN_DO_PRIV(me, CPRIV_CHAT) ||
-             (IS_CLAN_ALT(me) && MEMBER_CAN(GET_CLAN_MEMBERSHIP(me)->relation.member, CPRIV_CHAT)))
-        clan_tell(ch, GET_CLAN_MEMBERSHIP(me), clan, argument);
+             (IS_CLAN_ALT(me) && MEMBER_CAN(get_clan_membership(me)->relation.member, CPRIV_CHAT)))
+        clan_tell(ch, get_clan_membership(me), clan, argument);
     else
         char_printf(ch, "You don't have access to clan chat.\n");
 }

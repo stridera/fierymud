@@ -109,7 +109,7 @@ static bool get_corpse_filename(int id, std::string_view filename) {
         log("SYSERR(corpse_save.c): Corpse has id number < 0 no corpse loaded.");
         return false;
     } else {
-        sprintf(filename, "corpse/%d.corpse", id);
+        filename = fmt::format("corpse/{}.corpse", id);
         return true;
     }
 }
@@ -130,22 +130,22 @@ static ObjData *load_corpse(int id) {
         return nullptr;
     }
 
-    get_line(fl, buf1);
-    if (is_integer(buf1)) {
-        depth = atoi(buf1);
+    auto buf1 = get_line(fl);
+    if (buf1 && is_integer(*buf1)) {
+        depth = svtoi(*buf1);
         if ((depth = real_room(depth)) < 0) {
-            log("SYSERR: Unable to locate room {} for corpse {:d}", buf1, id);
+            log("SYSERR: Unable to locate room {} for corpse {:d}", *buf1, id);
             depth = r_mortal_start_room;
         }
     } else {
         log("SYSERR: First line of corpse file not room vnum for corpse {:d}", id);
-        if (strchr(buf1, ':'))
+        if (buf1->find(':') != std::string::npos)
             rewind(fl);
         depth = r_mortal_start_room;
     }
 
     if (build_object(fl, &obj, &location)) {
-        if (GET_OBJ_TYPE(obj) != ITEM_CONTAINER || !contains_case_insensitive(obj->name, "corpse")) {
+        if (GET_OBJ_TYPE(obj) != ITEM_CONTAINER || !obj->name.contains("corpse")) {
             log("SYSERR: First object '{}' loaded from corpse {:d} not corpse", obj->short_description, id);
             extract_obj(obj);
             return nullptr;
@@ -256,7 +256,7 @@ static void save_corpse_list(void) {
     FILE *fl;
     corpse_data *entry;
 
-    if (!(fl = fopen(CCONTROL_FILE, "w"))) {
+    if (!(fl = fopen(CCONTROL_FILE.data(), "w"))) {
         perror("SYSERR: Unable to open corpse control file");
         return;
     }
@@ -286,13 +286,13 @@ void boot_corpses(void) {
     memset(&corpse_control, 0x0, sizeof(corpse_control));
     SENTINEL->next = SENTINEL->prev = SENTINEL;
 
-    if (!(fl = fopen(CCONTROL_FILE, "rb"))) {
+    if (!(fl = fopen(std::string(CCONTROL_FILE).c_str(), "rb"))) {
         log("Corpse control file does not exist.");
         return;
     }
 
-    while (get_line(fl, buf)) {
-        id = atoi(buf);
+    while (auto buf = get_line(fl)) {
+        id = svtoi(*buf);
 
         if (!(corpse = load_corpse(id))) {
             log("SYSERR: Unable to load corpse {:d} in corpse control list", id);

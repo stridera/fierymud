@@ -1263,8 +1263,8 @@ void extract_char(CharData *ch) {
     }
 
     /* Remove runtime link to clan */
-    if (GET_CLAN_MEMBERSHIP(ch))
-        GET_CLAN_MEMBERSHIP(ch)->player = nullptr;
+    if (get_clan_membership(ch))
+        get_clan_membership(ch)->player = nullptr;
 
     /* transfer equipment to room */
     for (i = 0; i < NUM_WEARS; i++)

@@ -1032,13 +1032,13 @@ long asciiflag_conv(std::string_view flag) {
     std::string_view p;
 
     if (is_integer(flag))
-        flags = atol(flag);
+        flags = std::stol(std::string(flag));
     else
-        for (p = flag; *p; p++) {
-            if (islower(*p))
-                flags |= 1 << (*p - 'a');
-            else if (isupper(*p))
-                flags |= 1 << (26 + (*p - 'A'));
+        for (char c : flag) {
+            if (islower(c))
+                flags |= 1 << (c - 'a');
+            else if (isupper(c))
+                flags |= 1 << (26 + (c - 'A'));
         }
 
     return flags;
@@ -1117,7 +1117,7 @@ void parse_room(std::ifstream &fl, int virtual_nr) {
             exit(1);
         }
 
-        switch (*line) {
+        switch (line.front()) {
         case 'D':
             setup_dir(fl, room_nr, atoi(line.c_str() + 1));
             break;
@@ -1152,7 +1152,7 @@ void setup_dir(std::ifstream &fl, int room, int dir) {
     int t[5];
     std::string line;
 
-    sprintf(buf2, "room #%d, direction D%d", world[room].vnum, dir);
+    auto file_info = std::format("room #{}, direction D{}", world[room].vnum, dir);
     /* added by gurlaek to stop memory leaks detected by insure++ 8/26/1999 */
     if (world[room].exits[dir]) {
         log(LogSeverity::Warn, LVL_GOD, "SYSERR:db.c:setup_dir:creating direction [{}] for room {} twice!", dir,
@@ -1160,18 +1160,18 @@ void setup_dir(std::ifstream &fl, int room, int dir) {
     } else {
         world[room].exits[dir] = create_exit(NOWHERE);
     }
-    world[room].exits[dir]->general_description = fread_string(fl, buf2);
-    world[room].exits[dir]->keyword = fread_string(fl, buf2);
+    world[room].exits[dir]->general_description = fread_string(fl, file_info);
+    world[room].exits[dir]->keyword = fread_string(fl, file_info);
 
     if (auto line_opt = get_line(fl)) {
         line = *line_opt;
     } else {
-        log(LogSeverity::Error, LVL_GOD, "Format error, {}", buf2);
+        log(LogSeverity::Error, LVL_GOD, "Format error, {}", file_info);
         exit(1);
     }
 
     if (sscanf(line.c_str(), " %d %d %d ", t, t + 1, t + 2) != 3) {
-        log(LogSeverity::Error, LVL_GOD, "Format error, {}", buf2);
+        log(LogSeverity::Error, LVL_GOD, "Format error, {}", file_info);
         exit(1);
     }
 
@@ -2690,8 +2690,8 @@ void free_char(CharData *ch) {
         free_aliases(GET_ALIASES(ch));
 
         /* Remove runtime link to clan */
-        if (GET_CLAN_MEMBERSHIP(ch))
-            GET_CLAN_MEMBERSHIP(ch)->player = nullptr;
+        if (get_clan_membership(ch))
+            get_clan_membership(ch)->player = nullptr;
 
         if (GET_GRANT_CACHE(ch))
             free(GET_GRANT_CACHE(ch));
