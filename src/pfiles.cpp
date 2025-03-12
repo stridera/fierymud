@@ -1629,7 +1629,6 @@ void save_player(CharData *ch) {
         GET_LOADROOM(ch) = GET_HOMEROOM(ch);
         break;
     case QUIT_TIMEOUT:
-    case QUIT_HOTBOOT:
     case QUIT_PURGE:
     case QUIT_AUTOSAVE:
     default:

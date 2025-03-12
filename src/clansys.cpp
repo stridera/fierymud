@@ -158,7 +158,6 @@ bool load_clan(const std::string_view clan_num, Clan *clan) {
             if (num <= 0 || num > MAX_CLAN_RANKS) {
                 log("SYSERR: load_clan: attempt to set clan title for invalid rank {}", num);
             } else {
-                clan->rank_count = std::max<size_t>(clan->rank_count, num);
                 clan->ranks[num - 1].title = value;
             }
         } else {

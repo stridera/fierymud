@@ -133,7 +133,6 @@ extern int donation_room_1;
 extern int donation_room_2;
 extern int donation_room_3;
 extern time_t *boot_time;
-extern int num_hotboots;
 extern int should_restrict;
 extern int restrict_reason;
 extern int environment;

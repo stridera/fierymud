@@ -122,8 +122,7 @@ int donation_room_3 = NOWHERE; /* unused - room for expansion */
 /****************************************************************************/
 
 /* GAME OPERATION OPTIONS */
-time_t *boot_time = nullptr;         /* times of mud boots (size = 1 + num_hotboots) */
-int num_hotboots = 0;                /* are we doing a hotboot? */
+time_t *boot_time = nullptr;         /* times of mud boots */
 int should_restrict = 0;             /* level of game restriction         */
 int restrict_reason = RESTRICT_NONE; /* reason for should_restrict > 0 */
 

@@ -25,8 +25,6 @@ using json = nlohmann::json;
 
 #define NUM_RESERVED_DESCS 8
 
-#define HOTBOOT_FILE "hotboot.dat"
-
 // #define CBP_FUNC(name) int(name)(CharData *, int)
 using CBP_FUNC = std::function<int(CharData *, int)>;
 
@@ -109,9 +107,7 @@ extern int buf_overflows;
 extern int buf_switches;
 extern int circle_shutdown;
 extern int circle_reboot;
-extern int no_specials;
 extern int max_players;
 extern int tics;
-extern int scheck;
 extern int dg_act_check;
 extern bool gossip_channel_active;

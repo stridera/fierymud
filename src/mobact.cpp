@@ -75,7 +75,6 @@ bool check_spellbank(CharData *ch);
 
 void mobile_activity(void) {
     CharData *ch, *next_ch;
-    extern int no_specials;
 
     for (ch = character_list; ch; ch = next_ch) {
         next_ch = ch->next;
@@ -113,7 +112,7 @@ void mobile_activity(void) {
         }
 
         /* Execute any special procs. */
-        if (MOB_PERFORMS_SCRIPTS(ch) && MOB_FLAGGED(ch, MOB_SPEC) && !no_specials) {
+        if (MOB_PERFORMS_SCRIPTS(ch) && MOB_FLAGGED(ch, MOB_SPEC)) {
             if (mob_index[GET_MOB_RNUM(ch)].func == nullptr) {
                 log("{} (#{:d}): Attempting to call non-existing mob func", GET_NAME(ch), GET_MOB_VNUM(ch));
                 REMOVE_FLAG(MOB_FLAGS(ch), MOB_SPEC);

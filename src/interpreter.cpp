@@ -127,7 +127,6 @@ ACMD(do_hcontrol);
 ACMD(do_hide);
 ACMD(do_hit);
 ACMD(do_hitall);
-ACMD(do_hotboot);
 ACMD(do_house);
 ACMD(do_hunt);
 ACMD(do_iedit);
@@ -548,7 +547,6 @@ const CommandInfo cmd_info[] = {
     {"hitall", POS_STANDING, STANCE_ALERT, do_hitall, 0, SCMD_HITALL, 0},
     {"hold", POS_PRONE, STANCE_RESTING, do_grab, 1, 0, 0},
     {"hop", POS_STANDING, STANCE_ALERT, do_action, 0, 0, CMD_NOFIGHT},
-    {"hotboot", POS_PRONE, STANCE_DEAD, do_hotboot, LVL_REBOOT_MASTER, 0, 0},
     {"house", POS_PRONE, STANCE_RESTING, do_house, -1, 0, 0},
     {"howl", POS_STANDING, STANCE_ALERT, do_roar, 0, SCMD_HOWL, 0},
     {"hunt", POS_STANDING, STANCE_ALERT, do_hunt, -1, 0, CMD_NOFIGHT},
@@ -1008,7 +1006,6 @@ void list_similar_commands(CharData *ch, std::string_view arg) {
  * then calls the appropriate function.
  */
 void command_interpreter(CharData *ch, std::string_view argument) {
-    extern int no_specials;
     int cmd;
 
     /* just drop to next line for hitting CR */
@@ -1112,7 +1109,7 @@ void command_interpreter(CharData *ch, std::string_view argument) {
             char_printf(ch, "You'd better take to the air first.\n");
             break;
         }
-    else if (no_specials || !special(ch, cmd, line))
+    else if (!special(ch, cmd, line))
         ((*cmd_info[cmd].command_pointer)(ch, Arguments(line), cmd, cmd_info[cmd].subcmd));
 }
 

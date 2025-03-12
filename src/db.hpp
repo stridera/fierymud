@@ -19,10 +19,10 @@
 #include "sysdep.hpp"
 #include "zone.hpp"
 
-#include <string_view>
-#include <fstream>
-#include <array>
 #include <algorithm>
+#include <array>
+#include <fstream>
+#include <string_view>
 
 /* arbitrary constants used by index_boot() (must be unique) */
 #define DB_BOOT_WLD 0
@@ -77,6 +77,7 @@ constexpr std::string_view GROUP_FILE = "etc/cmdgroups";        /* for cmd group
 constexpr std::string_view INFODUMP_PREFIX = "infodump";
 
 /* public procedures in db.c */
+void boot_world(void);
 void boot_db(void);
 void destroy_db(void);
 void free_text_files(void);

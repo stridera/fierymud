@@ -14,55 +14,36 @@
 #include "structs.hpp"
 #include "sysdep.hpp"
 
+#include <bitset>
 #include <fmt/format.h>
 #include <memory>
 #include <string>
 #include <vector>
 
-/* Defaults */
-constexpr bool ALLOW_CLAN_LINKLOAD = true;
-constexpr bool ALLOW_CLAN_ALTS = true;
-constexpr bool ALLOW_CLAN_QUIT = true;
-constexpr bool BACKUP_CLAN_ON_DELETE = true;
-
 enum ClanPrivilege {
-    CPRIV_DESC,
-    CPRIV_MOTD,
-    CPRIV_GRANT,
-    CPRIV_RANKS,
-    CPRIV_TITLE,
-    CPRIV_ENROLL,
-    CPRIV_EXPEL,
-    CPRIV_PROMOTE,
-    CPRIV_DEMOTE,
-    CPRIV_APP_FEE,
-    CPRIV_APP_LEV,
-    CPRIV_DUES,
-    CPRIV_WITHDRAW,
-    CPRIV_ALTS,
-    CPRIV_CHAT,
+    CPRIV_NONE = 0,
+    CPRIV_DESC = 1 << 0,
+    CPRIV_MOTD = 1 << 1,
+    CPRIV_GRANT = 1 << 2,
+    CPRIV_RANKS = 1 << 3,
+    CPRIV_TITLE = 1 << 4,
+    CPRIV_ENROLL = 1 << 5,
+    CPRIV_EXPEL = 1 << 6,
+    CPRIV_PROMOTE = 1 << 7,
+    CPRIV_DEMOTE = 1 << 8,
+    CPRIV_APP_FEES = 1 << 9,
+    CPRIV_APP_LEV = 1 << 10,
+    CPRIV_DUES = 1 << 11,
+    CPRIV_WITHDRAW = 1 << 12,
+    CPRIV_ALTS = 1 << 13,
+    CPRIV_CHAT = 1 << 14,
+
+    CPRIV_SIZE = 15
 };
-
-constexpr int MIN_CLAN_RANKS = 2;
-constexpr int MAX_CLAN_RANKS = 100;
-constexpr int RANK_ADMIN = 0;
-constexpr int RANK_LEADER = 1;
-constexpr int ALT_RANK_OFFSET = MAX_CLAN_RANKS;
-constexpr int MAX_ALT_RANK = ALT_RANK_OFFSET + RANK_LEADER;
-constexpr int MIN_ALT_RANK = ALT_RANK_OFFSET + MAX_CLAN_RANKS;
-constexpr int RANK_APPLICANT = ALT_RANK_OFFSET + MAX_CLAN_RANKS + 1;
-constexpr int RANK_REJECT = RANK_APPLICANT + 1;
-constexpr int RANK_NONE = RANK_REJECT + 1;
-
-constexpr int DEFAULT_APP_LVL = 25;
-constexpr int MAX_CLAN_DESC_LENGTH = 5000;
-constexpr int REJECTION_WAIT_DAYS = 5;
-constexpr int CLAN_SNOOP_OFF = 0;
-constexpr int MAX_CLAN_ABBR_LEN = 10;
-constexpr int MAX_CLAN_NAME_LEN = 30;
-constexpr int MAX_CLAN_TITLE_LEN = 30;
-
+constexpr size_t NUM_CLAN_PRIVS = static_cast<size_t>(CPRIV_SIZE);
+typedef std::bitset<NUM_CLAN_PRIVS> ClanPrivilegeSet;
 struct ClanMembership;
+
 struct ClanRank {
     std::string title;
     flagvector privileges[FLAGVECTOR_SIZE(NUM_CLAN_PRIVS)];
@@ -83,16 +64,14 @@ struct Clan {
     Money treasure;
 
     /* Lists */
-    size_t rank_count;           /* array length */
-    std::vector<ClanRank> ranks; /* dynamically-allocated array */
-
+    std::vector<ClanRank> ranks;
     std::vector<ClanMembership> members;
 };
 
 struct ClanMembership {
     CharData *player;
     std::string name;
-    std::weak_ptr<Clan> clan;
+    std::weak_ptr<Clan> clan; // Avoid circular reference
     unsigned int rank;
     time_t since;
     union {
@@ -101,11 +80,30 @@ struct ClanMembership {
     } relation;
 };
 
+// Target Group.  This is used to determine who can use a command.
+enum TargetGroup { TARGET_ADMIN = 0, TARGET_MEMBER = 1 << 0, TARGET_ANYONE = ~0ULL };
+struct ClanCmd {
+    std::string_view name;
+    void (*func)(CharData *, Arguments);
+    TargetGroup target; // Minimum rank required to use the command
+    ClanPrivilegeSet privileges;
+};
+static std::vector<std::shared_ptr<Clan>> clans;
+
 /***************************************************************************
- * Clan Constants
+ * Clan Defaults
  ***************************************************************************/
 
-static std::vector<std::shared_ptr<Clan>> clans;
+constexpr bool ALLOW_CLAN_ALTS = true;
+constexpr bool BACKUP_CLAN_ON_DELETE = true;
+
+constexpr int DEFAULT_APP_LVL = 25;
+constexpr int MAX_CLAN_DESC_LENGTH = 5000;
+constexpr int REJECTION_WAIT_DAYS = 5;
+constexpr int CLAN_SNOOP_OFF = 0;
+constexpr int MAX_CLAN_ABBR_LEN = 10;
+constexpr int MAX_CLAN_NAME_LEN = 30;
+constexpr int MAX_CLAN_TITLE_LEN = 30;
 
 constexpr struct {
     const std::string_view abbr;
@@ -129,14 +127,9 @@ constexpr struct {
     {"chat", true, "Chat"},
 };
 
-#define GET_CLAN_MEMBERSHIP(ch) ((ch)->player_specials->clan_memberships)
-#define GET_CLAN(ch) (GET_CLAN_MEMBERSHIP(ch) ? GET_CLAN_MEMBERSHIP(ch)->clan : nullptr)
-#define GET_CLAN_RANK(ch) (GET_CLAN_MEMBERSHIP(ch) ? GET_CLAN_MEMBERSHIP(ch)->rank : RANK_NONE)
-#define GET_CLAN_TITLE(ch) (IS_CLAN_MEMBER(ch) ? GET_CLAN(ch)->ranks[GET_CLAN_RANK(ch) - 1].title : "")
-#define MEMBER_CAN(member, priv)                                                                                       \
-    (IS_MEMBER_RANK(member->rank) && IS_FLAGGED(member->clan->ranks[member->rank - 1].privileges, (priv)))
-#define HAS_CLAN_PRIV(ch, priv) (GET_CLAN_MEMBERSHIP(ch) ? MEMBER_CAN(GET_CLAN_MEMBERSHIP(ch), (priv)) : false)
-#define CAN_DO_PRIV(ch, priv) (IS_CLAN_ADMIN(ch) || IS_CLAN_SUPERADMIN(ch) || HAS_CLAN_PRIV((ch), (priv)))
+inline std::shared_ptr<ClanMembership> get_clan_membership(const CharData *ch) {
+    return ch->player_specials->clan_memberships;
+}
 
 void init_clans(void);
 void save_clans(void);
@@ -157,6 +150,5 @@ void clan_set_title(CharData *ch);
 Clan *alloc_clan(void);
 void dealloc_clan(Clan *);
 unsigned int days_until_reapply(const ClanMembership *member);
-PRIV_FUNC(clan_admin_check);
 
 unsigned int clan_count(void);

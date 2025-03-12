@@ -482,14 +482,6 @@ void boot_spell_dams() {
     }
 }
 
-void free_spell_dams(void) {
-    int i;
-    extern struct SpellDamage spell_dam_info[];
-
-    for (i = 1; i <= MAX_SPELLS; i++)
-        free(spell_dam_info[i].note);
-}
-
 void boot_world(void) {
     log("Loading attribute bonus tables.");
     load_stat_bonus();
@@ -526,10 +518,8 @@ void boot_world(void) {
     log("Booting spell_dam's.");
     boot_spell_dams();
 
-    if (!no_specials) {
-        log("Loading shops.");
-        index_boot(DB_BOOT_SHP);
-    }
+    log("Loading shops.");
+    index_boot(DB_BOOT_SHP);
 
     /* Must happen after loading the player index */
     log("Booting Clans.");
@@ -585,16 +575,14 @@ void boot_db(void) {
 
     log("Assigning function pointers:");
 
-    if (!no_specials) {
-        log("   Mobiles.");
-        assign_mobiles();
-        log("   Shopkeepers.");
-        assign_the_shopkeepers();
-        log("   Objects.");
-        assign_objects();
-        log("   Rooms.");
-        assign_rooms();
-    }
+    log("   Mobiles.");
+    assign_mobiles();
+    log("   Shopkeepers.");
+    assign_the_shopkeepers();
+    log("   Objects.");
+    assign_objects();
+    log("   Rooms.");
+    assign_rooms();
 
     log("Booting mail system.");
     if (!scan_file()) {
@@ -1297,9 +1285,10 @@ void parse_simple_mob(std::ifstream &mob_f, int i, int nr) {
         log(LogSeverity::Error, LVL_GOD, "Unexpected end of file in mob #{}", nr);
         exit(1);
     }
-    
-    if (sscanf(line.c_str(), " %d %d %d %dd%d+%d %dd%d+%d ", t, t + 1, t + 2, t + 3, t + 4, t + 5, t + 6, t + 7, t + 8) != 9) {
-        log(LogSeverity::Error, LVL_GOD, 
+
+    if (sscanf(line.c_str(), " %d %d %d %dd%d+%d %dd%d+%d ", t, t + 1, t + 2, t + 3, t + 4, t + 5, t + 6, t + 7,
+               t + 8) != 9) {
+        log(LogSeverity::Error, LVL_GOD,
             "Format error in mob #{}, first line after S flag\n"
             "...expecting line of form '# # # #d#+# #d#+#'",
             nr);
@@ -1342,7 +1331,7 @@ void parse_simple_mob(std::ifstream &mob_f, int i, int nr) {
         log(LogSeverity::Error, LVL_GOD, "Unexpected end of file in mob #{}", nr);
         exit(1);
     }
-    
+
     if (sscanf(line.c_str(), " %d %d %d %d %d %d", t, t + 1, t + 2, t + 3, t + 4, t + 5) > 5) {
         GET_ZONE(mob_proto + i) = t[4];
         GET_EX_COPPER(mob_proto + i) = t[0];
@@ -1365,7 +1354,7 @@ void parse_simple_mob(std::ifstream &mob_f, int i, int nr) {
         log(LogSeverity::Error, LVL_GOD, "Unexpected end of file in mob #{}", nr);
         exit(1);
     }
-    
+
     if ((sscanf(line.c_str(), " %d %d %d %d %d %d %d %d ", t, t + 1, t + 2, t + 3, t + 4, t + 5, t + 6, t + 7)) > 3) {
         mob_proto[i].player.class_num = t[3];
         mob_proto[i].player.race = t[4];
@@ -1648,7 +1637,7 @@ void parse_mobile(std::ifstream &mob_f, int nr) {
         log(LogSeverity::Error, LVL_GOD, "Unexpected end of file in mob #{}", nr);
         exit(1);
     }
-    
+
     sscanf(line.c_str(), "%s %s %d %c", f1, f2, t + 2, &letter);
     MOB_FLAGS(mob_proto + i)[0] = asciiflag_conv(f1);
     SET_FLAG(MOB_FLAGS(mob_proto + i), MOB_ISNPC);
@@ -1821,8 +1810,8 @@ std::string parse_object(std::ifstream &obj_f, int nr) {
     obj_proto[i].obj_flags.wear_flags = asciiflag_conv(f2);
     obj_proto[i].obj_flags.level = t[1]; /* Zantir 3/23/01 for level based objects */
 
-    if (!std::getline(obj_f, line) ||
-        (retval = sscanf(line.c_str(), " %d %d %d %d %d %d %d", &t[0], &t[1], &t[2], &t[3], &t[4], &t[5], &t[6])) != 7) {
+    if (!std::getline(obj_f, line) || (retval = sscanf(line.c_str(), " %d %d %d %d %d %d %d", &t[0], &t[1], &t[2],
+                                                       &t[3], &t[4], &t[5], &t[6])) != 7) {
         log(LogSeverity::Error, LVL_GOD, "Format error in second numeric line (expecting 7 args, got {}), {}", retval,
             buf2);
         // Set default values to avoid undefined behavior
