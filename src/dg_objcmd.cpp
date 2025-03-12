@@ -7,6 +7,7 @@
  *  FieryMUD Copyright (C) 1998, 1999, 2000 by the Fiery Consortium        *
  ***************************************************************************/
 
+#include "arguments.hpp"
 #include "casting.hpp"
 #include "chars.hpp"
 #include "comm.hpp"
@@ -25,17 +26,19 @@
 #include "screen.hpp"
 #include "structs.hpp"
 #include "sysdep.hpp"
-#include "utils.hpp"
+#include "utils.hpp" std::string_view
+std::string_view std::string_viewstd::string_view std::string_view std::string_view
 
-void sub_write(std::string_view arg, CharData *ch, byte find_invis, int targets);
+    void
+    sub_write(std::string_view arg, CharData *ch, byte find_invis, int targets);
 int get_room_location(std::string_view room);
 FindContext find_dg_by_name(std::string_view name);
 
-#define OCMD(name) void(name)(ObjData * obj, TrigData * t, std::string_view argument, int cmd, int subcmd)
+#define OCMD(name) void(name)(ObjData * obj, TrigData * t, Arguments argument, int cmd, int subcmd)
 
 struct obj_command_info {
     std::string_view command;
-    void (*command_pointer)(ObjData *obj, TrigData *t, std::string_view argument, int cmd, int subcmd);
+    void (*command_pointer)(ObjData *obj, TrigData *t, Arguments argument, int cmd, int subcmd);
     int subcmd;
 };
 
@@ -68,13 +71,10 @@ int obj_room(ObjData *obj) {
 }
 
 /* returns the real room number, or NOWHERE if not found or invalid */
-int find_obj_target_room(ObjData *obj, std::string_view rawroomstr) {
+int find_obj_target_room(ObjData *obj, std::string_view roomstr) {
     int location;
     CharData *target_mob;
     ObjData *target_obj;
-    char roomstr[MAX_INPUT_LENGTH];
-
-    one_argument(rawroomstr, roomstr);
 
     if (roomstr.empty())
         return NOWHERE;
@@ -106,37 +106,28 @@ int find_obj_target_room(ObjData *obj, std::string_view rawroomstr) {
 OCMD(do_oecho) {
     int room;
 
-    skip_spaces(argument);
-
     if (argument.empty())
         obj_log(obj, t, "oecho called with no args");
 
     else if ((room = obj_room(obj)) != NOWHERE) {
         if (world[room].people)
-            sub_write(argument, world[room].people, true, TO_ROOM | TO_CHAR);
-    }
-
-    else
+            sub_write(argument.get(), world[room].people, true, TO_ROOM | TO_CHAR);
+    } else
         obj_log(obj, t, "oecho called by object in NOWHERE");
 }
 
 OCMD(do_oforce) {
     CharData *ch, *next_ch;
     int room;
-    char arg1[MAX_INPUT_LENGTH], arg2[MAX_INPUT_LENGTH];
 
-    /* two_arguments only returns two _words_ but our force string
-     ** may be more than one word..
-     */
-    /*two_arguments(argument, arg1, arg2); */
-    strncpy(arg2, arg1 = argument.shift(), MAX_INPUT_LENGTH);
-
-    if (arg1.empty() || arg2.empty()) {
+    auto target = argument.shift();
+    auto command = argument.get();
+    if (target.empty() || command.empty()) {
         obj_log(obj, t, "oforce called with too few args");
         return;
     }
 
-    if (matches(arg1, "all")) {
+    if (matches(target, "all")) {
         if ((room = obj_room(obj)) == NOWHERE)
             obj_log(obj, t, "oforce called by object in NOWHERE");
         else {
@@ -144,16 +135,14 @@ OCMD(do_oforce) {
                 next_ch = ch->next_in_room;
 
                 if (GET_LEVEL(ch) < LVL_IMMORT) {
-                    command_interpreter(ch, arg2);
+                    command_interpreter(ch, command);
                 }
             }
         }
-    }
-
-    else {
-        if ((ch = find_char_around_obj(obj, find_dg_by_name(arg1)))) {
+    } else {
+        if ((ch = find_char_around_obj(obj, find_dg_by_name(target)))) {
             if (GET_LEVEL(ch) < LVL_IMMORT) {
-                command_interpreter(ch, arg2);
+                command_interpreter(ch, command);
             }
         }
 
@@ -163,24 +152,21 @@ OCMD(do_oforce) {
 }
 
 OCMD(do_osend) {
-    char buf[MAX_INPUT_LENGTH], *msg;
     CharData *ch;
 
-    msg = any_one_arg(argument, buf);
-
-    if (buf.empty()) {
+    auto target = argument.shift();
+    if (target.empty()) {
         obj_log(obj, t, "osend called with no args");
         return;
     }
 
-    skip_spaces(msg);
-
+    auto msg = argument.get();
     if (msg.empty()) {
         obj_log(obj, t, "osend called without a message");
         return;
     }
 
-    if ((ch = find_char_around_obj(obj, find_dg_by_name(buf)))) {
+    if ((ch = find_char_around_obj(obj, find_dg_by_name(target)))) {
         if (subcmd == SCMD_OSEND)
             sub_write(msg, ch, true, TO_CHAR);
         else if (subcmd == SCMD_OECHOAROUND)
@@ -194,9 +180,9 @@ OCMD(do_osend) {
 /* increases the target's exp */
 OCMD(do_oexp) {
     CharData *ch;
-    char name[MAX_INPUT_LENGTH], amount[MAX_INPUT_LENGTH];
 
-    two_arguments(argument, name, amount);
+    auto name = argument.shift();
+    auto amount = argument.try_shift_number();
 
     if (name.empty() || amount.empty()) {
         obj_log(obj, t, "oexp: too few arguments");
@@ -204,7 +190,7 @@ OCMD(do_oexp) {
     }
 
     if ((ch = find_char_around_obj(obj, find_dg_by_name(name))))
-        gain_exp(ch, atoi(amount), GAIN_IGNORE_LEVEL_BOUNDARY | GAIN_IGNORE_LOCATION);
+        gain_exp(ch, *amount, GAIN_IGNORE_LEVEL_BOUNDARY | GAIN_IGNORE_LOCATION);
     else {
         obj_log(obj, t, "oexp: target not found");
         return;
@@ -256,9 +242,9 @@ OCMD(do_opurge) {
 OCMD(do_oteleport) {
     CharData *ch, *next_ch;
     int target, rm;
-    char arg1[MAX_INPUT_LENGTH], arg2[MAX_INPUT_LENGTH];
 
-    two_arguments(argument, arg1, arg2);
+    auto arg1 = argument.shift();
+    auto arg2 = argument.shift();
 
     if (arg1.empty() || arg2.empty()) {
         obj_log(obj, t, "oteleport called with too few args");
@@ -294,15 +280,16 @@ OCMD(do_oteleport) {
 }
 
 OCMD(do_dgoload) {
-    char arg1[MAX_INPUT_LENGTH], arg2[MAX_INPUT_LENGTH], arg3[MAX_INPUT_LENGTH], arg4[MAX_INPUT_LENGTH];
     std::string_view line;
     int number = 0, room_num;
     CharData *mob, *ch;
     ObjData *obj1, *obj2;
 
-    line = two_arguments(argument, arg1, arg2);
+    auto arg1 = argument.shift();
+    auto arg2 = argument.shift();
+    auto arg3 = argument.shift();
 
-    if (arg1.empty() || arg2.empty() || !is_integer(arg2) || ((number = atoi(arg2)) < 0)) {
+    if (arg1.empty() || arg2.empty() || !is_integer(arg2) || ((number = svtoi(arg2)) < 0)) {
         obj_log(obj, t, "oload: bad syntax");
         return;
     }
@@ -329,7 +316,13 @@ OCMD(do_dgoload) {
             obj_to_room(obj1, room_num);
         } else {
             RoomData *room = &world[room_num];
-            two_arguments(line, arg3, arg4);
+            auto arg3 = argument.shift();
+            auto arg4 = argument.shift();
+            if (arg3.empty() || arg4.empty()) {
+                obj_log(obj, t, "oload: bad syntax");
+                return;
+            }
+
             if (matches_start(arg3, "mob")) {
                 if ((mob = find_char_around_room(room, find_dg_by_name(arg4)))) {
                     obj_to_char(obj1, mob);
@@ -595,7 +588,7 @@ const struct obj_command_info obj_cmd_info[] = {
 /*
  *  This is the command interpreter used by objects, called by script_driver.
  */
-void obj_command_interpreter(ObjData *obj, TrigData *t, std::string_view argument) {
+void obj_command_interpreter(ObjData *obj, TrigData *t, Arguments argument) {
     int cmd, length;
     std::string_view line, arg[MAX_INPUT_LENGTH];
 

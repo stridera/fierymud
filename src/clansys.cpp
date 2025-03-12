@@ -463,7 +463,6 @@ Clan *alloc_clan() {
 void dealloc_clan(Clan *clan) {
     auto it = std::remove_if(clans.begin(), clans.end(), [clan](const auto &c) { return c.get() == clan; });
     clans.erase(it, clans.end());
-    free_clan(clan);
     save_clan_index();
 }
 

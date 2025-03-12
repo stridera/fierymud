@@ -148,3 +148,5 @@ bool give_shopkeeper_reject(CharData *ch, CharData *vict, ObjData *obj);
 
 extern int top_shop;
 extern ShopData *shop_index;
+
+void show_shops(CharData *ch, Arguments argument);
