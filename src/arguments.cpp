@@ -71,3 +71,31 @@ std::optional<int> Arguments::try_shift_number() {
 
     return svtoi(arg);
 }
+
+std::optional<std::pair<int, std::string_view>> Arguments::try_shift_number_and_arg() {
+    std::string_view arg = shift();
+    if (arg.empty()) {
+        return std::nullopt;
+    }
+
+    size_t dot_pos = arg.find('.');
+    std::string_view number_str = arg.substr(0, dot_pos);
+    std::string_view rest = arg.substr(dot_pos + 1);
+
+    if (number_str.empty() || rest.empty()) {
+        return std::make_pair(1, arg);
+    }
+
+    // If the number is 'all', return the maximum number of items.
+    if (number_str == "all") {
+        return std::make_pair(MAX_ITEMS, rest);
+    }
+
+    // If there is no dot, or the rest is empty, or the number is not an integer, return 1 and the original argument.
+    if (dot_pos == std::string::npos || rest.empty() || !is_integer(number_str)) {
+        return std::make_pair(1, arg);
+    }
+
+    auto number = svtoi(number_str);
+    return std::make_pair(number, rest);
+}

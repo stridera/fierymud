@@ -224,8 +224,7 @@ ACMD(do_stow) {
                     act("You sneakily toss $p by your feet.", false, ch, obj, 0, TO_CHAR);
                 } else {
                     obj_to_obj(obj, cont);
-                    /* When you stow a nonpermanent light in a container, it is
-                     * automatically extinguished. */
+                    /* When you stow a nonpermanent light in a container, it is automatically extinguished. */
                     if (GET_OBJ_TYPE(obj) == ITEM_LIGHT && GET_OBJ_VAL(obj, VAL_LIGHT_LIT) &&
                         GET_OBJ_VAL(obj, VAL_LIGHT_REMAINING) >= 0) {
                         GET_OBJ_VAL(obj, VAL_LIGHT_LIT) = 0;

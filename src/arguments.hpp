@@ -26,7 +26,9 @@ class Arguments {
     // Const char* constructor
     Arguments(const char *argument) : arg(argument) {}
 
-    // Get the current argument list.
+    const int MAX_ITEMS = std::numeric_limits<int>::max();
+
+    // Get the ramaining argument list.
     [[nodiscard]] std::string_view get() const { return trim(arg); }
 
     [[nodiscard]] bool empty() const { return trim(arg).empty(); }
@@ -48,4 +50,9 @@ class Arguments {
     // Try to shift out a number from the argument list.  If the first argument is a positive int, it will be shifted
     // and returned.  Otherwise, nothing will be shifted and an empty optional will be returned.
     [[nodiscard]] std::optional<int> try_shift_number();
+
+    // Try to shift a number off the beginning of the next argument.  It will return a pair of the number and the
+    // remaining argument list.  If the number portion is not there, it will default to 1 item.
+    // If the number is 'all', it will return the maximum number of items.
+    [[nodiscard]] std::optional<std::pair<int, std::string_view>> try_shift_number_and_arg();
 };

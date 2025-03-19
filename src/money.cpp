@@ -279,4 +279,5 @@ bool charge_char(CharData *ch, int amount) noexcept {
             GET_COINS(ch)[i]--;
         }
     }
+    return true;
 }

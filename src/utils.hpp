@@ -252,6 +252,7 @@ extern flagvector *ALL_FLAGS;
 #define GET_MAX_MOVE(ch) ((ch)->points.max_move)
 #define GET_MANA(ch) ((ch)->points.mana)
 #define GET_MAX_MANA(ch) ((ch)->points.max_mana)
+#define GET_MONEY(ch) ((ch)->points.coins)
 #define GET_COINS(ch) ((ch)->points.coins)
 #define GET_PURSE_COINS(ch, coin) (GET_COINS(ch)[coin])
 #define GET_PLATINUM(ch) (GET_COINS(ch)[PLAT])

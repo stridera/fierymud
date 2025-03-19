@@ -10,154 +10,364 @@
 #pragma once
 
 #include "money.hpp"
-#include "privileges.hpp"
 #include "structs.hpp"
-#include "sysdep.hpp"
 
 #include <bitset>
+#include <expected>
+#include <filesystem>
 #include <fmt/format.h>
+#include <fstream>
+#include <functional>
+#include <magic_enum/magic_enum.hpp>
 #include <memory>
+#include <nlohmann/json.hpp>
+#include <optional>
+#include <ranges>
+#include <span>
 #include <string>
+#include <unordered_map>
 #include <vector>
 
-enum ClanPrivilege {
-    CPRIV_NONE = 0,
-    CPRIV_DESC = 1 << 0,
-    CPRIV_MOTD = 1 << 1,
-    CPRIV_GRANT = 1 << 2,
-    CPRIV_RANKS = 1 << 3,
-    CPRIV_TITLE = 1 << 4,
-    CPRIV_ENROLL = 1 << 5,
-    CPRIV_EXPEL = 1 << 6,
-    CPRIV_PROMOTE = 1 << 7,
-    CPRIV_DEMOTE = 1 << 8,
-    CPRIV_APP_FEES = 1 << 9,
-    CPRIV_APP_LEV = 1 << 10,
-    CPRIV_DUES = 1 << 11,
-    CPRIV_WITHDRAW = 1 << 12,
-    CPRIV_ALTS = 1 << 13,
-    CPRIV_CHAT = 1 << 14,
+using namespace std::literals::string_literals;
 
-    CPRIV_SIZE = 15
-};
-constexpr size_t NUM_CLAN_PRIVS = static_cast<size_t>(CPRIV_SIZE);
-typedef std::bitset<NUM_CLAN_PRIVS> ClanPrivilegeSet;
-struct ClanMembership;
-
-struct ClanRank {
-    std::string title;
-    flagvector privileges[FLAGVECTOR_SIZE(NUM_CLAN_PRIVS)];
+// Error Messages with string for user.
+struct AccessError {
+    static constexpr std::string_view ClanNotFound = "Clan not found.";
+    static constexpr std::string_view PermissionDenied = "You do not have permission to do that.";
+    static constexpr std::string_view InvalidOperation = "Invalid operation";
 };
 
-struct Clan {
-    unsigned int number;
-    std::string name;
-    std::string abbreviation;
-    std::string description;
-    std::string motd;
+enum class ClanPrivilege : std::uint8_t {
+    None,
+    Description,
+    Motd,
+    Grant,
+    Ranks,
+    Title,
+    Enroll,
+    Expel,
+    Promote,
+    Demote,
+    App_Fees,
+    App_Lev,
+    Dues,
+    Withdraw,
+    Alts,
+    Chat,
+    // Add new privileges here
 
-    /* Status variables */
-    unsigned int dues;
-    unsigned int app_fee;
-    unsigned int app_level;
-    Money treasure;
-
-    /* Lists */
-    std::vector<ClanRank> ranks;
-    std::vector<ClanMembership> members;
+    God,                                              // God mode allows full access and Snooping.
+    MAX_PERMISSIONS = static_cast<std::uint8_t>(0xFF) // Max value for a uint8_t
 };
 
-class ClanMembership {
-    CharData *player;
-    std::string name;
-    std::weak_ptr<Clan> clan; // Avoid circular reference
-    unsigned int rank;
-    time_t since;
-    union {
-        ClanMembership *alts;
-        ClanMembership *member;
-    } relation;
+constexpr size_t NUM_PERMISSIONS = static_cast<size_t>(ClanPrivilege::MAX_PERMISSIONS);
+
+// Forward declarations
+class ClanMembership;
+class Clan;
+
+// Type aliases for better readability
+using ClanId = unsigned int;
+using CharacterPtr = std::shared_ptr<CharData>;
+using ClanPtr = std::shared_ptr<Clan>;
+using ClanMembershipPtr = std::shared_ptr<ClanMembership>;
+using WeakCharacterPtr = std::weak_ptr<CharData>;
+using WeakClanPtr = std::weak_ptr<Clan>;
+using PermissionSet = std::bitset<NUM_PERMISSIONS>;
+using ObjectId = unsigned int; // VNUM of the object
+using Storage = std::unordered_map<ObjectId, int>;
+
+class ClanRank {
+  private:
+    std::string title_;
+    PermissionSet privileges_;
 
   public:
-    ClanMembership(CharData *ch, std::shared_ptr<Clan> clan, unsigned int rank)
-        : player(ch), clan(clan), rank(rank), since(time(0)) {
-        name = ch->player.short_descr;
+    ClanRank(std::string title, PermissionSet privileges)
+        : title_(std::move(title)), privileges_(std::move(privileges)) {}
+
+    // Default constructor for deserialization
+    ClanRank() = default;
+
+    [[nodiscard]] std::string_view title() const { return title_; }
+    [[nodiscard]] PermissionSet privileges() const { return privileges_; }
+    [[nodiscard]] bool has_permission(ClanPrivilege privilege) const {
+        return privileges_.test(static_cast<size_t>(privilege));
     }
-    inline std::string rank_title() const { return clan.lock()->ranks[rank].title; }
-    inline std::string clan_name() const { return clan.lock()->name; }
-    inline std::string clan_abbr() const { return clan.lock()->abbreviation; }
-    inline std::string clan_desc() const { return clan.lock()->description; }
+
+    // Add setter methods
+    void set_title(std::string title) { title_ = std::move(title); }
+    void set_privileges(PermissionSet privileges) { privileges_ = std::move(privileges); }
+
+    void set_privilege(ClanPrivilege privilege, bool value) { privileges_.set(static_cast<size_t>(privilege), value); }
+    void add_privilege(ClanPrivilege privilege) { privileges_.set(static_cast<size_t>(privilege)); }
+    void remove_privilege(ClanPrivilege privilege) { privileges_.reset(static_cast<size_t>(privilege)); }
+
+    bool operator==(const ClanRank &other) const { return title_ == other.title_ && privileges_ == other.privileges_; }
 };
 
-// Target Group.  This is used to determine who can use a command.
-enum TargetGroup { TARGET_ADMIN = 0, TARGET_MEMBER = 1 << 0, TARGET_ANYONE = ~0ULL };
-struct ClanCmd {
-    std::string_view name;
-    void (*func)(CharData *, Arguments);
-    TargetGroup target; // Minimum rank required to use the command
-    ClanPrivilegeSet privileges;
+// Clan class with restricted direct access
+class Clan : public std::enable_shared_from_this<Clan> {
+  private:
+    ClanId id_;
+    std::string name_;
+    std::string abbreviation_;
+    std::string description_;
+    std::string motd_;
+
+    unsigned int dues_;
+    unsigned int app_fee_;
+    unsigned int min_application_level_;
+    Money treasure_;
+    Storage storage_;
+
+    std::vector<ClanRank> ranks_;
+
+    // Store memberships directly
+    std::vector<ClanMembershipPtr> memberships_;
+
+    // Make mutation methods private
+    void set_name(std::string new_name) { name_ = std::move(new_name); }
+    void set_abbreviation(std::string new_abbreviation) { abbreviation_ = std::move(new_abbreviation); }
+    void set_description(std::string new_description) { description_ = std::move(new_description); }
+    void set_motd(std::string new_motd) { motd_ = std::move(new_motd); }
+    void set_dues(unsigned int new_dues) { dues_ = new_dues; }
+    void set_app_fee(unsigned int new_app_fee) { app_fee_ = new_app_fee; }
+    void set_min_application_level(unsigned int new_level) { min_application_level_ = new_level; }
+    void set_treasure(Money new_treasure) { treasure_ = std::move(new_treasure); }
+    void add_storage_item(ObjectId id, int amount) {
+        auto it = storage_.find(id);
+        if (it != storage_.end()) {
+            it->second += amount;
+        } else {
+            storage_[id] = amount;
+        }
+    }
+    void remove_storage_item(ObjectId id, int amount) {
+        auto it = storage_.find(id);
+        if (it != storage_.end()) {
+            it->second -= amount;
+            if (it->second <= 0) {
+                storage_.erase(it);
+            }
+        }
+    }
+
+    // Method to add money to the clan's treasure
+    void add_treasure(const Money &coins) { treasure_ += coins; }
+    void subtract_treasure(const Money &coins) { treasure_ -= coins; }
+
+    // Add a character with a rank
+    ClanMembershipPtr add_member(CharacterPtr character, ClanRank rank);
+
+    // Remove a character
+    void remove_member(const CharacterPtr &character);
+
+    // Allow Membership to access private methods
+    friend class ClanMembership;
+
+  public:
+    Clan(ClanId id, std::string name, std::string abbreviation)
+        : id_(std::move(id)), name_(std::move(name)), abbreviation_(std::move(abbreviation)) {}
+
+    // Constants
+    static constexpr int MAX_CLAN_ABBR_LEN = 10;
+    static constexpr int MAX_CLAN_NAME_LEN = 30;
+    static constexpr int MAX_CLAN_TITLE_LEN = 30;
+
+    // Public access is read-only
+    [[nodiscard]] ClanId id() const { return id_; }
+    [[nodiscard]] std::string_view name() const { return name_; }
+    [[nodiscard]] std::string_view abbreviation() const { return abbreviation_; }
+    [[nodiscard]] std::string_view description() const { return description_; }
+    [[nodiscard]] std::string_view motd() const { return motd_; }
+    [[nodiscard]] unsigned int dues() const { return dues_; }
+    [[nodiscard]] unsigned int app_fee() const { return app_fee_; }
+    [[nodiscard]] unsigned int min_application_level() const { return min_application_level_; }
+    [[nodiscard]] Money treasure() const { return treasure_; }
+    [[nodiscard]] const Storage &storage() const { return storage_; }
+    [[nodiscard]] const std::vector<ClanRank> &ranks() const { return ranks_; }
+    [[nodiscard]] const std::vector<ClanMembershipPtr> &memberships() const { return memberships_; }
+    [[nodiscard]] std::size_t member_count() const { return memberships_.size(); }
+    [[nodiscard]] std::size_t rank_count() const { return ranks_.size(); }
+
+    // Get a member's membership
+    [[nodiscard]] std::optional<ClanMembershipPtr> get_membership(const CharacterPtr &character) const;
+
+    // Get all members with a specific rank
+    [[nodiscard]] std::vector<CharacterPtr> get_members_by_rank(const ClanRank &rank) const;
+
+    // Check if a character has a specific permission
+    [[nodiscard]] bool has_permission(const CharacterPtr &character, ClanPrivilege privilege) const;
+
+    // Grant specific permission to a member
+    bool grant_permission(const CharacterPtr &character, ClanPrivilege privilege);
+
+    // Notify all members of the clan
+    void notify(const CharacterPtr &skip, const std::string_view str);
+    template <typename... Args> void notify(const CharacterPtr &skip, std::string_view str, Args &&...args) {
+        notify(skip, fmt::vformat(str, fmt::make_format_args(args...)));
+    }
+
+    // Make JSON functions friends of the Clan class
+    friend void to_json(nlohmann::json &j, const Clan &clan);
+    friend void from_json(const nlohmann::json &j, Clan &clan);
 };
-static std::vector<std::shared_ptr<Clan>> clans;
 
-/***************************************************************************
- * Clan Defaults
- ***************************************************************************/
+// ClanMembership class to represent the relationship and act as a mediator
+class ClanMembership {
+  private:
+    WeakClanPtr Clan_;
+    WeakCharacterPtr character_;
+    ClanRank rank_;
+    PermissionSet permissions_;
+    std::string main_character_name_;
 
-constexpr bool ALLOW_CLAN_ALTS = true;
-constexpr bool BACKUP_CLAN_ON_DELETE = true;
+  public:
+    ClanMembership(ClanPtr Clan, CharacterPtr character, ClanRank rank)
+        : Clan_(Clan), character_(character), rank_(rank) {}
 
-constexpr int DEFAULT_APP_LVL = 25;
-constexpr int MAX_CLAN_DESC_LENGTH = 5000;
-constexpr int REJECTION_WAIT_DAYS = 5;
-constexpr int CLAN_SNOOP_OFF = 0;
-constexpr int MAX_CLAN_ABBR_LEN = 10;
-constexpr int MAX_CLAN_NAME_LEN = 30;
-constexpr int MAX_CLAN_TITLE_LEN = 30;
+    [[nodiscard]] ClanRank rank() const { return rank_; }
+    [[nodiscard]] ClanPtr clan() const { return Clan_.lock(); }
+    [[nodiscard]] CharacterPtr character() const { return character_.lock(); }
+    [[nodiscard]] const PermissionSet &permissions() const { return permissions_; }
+    [[nodiscard]] std::string_view main_character_name() const {
+        return main_character_name_.empty() ? character_.lock()->player.short_descr : main_character_name_;
+    }
+    [[nodiscard]] bool is_main_character() const { return !main_character_name_.empty(); }
+    [[nodiscard]] bool is_member() const { return rank_ != ClanRank{}; }
+    [[nodiscard]] bool is_applicant() const { return rank_ == ClanRank{}; }
 
-constexpr struct {
-    const std::string_view abbr;
-    bool default_on;
-    const std::string_view desc;
-} clan_privileges[NUM_CLAN_PRIVS] = {
-    {"desc", false, "Change Description"},
-    {"motd", false, "Change Message of the Day"},
-    {"grant", false, "Grant Privilege"},
-    {"ranks", false, "Change Ranks"},
-    {"title", false, "Change Titles"},
-    {"enroll", false, "Enroll"},
-    {"expel", false, "Expel"},
-    {"promote", false, "Promote"},
-    {"demote", false, "Demote"},
-    {"appfee", false, "Change Application Fee"},
-    {"applev", false, "Change Application Level"},
-    {"dues", false, "Change Dues"},
-    {"withdraw", false, "Withdraw"},
-    {"alts", true, "Alts"},
-    {"chat", true, "Chat"},
+    [[nodiscard]] std::vector<std::string> get_alts(std::string main_character_name) const {
+        std::vector<std::string> alts;
+
+        for (const auto &membership : clan()->memberships()) {
+            if (membership->main_character_name() == main_character_name) {
+                alts.push_back(membership->character()->player.short_descr);
+            }
+        }
+        return alts;
+    }
+
+    // Permissions
+    void add_permission(ClanPrivilege perm) { permissions_.set(static_cast<size_t>(perm)); }
+    void remove_permission(ClanPrivilege perm) { permissions_.reset(static_cast<size_t>(perm)); }
+    [[nodiscard]] bool has_permission(ClanPrivilege perm) const { return permissions_.test(static_cast<size_t>(perm)); }
+
+    // Clan Helper Functions
+    [[nodiscard]] ClanPtr get_clan() const { return Clan_.lock(); }
+    [[nodiscard]] CharacterPtr get_character() const { return character_.lock(); }
+
+    [[nodiscard]] ClanId get_clan_id() const { return get_clan() ? get_clan()->id() : -1; }
+    [[nodiscard]] std::string_view get_clan_name() const { return get_clan() ? get_clan()->name() : ""; }
+    [[nodiscard]] std::string_view get_clan_abbreviation() const {
+        return get_clan() ? get_clan()->abbreviation() : "";
+    }
+    [[nodiscard]] std::string_view get_clan_description() const { return get_clan() ? get_clan()->description() : ""; }
+    [[nodiscard]] std::string_view get_clan_motd() const { return get_clan() ? get_clan()->motd() : ""; }
+    [[nodiscard]] unsigned int get_clan_dues() const { return get_clan() ? get_clan()->dues() : 0; }
+    [[nodiscard]] unsigned int get_clan_app_fee() const { return get_clan() ? get_clan()->app_fee() : 0; }
+    [[nodiscard]] unsigned int get_clan_min_application_level() const {
+        return get_clan() ? get_clan()->min_application_level() : 0;
+    }
+    [[nodiscard]] Money get_clan_treasure() const { return get_clan() ? get_clan()->treasure() : Money{}; }
+    [[nodiscard]] Storage get_clan_storage() const { return get_clan() ? get_clan()->storage() : Storage{}; }
+    [[nodiscard]] std::vector<ClanRank> get_clan_ranks() const {
+        return get_clan() ? get_clan()->ranks() : std::vector<ClanRank>{};
+    }
+    [[nodiscard]] std::vector<ClanMembershipPtr> get_clan_members() const {
+        return get_clan() ? get_clan()->memberships() : std::vector<ClanMembershipPtr>{};
+    }
+    [[nodiscard]] std::size_t get_clan_member_count() const { return get_clan() ? get_clan()->member_count() : 0; }
+    [[nodiscard]] std::size_t get_clan_rank_count() const { return get_clan() ? get_clan()->rank_count() : 0; }
+    [[nodiscard]] std::optional<ClanMembershipPtr> get_clan_membership(const CharacterPtr &character) const {
+        return get_clan() ? get_clan()->get_membership(character) : std::nullopt;
+    }
+    [[nodiscard]] std::vector<CharacterPtr> get_clan_members_by_rank(const ClanRank &rank) const {
+        return get_clan() ? get_clan()->get_members_by_rank(rank) : std::vector<CharacterPtr>{};
+    }
+    [[nodiscard]] bool has_clan_permission(const CharacterPtr &character, ClanPrivilege privilege) const {
+        return get_clan() ? get_clan()->has_permission(character, privilege) : false;
+    }
+    void notify_clan(const std::string_view str) {
+        if (auto clan = get_clan()) {
+            clan->notify(character_.lock(), str);
+        }
+    }
+    template <typename... Args> void notify_clan(std::string_view str, Args &&...args) {
+        if (auto clan = get_clan()) {
+            clan->notify(character_.lock(), fmt::vformat(str, fmt::make_format_args(args...)));
+        }
+    }
+
+    // Updates
+    std::expected<void, std::string_view> update_clan_name(std::string new_name);
+    std::expected<void, std::string_view> update_clan_abbreviation(std::string new_abbreviation);
+    std::expected<void, std::string_view> update_clan_description(std::string new_description);
+    std::expected<void, std::string_view> update_clan_motd(std::string new_motd);
+    std::expected<void, std::string_view> update_clan_dues(unsigned int new_dues);
+    std::expected<void, std::string_view> update_clan_app_fee(unsigned int new_app_fee);
+    std::expected<void, std::string_view> update_clan_min_application_level(unsigned int new_level);
+    std::expected<void, std::string_view> add_clan_treasure(Money money);
+    std::expected<void, std::string_view> subtract_clan_treasure(Money money);
+    std::expected<void, std::string_view> add_clan_storage_item(ObjectId id, int amount);
+    std::expected<void, std::string_view> remove_clan_storage_item(ObjectId id, int amount);
+    std::expected<void, std::string_view> update_clan_rank(ClanRank new_rank);
+    std::expected<void, std::string_view> update_clan_member(ClanMembershipPtr new_member);
+    std::expected<void, std::string_view> update_clan_member_rank(ClanMembershipPtr new_member, ClanRank new_rank);
+    std::expected<void, std::string_view> update_clan_member_alts(ClanMembershipPtr new_member,
+                                                                  std::vector<std::string> alts);
 };
 
-inline std::shared_ptr<ClanMembership> get_clan_membership(const CharData *ch) {
+// Forward declare JSON serialization functions
+void to_json(nlohmann::json &j, const ClanRank &rank);
+void from_json(const nlohmann::json &j, ClanRank &rank);
+void to_json(nlohmann::json &j, const Clan &clan);
+void from_json(const nlohmann::json &j, Clan &clan);
+
+// Repository class for Clan
+class ClanRepository {
+  private:
+    std::unordered_map<ClanId, ClanPtr> Clans_;
+
+  public:
+    ClanRepository() = default;
+
+    ClanPtr create(ClanId id, std::string name, std::string abbreviation) {
+        auto clan = std::make_shared<Clan>(std::move(id), std::move(name), std::move(abbreviation));
+        Clans_[clan->id()] = clan;
+        return clan;
+    }
+
+    [[nodiscard]] std::optional<ClanPtr> find_by_id(ClanId id) const {
+        auto it = Clans_.find(id);
+        return it != Clans_.end() ? std::optional{it->second} : std::nullopt;
+    }
+
+    [[nodiscard]] std::optional<ClanPtr> find_by_name(const std::string_view name) const;
+    [[nodiscard]] std::optional<ClanPtr> find_by_abbreviation(const std::string_view abbr) const;
+
+    void remove(ClanId id) { Clans_.erase(id); }
+
+    [[nodiscard]] auto all() const { return Clans_ | std::views::values; }
+    [[nodiscard]] std::size_t count() const { return Clans_.size(); }
+
+    // Move complex file operations to cpp
+    constexpr std::string_view default_file_path() const { return "etc/clans/clans.json"sv; }
+
+    std::expected<void, std::string> save() const { return save_to_file(default_file_path()); }
+    std::expected<void, std::string> save_to_file(const std::filesystem::path &filepath) const;
+    std::expected<void, std::string> load() { return load_from_file(default_file_path()); }
+    std::expected<void, std::string> load_from_file(const std::filesystem::path &filepath);
+
+    // TODO: Legacy loading function.  Remove after first load (after json creation)
+    bool ClanRepository::load_legacy(const std::string_view clan_num);
+};
+
+// ClanRepository instance
+static ClanRepository clan_repository;
+
+// Todo:  Move to character class when it is refactored
+inline std::vector<ClanMembershipPtr> get_clan_memberships(const CharData *ch) {
     return ch->player_specials->clan_memberships;
 }
-
-void init_clans(void);
-void save_clans(void);
-Clan *find_clan(const std::string_view id);
-Clan *find_clan_by_abbr(const std::string_view abbr);
-Clan *find_clan_by_number(unsigned int number);
-ClanMembership *find_clan_membership(const std::string_view name);
-ClanMembership *find_clan_membership_in_clan(const std::string_view name, const std::shared_ptr<Clan> clan);
-bool revoke_clan_membership(ClanMembership *);
-void add_clan_membership(Clan *, ClanMembership *);
-void save_clan(const Clan *);
-void update_clan(Clan *);
-template <typename... Args>
-void clan_notification(std::shared_ptr<Clan> clan, CharData *skip, fmt::string_view str, Args &&...args) {
-    clan_notification(clan, skip, fmt::vformat(str, fmt::make_format_args(args...)));
-}
-void clan_set_title(CharData *ch);
-Clan *alloc_clan(void);
-void dealloc_clan(Clan *);
-unsigned int days_until_reapply(const ClanMembership *member);
-
-unsigned int clan_count(void);

@@ -6,7 +6,7 @@
  *  FieryMUD is based on HubisMUD Copyright (C) 1997, 1998.                *
  *  HubisMUD is based on DikuMUD, Copyright (C) 1990, 1991.                *
  ***************************************************************************/
-
+#if 0
 #include "clan.hpp"
 #include "comm.hpp"
 #include "conf.hpp"
@@ -480,3 +480,4 @@ PRIV_FUNC(clan_admin_check) {
     if (PRV_FLAGGED(ch, PRV_CLAN_ADMIN) && get_clan_membership(ch))
         revoke_clan_membership(get_clan_membership(ch));
 }
+#endif

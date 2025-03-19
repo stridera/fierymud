@@ -26,8 +26,6 @@ typedef int room_num;
 typedef int obj_num;
 typedef int zone_vnum;
 
-typedef std::array<int, NUM_COIN_TYPES> Money;
-
 #define DAMAGE_WILL_KILL(ch, dmg) (GET_HIT(ch) - dmg <= HIT_DEAD)
 
 // TODO: Refactor this file so we don't need all these forward declarations.
@@ -282,7 +280,7 @@ struct PlayerSpecialData {
     GrantType *revoke_groups;
 
     ubyte page_length;
-    std::shared_ptr<ClanMembership> clan_memberships;
+    std::vector<ClanMembershipPtr> clan_memberships;
     OLCZoneList *olc_zones;
     int lastlevel;
     int base_hit;
