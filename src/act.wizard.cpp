@@ -54,6 +54,7 @@
 
 #include <algorithm>
 #include <fcntl.h>
+#include <fmt/ranges.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/stat.h>
@@ -1462,7 +1463,7 @@ ACMD(do_name) {
         break;
     default:
         break; /* maybe send an error to log here? */
-    }          /* end switch */
+    } /* end switch */
 }
 
 ACMD(do_zreset) {
