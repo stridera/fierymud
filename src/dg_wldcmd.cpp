@@ -190,7 +190,7 @@ WCMD(do_wdoor) {
         return;
     }
 
-    if ((fd = searchblock(field, door_field, false)) == -1) {
+    if ((fd = search_block(field, door_field, false)) == -1) {
         wld_log(room, t, "wdoor: invalid field");
         return;
     }

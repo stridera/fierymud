@@ -12,6 +12,7 @@
  *  CircleMUD is based on DikuMUD, Copyright (C) 1990, 1991.               *
  ***************************************************************************/
 
+#include "bitflags.hpp"
 #include "casting.hpp"
 #include "chars.hpp"
 #include "charsize.hpp"
@@ -620,8 +621,8 @@ void medit_disp_stances(DescriptorData *d) {
 #if defined(CLEAR_SCREEN)
     char_printf(d->character, "[H[J");
 #endif
-    for (i = 0; *stance_types[i] != '\n'; i++) {
-        sprintf(buf, "%s%2d%s) %s\n", grn, i, nrm, stance_types[i]);
+    for (i = 0; stance_types[i].front() != '\n'; i++) {
+        sprintf(buf, "%s%2d%s) %s\n", grn, i, nrm, stance_types[i].data());
         char_printf(d->character, buf);
     }
     char_printf(d->character, "Enter stance number:\n");
@@ -637,8 +638,8 @@ void medit_disp_positions(DescriptorData *d) {
 #if defined(CLEAR_SCREEN)
     char_printf(d->character, "[H[J");
 #endif
-    for (i = 0; *position_types[i] != '\n'; i++) {
-        sprintf(buf, "%s%2d%s) %s\n", grn, i, nrm, position_types[i]);
+    for (i = 0; position_types[i].front() != '\n'; i++) {
+        sprintf(buf, "%s%2d%s) %s\n", grn, i, nrm, position_types[i].data());
         char_printf(d->character, buf);
     }
     char_printf(d->character, "Enter position number:\n");
@@ -659,8 +660,7 @@ void medit_disp_sex(DescriptorData *d) {
     char_printf(d->character, "[H[J");
 #endif
     for (i = 0; i < NUM_SEXES; i++) {
-        sprintf(buf, "%s%2d%s) %s\n", grn, i, nrm, genders[i]);
-        char_printf(d->character, buf);
+        char_printf(d->character, "{}{:2d}{}) {}\n", grn, i, nrm, genders[i]);
     }
     char_printf(d->character, "Enter gender number:\n");
 }
@@ -679,8 +679,7 @@ void medit_size(DescriptorData *d) {
     char_printf(d->character, "[H[J");
 #endif
     for (i = 0; i < NUM_SIZES; i++) {
-        sprintf(buf, "%s%2d%s) %c%s\n", grn, i, nrm, (sizes[i].name)[0], sizes[i].name + 1);
-        char_printf(d->character, buf);
+        char_printf(d->character, "{}{:2d}{}) {}{}\n", grn, i, nrm, (sizes[i].name)[0], sizes[i].name + 1);
     }
     char_printf(d->character, "Enter size number:\n");
 }
@@ -696,8 +695,7 @@ void medit_disp_attack_types(DescriptorData *d) {
     char_printf(d->character, "[H[J");
 #endif
     for (i = 0; i < NUM_ATTACK_TYPES; i++) {
-        sprintf(buf, "%s%2d%s) %s\n", grn, i, nrm, attack_hit_text[i].singular);
-        char_printf(d->character, buf);
+        char_printf(d->character, "{}{:2d}{}) {}\n", grn, i, nrm, attack_hit_text[i].singular);
     }
     char_printf(d->character, "Enter attack type:\n");
 }
@@ -717,18 +715,18 @@ void medit_disp_mob_flags(DescriptorData *d) {
 
     /* Outer loop goes through rows, inner loop goes through columns. */
     for (i = 0; i <= NUM_MOB_FLAGS / columns; ++i) {
-        *buf = '\0';
+        std::string output;
         for (j = 0; j < columns; ++j) {
             if (FLAG_INDEX >= NUM_MOB_FLAGS)
                 break;
-            sprintf(buf, "%s%s%2d%s) %-20.20s", buf, grn, FLAG_INDEX + 1, nrm, action_bits[FLAG_INDEX]);
+            output += fmt::format("{}{:2d}{}) {:<20.20}", grn, FLAG_INDEX + 1, nrm, action_bits[FLAG_INDEX]);
         }
-        char_printf(d->character, strcat(buf, "\n"));
+        output += "\n";
+        char_printf(d->character, output);
     }
 
-    sprintflag(buf1, MOB_FLAGS(OLC_MOB(d)), NUM_MOB_FLAGS, action_bits);
-    sprintf(buf, "\nCurrent flags : %s%s%s\nEnter mob flags (0 to quit) : ", cyn, buf1, nrm);
-    char_printf(d->character, buf);
+    char_printf(d->character, "\nCurrent flags : {}{}{}\nEnter mob flags (0 to quit) : ", cyn,
+                sprintflag(MOB_FLAGS(OLC_MOB(d)), NUM_MOB_FLAGS, action_bits), nrm);
 }
 
 #undef FLAG_INDEX
@@ -773,18 +771,18 @@ void medit_disp_aff_flags(DescriptorData *d) {
     char_printf(d->character, "[H[J");
 #endif
     for (i = 0; i <= NUM_EFF_FLAGS / columns; ++i) {
-        *buf = '\0';
+        std::string output;
         for (j = 0; j < columns; ++j) {
             if (FLAG_INDEX >= NUM_EFF_FLAGS)
                 break;
-            sprintf(buf, "%s%s%2d%s) %-20.20s", buf, grn, FLAG_INDEX + 1, nrm, effect_flags[FLAG_INDEX]);
+            output += fmt::format("{}{:2d}{}) {:<20.20}", grn, FLAG_INDEX + 1, nrm, effect_flags[FLAG_INDEX]);
         }
-        char_printf(d->character, strcat(buf, "\n"));
+        output += "\n";
+        char_printf(d->character, output);
     }
 
-    sprintflag(buf1, EFF_FLAGS(OLC_MOB(d)), NUM_EFF_FLAGS, effect_flags);
-    sprintf(buf, "\nCurrent flags   : %s%s%s\nEnter aff flags (0 to quit):\n", cyn, buf1, nrm);
-    char_printf(d->character, buf);
+    char_printf(d->character, "\nCurrent flags   : {}{}{}\nEnter aff flags (0 to quit):\n", cyn,
+                sprintflag(EFF_FLAGS(OLC_MOB(d)), NUM_EFF_FLAGS, effect_flags), nrm);
 }
 
 #undef FLAG_INDEX
@@ -799,8 +797,8 @@ void medit_disp_lifeforces(DescriptorData *d) {
     char_printf(d->character, "[H[J");
 #endif
     for (i = 0; i < NUM_LIFEFORCES; i++) {
-        sprintf(buf, "%s%2d%s) %s%s%s\n", grn, i, nrm, lifeforces[i].color, capitalize(lifeforces[i].name), nrm);
-        char_printf(d->character, buf);
+        char_printf(d->character, "{}{:2d}{}) {}{}{}\n", grn, i, nrm, lifeforces[i].color,
+                    capitalize(lifeforces[i].name), nrm);
     }
     char_printf(d->character, "Enter life force number:\n");
 }
@@ -872,9 +870,6 @@ void medit_disp_menu(DescriptorData *d) {
                         GET_PERCEPTION(mob), GET_HIDDENNESS(mob));
     char_printf(d->character, menu.c_str());
 
-    sprintflag(buf1, MOB_FLAGS(mob), NUM_MOB_FLAGS, action_bits);
-    sprintflag(buf2, EFF_FLAGS(mob), NUM_EFF_FLAGS, effect_flags);
-
     menu = "";
     menu += fmt::format("&2&bN&0) Life Force    : {}{}&0\n", LIFEFORCE_COLOR(mob), capitalize(LIFEFORCE_NAME(mob)));
     menu += fmt::format("&2&bO&0) Composition   : {}{}&0\n", COMPOSITION_COLOR(mob), capitalize(COMPOSITION_NAME(mob)));
@@ -882,8 +877,8 @@ void medit_disp_menu(DescriptorData *d) {
     menu += fmt::format("&2&bR&0) Load Position : &6{}&0\n", position_types[(int)GET_POS(mob)]);
     menu += fmt::format("&2&bT&0) Default Pos   : &6{}&0\n", position_types[(int)GET_DEFAULT_POS(mob)]);
     menu += fmt::format("&2&bU&0) Attack Type   : &6{}&0\n", attack_hit_text[GET_ATTACK(mob)].singular);
-    menu += fmt::format("&2&bV&0) Act Flags     : &6{}&0\n", buf1);
-    menu += fmt::format("&2&bW&0) Aff Flags     : &6{}&0\n", buf2);
+    menu += fmt::format("&2&bV&0) Act Flags     : &6{}&0\n", sprintflag(MOB_FLAGS(mob), NUM_MOB_FLAGS, action_bits));
+    menu += fmt::format("&2&bW&0) Aff Flags     : &6{}&0\n", sprintflag(EFF_FLAGS(mob), NUM_EFF_FLAGS, effect_flags));
     menu += fmt::format("&2&bS&0) Script        : &6{}&0\n", mob->proto_script ? "&6&bSet&0" : "&6Not Set&0");
     menu += "&2&bQ&0) Quit\nEnter choice:\n";
     char_printf(d->character, menu.c_str());

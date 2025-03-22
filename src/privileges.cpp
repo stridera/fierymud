@@ -34,7 +34,7 @@
 #include <fmt/format.h>
 
 struct privflagdef prv_flags[NUM_PRV_FLAGS] = {
-    {"clan admin", LVL_ADMIN, clan_admin_check},
+    {"clan admin", LVL_ADMIN, nullptr},
     {"title", LVL_GAMEMASTER, nullptr},
     {"anon toggle", LVL_ATTENDANT, nullptr},
     {"auto gain", LVL_ATTENDANT, nullptr},

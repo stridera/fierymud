@@ -165,7 +165,10 @@ ACMD(do_insult) {
 char *fread_action(FILE *fl, int nr) {
     char buf[MAX_STRING_LENGTH], *rslt;
 
-    fgets(buf, MAX_STRING_LENGTH, fl);
+    if (!fgets(buf, MAX_STRING_LENGTH, fl)) {
+        fprintf(stderr, "Error reading action #%d from file\n", nr);
+        exit(1);
+    }
     if (feof(fl)) {
         fprintf(stderr, "fread_action - unexpected EOF near action #%d", nr);
         exit(1);
@@ -200,7 +203,10 @@ void boot_social_messages(void) {
 
     /* now read 'em */
     for (;;) {
-        fscanf(fl, " %s ", next_soc);
+        if (fscanf(fl, " %s ", next_soc) != 1) {
+            fprintf(stderr, "Error reading social name from file\n");
+            exit(1);
+        }
         if (*next_soc == '$')
             break;
         if ((nr = find_command(next_soc)) < 0) {

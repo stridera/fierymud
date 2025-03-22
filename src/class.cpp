@@ -1298,8 +1298,7 @@ int level_max_skill(CharData *ch, int level, int skill) {
 
 int return_max_skill(CharData *ch, int skill) { return level_max_skill(ch, GET_LEVEL(ch), skill); }
 
-void init_char_class(CharData *ch) { /* Nothing much to do here. */
-}
+void init_char_class(CharData *ch) { /* Nothing much to do here. */ }
 
 void update_char_class(CharData *ch) {
     if (!VALID_CLASS(ch)) {
@@ -1477,14 +1476,6 @@ void advance_level(CharData *ch, enum level_action action) {
         GET_COND(ch, THIRST) = (char)-1;
         GET_COND(ch, DRUNK) = (char)-1;
         SET_FLAG(PRF_FLAGS(ch), PRF_HOLYLIGHT);
-    }
-
-    /* Modify clan power */
-    if (GET_CLAN(ch) && IS_CLAN_MEMBER(ch)) {
-        if (action == LEVEL_GAIN)
-            ++GET_CLAN(ch)->power;
-        else
-            --GET_CLAN(ch)->power;
     }
 
     check_regen_rates(ch); /* start regening new points */

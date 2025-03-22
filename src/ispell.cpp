@@ -44,8 +44,14 @@ void ispell_init(void) {
     }
 #endif
 
-    pipe(fiery_to_ispell);
-    pipe(ispell_to_fiery);
+    if (pipe(fiery_to_ispell) == -1) {
+        log("Error creating pipe: fiery_to_ispell");
+        return;
+    }
+    if (pipe(ispell_to_fiery) == -1) {
+        log("Error creating pipe: ispell_to_fiery");
+        return;
+    }
 
     ispell_pid = fork();
 
@@ -80,10 +86,6 @@ void ispell_init(void) {
 
         ispell_in = fdopen(ispell_to_fiery[0], "r");
         setbuf(ispell_in, nullptr);
-
-#if !defined(sun) /* that ispell on sun gives no (c) msg */
-        fgets(ignore_buf, 1024, ispell_in);
-#endif
     }
 }
 
@@ -109,9 +111,15 @@ const char *get_ispell_line(const char *word) {
         fflush(ispell_out);
     }
 
-    fgets(buf, ISPELL_BUF_SIZE, ispell_in);
-    if (*buf && *buf != '\n')
-        fgets(throwaway, ISPELL_BUF_SIZE, ispell_in);
+    if (fgets(buf, ISPELL_BUF_SIZE, ispell_in) == nullptr) {
+        log("Error reading from ispell_in");
+        return nullptr;
+    }
+    if (*buf && *buf != '\n') {
+        if (fgets(throwaway, ISPELL_BUF_SIZE, ispell_in) == nullptr) {
+            log("Error reading from ispell_in");
+        }
+    }
 
     return buf;
 }

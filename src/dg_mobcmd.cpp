@@ -1143,7 +1143,7 @@ ACMD(do_mroomflag) {
     if (target == NOWHERE)
         mob_log(ch, "target is an invalid room");
 
-    flag = search_block(arg2, room_bits, false);
+    flag = search_block(std::string_view{arg2}, room_bits, false);
 
     if (flag < 0) {
         sprintf(buf, "mroomflag called with unknown flag '%s'", arg2);

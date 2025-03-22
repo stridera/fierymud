@@ -11,6 +11,7 @@
  ***************************************************************************/
 
 #include "ai.hpp"
+#include "bitflags.hpp"
 #include "casting.hpp"
 #include "charsize.hpp"
 #include "clan.hpp"
@@ -43,6 +44,7 @@
 #include "quest.hpp"
 #include "races.hpp"
 #include "rogue.hpp"
+#include "rooms.hpp"
 #include "screen.hpp"
 #include "skills.hpp"
 #include "sorcerer.hpp"
@@ -127,7 +129,7 @@ void list_zone_commands_room(CharData *ch, char *buf, room_num rvnum) {
             case 'E':
                 sprintf(buf1, "%sEquip with %s [%s%d%s], %s, Max : %d\n", ZOCMD.if_flag ? " then " : "",
                         obj_proto[ZOCMD.arg1].short_description, cyn, obj_index[ZOCMD.arg1].vnum, yel,
-                        equipment_types[ZOCMD.arg3], ZOCMD.arg2);
+                        equipment_types[ZOCMD.arg3].data(), ZOCMD.arg2);
                 break;
             case 'P':
                 sprintf(buf1, "%sPut %s [%s%d%s] in %s [%s%d%s], Max : %d\n", ZOCMD.if_flag ? " then " : "",
@@ -139,7 +141,7 @@ void list_zone_commands_room(CharData *ch, char *buf, room_num rvnum) {
                         obj_proto[ZOCMD.arg2].short_description, cyn, obj_index[ZOCMD.arg2].vnum, yel);
                 break;
             case 'D':
-                sprintf(buf1, "%sSet door %s as %s.\n", ZOCMD.if_flag ? " then " : "", dirs[ZOCMD.arg2],
+                sprintf(buf1, "%sSet door %s as %s.\n", ZOCMD.if_flag ? " then " : "", dirs[ZOCMD.arg2].data(),
                         ZOCMD.arg3 ? ((ZOCMD.arg3 == 1)
                                           ? "closed"
                                           : ((ZOCMD.arg3 == 2)
@@ -211,15 +213,14 @@ void do_stat_room(CharData *ch, int rrnum) {
     resp += fmt::format("Zone: [{}], VNum: [{}{}{}], RNum: [{}], Sector: {}\n", rm->zone, CLR(ch, FGRN), rm->vnum,
                         CLR(ch, ANRM), rrnum, buf2);
 
-    sprintflag(buf2, rm->room_flags, NUM_ROOM_FLAGS, room_bits);
-    resp += fmt::format("SpecProc: {}, Flags: {}\n", (rm->func == nullptr) ? "None" : "Exists", buf2);
+    resp += fmt::format("SpecProc: {}, Flags: {}\n", (rm->func == nullptr) ? "None" : "Exists",
+                        sprintflag(rm->flags, room_bits));
 
-    sprintflag(buf2, rm->room_effects, NUM_ROOM_EFF_FLAGS, room_effects);
-    resp += fmt::format("Room effects: {}\n", buf2);
+    resp += fmt::format("Room effects: {}\n", sprintflag(rm->effects, room_effects));
 
     resp += fmt::format("Ambient Light : {}\n", rm->light);
 
-    resp += fmt::format("Description:\n{}\n", rm->description ? rm->description : "  None.");
+    resp += fmt::format("Description:\n{}\n", !rm->description.empty() ? rm->description : "  None.");
     stat_extra_descs(rm->ex_description, ch, buf, false);
     resp += buf;
 
@@ -261,10 +262,11 @@ void do_stat_room(CharData *ch, int rrnum) {
                 sprintf(buf1, " %sNONE%s", CLR(ch, FCYN), CLR(ch, ANRM));
             else
                 sprintf(buf1, "%s%5d%s", CLR(ch, FCYN), world[rm->exits[i]->to_room].vnum, CLR(ch, ANRM));
-            sprintbit(rm->exits[i]->exit_info, exit_bits, buf2);
+
             resp += fmt::format("Exit {}{:5}{}:  To: [{}], Key: [{:5}], Keywrd: {}, Type: {}\n", CLR(ch, FCYN), dirs[i],
                                 CLR(ch, ANRM), buf1, rm->exits[i]->key,
-                                rm->exits[i]->keyword ? rm->exits[i]->keyword : "None", buf2);
+                                rm->exits[i]->keyword ? rm->exits[i]->keyword : "None",
+                                sprintbit(rm->exits[i]->exit_info, exit_bits));
             if (rm->exits[i]->general_description)
                 resp += fmt::format("Extra Desc: {}\n", rm->exits[i]->general_description);
         }
@@ -273,8 +275,8 @@ void do_stat_room(CharData *ch, int rrnum) {
     /* Mention spells/effects */
     for (reff = room_effect_list; reff; reff = reff->next) {
         if (reff->room == rrnum) {
-            sprinttype(reff->effect, room_effects, buf2);
-            resp += fmt::format("SPL: ({:3}) &6{:21}&0, sets {}\n", reff->timer, skills[reff->spell].name, buf2);
+            resp += fmt::format("SPL: ({:3}) &6{:21}&0, sets {}\n", reff->timer, skills[reff->spell].name,
+                                sprinttype(reff->effect, room_effects));
         }
     }
 
@@ -350,15 +352,14 @@ void do_stat_object(CharData *ch, ObjData *j) {
     if (j->action_description)
         resp += fmt::format("Action desc:\n{}{}{}\n", CLR(ch, FYEL), j->action_description, CLR(ch, ANRM));
 
-    sprintbit(j->obj_flags.wear_flags, wear_bits, buf1);
-    resp += fmt::format("Can be worn on: {}{}{}\n", CLR(ch, FCYN), buf1, CLR(ch, ANRM));
+    resp += fmt::format("Can be worn on: {}{}{}\n", CLR(ch, FCYN), sprintbit(j->obj_flags.wear_flags, wear_bits),
+                        CLR(ch, ANRM));
 
-    sprintflag(buf1, GET_OBJ_FLAGS(j), NUM_ITEM_FLAGS, extra_bits);
-    resp += fmt::format("Extra flags   : {}{}{}\n", CLR(ch, FGRN), buf1, CLR(ch, ANRM));
+    resp += fmt::format("Extra flags   : {}{}{}\n", CLR(ch, FGRN),
+                        sprintflag(GET_OBJ_FLAGS(j), NUM_ITEM_FLAGS, extra_bits), CLR(ch, ANRM));
 
-    *buf1 = '\0';
-    sprintflag(buf1, GET_OBJ_EFF_FLAGS(j), NUM_EFF_FLAGS, effect_flags);
-    resp += fmt::format("Spell Effects : {}{}{}\n", CLR(ch, FYEL), buf1, CLR(ch, ANRM));
+    resp += fmt::format("Spell Effects : {}{}{}\n", CLR(ch, FYEL),
+                        sprintflag(GET_OBJ_EFF_FLAGS(j), NUM_EFF_FLAGS, effect_flags), CLR(ch, ANRM));
 
     resp +=
         fmt::format("Weight: {:.2f}, Effective Weight: {:.2f}, Value: {}, Timer: {}, Decomp time: {}, Hiddenness: {}\n",
@@ -414,10 +415,10 @@ void do_stat_object(CharData *ch, ObjData *j) {
         break;
     case ITEM_CONTAINER:
         if (!IS_CORPSE(j)) {
-            sprintbit(GET_OBJ_VAL(j, VAL_CONTAINER_BITS), container_bits, buf2);
-            resp += fmt::format("Weight capacity: {}, Lock Type: {}, Key Num: {}, Weight Reduction: {}%, Corpse: {}\n",
-                                GET_OBJ_VAL(j, VAL_CONTAINER_CAPACITY), buf2, GET_OBJ_VAL(j, VAL_CONTAINER_KEY),
-                                GET_OBJ_VAL(j, VAL_CONTAINER_WEIGHT_REDUCTION), YESNO(IS_CORPSE(j)));
+            resp += fmt::format(
+                "Weight capacity: {}, Lock Type: {}, Key Num: {}, Weight Reduction: {}%, Corpse: {}\n",
+                GET_OBJ_VAL(j, VAL_CONTAINER_CAPACITY), sprintbit(GET_OBJ_VAL(j, VAL_CONTAINER_BITS), container_bits),
+                GET_OBJ_VAL(j, VAL_CONTAINER_KEY), GET_OBJ_VAL(j, VAL_CONTAINER_WEIGHT_REDUCTION), YESNO(IS_CORPSE(j)));
         } else {
             resp +=
                 fmt::format("Weight capacity: {}, Id: {}, Corpse: {}, Player Corpse: {}, Raisable: {}\n",
@@ -448,21 +449,21 @@ void do_stat_object(CharData *ch, ObjData *j) {
     case ITEM_PORTAL:
         resp += fmt::format("To room: {}\n", GET_OBJ_VAL(j, VAL_PORTAL_DESTINATION));
         if (GET_OBJ_VAL(j, VAL_PORTAL_ENTRY_MSG) >= 0) {
-            for (i = 0; i < GET_OBJ_VAL(j, VAL_PORTAL_ENTRY_MSG) && *portal_entry_messages[i] != '\n'; ++i)
+            for (i = 0; i < GET_OBJ_VAL(j, VAL_PORTAL_ENTRY_MSG) && portal_entry_messages[i].front() != '\n'; ++i)
                 ;
-            if (*portal_entry_messages[i] != '\n')
+            if (portal_entry_messages[i].front() != '\n')
                 resp += fmt::format("Entry-Room message: {}", portal_entry_messages[i]);
         }
         if (GET_OBJ_VAL(j, VAL_PORTAL_CHAR_MSG) >= 0) {
-            for (i = 0; i < GET_OBJ_VAL(j, VAL_PORTAL_CHAR_MSG) && *portal_character_messages[i] != '\n'; ++i)
+            for (i = 0; i < GET_OBJ_VAL(j, VAL_PORTAL_CHAR_MSG) && portal_character_messages[i].front() != '\n'; ++i)
                 ;
-            if (*portal_character_messages[i] != '\n')
+            if (portal_character_messages[i].front() != '\n')
                 resp += fmt::format("To-Char message   : {}", portal_character_messages[i]);
         }
         if (GET_OBJ_VAL(j, VAL_PORTAL_EXIT_MSG) >= 0) {
-            for (i = 0; i < GET_OBJ_VAL(j, VAL_PORTAL_EXIT_MSG) && *portal_exit_messages[i] != '\n'; ++i)
+            for (i = 0; i < GET_OBJ_VAL(j, VAL_PORTAL_EXIT_MSG) && portal_exit_messages[i].front() != '\n'; ++i)
                 ;
-            if (*portal_exit_messages[i] != '\n')
+            if (portal_exit_messages[i].front() != '\n')
                 resp += fmt::format("Exit-Room message : {}", portal_exit_messages[i]);
         }
         break;
@@ -497,7 +498,6 @@ void do_stat_object(CharData *ch, ObjData *j) {
     resp += "Applies:";
     for (i = 0; i < MAX_OBJ_APPLIES; i++)
         if (j->applies[i].modifier) {
-            sprinttype(j->applies[i].location, apply_types, buf2);
             resp +=
                 fmt::format("{} {}", found++ ? "," : "", format_apply(j->applies[i].location, j->applies[i].modifier));
         }
@@ -616,13 +616,7 @@ void do_stat_character(CharData *ch, CharData *k) {
 
     /* Various character stats */
     resp += fmt::format("Race: {}, Race Align: {}, ", RACE_PLAINNAME(k), RACE_ALIGN_ABBR(k));
-    /*
-      if (!IS_NPC(k))
-        resp += fmt::format( "Deity: {}, ", GET_DIETY(ch) >= 0 ?
-                Dieties[(int) GET_DIETY(ch)].diety_name : "None");
-    */
-    sprinttype(GET_SEX(k), genders, buf1);
-    resp += fmt::format("Size: {}, Gender: {}\n", capitalize(SIZE_DESC(k)), buf1);
+    resp += fmt::format("Size: {}, Gender: {}\n", capitalize(SIZE_DESC(k)), sprinttype(GET_SEX(k), genders));
     resp += fmt::format("Life force: {}{}&0, Composition: {}{}&0\n", LIFEFORCE_COLOR(k), capitalize(LIFEFORCE_NAME(k)),
                         COMPOSITION_COLOR(k), capitalize(COMPOSITION_NAME(k)));
     resp += fmt::format("Class: {}, Lev: [{}{:2d}{}], XP: [{}{:7}{}], Align: [{:4d}]\n", CLASS_FULL(k), CLR(ch, FYEL),
@@ -639,8 +633,10 @@ void do_stat_character(CharData *ch, CharData *k) {
             buf1, buf2, k->player.time.played / 3600, ((k->player.time.played / 3600) % 60), age(k).year,
             GET_HOMEROOM(k));
 
-        if (GET_CLAN(k)) {
-            resp += fmt::format(", Clan: [{}], Rank: [{}]", GET_CLAN(k)->abbreviation, GET_CLAN_RANK(k));
+        if (auto memberships = get_clan_memberships(k); !memberships.empty()) {
+            for (auto &membership : memberships) {
+                resp += fmt::format(", Guild: [{}]", membership->get_clan_abbreviation());
+            }
         }
 
         /* Display OLC zones for immorts */
@@ -689,12 +685,9 @@ void do_stat_character(CharData *ch, CharData *k) {
                         GET_RAGE(k));
 
     /* Status data. */
-    sprinttype(GET_POS(k), position_types, buf1);
-    sprinttype(GET_STANCE(k), stance_types, buf2);
-    resp += fmt::format("Pos: {} ({})", buf1, buf2);
+    resp += fmt::format("Pos: {} ({})", sprinttype(GET_POS(k), position_types), buf2);
     if (IS_NPC(k)) {
-        sprinttype(k->mob_specials.default_pos, position_types, buf1);
-        resp += fmt::format(", Default Pos: {}", buf1);
+        resp += fmt::format(", Default Pos: {}", sprinttype(k->mob_specials.default_pos, position_types));
     }
     resp += fmt::format(", Fighting: {}", FIGHTING(k) ? GET_NAME(FIGHTING(k)) : "<none>");
     if (k->forward)
@@ -702,40 +695,50 @@ void do_stat_character(CharData *ch, CharData *k) {
             fmt::format(", {} into: {}", GET_LEVEL(k) > LVL_IMMORT ? "Switched" : "Shapechanged", GET_NAME(k->forward));
     resp += "\n";
 
-    *buf2 = '\0';
-    if (!IS_NPC(k))
-        sprintf(buf2, "Idle: [%d tic%s]", k->char_specials.timer, k->char_specials.timer == 1 ? "" : "s");
-    if (k->desc) {
-        sprinttype(k->desc->connected, connected_types, buf1);
-        sprintf(buf2, "%s%sConnected: %s", buf2, *buf2 ? ", " : "", buf1);
+    std::string status_info;
+    if (!IS_NPC(k)) {
+        status_info = fmt::format("Idle: [{} tic{}]", k->char_specials.timer, k->char_specials.timer == 1 ? "" : "s");
     }
-    if (POSSESSED(k))
-        sprintf(buf2, "%s%s%s into by: %s", buf2, *buf2 ? ", " : "",
-                GET_LEVEL(POSSESSOR(k)) > LVL_IMMORT ? "Switched" : "Shapechanged", GET_NAME(POSSESSOR(k)));
-    if (*buf2)
-        resp += fmt::format("{}\n", buf2);
+
+    if (k->desc) {
+        if (!status_info.empty())
+            status_info += ", ";
+        status_info += fmt::format("Connected: {}", sprinttype(k->desc->connected, connected_types));
+    }
+
+    if (POSSESSED(k)) {
+        if (!status_info.empty())
+            status_info += ", ";
+        status_info += fmt::format("{} into by: {}", GET_LEVEL(POSSESSOR(k)) > LVL_IMMORT ? "Switched" : "Shapechanged",
+                                   GET_NAME(POSSESSOR(k)));
+    }
+
+    if (!status_info.empty())
+        resp += fmt::format("{}\n", status_info);
 
     if (IS_MOB(k)) {
+        std::string attack_type;
         if (k->mob_specials.attack_type >= 0 && k->mob_specials.attack_type <= TYPE_STAB - TYPE_HIT)
-            strcpy(buf2, attack_hit_text[k->mob_specials.attack_type].singular);
+            attack_type = attack_hit_text[k->mob_specials.attack_type].singular;
         else
-            strcpy(buf2, "<&1INVALID&0>");
+            attack_type = "<&1INVALID&0>";
+
         resp += fmt::format("Mob Spec-Proc: {}, NPC Bare Hand Dam: {}d{}, Attack type: {}\n",
                             (mob_index[GET_MOB_RNUM(k)].func ? "Exists" : "None"), k->mob_specials.damnodice,
-                            k->mob_specials.damsizedice, buf2);
+                            k->mob_specials.damsizedice, attack_type);
     }
 
     /* Character flags. */
     if (IS_NPC(k)) {
-        sprintflag(buf1, MOB_FLAGS(k), NUM_MOB_FLAGS, action_bits);
-        resp += fmt::format("NPC flags: {}{}{}\n", CLR(ch, FCYN), buf1, CLR(ch, ANRM));
+        resp += fmt::format("NPC flags: {}{}{}\n", CLR(ch, FCYN), sprintflag(MOB_FLAGS(k), NUM_MOB_FLAGS, action_bits),
+                            CLR(ch, ANRM));
     } else {
-        sprintflag(buf2, PLR_FLAGS(k), NUM_PLR_FLAGS, player_bits);
-        resp += fmt::format("PLR: {}{}{}\n", CLR(ch, FCYN), buf2, CLR(ch, ANRM));
-        sprintflag(buf2, PRF_FLAGS(k), NUM_PRF_FLAGS, preference_bits);
-        resp += fmt::format("PRF: {}{}{}\n", CLR(ch, FGRN), buf2, CLR(ch, ANRM));
-        sprintflag(buf2, PRV_FLAGS(k), NUM_PRV_FLAGS, privilege_bits);
-        resp += fmt::format("PRV: {}{}{}\n", CLR(ch, FGRN), buf2, CLR(ch, ANRM));
+        resp += fmt::format("PLR: {}{}{}\n", CLR(ch, FCYN), sprintflag(PLR_FLAGS(k), NUM_PLR_FLAGS, player_bits),
+                            CLR(ch, ANRM));
+        resp += fmt::format("PRF: {}{}{}\n", CLR(ch, FGRN), sprintflag(PRF_FLAGS(k), NUM_PRF_FLAGS, preference_bits),
+                            CLR(ch, ANRM));
+        resp += fmt::format("PRV: {}{}{}\n", CLR(ch, FGRN), sprintflag(PRV_FLAGS(k), NUM_PRV_FLAGS, privilege_bits),
+                            CLR(ch, ANRM));
     }
 
     /* Weight and objects. */
@@ -805,8 +808,8 @@ void do_stat_character(CharData *ch, CharData *k) {
                             k->cornered_by ? GET_NAME(k->cornered_by) : "<none>");
 
     /* Effect bitvectors */
-    sprintflag(buf1, EFF_FLAGS(k), NUM_EFF_FLAGS, effect_flags);
-    resp += fmt::format("EFF: {}{}{}\n", CLR(ch, FYEL), buf1, CLR(ch, ANRM));
+    resp += fmt::format("EFF: {}{}{}\n", CLR(ch, FYEL), sprintflag(EFF_FLAGS(k), NUM_EFF_FLAGS, effect_flags),
+                        CLR(ch, ANRM));
 
     /* NPC spell circle status */
     if (IS_NPC(k) && MEM_MODE(k) != MEM_NONE) {
@@ -835,8 +838,8 @@ void do_stat_character(CharData *ch, CharData *k) {
         if (eff->modifier)
             resp += fmt::format("{:+d} to {}", eff->modifier, apply_types[(int)eff->location]);
         if (HAS_FLAGS(eff->flags, NUM_EFF_FLAGS)) {
-            sprintflag(buf1, eff->flags, NUM_EFF_FLAGS, effect_flags);
-            resp += fmt::format("{}sets {}", eff->modifier ? ", " : "", buf1);
+            resp += fmt::format("{}sets {}", eff->modifier ? ", " : "",
+                                sprintflag(eff->flags, NUM_EFF_FLAGS, effect_flags));
         }
         resp += "\n";
     }
@@ -1380,14 +1383,14 @@ void do_show_errors(CharData *ch, char *argument) {
         for (j = 0; j < NUM_OF_DIRS; j++) {
             if (world[rn].exits[j]) {
                 if (world[rn].exits[j]->to_room == 0)
-                    snprintf(buf2, sizeof(buf2), "%s%s to void, ", buf2, dirs[j]);
+                    snprintf(buf2, sizeof(buf2), "%s%s to void, ", buf2, dirs[j].data());
                 if (world[rn].exits[j]->to_room == NOWHERE && !world[rn].exits[j]->general_description)
-                    snprintf(buf2, sizeof(buf2), "%s%s to NOWHERE, ", buf2, dirs[j]);
+                    snprintf(buf2, sizeof(buf2), "%s%s to NOWHERE, ", buf2, dirs[j].data());
             }
         }
         if (buf2[0]) {
             buf2[strlen(buf2) - 2] = '\0'; /* cut off last comma */
-            sprintf(buf, "%s [%5d] %-30s %s\n", buf, world[rn].vnum, world[rn].name, buf2);
+            sprintf(buf, "%s [%5d] %-30s %s\n", buf, world[rn].vnum, world[rn].name.c_str(), buf2);
         }
     }
     char_printf(ch, buf);
@@ -1521,13 +1524,13 @@ void do_show_races(CharData *ch, char *argument) {
             compositions[race->def_composition].name, race->bonus_damroll, race->bonus_hitroll, race->mweight_lo,
             race->mweight_hi, race->fweight_lo, race->fweight_hi, race->mheight_lo, race->mheight_hi, race->fheight_lo,
             race->fheight_hi);
-        sprintflag(buf2, race->effect_flags, NUM_EFF_FLAGS, effect_flags);
         resp += fmt::format(
             "Attribute Scales  : Str  Dex  Int  Wis  Con  Cha\n"
             "                  : @c{:3}% {:3}% {:3}% {:3}% {:3}% {:3}%@0\n"
             "Perm. Effects     : @y{}@0\n",
             race->attrib_scales[0], race->attrib_scales[1], race->attrib_scales[2], race->attrib_scales[3],
-            race->attrib_scales[4], race->attrib_scales[5], buf2);
+            race->attrib_scales[4], race->attrib_scales[5],
+            sprintflag(race->effect_flags, NUM_EFF_FLAGS, effect_flags));
 
         resp += "Skills            : @c";
         for (i = 0; race->skills[i].skill; ++i)
@@ -1829,18 +1832,16 @@ void do_show_skill(CharData *ch, char *argument) {
         return;
     }
 
-    sprintbit(skill->targets, targets, buf2);
-
     resp += fmt::format(
         "Skill             : @y{}@0 (@g{}@0)\n"
         "Type              : @c{}@0\n"
         "Target Flags      : @c{}@0\n",
-        skill->name, skill_num, talent_types[type], buf2);
+        skill->name, skill_num, talent_types[type], sprintbit(skill->targets, targets));
 
     if (type == SKILL)
         resp += fmt::format("Humanoid only?    : @c{}@0\n", YESNO(skill->humanoid));
     else {
-        sprintbit(skill->routines, routines, buf1);
+
         if (VALID_DAMTYPE(skill->damage_type))
             sprintf(buf2, "%s%s", damtypes[skill->damage_type].color, damtypes[skill->damage_type].name);
         else
@@ -1853,8 +1854,9 @@ void do_show_skill(CharData *ch, char *argument) {
             "Damage Type       : {}@0\n"
             "Quest only?       : @c{}@0\n"
             "Wear-off Message  : {}@0\n",
-            position_types[skill->minpos], YESNO(skill->fighting_ok), YESNO(skill->violent), buf1, buf2,
-            YESNO(skill->quest), skill->wearoff ? skill->wearoff : "@cNone.");
+            position_types[skill->minpos], YESNO(skill->fighting_ok), YESNO(skill->violent),
+            sprintbit(skill->routines, routines), buf2, YESNO(skill->quest),
+            skill->wearoff ? skill->wearoff : "@cNone.");
     }
 
     if (type == SPELL) {

@@ -14,6 +14,7 @@
 
 #include "commands.hpp"
 
+#include "bitflags.hpp"
 #include "comm.hpp"
 #include "conf.hpp"
 #include "constants.hpp"
@@ -43,7 +44,7 @@ CommandGroupInfo *grp_info;
  * Private interface
  */
 #define VALID_GROUP_NUM(gg) ((gg) >= cmd_groups && (gg) < top_of_cmd_groups)
-#define GROUP_NUM(gg) ((gg)-cmd_groups)
+#define GROUP_NUM(gg) ((gg) - cmd_groups)
 static void gedit_setup_existing(DescriptorData *d, int group);
 static void gedit_setup_new(DescriptorData *d);
 static void gedit_save_internally(DescriptorData *d);
@@ -204,7 +205,7 @@ void gedit_parse(DescriptorData *d, char *arg) {
 
     switch (OLC_MODE(d)) {
     case GEDIT_MAIN_MENU:
-        switch (LOWER(*arg)) {
+        switch (to_lower(*arg)) {
         case '1':
             string_to_output(d, "Enter new group alias:\n");
             OLC_MODE(d) = GEDIT_ALIAS;
@@ -346,7 +347,7 @@ void gedit_parse(DescriptorData *d, char *arg) {
         gedit_disp_menu(d);
         return;
     case GEDIT_CONFIRM_SAVE:
-        switch (LOWER(*arg)) {
+        switch (to_lower(*arg)) {
         case 'y':
             string_to_output(d, "Saving command group in memory.\n");
             gedit_save_internally(d);
@@ -619,6 +620,9 @@ void do_show_command(CharData *ch, char *argument) {
     const CommandInfo *command;
     int cmd, grp;
 
+    constexpr std::string_view command_flags[] = {"MEDITATE", "MAJOR PARA", "MINOR PARA", "HIDE", "BOUND",
+                                                  "CAST",     "OLC",        "NOFIGHT",    "\n"};
+
     skip_spaces(&argument);
 
     if (!*argument) {
@@ -633,8 +637,6 @@ void do_show_command(CharData *ch, char *argument) {
 
     command = &cmd_info[cmd];
 
-    sprintbit(command->flags, command_flags, buf1);
-
     resp += fmt::format(
         "Command           : @y{}@0 (@g{}@0)\n"
         "Minimum Position  : @c{}@0\n"
@@ -644,7 +646,8 @@ void do_show_command(CharData *ch, char *argument) {
         "Usage Flags       : @c{}@0\n"
         "Groups            : @c",
         command->command, cmd, position_types[(int)command->minimum_position],
-        stance_types[(int)command->minimum_stance], command->minimum_level, command->subcmd, buf1);
+        stance_types[(int)command->minimum_stance], command->minimum_level, command->subcmd,
+        sprintbit(command->flags, command_flags));
 
     if (grp_info[cmd].groups) {
         for (grp = 0; grp_info[cmd].groups[grp] >= 0; ++grp)

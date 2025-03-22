@@ -134,10 +134,25 @@ struct ClimateData {
     int allowed_disasters;
 };
 
-extern const char *wind_speeds[];
-extern const char *precip[];
-extern const char *daylight_change[];
-extern const char *seasons[];
-extern const char *season_change[];
+constexpr std::string_view wind_speeds[] = {
+    "", "&6breeze", "&6strong wind", "&4gale-force wind", "&4hurricane-strength &0&6wind", "\n"};
+
+constexpr std::string_view precip[] = {"&6&brain", "&7&bsnow", "\n"};
+
+constexpr std::string_view daylight_change[] = {
+    "&9&bThe night has begun.&0\n",
+    "&6&bThe &3sun &6rises in the east.&0\n",
+    "&6&bThe day has begun.&0\n",
+    "&5&bThe &3&bsun &5slowly disapp&0&5ears in th&9&be west.&0\n",
+};
+
+constexpr std::string_view seasons[] = {"winter", "spring", "summer", "autumn", "\n"};
+
+constexpr std::string_view season_change[] = {
+    "&7&bWinter takes hold as &0&3Autumn&0 &7&bfades into history...&0\n",
+    "&2&bThe bite of &7&bWinter &2is gone as &3Spring &2begins.&0\n",
+    "Spring gives way to Summer.\n",
+    "Summer passes and Autumn begins.\n",
+};
 extern HemisphereData hemispheres[NUM_HEMISPHERES];
 extern ClimateData climates[NUM_CLIMATES];

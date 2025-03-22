@@ -69,7 +69,7 @@ int isbanned(char *hostname) {
 
     i = 0;
     for (nextchar = hostname; *nextchar; nextchar++)
-        *nextchar = LOWER(*nextchar);
+        *nextchar = to_lower(*nextchar);
 
     for (banned_node = ban_list; banned_node; banned_node = banned_node->next)
         if (strcasestr(hostname, banned_node->site)) /* if hostname is a substring */
@@ -143,7 +143,7 @@ ACMD(do_ban) {
     CREATE(ban_node, BanListElement, 1);
     strncpy(ban_node->site, site, BANNED_SITE_LENGTH);
     for (nextchar = ban_node->site; *nextchar; nextchar++)
-        *nextchar = LOWER(*nextchar);
+        *nextchar = to_lower(*nextchar);
     ban_node->site[BANNED_SITE_LENGTH] = '\0';
     strncpy(ban_node->name, GET_NAME(ch), MAX_NAME_LENGTH);
     ban_node->name[MAX_NAME_LENGTH] = '\0';
@@ -224,7 +224,7 @@ int Valid_Name(char *newname) {
     /* change to lowercase */
     strcpy(tempname, newname);
     for (i = 0; tempname[i]; i++)
-        tempname[i] = LOWER(tempname[i]);
+        tempname[i] = to_lower(tempname[i]);
 
     /* Does the desired name contain a string in the invalid list? */
 
@@ -326,7 +326,7 @@ void send_to_xnames(char *name) {
 
     strcpy(tempname, name);
     for (i = 0; tempname[i]; i++)
-        tempname[i] = LOWER(tempname[i]);
+        tempname[i] = to_lower(tempname[i]);
 
     /* print it to the xnames file with # prepended and a \n appended */
     fprintf(xnames, "#%s\n", tempname);

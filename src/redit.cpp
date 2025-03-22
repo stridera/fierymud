@@ -10,6 +10,7 @@
  *  Copyright 1996 Harvey Gilpin.                                          *
  ***************************************************************************/
 
+#include "bitflags.hpp"
 #include "comm.hpp"
 #include "conf.hpp"
 #include "constants.hpp"
@@ -75,8 +76,8 @@ void redit_setup_existing(DescriptorData *d, int real_num) {
     /*
      * Allocate space for all strings.
      */
-    room->name = strdup(world[real_num].name ? world[real_num].name : "undefined");
-    room->description = strdup(world[real_num].description ? world[real_num].description : "undefined\n");
+    room->name = world[real_num].name.empty() ? "undefined" : world[real_num].name;
+    room->description = world[real_num].description.empty() ? "undefined\n" : world[real_num].description;
     /*
      * Exits - We allocate only if necessary.
      */
@@ -304,14 +305,14 @@ void redit_save_to_disk(int zone_num) {
             room = (world + realcounter);
 
             /*. Remove the '\n' sequences from description . */
-            strcpy(buf1, room->description ? room->description : "Empty");
+            strcpy(buf1, !room->description.empty() ? room->description.c_str() : "Empty");
             strip_string(buf1);
 
             /*
              * Forget making a buffer, lets just write the thing now.
              */
-            fprintf(fp, "#%d\n%s~\n%s~\n%d %ld %d\n", counter, room->name ? room->name : "undefined", buf1,
-                    zone_table[room->zone].number, room->room_flags[0], room->sector_type);
+            fprintf(fp, "#%d\n%s~\n%s~\n%d %ld %d\n", counter, room->name.empty() ? "undefined" : room->name.c_str(),
+                    buf1, zone_table[room->zone].number, room->flags[0], room->sector_type);
 
             /*
              * Handle exits.
@@ -392,11 +393,6 @@ void redit_save_to_disk(int zone_num) {
 void free_room(RoomData *room) {
     int i;
     ExtraDescriptionData *cur, *next;
-
-    if (room->name)
-        free(room->name);
-    if (room->description)
-        free(room->description);
 
     /*
      * Free exits.
@@ -523,19 +519,18 @@ void redit_disp_flag_menu(DescriptorData *d) {
 #endif
 
     for (i = 0; i <= NUM_ROOM_FLAGS / columns; ++i) {
-        *buf = '\0';
+        std::string output;
         for (j = 0; j < columns; ++j)
             if (FLAG_INDEX < NUM_ROOM_FLAGS)
-                sprintf(buf, "%s%s%2d%s) %-20.20s ", buf, grn, FLAG_INDEX + 1, nrm, room_bits[FLAG_INDEX]);
-        char_printf(d->character, strcat(buf, "\n"));
+                output += fmt::format("{}{:2d}{}) {:20.20s} ", grn, FLAG_INDEX + 1, nrm, room_bits[FLAG_INDEX]);
+        output += "\n";
+        char_printf(d->character, output);
     }
 
-    sprintflag(buf1, OLC_ROOM(d)->room_flags, NUM_ROOM_FLAGS, room_bits);
-    sprintf(buf,
-            "\nRoom flags: %s%s%s\n"
-            "Enter room flags, 0 to quit : ",
-            cyn, buf1, nrm);
-    char_printf(d->character, buf);
+    char_printf(d->character,
+                "\nRoom flags: {}{}{}\n"
+                "Enter room flags, 0 to quit : ",
+                cyn, sprintflag(OLC_ROOM(d)->flags, room_bits), nrm);
     OLC_MODE(d) = REDIT_FLAGS;
 }
 
@@ -576,35 +571,31 @@ void redit_disp_menu(DescriptorData *d) {
     get_char_cols(d->character);
     room = OLC_ROOM(d);
 
-    sprintflag(buf1, room->room_flags, NUM_ROOM_FLAGS, room_bits);
-    sprintf(buf2, "%s", sectors[room->sector_type].name);
-    sprintf(buf,
+    char_printf(d->character,
 #if defined(CLEAR_SCREEN)
-            ".[H.[J"
+                ".[H.[J"
 #endif
-            "-- Room: '&5%s&0'  vnum: [&2%5d&0]\n"
-            "%s1%s) Name        : %s%s\n"
-            "%s2%s) Description :\n%s%s\n"
-            "%s3%s) Room flags  : %s%s\n"
-            "%s4%s) Sector type : %s%s\n",
-            room->name, OLC_NUM(d), grn, nrm, yel, room->name, grn, nrm, yel, room->description, grn, nrm, cyn, buf1,
-            grn, nrm, cyn, buf2);
+                "-- Room: '&5{}&0'  vnum: [&2{:5d}&0]\n"
+                "{}1{}) Name        : {}{}\n"
+                "{}2{}) Description :\n{}{}\n"
+                "{}3{}) Room flags  : {}{}\n"
+                "{}4{}) Sector type : {}{}\n",
+                room->name, OLC_NUM(d), grn, nrm, yel, room->name, grn, nrm, yel, room->description, grn, nrm, cyn,
+                sprintflag(room->flags, room_bits), grn, nrm, cyn, sectors[room->sector_type].name);
 
-    sprintf(buf, "%s%s5%s) Exit north  : %s%s\n", buf, grn, nrm, cyn, exit_dest_desc(room->exits[NORTH]));
+    char_printf(d->character, "{}5{}) Exit north  : {}{}\n", grn, nrm, cyn, exit_dest_desc(room->exits[NORTH]));
+    char_printf(d->character, "{}6{}) Exit east   : {}{}\n", grn, nrm, cyn, exit_dest_desc(room->exits[EAST]));
+    char_printf(d->character, "{}7{}) Exit south  : {}{}\n", grn, nrm, cyn, exit_dest_desc(room->exits[SOUTH]));
+    char_printf(d->character, "{}8{}) Exit west   : {}{}\n", grn, nrm, cyn, exit_dest_desc(room->exits[WEST]));
+    char_printf(d->character, "{}9{}) Exit up     : {}{}\n", grn, nrm, cyn, exit_dest_desc(room->exits[UP]));
+    char_printf(d->character, "{}A{}) Exit down   : {}{}\n", grn, nrm, cyn, exit_dest_desc(room->exits[DOWN]));
 
-    sprintf(buf, "%s%s6%s) Exit east   : %s%s\n", buf, grn, nrm, cyn, exit_dest_desc(room->exits[EAST]));
-    sprintf(buf, "%s%s7%s) Exit south  : %s%s\n", buf, grn, nrm, cyn, exit_dest_desc(room->exits[SOUTH]));
-    sprintf(buf, "%s%s8%s) Exit west   : %s%s\n", buf, grn, nrm, cyn, exit_dest_desc(room->exits[WEST]));
-    sprintf(buf, "%s%s9%s) Exit up     : %s%s\n", buf, grn, nrm, cyn, exit_dest_desc(room->exits[UP]));
-    sprintf(buf, "%s%sA%s) Exit down   : %s%s\n", buf, grn, nrm, cyn, exit_dest_desc(room->exits[DOWN]));
-
-    sprintf(buf,
-            "%s%sF%s) Extra descriptions menu\n"
-            "%sS%s) Script      : %s%s\n"
-            "%sQ%s) Quit\n"
-            "Enter choice:\n",
-            buf, grn, nrm, grn, nrm, cyn, room->proto_script ? "Set." : "Not Set.", grn, nrm);
-    char_printf(d->character, buf);
+    char_printf(d->character,
+                "{}F{}) Extra descriptions menu\n"
+                "{}S{}) Script      : {}{}\n"
+                "{}Q{}) Quit\n"
+                "Enter choice:\n",
+                grn, nrm, grn, nrm, cyn, room->proto_script ? "Set." : "Not Set.", grn, nrm);
 
     OLC_MODE(d) = REDIT_MAIN_MENU;
 }
@@ -655,15 +646,18 @@ void redit_parse(DescriptorData *d, char *arg) {
             char_printf(d->character, "Enter room name:]\n");
             OLC_MODE(d) = REDIT_NAME;
             break;
-        case '2':
+        case '2': {
             OLC_MODE(d) = REDIT_DESC;
 #if defined(CLEAR_SCREEN)
             string_to_output(d, "\x1B[H\x1B[J");
 #endif
             string_to_output(d, "Enter room description: (/s saves /h for help)\n\n");
-            string_write(d, &OLC_ROOM(d)->description, MAX_ROOM_DESC);
+            char *temp_desc = strdup(OLC_ROOM(d)->description.c_str());
+            string_write(d, &temp_desc, MAX_ROOM_DESC);
+            OLC_ROOM(d)->description = temp_desc ? temp_desc : "";
+            free(temp_desc);
             OLC_VAL(d) = 1;
-            break;
+        } break;
         case '3':
             redit_disp_flag_menu(d);
             break;
@@ -723,8 +717,6 @@ void redit_parse(DescriptorData *d, char *arg) {
             return;
         break;
     case REDIT_NAME:
-        if (OLC_ROOM(d)->name)
-            free(OLC_ROOM(d)->name);
         if (strlen(arg) > MAX_ROOM_NAME)
             arg[MAX_ROOM_NAME - 1] = '\0';
         OLC_ROOM(d)->name = strdup((arg && *arg) ? arg : "undefined");
@@ -747,7 +739,7 @@ void redit_parse(DescriptorData *d, char *arg) {
             /*
              * Toggle the bit.
              */
-            TOGGLE_FLAG(OLC_ROOM(d)->room_flags, number - 1);
+            TOGGLE_FLAG(OLC_ROOM(d)->flags, number - 1);
             redit_disp_flag_menu(d);
         }
         return;

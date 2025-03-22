@@ -909,7 +909,7 @@ ACMD(do_retreat) {
         return;
     }
 
-    dir = searchblock(arg, dirs, false);
+    dir = search_block(arg, dirs, false);
 
     if (dir < 0 || !CH_DEST(ch, dir)) {
         char_printf(ch, "You can't retreat that way!\n");
@@ -931,7 +931,7 @@ ACMD(do_retreat) {
         !ROOM_FLAGGED(CH_NDEST(ch, dir), ROOM_DEATH) && do_simple_move(ch, dir, true)) {
 
         /* Send message back to original room. */
-        sprintf(buf, "$n carefully retreats from combat, leaving %s.", dirs[dir]);
+        sprintf(buf, "$n carefully retreats from combat, leaving %s.", dirs[dir].data());
         to_room = ch->in_room;
         ch->in_room = vict->in_room;
         act(buf, true, ch, 0, 0, TO_ROOM);
@@ -986,7 +986,7 @@ ACMD(do_gretreat) {
         return;
     }
 
-    dir = searchblock(arg, dirs, false);
+    dir = search_block(arg, dirs, false);
 
     if (dir < 0 || !CH_DEST(ch, dir)) {
         char_printf(ch, "You can't retreat that way!\n");
@@ -1017,11 +1017,9 @@ ACMD(do_gretreat) {
     else if (GET_SKILL(ch, SKILL_GROUP_RETREAT) > random_number(0, 81) &&
              !ROOM_FLAGGED(CH_NDEST(ch, dir), ROOM_DEATH) && CAN_GO(ch, dir) && do_simple_move(ch, dir, true)) {
         /* Echo line back to the original room. */
-        sprintf(buf, "$n carefully retreats from combat, leading $s group %s.", dirs[dir]);
-
         to_room = ch->in_room;
         ch->in_room = was_in;
-        act(buf, true, ch, 0, 0, TO_ROOM);
+        act(fmt::format("$n carefully retreats from combat, leading $s group %s.", dirs[dir]), true, ch, 0, 0, TO_ROOM);
         ch->in_room = to_room;
         char_printf(ch, "\nYou skillfully lead your group {}.\n", dirs[dir]);
 
@@ -1029,8 +1027,7 @@ ACMD(do_gretreat) {
             next_k = k->next;
             if (k->follower->in_room == was_in && GET_STANCE(k->follower) >= STANCE_ALERT && k->can_see_master) {
                 abort_casting(k->follower);
-                sprintf(buf, "You follow $N %s.", dirs[dir]);
-                act(buf, false, k->follower, 0, ch, TO_CHAR);
+                act(fmt::format("You follow $N {}.", dirs[dir]), false, k->follower, 0, ch, TO_CHAR);
                 perform_move(k->follower, dir, 1, false);
             }
         }
@@ -2731,7 +2728,7 @@ ACMD(do_lure) {
         return;
     }
 
-    dir = searchblock(argument, dirs, false);
+    dir = search_block(argument, dirs, false);
 
     if (FIGHTING(vict)) {
         char_printf(ch, "You can't lure someone away from combat!\n");

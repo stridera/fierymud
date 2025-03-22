@@ -87,7 +87,7 @@ int isname(const char *str, const char *namelist) {
             if (!*curstr || *curname == ' ')
                 break;
 
-            if (LOWER(*curstr) != LOWER(*curname))
+            if (to_lower(*curstr) != to_lower(*curname))
                 break;
         }
 
@@ -1283,10 +1283,6 @@ void extract_char(CharData *ch) {
         obj_from_char(obj);
         obj_to_room(obj, ch->in_room);
     }
-
-    /* Remove runtime link to clan */
-    if (GET_CLAN_MEMBERSHIP(ch))
-        GET_CLAN_MEMBERSHIP(ch)->player = nullptr;
 
     /* transfer equipment to room */
     for (i = 0; i < NUM_WEARS; i++)

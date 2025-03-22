@@ -180,8 +180,9 @@ ASPELL(spell_banish) {
             attack(victim, ch);
     }
 
-    /* min val -99, max val 207; at max skill and max roll and max charisma against a max level victim gives a value of 108 */
-    roll = random_number(0, 100) + skill + stat_bonus[GET_CHA(ch)].magic - GET_LEVEL(victim); 
+    /* min val -99, max val 207; at max skill and max roll and max charisma against a max level victim gives a value of
+     * 108 */
+    roll = random_number(0, 100) + skill + stat_bonus[GET_CHA(ch)].magic - GET_LEVEL(victim);
 
     /* Failure */
     if (roll < 50) {
@@ -199,7 +200,7 @@ ASPELL(spell_banish) {
     /* Success */
     if (roll > 100) {
         if (IS_NPC(victim)) {
-            roll = random_number (0, 100) + (stat_bonus[GET_WIS(ch)].magic * 2); /* min: 0, max: 114 */
+            roll = random_number(0, 100) + (stat_bonus[GET_WIS(ch)].magic * 2); /* min: 0, max: 114 */
             if (roll > 66) /* 66% chance to wipe victim eq, nears 50% at max wis */
                 extract_objects(victim);
             extract_char(victim);
@@ -459,8 +460,8 @@ ASPELL(spell_create_water) {
         return 0;
 
     if (GET_OBJ_TYPE(obj) == ITEM_DRINKCON) {
-        amount =
-            std::min(GET_OBJ_VAL(obj, VAL_DRINKCON_CAPACITY) - GET_OBJ_VAL(obj, VAL_DRINKCON_REMAINING), 1 + 15 * skill / 2);
+        amount = std::min(GET_OBJ_VAL(obj, VAL_DRINKCON_CAPACITY) - GET_OBJ_VAL(obj, VAL_DRINKCON_REMAINING),
+                          1 + 15 * skill / 2);
         if (amount <= 0) {
             act("$o seems to be full already.", false, ch, obj, 0, TO_CHAR);
         } else {
@@ -911,7 +912,7 @@ ASPELL(spell_heavens_gate) {
     GET_OBJ_DECOMP(portal) = 2;
     CREATE(new_descr, ExtraDescriptionData, 1);
     new_descr->keyword = strdup("tunnel light portal");
-    sprintf(buf, "You can barely make out %s.\n", world[victim->in_room].name);
+    sprintf(buf, "You can barely make out %s.\n", world[victim->in_room].name.c_str());
     new_descr->description = strdup(buf);
     new_descr->next = portal->ex_description;
     portal->ex_description = new_descr;
@@ -928,7 +929,7 @@ ASPELL(spell_heavens_gate) {
     GET_OBJ_DECOMP(tportal) = 2;
     CREATE(new_tdescr, ExtraDescriptionData, 1);
     new_tdescr->keyword = strdup("tunnel light portal");
-    sprintf(buf, "You can barely make out %s.\n", world[ch->in_room].name);
+    sprintf(buf, "You can barely make out %s.\n", world[ch->in_room].name.c_str());
     new_tdescr->description = strdup(buf);
     new_tdescr->next = tportal->ex_description;
     tportal->ex_description = new_tdescr;
@@ -974,7 +975,7 @@ ASPELL(spell_hells_gate) {
     GET_OBJ_DECOMP(portal) = 2;
     CREATE(new_descr, ExtraDescriptionData, 1);
     new_descr->keyword = strdup("portal hole gate");
-    sprintf(buf, "You can barely make out %s.\n", world[victim->in_room].name);
+    sprintf(buf, "You can barely make out %s.\n", world[victim->in_room].name.c_str());
     new_descr->description = strdup(buf);
     new_descr->next = portal->ex_description;
     portal->ex_description = new_descr;
@@ -987,7 +988,7 @@ ASPELL(spell_hells_gate) {
     GET_OBJ_DECOMP(tportal) = 2;
     CREATE(new_tdescr, ExtraDescriptionData, 1);
     new_tdescr->keyword = strdup("portal hole gate");
-    sprintf(buf, "You can barely make out %s.\n", world[ch->in_room].name);
+    sprintf(buf, "You can barely make out %s.\n", world[ch->in_room].name.c_str());
     new_tdescr->description = strdup(buf);
     new_tdescr->next = tportal->ex_description;
     tportal->ex_description = new_tdescr;
@@ -1434,7 +1435,8 @@ ASPELL(spell_major_paralysis) {
         return 0;
     if (!attack_ok(ch, victim, true))
         return CAST_RESULT_CHARGE;
-    if (mag_savingthrow(victim, SAVING_PARA) || skill - GET_LEVEL(victim) > random_number(0, 70) || MOB_FLAGGED(victim, MOB_NOCHARM)) {
+    if (mag_savingthrow(victim, SAVING_PARA) || skill - GET_LEVEL(victim) > random_number(0, 70) ||
+        MOB_FLAGGED(victim, MOB_NOCHARM)) {
 
         if (MOB_FLAGGED(victim, MOB_NOCHARM))
             act("&7&b$N cannot be paralyzed!&0", false, ch, 0, victim, TO_CHAR);
@@ -1478,8 +1480,8 @@ ASPELL(spell_minor_creation) {
         return 0;
     }
     half_chop(ch->casting.misc, buf, buf2);
-    while (*minor_creation_items[i] != '\n') {
-        if (is_abbrev(buf, minor_creation_items[i])) {
+    while (minor_creation_items[i].front() != '\n') {
+        if (is_abbrev(buf, minor_creation_items[i].data())) {
             found = 1;
             break;
         } else
@@ -1542,7 +1544,7 @@ ASPELL(spell_moonwell) {
     GET_OBJ_DECOMP(portal) = 2;
     CREATE(new_descr, ExtraDescriptionData, 1);
     new_descr->keyword = strdup("well gate moonwell");
-    sprintf(buf, "You can barely make out %s.\n", world[victim->in_room].name);
+    sprintf(buf, "You can barely make out %s.\n", world[victim->in_room].name.c_str());
     new_descr->description = strdup(buf);
     new_descr->next = portal->ex_description;
     portal->ex_description = new_descr;
@@ -1560,7 +1562,7 @@ ASPELL(spell_moonwell) {
     GET_OBJ_DECOMP(tportal) = 2;
     CREATE(new_tdescr, ExtraDescriptionData, 1);
     new_tdescr->keyword = strdup("well gate moonwell");
-    sprintf(buf, "You can barely make out %s.\n", world[ch->in_room].name);
+    sprintf(buf, "You can barely make out %s.\n", world[ch->in_room].name.c_str());
     new_tdescr->description = strdup(buf);
     new_tdescr->next = tportal->ex_description;
     tportal->ex_description = new_tdescr;
@@ -1934,11 +1936,11 @@ static int search_for_doors(CharData *ch) {
             IS_SET(CH_EXIT(ch, door)->exit_info, EX_HIDDEN)) {
             sprintf(buf, "You have found%s hidden %s %s.&0",
                     CH_EXIT(ch, door)->keyword && isplural(CH_EXIT(ch, door)->keyword) ? "" : " a",
-                    CH_EXIT(ch, door)->keyword ? "$F" : "door", dirpreposition[door]);
+                    CH_EXIT(ch, door)->keyword ? "$F" : "door", dirpreposition[door].data());
             act(buf, false, ch, 0, CH_EXIT(ch, door)->keyword, TO_CHAR);
             sprintf(buf, "$n has found%s hidden %s %s.",
                     CH_EXIT(ch, door)->keyword && isplural(CH_EXIT(ch, door)->keyword) ? "" : " a",
-                    CH_EXIT(ch, door)->keyword ? "$F" : "door", dirpreposition[door]);
+                    CH_EXIT(ch, door)->keyword ? "$F" : "door", dirpreposition[door].data());
             act(buf, false, ch, 0, CH_EXIT(ch, door)->keyword, TO_ROOM);
             REMOVE_BIT(CH_EXIT(ch, door)->exit_info, EX_HIDDEN);
             send_gmcp_room(ch);
@@ -2257,7 +2259,7 @@ void create_magical_wall(int room, int power, int dir, int spell, char *material
     else if (dir == DOWN)
         sprintf(buf2, "%sA wall of %s lies downwards.&0", mcolor, material);
     else
-        sprintf(buf2, "%sA wall of %s lies to the %s.&0", mcolor, material, dirs[dir]);
+        sprintf(buf2, "%sA wall of %s lies to the %s.&0", mcolor, material, dirs[dir].data());
     wall->description = strdup(buf2);
     sprintf(buf, "%sa wall of %s&0", mcolor, material);
     wall->short_description = strdup(buf);
@@ -2301,7 +2303,7 @@ ASPELL(spell_magical_wall) {
 
     half_chop(ch->casting.misc, buf, buf2);
     for (i = 0; i < NUM_OF_DIRS; i++) {
-        if (is_abbrev(buf, dirs[i]))
+        if (is_abbrev(buf, dirs[i].data()))
             dir = i;
     }
 
@@ -2675,7 +2677,7 @@ ASPELL(spell_summon) {
                         "{} just tried to summon you to: {}.\n"
                         "{} failed because you have summon protection on.\n"
                         "Type NOSUMMON to allow other players to summon you.\n",
-                        GET_NAME(ch), world[ch->in_room].name,
+                        GET_NAME(ch), world[ch->in_room].name.c_str(),
                         (ch->player.sex == SEX_MALE) ? "He" : ((ch->player.sex == SEX_FEMALE) ? "She" : "They"));
 
             char_printf(ch, "You failed because {} has summon protection on.\n", GET_NAME(victim));
@@ -2810,7 +2812,7 @@ ASPELL(spell_locate_object) {
         if (o->carried_by)
             char_printf(ch, "{} is being carried by {}.\n", capitalize(o->short_description), PERS(o->carried_by, ch));
         else if (o->in_room != NOWHERE)
-            char_printf(ch, "{} is in {}.\n", capitalize(o->short_description), world[o->in_room].name);
+            char_printf(ch, "{} is in {}.\n", capitalize(o->short_description), world[o->in_room].name.c_str());
         else if (o->in_obj)
             char_printf(ch, "{} is in {}.\n", capitalize(o->short_description), o->in_obj->short_description);
         else if (o->worn_by)

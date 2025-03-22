@@ -160,7 +160,13 @@ FBFILE *fbopen_for_read(char *fname) {
     fbfl->ptr = fbfl->buf;
     fbfl->flags = FB_READ;
     strcpy(fbfl->name, fname);
-    fread(fbfl->buf, sizeof(char), fbfl->size, fl);
+    if (fread(fbfl->buf, sizeof(char), fbfl->size, fl) != fbfl->size) {
+        free(fbfl->buf);
+        free(fbfl->name);
+        free(fbfl);
+        fclose(fl);
+        return nullptr;
+    }
     fclose(fl);
 
     return fbfl;

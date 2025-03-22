@@ -87,7 +87,7 @@ std::string drunken_speech(std::string speech, int drunkenness);
 bool senses_living(CharData *ch, CharData *vict, int basepct);
 bool senses_living_only(CharData *ch, CharData *vict, int basepct);
 const char *relative_location_str(int bits);
-void split_coins(CharData *ch, int coins[], unsigned int mode);
+void split_coins(CharData *ch, Money coins, unsigned int mode);
 
 void print_obj_to_char(ObjData *obj, CharData *ch, int mode, char *additional_args);
 void list_obj_to_char(ObjData *list, CharData *ch, int mode);
@@ -113,7 +113,7 @@ const char *hitdam_message(int value);
 const char *armor_message(int ac);
 const char *perception_message(int perception);
 const char *hiddenness_message(int hiddenness);
-const char *ability_message(int value);
+std::string_view ability_message(int value);
 long xp_percentage(CharData *ch);
 const char *exp_message(CharData *ch);
 const char *exp_bar(CharData *ch, int length, int gradations, int sub_gradations, bool color);

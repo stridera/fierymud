@@ -475,8 +475,8 @@ ACMD(do_order) {
             act("$n gives $N an order.", false, ch, nullptr, vict, TO_ROOM);
 
             if (GET_STANCE(vict) < STANCE_RESTING) {
-                sprintf(buf, "$N is %s and can't hear you.", stance_types[GET_STANCE(vict)]);
-                act(buf, false, ch, nullptr, vict, TO_CHAR);
+                act(std::format("$N is {} and can't hear you.", stance_types[GET_STANCE(vict)]), false, ch, nullptr,
+                    vict, TO_CHAR);
             } else {
                 sprintf(buf, "$N orders you to '%s'", message);
                 act(buf, false, vict, nullptr, ch, TO_CHAR);

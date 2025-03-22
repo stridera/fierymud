@@ -27,27 +27,6 @@
  * the game boots (and are updated as the game runs).
  */
 
-const char *wind_speeds[] = {"",  "&6breeze", "&6strong wind", "&4gale-force wind", "&4hurricane-strength &0&6wind",
-                             "\n"};
-
-const char *precip[] = {"&6&brain", "&7&bsnow", "\n"};
-
-const char *daylight_change[] = {
-    "&9&bThe night has begun.&0\n",
-    "&6&bThe &3sun &6rises in the east.&0\n",
-    "&6&bThe day has begun.&0\n",
-    "&5&bThe &3&bsun &5slowly disapp&0&5ears in th&9&be west.&0\n",
-};
-
-const char *seasons[] = {"winter", "spring", "summer", "autumn", "\n"};
-
-const char *season_change[] = {
-    "&7&bWinter takes hold as &0&3Autumn&0 &7&bfades into history...&0\n",
-    "&2&bThe bite of &7&bWinter &2is gone as &3Spring &2begins.&0\n",
-    "Spring gives way to Summer.\n",
-    "Summer passes and Autumn begins.\n",
-};
-
 HemisphereData hemispheres[NUM_HEMISPHERES] = {
     {"Northwestern", SUN_DARK, WINTER},
     {"Northeastern", SUN_LIGHT, SUMMER},
@@ -221,15 +200,16 @@ char *wind_message(int current, int original) {
         if (current == WIND_NONE)
             strcpy(buf, "&6The air is calm.&0\n");
         else
-            sprintf(buf, "&6A &0%s&0 &6begins to blow around you.&0\n", wind_speeds[current]);
+            sprintf(buf, "&6A &0%s&0 &6begins to blow around you.&0\n", wind_speeds[current].data());
     } else if (current > original)
-        sprintf(buf, "&6The &7%s &6increases to a &7%s.&0\n", wind_speeds[original], wind_speeds[current]);
+        sprintf(buf, "&6The &7%s &6increases to a &7%s.&0\n", wind_speeds[original].data(),
+                wind_speeds[current].data());
     else if (current == original)
-        sprintf(buf, "&6A &7%s &6is blowing around you.&0\n", wind_speeds[current]);
+        sprintf(buf, "&6A &7%s &6is blowing around you.&0\n", wind_speeds[current].data());
     else if (current != WIND_NONE)
-        sprintf(buf, "&6The &7%s &6subsides to a &7%s.&0\n", wind_speeds[original], wind_speeds[current]);
+        sprintf(buf, "&6The &7%s &6subsides to a &7%s.&0\n", wind_speeds[original].data(), wind_speeds[current].data());
     else
-        sprintf(buf, "&6The &7%s &6calms and the air becomes still.&0\n", wind_speeds[original]);
+        sprintf(buf, "&6The &7%s &6calms and the air becomes still.&0\n", wind_speeds[original].data());
     return buf;
 }
 
@@ -350,13 +330,13 @@ void update_temperature(int zone_rnum) {
 char *precipitation_message(ZoneData *zone, int original) {
     if (original > PRECIP_GRAY_CLOUDS) {
         if (zone->precipitation > original)
-            sprintf(buf, "&4It starts %sing harder.&0\n", GET_PRECIP_TYPE(zone));
+            sprintf(buf, "&4It starts %sing harder.&0\n", GET_PRECIP_TYPE(zone).data());
         else if (zone->precipitation == original)
-            sprintf(buf, "&5It continues to %s.&0\n", GET_PRECIP_TYPE(zone));
+            sprintf(buf, "&5It continues to %s.&0\n", GET_PRECIP_TYPE(zone).data());
         else if (zone->precipitation > PRECIP_GRAY_CLOUDS)
-            sprintf(buf, "&5The %s &5starts coming down a little lighter.&0\n", GET_PRECIP_TYPE(zone));
+            sprintf(buf, "&5The %s &5starts coming down a little lighter.&0\n", GET_PRECIP_TYPE(zone).data());
         else
-            sprintf(buf, "&5It continues to %s.&0\n", GET_PRECIP_TYPE(zone));
+            sprintf(buf, "&5It continues to %s.&0\n", GET_PRECIP_TYPE(zone).data());
     } else if (original) {
         if (zone->precipitation <= PRECIP_GRAY_CLOUDS) {
             switch (original) {
@@ -377,7 +357,7 @@ char *precipitation_message(ZoneData *zone, int original) {
                 return "NULL PRECIPITATION\n";
             }
         } else if (zone->precipitation > PRECIP_GRAY_CLOUDS)
-            sprintf(buf, "&9&bIt begins to %s.&0\n", GET_PRECIP_TYPE(zone));
+            sprintf(buf, "&9&bIt begins to %s.&0\n", GET_PRECIP_TYPE(zone).data());
     } else if (zone->precipitation)
         strcpy(buf,
                "&4Small &7&bbil&0&7low&bing white &7c&0&7l&6ou&7d&bs&0 "

@@ -300,9 +300,9 @@ void parse_action(int command, char *string, DescriptorData *d) {
             *s = temp;
         } else
             strcat(buf, t);
-            /*
-             * This is kind of annoying...but some people like it.
-             */
+        /*
+         * This is kind of annoying...but some people like it.
+         */
 #if 0
 	sprintf(buf, "%s\n%d line%sshown.\n", buf, total_len, ((total_len != 1) ? "s " : " "));
 #endif
@@ -891,16 +891,16 @@ void get_paging_input(DescriptorData *d, char *input) {
     one_argument(input, buf);
 
     /* Q is for quit. :) */
-    if (LOWER(*buf) == 'q') {
+    if (to_lower(*buf) == 'q') {
         d->page_outbuf->clear();
         return;
     }
     /* R is for refresh */
-    else if (LOWER(*buf) == 'r')
+    else if (to_lower(*buf) == 'r')
         // Do nothing, just refresh the page
         ;
     /* B is for back */
-    else if (LOWER(*buf) == 'b')
+    else if (to_lower(*buf) == 'b')
         d->paging_curpage--;
 
     /* A digit: goto a page */

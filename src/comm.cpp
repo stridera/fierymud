@@ -62,6 +62,7 @@
 #else
 #include "telnet.h"
 #endif
+#include "bitflags.hpp"
 
 #ifndef INVALID_SOCKET
 #define INVALID_SOCKET -1
@@ -296,7 +297,10 @@ void hotboot_recover() {
     /* read boot_time - first line in file */
     if (boot_time)
         free(boot_time);
-    fgets(p = buf, MAX_STRING_LENGTH, fp);
+    if (fgets(p = buf, MAX_STRING_LENGTH, fp) == nullptr) {
+        perror("Error reading from file");
+        exit(1);
+    }
     p = any_one_arg(p, name);
     num_hotboots = atoi(name); /* actually the total number of boots */
     CREATE(boot_time, time_t, num_hotboots + 1);
@@ -309,7 +313,10 @@ void hotboot_recover() {
     /* More than 1000 iterations means something is pretty wrong. */
     for (count = 0; count <= 1000; ++count) {
         fOld = true;
-        fscanf(fp, "%d %s %s\n", &desc, name, host);
+        if (fscanf(fp, "%d %s %s\n", &desc, name, host) != 3) {
+            log("Error reading hotboot data. Exiting.");
+            exit(1);
+        }
         if (desc == -1)
             break;
 
@@ -1209,7 +1216,7 @@ void echo_off(DescriptorData *d) {
 
 void send_gmcp_prompt(DescriptorData *d) {
     CharData *ch = d->character, *vict = FIGHTING(ch), *tank;
-    char position[MAX_STRING_LENGTH];
+    std::string_view position;
     effect *eff;
 
     if (!d->gmcp_enabled) {
@@ -1233,9 +1240,9 @@ void send_gmcp_prompt(DescriptorData *d) {
     /* Need to construct a json string.  Would be nice to get a module to do it
        for us, but the code base is too old to rely on something like that. */
     if (d->original)
-        sprinttype(GET_POS(d->original), position_types, position);
+        position = sprinttype(GET_POS(d->original), position_types);
     else
-        sprinttype(GET_POS(d->character), position_types, position);
+        position = sprinttype(GET_POS(d->character), position_types);
 
     json gmcp_data = {
         {"name", strip_ansi(GET_NAME(ch))},
@@ -2151,7 +2158,7 @@ int process_input(DescriptorData *t) {
             command_space_left--;
         } else {
             /* If we are here, it's normal text input. */
-            if (IS_NEWLINE(*ptr) || space_left <= 0) { /* End of command, process it */
+            if (*ptr == '\n' || space_left <= 0) { /* End of command, process it */
                 *write_point = '\0';
                 if (t->snoop_by)
                     desc_printf(t->snoop_by, "&6>>&b {} &0\n", tmp);
@@ -2180,10 +2187,10 @@ int process_input(DescriptorData *t) {
                     char buffer[MAX_INPUT_LENGTH + 64];
                     if (write_to_descriptor(t->descriptor, "Line too long.  Truncated to:\n{}\n", tmp) < 0)
                         return -1;
-                    while (*ptr && !IS_NEWLINE(*ptr)) /* Find next newline */
+                    while (*ptr && *ptr != '\n') /* Find next newline */
                         ++ptr;
                 }
-                while (*(ptr + 1) && IS_NEWLINE(*(ptr + 1))) /* Find start of next command. */
+                while (*(ptr + 1) && *(ptr + 1) == '\n') /* Find start of next command. */
                     ++ptr;
 
                 write_point = tmp;

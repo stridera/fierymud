@@ -995,11 +995,9 @@ const CommandInfo cmd_info[] = {
 
     {"\n", 0, 0, 0, 0, 0, CMD_HIDE}}; /* this must be last */
 
-const char *command_flags[] = {"MEDITATE", "MAJOR PARA", "MINOR PARA", "HIDE", "BOUND", "CAST", "OLC", "NOFIGHT", "\n"};
+constexpr std::string_view fill[] = {"in", "from", "with", "the", "on", "at", "to", "\n"};
 
-const char *fill[] = {"in", "from", "with", "the", "on", "at", "to", "\n"};
-
-const char *reserved[] = {"self", "me", "all", "room", "someone", "something", "\n"};
+constexpr std::string_view reserved[] = {"self", "me", "all", "room", "someone", "something", "\n"};
 
 void list_similar_commands(CharData *ch, char *arg) {
     int found = false, cmd;
@@ -1352,63 +1350,6 @@ int perform_alias(DescriptorData *d, char *orig) {
  * Various other parsing utilities                                         *
  **************************************************************************/
 
-/*
- * searches an array of strings for a target string.  "exact" can be
- * 0 or non-0, depending on whether or not the match must be exact for
- * it to be returned.  Returns -1 if not found; 0..n otherwise.  Array
- * must be terminated with a '\n' so it knows to stop searching.
- *
- * searchblock follows a similar naming convention to strcasecmp:
- * searchblock is case-sensitive, search_block is case-insensitive.
- * Often, which one you use only depends on the case of items in your
- * list, because any_one_arg and one_argument always return lower case
- * arguments.
- */
-int searchblock(char *arg, const char **list, bool exact) {
-    int i, l;
-
-    /* Make into lower case, and get length of string */
-    for (l = 0; *(arg + l); l++)
-        *(arg + l) = LOWER(*(arg + l));
-
-    if (exact) {
-        for (i = 0; **(list + i) != '\n'; i++)
-            if (!strcasecmp(arg, *(list + i)))
-                return (i);
-    } else {
-        if (!l)
-            l = 1; /* Avoid "" to match the first available
-                    * string */
-        for (i = 0; **(list + i) != '\n'; i++)
-            if (!strncasecmp(arg, *(list + i), l))
-                return (i);
-    }
-
-    return -1;
-}
-
-int search_block(const char *arg, const char **list, bool exact) {
-    int i, len;
-
-    if (!arg)
-        return -1;
-
-    if (exact) {
-        for (i = 0; **(list + i) != '\n'; i++)
-            if (!strcasecmp(arg, *(list + i)))
-                return (i);
-    } else {
-        len = strlen(arg);
-        if (!len)
-            len = 1; /* Avoid "" to match the first available string */
-        for (i = 0; **(list + i) != '\n'; i++)
-            if (!strncasecmp(arg, *(list + i), (unsigned)len))
-                return (i);
-    }
-
-    return (-1);
-}
-
 /* \s*\d+ */
 bool is_number(const char *str) {
     if (!str || !*str)
@@ -1518,7 +1459,7 @@ char *one_argument(char *argument, char *first_arg) {
 
         first_arg = begin;
         while (*argument && !isspace(*argument)) {
-            *(first_arg++) = LOWER(*argument);
+            *(first_arg++) = to_lower(*argument);
             argument++;
         }
 
@@ -1534,13 +1475,13 @@ char *delimited_arg(char *argument, char *first_arg, char delimiter) {
     if (*argument == delimiter) {
         argument++;
         while (*argument && *argument != delimiter) {
-            *(first_arg++) = LOWER(*argument);
+            *(first_arg++) = to_lower(*argument);
             argument++;
         }
         argument++;
     } else {
         while (*argument && !isspace(*argument)) {
-            *(first_arg++) = LOWER(*argument);
+            *(first_arg++) = to_lower(*argument);
             argument++;
         }
     }
@@ -1579,13 +1520,13 @@ char *delimited_arg_all(char *argument, char *first_arg, char delimiter) {
     if (*argument == delimiter) {
         argument++;
         while (*argument && *argument != delimiter) {
-            *(first_arg++) = LOWER(*argument);
+            *(first_arg++) = to_lower(*argument);
             argument++;
         }
         argument++;
     } else {
         while (*argument) {
-            *(first_arg++) = LOWER(*argument);
+            *(first_arg++) = to_lower(*argument);
             argument++;
         }
     }
@@ -1606,7 +1547,7 @@ char *any_one_arg(char *argument, char *first_arg) {
     skip_spaces(&argument);
 
     while (*argument && !isspace(*argument)) {
-        *(first_arg++) = LOWER(*argument);
+        *(first_arg++) = to_lower(*argument);
         argument++;
     }
 
@@ -1636,7 +1577,7 @@ int is_abbrev(const char *arg1, const char *arg2) {
         return 0;
 
     for (; *arg1 && *arg2; arg1++, arg2++)
-        if (LOWER(*arg1) != LOWER(*arg2))
+        if (to_lower(*arg1) != to_lower(*arg2))
             return 0;
 
     if (!*arg1)
@@ -2012,8 +1953,8 @@ int enter_player_game(DescriptorData *d) {
     GET_QUIT_REASON(d->character) = QUIT_AUTOSAVE;
 
     // A couple of hacks to reconnect things if the player logged out to the menu and then re-entered the game
-    if (GET_CLAN_MEMBERSHIP(d->character))
-        GET_CLAN_MEMBERSHIP(d->character)->player = d->character;
+    d->character->player_specials->clan_memberships =
+        clan_repository.get_clan_memberships(std::make_shared<CharData>(*d->character));
 
     // restart cooldowns
     for (int i = 0; i < NUM_COOLDOWNS; ++i)
@@ -2555,8 +2496,10 @@ void nanny(DescriptorData *d, char *arg) {
                 string_to_output(d, NEWSUPDATED2);
             }
 
-            if (GET_CLAN(d->character) && GET_CLAN(d->character)->motd)
-                desc_printf(d, "\n{}{} news:\n{}", GET_CLAN(d->character)->name, ANRM, GET_CLAN(d->character)->motd);
+            auto clan_membership = get_clan_memberships(d->character);
+            for (auto &clan : clan_membership) {
+                desc_printf(d, "\n{}{} news:\n{}", clan->get_clan_name(), ANRM, clan->get_clan_motd());
+            }
 
             // Convert timestamp to string
             auto time = std::chrono::system_clock::from_time_t(d->character->player.time.logon);
@@ -2619,7 +2562,7 @@ void nanny(DescriptorData *d, char *arg) {
 
         break;
 
-    case CON_QSEX: /* query sex of new user         */
+    case CON_QSEX: /* query gender of new user */
         switch (*arg) {
         case 'm':
         case 'M':
@@ -3268,8 +3211,11 @@ void nanny(DescriptorData *d, char *arg) {
                 STATE(d) = CON_CLOSE;
                 return;
             }
-            if (GET_CLAN_MEMBERSHIP(d->character))
-                revoke_clan_membership(GET_CLAN_MEMBERSHIP(d->character));
+
+            auto clan_memberships = get_clan_memberships(d->character);
+            for (auto &membership : clan_memberships) {
+                membership->remove_member();
+            }
 
             if ((player_i = get_ptable_by_name(GET_NAME(d->character))) >= 0) {
                 SET_BIT(player_table[player_i].flags, PINDEX_DELETED);
@@ -3324,7 +3270,7 @@ long max_exp_gain(CharData *ch) {
 int bonus_stat(CharData *ch, char arg) {
     int b;
     int a;
-    arg = LOWER(arg);
+    arg = to_lower(arg);
     switch (arg) {
     case 'w':
         b = random_number(2, 6);

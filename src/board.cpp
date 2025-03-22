@@ -749,7 +749,7 @@ ACMD(do_boardadmin) {
                                         ellipsis(board->title, 19)));
             // for (j = 0; j < NUM_BPRIV; ++j) {
             //     rule_abbr(buf, board->privileges[j]);
-            //     char_printf(ch, " " FGRN "%c" ANRM "%3s", UPPER(*rule_name(board->privileges[j])), buf);
+            //     char_printf(ch, " " FGRN "%c" ANRM "%3s", to_upper(*rule_name(board->privileges[j])), buf);
             // }
             char_printf(ch, "\n");
         }
@@ -776,7 +776,7 @@ ACMD(do_boardadmin) {
                         board->alias, board->number, board->title, board->message_count, YESNO(board->locked));
             // for (i = 0; i < NUM_BPRIV; ++i) {
             //     rule_verbose(buf, sizeof(buf), board->privileges[i]);
-            //     char_printf(ch, "  %c%-11s : {}\n", UPPER(*privilege_data[i].alias), privilege_data[i].alias + 1,
+            //     char_printf(ch, "  %c%-11s : {}\n", to_upper(*privilege_data[i].alias), privilege_data[i].alias + 1,
             //     buf);
             // }
         }

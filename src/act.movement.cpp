@@ -83,11 +83,9 @@ void spill_blood(CharData *ch) {
 
 int do_misdirected_move(CharData *actor, int dir) {
     CharData *people;
-    char mmsg[MAX_STRING_LENGTH];
-    char rmsg[MAX_STRING_LENGTH];
 
-    sprintf(mmsg, "$n %s %s.", movewords(actor, dir, actor->in_room, true), dirs[dir]);
-    sprintf(rmsg, "$n's &5illusion &0%s %s.", movewords(actor, dir, actor->in_room, true), dirs[dir]);
+    auto mmsg = fmt::format("$n {} {}.", movewords(actor, dir, actor->in_room, true), dirs[dir]);
+    auto rmsg = fmt::format("$n's &5illusion &0{} {}.", movewords(actor, dir, actor->in_room, true), dirs[dir]);
 
     LOOP_THRU_PEOPLE(people, actor) {
         if (actor == people) {
@@ -121,21 +119,20 @@ bool try_to_sense_departure(CharData *observer, CharData *mover) {
     }
 }
 
-void observe_char_leaving(CharData *observer, CharData *mover, CharData *mount, char *msg, int direction) {
+void observe_char_leaving(CharData *observer, CharData *mover, CharData *mount, std::string_view msg, int direction) {
     if (observer == mover || observer == mount || !AWAKE(observer))
         return;
 
     if (observer == RIDING(mover)) {
-        sprintf(buf, "%s you.", msg);
-        act(buf, false, mover, 0, observer, TO_VICT);
+        act(fmt::format("{} you.", msg), false, mover, 0, observer, TO_VICT);
         return;
     }
 
     if (mount) {
         /* MOUNTED MOVEMENT */
         if (CAN_SEE(observer, mount) || CAN_SEE(observer, mover)) {
-            sprintf(buf, "%s %s.", msg, CAN_SEE(observer, mount) ? GET_NAME(mount) : "something");
-            act(buf, false, mover, 0, observer, TO_VICT);
+            act(fmt::format("{} {}.", msg, CAN_SEE(observer, mount) ? GET_NAME(mount) : "something"), false, mover, 0,
+                observer, TO_VICT);
         } else if (CAN_SEE_BY_INFRA(observer, mover) || CAN_SEE_BY_INFRA(observer, mount)) {
             char_printf(observer, "&1&bA {}-sized creature rides {} on a {} mount.&0\n", SIZE_DESC(mover),
                         dirs[direction], SIZE_DESC(mount));
@@ -165,16 +162,16 @@ void observe_char_leaving(CharData *observer, CharData *mover, CharData *mount, 
         try_to_sense_departure(observer, mover);
 }
 
-void observe_char_arriving(CharData *observer, CharData *mover, CharData *mount, char *mountmsg, char *stdmsg,
-                           int direction) {
+void observe_char_arriving(CharData *observer, CharData *mover, CharData *mount, std::string_view mountmsg,
+                           std::string_view stdmsg, int direction) {
     if (observer == mover || observer == mount || !AWAKE(observer))
         return;
 
     if (mount) {
         /* MOUNTED MOVEMENT */
-        sprintf(buf2, "%s%s.", mountmsg, CAN_SEE(observer, mount) ? GET_NAME(mount) : "something");
         if (CAN_SEE(observer, mount) || CAN_SEE(observer, mover)) {
-            act(buf2, false, mover, 0, observer, TO_VICT);
+            auto buf = fmt::format("{}{}.", mountmsg, CAN_SEE(observer, mount) ? GET_NAME(mount) : "something");
+            act(buf, false, mover, 0, observer, TO_VICT);
         } else if (CAN_SEE_BY_INFRA(observer, mover) || CAN_SEE_BY_INFRA(observer, mount)) {
             char_printf(observer, "&1&bA {}-sized creature arrives from {}{}, riding a {} mount.&0\n", SIZE_DESC(mover),
                         (direction < UP ? "the " : ""),
@@ -217,8 +214,7 @@ bool do_simple_move(CharData *ch, int dir, int need_specials_check) {
     int flying = 0, levitating = 0;
     bool boat;
     int need_movement, vnum;
-    char mmsg[MAX_STRING_LENGTH];
-    char tmp[MAX_STRING_LENGTH];
+    std::string_view mmsg;
     CharData *observer;
 
     /* Possible situations:
@@ -283,15 +279,15 @@ bool do_simple_move(CharData *ch, int dir, int need_specials_check) {
     /* Is mount standing and conscious? */
     if (mount) {
         if (GET_STANCE(mount) < STANCE_RESTING) {
-            sprintf(buf, "You aren't riding $N anywhere while $E's %s.", stance_types[GET_STANCE(mount)]);
-            act(buf, false, actor, 0, mount, TO_CHAR);
-            sprintf(buf, "$n tries to ride the %s $D.", stance_types[GET_STANCE(mount)]);
-            act(buf, true, actor, 0, mount, TO_ROOM);
+            act(fmt::format("You aren't riding $N anywhere while $E's {}.", stance_types[GET_STANCE(mount)]), false,
+                actor, 0, mount, TO_CHAR);
+            act(fmt::format("$n tries to ride the {} $D.", stance_types[GET_STANCE(mount)]), true, actor, 0, mount,
+                TO_ROOM);
             return false;
         }
         if (GET_POS(mount) < POS_STANDING) {
-            sprintf(buf, "You can't ride away on $N while $E's %s.", position_types[GET_POS(mount)]);
-            act(buf, false, actor, 0, mount, TO_CHAR);
+            act(fmt::format("You can't ride away on $N while $E's {}.", position_types[GET_POS(mount)]), false, actor,
+                0, mount, TO_CHAR);
             return false;
         }
         if (GET_STANCE(mount) == STANCE_RESTING) {
@@ -504,11 +500,10 @@ bool do_simple_move(CharData *ch, int dir, int need_specials_check) {
     alter_move(motivator, need_movement);
 
     if (mount) {
-        sprintf(buf2, "You ride %s on %s.\n", dirs[dir], PERS(mount, actor));
-        act(buf2, true, actor, 0, 0, TO_CHAR);
-        sprintf(mmsg, "$n rides %s on", dirs[dir]);
+        act(fmt::format("You ride {} on {}.\n", dirs[dir], PERS(mount, actor)), true, actor, 0, 0, TO_CHAR);
+        mmsg = fmt::format("$n rides {} on", dirs[dir]);
     } else {
-        sprintf(mmsg, "$n %s %s.", movewords(actor, dir, actor->in_room, true), dirs[dir]);
+        mmsg = fmt::format("$n {} {}.", movewords(actor, dir, actor->in_room, true), dirs[dir]);
     }
 
     if (IS_HIDDEN(motivator) || EFF_FLAGGED(motivator, EFF_SNEAK)) {
@@ -553,23 +548,28 @@ bool do_simple_move(CharData *ch, int dir, int need_specials_check) {
     /* At last, it is time to actually move */
     char_from_room(actor);
     char_to_room(actor, world[was_in].exits[dir]->to_room);
+
+    std::string mounted_msg, unmounted_msg;
     if (mount) {
         char_from_room(mount);
         char_to_room(mount, actor->in_room);
         look_at_room(mount, true);
 
-        sprintf(tmp, "$n arrives from %s%s, riding ", (dir < UP ? "the " : ""),
-                (dir == UP     ? "below"
-                 : dir == DOWN ? "above"
-                               : dirs[rev_dir[dir]]));
+        mounted_msg = fmt::format("$n arrives from {}{}, riding ", (dir < UP ? "the " : ""),
+                                  (dir == UP     ? "below"
+                                   : dir == DOWN ? "above"
+                                                 : dirs[rev_dir[dir]]));
     } else {
-        sprintf(buf, "$n %s from %s%s.", movewords(actor, dir, actor->in_room, false), (dir < UP ? "the " : ""),
-                (dir == UP     ? "below"
-                 : dir == DOWN ? "above"
-                               : dirs[rev_dir[dir]]));
+        unmounted_msg =
+            fmt::format("$n {} from {}{}.", movewords(actor, dir, actor->in_room, false), (dir < UP ? "the " : ""),
+                        (dir == UP     ? "below"
+                         : dir == DOWN ? "above"
+                                       : dirs[rev_dir[dir]]));
     }
 
-    LOOP_THRU_PEOPLE(observer, actor) { observe_char_arriving(observer, actor, mount, tmp, buf, dir); }
+    LOOP_THRU_PEOPLE(observer, actor) {
+        observe_char_arriving(observer, actor, mount, mounted_msg, unmounted_msg, dir);
+    }
 
     /* If the room is affected by a circle of fire, damage the person */
     /* if it dies, don't do anything else */
@@ -651,8 +651,7 @@ bool perform_move(CharData *ch, int dir, int need_specials_check, bool misdirect
                     if (IN_ROOM(k->follower) != IN_ROOM(ch))
                         act("&3Oops!  $n&0&3 seems to have wandered off again.&0", false, k->follower, 0, ch, TO_VICT);
                 } else {
-                    sprintf(buf, "You follow $N %s.\n", dirs[dir]);
-                    act(buf, false, k->follower, 0, ch, TO_CHAR);
+                    act(fmt::format("You follow $N {}.\n", dirs[dir]), false, k->follower, 0, ch, TO_CHAR);
                     if (perform_move(k->follower, dir, 1, false) && IS_MOB(k->follower) && PLAYERALLY(k->follower)) {
                         if (GET_MOVE(k->follower) == 0) {
                             act("$N staggers, gasping for breath.  They don't look like they could walk another step.",
@@ -745,7 +744,7 @@ ACMD(do_move) {
         perform_move(ch, subcmd - 1, 0, false);
         break;
     default:
-        if (argument && *arg && (subcmd = searchblock(arg, dirs, 0)) >= 0)
+        if (argument && *arg && (subcmd = search_block(arg, dirs, false)) >= 0)
             perform_move(ch, subcmd, 0, false);
         else
             char_printf(ch, "Which way do you want to go?\n");
@@ -790,7 +789,7 @@ int find_door(CharData *ch, const char *name, const char *dirname, const char *c
                 return dir;
         }
         if (!quiet) {
-            char_printf(ch, "There doesn't seem to be {} {} here.\n", AN(name), name);
+            char_printf(ch, "There doesn't seem to be {} {} here.\n", an(name), name);
         }
         return -1;
     }
@@ -1266,17 +1265,17 @@ ACMD(do_enter) {
 
     /* Display entry message. */
     if (GET_OBJ_VAL(obj, VAL_PORTAL_ENTRY_MSG) >= 0) {
-        for (i = 0; i < GET_OBJ_VAL(obj, VAL_PORTAL_ENTRY_MSG) && *portal_entry_messages[i] != '\n'; ++i)
+        for (i = 0; i < GET_OBJ_VAL(obj, VAL_PORTAL_ENTRY_MSG) && portal_entry_messages[i].front() != '\n'; ++i)
             ;
-        if (*portal_entry_messages[i] != '\n')
+        if (portal_entry_messages[i].front() != '\n')
             act(portal_entry_messages[i], true, ch, obj, 0, TO_ROOM);
     }
 
     /* Display character message. */
     if (GET_OBJ_VAL(obj, 2) >= VAL_PORTAL_CHAR_MSG) {
-        for (i = 0; i < GET_OBJ_VAL(obj, VAL_PORTAL_CHAR_MSG) && *portal_character_messages[i] != '\n'; ++i)
+        for (i = 0; i < GET_OBJ_VAL(obj, VAL_PORTAL_CHAR_MSG) && portal_character_messages[i].front() != '\n'; ++i)
             ;
-        if (*portal_character_messages[i] != '\n')
+        if (portal_character_messages[i].front() != '\n')
             act(portal_character_messages[i], true, ch, obj, 0, TO_CHAR);
     }
 
@@ -1285,9 +1284,9 @@ ACMD(do_enter) {
 
     /* Display exit message. */
     if (GET_OBJ_VAL(obj, VAL_PORTAL_EXIT_MSG) >= 0) {
-        for (i = 0; i < GET_OBJ_VAL(obj, VAL_PORTAL_EXIT_MSG) && *portal_exit_messages[i] != '\n'; ++i)
+        for (i = 0; i < GET_OBJ_VAL(obj, VAL_PORTAL_EXIT_MSG) && portal_exit_messages[i].front() != '\n'; ++i)
             ;
-        if (*portal_exit_messages[i] != '\n')
+        if (portal_exit_messages[i].front() != '\n')
             act(portal_exit_messages[i], true, ch, obj, 0, TO_ROOM);
     }
 
@@ -1699,13 +1698,13 @@ ACMD(do_drag) {
         if (!perform_move(ch, dir, false, false)) {
             if (tch) {
                 char_to_room(tch, from_room);
-                sprintf(buf, "&3Looking confused, $n&0&3 tried to drag $N&0&3 %s.&0", dirs[dir]);
-                act(buf, false, ch, 0, tch, TO_NOTVICT);
-                sprintf(buf, "&3Looking confused, $n&0&3 tried to drag you %s.&0", dirs[dir]);
-                act(buf, false, ch, 0, tch, TO_VICT);
+                act(fmt::format("&3Looking confused, $n&0&3 tried to drag $N&0&3 {}.&0", dirs[dir]), false, ch, 0, tch,
+                    TO_NOTVICT);
+                act(fmt::format("&3Looking confused, $n&0&3 tried to drag you {}.&0", dirs[dir]), false, ch, 0, tch,
+                    TO_VICT);
             } else if (tobj) {
-                sprintf(buf, "&3Looking confused, $n&0&3 tried to drag $p&0&3 %s.&0", dirs[dir]);
-                act(buf, false, ch, tobj, 0, TO_ROOM);
+                act(fmt::format("&3Looking confused, $n&0&3 tried to drag $p&0&3 {}.&0", dirs[dir]), false, ch, tobj, 0,
+                    TO_ROOM);
             }
             return;
         }
@@ -1734,7 +1733,7 @@ ACMD(do_drag) {
             act("&3Your meditation is interrupted as %N grabs you.&0", false, ch, 0, 0, TO_CHAR);
             if (IS_NPC(ch))
                 REMOVE_FLAG(MOB_FLAGS(ch), MOB_MEDITATE);
-            else 
+            else
                 REMOVE_FLAG(PLR_FLAGS(ch), PLR_MEDITATE);
         }
 

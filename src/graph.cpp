@@ -690,7 +690,7 @@ bool cause_single_track(TrackInfo track, CharData *ch, CharData *victim, int tra
     if (EXIT_IS_CLOSED(CH_EXIT(ch, direction)) && GET_LEVEL(ch) < LVL_GOD) {
         strcpy(doorname, exit_name(CH_EXIT(ch, direction)));
         char_printf(ch, "You try to open the {}.\n", doorname);
-        sprintf(doorname, "%s %s", doorname, dirs[direction]);
+        sprintf(doorname, "%s %s", doorname, dirs[direction].data());
         cmd = find_command("cmd");
         do_gen_door(ch, doorname, cmd, 0);
         if (EXIT_IS_CLOSED(CH_EXIT(ch, direction))) {

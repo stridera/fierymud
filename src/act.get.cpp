@@ -269,9 +269,9 @@ static void perform_get_check_money(GetContext *context, ObjData *obj) {
                "There were 0 coins.\n"
                "Must have been an illusion!");
     else {
-        strcpy(buf, prior_value ? "There was a total of " : "There were ");
-        statemoney(buf + strlen(buf), context->coins);
-        strcat(buf, ".");
+        auto msg = fmt::format("{} {} coins.\n", prior_value ? "There was a total of " : "There were ",
+                               statemoney(context->coins));
+        strcpy(buf, msg.c_str());
     }
     queue_message(context, obj, false, buf, nullptr);
     GET_PLATINUM(ch) += GET_OBJ_VAL(obj, VAL_MONEY_PLATINUM);
@@ -525,7 +525,7 @@ ACMD(do_palm) {
     /* No container - palm from room */
     else if (!*arg2) {
         if (!(obj = find_obj_in_list(world[ch->in_room].contents, find_vis_by_name(ch, arg1))))
-            char_printf(ch, "You don't see {} {} here.\n", AN(arg1), arg1);
+            char_printf(ch, "You don't see {} {} here.\n", an(arg1), arg1);
         else if (!check_get_disarmed_obj(ch, obj->last_to_hold, obj) && can_take_obj(ch, obj) &&
                  get_otrigger(obj, ch, nullptr)) {
             int people = 0;
@@ -571,14 +571,14 @@ ACMD(do_palm) {
     } else {
         cont_mode = generic_find(arg2, FIND_OBJ_EQUIP | FIND_OBJ_INV | FIND_OBJ_ROOM, ch, &tch, &cont);
         if (!cont)
-            char_printf(ch, "You can't find {} {}.\n", AN(arg2), arg2);
+            char_printf(ch, "You can't find {} {}.\n", an(arg2), arg2);
         else if (GET_OBJ_TYPE(cont) != ITEM_CONTAINER)
             act("$p is not a container.", false, ch, cont, nullptr, TO_CHAR);
         else if (IS_SET(GET_OBJ_VAL(cont, VAL_CONTAINER_BITS), CONT_CLOSED))
             act("$p is closed.", false, ch, cont, nullptr, TO_CHAR);
         else if (!IS_PLR_CORPSE(cont) || has_corpse_consent(ch, cont)) {
             if (!(obj = find_obj_in_list(cont->contains, find_vis_by_name(ch, arg1)))) {
-                sprintf(buf, "There doesn't seem to be %s %s in $p.", AN(arg1), arg1);
+                sprintf(buf, "There doesn't seem to be %s %s in $p.", an(arg1), arg1);
                 act(buf, false, ch, cont, nullptr, TO_CHAR);
             } else if (cont_mode == FIND_OBJ_INV || can_take_obj(ch, obj)) {
                 if (IS_CARRYING_N(ch) >= CAN_CARRY_N(ch))

@@ -1891,7 +1891,7 @@ ACMD(do_set) {
         value = atoi(val_arg);
     }
 
-    strcpy(buf, OK);
+    strcpy(buf, OK.data());
     switch (l) {
     case 0:
         SET_OR_REMOVE(PRF_FLAGS(vict), PRF_BRIEF);
@@ -2100,12 +2100,8 @@ ACMD(do_set) {
             save = false;
             break;
         }
-        if (GET_CLAN(vict) && IS_CLAN_MEMBER(vict))
-            GET_CLAN(vict)->power -= GET_LEVEL(vict);
         value = std::clamp(value, 0, LVL_IMPL);
         vict->player.level = (byte)value;
-        if (GET_CLAN(vict) && IS_CLAN_MEMBER(vict))
-            GET_CLAN(vict)->power += GET_LEVEL(vict);
         break;
     case 35:
         if ((i = real_room(value)) < 0) {
@@ -2762,8 +2758,8 @@ ACMD(do_copyto) {
 
     /* Main stuff */
 
-    if (world[ch->in_room].description) {
-        world[rroom].description = strdup(world[ch->in_room].description);
+    if (!world[ch->in_room].description.empty()) {
+        world[rroom].description = world[ch->in_room].description;
 
         /* Only works if you have Oasis OLC */
         olc_add_to_save_list((iroom / 100), OLC_SAVE_ROOM);
@@ -2877,14 +2873,11 @@ ACMD(do_rclone) {
     src = &world[ch->in_room];
     dest = &world[rnum];
 
-    if (src->description)
-        dest->description = strdup(src->description);
-    if (src->description)
-        dest->description = strdup(src->description);
-    if (src->name)
-        dest->name = strdup(src->name);
+    dest->description = src->description;
+    dest->description = src->description;
+    dest->name = src->name;
     for (i = 0; i < FLAGVECTOR_SIZE(NUM_ROOM_FLAGS); ++i)
-        dest->room_flags[i] = src->room_flags[i];
+        dest->flags[i] = src->flags[i];
     if (src->sector_type)
         dest->sector_type = src->sector_type;
 
@@ -2921,8 +2914,12 @@ ACMD(do_terminate) {
             return;
         }
         /* delete and purge */
-        if (GET_CLAN_MEMBERSHIP(victim))
-            revoke_clan_membership(GET_CLAN_MEMBERSHIP(victim));
+        auto clan_membership = get_clan_memberships(victim);
+        if (!clan_membership.empty()) {
+            for (auto &clan : clan_membership) {
+                clan->remove_member();
+            }
+        }
         SET_FLAG(PLR_FLAGS(victim), PLR_DELETED);
         save_player_char(victim);
         delete_player_obj_file(victim);
@@ -2975,7 +2972,9 @@ ACMD(do_pfilemaint) {
     /* copy the player index to a backup file */
     sprintf(file_name, "%s/%s", PLR_PREFIX, INDEX_FILE);
     sprintf(buf, "cp %s %s.`date +%%m%%d.%%H%%M%%S`", file_name, file_name);
-    system(buf);
+    if (system(buf) != 0) {
+        char_printf(ch, "Error: Failed to execute system command: {}.\n", buf);
+    }
 
     CREATE(new_player_table, PlayerIndexElement, top_of_p_table + 1);
 
@@ -3150,9 +3149,11 @@ ACMD(do_hotboot) {
     sprintf(buf, "%d", port);
     sprintf(buf2, "-H%d", mother_desc);
 
-    /* Ugh, seems it is expected we are 1 step above lib - this may be dangerous!
-     */
-    chdir("..");
+    /* Ugh, seems it is expected we are 1 step above lib - this may be dangerous! */
+    if (chdir("..") != 0) {
+        perror("chdir failed");
+        exit(1);
+    }
 
     /* exec - descriptors are inherited! */
     execl("bin/fiery", "fiery", buf2, buf, (char *)nullptr);

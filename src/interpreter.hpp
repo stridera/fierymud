@@ -12,8 +12,11 @@
 
 #pragma once
 
+#include "string_utils.hpp"
 #include "structs.hpp"
 #include "sysdep.hpp"
+
+#include <span>
 
 #define ACMD(name)                                                                                                     \
     void(name)(CharData * ch, [[maybe_unused]] char *argument, [[maybe_unused]] int cmd, [[maybe_unused]] int subcmd)
@@ -22,11 +25,82 @@
 #define CMD_IS(cmd_name) (!strcasecmp(cmd_name, cmd_info[cmd].command))
 #define IS_MOVE(cmdnum) (cmdnum >= 1 && cmdnum <= 6)
 
+/*
+ * searches an array of strings for a target string.  "exact" can be
+ * true or false, depending on whether or not the match must be exact for
+ * it to be returned.  Returns -1 if not found; 0..n otherwise.
+ *
+ * If the passed in haystack is an old c-array, it must be terminated with
+ *  a '\n' so it knows to stop searching.
+ *
+ * If the passed in haystack is a std::array, it will search until the
+ * end of the array.
+ *
+ * search_block follows a similar naming convention to strcasecmp:
+ * search_block is case-sensitive, search_block is case-insensitive.
+ * Often, which one you use only depends on the case of items in your
+ * list, because any_one_arg and one_argument always return lower case
+ * arguments.
+ */
+
+// Primary implementation for std::array
+template <std::size_t N>
+int search_block(const std::string_view needle, const std::array<std::string_view, N> &haystack, bool exact) {
+    for (std::size_t i = 0; i < haystack.size(); ++i)
+        if (exact ? matches(needle, haystack[i]) : matches_start(needle, haystack[i]))
+            return static_cast<int>(i);
+    return -1;
+}
+
+// Implementation for std::span (for C-style arrays with known size)
+inline int search_block(const std::string_view needle, std::span<const std::string_view> haystack, bool exact) {
+    for (std::size_t i = 0; i < haystack.size(); ++i)
+        if (exact ? matches(needle, haystack[i]) : matches_start(needle, haystack[i]))
+            return static_cast<int>(i);
+    return -1;
+}
+
+// Implementation for null-terminated arrays
+inline int search_block(const std::string_view needle, const std::string_view haystack[], bool exact) {
+    for (std::size_t i = 0; haystack[i].front() != '\n'; ++i)
+        if (exact ? matches(needle, haystack[i]) : matches_start(needle, haystack[i]))
+            return static_cast<int>(i);
+    return -1;
+}
+
+// Implementation for C-style null-terminated string arrays
+inline int search_block(const std::string_view needle, const char *const haystack[], bool exact) {
+    for (std::size_t i = 0; *haystack[i] != '\n'; ++i)
+        if (exact ? matches(needle, haystack[i]) : matches_start(needle, haystack[i]))
+            return static_cast<int>(i);
+    return -1;
+}
+
+// Forwarding overloads for different needle types
+template <std::size_t N>
+inline int search_block(const char *needle, const std::array<std::string_view, N> &haystack, bool exact) {
+    return search_block(std::string_view{needle}, haystack, exact);
+}
+
+template <std::size_t N>
+inline int search_block(char *needle, const std::array<std::string_view, N> &haystack, bool exact) {
+    return search_block(std::string_view{needle}, haystack, exact);
+}
+
+inline int search_block(const char *needle, const char *const haystack[], bool exact) {
+    return search_block(std::string_view{needle}, haystack, exact);
+}
+
+inline int search_block(char *needle, const char *const haystack[], bool exact) {
+    return search_block(std::string_view{needle}, haystack, exact);
+}
+
+inline int search_block(char *needle, std::string_view haystack[], bool exact) {
+    return search_block(std::string_view{needle}, haystack, exact);
+}
+
 void command_interpreter(CharData *ch, char *argument);
 void list_similar_commands(CharData *ch, char *arg);
-int searchblock(char *arg, const char **list, bool exact);
-int search_block(const char *arg, const char **list, bool exact);
-#define parse_direction(arg) (search_block(arg, dirs, false))
 char lower(char c);
 char *one_argument(char *argument, char *first_arg);
 char *one_word(char *argument, char *first_arg);
@@ -80,7 +154,7 @@ struct SortStruct {
 
 /* necessary for CMD_IS macro */
 extern const CommandInfo cmd_info[];
-extern const char *command_flags[];
+
 extern int num_of_cmds;
 extern SortStruct *cmd_sort_info;
 

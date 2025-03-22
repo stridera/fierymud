@@ -137,9 +137,6 @@ struct TrigData {
     TrigData *next;
     TrigData *next_in_world; /* next in the global trigger list */
 };
-extern const char *trig_types[];
-extern const char *otrig_types[];
-extern const char *wtrig_types[];
 extern TrigData *trigger_list;
 
 /* a complete script (composed of several triggers) */
@@ -173,7 +170,7 @@ int drop_wtrigger(ObjData *obj, CharData *actor);
 int give_otrigger(ObjData *obj, CharData *actor, CharData *victim);
 int remove_otrigger(ObjData *obj, CharData *actor);
 int receive_mtrigger(CharData *ch, CharData *actor, ObjData *obj);
-void bribe_mtrigger(CharData *ch, CharData *actor, int *cPtr);
+void bribe_mtrigger(CharData *ch, CharData *actor, Money cPtr);
 int wear_otrigger(ObjData *obj, CharData *actor, int where);
 int command_mtrigger(CharData *actor, char *cmd, char *argument);
 int command_otrigger(CharData *actor, char *cmd, char *argument);
@@ -278,3 +275,18 @@ int remove_var(TriggerVariableData **var_list, const char *name);
 // typedef char_data CharData;
 
 int script_driver(void *go_address, TrigData *trig, int type, int mode);
+
+/* mob trigger types */
+constexpr std::string_view trig_types[] = {"Global",    "Random", "Command", "Speech", "Act",      "Death", "Greet",
+                                           "Greet-All", "Entry",  "Receive", "Fight",  "HitPrcnt", "Bribe", "SpeechTo*",
+                                           "Load",      "Cast",   "Leave",   "Door",   "Look",     "Time",  "\n"};
+
+/* obj trigger types */
+constexpr std::string_view otrig_types[] = {"Global", "Random", "Command", "Attack", "Defense", "Timer", "Get",
+                                            "Drop",   "Give",   "Wear",    "Death",  "Remove",  "Look",  "Use",
+                                            "Load",   "Cast",   "Leave",   "UNUSED", "Consume", "Time",  "\n"};
+
+/* wld trigger types */
+constexpr std::string_view wtrig_types[] = {"Global", "Random",    "Command", "Speech", "UNUSED", "Reset",  "Preentry",
+                                            "Drop",   "Postentry", "UNUSED",  "UNUSED", "UNUSED", "UNUSED", "UNUSED",
+                                            "UNUSED", "Cast",      "Leave",   "Door",   "UNUSED", "Time",   "\n"};

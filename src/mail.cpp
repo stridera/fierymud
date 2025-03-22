@@ -112,7 +112,11 @@ void read_from_file(void *buf, int size, long filepos) {
         return;
     }
     fseek(mail_file, filepos, SEEK_SET);
-    fread(buf, size, 1, mail_file);
+    if (fread(buf, size, 1, mail_file) != 1) {
+        log("SYSERR: Failed to read from mail file.");
+        no_mail = 1;
+        return;
+    }
     fclose(mail_file);
     return;
 }

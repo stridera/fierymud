@@ -19,6 +19,7 @@
 #include "math.hpp"
 #include "objects.hpp"
 #include "screen.hpp"
+#include "string_utils.hpp"
 #include "structs.hpp"
 #include "sysdep.hpp"
 #include "utils.hpp"
@@ -35,79 +36,43 @@ CoinDef coindefs[NUM_COIN_TYPES] = {{"platinum", "plat", "p", "&6&b", "p", 1000}
                                     {"silver", nullptr, "s", "&7&b", "s", 10},
                                     {"copper", nullptr, "c", "&3", "c", 1}};
 
-bool is_coin_name(const char *name, int cointype) {
-    if (!strcasecmp(name, COIN_NAME(cointype)))
+int parse_coin_type(std::string_view name) noexcept {
+    for (int i = 0; i < NUM_COIN_TYPES; i++) {
+        if (is_coin_name(name, i)) {
+            return i;
+        }
+    }
+    return -1;
+}
+
+bool is_coin_name(std::string_view name, int cointype) {
+    if (matches(name, COIN_NAME(cointype)))
         return true;
-    if (COIN_SHORTNAME(cointype) && !strcasecmp(name, COIN_SHORTNAME(cointype)))
+    if (COIN_SHORTNAME(cointype) && matches(name, COIN_SHORTNAME(cointype)))
         return true;
     return false;
 }
 
-#define APPENDCOIN(coin) sprintf(buf, "%s%s%d" ANRM " %s", buf, COIN_COLOR(coin), coins[coin], COIN_NAME(coin))
-
-void statemoney(char *buf, const int coins[]) {
-    int ctypes = 0, ctype2 = 0, amount = 0, i;
-
-    *buf = '\0';
-
-    for (i = 0; i < 4; i++) {
+std::string statemoney(const Money coins) noexcept {
+    std::vector<std::string> coin_strings;
+    for (int i = 0; i < NUM_COIN_TYPES; i++) {
         if (coins[i]) {
-            amount += coins[i];
-            ctypes++;
-            if (ctypes == 2)
-                ctype2 = i;
+            coin_strings.push_back(fmt::format("{}{}{}", COIN_COLOR(i), coins[i], COIN_NAME(i)));
         }
     }
-
-    if (coins[PLATINUM]) {
-        APPENDCOIN(PLATINUM);
-        if (ctypes == 2)
-            strcat(buf, " and ");
-        else if (ctypes > 2)
-            strcat(buf, ", ");
-    }
-    if (coins[GOLD]) {
-        APPENDCOIN(GOLD);
-        if (ctypes == 2 && ctype2 != GOLD)
-            strcat(buf, " and ");
-        else if (ctypes == 4 || (ctypes == 3 && ctype2 != GOLD))
-            strcat(buf, ", ");
-        else if (ctypes == 3)
-            strcat(buf, ", and ");
-    }
-    if (coins[SILVER]) {
-        APPENDCOIN(SILVER);
-        if (ctypes == 2 && ctype2 != SILVER)
-            strcat(buf, " and ");
-        else if (ctypes == 4 || (ctypes == 3 && ctype2 == SILVER))
-            strcat(buf, ", and ");
-    }
-    if (coins[COPPER])
-        APPENDCOIN(COPPER);
-    if (amount == 0)
-        strcpy(buf, "0 coins");
-    else if (amount > 1)
-        strcat(buf, " coins");
-    else
-        strcat(buf, " coin");
+    return join_strings(coin_strings, ", ", ", and ");
 }
 
-#undef APPENDCOIN
-
-#define COINBRIEF(coin, amount) sprintf(coinbuf, "%s%s%d%s" ANRM, coinbuf, COIN_COLOR(coin), amount, COIN_INITIAL(coin))
-
-/* Prints a string about some money, in the requested number of spaces,
- * using at most two types of coin. */
-void briefmoney(char *buf, int spaces, int amt) {
+/* Prints a string about some money, in the requested number of spaces, using at most two types of coin. */
+std::string briefmoney(int spaces, int amt) noexcept {
     bool topset = false;
     bool lowset = false;
     int toptype = 0, topval = 0, topchars = 0, lowtype = 0, lowval = 0, lowchars = 0, padding = 0;
     int i, maxval = 9;
     int coins[4];
-    char coinbuf[100];
+    std::string coinbuf;
 
-    /* Limit the number of digits so that there's 1 spot left over for a
-     * coin-type designator (p, g, s, or c) */
+    /* Limit the number of digits so that there's 1 spot left over for a coin-type designator (p, g, s, or c) */
     for (i = 0; i < spaces - 1; i++) {
         maxval = maxval * 10 + 9;
     }
@@ -123,135 +88,117 @@ void briefmoney(char *buf, int spaces, int amt) {
                 topset = true;
                 toptype = i;
                 topval = coins[i];
-                topchars = sprintf(buf, "%d", topval); /* count digits */
+                topchars = fmt::formatted_size("{}", topval); /* count digits */
             } else if (!lowset) {
                 lowset = true;
                 lowtype = i;
                 lowval = coins[i];
-                lowchars = sprintf(buf, "%d", lowval); /* count digits */
+                lowchars = fmt::formatted_size("{}", lowval); /* count digits */
             }
         }
     }
 
-    /* If the top coin type and low coin type can't fit within the requested
-     * space, only the top will be used */
+    /* If the top coin type and low coin type can't fit within the requested space, only the top will be used */
     if (lowset && lowchars + topchars > spaces - 2)
         lowset = false;
 
-    *buf = '\0';
-
     if (topset) {
-        *coinbuf = '\0';
+        coinbuf.clear();
         padding = spaces - 1 - topchars;
-        COINBRIEF(toptype, topval > maxval ? maxval : topval);
+        coinbuf += fmt::format("{}{}{}", COIN_COLOR(toptype), std::min(topval, maxval), COIN_INITIAL(toptype));
         if (lowset) {
             padding -= lowchars + 1;
-            COINBRIEF(lowtype, lowval);
+            coinbuf += fmt::format("{}{}{}", COIN_COLOR(lowtype), lowval, COIN_INITIAL(lowtype));
         }
-        sprintf(buf, "%*s%s", padding, "", coinbuf);
+        return fmt::format("{:>{}}{}", "", padding, coinbuf);
     } else {
-        sprintf(buf, "%*s0", spaces - 1, "");
+        return fmt::format("{:>{}}0", "", spaces - 1);
     }
 }
 
-#undef COINBRIEF
-
-bool parse_money(char **money, int coins[]) {
-    char arg[MAX_INPUT_LENGTH];
+std::optional<Money> parse_money(std::string_view input) noexcept {
     int amount, type;
-    char *last;
-    bool found_coins = false;
 
+    Money coins;
     coins[PLATINUM] = 0;
     coins[GOLD] = 0;
     coins[SILVER] = 0;
     coins[COPPER] = 0;
 
-    skip_spaces(money);
+    while (!input.empty()) {
+        // Get the next argument
+        auto arg = getline(input, ' ');
 
-    while (**money) {
-        *money = any_one_arg(last = *money, arg);
-        if (!*arg)
-            break;
-        else if (!is_number(arg)) {
-            *money = last;
-            break; /* Not a number! */
+        // If the argument is a number, then we know it's the amount of coins and the next argument is the type
+        if (is_integer(arg)) {
+            amount = svtoi(arg);
+            arg = getline(input, ' ');
+        } else {
+            // If we're here, it's most likely a combination of amount and type
+            // We need to split the string into the amount and type
+            size_t pos = 0;
+            while (pos < arg.size() && isdigit(arg[pos])) {
+                ++pos;
+            }
+            if (pos == 0) {
+                return std::nullopt;
+            }
+            amount = svtoi(arg.substr(0, pos));
+            arg.remove_prefix(pos);
         }
-        amount = atoi(arg);
-        *money = any_one_arg(*money, arg);
-        if (!*arg || (type = parse_obj_name(nullptr, arg, nullptr, NUM_COIN_TYPES, coindefs, sizeof(CoinDef))) < 0) {
-            *money = last;
-            break;
+
+        if (amount <= 0) {
+            log("SYSERR: parse_money: Attempt to create {} money.", amount);
+            return std::nullopt;
+        }
+
+        // Find the type of coin
+        for (type = 0; type < NUM_COIN_TYPES; ++type) {
+            if (is_coin_name(arg, type)) {
+                break;
+            }
         }
         coins[type] += amount;
-        found_coins = true;
     }
 
-    return found_coins;
+    return coins;
 }
 
-void money_desc(int amount, char **shortdesc, char **keywords) {
-    static char sdbuf[128], kwbuf[128];
-
-    if (amount <= 0) {
-        log("SYSERR: Try to create negative or 0 money.");
-        strcpy(sdbuf, "an erroneous object");
-        strcpy(kwbuf, "erroneous object");
-    }
+std::string money_desc(int amount) {
     if (amount == 1) {
-        strcpy(sdbuf, "a single coin");
-        strcpy(kwbuf, "single coin");
+        return "single coin";
     } else if (amount <= 9) {
-        strcpy(sdbuf, "a tiny pile of coins");
-        strcpy(kwbuf, "tiny pile coins");
+        return "tiny pile coins";
     } else if (amount <= 20) {
-        strcpy(sdbuf, "a handful of coins");
-        strcpy(kwbuf, "handful coins");
+        return "handful coins";
     } else if (amount <= 75) {
-        strcpy(sdbuf, "a little pile of coins");
-        strcpy(kwbuf, "little pile coins");
+        return "little pile coins";
     } else if (amount <= 200) {
-        strcpy(sdbuf, "a small pile of coins");
-        strcpy(kwbuf, "small pile coins");
+        return "small pile coins";
     } else if (amount <= 1000) {
-        strcpy(sdbuf, "a pile of coins");
-        strcpy(kwbuf, "pile coins");
+        return "pile coins";
     } else if (amount <= 5000) {
-        strcpy(sdbuf, "a big pile of coins");
-        strcpy(kwbuf, "big pile coins");
+        return "big pile coins";
     } else if (amount <= 10000) {
-        strcpy(sdbuf, "a large heap of coins");
-        strcpy(kwbuf, "large heap coins");
+        return "large heap coins";
     } else if (amount <= 20000) {
-        strcpy(sdbuf, "a huge mound of coins");
-        strcpy(kwbuf, "huge mound coins");
+        return "huge mound coins";
     } else if (amount <= 75000) {
-        strcpy(sdbuf, "an enormous mound of coins");
-        strcpy(kwbuf, "enormous mound coins");
+        return "enormous mound coins";
     } else if (amount <= 150000) {
-        strcpy(sdbuf, "a small mountain of coins");
-        strcpy(kwbuf, "small mountain coins");
+        return "small mountain coins";
     } else if (amount <= 250000) {
-        strcpy(sdbuf, "a mountain of coins");
-        strcpy(kwbuf, "mountain coins");
+        return "mountain coins";
     } else if (amount <= 500000) {
-        strcpy(sdbuf, "a huge mountain of coins");
-        strcpy(kwbuf, "huge mountain coins");
+        return "huge mountain coins";
     } else if (amount <= 1000000) {
-        strcpy(sdbuf, "an enormous mountain of coins");
-        strcpy(kwbuf, "enormous mountain coins");
+        return "enormous mountain coins";
     } else {
-        strcpy(sdbuf, "an absolutely colossal mountain of coins");
-        strcpy(kwbuf, "colossal mountain coins");
+        return "colossal mountain coins";
     }
-
-    if (shortdesc)
-        *shortdesc = sdbuf;
-    if (keywords)
-        *keywords = kwbuf;
 }
 
-ObjData *create_money(const int coins[]) {
+ObjData *create_money(const Money coins) {
     ObjData *obj;
     int amount = coins[PLATINUM] + coins[GOLD] + coins[SILVER] + coins[COPPER];
     int which;
@@ -289,34 +236,52 @@ ObjData *create_money(const int coins[]) {
             which = SILVER;
         else if (coins[COPPER])
             which = COPPER;
-        obj->name = strdup(fmt::format("{} coin", COIN_NAME(which)).c_str());
-        obj->short_description = strdup(fmt::format("a {}", obj->name).c_str());
-        obj->description = strdup(fmt::format("A single {} is lying here.", obj->name).c_str());
+        strcpy(obj->name, fmt::format("{} coin", COIN_NAME(which)).c_str());
+        strcpy(obj->short_description, fmt::format("a {}", obj->name).c_str());
+        strcpy(obj->description, fmt::format("A single {} is lying here.", obj->name).c_str());
         obj->ex_description->keyword = strdup(obj->name);
-        obj->ex_description->description = strdup(fmt::format("A shiny {}!", obj->name).c_str());
+        strcpy(obj->ex_description->description, fmt::format("A shiny {}!", obj->name).c_str());
     } else {
-        money_desc(amount, &obj->short_description, &obj->name);
-        obj->name = strdup(obj->name);
-        obj->short_description = strdup(obj->short_description);
-        obj->ex_description->keyword = strdup(obj->name);
-        obj->description = strdup(fmt::format("{} is lying here.", obj->short_description).c_str());
-        cap_by_color(obj->description);
+        auto guess = [](int amount, int scale) -> int {
+            return ((amount / scale) + random_number(0, amount / scale)) * scale;
+        };
+        obj->name = strdup(money_desc(amount).c_str());
+        obj->short_description = strdup(fmt::format("a {}", obj->name).c_str());
+        obj->ex_description->keyword = obj->name;
+        obj->description = strdup(fmt::format("{} is lying here.", capitalize_first(obj->short_description)).c_str());
         if (amount < 10)
             obj->ex_description->description = strdup(fmt::format("There are {} coins.", amount).c_str());
         else if (amount < 100)
             obj->ex_description->description =
-                strdup(fmt::format("There are about {} coins.", (amount / 10) * 10).c_str());
+                strdup(fmt::format("There are about {} coins.", guess(amount, 10)).c_str());
         else if (amount < 1000)
             obj->ex_description->description =
-                strdup(fmt::format("It looks to be about {} coins.", (amount / 100) * 100).c_str());
+                strdup(fmt::format("It looks to be about {} coins.", guess(amount, 100)).c_str());
         else if (amount < 100000)
             obj->ex_description->description =
-                strdup(fmt::format("You guess there are maybe {} coins.",
-                                   ((amount / 1000) + random_number(0, amount / 1000)) * 1000)
-                           .c_str());
+                strdup(fmt::format("You guess there are maybe {} coins.", guess(amount, 1000)).c_str());
         else
             obj->ex_description->description = strdup("There are a LOT of coins.");
     }
 
     return obj;
+}
+
+bool charge_char(CharData *ch, int amount) noexcept {
+    if (amount <= 0) {
+        log("SYSERR: charge_char: Attempt to charge {:d} money.", amount);
+        return false;
+    }
+
+    if (GET_CASH(ch) < amount) {
+        return false;
+    }
+
+    for (int i = 0; i < NUM_COIN_TYPES; ++i) {
+        while (amount >= COIN_SCALE(i) && GET_COINS(ch)[i] > 0) {
+            amount -= COIN_SCALE(i);
+            GET_COINS(ch)[i]--;
+        }
+    }
+    return true;
 }

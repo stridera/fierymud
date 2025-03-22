@@ -471,34 +471,31 @@ SPECIAL(pet_shop) {
  ********************************************************************/
 
 SPECIAL(bank) {
-    int coins[NUM_COIN_TYPES], i;
 
     if (CMD_IS("balance")) {
-        statemoney(buf, GET_COINS(ch));
-        char_printf(ch, "Coins carried:   {}\n", buf);
-        statemoney(buf, GET_BANK_COINS(ch));
-        char_printf(ch, "Coins in bank:   {}\n", buf);
+        char_printf(ch, "Coins carried:   {}\n", statemoney(GET_COINS(ch)));
+        char_printf(ch, "Coins in bank:   {}\n", statemoney(GET_BANK_COINS(ch)));
         return true;
     }
 
     else if (CMD_IS("deposit")) {
-
-        if (!parse_money(&argument, coins)) {
+        auto coin_opt = parse_money(argument);
+        if (!coin_opt) {
             char_printf(ch, "You can only deposit platinum, gold, silver, and copper coins.\n");
             return true;
         }
 
-        for (i = 0; i < NUM_COIN_TYPES; ++i)
+        auto coins = *coin_opt;
+        for (int i = 0; i < NUM_COIN_TYPES; ++i)
             if (coins[i] > GET_COINS(ch)[i]) {
                 char_printf(ch, "You don't have enough {}!\n", COIN_NAME(i));
                 return true;
             }
 
         act("$n makes a bank transaction.", true, ch, 0, 0, TO_ROOM);
-        statemoney(buf, coins);
-        char_printf(ch, "You deposit {}.\n", buf);
+        char_printf(ch, "You deposit {}.\n", statemoney(coins));
 
-        for (i = 0; i < NUM_COIN_TYPES; ++i) {
+        for (int i = 0; i < NUM_COIN_TYPES; ++i) {
             GET_COINS(ch)[i] -= coins[i];
             GET_BANK_COINS(ch)[i] += coins[i];
         }
@@ -511,34 +508,35 @@ SPECIAL(bank) {
             char_printf(ch, "You don't have any coins to deposit!\n");
         else {
             char_printf(ch, "You dump all your coins on the counter to be deposited.\n");
-            for (i = 0; i < NUM_COIN_TYPES; ++i) {
+            Money coins;
+            for (int i = 0; i < NUM_COIN_TYPES; ++i) {
                 GET_BANK_COINS(ch)[i] += GET_COINS(ch)[i];
                 coins[i] = GET_COINS(ch)[i];
                 GET_COINS(ch)[i] = 0;
             }
-            statemoney(buf, coins);
-            char_printf(ch, "You were carrying {}.\n", buf);
+            char_printf(ch, "You were carrying {}.\n", statemoney(coins));
         }
         return true;
     }
 
     else if (CMD_IS("withdraw")) {
-        if (!parse_money(&argument, coins)) {
+        auto coin_opt = parse_money(argument);
+        if (!coin_opt) {
             char_printf(ch, "You can only withdraw platinum, gold, silver, and copper coins.\n");
             return true;
         }
 
-        for (i = 0; i < NUM_COIN_TYPES; ++i)
+        auto coins = *coin_opt;
+        for (int i = 0; i < NUM_COIN_TYPES; ++i)
             if (coins[i] > GET_BANK_COINS(ch)[i]) {
                 char_printf(ch, "You don't have enough {} in the bank!\n", COIN_NAME(i));
                 return true;
             }
 
         act("$n makes a bank transaction.", true, ch, 0, 0, TO_ROOM);
-        statemoney(buf, coins);
-        char_printf(ch, "You withdraw {}.\n", buf);
+        char_printf(ch, "You withdraw {}.\n", statemoney(coins));
 
-        for (i = 0; i < NUM_COIN_TYPES; ++i) {
+        for (int i = 0; i < NUM_COIN_TYPES; ++i) {
             GET_BANK_COINS(ch)[i] -= coins[i];
             GET_COINS(ch)[i] += coins[i];
         }
