@@ -447,6 +447,7 @@ extern flagvector *ALL_FLAGS;
 #define GET_REVOKES(ch) ((ch)->player_specials->revokes)
 #define GET_GRANT_GROUPS(ch) ((ch)->player_specials->grant_groups)
 #define GET_REVOKE_GROUPS(ch) ((ch)->player_specials->revoke_groups)
+#define GET_STORED(ch) ((ch)->player_specials->stored)
 
 /* Mob accessors */
 #define GET_EX_HIT(ch) ((ch)->mob_specials.ex_hit)

@@ -214,7 +214,6 @@ bool do_simple_move(CharData *ch, int dir, int need_specials_check) {
     int flying = 0, levitating = 0;
     bool boat;
     int need_movement, vnum;
-    std::string_view mmsg;
     CharData *observer;
 
     /* Possible situations:
@@ -499,6 +498,7 @@ bool do_simple_move(CharData *ch, int dir, int need_specials_check) {
 
     alter_move(motivator, need_movement);
 
+    std::string mmsg;
     if (mount) {
         act(fmt::format("You ride {} on {}.\n", dirs[dir], PERS(mount, actor)), true, actor, 0, 0, TO_CHAR);
         mmsg = fmt::format("$n rides {} on", dirs[dir]);

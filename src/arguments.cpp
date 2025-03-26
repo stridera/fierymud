@@ -3,16 +3,16 @@
 #include <optional>
 
 std::string_view Arguments::command_shift(bool strict) {
-    arg = trim(arg);
+    arg_ = trim(arg_);
 
-    if (arg.empty()) {
+    if (arg_.empty()) {
         return {};
     }
 
     // If the first character is non-alpha, return just that character.
-    if (!isalpha(arg[0])) {
-        std::string_view output = arg.substr(0, 1);
-        arg = arg.substr(1);
+    if (!isalpha(arg_[0])) {
+        std::string_view output = arg_.substr(0, 1);
+        arg_ = arg_.substr(1);
         return output;
     }
 
@@ -23,31 +23,31 @@ std::string_view Arguments::command_shift(bool strict) {
 }
 
 std::string_view Arguments::shift() {
-    arg = trim(arg);
+    arg_ = trim(arg_);
 
-    if (arg.empty()) {
+    if (arg_.empty()) {
         return {};
     }
 
     // If the argument is quoted, return the quoted string.
     std::string_view output;
-    if (arg[0] == '"' || arg[0] == '\'') {
-        size_t end = arg.find(arg[0], 1);
+    if (arg_[0] == '"' || arg_[0] == '\'') {
+        size_t end = arg_.find(arg_[0], 1);
         if (end == std::string::npos) {
-            output = arg.substr(1);
-            arg.clear();
+            output = arg_.substr(1);
+            arg_ = std::string_view{};
         } else {
-            output = arg.substr(1, end - 1);
-            arg = arg.substr(end + 1);
+            output = arg_.substr(1, end - 1);
+            arg_ = arg_.substr(end + 1);
         }
     } else {
-        size_t end = arg.find(' ');
+        size_t end = arg_.find(' ');
         if (end == std::string::npos) {
-            output = arg;
-            arg.clear();
+            output = arg_;
+            arg_ = std::string_view{};
         } else {
-            output = arg.substr(0, end);
-            arg = arg.substr(end);
+            output = arg_.substr(0, end);
+            arg_ = arg_.substr(end);
         }
     }
 
@@ -55,35 +55,35 @@ std::string_view Arguments::shift() {
 }
 
 std::string_view Arguments::shift_clean() {
-    std::string_view arg = shift();
-    return trim(replace_string(arg, "$$", "$"));
+    std::string_view arg_ = shift();
+    return trim(replace_string(arg_, "$$", "$"));
 }
 
 std::optional<int> Arguments::try_shift_number() {
-    std::string_view arg = shift();
-    if (arg.empty()) {
+    std::string_view arg_ = shift();
+    if (arg_.empty()) {
         return std::nullopt;
     }
 
-    if (!is_integer(arg)) {
+    if (!is_integer(arg_)) {
         return std::nullopt;
     }
 
-    return svtoi(arg);
+    return svtoi(arg_);
 }
 
 std::optional<std::pair<int, std::string_view>> Arguments::try_shift_number_and_arg() {
-    std::string_view arg = shift();
-    if (arg.empty()) {
+    std::string_view arg_ = shift();
+    if (arg_.empty()) {
         return std::nullopt;
     }
 
-    size_t dot_pos = arg.find('.');
-    std::string_view number_str = arg.substr(0, dot_pos);
-    std::string_view rest = arg.substr(dot_pos + 1);
+    size_t dot_pos = arg_.find('.');
+    std::string_view number_str = arg_.substr(0, dot_pos);
+    std::string_view rest = arg_.substr(dot_pos + 1);
 
     if (number_str.empty() || rest.empty()) {
-        return std::make_pair(1, arg);
+        return std::make_pair(1, arg_);
     }
 
     // If the number is 'all', return the maximum number of items.
@@ -93,7 +93,7 @@ std::optional<std::pair<int, std::string_view>> Arguments::try_shift_number_and_
 
     // If there is no dot, or the rest is empty, or the number is not an integer, return 1 and the original argument.
     if (dot_pos == std::string::npos || rest.empty() || !is_integer(number_str)) {
-        return std::make_pair(1, arg);
+        return std::make_pair(1, arg_);
     }
 
     auto number = svtoi(number_str);

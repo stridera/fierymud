@@ -18,6 +18,7 @@
 #include <list>
 #include <memory>
 #include <string>
+#include <unordered_map>
 #include <vector>
 
 typedef int room_num;
@@ -269,6 +270,7 @@ struct PlayerSpecialData {
     sbyte conditions[3]; /* Drunk, full, thirsty                   */
     TrophyNode *trophy;
     AliasData *aliases;
+    std::unordered_map<int, int> stored; /* List of stored (banked) items */
 
     flagvector *grant_cache;  /* cache of granted commands              */
     flagvector *revoke_cache; /* cache of revoked commands              */

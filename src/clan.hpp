@@ -49,7 +49,7 @@ enum class ClanPrivilege : std::uint8_t {
     Promote,
     Demote,
     App_Fees,
-    App_Lev,
+    App_Level,
     Dues,
     Deposit,
     Withdraw,
@@ -58,9 +58,8 @@ enum class ClanPrivilege : std::uint8_t {
     Alts,
     Chat,
     // Add new privileges here
-
-    God,                                              // God mode allows full access and Snooping.
-    MAX_PERMISSIONS = static_cast<std::uint8_t>(0xFF) // Max value for a uint8_t
+    MAX_PERMISSIONS,
+    Admin = static_cast<std::uint8_t>(0xFF) // Admins have all privileges.
 };
 
 constexpr size_t NUM_PERMISSIONS = static_cast<size_t>(ClanPrivilege::MAX_PERMISSIONS);
@@ -330,10 +329,14 @@ class ClanMembership : public std::enable_shared_from_this<ClanMembership> {
     std::expected<void, std::string_view> add_clan_storage_item(ObjectId id, int amount);
     std::expected<void, std::string_view> remove_clan_storage_item(ObjectId id, int amount);
     std::expected<void, std::string_view> update_clan_rank(ClanRank new_rank);
-    std::expected<void, std::string_view> update_clan_member(ClanMembershipPtr new_member);
-    std::expected<void, std::string_view> update_clan_member_rank(ClanMembershipPtr new_member, ClanRank new_rank);
-    std::expected<void, std::string_view> update_clan_member_alts(ClanMembershipPtr new_member,
-                                                                  std::vector<std::string> alts);
+    std::expected<void, std::string_view> update_clan_member(ClanMembershipPtr member);
+    std::expected<void, std::string_view> update_clan_member_rank(ClanMembershipPtr member, ClanRank new_rank);
+
+    std::expected<void, std::string_view> add_alt(ClanMembershipPtr member, std::string alt_name);
+    std::expected<void, std::string_view> remove_alt(ClanMembershipPtr member, std::string alt_name);
+
+    std::expected<void, std::string_view> add_alt(std::string alt_name);
+    std::expected<void, std::string_view> remove_alt(std::string alt_name);
 };
 
 // Forward declare JSON serialization functions
@@ -355,23 +358,19 @@ class ClanRepository {
         clans_[clan->id()] = clan;
         return clan;
     }
+    void remove(ClanId id) { clans_.erase(id); }
 
     [[nodiscard]] std::optional<ClanPtr> find_by_id(ClanId id) const {
         auto it = clans_.find(id);
         return it != clans_.end() ? std::optional{it->second} : std::nullopt;
     }
-
     [[nodiscard]] std::optional<ClanPtr> find_by_name(const std::string_view name) const;
     [[nodiscard]] std::optional<ClanPtr> find_by_abbreviation(const std::string_view abbr) const;
-
-    void remove(ClanId id) { clans_.erase(id); }
 
     [[nodiscard]] auto all() const { return clans_ | std::views::values; }
     [[nodiscard]] std::size_t count() const { return clans_.size(); }
 
-    // Move complex file operations to cpp
     constexpr std::string_view default_file_path() const { return "etc/clans/clans.json"sv; }
-
     std::expected<void, std::string> save() const { return save_to_file(default_file_path()); }
     std::expected<void, std::string> save_to_file(const std::filesystem::path &filepath) const;
     std::expected<void, std::string> load() { return load_from_file(default_file_path()); }

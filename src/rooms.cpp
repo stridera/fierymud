@@ -698,7 +698,7 @@ void send_full_exits(CharData *ch, int roomnum) {
         if ((exit = room->exits[dir]) && ((dest = EXIT_DEST(exit))) && can_see_exit(ch, roomnum, exit)) {
             if (GET_LEVEL(ch) >= LVL_IMMORT && PRF_FLAGGED(ch, PRF_ROOMFLAGS)) {
                 buf += " &9&b[&0";
-                if (!exit->keyword) {
+                if (exit->keyword) {
                     if (exit->key == NOTHING)
                         buf += fmt::format("&2{}&0: ", exit->keyword);
                     else

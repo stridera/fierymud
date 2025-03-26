@@ -201,7 +201,9 @@ std::string progress_bar(int current, int level_max, int max) {
 std::string_view getline(std::string_view input, char delim) {
     auto pos = input.find(delim);
     if (pos == std::string_view::npos) {
-        return input;
+        auto line = input;
+        input.remove_prefix(input.size());
+        return line;
     }
     auto line = input.substr(0, pos);
     input.remove_prefix(pos + 1);

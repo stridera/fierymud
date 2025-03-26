@@ -150,9 +150,8 @@ bool write_objects(ObjData *obj, FILE *fl, int location) {
 
     if (obj) {
         /*
-         * Traverse the list in reverse order so when they are loaded
-         * and placed back on the char using obj_to_char, they will be
-         * in the correct order.
+         * Traverse the list in reverse order so when they are loaded and placed back on the char using obj_to_char,
+         * they will be in the correct order.
          */
         write_objects(obj->next_content, fl, location);
 

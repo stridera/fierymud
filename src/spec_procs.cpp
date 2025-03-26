@@ -26,7 +26,9 @@
 #include "limits.hpp"
 #include "logging.hpp"
 #include "math.hpp"
+#include "modify.hpp"
 #include "movement.hpp"
+#include "pfiles.hpp"
 #include "skills.hpp"
 #include "specprocs.hpp"
 #include "structs.hpp"
@@ -470,11 +472,41 @@ SPECIAL(pet_shop) {
  *                Special procedures for objects                    *
  ********************************************************************/
 
+bool is_object_storable(CharData *ch, ObjData *obj) {
+    if (OBJ_FLAGGED(obj, ITEM_NODROP)) {
+        char_printf(ch, "You can't store that because it's CURSED!\n");
+        return false;
+    } else if (GET_OBJ_TYPE(obj) == ITEM_CONTAINER && obj->contains) {
+        char_printf(ch, "You can't store a container with items in it.\n");
+        return false;
+    } else if (GET_OBJ_TYPE(obj) == ITEM_MONEY) {
+        char_printf(ch, "You can't store money in the clan vault.\n");
+        return false;
+    } else if (GET_OBJ_VNUM(obj) == -1) {
+        char_printf(ch, "That item is much too unique to store.\n");
+        return false;
+    }
+    return true;
+}
+
+int find_obj_in_storage(CharData *ch, char *name) {
+    for (auto [vnum, amount] : GET_STORED(ch)) {
+        if (vnum > 0) {
+            int rnum = real_object(vnum);
+            auto proto = &obj_proto[rnum];
+            if (isname(name, proto->name)) {
+                return vnum;
+            }
+        }
+    }
+    return -1;
+}
+
 SPECIAL(bank) {
 
     if (CMD_IS("balance")) {
-        char_printf(ch, "Coins carried:   {}\n", statemoney(GET_COINS(ch)));
-        char_printf(ch, "Coins in bank:   {}\n", statemoney(GET_BANK_COINS(ch)));
+        char_printf(ch, "Coins carried:   {}.\n", statemoney(GET_COINS(ch)));
+        char_printf(ch, "Coins in bank:   {}.\n", statemoney(GET_BANK_COINS(ch)));
         return true;
     }
 
@@ -551,7 +583,7 @@ SPECIAL(bank) {
         char arg3[MAX_INPUT_LENGTH];
         char arg4[MAX_INPUT_LENGTH];
         char ctype2[10];
-        double exchange_rate;
+        double exchange_rate = 0.0;
         int copper, charge;
         int multto, multfrom;
         int type1, type2;
@@ -560,7 +592,7 @@ SPECIAL(bank) {
         if (is_number(arg1)) {
             amount = atoi(arg1);
             if (!*arg2) {
-                char_printf(ch, "Exchange {} of what? Platinum?Gold?Silver?Copper?\n", arg1);
+                char_printf(ch, "Exchange {} of what? Platinum? Gold? Silver? Copper?\n", arg1);
                 return 1;
             }
             half_chop(arg2, arg3, arg2);
@@ -637,9 +669,10 @@ SPECIAL(bank) {
             }
 
             ok = 0;
-            exchange_rate = ((17 - (GET_CHA(ch) / 6.0) + random_number(0, 2) - (random_number(0, 4) / 10.0) +
-                              (random_number(0, 9) / 10.0)) /
-                             100.0);
+            if (GET_LEVEL(ch) < 100)
+                exchange_rate = ((17 - (GET_CHA(ch) / 6.0) + random_number(0, 2) - (random_number(0, 4) / 10.0) +
+                                  (random_number(0, 9) / 10.0)) /
+                                 100.0);
             amount = amount * multfrom;
             charge = (int)(ceil(exchange_rate * amount));
 
@@ -728,6 +761,183 @@ SPECIAL(bank) {
                         "  exchange 10 copper silver\n");
             return 1;
         }
+    } else if (CMD_IS("items")) {
+        if (GET_STORED(ch).empty()) {
+            char_printf(ch, "You have no items stored in the bank.\n");
+            return 1;
+        }
+        char_printf(ch, "You have {:d} items stored in the bank.\n\n", GET_STORED(ch).size());
+        paging_printf(ch, "   Amount : Item Name\n");
+        paging_printf(ch, "----------------------------------------\n");
+        for (auto [vnum, amount] : GET_STORED(ch)) {
+            if (vnum > 0) {
+                auto obj = read_object(vnum, VIRTUAL);
+                if (obj) {
+                    paging_printf(ch, " {:>8} : {}\n", amount, obj->short_description);
+                    extract_obj(obj);
+                } else {
+                    log("SYSERR: bank error: invalid vnum {} in stored items for {}.", vnum, GET_NAME(ch));
+                }
+            }
+        }
+
+        start_paging(ch);
+        return 1;
+    } else if (CMD_IS("store")) {
+        // Find the object on the person
+        char *name = arg;
+        int amount = 0;
+        ObjData *obj, *next_obj;
+        FindContext context;
+
+        argument = one_argument(argument, name);
+        if (!*name) {
+            char_printf(ch, "What do you want to store?\n");
+            return 1;
+        }
+
+        int dotmode = find_all_dots(&name);
+
+        if (dotmode == FIND_ALL) {
+            char_printf(ch, "You can't store all of those at once!\n");
+            return 1;
+        } else if (dotmode == FIND_ALLDOT) {
+            context = find_vis_by_name(ch, name);
+            if (!*name) {
+                char_printf(ch, "What do you want to store all of?\n");
+                return 1;
+            } else if (!(obj = find_obj_in_list(ch->carrying, context))) {
+                char_printf(ch, "You don't seem to have any {}{}.\n", name, isplural(name) ? "" : "s");
+                return 1;
+            } else {
+                while (obj) {
+                    next_obj = find_obj_in_list(obj->next_content, context);
+                    if (is_object_storable(ch, obj)) {
+                        obj_from_char(obj);
+                        GET_STORED(ch)[GET_OBJ_VNUM(obj)]++;
+                        extract_obj(obj);
+                        ++amount;
+                    }
+                    obj = next_obj;
+                }
+                if (amount) {
+                    char_printf(ch, "You stored {:d} {}{}.\n", amount, name, isplural(name) ? "" : "s");
+                } else {
+                    char_printf(ch, "You don't seem to have any {}{}.\n", name, isplural(name) ? "" : "s");
+                }
+            }
+        } else {
+            amount = 1;
+            if (is_number(name)) {
+                skip_spaces(&argument);
+                if (*argument) {
+                    amount = atoi(name);
+                    one_argument(argument, name);
+                }
+            }
+            context = find_vis_by_name(ch, name);
+
+            if (!amount) {
+                char_printf(ch, "So...you don't want to store anything?\n");
+                return 1;
+            } else if (!(obj = find_obj_in_list(ch->carrying, context))) {
+                char_printf(ch, "You don't seem to have {} {}{}.\n", amount == 1 ? an(name) : "any", arg,
+                            amount == 1 || isplural(name) ? "" : "s");
+            } else {
+                int total = amount;
+
+                while (obj && amount > 0 && is_object_storable(ch, obj)) {
+                    next_obj = find_obj_in_list(obj->next_content, context);
+                    --amount;
+                    GET_STORED(ch)[GET_OBJ_VNUM(obj)]++;
+                    obj_from_char(obj);
+                    extract_obj(obj);
+                    obj = next_obj;
+                }
+
+                if (total == amount) {
+                    char_printf(ch, "You weren't able to store {} {}{}.\n", amount == 1 ? an(name) : "any", name,
+                                amount == 1 || isplural(name) ? "" : "s");
+                } else if (amount) {
+                    char_printf(ch, "You only had {:d} {}{}.\n", total - amount, name,
+                                isplural(name) || total == 1 ? "" : "s");
+                } else if (total == 1) {
+                    char_printf(ch, "You stored {}.\n", name);
+                } else
+                    char_printf(ch, "You stored {:d} {}{}.\n", total, name, isplural(name) || total == 1 ? "" : "s");
+            }
+        }
+        save_player(ch);
+        return 1;
+    } else if (CMD_IS("retrieve")) {
+        // Find the object on the person
+        char *name = arg;
+        int amount = 0, vnum = 0;
+        ObjData *obj;
+
+        argument = one_argument(argument, name);
+        if (!*name) {
+            char_printf(ch, "What do you want to retrieve?\n");
+            return 1;
+        }
+
+        int dotmode = find_all_dots(&name);
+        std::unordered_map<int, int> &stored = GET_STORED(ch);
+        if (dotmode == FIND_ALL) {
+            char_printf(ch, "You can't retrieve all of those at once!\n");
+            return 1;
+        } else if (dotmode == FIND_ALLDOT) {
+            if (!*name) {
+                char_printf(ch, "What do you want to retrieve all of?\n");
+            } else if ((vnum = find_obj_in_storage(ch, name)) <= 0) {
+                char_printf(ch, "You don't seem to have any {}{} in storage.\n", name, isplural(name) ? "" : "s");
+            } else {
+                amount = stored[vnum];
+                for (int i = 0; i < amount; ++i) {
+                    obj = read_object(vnum, VIRTUAL);
+                    obj_to_char(obj, ch);
+                }
+                stored.erase(vnum);
+                char_printf(ch, "You retrieved {:d} {}{}.\n", amount, name, isplural(name) ? "" : "s");
+            }
+        } else {
+            amount = 1;
+            if (is_number(name)) {
+                skip_spaces(&argument);
+                if (*argument) {
+                    amount = atoi(name);
+                    one_argument(argument, name);
+                }
+            }
+
+            if (!amount) {
+                char_printf(ch, "So...you don't want to retrieve anything?\n");
+                return 1;
+            } else if ((vnum = find_obj_in_storage(ch, name)) <= 0) {
+                char_printf(ch, "You don't seem to have any {}{} in storage.\n", name, isplural(name) ? "" : "s");
+            } else if (stored[vnum] < amount) {
+                char_printf(ch, "You only have {:d} {}{} in storage.\n", stored[vnum], name, isplural(name) ? "" : "s");
+                char_printf(ch, "You attempted to retrieve {:d} {}{}.\n", amount, name, isplural(name) ? "" : "s");
+            } else {
+                for (int i = 0; i < amount; ++i) {
+                    obj = read_object(vnum, VIRTUAL);
+                    obj_to_char(obj, ch);
+                    stored[vnum]--;
+                }
+
+                if (stored[vnum] == 0) {
+                    stored.erase(vnum);
+                }
+
+                if (amount > 1) {
+                    char_printf(ch, "You retrieved {:d} {}{}.\n", amount, name, isplural(name) ? "" : "s");
+                } else {
+                    char_printf(ch, "You retrieved {}.\n", name);
+                }
+            }
+        }
+        save_player(ch);
+        return 1;
     } else {
         return 0;
     }

@@ -284,16 +284,15 @@ std::expected<void, std::string_view> ClanMembership::update_clan_member_rank(Cl
     return {};
 }
 
-std::expected<void, std::string_view> ClanMembership::update_clan_member_alts(ClanMembershipPtr new_member,
-                                                                              std::vector<std::string> alts) {
+std::expected<void, std::string_view> ClanMembership::add_alt(ClanMembershipPtr member, std::string alt_name) {
     auto clan_ptr = Clan_.lock();
     auto character_ptr = character_.lock();
     if (!clan_ptr || !character_ptr)
         return std::unexpected(AccessError::ClanNotFound);
     if (!has_permission(ClanPrivilege::Alts))
         return std::unexpected(AccessError::PermissionDenied);
-    auto it = std::ranges::find_if(clan_ptr->memberships_,
-                                   [&new_member](const ClanMembershipPtr &m) { return m == new_member; });
+    auto it =
+        std::ranges::find_if(clan_ptr->memberships_, [&member](const ClanMembershipPtr &m) { return m == member; });
     if (it == clan_ptr->memberships_.end())
         return std::unexpected(AccessError::InvalidOperation);
     // if (new_member->alts() == alts)

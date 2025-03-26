@@ -16,23 +16,27 @@
 #include <string>
 
 class Arguments {
-    std::string arg;
+    std::string static_args_; // This maintains the life of the string
+    std::string_view arg_;
 
   public:
-    Arguments(std::string_view argument) : arg(argument) {}
+    // Constructors
+    // This constructor is used for strings that will be owned by the Arguments class.
+    explicit Arguments(std::string argument) noexcept : static_args_(std::move(argument)), arg_(static_args_) {}
+    // This is for strings not owned by the Arguments class.
+    explicit Arguments(std::string_view argument) : arg_(argument) {}
+    // This is for C-style strings.
+    explicit Arguments(const char *argument) noexcept : arg_(argument) {}
 
     // std::string copy constructor
-    Arguments(const std::string &argument) : arg(argument) {}
-
-    // Const char* constructor
-    Arguments(const char *argument) : arg(argument) {}
+    Arguments(const std::string &argument) : arg_(argument) {}
 
     static constexpr int MAX_ITEMS = std::numeric_limits<int>::max();
 
     // Get the ramaining argument list.
-    [[nodiscard]] std::string_view get() const { return trim(arg); }
+    [[nodiscard]] std::string_view get() const { return trim(arg_); }
 
-    [[nodiscard]] bool empty() const { return trim(arg).empty(); }
+    [[nodiscard]] bool empty() const { return trim(arg_).empty(); }
 
     // When parsing commands, we want to allow things like ";hi" or ".gossip" to allow aliases for say/gossip, etc.
     // This command will return the single character if it's not alpha, and shift the argument list.

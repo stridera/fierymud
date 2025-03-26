@@ -48,6 +48,7 @@
 /* local functions */
 static void load_effects(FILE *fl, CharData *ch);
 static void load_skills(FILE *fl, CharData *ch);
+static void load_stored(FILE *fl, CharData *ch);
 static void load_spellcasts(FILE *fl, CharData *ch);
 static void scan_slash(const char *line, int *cur, int *max);
 static void write_aliases_ascii(FILE *file, CharData *ch);
@@ -334,6 +335,7 @@ int load_player(const char *name, CharData *ch) {
 
     if (!ch->player_specials)
         CREATE(ch->player_specials, PlayerSpecialData, 1);
+    ch->player_specials->stored = std::unordered_map<int, int>();
 
     GET_PFILEPOS(ch) = id;
 
@@ -593,7 +595,9 @@ int load_player(const char *name, CharData *ch) {
                 load_spellcasts(fl, ch);
             else if (!strcasecmp(tag, "strength"))
                 GET_NATURAL_STR(ch) = num;
-            else
+            else if (!strcasecmp(tag, "stored")) {
+                load_stored(fl, ch);
+            } else
                 goto bad_tag;
             break;
 
@@ -878,6 +882,11 @@ void save_player_char(CharData *ch) {
         fprintf(fl, " %d", GET_SAVE(ch, i));
     fprintf(fl, "\n");
 
+    fprintf(fl, "stored:\n");
+    for (auto &it : ch->player_specials->stored)
+        fprintf(fl, "%d %d\n", it.first, it.second);
+    fprintf(fl, "0 0\n");
+
     if (GET_WIMP_LEV(ch))
         fprintf(fl, "wimpy: %d\n", GET_WIMP_LEV(ch));
     if (GET_FREEZE_LEV(ch))
@@ -1145,6 +1154,18 @@ static void load_effects(FILE *fl, CharData *ch) {
     } while (num != 0);
 }
 
+static void load_stored(FILE *fl, CharData *ch) {
+    int vnum = 0, amount = 0;
+    char line[MAX_INPUT_LENGTH + 1];
+
+    do {
+        get_line(fl, line);
+        sscanf(line, "%d %d", &vnum, &amount);
+        if (vnum > 0 && amount > 0)
+            GET_STORED(ch)[vnum] = amount;
+    } while (vnum > 0);
+}
+
 static void load_skills(FILE *fl, CharData *ch) {
     int skill = 0, proficiency = 0;
     char line[MAX_INPUT_LENGTH + 1];
@@ -1256,7 +1277,8 @@ void load_ascii_flags(flagvector flags[], int num_flags, char *line) {
     while (line && *line) {
         if (FLAGVECTOR_SIZE(num_flags) <= i) {
             if (*line != '0') {
-                log("SYSERR: load_ascii_flags: attempting to read in flags for block {:d}, but only {} blocks allowed "
+                log("SYSERR: load_ascii_flags: attempting to read in flags for block {:d}, but only {} blocks "
+                    "allowed "
                     "for flagvector type",
                     i, FLAGVECTOR_SIZE(num_flags));
             }
@@ -1292,8 +1314,10 @@ void init_player(CharData *ch) {
     int i;
 
     /* Make sure the character has a player structure */
-    if (!ch->player_specials)
+    if (!ch->player_specials) {
         CREATE(ch->player_specials, PlayerSpecialData, 1);
+        ch->player_specials->stored = std::unordered_map<int, int>();
+    }
 
     init_retained_comms(ch);
 

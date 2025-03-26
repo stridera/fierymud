@@ -26,7 +26,7 @@
 #define CLANCMD(name) static void(name)(CharData * ch, Arguments argument)
 
 // Get the clan from the character. Gods always need to specify the clan.
-static std::shared_ptr<ClanMembership> get_clan_membership(CharData *ch, Arguments &argument) {
+static std::shared_ptr<ClanMembership> find_memberships(CharData *ch, Arguments &argument) {
     auto memberships = ch->player_specials->clan_memberships;
     if (GET_LEVEL(ch) < LVL_IMMORT) {
         if (memberships.empty()) {
@@ -70,7 +70,7 @@ static std::shared_ptr<ClanMembership> get_clan_membership(CharData *ch, Argumen
     // Create a temporary membership for gods with all permissions
     if (GET_LEVEL(ch) >= LVL_IMMORT) {
         PermissionSet perms;
-        perms.set(static_cast<size_t>(ClanPrivilege::God));
+        perms.set(static_cast<size_t>(ClanPrivilege::Admin));
         return std::make_shared<ClanMembership>(*clan, me, ClanRank("God", perms));
     }
 
@@ -95,73 +95,85 @@ CLANCMD(clan_list) {
     start_paging(ch);
 }
 
-CLANCMD(clan_bank) {
-    bool deposit;
-    std::string_view verb, preposition;
-
-    auto membership = get_clan_membership(ch, argument);
+CLANCMD(clan_deposit) {
+    auto membership = find_memberships(ch, argument);
     if (!membership) {
         return;
     }
 
     auto arg = argument.shift();
-    deposit = matches_start(arg, "deposit");
-    verb = deposit ? "deposit" : "withdraw";
-    preposition = deposit ? "into" : "from";
 
     auto money_opt = parse_money(argument.get());
     if (!money_opt || money_opt->value() <= 0) {
-        char_printf(ch, "How much do you want to {}?\n", verb);
+        char_printf(ch, "How much do you want to deposit?\n");
+        return;
+    }
+
+    Money coins = *money_opt;
+    /* Gods have bottomless pockets */
+    if (GET_LEVEL(ch) < LVL_GOD) {
+        Money owned = ch->points.money;
+        if (!owned.charge(coins)) {
+            char_printf(ch, "You do not have that kind of money!\n");
+            return;
+        }
+        for (int i = 0; i < NUM_COIN_TYPES; i++) {
+            ch->points.money[i] -= coins[i];
+        }
+    }
+
+    if (auto result = membership->add_clan_treasure(coins); !result) {
+        char_printf(ch, "{}.\n", result.error());
+        return;
+    }
+
+    save_player_char(ch);
+
+    char_printf(ch, "You {}'s account: {}\n", membership->get_clan_abbreviation(), statemoney(coins));
+    clan_repository.save();
+}
+
+CLANCMD(clan_withdraw) {
+
+    auto membership = find_memberships(ch, argument);
+    if (!membership) {
+        return;
+    }
+
+    auto arg = argument.shift();
+
+    auto money_opt = parse_money(argument.get());
+    if (!money_opt || money_opt->value() <= 0) {
+        char_printf(ch, "How much do you want to withdraw?\n");
         return;
     }
 
     Money coins = *money_opt;
 
-    if (deposit) {
-        /* Gods have bottomless pockets */
-        if (GET_LEVEL(ch) < LVL_GOD) {
-            Money owned = ch->points.money;
-            if (!owned.charge(coins)) {
-                char_printf(ch, "You do not have that kind of money!\n");
-                return;
-            }
-            for (int i = 0; i < NUM_COIN_TYPES; i++) {
-                ch->points.money[i] -= coins[i];
-            }
-        }
+    auto treasure = membership->get_clan_treasure();
+    if (treasure.value() < coins.value()) {
+        char_printf(ch, "The clan is not wealthy enough for your needs!\n");
+        return;
+    }
 
-        if (auto result = membership->add_clan_treasure(coins); !result) {
-            char_printf(ch, "{}.\n", result.error());
-            return;
-        }
-    } else {
-        auto treasure = membership->get_clan_treasure();
-        if (treasure.value() < coins.value()) {
-            char_printf(ch, "The clan is not wealthy enough for your needs!\n");
-            return;
-        }
+    if (auto result = membership->subtract_clan_treasure(coins); !result) {
+        char_printf(ch, "{}.\n", result.error());
+        return;
+    }
 
-        if (auto result = membership->subtract_clan_treasure(coins); !result) {
-            char_printf(ch, "{}.\n", result.error());
-            return;
-        }
-
-        for (int i = 0; i < NUM_COIN_TYPES; i++) {
-            ch->points.money[i] -= coins[i];
-        }
+    for (int i = 0; i < NUM_COIN_TYPES; i++) {
+        ch->points.money[i] -= coins[i];
     }
     save_player_char(ch);
 
-    char_printf(ch, "You {} {} {}'s account: {}\n", verb, preposition, membership->get_clan_abbreviation(),
-                statemoney(coins));
-
+    char_printf(ch, "You withdraw from  {}'s account: {}\n", membership->get_clan_abbreviation(), statemoney(coins));
     clan_repository.save();
 }
 
 CLANCMD(clan_store) {
     ObjData *obj;
 
-    auto membership = get_clan_membership(ch, argument);
+    auto membership = find_memberships(ch, argument);
     if (!membership) {
         return;
     }
@@ -207,7 +219,7 @@ CLANCMD(clan_store) {
 }
 
 CLANCMD(clan_retrieve) {
-    auto membership = get_clan_membership(ch, argument);
+    auto membership = find_memberships(ch, argument);
     if (!membership) {
         return;
     }
@@ -280,7 +292,7 @@ CLANCMD(clan_tell) {
     if (!speech_ok(ch, 0))
         return;
 
-    auto membership = get_clan_membership(ch, argument);
+    auto membership = find_memberships(ch, argument);
     if (!membership) {
         return;
     }
@@ -320,7 +332,7 @@ CLANCMD(clan_tell) {
 }
 
 CLANCMD(clan_set) {
-    auto membership = get_clan_membership(ch, argument);
+    auto membership = find_memberships(ch, argument);
     if (!membership) {
         return;
     }
@@ -468,7 +480,7 @@ CLANCMD(clan_set) {
 }
 
 CLANCMD(clan_alt) {
-    auto membership = get_clan_membership(ch, argument);
+    auto membership = find_memberships(ch, argument);
     if (!membership) {
         return;
     }
@@ -484,6 +496,7 @@ CLANCMD(clan_alt) {
     for (const auto &alt : alts) {
         if (matches(alt, target_name)) {
             // Need to implement alt removal
+            membership->add_alt(alt);
             char_printf(ch, "You remove {} as one of your clan alts.\n", alt);
             // TODO: implement proper alt removal
             return;
@@ -509,7 +522,7 @@ CLANCMD(clan_alt) {
     }
 
     // Check for permission if not admin
-    if (GET_LEVEL(ch) < LVL_IMMORT && !membership->has_permission(ClanPrivilege::God) &&
+    if (GET_LEVEL(ch) < LVL_IMMORT && !membership->has_permission(ClanPrivilege::Admin) &&
         strcasecmp(ch->desc->host, target->desc->host) != 0) {
         char_printf(ch, "{} was not found logged in as your alt.\n", GET_NAME(target));
         return;
@@ -569,7 +582,7 @@ CLANCMD(clan_create) {
 }
 
 CLANCMD(clan_destroy) {
-    auto membership = get_clan_membership(ch, argument);
+    auto membership = find_memberships(ch, argument);
     if (!membership) {
         return;
     }
@@ -592,7 +605,7 @@ CLANCMD(clan_info) {
     ClanPtr clan;
 
     if (clan_name.empty()) {
-        auto membership = get_clan_membership(ch, argument);
+        auto membership = find_memberships(ch, argument);
         if (!membership) {
             char_printf(ch, "Which clan's info do you want to view?\n");
             return;
@@ -690,13 +703,10 @@ ACMD(do_clan) {
         clan_list(ch, args);
     } else if (matches_start(command, "info")) {
         clan_info(ch, args);
-    } else if (matches_start(command, "bank") || matches_start(command, "deposit") ||
-               matches_start(command, "withdraw")) {
-        if (matches_start(command, "deposit") || matches_start(command, "withdraw")) {
-            // If they used the direct command, put it back for the handler
-            args = Arguments(std::string(command) + " " + std::string(args.get()));
-        }
-        clan_bank(ch, args);
+    } else if (matches_start(command, "deposit")) {
+        clan_deposit(ch, args);
+    } else if (matches_start(command, "withdraw")) {
+        clan_withdraw(ch, args);
     } else if (matches_start(command, "tell")) {
         clan_tell(ch, args);
     } else if (matches_start(command, "set")) {

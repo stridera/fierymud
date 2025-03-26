@@ -54,13 +54,20 @@ bool is_coin_name(std::string_view name, int cointype) {
 }
 
 std::string statemoney(const Money coins) noexcept {
+    if (coins[PLATINUM] == 0 && coins[GOLD] == 0 && coins[SILVER] == 0 && coins[COPPER] == 0) {
+        return "Nothing";
+    }
     std::vector<std::string> coin_strings;
+    bool final_plural = false;
     for (int i = 0; i < NUM_COIN_TYPES; i++) {
         if (coins[i]) {
-            coin_strings.push_back(fmt::format("{}{}{}", COIN_COLOR(i), coins[i], COIN_NAME(i)));
+            coin_strings.push_back(fmt::format("{}{} {}", COIN_COLOR(i), coins[i], COIN_NAME(i)));
+            if (coins[i] > 1) {
+                final_plural = true;
+            }
         }
     }
-    return join_strings(coin_strings, ", ", ", and ");
+    return join_strings(coin_strings, ", ", ", and ") + fmt::format(" coin{}", final_plural ? "s" : "");
 }
 
 /* Prints a string about some money, in the requested number of spaces, using at most two types of coin. */
@@ -125,6 +132,7 @@ std::optional<Money> parse_money(std::string_view input) noexcept {
     coins[SILVER] = 0;
     coins[COPPER] = 0;
 
+    input = trim(input);
     while (!input.empty()) {
         // Get the next argument
         auto arg = getline(input, ' ');

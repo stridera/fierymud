@@ -793,7 +793,8 @@ ACMD(do_save) {
 /* generic function for commands which are normally overridden by
    special procedures - i.e., shop commands, mail commands, etc. */
 ACMD(do_not_here) {
-    if (CMD_IS("balance") || CMD_IS("deposit") || CMD_IS("withdraw") || CMD_IS("dump") || CMD_IS("exchange"))
+    if (CMD_IS("balance") || CMD_IS("deposit") || CMD_IS("withdraw") || CMD_IS("dump") || CMD_IS("exchange") ||
+        CMD_IS("store") || CMD_IS("retrieve") || CMD_IS("items"))
         char_printf(ch, "Sorry, you can only do that in a bank!\n");
     else if (CMD_IS("appear") || CMD_IS("disappear"))
         char_printf(ch, HUH);
