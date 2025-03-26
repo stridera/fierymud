@@ -15,6 +15,7 @@
 #include "players.hpp"
 #include "screen.hpp"
 #include "utils.hpp"
+#include "function_registration.hpp"
 
 #include <expected>
 #include <fmt/format.h>
@@ -24,6 +25,12 @@
 #include <string_view>
 
 #define CLANCMD(name) static void(name)(CharData * ch, Arguments argument)
+enum ClanPermissions : PermissionFlags {
+    Everybody = 0,
+    ClanMember = 1,
+    ClanAdmin = 2,
+    God = 3,
+};
 
 // Get the clan from the character. Gods always need to specify the clan.
 static std::shared_ptr<ClanMembership> find_memberships(CharData *ch, Arguments &argument) {
@@ -94,6 +101,8 @@ CLANCMD(clan_list) {
 
     start_paging(ch);
 }
+REGISTER_FUNCTION(clan_list, "clan_list", 0, ClanPermissions::Everybody,
+                "List all clans and their application fees");
 
 CLANCMD(clan_deposit) {
     auto membership = find_memberships(ch, argument);
@@ -169,6 +178,8 @@ CLANCMD(clan_withdraw) {
     char_printf(ch, "You withdraw from  {}'s account: {}\n", membership->get_clan_abbreviation(), statemoney(coins));
     clan_repository.save();
 }
+REGISTER_FUNCTION(clan_bank, "clan_bank", 0, ClanPermissions::ClanMember,
+                "Deposit or withdraw money from the clan bank");
 
 CLANCMD(clan_store) {
     ObjData *obj;
@@ -217,6 +228,8 @@ CLANCMD(clan_store) {
         membership->notify_clan("{} stores {} in the clan vault.", GET_NAME(ch), name);
     }
 }
+REGISTER_FUNCTION(clan_store, "clan_store", 0, ClanPermissions::ClanMember,
+                "Store an item in the clan vault");
 
 CLANCMD(clan_retrieve) {
     auto membership = find_memberships(ch, argument);
@@ -280,6 +293,8 @@ CLANCMD(clan_retrieve) {
 
     membership->notify_clan("{} retrieves {} from the clan vault.", GET_NAME(ch), obj->short_description);
 }
+REGISTER_FUNCTION(clan_retrieve, "clan_retrieve", 0, ClanPermissions::ClanMember,
+                "Retrieve an item from the clan vault");
 
 CLANCMD(clan_tell) {
     CharData *me = REAL_CHAR(ch);
@@ -330,6 +345,8 @@ CLANCMD(clan_tell) {
                     tch->player.level < LVL_IMMORT ? "your clan" : membership->get_clan_abbreviation(), speech);
     }
 }
+REGISTER_FUNCTION(clan_tell, "clan_tell", 0, ClanPermissions::ClanMember,
+                "Send a message to your clan");
 
 CLANCMD(clan_set) {
     auto membership = find_memberships(ch, argument);
@@ -478,6 +495,8 @@ CLANCMD(clan_set) {
 
     clan_repository.save();
 }
+REGISTER_FUNCTION(clan_set, "clan_set", 0, ClanPermissions::ClanAdmin,
+                "Set clan properties (abbreviation, name, application fee, etc.)");
 
 CLANCMD(clan_alt) {
     auto membership = find_memberships(ch, argument);
@@ -535,11 +554,14 @@ CLANCMD(clan_alt) {
     // Need to implement alt registration
     char_printf(ch, "Alt functionality not fully implemented yet.\n");
 }
+REGISTER_FUNCTION(clan_alt, "clan_alt", 0, ClanPermissions::ClanMember,
+                "Add or remove a character as an alt of your clan");
 
 CLANCMD(clan_apply) {
     // TODO: Implement apply
     char_printf(ch, "Not implemented yet.\n");
 }
+
 
 CLANCMD(clan_create) {
     if (GET_LEVEL(ch) < LVL_IMMORT) {
@@ -580,6 +602,7 @@ CLANCMD(clan_create) {
 
     clan_repository.save();
 }
+
 
 CLANCMD(clan_destroy) {
     auto membership = find_memberships(ch, argument);
