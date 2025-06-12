@@ -300,11 +300,11 @@ sbyte get_set_hd(int level, int race, int class_num, int state)
         else if (level < 62)
             hit = (sbyte)(level / 3.0);
         else if (level < 75)
-            hit = (sbyte)(level / 3.2); /*50 and under equation */
+            hit = (sbyte)(level / 3.2);
         else if (level < 82)
             hit = (sbyte)(level / 3.4);
-        else if (level >= 90)
-            hit = (sbyte)(level / 3.6); /*51 and over equation */
+        else
+            hit = (sbyte)(level / 3.6);
 
         /*hit factor considerations */
         sfactor = ((int)((sfactor + cfactor) / 2));
