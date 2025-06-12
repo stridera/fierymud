@@ -303,7 +303,7 @@ bool attack_ok(CharData *ch, CharData *victim, bool verbose) {
         return false;
 
     /* prevent pets from attacking their masters */
-    if (victim == ch->master)
+    if (IS_NPC(ch) && (victim == ch->master))
         return false;
 
     if (ch != victim && (ROOM_FLAGGED(victim->in_room, ROOM_PEACEFUL) || ROOM_FLAGGED(ch->in_room, ROOM_PEACEFUL))) {
