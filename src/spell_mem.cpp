@@ -593,17 +593,21 @@ int is_spellbook_with_spell(ObjData *obj, int spell) {
 ObjData *find_spellbook_with_spell(CharData *ch, int spell) {
     ObjData *obj;
 
+    #define BLIND_OK(ch, obj)                                                                     \
+        ((IS_NPC(ch) || IS_LIGHT((ch)->in_room) || EFF_FLAGGED((ch), EFF_ULTRAVISION)) &&         \
+        GET_OBJ_TYPE(obj) == ITEM_SPELLBOOK)
+
     for (obj = ch->carrying; obj; obj = obj->next_content) {
-        if (is_spellbook_with_spell(obj, spell) && CAN_SEE_OBJ(ch, obj))
+        if (is_spellbook_with_spell(obj, spell) && (CAN_SEE_OBJ(ch, obj) || BLIND_OK(ch, obj)))
             return obj;
     }
 
     obj = ch->equipment[WEAR_HOLD];
-    if (obj && is_spellbook_with_spell(obj, spell) && CAN_SEE_OBJ(ch, obj))
+    if (obj && is_spellbook_with_spell(obj, spell) && (CAN_SEE_OBJ(ch, obj) || BLIND_OK(ch, obj)))
         return obj;
 
     obj = ch->equipment[WEAR_HOLD2];
-    if (obj && is_spellbook_with_spell(obj, spell) && CAN_SEE_OBJ(ch, obj))
+    if (obj && is_spellbook_with_spell(obj, spell) && (CAN_SEE_OBJ(ch, obj) || BLIND_OK(ch, obj)))
         return obj;
 
     return 0;
