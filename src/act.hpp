@@ -99,7 +99,7 @@ void look_in_direct(CharData *ch, int dir);
 void look_in_obj(CharData *ch, std::string_view arg);
 void look_at_target(CharData *ch, std::string_view arg);
 void identify_obj(ObjData *obj, CharData *ch, int location);
-const std::string_view status_string(int cur, int max, int mode);
+const std::string status_string(int cur, int max, int mode);
 
 /* status_string mode codes */
 #define STATUS_COLOR 0

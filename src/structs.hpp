@@ -14,6 +14,7 @@
 
 #include "arguments.hpp"
 #include "defines.hpp"
+#include "money.hpp"
 #include "sysdep.hpp"
 
 #include <array>
@@ -241,6 +242,7 @@ struct OLCZoneList {
  * can be changed freely.
  */
 struct ClanMembership;
+using ClanMembershipPtr = std::shared_ptr<ClanMembership>;
 struct ClanSnoop;
 struct GrantType;
 struct RetainedComms;

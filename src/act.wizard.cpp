@@ -1271,14 +1271,14 @@ ACMD(do_wiznet) {
             continue;
         if (CAN_SEE(d->character, ch)) {
             if (explicit_level)
-                char_printf(d->character, "&6{}: <{}> {}&0\n", GET_NAME(ch), level, argument);
+                char_printf(d->character, "&6{}: <{}> {}&0\n", GET_NAME(ch), level, argument.get());
             else
-                char_printf(d->character, "&6{}: {}&0\n", GET_NAME(ch), argument);
+                char_printf(d->character, "&6{}: {}&0\n", GET_NAME(ch), argument.get());
 
         } else if (explicit_level)
-            char_printf(d->character, "&6Someone: <{}> {}&0\n", level, argument);
+            char_printf(d->character, "&6Someone: <{}> {}&0\n", level, argument.get());
         else
-            char_printf(d->character, "&6Someone: {}&0\n", argument);
+            char_printf(d->character, "&6Someone: {}&0\n", argument.get());
     }
 
     if (PRF_FLAGGED(ch, PRF_NOREPEAT))
@@ -2468,13 +2468,13 @@ ACMD(do_game) {
                 if (!n_visible++)
                     char_printf(ch, "\n[Current game status:]\n\n");
 
-                auto shortbuf = fmt::format("[{}{}&0]", cmd.field ? "&2&b" : "&1&b", cmd.name);
+                auto shortbuf = fmt::format("[{}{}&0]", *cmd.field ? "&2&b" : "&1&b", cmd.name);
 
                 auto linebuf = [&]() {
                     if (cmd.has_value) {
-                        return fmt::format("{:19}{} {}\n", shortbuf, cmd.field ? cmd.enabled : cmd.disabled, cmd.field);
+                        return fmt::format("{:19}{} {}\n", shortbuf, *cmd.field ? cmd.enabled : cmd.disabled, *cmd.field ? "true" : "false");
                     }
-                    return fmt::format("{:19s}{}\n", shortbuf, cmd.field ? cmd.enabled : cmd.disabled);
+                    return fmt::format("{:19s}{}\n", shortbuf, *cmd.field ? cmd.enabled : cmd.disabled);
                 }();
                 char_printf(ch, linebuf);
             }
@@ -2491,24 +2491,24 @@ ACMD(do_game) {
     if (command->has_value) {
         int value = svtoi(set);
         *command->field = value;
-        auto msg = command->field ? command->turn_on : command->turn_off;
+        auto msg = *command->field ? command->turn_on : command->turn_off;
         send_to_imms(fmt::vformat(msg, fmt::make_format_args(GET_NAME(ch), value)));
     } else {
         if (set.empty()) {
-            *command->field = !command->field;
-            const auto msg = command->field ? command->turn_on : command->turn_off;
-            send_to_imms(fmt::vformat(command->turn_off, fmt::make_format_args(GET_NAME(ch), command->field)));
+            *command->field = !*command->field;
+            const auto msg = *command->field ? command->turn_on : command->turn_off;
+            send_to_imms(fmt::vformat(msg, fmt::make_format_args(GET_NAME(ch))));
             return;
         }
         if (matches(set, "on")) {
-            if (!command->field) {
+            if (!*command->field) {
                 *command->field = true;
                 send_to_imms(fmt::vformat(command->turn_on, fmt::make_format_args(GET_NAME(ch))));
             } else {
                 char_printf(ch, "It's already on.\n");
             }
         } else if (matches(set, "off")) {
-            if (command->field) {
+            if (*command->field) {
                 *command->field = false;
                 send_to_imms(fmt::vformat(command->turn_off, fmt::make_format_args(GET_NAME(ch))));
             } else {
@@ -2795,7 +2795,7 @@ ACMD(do_rpain) {
         if (i != ch && (!IS_NPC(i) || i->desc)) {
             perform_pain(i);
             if (!message.empty())
-                char_printf(i, "{}@0\n", argument);
+                char_printf(i, "{}@0\n", argument.get());
             else
                 act("&0&1$n &0&9&bspreads pain and pestilence across the realm "
                     "&0&1&bharming&0&9&b all in $s path!&0",
@@ -2805,7 +2805,7 @@ ACMD(do_rpain) {
     if (message.empty())
         char_printf(ch, "Pain and pestilence spreads across the lands.  Your wrath has been known.\n");
     else
-        char_printf(ch, "{}@0\n", argument);
+        char_printf(ch, "{}@0\n", argument.get());
 }
 
 ACMD(do_rclone) {
@@ -2877,8 +2877,9 @@ ACMD(do_terminate) {
             return;
         }
         /* delete and purge */
-        if (get_clan_membership(victim))
-            revoke_clan_membership(get_clan_membership(victim));
+        // TODO: Fix clan membership revocation with new clan system
+        // if (get_clan_membership(victim))
+        //     revoke_clan_membership(get_clan_membership(victim));
         SET_FLAG(PLR_FLAGS(victim), PLR_DELETED);
         save_player_char(victim);
         delete_player_obj_file(victim);

@@ -624,8 +624,10 @@ void do_stat_character(CharData *ch, CharData *k) {
             birthday, last_login, k->player.time.played / 3600, ((k->player.time.played / 3600) % 60), age(k).year,
             GET_HOMEROOM(k));
 
-        if (auto membership = get_clan_membership(k)) {
-            resp += fmt::format(", Clan: [{}], Rank: [{}]", membership->clan_abbr(), membership->rank_title());
+        auto memberships = get_clan_memberships(k);
+        if (!memberships.empty()) {
+            auto membership = memberships[0];
+            resp += fmt::format(", Clan: [{}], Rank: [{}]", membership->get_clan_abbreviation(), membership->rank().title());
         }
 
         /* Display OLC zones for immorts */
@@ -633,7 +635,7 @@ void do_stat_character(CharData *ch, CharData *k) {
             OLCZoneList *zone;
             std::string zone_msg;
             for (zone = GET_OLC_ZONES(k); zone; zone = zone->next)
-                zone_msg += ("{}{}", zone->zone, zone->next ? ", " : "");
+                zone_msg += fmt::format("{}{}", zone->zone, zone->next ? ", " : "");
             resp += fmt::format(", OLC Zones: [{}]", zone_msg.empty() ? "None" : zone_msg);
         }
         resp += "\n";

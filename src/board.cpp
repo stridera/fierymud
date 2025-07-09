@@ -15,6 +15,8 @@
 #include "board.hpp"
 
 #include "comm.hpp"
+#include "structs.hpp"
+#include "objects.hpp"
 #include "commands.hpp"
 #include "conf.hpp"
 #include "db.hpp"
@@ -361,7 +363,8 @@ static BoardData *load_board(std::string_view name) {
     board->alias = std::string(name);
 
     /* Read in board info */
-    while (get_line(fl, line)) {
+    while (auto line_opt = get_line(fl)) {
+        std::string line = *line_opt;
         tag_argument(line, tag);
 
         if (matches(tag, "~~"))
@@ -400,7 +403,8 @@ static BoardData *load_board(std::string_view name) {
     }
 
     /* Now read in messages */
-    while (get_line(fl, line)) {
+    while (auto line_opt = get_line(fl)) {
+        std::string line = *line_opt;
         tag_argument(line, tag);
 
         if (matches(tag, "~~")) {
@@ -422,7 +426,7 @@ static BoardData *load_board(std::string_view name) {
         case 'E':
             if (matches(tag, "edit")) {
                 CREATE(edit, BoardMessageEdit, 1);
-                if (sscanf(line, "%s %ld", editname, &edit->time) == 2) {
+                if (sscanf(line.c_str(), "%s %ld", editname, &edit->time) == 2) {
                     edit->editor = editname;
                     edit->next = msg->edits;
                     msg->edits = edit;
@@ -440,9 +444,20 @@ static BoardData *load_board(std::string_view name) {
                 goto bad_msg_tag;
             break;
         case 'M':
-            if (matches(tag, "message"))
-                msg->message = fread_string(fl, "load_board");
-            else
+            if (matches(tag, "message")) {
+                // Read tilde-terminated string
+                std::string message_str;
+                while (auto line_opt = get_line(fl)) {
+                    std::string line = *line_opt;
+                    if (auto pos = line.find('~'); pos != std::string::npos) {
+                        message_str += line.substr(0, pos);
+                        break;
+                    } else {
+                        message_str += line + "\n";
+                    }
+                }
+                msg->message = message_str;
+            } else
                 goto bad_msg_tag;
             break;
         case 'P':
@@ -461,7 +476,7 @@ static BoardData *load_board(std::string_view name) {
             break;
         case 'T':
             if (matches(tag, "time"))
-                msg->time = atol(line);
+                msg->time = atol(line.c_str());
             else
                 goto bad_msg_tag;
             break;
@@ -509,7 +524,8 @@ void board_init() {
     }
 
     /* Get list of board aliases and load boards from file */
-    while (get_line(fl, name)) {
+    while (auto name_opt = get_line(fl)) {
+        std::string name = *name_opt;
         if (!(board = load_board(name))) {
             log("Unable to load board '{}' specified in index - skipped", name);
             continue;
@@ -684,7 +700,7 @@ ACMD(do_boardadmin) {
         if (argument.empty())
             char_printf(ch, "Which board do you want to delete?\n");
         else if (!(board = find_board(board_name)))
-            char_printf(ch, "No such board: {}\n", board);
+            char_printf(ch, "No such board: {}\n", board_name);
         else if (!delete_board(board))
             char_printf(ch, "Unable to delete board {}.\n", board->alias);
         else {
@@ -990,7 +1006,7 @@ void remove_message(CharData *ch, BoardData *board, int msgnum, const ObjData *f
         return;
     }
 
-    char_printf(ch, "Removed message {:d} from {}{}.\n", msgnum, face ? !face->short_description.empty() : board->alias,
+    char_printf(ch, "Removed message {:d} from {}{}.\n", msgnum, face ? face->short_description.c_str() : board->alias.c_str(),
                 face ? "" : " board");
 
     delete_message(board, msg);
@@ -1093,7 +1109,7 @@ static EDITOR_FUNC(board_list) {
 
     tm = edit_data->message ? edit_data->message->time : time(0);
     desc_printf(d, "{}" AUND "{} by {} :: {:<30s}\n" ANRM, edit_data->sticky ? AHCYN : AFCYN,
-                fmt::format(TIMEFMT_LOG, localtime(&tm)),
+                fmt::format(fmt::runtime(TIMEFMT_LOG), *localtime(&tm)),
                 edit_data->message ? edit_data->message->poster : GET_NAME(d->character), edit_data->subject);
 
     return ED_IGNORED;

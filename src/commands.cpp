@@ -538,8 +538,20 @@ void boot_command_groups() {
             group->alias = line;
         else if (matches(tag, "name"))
             group->name = line;
-        else if (matches(tag, "desc"))
-            group->description = fread_string(file, "boot_command_groups");
+        else if (matches(tag, "desc")) {
+            // Read tilde-terminated string
+            std::string description_str;
+            while (auto line_opt = get_line(file)) {
+                std::string line = *line_opt;
+                if (auto pos = line.find('~'); pos != std::string::npos) {
+                    description_str += line.substr(0, pos);
+                    break;
+                } else {
+                    description_str += line + "\n";
+                }
+            }
+            group->description = description_str;
+        }
         else if (matches(tag, "level"))
             group->minimum_level = svtoi(line);
         else if (matches(tag, "commands")) {

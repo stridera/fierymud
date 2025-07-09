@@ -12,8 +12,13 @@
 
 #pragma once
 
-#include "structs.hpp"
 #include "sysdep.hpp"
+
+#include <nlohmann/json.hpp>
+
+// Forward declarations
+struct CharData;
+struct ObjData;
 
 #define PLATINUM_SCALE 1000
 #define GOLD_SCALE 100
@@ -130,7 +135,7 @@ class Money {
         }
     }
     // Set operator by index
-    int &operator[](int index) noexcept {
+    int &operator[](int index) {
         switch (index) {
         case PLATINUM:
             return platinum_;

@@ -1546,7 +1546,7 @@ void make_prompt(DescriptorData *d) {
     } else if (EDITING(d) || !d->str.empty())
         write_to_descriptor(d->descriptor, "] ");
     else if (!d->connected) {
-        std::string_view prompt = prompt_str(d->character);
+        std::string prompt = prompt_str(d->character);
 
         write_to_descriptor(d->descriptor,
                             process_colors(prompt, COLOR_LEV(d->character) >= C_NRM ? CLR_PARSE : CLR_STRIP));

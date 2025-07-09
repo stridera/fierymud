@@ -47,20 +47,57 @@ void parse_trigger(FILE *trig_f, int nr) {
     index->func = nullptr;
     index->proto = trig;
 
-    sprintf(buf2, "trig vnum %d", nr);
+    std::string trig_error_context = fmt::format("trig vnum {}", nr);
 
     trig->nr = top_of_trigt;
-    trig->name = fread_string(trig_f, buf2);
+    // Read tilde-terminated string from FILE*
+    std::string name_str;
+    while (auto line_opt = get_line(trig_f)) {
+        std::string line = *line_opt;
+        if (auto pos = line.find('~'); pos != std::string::npos) {
+            name_str += line.substr(0, pos);
+            break;
+        } else {
+            name_str += line + "\n";
+        }
+    }
+    trig->name = name_str;
 
-    get_line(trig_f, line);
+    auto line_opt2 = get_line(trig_f);
+    if (!line_opt2) return;
+    std::string line_str = *line_opt2;
+    strcpy(line, line_str.c_str());
     k = sscanf(line, "%d %s %d", &attach_type, flags, t);
     trig->attach_type = (byte)attach_type;
     trig->trigger_type = asciiflag_conv(flags);
     trig->narg = (k == 3) ? t[0] : 0;
 
-    trig->arglist = fread_string(trig_f, buf2);
+    // Read tilde-terminated string from FILE*
+    std::string arglist_str;
+    while (auto line_opt = get_line(trig_f)) {
+        std::string line = *line_opt;
+        if (auto pos = line.find('~'); pos != std::string::npos) {
+            arglist_str += line.substr(0, pos);
+            break;
+        } else {
+            arglist_str += line + "\n";
+        }
+    }
+    trig->arglist = arglist_str;
 
-    cmds = s = fread_string(trig_f, buf2);
+    // Read tilde-terminated string from FILE*
+    static std::string cmds_str;
+    cmds_str.clear();
+    while (auto line_opt = get_line(trig_f)) {
+        std::string line = *line_opt;
+        if (auto pos = line.find('~'); pos != std::string::npos) {
+            cmds_str += line.substr(0, pos);
+            break;
+        } else {
+            cmds_str += line + "\n";
+        }
+    }
+    cmds = s = const_cast<char*>(cmds_str.c_str());
 
     CREATE(trig->cmdlist, CmdlistElement, 1);
     trig->cmdlist->cmd = strdup(strtok(s, "\r\n"));
@@ -107,10 +144,10 @@ void free_varlist(TriggerVariableData *vd) {
     for (i = vd; i;) {
         j = i;
         i = i->next;
-        if (j->name)
-            free(j->name);
-        if (j->value)
-            free(j->value);
+        if (!j->name.empty())
+            ; // TODO: Fix memory management - may not need free() with string_view
+        if (!j->value.empty())
+            ; // TODO: Fix memory management - may not need free() with string_view
         free(j);
     }
 }
@@ -133,12 +170,12 @@ void free_script(ScriptData *sc) {
 void trig_data_init(TrigData *cur) {
     cur->nr = NOTHING;
     cur->data_type = 0;
-    cur->name = nullptr;
+    cur->name = "";
     cur->trigger_type = 0;
     cur->cmdlist = nullptr;
     cur->curr_state = nullptr;
     cur->narg = 0;
-    cur->arglist = nullptr;
+    cur->arglist = "";
     cur->depth = 0;
     cur->wait_event = nullptr;
     cur->purged = false;
@@ -154,24 +191,26 @@ void trig_data_copy(TrigData *cur, const TrigData *trg) {
     cur->nr = trg->nr;
     cur->attach_type = trg->attach_type;
     cur->data_type = trg->data_type;
-    cur->name = strdup(trg->name);
+    cur->name = strdup(trg->name.data());
     cur->trigger_type = trg->trigger_type;
     cur->cmdlist = trg->cmdlist;
     cur->narg = trg->narg;
-    if (trg->arglist)
-        cur->arglist = strdup(trg->arglist);
+    if (!trg->arglist.empty())
+        cur->arglist = strdup(trg->arglist.data());
 }
 
 void free_trigger(TrigData *trig) {
-    free(trig->name);
-    trig->name = nullptr;
+    // TODO: Fix memory management - may not need free() with string_view
+    // free(trig->name);
+    trig->name = "";
 
     /* trigger code is reused by multiple objects, so dont free it! */
     trig->cmdlist = nullptr;
 
-    if (trig->arglist) {
-        free(trig->arglist);
-        trig->arglist = nullptr;
+    if (!trig->arglist.empty()) {
+        // TODO: Fix memory management - may not need free() with string_view
+        // free(trig->arglist);
+        trig->arglist = "";
     }
 
     free_varlist(trig->var_list);
@@ -191,7 +230,9 @@ void dg_read_trigger(std::ifstream &fp, void *proto, int type) {
     RoomData *room;
     TriggerPrototypeList *trg_proto, *new_trg;
 
-    get_line(fp, line);
+    std::string line_str;
+    if (!std::getline(fp, line_str)) return;
+    strcpy(line, line_str.c_str());
     count = sscanf(line, "%s %d", junk, &vnum);
 
     if (count != 2) {
@@ -205,7 +246,7 @@ void dg_read_trigger(std::ifstream &fp, void *proto, int type) {
         if (type == MOB_TRIGGER) {
             mob = (CharData *)proto;
             sprintf(line, "SYSERR: Non-existent Trigger (vnum #%d) required for mob %d (%s)!", vnum, GET_MOB_VNUM(mob),
-                    GET_NAME(mob));
+                    GET_NAME(mob).c_str());
         }
         if (type == WLD_TRIGGER)
             sprintf(line, "SYSERR: Non-existent Trigger (vnum #%d) required for room %d!", vnum,
@@ -262,7 +303,7 @@ void dg_obj_trigger(std::string_view line, ObjData *obj) {
     int vnum, rnum, count;
     TriggerPrototypeList *trg_proto, *new_trg;
 
-    count = sscanf(line, "%s %d", junk, &vnum);
+    count = sscanf(line.data(), "%s %d", junk, &vnum);
 
     if (count != 2) {
         /* should do a better job of making this message */

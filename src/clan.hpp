@@ -205,9 +205,8 @@ class Clan : public std::enable_shared_from_this<Clan> {
 
     // Notify all members of the clan
     void notify(const CharacterPtr &skip, const std::string_view str);
-    template <typename... Args> void notify(const CharacterPtr &skip, std::string_view str, Args &&...args) {
-        notify(skip, fmt::vformat(str, fmt::make_format_args(args...)));
-    }
+    template <typename... Args> void notify(const CharacterPtr &skip, std::string_view str, Args &&...args);
+    // Implementation moved to cpp file to avoid template instantiation issues
 
     // Make JSON functions friends of the Clan class
     friend void to_json(nlohmann::json &j, const Clan &clan);
@@ -294,11 +293,8 @@ class ClanMembership {
             clan->notify(character_.lock(), str);
         }
     }
-    template <typename... Args> void notify_clan(std::string_view str, Args &&...args) {
-        if (auto clan = get_clan()) {
-            clan->notify(character_.lock(), fmt::vformat(str, fmt::make_format_args(args...)));
-        }
-    }
+    template <typename... Args> void notify_clan(std::string_view str, Args &&...args);
+    // Implementation moved to cpp file to avoid template instantiation issues
 
     // Updates
     std::expected<void, std::string_view> update_clan_name(std::string new_name);
@@ -361,7 +357,7 @@ class ClanRepository {
     std::expected<void, std::string> load_from_file(const std::filesystem::path &filepath);
 
     // TODO: Legacy loading function.  Remove after first load (after json creation)
-    bool ClanRepository::load_legacy(const std::string_view clan_num);
+    bool load_legacy(const std::string_view clan_num);
 };
 
 // ClanRepository instance

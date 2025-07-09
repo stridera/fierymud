@@ -165,7 +165,7 @@ extern CharData *mob_proto;
 extern int top_of_mobt;
 extern ZoneData *zone_table;
 extern int top_of_zone_table;
-extern IndexData **trig_index;
+extern std::unique_ptr<IndexData *[]> trig_index;
 extern int top_of_trigt;
 extern long max_id;
 

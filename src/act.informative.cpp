@@ -434,7 +434,7 @@ static void print_char_flags_to_char(CharData *targ, CharData *ch) {
     char_printf(ch, resp);
 }
 
-const std::string_view status_string(int cur, int max, int mode) {
+const std::string status_string(int cur, int max, int mode) {
     struct {
         std::string_view pre;
         std::string_view color;
@@ -475,7 +475,7 @@ const std::string_view status_string(int cur, int max, int mode) {
 
     switch (mode) {
     case STATUS_COLOR:
-        return css.color;
+        return std::string(css.color);
     case STATUS_ALIAS:
         return fmt::format("{}{}" ANRM, css.color, css.cond);
     case STATUS_PHRASE:
@@ -1921,8 +1921,8 @@ void do_who(CharData *ch, Arguments argument, int cmd, int subcmd) {
         final_output = "No wizards or mortals are currently visible to you.\n";
     final_output += fmt::format("There {} {} visible deity{} and {} visible mortal{}.\n", wizards == 1 ? "is" : "are",
                                 wizards, wizards == 1 ? "y" : "ies", mortals, mortals == 1 ? "" : "s");
-    final_output += fmt::format("There is a boot-time high of {} player{}.\n",
-                                boot_high = std::max(boot_high, wizards + mortals), boot_high == 1 ? "" : "s");
+    boot_high = std::max(boot_high, wizards + mortals);
+    final_output += fmt::format("There is a boot-time high of {} player{}.\n", boot_high, boot_high == 1 ? "" : "s");
     page_string(ch, final_output);
 }
 
@@ -2051,12 +2051,12 @@ ACMD(do_users) {
         if (GET_INVIS_LEV(tch) > GET_LEVEL(ch))
             continue;
 
-        std::string_view classname = fmt::format("[{:2d} {}]", GET_LEVEL(tch), CLASS_ABBR(tch));
-        std::string_view idletime =
+        std::string classname = fmt::format("[{:2d} {}]", GET_LEVEL(tch), CLASS_ABBR(tch));
+        std::string idletime =
             fmt::format("{:3d}", tch->char_specials.timer * SECS_PER_MUD_HOUR / SECS_PER_REAL_MIN);
         std::string_view state = d->original && !d->connected ? "Switched" : connected_types[STATE(d)];
-        std::string_view login_time = std::string(asctime(localtime(&d->login_time))).substr(11, 8);
-        std::string_view hostnum = d->host ? d->host : "Unknown Host";
+        std::string login_time = std::string(asctime(localtime(&d->login_time))).substr(11, 8);
+        std::string_view hostnum = d->host;
 
         std::string room = "";
         if (STATE(d) == CON_PLAYING) {
@@ -2065,8 +2065,8 @@ ACMD(do_users) {
                 room = fmt::format("{}/{}", world[location].vnum, strip_ansi(world[location].name));
         }
 
-        std::string_view client =
-            d->character && d->character->player_specials ? d->character->player_specials->client : "Unknown";
+        std::string client = d->character && d->character->player_specials ? 
+            std::string(d->character->player_specials->client) : std::string("Unknown");
 
         userbuf += fmt::format("{:3d} {:<10} {:<15} {:<3} {:<8} {:<25} {:<9}\n", d->desc_num, GET_NAME(tch), hostnum,
                                idletime, login_time, room, client);
@@ -3177,7 +3177,7 @@ ACMD(do_spells) {
 
         if (circle >= 0) {
             int j;
-            for (j = 0; circle_spells[circle][j] && j < circle < max_vis_circle; ++j)
+            for (j = 0; circle_spells[circle][j] && j < circle && circle < max_vis_circle; ++j)
                 ;
             if (!xcircle || *xcircle == circle + 1)
                 numspellsknown++;
@@ -3298,7 +3298,7 @@ ACMD(do_listspells) {
         if (skills[i].min_level[class_num] < LVL_IMMORT) {
             int circle = (skills[i].min_level[class_num] - 1) / 8;
             int j = 0;
-            while (circle_spells[circle][j] && j < circle < MAX_CIRCLE) {
+            while (circle_spells[circle][j] && j < circle && circle < MAX_CIRCLE) {
                 ++j;
             }
             circle_spells[circle][j] = i;

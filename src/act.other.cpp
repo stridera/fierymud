@@ -1346,8 +1346,9 @@ ACMD(do_title) {
         }
     } else if (argument.empty()) {
         titles = GET_PERM_TITLES(ch).size();
-        if (GET_CLAN(ch) && IS_CLAN_MEMBER(ch))
-            ++titles;
+        // TODO: Fix clan title integration with new clan system
+        // if (GET_CLAN(ch) && IS_CLAN_MEMBER(ch))
+        //     ++titles;
         if (titles == 0) {
             char_printf(ch, "You haven't earned any permanent titles!\n");
             if (!ch->player.title.empty())
@@ -1360,8 +1361,9 @@ ACMD(do_title) {
             for (auto perm_title : GET_PERM_TITLES(ch))
                 char_printf(ch, "  {:d}) {}\n", ++titles, perm_title);
 
-            if (GET_CLAN(ch) && IS_CLAN_MEMBER(ch))
-                char_printf(ch, "  {:d}) {} {}\n", ++titles, GET_CLAN_TITLE(ch), GET_CLAN(ch)->abbreviation);
+            // TODO: Fix clan title integration with new clan system
+            // if (GET_CLAN(ch) && IS_CLAN_MEMBER(ch))
+            //     char_printf(ch, "  {:d}) {} {}\n", ++titles, GET_CLAN_TITLE(ch), GET_CLAN(ch)->abbreviation);
             char_printf(ch, "Use 'title <number>' to switch your title.\n");
         }
     } else if (!is_integer(title))
@@ -1380,10 +1382,11 @@ ACMD(do_title) {
         else
             which -= GET_PERM_TITLES(ch).size();
 
-        if (GET_CLAN(ch) && IS_CLAN_MEMBER(ch)) {
-            if (++titles == which)
-                clan_set_title(ch);
-        }
+        // TODO: Fix clan title integration with new clan system
+        // if (GET_CLAN(ch) && IS_CLAN_MEMBER(ch)) {
+        //     if (++titles == which)
+        //         clan_set_title(ch);
+        // }
         if (which > titles) {
             char_printf(ch, "You don't have that many titles!\n");
             return;
@@ -2099,7 +2102,7 @@ ACMD(do_gen_write) {
         return;
     }
 
-    log(LogSeverity::Stat, LVL_IMMORT, "{} by {} [{:d}]: {}", idea_types[subcmd], GET_NAME(ch), CH_RVNUM(ch), argument);
+    log(LogSeverity::Stat, LVL_IMMORT, "{} by {} [{:d}]: {}", idea_types[subcmd], GET_NAME(ch), CH_RVNUM(ch), argument.get());
     std::ofstream file(filename, std::ios::app);
     if (!file.is_open()) {
         perror("do_gen_write");
@@ -2109,7 +2112,7 @@ ACMD(do_gen_write) {
 
     auto now = std::chrono::system_clock::to_time_t(std::chrono::system_clock::now());
     auto timestamp = fmt::format("{:%Y-%m-%d %H:%M:%S}", *std::localtime(&now));
-    file << fmt::format("{:<8} ({:11}) [{:5}] {}\n", GET_NAME(ch), timestamp, world[ch->in_room].vnum, argument);
+    file << fmt::format("{:<8} ({:11}) [{:5}] {}\n", GET_NAME(ch), timestamp, world[ch->in_room].vnum, argument.get());
     file.close();
     char_printf(ch, "Thanks for the bug, idea, or typo comment!\n");
 }

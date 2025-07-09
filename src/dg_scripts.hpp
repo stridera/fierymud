@@ -17,6 +17,7 @@
 #include "rooms.hpp"
 #include "structs.hpp"
 #include "sysdep.hpp"
+#include "utils.hpp"
 
 #define MOB_TRIGGER 0
 #define OBJ_TRIGGER 1

@@ -1177,7 +1177,7 @@ const struct vsearch_object_value_type {
 ACMD(do_osearch) {
     int mode, value, found, compare, bound, nr, first, last, temp, temp_found, type = -1;
     std::string_view string;
-    const std::string_view header_type;
+    const std::string header_type;
     flagvector flags[4];
     bool match;
     ObjData *obj;

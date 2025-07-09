@@ -11,9 +11,12 @@ std::string_view Arguments::command_shift(bool strict) {
 
     // If the first character is non-alpha, return just that character.
     if (!isalpha(arg[0])) {
-        std::string_view output = arg.substr(0, 1);
+        char first_char = arg[0];
         arg = arg.substr(1);
-        return output;
+        // Store the single character in a static string to ensure it persists
+        static std::string single_char_buffer;
+        single_char_buffer = first_char;
+        return single_char_buffer;
     }
 
     if (strict)

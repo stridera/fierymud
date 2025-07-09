@@ -11,6 +11,7 @@
 
 #include "string_utils.hpp"
 
+#include <limits>
 #include <optional>
 #include <string>
 

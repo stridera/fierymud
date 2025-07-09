@@ -37,10 +37,11 @@
  * see also:	do_varset
  */
 ACMD(do_varset) {
-    char victtype[10];
+    std::string_view victtype;
     int vnum;
 
-    skip_spaces(argument);
+    // TODO: skip_spaces doesn't work with Arguments - removed for now
+    // skip_spaces(argument);
     if (argument.empty()) {
         char_printf(ch, "Usage: varset {mob|obj|room} <vnum> <varname> [<varval>]\n");
         return;
@@ -52,17 +53,17 @@ ACMD(do_varset) {
         return;
     }
 
-    buf = argument.shift();
-    if (buf.empty()) {
+    auto vnum_str = argument.shift();
+    if (vnum_str.empty()) {
         char_printf(ch, "Usage: varset {mob|obj|room} <VNUM> <varname> [<varval>]\n");
         return;
     }
-    if (!(vnum = atoi(buf))) {
+    if (!(vnum = atoi(vnum_str.data()))) {
         char_printf(ch, "Usage: varset {mob|obj|room} <VNUM> <varname> [<varval>]\n");
         return;
     }
-    buf = argument.shift();
-    if (buf.empty()) {
+    auto varname = argument.shift();
+    if (varname.empty()) {
         char_printf(ch, "Usage: varset {mob|obj|room} <vnum> <VARNAME> [<varval>]\n");
         return;
     }
@@ -83,7 +84,7 @@ ACMD(do_varset) {
         else {
             if (!SCRIPT(found_char))
                 CREATE(SCRIPT(found_char), ScriptData, 1);
-            add_var(&(SCRIPT(found_char)->global_vars), buf, argument);
+            add_var(&(SCRIPT(found_char)->global_vars), varname, argument.get());
         }
     } else if (matches("obj", victtype)) {
         ObjData *found_obj = nullptr;
@@ -101,7 +102,7 @@ ACMD(do_varset) {
         else {
             if (!SCRIPT(found_obj))
                 CREATE(SCRIPT(found_obj), ScriptData, 1);
-            add_var(&(SCRIPT(found_obj)->global_vars), buf, argument);
+            add_var(&(SCRIPT(found_obj)->global_vars), varname, argument.get());
         }
     } else if (matches("room", victtype)) {
         int rnum = real_room(vnum);
@@ -110,7 +111,7 @@ ACMD(do_varset) {
         else {
             if (!SCRIPT(&world[rnum]))
                 CREATE(SCRIPT(&world[rnum]), ScriptData, 1);
-            add_var(&(SCRIPT(&world[rnum])->global_vars), buf, argument);
+            add_var(&(SCRIPT(&world[rnum])->global_vars), varname, argument.get());
         }
     } else {
         char_printf(ch, "Usage: varset {MOB|OBJ|ROOM} <vnum> <varname> [<varval>]\n");
@@ -130,9 +131,10 @@ ACMD(do_varset) {
  * see also:	do_varset
  */
 ACMD(do_varunset) {
-    char victtype[10];
+    std::string_view victtype;
     int vnum;
-    skip_spaces(argument);
+    // TODO: skip_spaces doesn't work with Arguments - removed for now
+    // skip_spaces(argument);
     if (argument.empty()) {
         char_printf(ch, "Usage: varunset {mob|obj|room} <rnum> <varname>\n");
         return;
@@ -144,17 +146,17 @@ ACMD(do_varunset) {
         return;
     }
 
-    buf = argument.shift();
-    if (buf.empty()) {
+    auto vnum_str = argument.shift();
+    if (vnum_str.empty()) {
         char_printf(ch, "Usage: varunset {mob|obj|room} <VNUM> <varname>\n");
         return;
     }
-    if (!(vnum = atoi(buf))) {
+    if (!(vnum = atoi(vnum_str.data()))) {
         char_printf(ch, "Usage: varunset {mob|obj|room} <VNUM> <varname>\n");
         return;
     }
-    buf = argument.shift();
-    if (buf.empty()) {
+    auto varname = argument.shift();
+    if (varname.empty()) {
         char_printf(ch, "Usage: varunset {mob|obj|room} <vnum> <VARNAME>\n");
         return;
     }
@@ -173,7 +175,7 @@ ACMD(do_varunset) {
         if (!found_char)
             char_printf(ch, "Unable to find that mob in this room\n");
         else
-            remove_var(&(SCRIPT(found_char)->global_vars), buf);
+            remove_var(&(SCRIPT(found_char)->global_vars), varname);
     } else if (matches("obj", victtype)) {
         ObjData *found_obj = nullptr;
         found_obj = ch->carrying;
@@ -188,13 +190,13 @@ ACMD(do_varunset) {
         if (!found_obj)
             char_printf(ch, "Unable to find that obj in inventory or room\n");
         else
-            remove_var(&(SCRIPT(found_obj)->global_vars), buf);
+            remove_var(&(SCRIPT(found_obj)->global_vars), varname);
     } else if (matches("room", victtype)) {
         int rnum = real_room(vnum);
         if (rnum == NOWHERE)
             char_printf(ch, "That room does not exist!\n");
         else
-            remove_var(&(SCRIPT(&world[rnum])->global_vars), buf);
+            remove_var(&(SCRIPT(&world[rnum])->global_vars), varname);
     } else {
         char_printf(ch, "Usage: varunset {MOB|OBJ|ROOM} <vnum> <varname>\n");
     }
