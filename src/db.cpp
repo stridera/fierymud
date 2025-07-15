@@ -54,7 +54,6 @@
 #include <math.h>
 #include <sys/stat.h>
 
-void init_clans(void);
 char err_buf[MAX_STRING_LENGTH];
 PlayerSpecialData dummy_mob;
 
@@ -540,7 +539,7 @@ void boot_world(void) {
 
     /* Must happen after loading the player index */
     log("Booting Clans.");
-    // init_clans();
+    clan_repository.init_clans();
 
     log("Booting boards.");
     board_init();
@@ -625,8 +624,7 @@ void boot_db(void) {
     log("Booting quests.");
     boot_quests();
 
-    CREATE(boot_time, time_t, 1);
-    *boot_time = time(0);
+    boot_time = time(0);
 
     log("Boot db -- DONE.");
 }

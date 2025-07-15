@@ -21,7 +21,6 @@
 #define QUIT_RENT 1                                               /*  yes           no           here   */
 #define QUIT_CRYO 2                                               /*  yes           no           here   */
 #define QUIT_TIMEOUT 3                                            /*  yes           no           home   */
-#define QUIT_HOTBOOT 4                                            /*  yes           yes          home   */
 #define QUIT_QUITMORT 5                                           /*  no            no           temple */
 #define QUIT_QUITIMM 6                                            /*  yes           no           here   */
 #define QUIT_CAMP 7                                               /*  yes           no           here   */

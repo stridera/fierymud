@@ -205,6 +205,7 @@ class FunctionRegistry {
                                       func_info.description);
             }
         }
+        return result;
     }
 
     // Print information about registered functions
@@ -291,4 +292,5 @@ class FunctionRegistry {
     inline static const auto func##_reg = []() {                                                                       \
         FunctionRegistry::register_function(name, func, priority, bitflag, description);                               \
         return true;                                                                                                   \
-    }()
+    }();
+

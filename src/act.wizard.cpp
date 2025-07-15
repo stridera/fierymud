@@ -1110,12 +1110,12 @@ ACMD(do_date) {
     char *tmstr;
     time_t mytime;
     int d, h, m;
-    extern time_t *boot_time;
+    extern time_t boot_time;
 
     if (subcmd == SCMD_DATE)
         mytime = time(0);
     else
-        mytime = boot_time[0];
+        mytime = boot_time;
 
     tmstr = (char *)asctime(localtime(&mytime));
     *(tmstr + strlen(tmstr) - 1) = '\0';
@@ -1123,7 +1123,7 @@ ACMD(do_date) {
     if (subcmd == SCMD_DATE)
         char_printf(ch, "Current machine time: {}\n", tmstr);
     else {
-        mytime = time(0) - boot_time[0];
+        mytime = time(0) - boot_time;
         d = mytime / 86400;
         h = (mytime / 3600) % 24;
         m = (mytime / 60) % 60;
@@ -3053,118 +3053,6 @@ ACMD(do_pfilemaint) {
     char_printf(ch, "Done!\n");
 }
 
-ACMD(do_hotboot) {
-    FILE *fp;
-    bool found = false;
-    DescriptorData *d, *d_next;
-    char buf[MAX_INPUT_LENGTH];
-    int i;
-
-    extern int num_hotboots;
-    extern ush_int port;
-    extern socket_t mother_desc;
-    extern time_t *boot_time;
-    extern void ispell_done(void);
-
-    skip_spaces(&argument);
-
-    /*
-     * You must type 'hotboot yes' to actually hotboot.  However,
-     * if anyone is connected and is not in the game or is editing
-     * in OLC, a warning will be shown, and no hotboot will occur.
-     * 'hotboot force' will override this.
-     */
-    if (strcasecmp(argument, "force") != 0) {
-        if (strcasecmp(argument, "yes") != 0) {
-            char_printf(ch, "Are you sure you want to do a hotboot?  If so, type 'hotboot yes'.\n");
-            return;
-        }
-
-        /*
-         * First scan the descriptors to see if it would be particularly
-         * inconvenient for anyone to have a hotboot right now.
-         */
-        for (d = descriptor_list; d; d = d->next) {
-            if (d->character && STATE(d) == CON_PLAYING)
-                continue; /* Okay, hopefully they're not too busy. */
-
-            if (!found) {
-                char_printf(ch, "Wait!  A hotboot might be inconvenient right now for:\n\n");
-                found = true;
-            }
-
-            char_printf(ch, "  {}, who is currently busy with: {}{}{}\n",
-                        d->character && GET_NAME(d->character) ? GET_NAME(d->character) : "An unnamed connection",
-                        CLR(ch, FYEL), connected_types[STATE(d)], CLR(ch, ANRM));
-        }
-
-        if (found) {
-            char_printf(ch, "\nIf you still want to do a hotboot, type 'hotboot force'.\n");
-            return;
-        }
-    }
-
-    fp = fopen(HOTBOOT_FILE, "w");
-    if (!fp) {
-        char_printf(ch, "Hotboot file not writeable, aborted.\n");
-        return;
-    }
-
-    log("(GC) Hotboot initiated by {}.", GET_NAME(ch));
-
-    sprintf(buf, "\n %s<<< HOTBOOT by %s - please remain seated! >>>%s\n", CLR(ch, HRED), GET_NAME(ch), CLR(ch, ANRM));
-
-    /* Write boot_time as first line in file */
-    fprintf(fp, "%d", num_hotboots + 1); /* num of boots so far */
-    for (i = 0; i <= num_hotboots; ++i)
-        fprintf(fp, " %ld", boot_time[i]); /* time of each boot */
-    fprintf(fp, "\n");
-
-    /* For each playing descriptor, save its state */
-    for (d = descriptor_list; d; d = d_next) {
-        /* We delete from the list, so need to save this. */
-        d_next = d->next;
-
-        /* Drop those logging on */
-        if (!d->character || !IS_PLAYING(d)) {
-            write_to_descriptor(d->descriptor, "\nSorry, we are rebooting.  Come back in a minute.\n");
-            close_socket(d); /* throw 'em out */
-        } else {
-            CharData *tch = d->character;
-            fprintf(fp, "%d %s %s\n", d->descriptor, GET_NAME(tch), d->host);
-            /* save tch */
-            GET_QUIT_REASON(tch) = QUIT_HOTBOOT; /* Not exactly leaving, but sort of */
-            save_player(tch);
-            write_to_descriptor(d->descriptor, buf);
-        }
-    }
-
-    fprintf(fp, "-1\n");
-    fclose(fp);
-
-    /* Kill child processes: ispell */
-    ispell_done();
-
-    /* Prepare arguments to call self */
-    sprintf(buf, "%d", port);
-    sprintf(buf2, "-H%d", mother_desc);
-
-    /* Ugh, seems it is expected we are 1 step above lib - this may be dangerous! */
-    if (chdir("..") != 0) {
-        perror("chdir failed");
-        exit(1);
-    }
-
-    /* exec - descriptors are inherited! */
-    execl("bin/fiery", "fiery", buf2, buf, (char *)nullptr);
-
-    /* Failed - successful exec will not return */
-    perror("do_hotboot: execl");
-    write_to_descriptor(ch->desc->descriptor, "Hotboot FAILED!\n");
-
-    /* Too much trouble to try and recover! */
-    exit(1);
-}
 
 void scan_pfile_objs(CharData *ch, int vnum) {
     FILE *fl;

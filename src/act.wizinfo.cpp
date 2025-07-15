@@ -2002,8 +2002,7 @@ ACMD(do_show) {
 void reboot_info(CharData *ch) {
     int h, m, s;
 
-    extern int num_hotboots;
-    extern time_t *boot_time;
+    extern time_t boot_time;
 
     h = (reboot_pulse - global_pulse) / (3600 * PASSES_PER_SEC);
     m = ((reboot_pulse - global_pulse) % (3600 * PASSES_PER_SEC)) / (60 * PASSES_PER_SEC);
@@ -2013,15 +2012,9 @@ void reboot_info(CharData *ch) {
     else
         char_printf(ch, "Automatic rebooting is &1off&0; would reboot in {:02d}:{:02d}:{:02d}.\n", h, m, s);
 
-    if (num_hotboots > 0) {
-        char_printf(ch, "{:d} hotboot{} since last shutdown.  Hotboot history:\n", num_hotboots,
-                    num_hotboots == 1 ? "" : "s");
-        for (s = 0; s < num_hotboots; ++s) {
-            strcpy(buf, ctime(&boot_time[s + 1]));
-            buf[strlen(buf) - 1] = '\0';
-            char_printf(ch, "  {}\n", buf);
-        }
-    }
+    strcpy(buf, ctime(&boot_time));
+    buf[strlen(buf) - 1] = '\0';
+    char_printf(ch, "Game started: {}\n", buf);
 }
 
 ACMD(do_world) {

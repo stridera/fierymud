@@ -153,7 +153,6 @@ ACMD(do_hcontrol);
 ACMD(do_hide);
 ACMD(do_hit);
 ACMD(do_hitall);
-ACMD(do_hotboot);
 ACMD(do_house);
 ACMD(do_hunt);
 ACMD(do_iedit);
@@ -574,7 +573,6 @@ const CommandInfo cmd_info[] = {
     {"hitall", POS_STANDING, STANCE_ALERT, do_hitall, 0, SCMD_HITALL, 0},
     {"hold", POS_PRONE, STANCE_RESTING, do_grab, 1, 0, 0},
     {"hop", POS_STANDING, STANCE_ALERT, do_action, 0, 0, CMD_NOFIGHT},
-    {"hotboot", POS_PRONE, STANCE_DEAD, do_hotboot, LVL_REBOOT_MASTER, 0, 0},
     {"house", POS_PRONE, STANCE_RESTING, do_house, -1, 0, 0},
     {"howl", POS_STANDING, STANCE_ALERT, do_roar, 0, SCMD_HOWL, 0},
     {"hunt", POS_STANDING, STANCE_ALERT, do_hunt, -1, 0, CMD_NOFIGHT},

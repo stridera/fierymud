@@ -489,8 +489,6 @@ ACMD(do_attach) {
 void add_var(TriggerVariableData **var_list, const char *name, const char *value) {
     TriggerVariableData *vd;
 
-    printf("add_var: name = %s, value = %s\n", name, value);
-
     for (vd = *var_list; vd && strcasecmp(vd->name, name); vd = vd->next)
         ;
 

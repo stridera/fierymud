@@ -53,8 +53,8 @@ void skip_spaces(std::string_view str);
  * look correct. */
 // void delete_doubledollar(std::string &str) { str = replace_string(str, "$$", "$"); }
 
-[[nodiscard]] std::string_view to_lowercase(std::string_view str);
-[[nodiscard]] std::string_view to_uppercase(std::string_view str);
+[[nodiscard]] std::string to_lowercase(std::string_view str);
+[[nodiscard]] std::string to_uppercase(std::string_view str);
 [[nodiscard]] std::string_view getline(std::string_view input, char delim);
 
 [[nodiscard]] std::string join_strings(const std::vector<std::string> &strings, const std::string_view separator,

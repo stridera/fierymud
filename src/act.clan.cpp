@@ -21,8 +21,10 @@
 #include <fmt/format.h>
 #include <memory>
 #include <optional>
+#include <sstream>
 #include <string>
 #include <string_view>
+#include <unordered_map>
 
 #define CLANCMD(name) static void(name)(CharData * ch, Arguments argument)
 enum ClanPermissions : PermissionFlags {
@@ -141,6 +143,8 @@ CLANCMD(clan_deposit) {
     char_printf(ch, "You {}'s account: {}\n", membership->get_clan_abbreviation(), statemoney(coins));
     clan_repository.save();
 }
+REGISTER_FUNCTION(clan_deposit, "clan_deposit", 0, ClanPermissions::ClanMember,
+                "Deposit money into the clan treasury");
 
 CLANCMD(clan_withdraw) {
 
@@ -178,8 +182,8 @@ CLANCMD(clan_withdraw) {
     char_printf(ch, "You withdraw from  {}'s account: {}\n", membership->get_clan_abbreviation(), statemoney(coins));
     clan_repository.save();
 }
-REGISTER_FUNCTION(clan_bank, "clan_bank", 0, ClanPermissions::ClanMember,
-                "Deposit or withdraw money from the clan bank");
+REGISTER_FUNCTION(clan_withdraw, "clan_withdraw", 0, ClanPermissions::ClanMember,
+                "Withdraw money from the clan treasury");
 
 CLANCMD(clan_store) {
     ObjData *obj;
@@ -255,6 +259,8 @@ CLANCMD(clan_retrieve) {
     bool found = false;
 
     // Find the object in storage matching the name
+    // Build a temporary cache for faster lookup
+    std::unordered_map<std::string, ObjectId> name_to_vnum_cache;
     for (const auto &[vnum, count] : membership->get_clan_storage()) {
         if (count <= 0)
             continue;
@@ -263,13 +269,21 @@ CLANCMD(clan_retrieve) {
         if (!obj)
             continue;
 
-        if (isname(std::string(obj_name).c_str(), obj->name)) {
-            obj_vnum = vnum;
-            found = true;
-            free_obj(obj);
-            break;
+        // Cache all possible names for this object
+        std::string names = obj->name;
+        std::string name_token;
+        std::istringstream name_stream(names);
+        while (name_stream >> name_token) {
+            name_to_vnum_cache[name_token] = vnum;
         }
         free_obj(obj);
+    }
+    
+    // Quick lookup in cache
+    auto cache_it = name_to_vnum_cache.find(std::string(obj_name));
+    if (cache_it != name_to_vnum_cache.end()) {
+        obj_vnum = cache_it->second;
+        found = true;
     }
 
     if (!found) {
@@ -323,11 +337,12 @@ CLANCMD(clan_tell) {
                 ch->player.level < LVL_IMMORT ? "your clan" : membership->get_clan_abbreviation(), speech);
 
     for (auto member : membership->get_clan_members()) {
-        auto target = member->character();
+        // Find the online character by name
+        auto target = find_char_in_world(find_by_name(const_cast<char*>(member.name.c_str())));
         if (!target || !target->desc || !IS_PLAYING(target->desc))
             continue;
 
-        auto tch = REAL_CHAR(target.get());
+        auto tch = REAL_CHAR(target);
         if (!tch || tch == me)
             continue;
 
@@ -399,6 +414,11 @@ CLANCMD(clan_set) {
             char_printf(ch, "How much platinum should the clan's application fee be?\n");
             return;
         }
+        
+        if (*fee_opt < 0) {
+            char_printf(ch, "Application fee cannot be negative.\n");
+            return;
+        }
 
         auto result = membership->update_clan_app_fee(*fee_opt);
         if (result) {
@@ -432,13 +452,34 @@ CLANCMD(clan_set) {
             char_printf(ch, "Which rank do you want to delete?\n");
             return;
         }
+        
+        if (*rank_opt < 1) {
+            char_printf(ch, "Rank number must be positive.\n");
+            return;
+        }
+        
+        auto ranks = membership->get_clan_ranks();
+        if (*rank_opt > ranks.size()) {
+            char_printf(ch, "Invalid rank number. Clan has {} ranks.\n", ranks.size());
+            return;
+        }
 
-        // Need to implement rank deletion in the membership class
-        char_printf(ch, "Not implemented yet.\n");
+        auto result = membership->delete_clan_rank(*rank_opt - 1);  // Convert to 0-based index
+        if (result) {
+            char_printf(ch, "Rank {} deleted.\n", *rank_opt);
+        } else {
+            char_printf(ch, "{}.\n", result.error());
+            return;
+        }
     } else if (matches_start(cmd, "dues")) {
         auto dues_opt = argument.try_shift_number();
         if (!dues_opt) {
             char_printf(ch, "How much platinum should the clan's dues be?\n");
+            return;
+        }
+        
+        if (*dues_opt < 0) {
+            char_printf(ch, "Dues cannot be negative.\n");
             return;
         }
 
@@ -474,6 +515,11 @@ CLANCMD(clan_set) {
             char_printf(ch, "For which rank do you want to set a title?\n");
             return;
         }
+        
+        if (*rank_opt < 1) {
+            char_printf(ch, "Rank number must be positive.\n");
+            return;
+        }
 
         auto title = argument.get();
         if (title.empty()) {
@@ -485,9 +531,20 @@ CLANCMD(clan_set) {
             char_printf(ch, "Clan titles may be at most {} characters long.\n", Clan::MAX_CLAN_TITLE_LEN);
             return;
         }
+        
+        auto ranks = membership->get_clan_ranks();
+        if (*rank_opt > ranks.size()) {
+            char_printf(ch, "Invalid rank number. Clan has {} ranks.\n", ranks.size());
+            return;
+        }
 
-        // Need to get the rank and update its title - need clan method for this
-        char_printf(ch, "Not implemented yet.\n");
+        auto result = membership->update_clan_rank_title(*rank_opt - 1, std::string(title));  // Convert to 0-based index
+        if (result) {
+            char_printf(ch, "Rank {} title set to '{}.'\n", *rank_opt, title);
+        } else {
+            char_printf(ch, "{}.\n", result.error());
+            return;
+        }
     } else {
         log(LogSeverity::Error, LVL_GOD, "SYSERR: clan_set: unknown subcommand '{}'", cmd);
         return;
@@ -498,68 +555,56 @@ CLANCMD(clan_set) {
 REGISTER_FUNCTION(clan_set, "clan_set", 0, ClanPermissions::ClanAdmin,
                 "Set clan properties (abbreviation, name, application fee, etc.)");
 
-CLANCMD(clan_alt) {
-    auto membership = find_memberships(ch, argument);
-    if (!membership) {
-        return;
-    }
-
-    auto target_name = argument.shift();
-    if (target_name.empty()) {
-        char_printf(ch, "Whom do you want to add or remove as an alt?\n");
-        return;
-    }
-
-    // First check if we're removing an alt
-    auto alts = membership->get_alts(membership->main_character_name());
-    for (const auto &alt : alts) {
-        if (matches(alt, target_name)) {
-            // Need to implement alt removal
-            membership->add_alt(alt);
-            char_printf(ch, "You remove {} as one of your clan alts.\n", alt);
-            // TODO: implement proper alt removal
-            return;
-        }
-    }
-
-    // Adding a new alt
-    auto target = find_char_by_desc(find_vis_by_name(ch, const_cast<char *>(std::string(target_name).data())));
-    if (!target) {
-        char_printf(ch, "There's no one online by the name of {}.\n", target_name);
-        return;
-    }
-
-    if (ch == target) {
-        char_printf(ch, "You want to be your own alt?\n");
-        return;
-    }
-
-    auto target_membership = get_clan_memberships(target);
-    if (!target_membership.empty()) {
-        char_printf(ch, "{} is already in a clan!\n", GET_NAME(target));
-        return;
-    }
-
-    // Check for permission if not admin
-    if (GET_LEVEL(ch) < LVL_IMMORT && !membership->has_permission(ClanPrivilege::Admin) &&
-        strcasecmp(ch->desc->host, target->desc->host) != 0) {
-        char_printf(ch, "{} was not found logged in as your alt.\n", GET_NAME(target));
-        return;
-    }
-
-    // TODO: Implement alt adding properly
-    char_printf(ch, "You make {} one of your clan alts.\n", GET_NAME(target));
-    char_printf(target, AFMAG "{} makes you one of their clan alts.\n" ANRM, GET_NAME(ch));
-
-    // Need to implement alt registration
-    char_printf(ch, "Alt functionality not fully implemented yet.\n");
-}
-REGISTER_FUNCTION(clan_alt, "clan_alt", 0, ClanPermissions::ClanMember,
-                "Add or remove a character as an alt of your clan");
 
 CLANCMD(clan_apply) {
-    // TODO: Implement apply
-    char_printf(ch, "Not implemented yet.\n");
+    if (argument.empty()) {
+        char_printf(ch, "Apply to which clan?\n");
+        return;
+    }
+    
+    auto clan_name = argument.shift();
+    auto clan = clan_repository.find_by_name(clan_name);
+    if (!clan) {
+        clan = clan_repository.find_by_abbreviation(clan_name);
+    }
+    
+    if (!clan) {
+        char_printf(ch, "No such clan exists.\n");
+        return;
+    }
+    
+    // Check if character meets application requirements
+    if (GET_LEVEL(ch) < (*clan)->min_application_level()) {
+        char_printf(ch, "You must be at least level {} to apply to {}.\n", 
+                   (*clan)->min_application_level(), (*clan)->name());
+        return;
+    }
+    
+    // Check if character can afford application fee
+    if (GET_LEVEL(ch) < LVL_IMMORT) {
+        Money app_fee;
+        app_fee[PLATINUM] = (*clan)->app_fee();
+        Money owned = ch->points.money;
+        if (!owned.charge(app_fee)) {
+            char_printf(ch, "You cannot afford the {} platinum application fee.\n", (*clan)->app_fee());
+            return;
+        }
+        
+        // Charge the fee
+        for (int i = 0; i < NUM_COIN_TYPES; i++) {
+            ch->points.money[i] -= app_fee[i];
+        }
+    }
+    
+    // Check if already a member
+    auto me = std::shared_ptr<CharData>(ch, [](CharData *) {});
+    if ((*clan)->get_membership(me)) {
+        char_printf(ch, "You are already a member of {}.\n", (*clan)->name());
+        return;
+    }
+    
+    // For now, applications are disabled - clan members must manually invite
+    char_printf(ch, "Clan applications are currently disabled. Contact a clan member to be invited.\n");
 }
 
 
@@ -611,7 +656,12 @@ CLANCMD(clan_destroy) {
     }
 
     auto clan_name = membership->get_clan_name();
-    auto clan_id = membership->get_clan_id();
+    auto clan_id_opt = membership->get_clan_id();
+    if (!clan_id_opt) {
+        char_printf(ch, "Error: Invalid clan ID.\n");
+        return;
+    }
+    auto clan_id = *clan_id_opt;
 
     // TODO: This should notify all members that the clan is disbanded
     membership->notify_clan("Your clan has been disbanded!");
@@ -742,8 +792,6 @@ ACMD(do_clan) {
         clan_create(ch, args);
     } else if (matches_start(command, "destroy")) {
         clan_destroy(ch, args);
-    } else if (matches_start(command, "alt")) {
-        clan_alt(ch, args);
     } else if (matches_start(command, "apply")) {
         clan_apply(ch, args);
     } else {

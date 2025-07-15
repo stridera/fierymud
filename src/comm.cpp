@@ -161,210 +161,7 @@ void free_invalid_list(void);
  *  main game loop and related stuff                                    *
  ********************************************************************* */
 
-int main(int argc, char **argv) {
-    int pos = 1;
-    const char *dir, *env;
 
-    port = DFLT_PORT;
-    dir = DFLT_DIR;
-    env = DFLT_ENV;
-
-    while ((pos < argc) && (*(argv[pos]) == '-')) {
-        switch (*(argv[pos] + 1)) {
-        case 'd':
-            if (*(argv[pos] + 2))
-                dir = argv[pos] + 2;
-            else if (++pos < argc)
-                dir = argv[pos];
-            else {
-                log("Directory arg expected after option -d.");
-                exit(1);
-            }
-            break;
-        case 'e':
-            if (*(argv[pos] + 2))
-                env = argv[pos] + 2;
-            else if (++pos < argc)
-                env = argv[pos];
-            else {
-                log("Environment arg expected after option -e.");
-                exit(1);
-            }
-            break;
-        case 'H': /* -H<socket number> recover from hotboot, this is the control socket */
-            num_hotboots = 1;
-            mother_desc = atoi(argv[pos] + 2);
-            break;
-        case 'c':
-            scheck = 1;
-            log("Syntax check mode enabled.");
-            break;
-        case 'q':
-            log("Quick boot mode.");
-            break;
-        case 'r':
-            should_restrict = 1;
-            restrict_reason = RESTRICT_ARGUMENT;
-            log("Restricting game -- no new players allowed.");
-            break;
-        case 's':
-            no_specials = 1;
-            log("Suppressing assignment of special routines.");
-            break;
-        default:
-            log("SYSERR: Unknown option -{:c} in argument string.", *(argv[pos] + 1));
-            break;
-        }
-        pos++;
-    }
-
-    if (pos < argc) {
-        if (!isdigit(*argv[pos])) {
-            fprintf(stderr, "Usage: %s [-c] [-m] [-q] [-r] [-s] [-d pathname] [port #]\n", argv[0]);
-            exit(1);
-        } else if ((port = atoi(argv[pos])) <= 1024) {
-            fprintf(stderr, "Illegal port number.\n");
-            exit(1);
-        }
-    }
-
-    if (chdir(dir) < 0) {
-        perror("Fatal error changing to data directory");
-        exit(1);
-    }
-    log("Using {} as data directory.", dir);
-
-    if (strcasecmp(env, "test") == 0) {
-        environment = ENV_TEST;
-        log("Running in test mode.");
-    } else if (strcasecmp(env, "dev") == 0) {
-        environment = ENV_DEV;
-        log("Running in dev mode.");
-    } else if (strcasecmp(env, "prod") == 0) {
-        environment = ENV_PROD;
-        log("Running in production mode.");
-    } else {
-        log("Unknown environment '{}'; valid choices are 'test', 'dev', and 'prod'.", env);
-        exit(1);
-    }
-
-    log("Initializing runtime game constants.");
-    init_flagvectors();
-    // init_rules();
-    init_races();
-    init_classes();
-    init_objtypes();
-    init_exp_table();
-
-    if (scheck) {
-        boot_world();
-    } else {
-        log("Running game on port {:d}.", port);
-        init_game(port);
-    }
-
-    log("Clearing game world.");
-    destroy_db();
-
-    return 0;
-}
-
-void hotboot_recover() {
-    DescriptorData *d;
-    FILE *fp;
-    char host[1024];
-    int desc, player_i;
-    bool fOld;
-    char name[MAX_INPUT_LENGTH];
-    int count;
-    char *p;
-
-    extern time_t *boot_time;
-
-    log("Hotboot recovery initiated.");
-
-    fp = fopen(HOTBOOT_FILE, "r");
-    /* There are some descriptors open which will hang forever then? */
-    if (!fp) {
-        perror("hotboot_recover:fopen");
-        log("Hotboot file not found.  Exiting.\n");
-        exit(1);
-    }
-
-    /* In case something crashes - doesn't prevent reading */
-    unlink(HOTBOOT_FILE);
-
-    /* read boot_time - first line in file */
-    if (boot_time)
-        free(boot_time);
-    if (fgets(p = buf, MAX_STRING_LENGTH, fp) == nullptr) {
-        perror("Error reading from file");
-        exit(1);
-    }
-    p = any_one_arg(p, name);
-    num_hotboots = atoi(name); /* actually the total number of boots */
-    CREATE(boot_time, time_t, num_hotboots + 1);
-    for (count = 0; count < num_hotboots; ++count) {
-        p = any_one_arg(p, name);
-        boot_time[count] = atol(name);
-    }
-    boot_time[num_hotboots] = time(0);
-
-    /* More than 1000 iterations means something is pretty wrong. */
-    for (count = 0; count <= 1000; ++count) {
-        fOld = true;
-        if (fscanf(fp, "%d %s %s\n", &desc, name, host) != 3) {
-            log("Error reading hotboot data. Exiting.");
-            exit(1);
-        }
-        if (desc == -1)
-            break;
-
-        /* Write something, and check if it goes error-free */
-        if (write_to_descriptor(desc, "\nRestoring from hotboot...\n") < 0) {
-            close(desc); /* nope */
-            continue;
-        }
-
-        /* Create a new descriptor */
-        CREATE(d, DescriptorData, 1);
-        memset((char *)d, 0, sizeof(DescriptorData));
-        init_descriptor(d, desc); /* set up various stuff */
-
-        strcpy(d->host, host);
-        d->next = descriptor_list;
-        descriptor_list = d;
-
-        d->connected = CON_CLOSE;
-
-        CREATE(d->character, CharData, 1);
-        clear_char(d->character);
-        CREATE(d->character->player_specials, PlayerSpecialData, 1);
-        d->character->desc = d;
-
-        if ((player_i = load_player(name, d->character)) >= 0) {
-            if (!PLR_FLAGGED(d->character, PLR_DELETED)) {
-                REMOVE_FLAG(PLR_FLAGS(d->character), PLR_WRITING);
-                REMOVE_FLAG(PLR_FLAGS(d->character), PLR_MAILING);
-            } else
-                fOld = false;
-        } else
-            fOld = false;
-
-        if (!fOld) {
-            write_to_descriptor(desc, "\nSomehow, your character was lost in the hotboot.  Sorry.\n");
-            close_socket(d);
-        } else {
-            sprintf(buf, "\n%sHotboot recovery complete.%s\n", CLR(d->character, HGRN), CLR(d->character, ANRM));
-            write_to_descriptor(desc, buf);
-            enter_player_game(d);
-            d->connected = CON_PLAYING;
-            look_at_room(d->character, false);
-        }
-    }
-
-    fclose(fp);
-}
 
 /* Init sockets, run game, and cleanup sockets */
 void init_game(int port) {
@@ -377,10 +174,8 @@ void init_game(int port) {
     log("Finding player limit.");
     max_players = get_max_players();
 
-    if (num_hotboots == 0) {
-        log("Opening mother connection.");
-        mother_desc = init_socket(port);
-    }
+    log("Opening mother connection.");
+    mother_desc = init_socket(port);
 
     event_init();
 
@@ -393,8 +188,6 @@ void init_game(int port) {
     reboot_pulse = 3600 * PASSES_PER_SEC * (reboot_hours_base - reboot_hours_deviation) +
                    random_number(0, 3600 * PASSES_PER_SEC * 2 * reboot_hours_deviation);
 
-    if (num_hotboots > 0)
-        hotboot_recover();
 
     log("Entering game loop.");
 
@@ -1343,7 +1136,7 @@ void send_mssp(DescriptorData *d) {
     mssp_data = fmt::format("{:c}{:c}{:c}", IAC, SB, MSSP);
     mssp_data += fmt::format("{:c}{}{:c}{}", MSSP_VAR, "NAME", MSSP_VAL, "FieryMUD");
     mssp_data += fmt::format("{:c}{}{:c}{}", MSSP_VAR, "PLAYERS", MSSP_VAL, sockets_playing);
-    mssp_data += fmt::format("{:c}{}{:c}{}", MSSP_VAR, "UPTIME", MSSP_VAL, boot_time[0]);
+    mssp_data += fmt::format("{:c}{}{:c}{}", MSSP_VAR, "UPTIME", MSSP_VAL, boot_time);
     mssp_data += fmt::format("{:c}{}{:c}{}", MSSP_VAR, "AREAS", MSSP_VAL, top_of_zone_table + 1);
     mssp_data += fmt::format("{:c}{}{:c}{}", MSSP_VAR, "MOBILES", MSSP_VAL, top_of_mobt + 1);
     mssp_data += fmt::format("{:c}{}{:c}{}", MSSP_VAR, "OBJECTS", MSSP_VAL, top_of_objt + 1);

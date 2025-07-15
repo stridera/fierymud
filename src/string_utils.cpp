@@ -161,13 +161,13 @@ std::string replace_string(std::string_view str, std::string_view from, std::str
     return result;
 }
 
-std::string_view to_lowercase(std::string_view str) {
+std::string to_lowercase(std::string_view str) {
     std::string result;
     std::transform(str.begin(), str.end(), std::back_inserter(result), ::tolower);
     return result;
 }
 
-std::string_view to_uppercase(std::string_view str) {
+std::string to_uppercase(std::string_view str) {
     std::string result;
     std::transform(str.begin(), str.end(), std::back_inserter(result), ::toupper);
     return result;
