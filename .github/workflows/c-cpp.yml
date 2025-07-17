@@ -13,5 +13,6 @@ jobs:
           build-version: 3.22.0
       - run: cmake -B build -G Ninja
       - run: cmake --build build
-      - run: cp lib.default lib
+      - run: mv lib.default lib
+      - run: build/tests
       - run: build/fierymud --check
