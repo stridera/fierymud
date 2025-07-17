@@ -11,5 +11,7 @@ jobs:
       - uses: jwlawson/actions-setup-cmake@v1.13
         with:
           build-version: 3.22.0
-      - run: cmake .
-      - run: make
+      - run: cmake -B build -G Ninja
+      - run: cmake --build build
+      - run: cp lib.default lib
+      - run: build/fierymud --check
