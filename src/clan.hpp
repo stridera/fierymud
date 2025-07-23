@@ -30,7 +30,6 @@
 #include <unordered_map>
 #include <vector>
 
-using namespace std::literals::string_view_literals;
 
 // Error Messages with string for user.
 struct AccessError {
@@ -233,9 +232,9 @@ class Clan : public std::enable_shared_from_this<Clan> {
     // Member management by name
     [[nodiscard]] std::optional<ClanMember> get_member_by_name(const std::string_view name) const;
     [[nodiscard]] std::vector<ClanMember> get_members_by_rank_index(int rank_index) const;
-    bool add_member_by_name(const std::string& name, int rank_index, time_t join_time = 0, std::vector<std::string> alts = {});
-    bool remove_member_by_name(const std::string& name);
-    bool update_member_rank(const std::string& name, int new_rank_index);
+    [[nodiscard]] bool add_member_by_name(const std::string& name, int rank_index, time_t join_time = 0, std::vector<std::string> alts = {});
+    bool remove_member_by_name(const std::string& name);  // Remove nodiscard - cleanup operation
+    [[nodiscard]] bool update_member_rank(const std::string& name, int new_rank_index);
 
     // Get all members with a specific rank
     [[nodiscard]] std::vector<CharacterPtr> get_members_by_rank(const ClanRank &rank) const;
@@ -470,6 +469,10 @@ void from_json(const nlohmann::json &j, Clan &clan);
 class ClanRepository {
   private:
     std::unordered_map<ClanId, ClanPtr> clans_;
+    // Performance caches for faster lookups
+    mutable std::unordered_map<std::string, ClanId> name_to_id_;
+    mutable std::unordered_map<std::string, ClanId> abbr_to_id_;
+    mutable bool caches_valid_ = false;
 
   public:
     ClanRepository() = default;
@@ -477,9 +480,13 @@ class ClanRepository {
     ClanPtr create(ClanId id, std::string name, std::string abbreviation) {
         auto clan = std::make_shared<Clan>(std::move(id), std::move(name), std::move(abbreviation));
         clans_[clan->id()] = clan;
+        caches_valid_ = false; // Invalidate caches
         return clan;
     }
-    void remove(ClanId id) { clans_.erase(id); }
+    void remove(ClanId id) { 
+        clans_.erase(id); 
+        caches_valid_ = false; // Invalidate caches
+    }
 
     [[nodiscard]] std::optional<ClanPtr> find_by_id(ClanId id) const {
         auto it = clans_.find(id);
@@ -491,7 +498,7 @@ class ClanRepository {
     [[nodiscard]] auto all() const { return clans_ | std::views::values; }
     [[nodiscard]] std::size_t count() const { return clans_.size(); }
 
-    constexpr std::string_view default_file_path() const { return "etc/clans/clans.json"sv; }
+    constexpr std::string_view default_file_path() const { return "etc/clans/clans.json"; }
     std::expected<void, std::string> save() const { return save_to_file(default_file_path()); }
     std::expected<void, std::string> save_to_file(const std::filesystem::path &filepath) const;
     std::expected<void, std::string> load() { return load_from_file(default_file_path()); }
@@ -514,6 +521,21 @@ class ClanRepository {
 
     // Initialize clans from legacy files or JSON
     void init_clans();
+
+  private:
+    void build_caches() const {
+        if (caches_valid_) return;
+        
+        name_to_id_.clear();
+        abbr_to_id_.clear();
+        
+        for (const auto& [id, clan] : clans_) {
+            name_to_id_[std::string(clan->name())] = id;
+            abbr_to_id_[std::string(clan->abbreviation())] = id;
+        }
+        
+        caches_valid_ = true;
+    }
 };
 
 // ClanRepository instance

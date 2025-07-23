@@ -194,8 +194,8 @@ std::expected<void, std::string_view> ClanMembership::update_clan_abbreviation(s
 }
 
 std::expected<void, std::string_view> ClanMembership::update_clan_description(std::string new_description) {
-    auto clan_ptr = Clan_.lock();
-    auto character_ptr = character_.lock();
+    const auto clan_ptr = Clan_.lock();
+    const auto character_ptr = character_.lock();
 
     if (!clan_ptr || !character_ptr)
         return std::unexpected(AccessError::ClanNotFound);
@@ -207,8 +207,8 @@ std::expected<void, std::string_view> ClanMembership::update_clan_description(st
 }
 
 std::expected<void, std::string_view> ClanMembership::update_clan_motd(std::string new_motd) {
-    auto clan_ptr = Clan_.lock();
-    auto character_ptr = character_.lock();
+    const auto clan_ptr = Clan_.lock();
+    const auto character_ptr = character_.lock();
 
     if (!clan_ptr || !character_ptr)
         return std::unexpected(AccessError::ClanNotFound);
@@ -220,8 +220,8 @@ std::expected<void, std::string_view> ClanMembership::update_clan_motd(std::stri
 }
 
 std::expected<void, std::string_view> ClanMembership::update_clan_dues(unsigned int new_dues) {
-    auto clan_ptr = Clan_.lock();
-    auto character_ptr = character_.lock();
+    const auto clan_ptr = Clan_.lock();
+    const auto character_ptr = character_.lock();
 
     if (!clan_ptr || !character_ptr)
         return std::unexpected(AccessError::ClanNotFound);
@@ -564,15 +564,23 @@ ClanRepository clan_repository;
 // ClanRepository implementation
 
 std::optional<ClanPtr> ClanRepository::find_by_name(const std::string_view name) const {
-    auto it =
-        std::find_if(clans_.begin(), clans_.end(), [&name](const auto &pair) { return pair.second->name() == name; });
-    return it != clans_.end() ? std::optional{it->second} : std::nullopt;
+    build_caches();
+    
+    const auto it = name_to_id_.find(std::string(name));
+    if (it != name_to_id_.end()) {
+        return find_by_id(it->second);
+    }
+    return std::nullopt;
 }
 
 std::optional<ClanPtr> ClanRepository::find_by_abbreviation(const std::string_view abbr) const {
-    auto it = std::find_if(clans_.begin(), clans_.end(),
-                           [&abbr](const auto &pair) { return pair.second->abbreviation() == abbr; });
-    return it != clans_.end() ? std::optional{it->second} : std::nullopt;
+    build_caches();
+    
+    const auto it = abbr_to_id_.find(std::string(abbr));
+    if (it != abbr_to_id_.end()) {
+        return find_by_id(it->second);
+    }
+    return std::nullopt;
 }
 
 std::expected<void, std::string> ClanRepository::save_to_file(const std::filesystem::path &filepath) const {
@@ -613,6 +621,7 @@ std::expected<void, std::string> ClanRepository::load_from_file(const std::files
 
         // Clear existing clans
         clans_.clear();
+        caches_valid_ = false;
 
         for (const auto &j_clan : j_clans) {
             // Extract basic info to create the clan
@@ -823,13 +832,17 @@ bool ClanRepository::load_legacy(const std::string_view clan_num) {
         }
         
         // Add main member
-        clan->add_member_by_name(name, rank_index, timestamp, alt_list);
+        if (!clan->add_member_by_name(name, rank_index, timestamp, alt_list)) {
+            log("WARNING: Failed to add member '{}' to clan {} during legacy loading", name, clan_id);
+        }
         
         // Add alts as members at the lowest rank if they exist
         if (!alt_list.empty() && !clan->ranks_.empty()) {
             int lowest_rank = clan->ranks_.size() - 1; // Lowest rank is last in the list
             for (const auto& alt : alt_list) {
-                clan->add_member_by_name(alt, lowest_rank, timestamp);
+                if (!clan->add_member_by_name(alt, lowest_rank, timestamp)) {
+                    log("WARNING: Failed to add alt '{}' to clan {} during legacy loading", alt, clan_id);
+                }
             }
         }
     }
