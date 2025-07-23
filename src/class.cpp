@@ -173,7 +173,7 @@ ClassDef classes[NUM_CLASSES] = {
      {STAT_CON, STAT_STR, STAT_DEX, STAT_WIS, STAT_INT, STAT_CHA}, /* stat order preference for character creation */
      {105, 115, 100, 100, 110},                                    /* saves: para, rod, petri, breath, spell */
      10,                                                           /* static HP gain over level 30 */
-     -5,                                                           /* THAC0 */
+     -2,                                                           /* THAC0 */
      ITEM_ANTI_WARRIOR,                                            /* !class bit */
      100,                                                          /* hp regen factor */
      100,                                                          /* focus bonus (/100) */
@@ -206,7 +206,7 @@ ClassDef classes[NUM_CLASSES] = {
      {STAT_STR, STAT_DEX, STAT_CON, STAT_WIS, STAT_INT, STAT_CHA}, /* stat order preference for character creation */
      {95, 115, 100, 105, 90},                                      /* saves: para, rod, petri, breath, spell */
      8,                                                            /* static HP gain over level 30 */
-     -4,                                                           /* THAC0 */
+     -2,                                                           /* THAC0 */
      ITEM_ANTI_PALADIN,                                            /* !class bit */
      100,                                                          /* hp regen factor */
      110,                                                          /* focus bonus (/100) */
@@ -239,7 +239,7 @@ ClassDef classes[NUM_CLASSES] = {
      {STAT_STR, STAT_DEX, STAT_CON, STAT_WIS, STAT_INT, STAT_CHA}, /* stat order preference for character creation */
      {95, 115, 100, 105, 90},                                      /* saves: para, rod, petri, breath, spell */
      8,                                                            /* static HP gain over level 30 */
-     -4,                                                           /* THAC0 */
+     -2,                                                           /* THAC0 */
      ITEM_ANTI_ANTI_PALADIN,                                       /* !class bit */
      100,                                                          /* hp regen factor */
      110,                                                          /* focus bonus (/100) */
@@ -272,7 +272,7 @@ ClassDef classes[NUM_CLASSES] = {
      {STAT_STR, STAT_DEX, STAT_CON, STAT_INT, STAT_WIS, STAT_CHA}, /* stat order preference for character creation */
      {95, 115, 100, 105, 90},                                      /* saves: para, rod, petri, breath, spell */
      8,                                                            /* static HP gain over level 30 */
-     -4,                                                           /* THAC0 */
+     -2,                                                           /* THAC0 */
      ITEM_ANTI_RANGER,                                             /* !class bit */
      100,                                                          /* hp regen factor */
      110,                                                          /* focus bonus (/100) */
@@ -503,7 +503,7 @@ ClassDef classes[NUM_CLASSES] = {
      {STAT_CON, STAT_STR, STAT_DEX, STAT_WIS, STAT_INT, STAT_CHA}, /* stat order preference for character creation */
      {105, 115, 100, 100, 110},                                    /* saves: para, rod, petri, breath, spell */
      8,                                                            /* static HP gain over level 30 */
-     -4,                                                           /* THAC0 */
+     -2,                                                           /* THAC0 */
      ITEM_ANTI_MONK,                                               /* !class bit */
      100,                                                          /* hp regen factor */
      100,                                                          /* focus bonus (/100) */
@@ -536,7 +536,7 @@ ClassDef classes[NUM_CLASSES] = {
      {STAT_STR, STAT_DEX, STAT_CON, STAT_WIS, STAT_INT, STAT_CHA}, /* stat order preference for character creation */
      {105, 115, 100, 100, 110},                                    /* saves: para, rod, petri, breath, spell */
      10,                                                           /* static HP gain over level 30 */
-     -4,                                                           /* THAC0 */
+     -2,                                                           /* THAC0 */
      ITEM_ANTI_BERSERKER,                                          /* !class bit */
      100,                                                          /* hp regen factor */
      100,                                                          /* focus bonus (/100) */
@@ -833,7 +833,7 @@ ClassDef classes[NUM_CLASSES] = {
      {STAT_STR, STAT_DEX, STAT_CON, STAT_WIS, STAT_INT, STAT_CHA}, /* stat order preference for character creation */
      {105, 115, 100, 100, 110},                                    /* saves: para, rod, petri, breath, spell */
      8,                                                            /* static HP gain over level 30 */
-     -4,                                                           /* THAC0 */
+     -2,                                                           /* THAC0 */
      0,                                                            /* !class bit */
      100,                                                          /* hp regen factor */
      100,                                                          /* focus bonus (/100) */
