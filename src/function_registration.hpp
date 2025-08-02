@@ -155,6 +155,22 @@ class FunctionRegistry {
         return false;
     }
 
+    // Check if a function can be called with given permissions
+    static bool can_call_function(std::string_view name, PermissionFlags user_permissions) {
+        auto it = function_map_.find(std::string(name));
+        if (it == function_map_.end()) {
+            return false;
+        }
+        
+        // Find the function info to check permissions
+        for (const auto &func_info : sorted_functions_) {
+            if (func_info.name == name) {
+                return (func_info.bitflags & user_permissions) == func_info.bitflags;
+            }
+        }
+        return false;
+    }
+
     // Call a function by abbreviation - O(1) lookup with cache
     static bool call_by_abbrev(std::string_view abbrev, CharData *character, Arguments args) {
         // Ensure abbreviation cache is valid
@@ -184,6 +200,44 @@ class FunctionRegistry {
         return false;
     }
 
+    // Call a function by abbreviation with permission checking
+    static bool call_by_abbrev_with_permissions(std::string_view abbrev, CharData *character, Arguments args, PermissionFlags user_permissions) {
+        // Ensure abbreviation cache is valid
+        if (!abbreviation_cache_valid_) {
+            update_abbreviation_cache();
+        }
+
+        std::string resolved_name;
+        
+        // Try direct function lookup first
+        auto direct_it = function_map_.find(std::string(abbrev));
+        if (direct_it != function_map_.end()) {
+            resolved_name = std::string(abbrev);
+        } else {
+            // Try the abbreviation cache
+            auto abbrev_it = abbreviation_cache_.find(std::string(abbrev));
+            if (abbrev_it != abbreviation_cache_.end()) {
+                resolved_name = abbrev_it->second;
+            }
+        }
+        
+        if (resolved_name.empty()) {
+            log("No function matches abbreviation '{}'\n", abbrev);
+            return false;
+        }
+        
+        // Check permissions
+        if (!can_call_function(resolved_name, user_permissions)) {
+            log("Permission denied for function '{}'\n", resolved_name);
+            return false;
+        }
+        
+        // Call the function
+        log("Executing function '{}' with permission check\n", resolved_name);
+        function_map_[resolved_name](character, args);
+        return true;
+    }
+
     // Execute all functions in priority order
     static void call_all(CharData *character, Arguments args) {
         log("Calling all functions in priority order:\n");
@@ -203,6 +257,29 @@ class FunctionRegistry {
             if ((func_info.bitflags & bitflags) == bitflags) {
                 result += fmt::format("  {} (priority: {}) - {}\n", func_info.name, func_info.priority,
                                       func_info.description);
+            }
+        }
+        return result;
+    }
+
+    // Print available functions with a specific prefix, formatting them nicely for user commands
+    static std::string print_available_with_prefix(std::string_view prefix, PermissionFlags bitflags, 
+                                                   std::function<std::string(std::string_view)> name_formatter = nullptr) {
+        if (!abbreviation_cache_valid_) {
+            update_abbreviation_cache();
+        }
+        std::string result;
+        
+        for (const auto &func_info : sorted_functions_) {
+            if ((func_info.bitflags & bitflags) == func_info.bitflags && 
+                func_info.name.starts_with(prefix)) {
+                
+                std::string display_name = func_info.name;
+                if (name_formatter) {
+                    display_name = name_formatter(func_info.name);
+                }
+                
+                result += fmt::format("   {} - {}\n", display_name, func_info.description);
             }
         }
         return result;

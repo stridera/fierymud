@@ -50,7 +50,7 @@ class Arguments {
 
     // Shift out one argument from the argument list, and replace any "$$" with "$".
     // This should follow the same rules as remove_double_dollars.
-    [[nodiscard]] std::string_view shift_clean();
+    [[nodiscard]] std::string shift_clean();
 
     // Try to shift out a number from the argument list.  If the first argument is a positive int, it will be shifted
     // and returned.  Otherwise, nothing will be shifted and an empty optional will be returned.
