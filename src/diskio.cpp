@@ -159,7 +159,8 @@ FBFILE *fbopen_for_read(char *fname) {
     }
     fbfl->ptr = fbfl->buf;
     fbfl->flags = FB_READ;
-    strcpy(fbfl->name, fname);
+    strncpy(fbfl->name, fname, strlen(fname));
+    fbfl->name[strlen(fname)] = '\0';
     if (fread(fbfl->buf, sizeof(char), fbfl->size, fl) != fbfl->size) {
         free(fbfl->buf);
         free(fbfl->name);
@@ -187,7 +188,8 @@ FBFILE *fbopen_for_write(char *fname, int mode) {
         free(fbfl);
         return nullptr;
     }
-    strcpy(fbfl->name, fname);
+    strncpy(fbfl->name, fname, strlen(fname));
+    fbfl->name[strlen(fname)] = '\0';
     fbfl->ptr = fbfl->buf;
     fbfl->size = FB_STARTSIZE;
     fbfl->flags = mode;
@@ -239,7 +241,7 @@ int fbclose_for_write(FBFILE *fbfl) {
     len = strlen(fbfl->buf);
     if (!len)
         return 0;
-    sprintf(tname, "%s.tmp", fbfl->name);
+    snprintf(tname, strlen(fbfl->name) + 5, "%s.tmp", fbfl->name);
 
     if (!(fl = fopen(tname, arg))) {
         free(tname);
@@ -286,7 +288,9 @@ int fbwrite(FBFILE *fbfl, const char *string) {
         fbfl->size += FB_STARTSIZE;
     }
 
-    strcpy(fbfl->ptr, string);
+    size_t remaining_space = fbfl->size - (fbfl->ptr - fbfl->buf) - 1;
+    strncpy(fbfl->ptr, string, remaining_space);
+    fbfl->ptr[remaining_space] = '\0';
     bytes_written = strlen(string);
 
     fbfl->ptr += bytes_written;
@@ -308,7 +312,8 @@ int fbprintf(FBFILE *fbfl, const char *format, ...) {
     }
 
     va_start(args, format);
-    bytes_written = vsprintf(fbfl->ptr, format, args);
+    size_t remaining_space = fbfl->size - (fbfl->ptr - fbfl->buf) - 1;
+    bytes_written = vsnprintf(fbfl->ptr, remaining_space, format, args);
     va_end(args);
 
     fbfl->ptr += bytes_written;

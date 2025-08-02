@@ -433,6 +433,30 @@ std::expected<void, std::string_view> ClanMembership::add_clan_member(const std:
     return {};
 }
 
+std::expected<void, std::string_view> ClanMembership::update_clan_bank_room(room_num room) {
+    auto clan_ptr = Clan_.lock();
+    auto character_ptr = character_.lock();
+    if (!clan_ptr || !character_ptr)
+        return std::unexpected(AccessError::ClanNotFound);
+    if (!has_permission(ClanPrivilege::Admin))
+        return std::unexpected(AccessError::PermissionDenied);
+
+    clan_ptr->set_bank_room(room);
+    return {};
+}
+
+std::expected<void, std::string_view> ClanMembership::update_clan_chest_room(room_num room) {
+    auto clan_ptr = Clan_.lock();
+    auto character_ptr = character_.lock();
+    if (!clan_ptr || !character_ptr)
+        return std::unexpected(AccessError::ClanNotFound);
+    if (!has_permission(ClanPrivilege::Admin))
+        return std::unexpected(AccessError::PermissionDenied);
+
+    clan_ptr->set_chest_room(room);
+    return {};
+}
+
 // JSON serialization implementations
 
 void to_json(nlohmann::json &j, const ClanRank &rank) {
@@ -476,6 +500,8 @@ void to_json(nlohmann::json &j, const Clan &clan) {
                        {"min_application_level", clan.min_application_level()},
                        {"treasure", clan.treasure().to_json()},
                        {"storage", clan.storage()},
+                       {"bank_room", clan.bank_room()},
+                       {"chest_room", clan.chest_room()},
                        {"ranks", clan.ranks()},
                        {"members", clan.members()}};
 
@@ -520,6 +546,14 @@ void from_json(const nlohmann::json &j, Clan &clan) {
     if (j.contains("treasure")) {
         Money treasure(j["treasure"]);
         clan.set_treasure(std::move(treasure));
+    }
+
+    if (j.contains("bank_room")) {
+        clan.set_bank_room(j["bank_room"].get<room_num>());
+    }
+
+    if (j.contains("chest_room")) {
+        clan.set_chest_room(j["chest_room"].get<room_num>());
     }
 
     // Load ranks

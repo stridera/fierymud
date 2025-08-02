@@ -182,8 +182,9 @@ int evaluate_expression(ObjData *obj, char *expr) {
                 end = ptr;
                 while (*ptr && !isspace(*ptr) && (find_oper_num(*ptr) == NOTHING))
                     ptr++;
-                strncpy(name, end, ptr - end);
-                name[ptr - end] = 0;
+                size_t name_len = std::min((size_t)(ptr - end), sizeof(name) - 1);
+                strncpy(name, end, name_len);
+                name[name_len] = '\0';
                 for (index = 0; extra_bits[index].front() != '\n'; index++)
                     if (!strcasecmp(name, extra_bits[index].data())) {
                         push(&vals, OBJ_FLAGGED(obj, index));
@@ -311,12 +312,12 @@ char *times_message(ObjData *obj, char *name, int num) {
             ptr = name;
         else
             ptr++;
-        strncpy(buf, ptr, 200);
-        buf[199] = 0;
+        strncpy(buf, ptr, sizeof(buf) - 1);
+        buf[sizeof(buf) - 1] = '\0';
     }
 
     if (num > 1)
-        sprintf(END_OF(buf), " (x %d)", num);
+        snprintf(END_OF(buf), sizeof(buf) - strlen(buf), " (x %d)", num);
     return buf;
 }
 

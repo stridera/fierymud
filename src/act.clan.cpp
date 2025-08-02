@@ -36,14 +36,14 @@ namespace {
     size_t levenshtein_distance(std::string_view s1, std::string_view s2) {
         const size_t len1 = s1.length();
         const size_t len2 = s2.length();
-        
+
         // Create a matrix to store distances
         std::vector<std::vector<size_t>> dp(len1 + 1, std::vector<size_t>(len2 + 1));
-        
+
         // Initialize first row and column
         for (size_t i = 0; i <= len1; ++i) dp[i][0] = i;
         for (size_t j = 0; j <= len2; ++j) dp[0][j] = j;
-        
+
         // Fill the matrix
         for (size_t i = 1; i <= len1; ++i) {
             for (size_t j = 1; j <= len2; ++j) {
@@ -58,21 +58,21 @@ namespace {
                 }
             }
         }
-        
+
         return dp[len1][len2];
     }
-    
+
     // Calculate fuzzy match score (0.0 = no match, 1.0 = perfect match)
     double fuzzy_match_score(std::string_view target, std::string_view query) {
         if (query.empty()) return 0.0;
         if (target.empty()) return 0.0;
-        
+
         // Exact match gets perfect score
         if (std::equal(target.begin(), target.end(), query.begin(), query.end(),
                       [](char a, char b) { return std::tolower(a) == std::tolower(b); })) {
             return 1.0;
         }
-        
+
         // Prefix match gets high score
         if (target.length() >= query.length()) {
             bool is_prefix = std::equal(query.begin(), query.end(), target.begin(),
@@ -81,77 +81,77 @@ namespace {
                 return 0.9;
             }
         }
-        
+
         // Substring match gets good score
         std::string target_lower(target);
         std::string query_lower(query);
         std::transform(target_lower.begin(), target_lower.end(), target_lower.begin(), ::tolower);
         std::transform(query_lower.begin(), query_lower.end(), query_lower.begin(), ::tolower);
-        
+
         if (target_lower.find(query_lower) != std::string::npos) {
             return 0.8;
         }
-        
+
         // Use Levenshtein distance for fuzzy matching
         size_t distance = levenshtein_distance(target, query);
         size_t max_len = std::max(target.length(), query.length());
-        
+
         if (distance > max_len) return 0.0;
-        
+
         // Score based on how many edits are needed relative to string length
         double similarity = 1.0 - (static_cast<double>(distance) / max_len);
-        
+
         // Only consider it a fuzzy match if similarity is above threshold
         return similarity > 0.5 ? similarity : 0.0;
     }
-    
+
     // Find best fuzzy matches for clan names/abbreviations
     std::vector<std::pair<ClanPtr, double>> find_fuzzy_clan_matches(std::string_view query, size_t max_results = 3) {
         std::vector<std::pair<ClanPtr, double>> matches;
-        
+
         for (const auto &clan : clan_repository.all()) {
             // Check both name and abbreviation (with and without ANSI codes)
             double name_score = std::max(
                 fuzzy_match_score(clan->name(), query),
                 fuzzy_match_score(strip_ansi(clan->name()), query)
             );
-            
+
             double abbr_score = std::max(
                 fuzzy_match_score(clan->abbreviation(), query),
                 fuzzy_match_score(strip_ansi(clan->abbreviation()), query)
             );
-            
+
             double best_score = std::max(name_score, abbr_score);
-            
+
             if (best_score > 0.0) {
                 matches.emplace_back(clan, best_score);
             }
         }
-        
+
         // Sort by score (highest first)
-        std::sort(matches.begin(), matches.end(), 
+        std::sort(matches.begin(), matches.end(),
                  [](const auto& a, const auto& b) { return a.second > b.second; });
-        
+
         // Limit results
         if (matches.size() > max_results) {
             matches.resize(max_results);
         }
-        
+
         return matches;
     }
-    
+
     // Helper function to find a clan with full fuzzy search support
     std::pair<std::optional<ClanPtr>, bool> find_clan_with_fuzzy_search(std::string_view clan_name) {
         if (clan_name.empty()) {
             return {std::nullopt, false};
         }
-        
+
         // Try exact matches first
         auto found_clan = clan_repository.find_by_abbreviation(clan_name);
         if (!found_clan) {
             found_clan = clan_repository.find_by_name(clan_name);
         }
-        
+
         // If not found, try matching against stripped ANSI versions
         if (!found_clan) {
             for (const auto &c : clan_repository.all()) {
@@ -161,7 +161,7 @@ namespace {
                 }
             }
         }
-        
+
         // If still not found, try fuzzy matching
         bool used_fuzzy = false;
         if (!found_clan) {
@@ -171,18 +171,18 @@ namespace {
                 used_fuzzy = true;
             }
         }
-        
+
         return {found_clan, used_fuzzy};
     }
-    
+
     // Helper function to show clan suggestions when lookup fails
     void show_clan_suggestions(CharData *ch, std::string_view searched_name) {
         auto fuzzy_matches = find_fuzzy_clan_matches(searched_name, 3);
         if (!fuzzy_matches.empty()) {
             char_printf(ch, "Did you mean:\n");
             for (const auto& [suggested_clan, score] : fuzzy_matches) {
-                char_printf(ch, "  {} ({})\n", 
-                           strip_ansi(suggested_clan->name()), 
+                char_printf(ch, "  {} ({})\n",
+                           strip_ansi(suggested_clan->name()),
                            strip_ansi(suggested_clan->abbreviation()));
             }
         }
@@ -198,7 +198,7 @@ enum ClanPermissions : PermissionFlags {
 // Determine clan permission flags for a character
 static PermissionFlags get_clan_permissions(CharData *ch) {
     PermissionFlags flags = ClanPermissions::Everybody;
-    
+
     if (GET_LEVEL(ch) >= LVL_IMMORT) {
         flags |= ClanPermissions::God;
         flags |= ClanPermissions::ClanAdmin;
@@ -209,7 +209,7 @@ static PermissionFlags get_clan_permissions(CharData *ch) {
             flags |= ClanPermissions::ClanMember;
             // Check if they have admin privileges in any clan
             for (const auto &membership : memberships) {
-                if (membership->has_permission(ClanPrivilege::Admin) || 
+                if (membership->has_permission(ClanPrivilege::Admin) ||
                     membership->has_permission(ClanPrivilege::Grant)) {
                     flags |= ClanPermissions::ClanAdmin;
                     break;
@@ -217,7 +217,7 @@ static PermissionFlags get_clan_permissions(CharData *ch) {
             }
         }
     }
-    
+
     return flags;
 }
 
@@ -254,24 +254,24 @@ static std::shared_ptr<ClanMembership> find_memberships(CharData *ch, Arguments 
         }
         auto clan_name = argument.shift();
         searched_clan_name = std::string(clan_name);
-        
+
         auto [found_clan, used_fuzzy] = find_clan_with_fuzzy_search(clan_name);
         used_fuzzy_match = used_fuzzy;
-        
+
         return found_clan;
     }();
 
     if (!clan) {
         char_printf(ch, "No such clan '{}'.\n", searched_clan_name);
-        
+
         // Provide fuzzy search suggestions
         show_clan_suggestions(ch, searched_clan_name);
-        
+
         // Debug: List available clans for gods
         if (GET_LEVEL(ch) >= LVL_IMMORT) {
             char_printf(ch, "\nAll available clans:\n");
             for (const auto &c : clan_repository.all()) {
-                char_printf(ch, "  ID: {} Name: \"{}\" (stripped: \"{}\") Abbr: \"{}\" (stripped: \"{}\")\n", 
+                char_printf(ch, "  ID: {} Name: \"{}\" (stripped: \"{}\") Abbr: \"{}\" (stripped: \"{}\")\n",
                            c->id(), c->name(), strip_ansi(c->name()), c->abbreviation(), strip_ansi(c->abbreviation()));
             }
         }
@@ -280,7 +280,7 @@ static std::shared_ptr<ClanMembership> find_memberships(CharData *ch, Arguments 
 
     // Notify user if we used fuzzy matching to find the clan
     if (used_fuzzy_match) {
-        char_printf(ch, "Assuming you meant '{}' ({}).\n", 
+        char_printf(ch, "Assuming you meant '{}' ({}).\n",
                    strip_ansi((*clan)->name()), strip_ansi((*clan)->abbreviation()));
     }
 
@@ -328,6 +328,19 @@ CLANCMD(clan_deposit) {
         return;
     }
 
+    // Check if clan bank is accessible from this room
+    auto clan = membership->get_clan();
+    if (clan && clan->bank_room() != NOWHERE && ch->in_room != clan->bank_room()) {
+        char_printf(ch, "You can only access the clan bank from the designated bank room.\n");
+        return;
+    }
+
+    // If bank_room is NOWHERE, bank access is disabled
+    if (clan && clan->bank_room() == NOWHERE) {
+        char_printf(ch, "Clan bank access is currently disabled.\n");
+        return;
+    }
+
     auto arg = argument.shift();
 
     auto money_opt = parse_money(argument.get());
@@ -369,6 +382,19 @@ CLANCMD(clan_withdraw) {
         return;
     }
 
+    // Check if clan bank is accessible from this room
+    auto clan = membership->get_clan();
+    if (clan && clan->bank_room() != NOWHERE && ch->in_room != clan->bank_room()) {
+        char_printf(ch, "You can only access the clan bank from the designated bank room.\n");
+        return;
+    }
+
+    // If bank_room is NOWHERE, bank access is disabled
+    if (clan && clan->bank_room() == NOWHERE) {
+        char_printf(ch, "Clan bank access is currently disabled.\n");
+        return;
+    }
+
     auto arg = argument.shift();
 
     auto money_opt = parse_money(argument.get());
@@ -406,6 +432,19 @@ CLANCMD(clan_store) {
 
     auto membership = find_memberships(ch, argument);
     if (!membership) {
+        return;
+    }
+
+    // Check if clan chest is accessible from this room
+    auto clan = membership->get_clan();
+    if (clan && clan->chest_room() != NOWHERE && ch->in_room != clan->chest_room()) {
+        char_printf(ch, "You can only access the clan chest from the designated chest room.\n");
+        return;
+    }
+
+    // If chest_room is NOWHERE, chest access is disabled
+    if (clan && clan->chest_room() == NOWHERE) {
+        char_printf(ch, "Clan chest access is currently disabled.\n");
         return;
     }
 
@@ -457,6 +496,19 @@ CLANCMD(clan_retrieve) {
         return;
     }
 
+    // Check if clan chest is accessible from this room
+    auto clan = membership->get_clan();
+    if (clan && clan->chest_room() != NOWHERE && ch->in_room != clan->chest_room()) {
+        char_printf(ch, "You can only access the clan chest from the designated chest room.\n");
+        return;
+    }
+
+    // If chest_room is NOWHERE, chest access is disabled
+    if (clan && clan->chest_room() == NOWHERE) {
+        char_printf(ch, "Clan chest access is currently disabled.\n");
+        return;
+    }
+
     auto arg_pair = argument.try_shift_number_and_arg();
 
     if (!arg_pair || arg_pair->second.empty()) {
@@ -494,7 +546,7 @@ CLANCMD(clan_retrieve) {
         }
         free_obj(obj);
     }
-    
+
     // Quick lookup in cache
     auto cache_it = name_to_vnum_cache.find(std::string(obj_name));
     if (cache_it != name_to_vnum_cache.end()) {
@@ -630,7 +682,7 @@ CLANCMD(clan_set) {
             char_printf(ch, "How much platinum should the clan's application fee be?\n");
             return;
         }
-        
+
         if (*fee_opt < 0) {
             char_printf(ch, "Application fee cannot be negative.\n");
             return;
@@ -668,12 +720,12 @@ CLANCMD(clan_set) {
             char_printf(ch, "Which rank do you want to delete?\n");
             return;
         }
-        
+
         if (*rank_opt < 1) {
             char_printf(ch, "Rank number must be positive.\n");
             return;
         }
-        
+
         auto ranks = membership->get_clan_ranks();
         if (*rank_opt > ranks.size()) {
             char_printf(ch, "Invalid rank number. Clan has {} ranks.\n", ranks.size());
@@ -693,7 +745,7 @@ CLANCMD(clan_set) {
             char_printf(ch, "How much platinum should the clan's dues be?\n");
             return;
         }
-        
+
         if (*dues_opt < 0) {
             char_printf(ch, "Dues cannot be negative.\n");
             return;
@@ -731,7 +783,7 @@ CLANCMD(clan_set) {
             char_printf(ch, "For which rank do you want to set a title?\n");
             return;
         }
-        
+
         if (*rank_opt < 1) {
             char_printf(ch, "Rank number must be positive.\n");
             return;
@@ -747,7 +799,7 @@ CLANCMD(clan_set) {
             char_printf(ch, "Clan titles may be at most {} characters long.\n", Clan::MAX_CLAN_TITLE_LEN);
             return;
         }
-        
+
         auto ranks = membership->get_clan_ranks();
         if (*rank_opt > ranks.size()) {
             char_printf(ch, "Invalid rank number. Clan has {} ranks.\n", ranks.size());
@@ -757,6 +809,68 @@ CLANCMD(clan_set) {
         auto result = membership->update_clan_rank_title(*rank_opt - 1, std::string(title));  // Convert to 0-based index
         if (result) {
             char_printf(ch, "Rank {} title set to '{}.'\n", *rank_opt, title);
+        } else {
+            char_printf(ch, "{}.\n", result.error());
+            return;
+        }
+    } else if (matches_start(cmd, "bankroom")) {
+        if (GET_LEVEL(ch) < LVL_GOD) {
+            char_printf(ch, "Only gods can set clan bank rooms.\n");
+            return;
+        }
+
+        auto room_vnum_opt = argument.try_shift_number();
+        if (!room_vnum_opt) {
+            char_printf(ch, "What room vnum should be the clan's bank room? (Use -1 to disable bank access)\n");
+            return;
+        }
+
+        room_num room_vnum = *room_vnum_opt;
+
+        // Validate room exists if positive vnum
+        if (room_vnum > 0 && real_room(room_vnum) == NOWHERE) {
+            char_printf(ch, "Room {} does not exist.\n", room_vnum);
+            return;
+        }
+
+        auto result = membership->update_clan_bank_room(room_vnum);
+        if (result) {
+            if (room_vnum == NOWHERE) {
+                char_printf(ch, "Clan bank access disabled.\n");
+            } else {
+                char_printf(ch, "Clan bank room set to {}.\n", room_vnum);
+            }
+        } else {
+            char_printf(ch, "{}.\n", result.error());
+            return;
+        }
+    } else if (matches_start(cmd, "chestroom")) {
+        if (GET_LEVEL(ch) < LVL_GOD) {
+            char_printf(ch, "Only gods can set clan chest rooms.\n");
+            return;
+        }
+
+        auto room_vnum_opt = argument.try_shift_number();
+        if (!room_vnum_opt) {
+            char_printf(ch, "What room vnum should be the clan's chest room? (Use -1 to disable chest access)\n");
+            return;
+        }
+
+        room_num room_vnum = *room_vnum_opt;
+
+        // Validate room exists if positive vnum
+        if (room_vnum > 0 && real_room(room_vnum) == NOWHERE) {
+            char_printf(ch, "Room {} does not exist.\n", room_vnum);
+            return;
+        }
+
+        auto result = membership->update_clan_chest_room(room_vnum);
+        if (result) {
+            if (room_vnum == NOWHERE) {
+                char_printf(ch, "Clan chest access disabled.\n");
+            } else {
+                char_printf(ch, "Clan chest room set to {}.\n", room_vnum);
+            }
         } else {
             char_printf(ch, "{}.\n", result.error());
             return;
@@ -777,28 +891,28 @@ CLANCMD(clan_apply) {
         char_printf(ch, "Apply to which clan?\n");
         return;
     }
-    
+
     auto clan_name = argument.shift();
     auto [clan, used_fuzzy] = find_clan_with_fuzzy_search(clan_name);
-    
+
     if (!clan) {
         char_printf(ch, "No such clan exists.\n");
         show_clan_suggestions(ch, clan_name);
         return;
     }
-    
+
     if (used_fuzzy) {
-        char_printf(ch, "Assuming you meant '{}' ({}).\n", 
+        char_printf(ch, "Assuming you meant '{}' ({}).\n",
                    strip_ansi((*clan)->name()), strip_ansi((*clan)->abbreviation()));
     }
-    
+
     // Check if character meets application requirements
     if (GET_LEVEL(ch) < (*clan)->min_application_level()) {
-        char_printf(ch, "You must be at least level {} to apply to {}.\n", 
+        char_printf(ch, "You must be at least level {} to apply to {}.\n",
                    (*clan)->min_application_level(), (*clan)->name());
         return;
     }
-    
+
     // Check if character can afford application fee
     if (GET_LEVEL(ch) < LVL_IMMORT) {
         Money app_fee;
@@ -808,20 +922,20 @@ CLANCMD(clan_apply) {
             char_printf(ch, "You cannot afford the {} platinum application fee.\n", (*clan)->app_fee());
             return;
         }
-        
+
         // Charge the fee
         for (int i = 0; i < NUM_COIN_TYPES; i++) {
             ch->points.money[i] -= app_fee[i];
         }
     }
-    
+
     // Check if already a member
     auto me = std::shared_ptr<CharData>(ch, [](CharData *) {});
     if ((*clan)->get_membership(me)) {
         char_printf(ch, "You are already a member of {}.\n", (*clan)->name());
         return;
     }
-    
+
     // For now, applications are disabled - clan members must manually invite
     char_printf(ch, "Clan applications are currently disabled. Contact a clan member to be invited.\n");
 }
@@ -911,18 +1025,18 @@ CLANCMD(clan_info) {
         clan = membership->clan();
     } else {
         auto [found_clan, used_fuzzy] = find_clan_with_fuzzy_search(clan_name);
-        
+
         if (!found_clan) {
             char_printf(ch, "'{}' does not refer to a valid clan.\n", clan_name);
             show_clan_suggestions(ch, clan_name);
             return;
         }
-        
+
         if (used_fuzzy) {
-            char_printf(ch, "Assuming you meant '{}' ({}).\n", 
+            char_printf(ch, "Assuming you meant '{}' ({}).\n",
                        strip_ansi((*found_clan)->name()), strip_ansi((*found_clan)->abbreviation()));
         }
-        
+
         clan = *found_clan;
     }
 
@@ -996,10 +1110,10 @@ ACMD(do_clan) {
         // Display help using the function registry
         auto permissions = get_clan_permissions(ch);
         char_printf(ch, "Available clan commands:\n");
-        
+
         auto clan_help = FunctionRegistry::print_available_with_prefix("clan_", permissions);
         char_printf(ch, "{}", clan_help);
-        
+
         if (GET_LEVEL(ch) >= LVL_IMMORT) {
             char_printf(ch, "\nNote: As a god, you must specify the clan for most commands.\n");
         }
@@ -1009,7 +1123,7 @@ ACMD(do_clan) {
     // Try to call the command using the function registry with permission checking
     std::string full_command = "clan_" + std::string(command);
     auto permissions = get_clan_permissions(ch);
-    
+
     if (!FunctionRegistry::call_by_abbrev_with_permissions(full_command, ch, args, permissions)) {
         // Check if the function exists but we lack permissions
         if (FunctionRegistry::can_call_function(full_command, ClanPermissions::Everybody)) {

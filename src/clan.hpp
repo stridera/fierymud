@@ -86,7 +86,7 @@ struct ClanMember {
     int rank_index;
     time_t join_time;
     std::vector<std::string> alts;
-    
+
     ClanMember() = default;
     ClanMember(std::string n, int r, time_t t, std::vector<std::string> a = {})
         : name(std::move(n)), rank_index(r), join_time(t), alts(std::move(a)) {}
@@ -141,6 +141,10 @@ class Clan : public std::enable_shared_from_this<Clan> {
     Money treasure_;
     Storage storage_;
 
+    // Room vnums for clan bank and chest access (NOWHERE = any room)
+    room_num bank_room_;
+    room_num chest_room_;
+
     std::vector<ClanRank> ranks_;
 
     // Store members by name and rank
@@ -159,6 +163,8 @@ class Clan : public std::enable_shared_from_this<Clan> {
     void set_app_fee(unsigned int new_app_fee) { app_fee_ = new_app_fee; }
     void set_min_application_level(unsigned int new_level) { min_application_level_ = new_level; }
     void set_treasure(Money new_treasure) { treasure_ = std::move(new_treasure); }
+    void set_bank_room(room_num room) { bank_room_ = room; }
+    void set_chest_room(room_num room) { chest_room_ = room; }
     void add_storage_item(ObjectId id, int amount) {
         auto it = storage_.find(id);
         if (it != storage_.end()) {
@@ -203,7 +209,7 @@ class Clan : public std::enable_shared_from_this<Clan> {
   public:
     Clan(ClanId id, std::string name, std::string abbreviation)
         : id_(std::move(id)), name_(std::move(name)), abbreviation_(std::move(abbreviation)), dues_(0), app_fee_(0),
-          min_application_level_(0) {}
+          min_application_level_(0), bank_room_(NOWHERE), chest_room_(NOWHERE) {}
 
     // Constants
     static constexpr int MAX_CLAN_ABBR_LEN = 10;
@@ -222,13 +228,15 @@ class Clan : public std::enable_shared_from_this<Clan> {
     [[nodiscard]] Money treasure() const { return treasure_; }
     [[nodiscard]] const Storage &storage() const { return storage_; }
     [[nodiscard]] const std::vector<ClanRank> &ranks() const { return ranks_; }
+    [[nodiscard]] room_num bank_room() const { return bank_room_; }
+    [[nodiscard]] room_num chest_room() const { return chest_room_; }
     [[nodiscard]] const std::vector<ClanMember> &members() const { return members_; }
     [[nodiscard]] std::size_t member_count() const { return members_.size(); }
     [[nodiscard]] std::size_t rank_count() const { return ranks_.size(); }
 
     // Get a member's membership
     [[nodiscard]] std::optional<ClanMembershipPtr> get_membership(const CharacterPtr &character) const;
-    
+
     // Member management by name
     [[nodiscard]] std::optional<ClanMember> get_member_by_name(const std::string_view name) const;
     [[nodiscard]] std::vector<ClanMember> get_members_by_rank_index(int rank_index) const;
@@ -455,6 +463,8 @@ class ClanMembership : public std::enable_shared_from_this<ClanMembership> {
     std::expected<void, std::string_view> remove_clan_member(const std::string& member_name);
     std::expected<void, std::string_view> update_clan_member_rank(const std::string& member_name, int new_rank_index);
     std::expected<void, std::string_view> add_clan_member(const std::string& member_name, int rank_index);
+    std::expected<void, std::string_view> update_clan_bank_room(room_num room);
+    std::expected<void, std::string_view> update_clan_chest_room(room_num room);
 };
 
 // Forward declare JSON serialization functions
@@ -483,8 +493,8 @@ class ClanRepository {
         caches_valid_ = false; // Invalidate caches
         return clan;
     }
-    void remove(ClanId id) { 
-        clans_.erase(id); 
+    void remove(ClanId id) {
+        clans_.erase(id);
         caches_valid_ = false; // Invalidate caches
     }
 
@@ -525,15 +535,15 @@ class ClanRepository {
   private:
     void build_caches() const {
         if (caches_valid_) return;
-        
+
         name_to_id_.clear();
         abbr_to_id_.clear();
-        
+
         for (const auto& [id, clan] : clans_) {
             name_to_id_[std::string(clan->name())] = id;
             abbr_to_id_[std::string(clan->abbreviation())] = id;
         }
-        
+
         caches_valid_ = true;
     }
 };

@@ -294,7 +294,7 @@ ACMD(do_roar) {
 
         if (SLEEPING(tch)) {
             if (random_number(0, 1)) {
-                sprintf(buf, "A loud %s jolts you from your slumber!\n",
+                snprintf(buf, sizeof(buf), "A loud %s jolts you from your slumber!\n",
                         subcmd == SCMD_HOWL ? "OOOOAAAOAOOHHH howl" : "ROAAARRRRRR");
                 char_printf(tch, buf);
                 act("$n jumps up dazedly, awakened by the noise!", true, tch, 0, 0, TO_ROOM);
@@ -931,7 +931,7 @@ ACMD(do_retreat) {
         !ROOM_FLAGGED(CH_NDEST(ch, dir), ROOM_DEATH) && do_simple_move(ch, dir, true)) {
 
         /* Send message back to original room. */
-        sprintf(buf, "$n carefully retreats from combat, leaving %s.", dirs[dir].data());
+        snprintf(buf, sizeof(buf), "$n carefully retreats from combat, leaving %s.", dirs[dir].data());
         to_room = ch->in_room;
         ch->in_room = vict->in_room;
         act(buf, true, ch, 0, 0, TO_ROOM);
@@ -1776,47 +1776,47 @@ ACMD(do_throatcut) {
             dam = (GET_MAX_HIT(vict) * 3) / 4;
             expReduction = (GET_EXP(vict) * 3) / 4; /* rip same % exp from the mob... since they're doing less work! */
 
-            sprintf(buf1, "&1&bYou nearly sever the head of $N with %s.&0", weapon->short_description);
-            sprintf(buf2, "&1&b$n nearly severs your head with %s!&0", weapon->short_description);
-            sprintf(buf3, "&1&b$n nearly severs the head of $N with %s!&0", weapon->short_description);
-            sprintf(stop_buf1, "Your profuse bleeding interrupts your chanting!");
-            sprintf(stop_buf2, "$n stops chanting abruptly!");
+            snprintf(buf1, sizeof(buf1), "&1&bYou nearly sever the head of $N with %s.&0", weapon->short_description);
+            snprintf(buf2, sizeof(buf2), "&1&b$n nearly severs your head with %s!&0", weapon->short_description);
+            snprintf(buf3, sizeof(buf3), "&1&b$n nearly severs the head of $N with %s!&0", weapon->short_description);
+            snprintf(stop_buf1, sizeof(stop_buf1), "Your profuse bleeding interrupts your chanting!");
+            snprintf(stop_buf2, sizeof(stop_buf2), "$n stops chanting abruptly!");
             break;
         case 2:
         case 5:
             dam = GET_MAX_HIT(vict) / 4;
             expReduction = GET_EXP(vict) / 4; /* rip same % exp from the mob... since they're doing less work! */
 
-            sprintf(buf1, "&1&bBlood splatters all over you as you cut into $N with %s.&0", weapon->short_description);
-            sprintf(buf2, "&1&bBlood splatters all over $n as $e cuts into you with %s!&0", weapon->short_description);
-            sprintf(buf3, "&1&bBlood splatters all over $n as $e dices $N with %s!&0", weapon->short_description);
-            sprintf(stop_buf1, "Your chanting is interrupted by your coughing up blood!");
-            sprintf(stop_buf2, "$n stops chanting abruptly!");
+            snprintf(buf1, sizeof(buf1), "&1&bBlood splatters all over you as you cut into $N with %s.&0", weapon->short_description);
+            snprintf(buf2, sizeof(buf2), "&1&bBlood splatters all over $n as $e cuts into you with %s!&0", weapon->short_description);
+            snprintf(buf3, sizeof(buf3), "&1&bBlood splatters all over $n as $e dices $N with %s!&0", weapon->short_description);
+            snprintf(stop_buf1, sizeof(stop_buf1), "Your chanting is interrupted by your coughing up blood!");
+            snprintf(stop_buf2, sizeof(stop_buf2), "$n stops chanting abruptly!");
             break;
         case 3:
         case 4:
             dam = GET_MAX_HIT(vict) / 8;
             expReduction = GET_EXP(vict) / 8; /* rip same % exp from the mob... since they're doing less work! */
 
-            sprintf(buf1, "&1&b$N gasps as you slice into $S throat with %s.&0", weapon->short_description);
-            sprintf(buf2, "&1&bYou gasp with fear as $n slices into your throat with %s!&0", weapon->short_description);
-            sprintf(buf3, "&1&b$N looks horrified as $n slices into $S throat with %s!&0", weapon->short_description);
-            sprintf(stop_buf1, "Your gasp abruptly interrupts your chanting!");
-            sprintf(stop_buf2, "$n stops chanting abruptly!");
+            snprintf(buf1, sizeof(buf1), "&1&b$N gasps as you slice into $S throat with %s.&0", weapon->short_description);
+            snprintf(buf2, sizeof(buf2), "&1&bYou gasp with fear as $n slices into your throat with %s!&0", weapon->short_description);
+            snprintf(buf3, sizeof(buf3), "&1&b$N looks horrified as $n slices into $S throat with %s!&0", weapon->short_description);
+            snprintf(stop_buf1, sizeof(stop_buf1), "Your gasp abruptly interrupts your chanting!");
+            snprintf(stop_buf2, sizeof(stop_buf2), "$n stops chanting abruptly!");
             break;
         case 7:
             dam = (GET_MAX_HIT(vict) * 9) / 10;
             expReduction = (GET_EXP(vict) * 9) / 10; /* rip same % exp from the mob... since
                                                         they're doing less work! */
 
-            sprintf(buf1, "&1&bBlood spews everywhere as you nearly incapacitate $N with %s.&0",
+            snprintf(buf1, sizeof(buf1), "&1&bBlood spews everywhere as you nearly incapacitate $N with %s.&0",
                     weapon->short_description);
-            sprintf(buf2, "&1&bBlood spews everywhere as $n nearly incapacitates you with %s!&0",
+            snprintf(buf2, sizeof(buf2), "&1&bBlood spews everywhere as $n nearly incapacitates you with %s!&0",
                     weapon->short_description);
-            sprintf(buf3, "&1&bBlood spews everywhere as $n nearly incapacitates $N with %s!&0",
+            snprintf(buf3, sizeof(buf3), "&1&bBlood spews everywhere as $n nearly incapacitates $N with %s!&0",
                     weapon->short_description);
-            sprintf(stop_buf1, "Your chanting is interrupted by your gurgling of blood!");
-            sprintf(stop_buf2, "$n stops chanting abruptly!");
+            snprintf(stop_buf1, sizeof(stop_buf1), "Your chanting is interrupted by your gurgling of blood!");
+            snprintf(stop_buf2, sizeof(stop_buf2), "$n stops chanting abruptly!");
             break;
         default:
             dam = expReduction = 0;
@@ -1828,9 +1828,9 @@ ACMD(do_throatcut) {
         expReduction = 0; /* rip same % exp from the mob... since they're doing less work! */
 
         /* If we want silent misses for non-critical misses.. remove the act txt */
-        sprintf(buf1, "&3&b$N jumps back before you have a chance to even get close!&0");
-        sprintf(buf2, "&3&b$n just tried to cut your throat!&0");
-        sprintf(buf3, "&3&b$n misses $N with $s throat cut!&0");
+        snprintf(buf1, sizeof(buf1), "&3&b$N jumps back before you have a chance to even get close!&0");
+        snprintf(buf2, sizeof(buf2), "&3&b$n just tried to cut your throat!&0");
+        snprintf(buf3, sizeof(buf3), "&3&b$n misses $N with $s throat cut!&0");
     }
 
     if (IS_NPC(vict))
@@ -1839,17 +1839,17 @@ ACMD(do_throatcut) {
 
     if (damage_amounts) {
         if (dam <= 0)
-            sprintf(buf, " (&1%d&0)", dam);
+            snprintf(buf, sizeof(buf), " (&1%d&0)", dam);
         else
-            sprintf(buf, " (&3%d&0)", dam);
+            snprintf(buf, sizeof(buf), " (&3%d&0)", dam);
 
-        strcat(buf1, buf);
+        strncat(buf1, buf, sizeof(buf1) - strlen(buf1) - 1);
         act(buf1, false, ch, nullptr, vict, TO_CHAR);
 
-        strcat(buf2, buf);
+        strncat(buf2, buf, sizeof(buf2) - strlen(buf2) - 1);
         act(buf2, false, ch, nullptr, vict, TO_VICT);
 
-        strcat(buf3, buf);
+        strncat(buf3, buf, sizeof(buf3) - strlen(buf3) - 1);
         act(buf3, false, ch, nullptr, vict, TO_NOTVICT);
     } else {
         act(buf1, false, ch, nullptr, vict, TO_CHAR);

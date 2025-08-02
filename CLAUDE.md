@@ -83,6 +83,7 @@ In-game content editing system:
 - Uses Catch2 testing framework
 - Test files in `tests/` directory
 - Run tests with `./build/tests`
+- **IMPORTANT**: Changes should be tested using Catch2 - add appropriate unit tests for new functionality
 
 ### Common Development Tasks
 - **Adding new commands**: Add to `src/interpreter.cpp` command table
