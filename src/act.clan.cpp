@@ -192,7 +192,8 @@ enum ClanPermissions : PermissionFlags {
     Everybody = 0,
     ClanMember = 1,
     ClanAdmin = 2,
-    God = 3,
+    God = 4,
+    NonClanMember = 8,  // For commands that should only be visible to non-clan members
 };
 
 // Determine clan permission flags for a character
@@ -203,18 +204,18 @@ static PermissionFlags get_clan_permissions(CharData *ch) {
         flags |= ClanPermissions::God;
         flags |= ClanPermissions::ClanAdmin;
         flags |= ClanPermissions::ClanMember;
+        flags |= ClanPermissions::NonClanMember;  // Gods can see everything
     } else {
-        auto memberships = ch->player_specials->clan_memberships;
-        if (!memberships.empty()) {
+        auto membership = ch->player_specials->clan_membership;
+        if (membership.has_value()) {
             flags |= ClanPermissions::ClanMember;
-            // Check if they have admin privileges in any clan
-            for (const auto &membership : memberships) {
-                if (membership->has_permission(ClanPrivilege::Admin) ||
-                    membership->has_permission(ClanPrivilege::Grant)) {
-                    flags |= ClanPermissions::ClanAdmin;
-                    break;
-                }
+            // Check if they have admin privileges
+            if (membership.value()->has_permission(ClanPrivilege::Admin) ||
+                membership.value()->has_permission(ClanPrivilege::Grant)) {
+                flags |= ClanPermissions::ClanAdmin;
             }
+        } else {
+            flags |= ClanPermissions::NonClanMember;  // Not in a clan
         }
     }
 
@@ -223,21 +224,20 @@ static PermissionFlags get_clan_permissions(CharData *ch) {
 
 // Get the clan from the character. Gods always need to specify the clan.
 static std::shared_ptr<ClanMembership> find_memberships(CharData *ch, Arguments &argument) {
-    auto memberships = ch->player_specials->clan_memberships;
+    auto membership = ch->player_specials->clan_membership;
     if (GET_LEVEL(ch) < LVL_IMMORT) {
-        if (memberships.empty()) {
+        if (!membership.has_value()) {
             char_printf(ch, "You are not a member of a clan.\n");
             return nullptr;
         }
 
-        if (memberships.size() == 1) {
-            return memberships[0];
-        }
+        // For single membership, just return it
+        return membership.value();
     }
 
     if (argument.empty()) {
-        if (!memberships.empty()) {
-            return memberships[0];
+        if (membership.has_value()) {
+            return membership.value();
         }
         char_printf(ch, "Please specify a clan.\n");
         return nullptr;
@@ -292,11 +292,16 @@ static std::shared_ptr<ClanMembership> find_memberships(CharData *ch, Arguments 
     // Create a temporary membership for gods with all permissions
     if (GET_LEVEL(ch) >= LVL_IMMORT) {
         PermissionSet perms;
-        // Set all privileges for gods (Admin is not a bit index, it's a special value)
-        for (size_t i = 0; i < NUM_PERMISSIONS; ++i) {
-            perms.set(i);
-        }
-        return std::make_shared<ClanMembership>(*clan, me, ClanRank("God", perms));
+        // Set all privileges for gods
+        perms.set(); // Set all bits
+        
+        // Create a non-owning shared_ptr for the character
+        auto char_shared = std::shared_ptr<CharData>(ch, [](CharData *) { /* Non-owning deleter */ });
+        
+        // Create god membership directly - the "God" rank title allows bypassing character checks
+        auto membership = std::make_shared<ClanMembership>(*clan, char_shared, ClanRank("God", perms));
+        
+        return membership;
     }
 
     char_printf(ch, "You are not a member of that clan.\n");
@@ -328,17 +333,19 @@ CLANCMD(clan_deposit) {
         return;
     }
 
-    // Check if clan bank is accessible from this room
+    // Check if clan bank is accessible from this room (gods can access from anywhere)
     auto clan = membership->get_clan();
-    if (clan && clan->bank_room() != NOWHERE && ch->in_room != clan->bank_room()) {
-        char_printf(ch, "You can only access the clan bank from the designated bank room.\n");
-        return;
-    }
+    if (GET_LEVEL(ch) < LVL_IMMORT) {
+        if (clan && clan->bank_room() != NOWHERE && ch->in_room != clan->bank_room()) {
+            char_printf(ch, "You can only access the clan bank from the designated bank room.\n");
+            return;
+        }
 
-    // If bank_room is NOWHERE, bank access is disabled
-    if (clan && clan->bank_room() == NOWHERE) {
-        char_printf(ch, "Clan bank access is currently disabled.\n");
-        return;
+        // If bank_room is NOWHERE, bank access is disabled
+        if (clan && clan->bank_room() == NOWHERE) {
+            char_printf(ch, "Clan bank access is currently disabled.\n");
+            return;
+        }
     }
 
     auto arg = argument.shift();
@@ -382,17 +389,19 @@ CLANCMD(clan_withdraw) {
         return;
     }
 
-    // Check if clan bank is accessible from this room
+    // Check if clan bank is accessible from this room (gods can access from anywhere)
     auto clan = membership->get_clan();
-    if (clan && clan->bank_room() != NOWHERE && ch->in_room != clan->bank_room()) {
-        char_printf(ch, "You can only access the clan bank from the designated bank room.\n");
-        return;
-    }
+    if (GET_LEVEL(ch) < LVL_IMMORT) {
+        if (clan && clan->bank_room() != NOWHERE && ch->in_room != clan->bank_room()) {
+            char_printf(ch, "You can only access the clan bank from the designated bank room.\n");
+            return;
+        }
 
-    // If bank_room is NOWHERE, bank access is disabled
-    if (clan && clan->bank_room() == NOWHERE) {
-        char_printf(ch, "Clan bank access is currently disabled.\n");
-        return;
+        // If bank_room is NOWHERE, bank access is disabled
+        if (clan && clan->bank_room() == NOWHERE) {
+            char_printf(ch, "Clan bank access is currently disabled.\n");
+            return;
+        }
     }
 
     auto arg = argument.shift();
@@ -435,17 +444,19 @@ CLANCMD(clan_store) {
         return;
     }
 
-    // Check if clan chest is accessible from this room
+    // Check if clan chest is accessible from this room (gods can access from anywhere)
     auto clan = membership->get_clan();
-    if (clan && clan->chest_room() != NOWHERE && ch->in_room != clan->chest_room()) {
-        char_printf(ch, "You can only access the clan chest from the designated chest room.\n");
-        return;
-    }
+    if (GET_LEVEL(ch) < LVL_IMMORT) {
+        if (clan && clan->chest_room() != NOWHERE && ch->in_room != clan->chest_room()) {
+            char_printf(ch, "You can only access the clan chest from the designated chest room.\n");
+            return;
+        }
 
-    // If chest_room is NOWHERE, chest access is disabled
-    if (clan && clan->chest_room() == NOWHERE) {
-        char_printf(ch, "Clan chest access is currently disabled.\n");
-        return;
+        // If chest_room is NOWHERE, chest access is disabled
+        if (clan && clan->chest_room() == NOWHERE) {
+            char_printf(ch, "Clan chest access is currently disabled.\n");
+            return;
+        }
     }
 
     auto arg_pair = argument.try_shift_number_and_arg();
@@ -496,17 +507,19 @@ CLANCMD(clan_retrieve) {
         return;
     }
 
-    // Check if clan chest is accessible from this room
+    // Check if clan chest is accessible from this room (gods can access from anywhere)
     auto clan = membership->get_clan();
-    if (clan && clan->chest_room() != NOWHERE && ch->in_room != clan->chest_room()) {
-        char_printf(ch, "You can only access the clan chest from the designated chest room.\n");
-        return;
-    }
+    if (GET_LEVEL(ch) < LVL_IMMORT) {
+        if (clan && clan->chest_room() != NOWHERE && ch->in_room != clan->chest_room()) {
+            char_printf(ch, "You can only access the clan chest from the designated chest room.\n");
+            return;
+        }
 
-    // If chest_room is NOWHERE, chest access is disabled
-    if (clan && clan->chest_room() == NOWHERE) {
-        char_printf(ch, "Clan chest access is currently disabled.\n");
-        return;
+        // If chest_room is NOWHERE, chest access is disabled
+        if (clan && clan->chest_room() == NOWHERE) {
+            char_printf(ch, "Clan chest access is currently disabled.\n");
+            return;
+        }
     }
 
     auto arg_pair = argument.try_shift_number_and_arg();
@@ -627,6 +640,28 @@ CLANCMD(clan_tell) {
                     GET_INVIS_LEV(me) > GET_LEVEL(tch) ? "Someone" : GET_NAME(me),
                     tch->player.level < LVL_IMMORT ? "your clan" : membership->get_clan_abbreviation(), speech);
     }
+    
+    // Send to snooping gods
+    auto clan_id_opt = membership->get_clan_id();
+    if (clan_id_opt) {
+        auto clan_id = clan_id_opt.value();
+        auto it = clan_snoop_table.find(clan_id);
+        if (it != clan_snoop_table.end()) {
+            for (auto snoop_ch : it->second) {
+                if (!snoop_ch || !snoop_ch->desc || snoop_ch == me)
+                    continue;
+                    
+                if (STATE(snoop_ch->desc) != CON_PLAYING)
+                    continue;
+                    
+                // Send snoop message with special formatting
+                char_printf(snoop_ch, AFYEL "[SNOOP {}] {} tells clan, '" AHMAG "{}" AFYEL "'\n" ANRM,
+                           membership->get_clan_abbreviation(),
+                           GET_INVIS_LEV(me) > GET_LEVEL(snoop_ch) ? "Someone" : GET_NAME(me),
+                           speech);
+            }
+        }
+    }
 }
 REGISTER_FUNCTION(clan_tell, "clan_tell", 0, ClanPermissions::ClanMember | ClanPermissions::God,
                 "tell <clan> <message>        - Send a message to all clan members");
@@ -638,6 +673,24 @@ CLANCMD(clan_set) {
     }
 
     auto cmd = argument.shift();
+
+    if (cmd.empty()) {
+        char_printf(ch, "Available clan set options:\n");
+        char_printf(ch, "  abbr <text>           - Set clan abbreviation\n");
+        char_printf(ch, "  addrank <title>       - Add a new rank\n");
+        char_printf(ch, "  appfee <amount>       - Set application fee (platinum)\n");
+        char_printf(ch, "  applev <level>        - Set minimum application level\n");
+        char_printf(ch, "  delrank <number>      - Delete a rank\n");
+        char_printf(ch, "  dues <amount>         - Set monthly dues (platinum)\n");
+        char_printf(ch, "  name <text>           - Set clan name\n");
+        char_printf(ch, "  permissions <rank> <list> - Set permissions for a rank\n");
+        char_printf(ch, "  title <rank> <text>   - Set title for a rank\n");
+        if (GET_LEVEL(ch) >= LVL_GOD) {
+            char_printf(ch, "  bankroom <vnum>       - Set bank room (-1 to disable, gods only)\n");
+            char_printf(ch, "  chestroom <vnum>      - Set chest room (-1 to disable, gods only)\n");
+        }
+        return;
+    }
 
     if (matches_start(cmd, "abbr")) {
         auto new_abbreviation = argument.get();
@@ -777,6 +830,98 @@ CLANCMD(clan_set) {
             char_printf(ch, "{}.\n", result.error());
             return;
         }
+    } else if (matches_start(cmd, "permissions")) {
+        auto rank_opt = argument.try_shift_number();
+        if (!rank_opt) {
+            char_printf(ch, "For which rank do you want to set permissions?\n");
+            char_printf(ch, "Usage: clan set permissions <rank> <permission1> [permission2] ...\n");
+            char_printf(ch, "Available permissions: description motd grant ranks title enroll expel\n");
+            char_printf(ch, "                       promote demote app_fees app_level dues deposit\n");
+            char_printf(ch, "                       withdraw store retrieve alts chat all none\n");
+            return;
+        }
+
+        if (*rank_opt < 1) {
+            char_printf(ch, "Rank number must be positive.\n");
+            return;
+        }
+
+        auto ranks = membership->get_clan_ranks();
+        if (*rank_opt > ranks.size()) {
+            char_printf(ch, "Invalid rank number. Clan has {} ranks.\n", ranks.size());
+            return;
+        }
+
+        if (argument.empty()) {
+            char_printf(ch, "What permissions do you want to set for rank {}?\n", *rank_opt);
+            char_printf(ch, "Available permissions: description motd grant ranks title enroll expel\n");
+            char_printf(ch, "                       promote demote app_fees app_level dues deposit\n");
+            char_printf(ch, "                       withdraw store retrieve alts chat all none\n");
+            return;
+        }
+
+        // Get the current rank
+        auto current_rank = ranks[*rank_opt - 1];
+        PermissionSet new_permissions;
+        
+        // Parse permission list
+        std::string perm_str;
+        while (!(perm_str = std::string(argument.shift())).empty()) {
+            if (perm_str == "all") {
+                new_permissions.set(); // Set all bits
+            } else if (perm_str == "none") {
+                new_permissions.reset(); // Clear all bits
+            } else if (perm_str == "description") {
+                new_permissions.set(static_cast<size_t>(ClanPrivilege::Description));
+            } else if (perm_str == "motd") {
+                new_permissions.set(static_cast<size_t>(ClanPrivilege::Motd));
+            } else if (perm_str == "grant") {
+                new_permissions.set(static_cast<size_t>(ClanPrivilege::Grant));
+            } else if (perm_str == "ranks") {
+                new_permissions.set(static_cast<size_t>(ClanPrivilege::Ranks));
+            } else if (perm_str == "title") {
+                new_permissions.set(static_cast<size_t>(ClanPrivilege::Title));
+            } else if (perm_str == "enroll") {
+                new_permissions.set(static_cast<size_t>(ClanPrivilege::Enroll));
+            } else if (perm_str == "expel") {
+                new_permissions.set(static_cast<size_t>(ClanPrivilege::Expel));
+            } else if (perm_str == "promote") {
+                new_permissions.set(static_cast<size_t>(ClanPrivilege::Promote));
+            } else if (perm_str == "demote") {
+                new_permissions.set(static_cast<size_t>(ClanPrivilege::Demote));
+            } else if (perm_str == "app_fees") {
+                new_permissions.set(static_cast<size_t>(ClanPrivilege::App_Fees));
+            } else if (perm_str == "app_level") {
+                new_permissions.set(static_cast<size_t>(ClanPrivilege::App_Level));
+            } else if (perm_str == "dues") {
+                new_permissions.set(static_cast<size_t>(ClanPrivilege::Dues));
+            } else if (perm_str == "deposit") {
+                new_permissions.set(static_cast<size_t>(ClanPrivilege::Deposit));
+            } else if (perm_str == "withdraw") {
+                new_permissions.set(static_cast<size_t>(ClanPrivilege::Withdraw));
+            } else if (perm_str == "store") {
+                new_permissions.set(static_cast<size_t>(ClanPrivilege::Store));
+            } else if (perm_str == "retrieve") {
+                new_permissions.set(static_cast<size_t>(ClanPrivilege::Retrieve));
+            } else if (perm_str == "alts") {
+                new_permissions.set(static_cast<size_t>(ClanPrivilege::Alts));
+            } else if (perm_str == "chat") {
+                new_permissions.set(static_cast<size_t>(ClanPrivilege::Chat));
+            } else {
+                char_printf(ch, "Unknown permission '{}'. Use 'clan set permissions {}' to see available permissions.\n", 
+                           perm_str, *rank_opt);
+                return;
+            }
+        }
+
+        // Update the rank permissions directly
+        auto result = membership->update_clan_rank_permissions(*rank_opt - 1, new_permissions);
+        if (result) {
+            char_printf(ch, "Permissions updated for rank {} ({}).\n", *rank_opt, current_rank.title());
+        } else {
+            char_printf(ch, "{}.\n", result.error());
+            return;
+        }
     } else if (matches_start(cmd, "title")) {
         auto rank_opt = argument.try_shift_number();
         if (!rank_opt) {
@@ -876,7 +1021,7 @@ CLANCMD(clan_set) {
             return;
         }
     } else {
-        log(LogSeverity::Error, LVL_GOD, "SYSERR: clan_set: unknown subcommand '{}'", cmd);
+        char_printf(ch, "Unknown clan set option '{}'. Use 'clan set' to see available options.\n", cmd);
         return;
     }
 
@@ -914,7 +1059,7 @@ CLANCMD(clan_apply) {
     }
 
     // Check if character can afford application fee
-    if (GET_LEVEL(ch) < LVL_IMMORT) {
+    if (GET_LEVEL(ch) < LVL_IMMORT && (*clan)->app_fee() > 0) {
         Money app_fee;
         app_fee[PLATINUM] = (*clan)->app_fee();
         Money owned = ch->points.money;
@@ -939,7 +1084,7 @@ CLANCMD(clan_apply) {
     // For now, applications are disabled - clan members must manually invite
     char_printf(ch, "Clan applications are currently disabled. Contact a clan member to be invited.\n");
 }
-REGISTER_FUNCTION(clan_apply, "clan_apply", 0, ClanPermissions::Everybody,
+REGISTER_FUNCTION(clan_apply, "clan_apply", 0, ClanPermissions::NonClanMember | ClanPermissions::God,
                 "apply <clan>                 - Apply to join a clan");
 
 
@@ -1003,7 +1148,7 @@ CLANCMD(clan_destroy) {
     // TODO: This should notify all members that the clan is disbanded
     membership->notify_clan("Your clan has been disbanded!");
 
-    char_printf(ch, AFMAG "You have deleted the clan {}.\n" ANRM, clan_name);
+    char_printf(ch, AFMAG "You have deleted the clan {}&0.\n" ANRM, clan_name);
     log(LogSeverity::Stat, LVL_GOD, "(CLAN) {} has destroyed the clan {}.", GET_NAME(ch), clan_name);
 
     clan_repository.remove(clan_id);
@@ -1050,17 +1195,17 @@ CLANCMD(clan_info) {
     paging_printf(ch, "{:-^70}\n", title);
 
     paging_printf(ch,
-                  "Nickname: " AFYEL "{}" ANRM
+                  "Nickname: " AFYEL "{}&0" ANRM
                   "  "
-                  "Ranks: " AFYEL "{}" ANRM
+                  "Ranks: " AFYEL "{}&0" ANRM
                   "  "
-                  "Members: " AFYEL "{}" ANRM
+                  "Members: " AFYEL "{}&0" ANRM
                   "\n"
-                  "App Fee: " AFCYN "{}" ANRM
+                  "App Fee: " AFCYN "{}&0" ANRM
                   "  "
-                  "App Level: " AFYEL "{}" ANRM
+                  "App Level: " AFYEL "{}&0" ANRM
                   "  "
-                  "Dues: " AFCYN "{}" ANRM "\n",
+                  "Dues: " AFCYN "{}&0" ANRM "\n",
                   clan->abbreviation(), clan->ranks().size(), clan->member_count(), clan->app_fee(),
                   clan->min_application_level(), clan->dues());
 
@@ -1111,7 +1256,10 @@ ACMD(do_clan) {
         auto permissions = get_clan_permissions(ch);
         char_printf(ch, "Available clan commands:\n");
 
-        auto clan_help = FunctionRegistry::print_available_with_prefix("clan_", permissions);
+        auto clan_help = FunctionRegistry::print_available_with_prefix("clan_", permissions,
+            [](std::string_view name) -> std::string {
+                return name.starts_with("clan_") ? std::string(name.substr(5)) : std::string(name);
+            });
         char_printf(ch, "{}", clan_help);
 
         if (GET_LEVEL(ch) >= LVL_IMMORT) {
@@ -1143,4 +1291,535 @@ ACMD(do_ctell) {
     }
 
     clan_tell(ch, args);
+}
+
+CLANCMD(clan_snoop) {
+    if (GET_LEVEL(ch) < LVL_IMMORT) {
+        char_printf(ch, "Only gods may snoop clan communications.\n");
+        return;
+    }
+
+    if (argument.empty()) {
+        // Show current snooped clans
+        auto snooped_clans = get_snooped_clans(ch);
+        if (snooped_clans.empty()) {
+            char_printf(ch, "You are not currently snooping any clan communications.\n");
+        } else {
+            char_printf(ch, "You are currently snooping the following clans:\n");
+            for (auto clan_id : snooped_clans) {
+                auto clan = clan_repository.find_by_id(clan_id);
+                if (clan) {
+                    char_printf(ch, "  {} [{}] (ID: {})\n", 
+                               clan.value()->name(), 
+                               clan.value()->abbreviation(), 
+                               clan_id);
+                }
+            }
+        }
+        return;
+    }
+
+    auto subcommand = argument.shift();
+    
+    if (subcommand == "start" || subcommand == "on") {
+        if (argument.empty()) {
+            char_printf(ch, "Start snooping which clan? Usage: clan snoop start <clan>\n");
+            return;
+        }
+        
+        auto clan_name = std::string(argument.get());
+        
+        // Find clan by name or abbreviation
+        auto clan = clan_repository.find_by_name(clan_name);
+        if (!clan) {
+            clan = clan_repository.find_by_abbreviation(clan_name);
+        }
+        
+        if (!clan) {
+            char_printf(ch, "No clan found with name or abbreviation '{}'.\n", clan_name);
+            return;
+        }
+        
+        auto clan_id = clan.value()->id();
+        
+        if (is_snooping_clan(ch, clan_id)) {
+            char_printf(ch, "You are already snooping {} communications.\n", clan.value()->name());
+            return;
+        }
+        
+        add_clan_snoop(ch, clan_id);
+        char_printf(ch, "You are now snooping {} [{}] communications.\n", 
+                   clan.value()->name(), clan.value()->abbreviation());
+        log(LogSeverity::Stat, LVL_GOD, "(CLAN) {} starts snooping clan {} communications", 
+            GET_NAME(ch), clan.value()->name());
+            
+    } else if (subcommand == "stop" || subcommand == "off") {
+        if (argument.empty()) {
+            char_printf(ch, "Stop snooping which clan? Usage: clan snoop stop <clan>\n");
+            return;
+        }
+        
+        auto clan_name = std::string(argument.get());
+        
+        // Find clan by name or abbreviation
+        auto clan = clan_repository.find_by_name(clan_name);
+        if (!clan) {
+            clan = clan_repository.find_by_abbreviation(clan_name);
+        }
+        
+        if (!clan) {
+            char_printf(ch, "No clan found with name or abbreviation '{}'.\n", clan_name);
+            return;
+        }
+        
+        auto clan_id = clan.value()->id();
+        
+        if (!is_snooping_clan(ch, clan_id)) {
+            char_printf(ch, "You are not currently snooping {} communications.\n", clan.value()->name());
+            return;
+        }
+        
+        remove_clan_snoop(ch, clan_id);
+        char_printf(ch, "You stop snooping {} [{}] communications.\n", 
+                   clan.value()->name(), clan.value()->abbreviation());
+        log(LogSeverity::Stat, LVL_GOD, "(CLAN) {} stops snooping clan {} communications", 
+            GET_NAME(ch), clan.value()->name());
+            
+    } else if (subcommand == "clear" || subcommand == "all") {
+        auto snooped_clans = get_snooped_clans(ch);
+        if (snooped_clans.empty()) {
+            char_printf(ch, "You are not currently snooping any clan communications.\n");
+            return;
+        }
+        
+        remove_all_clan_snoops(ch);
+        char_printf(ch, "You stop snooping all clan communications.\n");
+        log(LogSeverity::Stat, LVL_GOD, "(CLAN) {} stops snooping all clan communications", GET_NAME(ch));
+        
+    } else {
+        char_printf(ch, "Usage:\n");
+        char_printf(ch, "  clan snoop                  - Show current snooped clans\n");
+        char_printf(ch, "  clan snoop start <clan>     - Start snooping clan communications\n");
+        char_printf(ch, "  clan snoop stop <clan>      - Stop snooping clan communications\n");
+        char_printf(ch, "  clan snoop clear            - Stop snooping all clans\n");
+    }
+}
+
+REGISTER_FUNCTION(clan_snoop, "clan_snoop", 0, ClanPermissions::God,
+                "snoop <start|stop|clear> [clan] - Monitor clan communications (gods only)");
+
+CLANCMD(clan_enroll) {
+    if (GET_LEVEL(ch) < LVL_IMMORT) {
+        char_printf(ch, "You don't have permission to enroll clan members.\n");
+        return;
+    }
+
+    if (argument.empty()) {
+        char_printf(ch, "Usage: clan enroll <clan> <player> [rank]\n");
+        return;
+    }
+
+    auto clan_name = argument.shift();
+    auto player_name = argument.shift();
+    auto rank_arg = argument.shift();
+
+    if (clan_name.empty() || player_name.empty()) {
+        char_printf(ch, "Usage: clan enroll <clan> <player> [rank]\n");
+        return;
+    }
+
+    // Find the target player (must be online)
+    auto target = find_char_in_world(find_by_name(const_cast<char*>(std::string(player_name).c_str())));
+    if (!target || !target->desc || !IS_PLAYING(target->desc)) {
+        char_printf(ch, "Player '{}' is not currently online.\n", player_name);
+        return;
+    }
+
+    // Get the correct case of the player's name
+    std::string correct_player_name = GET_NAME(target);
+
+    // Find the clan
+    auto [clan, used_fuzzy] = find_clan_with_fuzzy_search(clan_name);
+    if (!clan) {
+        char_printf(ch, "No such clan exists.\n");
+        show_clan_suggestions(ch, clan_name);
+        return;
+    }
+
+    if (used_fuzzy) {
+        char_printf(ch, "Assuming you meant '{}' ({}).\n",
+                   strip_ansi((*clan)->name()), strip_ansi((*clan)->abbreviation()));
+    }
+
+    // Default to rank 0 (lowest rank) if not specified
+    int rank_index = 0;
+    if (!rank_arg.empty()) {
+        // Create a temporary Arguments object to use try_shift_number
+        Arguments rank_args(rank_arg);
+        auto rank_opt = rank_args.try_shift_number();
+        if (!rank_opt || *rank_opt < 1) {
+            char_printf(ch, "Invalid rank number. Use a positive integer.\n");
+            return;
+        }
+        rank_index = *rank_opt - 1; // Convert to 0-based index
+    }
+
+    // Validate rank index
+    if (rank_index < 0 || rank_index >= static_cast<int>((*clan)->ranks().size())) {
+        char_printf(ch, "Invalid rank number. Clan has {} ranks.\n", (*clan)->ranks().size());
+        return;
+    }
+
+    auto rank_title = (*clan)->ranks()[rank_index].title();
+    
+    // Check if player is already a member and update their rank
+    if ((*clan)->get_member_by_name(correct_player_name).has_value()) {
+        if ((*clan)->update_member_rank(correct_player_name, rank_index)) {
+            char_printf(ch, "{} is already a member of {}. Updated their rank to '{}'.\n", 
+                       correct_player_name, (*clan)->name(), rank_title);
+            log(LogSeverity::Stat, LVL_GOD, "(CLAN) {} updates {}'s rank in {} to {}", 
+                GET_NAME(ch), correct_player_name, (*clan)->name(), rank_title);
+            
+            // Save clan ID to player file for efficient loading
+            target->player_specials->clan_id = (*clan)->id();
+            
+            // Load runtime membership for the online player using efficient method
+            auto target_shared = std::make_shared<CharData>(*target);
+            target->player_specials->clan_membership = clan_repository.load_clan_membership_by_id(target_shared);
+            
+            char_printf(target, AFGRN "Your rank in {}&0 has been updated to '{}&0'!\n" ANRM, 
+                       (*clan)->name(), rank_title);
+            
+            // Save changes
+            clan_repository.save();
+        } else {
+            char_printf(ch, "Failed to update {}'s rank in {}.\n", correct_player_name, (*clan)->name());
+        }
+        return;
+    }
+
+    // Add the member to persistent storage
+    if ((*clan)->add_member_by_name(correct_player_name, rank_index)) {
+        char_printf(ch, "{} has been enrolled in {} with rank '{}'.\n", 
+                   correct_player_name, (*clan)->name(), rank_title);
+        log(LogSeverity::Stat, LVL_GOD, "(CLAN) {} enrolls {} in {} as {}", 
+            GET_NAME(ch), correct_player_name, (*clan)->name(), rank_title);
+        
+        // Save clan ID to player file for efficient loading
+        target->player_specials->clan_id = (*clan)->id();
+        
+        // Load runtime membership for the online player using efficient method
+        auto target_shared = std::make_shared<CharData>(*target);
+        target->player_specials->clan_membership = clan_repository.load_clan_membership_by_id(target_shared);
+        
+        char_printf(target, AFGRN "You have been enrolled in {}&0 with rank '{}&0'!\n" ANRM, 
+                   (*clan)->name(), rank_title);
+        
+        // Save changes
+        clan_repository.save();
+    } else {
+        char_printf(ch, "Failed to enroll {} in {}.\n", correct_player_name, (*clan)->name());
+    }
+}
+REGISTER_FUNCTION(clan_enroll, "clan_enroll", 0, ClanPermissions::God,
+                "enroll <clan> <player> [rank] - Enroll a player in a clan (gods only)");
+
+CLANCMD(clan_expel) {
+    if (GET_LEVEL(ch) < LVL_IMMORT) {
+        char_printf(ch, "You don't have permission to expel clan members.\n");
+        return;
+    }
+
+    if (argument.empty()) {
+        char_printf(ch, "Usage: clan expel <clan> <player>\n");
+        return;
+    }
+
+    auto clan_name = argument.shift();
+    auto player_name = argument.shift();
+
+    if (clan_name.empty() || player_name.empty()) {
+        char_printf(ch, "Usage: clan expel <clan> <player>\n");
+        return;
+    }
+
+    // Try to find the target player if they're online
+    auto target = find_char_in_world(find_by_name(const_cast<char*>(std::string(player_name).c_str())));
+    std::string correct_player_name;
+    
+    if (target && target->desc && IS_PLAYING(target->desc)) {
+        // Player is online, get their exact name
+        correct_player_name = GET_NAME(target);
+    } else {
+        // Player is offline, use the provided name (case-sensitive)
+        correct_player_name = std::string(player_name);
+        target = nullptr;  // Clear target since they're offline
+        char_printf(ch, "Note: Player '{}' is offline. Using exact name as provided.\n", correct_player_name);
+    }
+
+    // Find the clan
+    auto [clan, used_fuzzy] = find_clan_with_fuzzy_search(clan_name);
+    if (!clan) {
+        char_printf(ch, "No such clan exists.\n");
+        show_clan_suggestions(ch, clan_name);
+        return;
+    }
+
+    if (used_fuzzy) {
+        char_printf(ch, "Assuming you meant '{}' ({}).\n",
+                   strip_ansi((*clan)->name()), strip_ansi((*clan)->abbreviation()));
+    }
+
+    // Check if player is a member
+    if (!(*clan)->get_member_by_name(correct_player_name).has_value()) {
+        char_printf(ch, "{} is not a member of {}.\n", correct_player_name, (*clan)->name());
+        return;
+    }
+
+    // Remove the member
+    if ((*clan)->remove_member_by_name(correct_player_name)) {
+        char_printf(ch, "{} has been expelled from {}.\n", correct_player_name, (*clan)->name());
+        log(LogSeverity::Stat, LVL_GOD, "(CLAN) {} expels {} from {}", 
+            GET_NAME(ch), correct_player_name, (*clan)->name());
+        
+        // If player is online, update their runtime data
+        if (target) {
+            // Clear clan ID from player file
+            target->player_specials->clan_id = CLAN_ID_NONE;
+            
+            // Update the player's runtime membership
+            target->player_specials->clan_membership.reset();
+            char_printf(target, AFYEL "You have been expelled from {}&0!\n" ANRM, (*clan)->name());
+        }
+        
+        // Save changes
+        clan_repository.save();
+    } else {
+        char_printf(ch, "Failed to expel {} from {}.\n", correct_player_name, (*clan)->name());
+    }
+}
+REGISTER_FUNCTION(clan_expel, "clan_expel", 0, ClanPermissions::God,
+                "expel <clan> <player>        - Expel a player from a clan (online or offline, gods only)");
+
+CLANCMD(clan_members) {
+    auto membership = find_memberships(ch, argument);
+    if (!membership) {
+        return;
+    }
+
+    auto clan = membership->get_clan();
+    if (!clan) {
+        char_printf(ch, "Error getting clan information.\n");
+        return;
+    }
+
+    const auto& members = clan->members();
+    const auto& ranks = clan->ranks();
+
+    if (members.empty()) {
+        char_printf(ch, "{} has no members.\n", clan->name());
+        return;
+    }
+
+    std::string title = fmt::format("[ Members of {} ({}) ]", clan->name(), clan->abbreviation());
+    paging_printf(ch, "{:-^70}\n", title);
+    
+    paging_printf(ch, "{:<20} {:<15} {:<20} {:<10}\n", "Name", "Rank", "Title", "Joined");
+    paging_printf(ch, "{:-^70}\n", "");
+
+    // Sort members by rank (highest rank first)
+    auto sorted_members = members;
+    std::sort(sorted_members.begin(), sorted_members.end(), 
+              [](const auto& a, const auto& b) {
+                  return a.rank_index > b.rank_index; // Higher rank index = higher rank
+              });
+
+    for (const auto& member : sorted_members) {
+        std::string rank_title = "Unknown";
+        if (member.rank_index >= 0 && member.rank_index < static_cast<int>(ranks.size())) {
+            rank_title = std::string(ranks[member.rank_index].title());
+        }
+
+        // Format join time
+        char join_date[32];
+        struct tm* time_info = localtime(&member.join_time);
+        strftime(join_date, sizeof(join_date), "%m/%d/%Y", time_info);
+
+        paging_printf(ch, "{:<20} {:<15} {:<20} {:<10}\n", 
+                     member.name, 
+                     member.rank_index + 1, // Display as 1-based
+                     rank_title,
+                     join_date);
+    }
+
+    paging_printf(ch, "{:-^70}\n", "");
+    paging_printf(ch, "Total members: {}\n", members.size());
+}
+REGISTER_FUNCTION(clan_members, "clan_members", 0, ClanPermissions::ClanMember | ClanPermissions::God,
+                "members [clan]               - Show clan member list");
+
+CLANCMD(clan_chest) {
+    auto membership = find_memberships(ch, argument);
+    if (!membership) {
+        return;
+    }
+
+    // Check if clan chest is accessible from this room (gods can access from anywhere)
+    auto clan = membership->get_clan();
+    if (GET_LEVEL(ch) < LVL_IMMORT) {
+        if (clan && clan->chest_room() != NOWHERE && ch->in_room != clan->chest_room()) {
+            char_printf(ch, "You can only access the clan chest from the designated chest room.\n");
+            return;
+        }
+
+        // If chest_room is NOWHERE, chest access is disabled
+        if (clan && clan->chest_room() == NOWHERE) {
+            char_printf(ch, "Clan chest access is currently disabled.\n");
+            return;
+        }
+    }
+
+    if (!clan) {
+        char_printf(ch, "Error getting clan information.\n");
+        return;
+    }
+
+    const auto& storage = clan->storage();
+
+    if (storage.empty()) {
+        char_printf(ch, "The {} clan chest is empty.\n", clan->name());
+        return;
+    }
+
+    std::string title = fmt::format("[ {} ({}) Clan Chest ]", clan->name(), clan->abbreviation());
+    paging_printf(ch, "{:-^70}\n", title);
+    
+    bool show_vnums = GET_LEVEL(ch) >= LVL_IMMORT;
+    
+    if (show_vnums) {
+        paging_printf(ch, "{:<6} {:<8} {:<45} {:<8}\n", "VNUM", "Qty", "Item", "Type");
+    } else {
+        paging_printf(ch, "{:<8} {:<53} {:<8}\n", "Qty", "Item", "Type");
+    }
+    paging_printf(ch, "{:-^70}\n", "");
+
+    int total_items = 0;
+    
+    // Sort storage by vnum for consistent display
+    std::vector<std::pair<ObjectId, int>> sorted_storage(storage.begin(), storage.end());
+    std::sort(sorted_storage.begin(), sorted_storage.end());
+
+    for (const auto& [vnum, quantity] : sorted_storage) {
+        // Try to load the object to get its information
+        auto obj = read_object(vnum, VIRTUAL);
+        if (obj) {
+            std::string item_name = obj->short_description ? obj->short_description : "Unknown Item";
+            std::string item_type = "Unknown";
+            
+            // Get item type name
+            if (GET_OBJ_TYPE(obj) >= 0 && GET_OBJ_TYPE(obj) < NUM_ITEM_TYPES) {
+                item_type = item_types[GET_OBJ_TYPE(obj)].name;
+            }
+            
+            if (show_vnums) {
+                paging_printf(ch, "{:<6} {:<8} {:<45} {:<8}\n", 
+                             vnum, quantity, item_name, item_type);
+            } else {
+                paging_printf(ch, "{:<8} {:<53} {:<8}\n", 
+                             quantity, item_name, item_type);
+            }
+            
+            free_obj(obj);
+        } else {
+            // Object couldn't be loaded (might be deleted from game)
+            if (show_vnums) {
+                paging_printf(ch, "{:<6} {:<8} {:<45} {:<8}\n", 
+                             vnum, quantity, "[MISSING OBJECT]", "N/A");
+            } else {
+                paging_printf(ch, "{:<8} {:<53} {:<8}\n", 
+                             quantity, "[MISSING OBJECT]", "N/A");
+            }
+        }
+        
+        total_items += quantity;
+    }
+
+    paging_printf(ch, "{:-^70}\n", "");
+    paging_printf(ch, "Total unique items: {}  Total item count: {}\n", 
+                 storage.size(), total_items);
+}
+REGISTER_FUNCTION(clan_chest, "clan_chest", 0, ClanPermissions::ClanMember | ClanPermissions::God,
+                "chest [clan]                 - Show clan chest contents");
+
+CLANCMD(clan_ranks) {
+    auto membership = find_memberships(ch, argument);
+    if (!membership) {
+        return;
+    }
+
+    auto clan = membership->get_clan();
+    if (!clan) {
+        char_printf(ch, "Error getting clan information.\n");
+        return;
+    }
+
+    const auto& ranks = clan->ranks();
+    
+    if (ranks.empty()) {
+        char_printf(ch, "{} has no ranks defined.\n", clan->name());
+        return;
+    }
+
+    char_printf(ch, "Ranks for {}:\n", clan->name());
+    char_printf(ch, "================================================================================\n");
+    
+    for (size_t i = 0; i < ranks.size(); ++i) {
+        const auto& rank = ranks[i];
+        char_printf(ch, "Rank {}: {}\n", i + 1, rank.title());
+        
+        // Show permissions
+        char_printf(ch, "  Permissions: ");
+        std::vector<std::string> perms;
+        
+        // Check each permission
+        if (rank.has_permission(ClanPrivilege::Description)) perms.push_back("Description");
+        if (rank.has_permission(ClanPrivilege::Motd)) perms.push_back("MOTD");
+        if (rank.has_permission(ClanPrivilege::Grant)) perms.push_back("Grant");
+        if (rank.has_permission(ClanPrivilege::Ranks)) perms.push_back("Ranks");
+        if (rank.has_permission(ClanPrivilege::Title)) perms.push_back("Title");
+        if (rank.has_permission(ClanPrivilege::Enroll)) perms.push_back("Enroll");
+        if (rank.has_permission(ClanPrivilege::Expel)) perms.push_back("Expel");
+        if (rank.has_permission(ClanPrivilege::Promote)) perms.push_back("Promote");
+        if (rank.has_permission(ClanPrivilege::Demote)) perms.push_back("Demote");
+        if (rank.has_permission(ClanPrivilege::App_Fees)) perms.push_back("App_Fees");
+        if (rank.has_permission(ClanPrivilege::App_Level)) perms.push_back("App_Level");
+        if (rank.has_permission(ClanPrivilege::Dues)) perms.push_back("Dues");
+        if (rank.has_permission(ClanPrivilege::Deposit)) perms.push_back("Deposit");
+        if (rank.has_permission(ClanPrivilege::Withdraw)) perms.push_back("Withdraw");
+        if (rank.has_permission(ClanPrivilege::Store)) perms.push_back("Store");
+        if (rank.has_permission(ClanPrivilege::Retrieve)) perms.push_back("Retrieve");
+        if (rank.has_permission(ClanPrivilege::Alts)) perms.push_back("Alts");
+        if (rank.has_permission(ClanPrivilege::Chat)) perms.push_back("Chat");
+        
+        if (perms.empty()) {
+            char_printf(ch, "None\n");
+        } else {
+            // Print permissions in rows of 4
+            for (size_t j = 0; j < perms.size(); ++j) {
+                if (j > 0 && j % 4 == 0) {
+                    char_printf(ch, "\n                ");
+                }
+                char_printf(ch, "{:12} ", perms[j]);
+            }
+            char_printf(ch, "\n");
+        }
+        char_printf(ch, "\n");
+    }
+}
+REGISTER_FUNCTION(clan_ranks, "clan_ranks", 0, ClanPermissions::ClanMember | ClanPermissions::God,
+                "ranks [clan]                 - Show clan ranks and their permissions");
+
+ACMD(do_csnoop) {
+    Arguments args(argument);
+    clan_snoop(ch, args);
 }

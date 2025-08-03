@@ -1246,6 +1246,9 @@ void extract_char(CharData *ch) {
     if (ch->guarded_by)
         stop_guarding(ch->guarded_by);
 
+    // Clean up clan snooping
+    remove_all_clan_snoops(ch);
+
     if (ch->cornering) {
         if (ch->cornering->cornered_by == ch)
             ch->cornering->cornered_by = nullptr;

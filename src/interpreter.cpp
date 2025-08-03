@@ -110,6 +110,7 @@ ACMD(do_coredump);
 ACMD(do_corner);
 ACMD(do_credits);
 ACMD(do_ctell);
+ACMD(do_csnoop);
 ACMD(do_date);
 ACMD(do_dc);
 ACMD(do_desc);
@@ -453,6 +454,7 @@ const CommandInfo cmd_info[] = {
     {"clist", POS_PRONE, STANCE_DEAD, do_csearch, LVL_ATTENDANT, SCMD_VLIST, CMD_ANY},
     {"csearch", POS_PRONE, STANCE_DEAD, do_csearch, LVL_ATTENDANT, SCMD_VSEARCH, CMD_ANY},
     {"ctell", POS_PRONE, STANCE_SLEEPING, do_ctell, 0, 0, CMD_ANY},
+    {"csnoop", POS_PRONE, STANCE_SLEEPING, do_csnoop, LVL_IMMORT, 0, CMD_ANY},
     {"cuddle", POS_PRONE, STANCE_RESTING, do_action, 0, 0, 0},
     {"curse", POS_PRONE, STANCE_RESTING, do_action, 0, 0, 0},
     {"curtsey", POS_STANDING, STANCE_ALERT, do_action, 0, 0, CMD_NOFIGHT},
@@ -1954,8 +1956,8 @@ int enter_player_game(DescriptorData *d) {
     GET_QUIT_REASON(d->character) = QUIT_AUTOSAVE;
 
     // A couple of hacks to reconnect things if the player logged out to the menu and then re-entered the game
-    d->character->player_specials->clan_memberships =
-        clan_repository.get_clan_memberships(std::make_shared<CharData>(*d->character));
+    d->character->player_specials->clan_membership =
+        clan_repository.load_clan_membership_by_id(std::make_shared<CharData>(*d->character));
 
     // restart cooldowns
     for (int i = 0; i < NUM_COOLDOWNS; ++i)
@@ -2497,9 +2499,9 @@ void nanny(DescriptorData *d, char *arg) {
                 string_to_output(d, NEWSUPDATED2);
             }
 
-            auto clan_membership = get_clan_memberships(d->character);
-            for (auto &clan : clan_membership) {
-                desc_printf(d, "\n{}{} news:\n{}", clan->get_clan_name(), ANRM, clan->get_clan_motd());
+            auto clan_membership = get_clan_membership(d->character);
+            if (clan_membership) {
+                desc_printf(d, "\n{}{} news:\n{}", clan_membership.value()->get_clan_name(), ANRM, clan_membership.value()->get_clan_motd());
             }
 
             // Convert timestamp to string
@@ -3213,9 +3215,9 @@ void nanny(DescriptorData *d, char *arg) {
                 return;
             }
 
-            auto clan_memberships = get_clan_memberships(d->character);
-            for (auto &membership : clan_memberships) {
-                membership->remove_member();
+            auto clan_membership = get_clan_membership(d->character);
+            if (clan_membership) {
+                clan_membership.value()->remove_member();
             }
 
             if ((player_i = get_ptable_by_name(GET_NAME(d->character))) >= 0) {

@@ -20,18 +20,16 @@
 ClanMembershipPtr Clan::add_member(CharacterPtr character, ClanRank rank) {
     auto membership = std::make_shared<ClanMembership>(shared_from_this(), character, rank);
     // Note: This is for runtime character objects, separate from persistent member storage
-    character->player_specials->clan_memberships.push_back(membership);
+    character->player_specials->clan_membership = membership;
     invalidate_rank_cache();
     return membership;
 }
 
 void Clan::remove_member(const CharacterPtr &character) {
-    // Remove from the character's clan memberships
-    auto membership_it =
-        std::ranges::find_if(character->player_specials->clan_memberships,
-                             [&character](const ClanMembershipPtr &m) { return m->character() == character; });
-    if (membership_it != character->player_specials->clan_memberships.end()) {
-        character->player_specials->clan_memberships.erase(membership_it);
+    // Remove from the character's clan membership
+    if (character->player_specials->clan_membership && 
+        character->player_specials->clan_membership.value()->character() == character) {
+        character->player_specials->clan_membership.reset();
     }
     
     // Also remove from persistent member storage by name
@@ -43,11 +41,13 @@ void Clan::remove_member(const CharacterPtr &character) {
 }
 
 std::optional<ClanMembershipPtr> Clan::get_membership(const CharacterPtr &character) const {
-    // Check the character's clan memberships for this clan
-    auto it = std::ranges::find_if(character->player_specials->clan_memberships,
-                                   [this](const ClanMembershipPtr &m) { return m->clan().get() == this; });
+    // Check the character's clan membership for this clan
+    if (character->player_specials->clan_membership && 
+        character->player_specials->clan_membership.value()->clan().get() == this) {
+        return character->player_specials->clan_membership.value();
+    }
     
-    return it != character->player_specials->clan_memberships.end() ? std::optional{*it} : std::nullopt;
+    return std::nullopt;
 }
 
 std::optional<ClanMember> Clan::get_member_by_name(const std::string_view name) const {
@@ -157,14 +157,19 @@ void Clan::notify(const CharacterPtr &skip, const std::string_view messg) {
 
 std::expected<void, std::string_view> ClanMembership::update_clan_name(std::string new_name) {
     auto clan_ptr = Clan_.lock();
-    auto character_ptr = character_.lock();
-
-    if (!clan_ptr || !character_ptr) {
+    if (!clan_ptr) {
         return std::unexpected(AccessError::ClanNotFound);
     }
+    
+    if (!is_god_membership()) {
+        auto character_ptr = character_.lock();
+        if (!character_ptr) {
+            return std::unexpected(AccessError::ClanNotFound);
+        }
 
-    if (character_ptr->player.level < LVL_IMMORT) {
-        return std::unexpected(AccessError::PermissionDenied);
+        if (character_ptr->player.level < LVL_IMMORT) {
+            return std::unexpected(AccessError::PermissionDenied);
+        }
     }
 
     clan_ptr->name_ = std::move(new_name);
@@ -177,12 +182,17 @@ std::expected<void, std::string_view> ClanMembership::update_clan_abbreviation(s
     static constexpr std::string_view ABBR_EXISTS = "A clan already exists with that abbreviation.";
 
     auto clan_ptr = Clan_.lock();
-    auto character_ptr = character_.lock();
-
-    if (!clan_ptr || !character_ptr)
+    if (!clan_ptr)
         return std::unexpected(AccessError::ClanNotFound);
-    if (character_ptr->player.level < LVL_IMMORT)
-        return std::unexpected(AccessError::PermissionDenied);
+    
+    if (!is_god_membership()) {
+        auto character_ptr = character_.lock();
+        if (!character_ptr)
+            return std::unexpected(AccessError::ClanNotFound);
+        if (character_ptr->player.level < LVL_IMMORT)
+            return std::unexpected(AccessError::PermissionDenied);
+    }
+    
     if (ansi_strlen(new_abbreviation) > Clan::MAX_CLAN_ABBR_LEN) {
         return std::unexpected(ABBR_TOO_LONG);
     }
@@ -364,11 +374,16 @@ std::expected<void, std::string_view> ClanMembership::update_clan_rank_title(siz
         fmt::format("Rank titles may be at most {} characters long.", Clan::MAX_CLAN_TITLE_LEN);
 
     auto clan_ptr = Clan_.lock();
-    auto character_ptr = character_.lock();
-    if (!clan_ptr || !character_ptr)
+    if (!clan_ptr)
         return std::unexpected(AccessError::ClanNotFound);
-    if (!has_permission(ClanPrivilege::Ranks))
-        return std::unexpected(AccessError::PermissionDenied);
+    
+    if (!is_god_membership()) {
+        auto character_ptr = character_.lock();
+        if (!character_ptr)
+            return std::unexpected(AccessError::ClanNotFound);
+        if (!has_permission(ClanPrivilege::Ranks))
+            return std::unexpected(AccessError::PermissionDenied);
+    }
 
     if (rank_index >= clan_ptr->ranks_.size())
         return std::unexpected(RANK_NOT_FOUND);
@@ -382,6 +397,37 @@ std::expected<void, std::string_view> ClanMembership::update_clan_rank_title(siz
     }
 
     clan_ptr->ranks_[rank_index].set_title(std::move(new_title));
+    return {};
+}
+
+// Helper function to check if this is a god membership that should bypass character checks
+inline bool ClanMembership::is_god_membership() const {
+    return rank_.title() == "God";
+}
+
+std::expected<void, std::string_view> ClanMembership::update_clan_rank_permissions(size_t rank_index, PermissionSet permissions) {
+    static constexpr std::string_view RANK_NOT_FOUND = "Rank not found.";
+
+    auto clan_ptr = Clan_.lock();
+    if (!clan_ptr) {
+        return std::unexpected(AccessError::ClanNotFound);
+    }
+    
+    // For gods, skip character validation and permission checks
+    if (!is_god_membership()) {
+        auto character_ptr = character_.lock();
+        if (!character_ptr) {
+            return std::unexpected(AccessError::ClanNotFound);
+        }
+        
+        if (!has_permission(ClanPrivilege::Ranks))
+            return std::unexpected(AccessError::PermissionDenied);
+    }
+
+    if (rank_index >= clan_ptr->ranks_.size())
+        return std::unexpected(RANK_NOT_FOUND);
+
+    clan_ptr->ranks_[rank_index].set_privileges(std::move(permissions));
     return {};
 }
 
@@ -926,4 +972,58 @@ void ClanRepository::init_clans() {
     } else {
         log("No clan files found. Starting with empty clan system.");
     }
+}
+
+// Clan snooping system implementation
+
+// Global clan snoop table
+std::unordered_map<ClanId, std::unordered_set<CharData*>> clan_snoop_table;
+
+void add_clan_snoop(CharData *ch, ClanId clan_id) {
+    if (!ch) return;
+    clan_snoop_table[clan_id].insert(ch);
+}
+
+void remove_clan_snoop(CharData *ch, ClanId clan_id) {
+    if (!ch) return;
+    auto it = clan_snoop_table.find(clan_id);
+    if (it != clan_snoop_table.end()) {
+        it->second.erase(ch);
+        if (it->second.empty()) {
+            clan_snoop_table.erase(it);
+        }
+    }
+}
+
+void remove_all_clan_snoops(CharData *ch) {
+    if (!ch) return;
+    for (auto it = clan_snoop_table.begin(); it != clan_snoop_table.end();) {
+        it->second.erase(ch);
+        if (it->second.empty()) {
+            it = clan_snoop_table.erase(it);
+        } else {
+            ++it;
+        }
+    }
+}
+
+bool is_snooping_clan(CharData *ch, ClanId clan_id) {
+    if (!ch) return false;
+    auto it = clan_snoop_table.find(clan_id);
+    if (it != clan_snoop_table.end()) {
+        return it->second.count(ch) > 0;
+    }
+    return false;
+}
+
+std::vector<ClanId> get_snooped_clans(CharData *ch) {
+    std::vector<ClanId> result;
+    if (!ch) return result;
+    
+    for (const auto& [clan_id, snoopers] : clan_snoop_table) {
+        if (snoopers.count(ch) > 0) {
+            result.push_back(clan_id);
+        }
+    }
+    return result;
 }

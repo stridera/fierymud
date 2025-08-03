@@ -416,6 +416,8 @@ int load_player(const char *name, CharData *ch) {
                 BASE_COMPOSITION(ch) = num;
             else if (!strcasecmp(tag, "cooldowns"))
                 load_cooldowns(fl, ch);
+            else if (!strcasecmp(tag, "clan"))
+                ch->player_specials->clan_id = num;
             else
                 goto bad_tag;
             break;
@@ -845,6 +847,8 @@ void save_player_char(CharData *ch) {
     fprintf(fl, "home: %d\n", GET_HOMEROOM(ch));
     fprintf(fl, "lifeforce: %d\n", GET_LIFEFORCE(ch));
     fprintf(fl, "composition: %d\n", BASE_COMPOSITION(ch));
+    if (ch->player_specials->clan_id > 0)
+        fprintf(fl, "clan: %d\n", ch->player_specials->clan_id);
 
     fprintf(fl, "id: %ld\n", GET_IDNUM(ch));
     fprintf(fl, "birthtime: %ld\n", (long)ch->player.time.birth);
@@ -1317,6 +1321,7 @@ void init_player(CharData *ch) {
     if (!ch->player_specials) {
         CREATE(ch->player_specials, PlayerSpecialData, 1);
         ch->player_specials->stored = std::unordered_map<int, int>();
+        ch->player_specials->clan_id = CLAN_ID_NONE; /* No clan initially */
     }
 
     init_retained_comms(ch);

@@ -2914,11 +2914,9 @@ ACMD(do_terminate) {
             return;
         }
         /* delete and purge */
-        auto clan_membership = get_clan_memberships(victim);
-        if (!clan_membership.empty()) {
-            for (auto &clan : clan_membership) {
-                clan->remove_member();
-            }
+        auto clan_membership = get_clan_membership(victim);
+        if (clan_membership) {
+            clan_membership.value()->remove_member();
         }
         SET_FLAG(PLR_FLAGS(victim), PLR_DELETED);
         save_player_char(victim);

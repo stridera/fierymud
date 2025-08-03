@@ -20,6 +20,7 @@
 #include <string>
 #include <unordered_map>
 #include <vector>
+#include <optional>
 
 typedef int room_num;
 typedef int obj_num;
@@ -282,7 +283,8 @@ struct PlayerSpecialData {
     GrantType *revoke_groups;
 
     ubyte page_length;
-    std::vector<ClanMembershipPtr> clan_memberships;
+    std::optional<ClanMembershipPtr> clan_membership;
+    unsigned int clan_id; /* Persistent clan ID (0 = no clan) */
 
     OLCZoneList *olc_zones;
     int lastlevel;
