@@ -1434,179 +1434,156 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
         }
 
         else if (!strcasecmp(field, "clan")) {
-            auto membership = get_clan_membership(c);
-            if (!IS_NPC(c) && membership.has_value())
-                strcpy(str, membership.value()->get_clan_name().data());
+            auto clan = get_clan_membership(c);
+            if (!IS_NPC(c) && clan.has_value())
+                strcpy(str, clan.value()->name().data());
             else
                 *str = '\0';
         } else if (!strcasecmp(field, "clan_rank")) {
-            auto membership = get_clan_membership(c);
-            if (!IS_NPC(c) && membership.has_value())
-                strcpy(str, membership.value()->rank().title().data());
+            auto rank = get_clan_rank(c);
+            if (!IS_NPC(c) && rank.has_value())
+                strcpy(str, rank.value().title().data());
             else
                 *str = '\0';
 
         } else if (!strcasecmp(field, "clan_id")) {
-            auto membership = get_clan_membership(c);
-            if (!IS_NPC(c) && membership.has_value()) {
-                auto clan_id = membership.value()->get_clan_id();
-                sprintf(str, "%u", clan_id.value_or(0));
+            if (!IS_NPC(c)) {
+                sprintf(str, "%u", get_clan_id(c));
             } else
                 strcpy(str, "0");
 
         } else if (!strcasecmp(field, "clan_abbr")) {
-            auto membership = get_clan_membership(c);
-            if (!IS_NPC(c) && membership.has_value())
-                strcpy(str, membership.value()->get_clan_abbreviation().data());
+            auto clan = get_clan_membership(c);
+            if (!IS_NPC(c) && clan.has_value())
+                strcpy(str, clan.value()->abbreviation().data());
             else
                 *str = '\0';
 
         } else if (!strcasecmp(field, "clan_description")) {
-            auto membership = get_clan_membership(c);
-            if (!IS_NPC(c) && membership.has_value())
-                strcpy(str, membership.value()->get_clan_description().data());
+            auto clan = get_clan_membership(c);
+            if (!IS_NPC(c) && clan.has_value())
+                strcpy(str, clan.value()->description().data());
             else
                 *str = '\0';
 
         } else if (!strcasecmp(field, "clan_motd")) {
-            auto membership = get_clan_membership(c);
-            if (!IS_NPC(c) && membership.has_value())
-                strcpy(str, membership.value()->get_clan_motd().data());
+            auto clan = get_clan_membership(c);
+            if (!IS_NPC(c) && clan.has_value())
+                strcpy(str, clan.value()->motd().data());
             else
                 *str = '\0';
 
         } else if (!strcasecmp(field, "clan_dues")) {
-            auto membership = get_clan_membership(c);
-            if (!IS_NPC(c) && membership.has_value())
-                sprintf(str, "%u", membership.value()->get_clan_dues());
+            auto clan = get_clan_membership(c);
+            if (!IS_NPC(c) && clan.has_value())
+                sprintf(str, "%u", clan.value()->dues());
             else
                 strcpy(str, "0");
 
         } else if (!strcasecmp(field, "clan_app_fee")) {
-            auto membership = get_clan_membership(c);
-            if (!IS_NPC(c) && membership.has_value())
-                sprintf(str, "%u", membership.value()->get_clan_app_fee());
+            auto clan = get_clan_membership(c);
+            if (!IS_NPC(c) && clan.has_value())
+                sprintf(str, "%u", clan.value()->app_fee());
             else
                 strcpy(str, "0");
 
         } else if (!strcasecmp(field, "clan_min_level")) {
-            auto membership = get_clan_membership(c);
-            if (!IS_NPC(c) && membership.has_value())
-                sprintf(str, "%u", membership.value()->get_clan_min_application_level());
+            auto clan = get_clan_membership(c);
+            if (!IS_NPC(c) && clan.has_value())
+                sprintf(str, "%u", clan.value()->min_application_level());
             else
                 strcpy(str, "0");
 
         } else if (!strcasecmp(field, "clan_member_count")) {
-            auto membership = get_clan_membership(c);
-            if (!IS_NPC(c) && membership.has_value())
-                sprintf(str, "%zu", membership.value()->get_clan_member_count());
+            auto clan = get_clan_membership(c);
+            if (!IS_NPC(c) && clan.has_value())
+                sprintf(str, "%zu", clan.value()->member_count());
             else
                 strcpy(str, "0");
 
         } else if (!strcasecmp(field, "clan_treasure_total")) {
-            auto membership = get_clan_membership(c);
-            if (!IS_NPC(c) && membership.has_value()) {
-                auto treasure = membership.value()->get_clan_treasure();
+            auto clan = get_clan_membership(c);
+            if (!IS_NPC(c) && clan.has_value()) {
+                auto treasure = clan.value()->treasure();
                 sprintf(str, "%d", treasure.value());
             } else
                 strcpy(str, "0");
 
         } else if (!strcasecmp(field, "clan_treasure_platinum")) {
-            auto membership = get_clan_membership(c);
-            if (!IS_NPC(c) && membership.has_value()) {
-                auto treasure = membership.value()->get_clan_treasure();
+            auto clan = get_clan_membership(c);
+            if (!IS_NPC(c) && clan.has_value()) {
+                auto treasure = clan.value()->treasure();
                 sprintf(str, "%d", treasure.platinum());
             } else
                 strcpy(str, "0");
 
         } else if (!strcasecmp(field, "clan_treasure_gold")) {
-            auto membership = get_clan_membership(c);
-            if (!IS_NPC(c) && membership.has_value()) {
-                auto treasure = membership.value()->get_clan_treasure();
+            auto clan = get_clan_membership(c);
+            if (!IS_NPC(c) && clan.has_value()) {
+                auto treasure = clan.value()->treasure();
                 sprintf(str, "%d", treasure.gold());
             } else
                 strcpy(str, "0");
 
         } else if (!strcasecmp(field, "clan_treasure_silver")) {
-            auto membership = get_clan_membership(c);
-            if (!IS_NPC(c) && membership.has_value()) {
-                auto treasure = membership.value()->get_clan_treasure();
+            auto clan = get_clan_membership(c);
+            if (!IS_NPC(c) && clan.has_value()) {
+                auto treasure = clan.value()->treasure();
                 sprintf(str, "%d", treasure.silver());
             } else
                 strcpy(str, "0");
 
         } else if (!strcasecmp(field, "clan_treasure_copper")) {
-            auto membership = get_clan_membership(c);
-            if (!IS_NPC(c) && membership.has_value()) {
-                auto treasure = membership.value()->get_clan_treasure();
+            auto clan = get_clan_membership(c);
+            if (!IS_NPC(c) && clan.has_value()) {
+                auto treasure = clan.value()->treasure();
                 sprintf(str, "%d", treasure.copper());
             } else
                 strcpy(str, "0");
 
         } else if (!strcasecmp(field, "clan_bank_room")) {
-            auto membership = get_clan_membership(c);
-            if (!IS_NPC(c) && membership.has_value()) {
-                auto clan = membership.value()->get_clan();
-                if (clan)
-                    sprintf(str, "%d", clan->bank_room());
-                else
-                    strcpy(str, "-1");
+            auto clan = get_clan_membership(c);
+            if (!IS_NPC(c) && clan.has_value()) {
+                sprintf(str, "%d", clan.value()->bank_room());
             } else
                 strcpy(str, "-1");
 
         } else if (!strcasecmp(field, "clan_chest_room")) {
-            auto membership = get_clan_membership(c);
-            if (!IS_NPC(c) && membership.has_value()) {
-                auto clan = membership.value()->get_clan();
-                if (clan)
-                    sprintf(str, "%d", clan->chest_room());
-                else
-                    strcpy(str, "-1");
+            auto clan = get_clan_membership(c);
+            if (!IS_NPC(c) && clan.has_value()) {
+                sprintf(str, "%d", clan.value()->chest_room());
+            } else
+                strcpy(str, "-1");
+
+        } else if (!strcasecmp(field, "clan_hall_room")) {
+            auto clan = get_clan_membership(c);
+            if (!IS_NPC(c) && clan.has_value()) {
+                sprintf(str, "%d", clan.value()->hall_room());
             } else
                 strcpy(str, "-1");
 
         } else if (!strcasecmp(field, "clan_can_deposit")) {
-            auto membership = get_clan_membership(c);
-            if (!IS_NPC(c) && membership.has_value()) {
-                auto clan = membership.value()->get_clan();
-                if (clan && clan->has_permission(std::shared_ptr<CharData>(c, [](CharData*){}), ClanPrivilege::Deposit))
-                    strcpy(str, "1");
-                else
-                    strcpy(str, "0");
-            } else
+            if (!IS_NPC(c) && has_clan_permission(c, ClanPermission::DEPOSIT_FUNDS))
+                strcpy(str, "1");
+            else
                 strcpy(str, "0");
 
         } else if (!strcasecmp(field, "clan_can_withdraw")) {
-            auto membership = get_clan_membership(c);
-            if (!IS_NPC(c) && membership.has_value()) {
-                auto clan = membership.value()->get_clan();
-                if (clan && clan->has_permission(std::shared_ptr<CharData>(c, [](CharData*){}), ClanPrivilege::Withdraw))
-                    strcpy(str, "1");
-                else
-                    strcpy(str, "0");
-            } else
+            if (!IS_NPC(c) && has_clan_permission(c, ClanPermission::WITHDRAW_FUNDS))
+                strcpy(str, "1");
+            else
                 strcpy(str, "0");
 
         } else if (!strcasecmp(field, "clan_can_store")) {
-            auto membership = get_clan_membership(c);
-            if (!IS_NPC(c) && membership.has_value()) {
-                auto clan = membership.value()->get_clan();
-                if (clan && clan->has_permission(std::shared_ptr<CharData>(c, [](CharData*){}), ClanPrivilege::Store))
-                    strcpy(str, "1");
-                else
-                    strcpy(str, "0");
-            } else
+            if (!IS_NPC(c) && has_clan_permission(c, ClanPermission::STORE_ITEMS))
+                strcpy(str, "1");
+            else
                 strcpy(str, "0");
 
         } else if (!strcasecmp(field, "clan_can_retrieve")) {
-            auto membership = get_clan_membership(c);
-            if (!IS_NPC(c) && membership.has_value()) {
-                auto clan = membership.value()->get_clan();
-                if (clan && clan->has_permission(std::shared_ptr<CharData>(c, [](CharData*){}), ClanPrivilege::Retrieve))
-                    strcpy(str, "1");
-                else
-                    strcpy(str, "0");
-            } else
+            if (!IS_NPC(c) && has_clan_permission(c, ClanPermission::RETRIEVE_ITEMS))
+                strcpy(str, "1");
+            else
                 strcpy(str, "0");
 
         } else if (!strcasecmp(field, "can_be_seen"))

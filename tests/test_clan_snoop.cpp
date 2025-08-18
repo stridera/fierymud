@@ -7,7 +7,7 @@ TEST_CASE("Clan Snoop Basic Functionality", "[clan][snoop]") {
     
     SECTION("Add and remove clan snoop") {
         CharData test_char{};
-        ClanId test_clan_id = 1;
+        ClanID test_clan_id = 1;
         
         // Initially not snooping
         REQUIRE_FALSE(is_snooping_clan(&test_char, test_clan_id));
@@ -23,8 +23,8 @@ TEST_CASE("Clan Snoop Basic Functionality", "[clan][snoop]") {
     
     SECTION("Multiple clan snooping") {
         CharData test_char{};
-        ClanId clan1 = 1;
-        ClanId clan2 = 2;
+        ClanID clan1 = 1;
+        ClanID clan2 = 2;
         
         // Add multiple snoops
         add_clan_snoop(&test_char, clan1);
@@ -48,7 +48,7 @@ TEST_CASE("Clan Snoop Basic Functionality", "[clan][snoop]") {
     SECTION("Multiple characters snooping same clan") {
         CharData char1{};
         CharData char2{};
-        ClanId test_clan_id = 1;
+        ClanID test_clan_id = 1;
         
         add_clan_snoop(&char1, test_clan_id);
         add_clan_snoop(&char2, test_clan_id);
@@ -70,7 +70,7 @@ TEST_CASE("Clan Snoop Basic Functionality", "[clan][snoop]") {
     }
     
     SECTION("Null character handling") {
-        ClanId test_clan_id = 1;
+        ClanID test_clan_id = 1;
         
         // Functions should handle null pointers gracefully
         REQUIRE_FALSE(is_snooping_clan(nullptr, test_clan_id));

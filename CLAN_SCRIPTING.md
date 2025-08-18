@@ -42,6 +42,7 @@ All clan variables are accessed through character fields using the syntax `%char
 |----------|------|-------------|-----------------|
 | `%actor.clan_bank_room%` | number | Bank room vnum (-1 if disabled) | "-1" |
 | `%actor.clan_chest_room%` | number | Chest room vnum (-1 if disabled) | "-1" |
+| `%actor.clan_hall_room%` | number | Hall room vnum (-1 if disabled) | "-1" |
 
 ### Clan Permissions
 
@@ -138,6 +139,12 @@ if %actor.clan%
     %echo% &RChest access is disabled&n
   end
   
+  if %actor.clan_hall_room% != -1
+    %echo% &WHall Room:&n %actor.clan_hall_room%
+  else
+    %echo% &RHall access is disabled&n
+  end
+  
   %echo% &WPermissions:&n
   if %actor.clan_can_deposit%
     %echo%   - Can deposit to bank
@@ -203,6 +210,31 @@ if %actor.clan%
   end
 else
   %echo% Only clan members may enter this area.
+  %teleport% %actor% 3001
+end
+```
+
+### Example 6: Clan Hall Access Control
+
+```
+* Trigger: Entry (100) - Room entry trigger  
+* Restricts access to clan hall to clan members only
+
+if %actor.clan%
+  set clan_hall %actor.clan_hall_room%
+  if %clan_hall% == -1
+    %echo% Your clan does not have a designated hall.
+    %teleport% %actor% 3001
+  elseif %clan_hall% == %self.vnum%
+    %echo% Welcome to the %actor.clan% clan hall, %actor.clan_rank% %actor.name%!
+    %echoaround% %actor% %actor.name% enters the clan hall with pride.
+  else
+    %echo% This is not your clan's hall.
+    %echo% Your clan hall is located in room %clan_hall%.
+    %teleport% %actor% 3001
+  end
+else
+  %echo% Only clan members may enter this sacred hall.
   %teleport% %actor% 3001
 end
 ```

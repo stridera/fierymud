@@ -55,7 +55,7 @@ void skip_spaces(std::string_view str);
 
 [[nodiscard]] std::string to_lowercase(std::string_view str);
 [[nodiscard]] std::string to_uppercase(std::string_view str);
-[[nodiscard]] std::string_view getline(std::string_view input, char delim);
+[[nodiscard]] std::string_view getline(std::string_view &input, char delim);
 
 [[nodiscard]] std::string join_strings(const std::vector<std::string> &strings, const std::string_view separator,
                                        const std::string_view last_separator);

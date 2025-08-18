@@ -26,6 +26,10 @@ typedef int room_num;
 typedef int obj_num;
 typedef int zone_vnum;
 
+// Forward declarations
+using ClanID = unsigned int;
+constexpr ClanID CLAN_ID_NONE = 0;
+
 #define DAMAGE_WILL_KILL(ch, dmg) (GET_HIT(ch) - dmg <= HIT_DEAD)
 
 // TODO: Refactor this file so we don't need all these forward declarations.
@@ -283,8 +287,7 @@ struct PlayerSpecialData {
     GrantType *revoke_groups;
 
     ubyte page_length;
-    std::optional<ClanMembershipPtr> clan_membership;
-    unsigned int clan_id; /* Persistent clan ID (0 = no clan) */
+    ClanID clan_id{CLAN_ID_NONE}; /* Clan ID (0 = no clan) */
 
     OLCZoneList *olc_zones;
     int lastlevel;

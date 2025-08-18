@@ -952,9 +952,10 @@ void die(CharData *ch, CharData *killer) {
             sprintf(buf2, "%s was killed by %s", GET_NAME(ch), GET_NAME(killer));
         else
             sprintf(buf2, "%s died", GET_NAME(ch));
-        auto membership = get_clan_membership(ch);
-        if (membership) {
-            membership.value()->notify_clan(buf2);
+        auto clan = get_clan_membership(ch);
+        if (clan) {
+            auto char_shared = std::shared_ptr<CharData>(ch, [](CharData*){});
+            clan.value()->notify(char_shared, buf2);
         }
         log(LogSeverity::Stat, LVL_IMMORT, "{} in {} [{:d}]", buf2, world[ch->in_room].name, world[ch->in_room].vnum);
     }

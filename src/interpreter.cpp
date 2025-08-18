@@ -1956,8 +1956,7 @@ int enter_player_game(DescriptorData *d) {
     GET_QUIT_REASON(d->character) = QUIT_AUTOSAVE;
 
     // A couple of hacks to reconnect things if the player logged out to the menu and then re-entered the game
-    d->character->player_specials->clan_membership =
-        clan_repository.load_clan_membership_by_id(std::make_shared<CharData>(*d->character));
+    clan_repository.load_clan_membership(std::make_shared<CharData>(*d->character));
 
     // restart cooldowns
     for (int i = 0; i < NUM_COOLDOWNS; ++i)
@@ -2499,9 +2498,9 @@ void nanny(DescriptorData *d, char *arg) {
                 string_to_output(d, NEWSUPDATED2);
             }
 
-            auto clan_membership = get_clan_membership(d->character);
-            if (clan_membership) {
-                desc_printf(d, "\n{}{} news:\n{}", clan_membership.value()->get_clan_name(), ANRM, clan_membership.value()->get_clan_motd());
+            auto clan = get_clan(d->character);
+            if (clan) {
+                desc_printf(d, "\n{}{} news:\n{}", clan.value()->name(), ANRM, clan.value()->motd());
             }
 
             // Convert timestamp to string
@@ -3215,9 +3214,9 @@ void nanny(DescriptorData *d, char *arg) {
                 return;
             }
 
-            auto clan_membership = get_clan_membership(d->character);
-            if (clan_membership) {
-                clan_membership.value()->remove_member();
+            auto clan = get_clan(d->character);
+            if (clan) {
+                clan.value()->remove_member_by_name(d->character->player.short_descr);
             }
 
             if ((player_i = get_ptable_by_name(GET_NAME(d->character))) >= 0) {

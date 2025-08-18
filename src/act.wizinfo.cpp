@@ -633,8 +633,8 @@ void do_stat_character(CharData *ch, CharData *k) {
             buf1, buf2, k->player.time.played / 3600, ((k->player.time.played / 3600) % 60), age(k).year,
             GET_HOMEROOM(k));
 
-        if (auto membership = get_clan_membership(k); membership.has_value()) {
-            resp += fmt::format(", Guild: [{}]", membership.value()->get_clan_abbreviation());
+        if (auto clan = get_clan_membership(k); clan.has_value()) {
+            resp += fmt::format(", Guild: [{}]", clan.value()->abbreviation());
         }
 
         /* Display OLC zones for immorts */

@@ -10,37 +10,37 @@ int main(int argc, char* argv[]) {
 TEST_CASE("Basic Clan Test", "[clan]") {
     SECTION("ClanRank creation and basic operations") {
         PermissionSet perms;
-        perms.set(static_cast<size_t>(ClanPrivilege::Chat));
-        perms.set(static_cast<size_t>(ClanPrivilege::Description));
+        perms.set(static_cast<size_t>(ClanPermission::CLAN_CHAT));
+        perms.set(static_cast<size_t>(ClanPermission::SET_DESCRIPTION));
         
         ClanRank rank("Test Rank", perms);
         
         REQUIRE(rank.title() == "Test Rank");
-        REQUIRE(rank.has_permission(ClanPrivilege::Chat));
-        REQUIRE(rank.has_permission(ClanPrivilege::Description));
-        REQUIRE_FALSE(rank.has_permission(ClanPrivilege::Enroll));
+        REQUIRE(rank.has_permission(ClanPermission::CLAN_CHAT));
+        REQUIRE(rank.has_permission(ClanPermission::SET_DESCRIPTION));
+        REQUIRE_FALSE(rank.has_permission(ClanPermission::INVITE_MEMBERS));
         
-        // Test privilege modification
-        rank.add_privilege(ClanPrivilege::Enroll);
-        REQUIRE(rank.has_permission(ClanPrivilege::Enroll));
+        // Test permission modification
+        rank.add_permission(ClanPermission::INVITE_MEMBERS);
+        REQUIRE(rank.has_permission(ClanPermission::INVITE_MEMBERS));
         
-        rank.remove_privilege(ClanPrivilege::Chat);
-        REQUIRE_FALSE(rank.has_permission(ClanPrivilege::Chat));
+        rank.remove_permission(ClanPermission::CLAN_CHAT);
+        REQUIRE_FALSE(rank.has_permission(ClanPermission::CLAN_CHAT));
         
-        // Test set_privilege
-        rank.set_privilege(ClanPrivilege::Store, true);
-        REQUIRE(rank.has_permission(ClanPrivilege::Store));
+        // Test set_permission
+        rank.set_permission(ClanPermission::STORE_ITEMS, true);
+        REQUIRE(rank.has_permission(ClanPermission::STORE_ITEMS));
         
-        rank.set_privilege(ClanPrivilege::Store, false);
-        REQUIRE_FALSE(rank.has_permission(ClanPrivilege::Store));
+        rank.set_permission(ClanPermission::STORE_ITEMS, false);
+        REQUIRE_FALSE(rank.has_permission(ClanPermission::STORE_ITEMS));
     }
     
     SECTION("ClanRank comparison") {
         PermissionSet perms1;
-        perms1.set(static_cast<size_t>(ClanPrivilege::Chat));
+        perms1.set(static_cast<size_t>(ClanPermission::CLAN_CHAT));
         
         PermissionSet perms2;
-        perms2.set(static_cast<size_t>(ClanPrivilege::Description));
+        perms2.set(static_cast<size_t>(ClanPermission::SET_DESCRIPTION));
         
         ClanRank rank1("Alpha", perms1);
         ClanRank rank2("Beta", perms2);
