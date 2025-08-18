@@ -10,3 +10,5 @@ cbuild/
 .venv
 __pycache__
 .aider*
+.cache/
+.serena/
