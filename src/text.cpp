@@ -194,7 +194,7 @@ void format_text(char **ptr_string, int mode, DescriptorData *d, int maxlen) {
                 }
             } else {
                 cap_next = false;
-                *start = UPPER(*start);
+                *start = to_upper(*start);
             }
 
             total_chars += strlen(start);
@@ -274,7 +274,7 @@ char *cap_by_color(char *s) {
         b += 2;
 
     if (*b)
-        *b = UPPER(*b);
+        *b = to_upper(*b);
 
     return s;
 }
@@ -791,7 +791,7 @@ static void sb_compile_lines(ScreenBuf *sb, size_t start_line) {
             if (cap_next) {
                 cap_next = false;
                 if (IS_FLAGGED(sb->flags, SB_USE_CAPS))
-                    *start = UPPER(*start);
+                    *start = to_upper(*start);
             }
             /* Don't print a leading space if the last word printed was
              * hyphenated.

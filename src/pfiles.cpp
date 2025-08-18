@@ -150,9 +150,8 @@ bool write_objects(ObjData *obj, FILE *fl, int location) {
 
     if (obj) {
         /*
-         * Traverse the list in reverse order so when they are loaded
-         * and placed back on the char using obj_to_char, they will be
-         * in the correct order.
+         * Traverse the list in reverse order so when they are loaded and placed back on the char using obj_to_char,
+         * they will be in the correct order.
          */
         write_objects(obj->next_content, fl, location);
 
@@ -278,7 +277,7 @@ void show_rent(CharData *ch, char *argument) {
     if (!fl)
         return;
 
-    name[0] = UPPER(name[0]);
+    name[0] = to_upper(name[0]);
 
     if (!get_line(fl, buf)) {
         char_printf(ch, "Error reading reading rent code.\n");
@@ -311,8 +310,8 @@ void show_rent(CharData *ch, char *argument) {
         act("\n$N is wearing:", false, ch, 0, tch, TO_CHAR);
         for (i = 0; i < NUM_WEARS; ++i)
             if (GET_EQ(tch, wear_order_index[i]))
-                list_objects(GET_EQ(tch, wear_order_index[i]), ch, strlen(where[wear_order_index[i]]), 0,
-                             where[wear_order_index[i]]);
+                list_objects(GET_EQ(tch, wear_order_index[i]), ch, strlen(where[wear_order_index[i]].data()), 0,
+                             where[wear_order_index[i]].data());
     }
 
     if (tch->carrying) {
@@ -665,7 +664,7 @@ bool build_object(FILE *fl, ObjData **objp, int *location) {
             num = atoi(line);
             f = atof(line);
 
-            switch (UPPER(*tag)) {
+            switch (to_upper(*tag)) {
             case 'A':
                 if (!strcasecmp(tag, "adesc"))
                     obj->action_description = fread_string(fl, "build_object");
@@ -1026,7 +1025,10 @@ void load_quests(CharData *ch) {
                     last_var = nullptr;
 
                     while (n < qnum_vars) {
-                        fscanf(fl, "%s %s\n", var_name, var_val);
+                        if (fscanf(fl, "%s %s\n", var_name, var_val) != 2) {
+                            log("SYSERR: Failed to read quest variable for player {}", GET_NAME(ch));
+                            break;
+                        }
 
                         if (last_var == nullptr) {
                             CREATE(curr->variables, QuestVariableList, 1);
@@ -1220,14 +1222,23 @@ static bool load_binary_objects(CharData *ch) {
         return false;
 
     if (!feof(fl))
-        fread(&rent, sizeof(rent_info), 1, fl);
+        if (fread(&rent, sizeof(rent_info), 1, fl) != 1) {
+            log("SYSERR: Failed to read rent info from file.");
+            fclose(fl);
+            return true;
+        }
 
     for (j = 0; j < MAX_CONTAINER_DEPTH; j++)
         cont_row[j] = nullptr; /* empty all cont lists (you never know ...) */
 
     while (!feof(fl)) {
         eq = 0;
-        fread(&object, sizeof(obj_file_elem), 1, fl);
+        if (fread(&object, sizeof(obj_file_elem), 1, fl) != 1) {
+            if (!feof(fl)) {
+                log("SYSERR: Failed to read object data from file.");
+            }
+            break;
+        }
         if (ferror(fl)) {
             perror("Reading object file: load_binary_objects()");
             fclose(fl);
@@ -1531,11 +1542,22 @@ bool convert_player_obj_file(char *player_name, CharData *ch) {
         return false;
     }
 
-    fread(&rent, sizeof(rent_info), 1, fl);
+    if (fread(&rent, sizeof(rent_info), 1, fl) != 1) {
+        log("SYSERR: Failed to read rent info from file.");
+        fclose(fl);
+        return false;
+    }
     write_rent_code(fnew, rent.rentcode);
 
     while (!feof(fl)) {
-        fread(&object, sizeof(obj_file_elem), 1, fl);
+        if (fread(&object, sizeof(obj_file_elem), 1, fl) != 1) {
+            if (!feof(fl)) {
+                log("SYSERR: Failed to read object data from file.");
+            }
+            fclose(fl);
+            fclose(fnew);
+            return false;
+        }
         if (ferror(fl)) {
             perror("Reading player object file: convert_player_obj_file()");
             fclose(fl);
@@ -1628,7 +1650,6 @@ void save_player(CharData *ch) {
         GET_LOADROOM(ch) = GET_HOMEROOM(ch);
         break;
     case QUIT_TIMEOUT:
-    case QUIT_HOTBOOT:
     case QUIT_PURGE:
     case QUIT_AUTOSAVE:
     default:

@@ -646,7 +646,7 @@ ACMD(do_shapechange) {
     char_to_room(mob, ch->in_room);
 
     /* Transfer hover slot items to new mob */
-    if GET_EQ(ch, WEAR_HOVER) {
+    if GET_EQ (ch, WEAR_HOVER) {
 
         obj = GET_EQ(ch, WEAR_HOVER);
         unequip_char(ch, WEAR_HOVER);
@@ -793,7 +793,8 @@ ACMD(do_save) {
 /* generic function for commands which are normally overridden by
    special procedures - i.e., shop commands, mail commands, etc. */
 ACMD(do_not_here) {
-    if (CMD_IS("balance") || CMD_IS("deposit") || CMD_IS("withdraw") || CMD_IS("dump") || CMD_IS("exchange"))
+    if (CMD_IS("balance") || CMD_IS("deposit") || CMD_IS("withdraw") || CMD_IS("dump") || CMD_IS("exchange") ||
+        CMD_IS("store") || CMD_IS("retrieve") || CMD_IS("items"))
         char_printf(ch, "Sorry, you can only do that in a bank!\n");
     else if (CMD_IS("appear") || CMD_IS("disappear"))
         char_printf(ch, HUH);
@@ -1116,8 +1117,8 @@ ACMD(do_hide) {
     upper_bound = skill * (3 * GET_DEX(ch) + GET_INT(ch)) / 40;
 
     if (group_size(ch, true) > 1 && GET_RACE(ch) == RACE_HALFLING)
-        GET_HIDDENNESS(ch) =
-            random_number(lower_bound, upper_bound) + (stat_bonus[GET_DEX(ch)].rogue_skills * ((GET_LEVEL(ch) / 30) + 1));
+        GET_HIDDENNESS(ch) = random_number(lower_bound, upper_bound) +
+                             (stat_bonus[GET_DEX(ch)].rogue_skills * ((GET_LEVEL(ch) / 30) + 1));
     else
         GET_HIDDENNESS(ch) = random_number(lower_bound, upper_bound) + stat_bonus[GET_DEX(ch)].rogue_skills;
 
@@ -1284,8 +1285,7 @@ ACMD(do_steal) {
                 GET_GOLD(vict) -= coins[GOLD];
                 GET_PLATINUM(ch) += coins[PLATINUM];
                 GET_PLATINUM(vict) -= coins[PLATINUM];
-                statemoney(buf, coins);
-                char_printf(ch, "Woohoo! You stole {}.\n", buf);
+                char_printf(ch, "Woohoo! You stole {}.\n", statemoney(coins));
             } else {
                 char_printf(ch, "You couldn't get any coins...\n");
             }
@@ -1352,8 +1352,6 @@ ACMD(do_title) {
         if (GET_PERM_TITLES(ch))
             while (GET_PERM_TITLES(ch)[titles])
                 ++titles;
-        if (GET_CLAN(ch) && IS_CLAN_MEMBER(ch))
-            ++titles;
         if (titles == 0) {
             char_printf(ch, "You haven't earned any permanent titles!\n");
             if (ch->player.title && *ch->player.title)
@@ -1368,8 +1366,6 @@ ACMD(do_title) {
                     char_printf(ch, "  {:d}) {}\n", titles + 1, GET_PERM_TITLES(ch)[titles]);
                     ++titles;
                 }
-            if (GET_CLAN(ch) && IS_CLAN_MEMBER(ch))
-                char_printf(ch, "  {:d}) {} {}\n", ++titles, GET_CLAN_TITLE(ch), GET_CLAN(ch)->abbreviation);
             char_printf(ch, "Use 'title <number>' to switch your title.\n");
         }
     } else if (!is_positive_integer(argument))
@@ -1388,10 +1384,6 @@ ACMD(do_title) {
                     set_title(ch, GET_PERM_TITLES(ch)[i]);
                     break;
                 }
-        if (GET_CLAN(ch) && IS_CLAN_MEMBER(ch)) {
-            if (++titles == which)
-                clan_set_title(ch);
-        }
         if (which > titles) {
             char_printf(ch, "You don't have that many titles!\n");
             return;
@@ -1810,8 +1802,7 @@ ACMD(do_group) {
 
 static void split_share(CharData *giver, CharData *receiver, int coins[]) {
     if (coins[PLATINUM] || coins[GOLD] || coins[SILVER] || coins[COPPER]) {
-        statemoney(buf, coins);
-        char_printf(receiver, "You {} {}.\n", giver == receiver ? "keep" : "receive", buf);
+        char_printf(receiver, "You {} {}.\n", giver == receiver ? "keep" : "receive", statemoney(coins));
     } else
         char_printf(receiver, "You forego your share.\n");
     GET_PLATINUM(receiver) += coins[PLATINUM];
@@ -1824,7 +1815,7 @@ static void split_share(CharData *giver, CharData *receiver, int coins[]) {
     GET_COPPER(giver) -= coins[COPPER];
 }
 
-void split_coins(CharData *ch, int coins[], unsigned int mode) {
+void split_coins(CharData *ch, Money coins, unsigned int mode) {
     int i, j, count, share[NUM_COIN_TYPES], remainder_start[NUM_COIN_TYPES];
     GroupType *g;
     CharData *master;
@@ -1897,7 +1888,6 @@ void split_coins(CharData *ch, int coins[], unsigned int mode) {
 }
 
 ACMD(do_split) {
-    int coins[NUM_COIN_TYPES], i;
 
     if (IS_NPC(ch))
         return;
@@ -1914,17 +1904,19 @@ ACMD(do_split) {
         return;
     }
 
-    if (!parse_money(&argument, coins)) {
+    auto coin_opt = parse_money(std::string_view{argument});
+    if (!coin_opt) {
         char_printf(ch, "That's not a coin type.\n");
         return;
     }
 
-    if (!coins[PLATINUM] && !coins[GOLD] && !coins[SILVER] && !coins[COPPER]) {
+    auto coins = *coin_opt;
+    if (coins[PLATINUM] == 0 && coins[GOLD] == 0 && coins[SILVER] == 0 && coins[COPPER] == 0) {
         char_printf(ch, "Split zero coins?  Done.\n");
         return;
     }
 
-    for (i = 0; i < NUM_COIN_TYPES; ++i)
+    for (int i = 0; i < NUM_COIN_TYPES; ++i)
         if (coins[i] > GET_COINS(ch)[i]) {
             char_printf(ch, "You don't have enough {}!\n", COIN_NAME(i));
             return;
@@ -1948,7 +1940,7 @@ ACMD(do_use) {
         case SCMD_RECITE:
         case SCMD_QUAFF:
             if (!(mag_item = find_obj_in_list(ch->carrying, find_vis_by_name(ch, arg)))) {
-                char_printf(ch, "You don't seem to have {} {}.\n", AN(arg), arg);
+                char_printf(ch, "You don't seem to have {} {}.\n", an(arg), arg);
                 return;
             }
             break;
@@ -1957,7 +1949,7 @@ ACMD(do_use) {
             /* Item isn't in first hand, now check the second. */
             mag_item = GET_EQ(ch, WEAR_HOLD2);
             if (!mag_item || !isname(arg, mag_item->name)) {
-                char_printf(ch, "You don't seem to be holding {} {}.\n", AN(arg), arg);
+                char_printf(ch, "You don't seem to be holding {} {}.\n", an(arg), arg);
                 return;
             }
             break;
@@ -2039,38 +2031,36 @@ ACMD(do_wimpy) {
 }
 
 ACMD(do_display) {
-    int i, x;
 
     one_argument(argument, arg);
 
     if (!*arg || !is_number(arg)) {
         char_printf(ch, "The following pre-set prompts are availible...\n");
-        for (i = 0; default_prompts[i][0]; i++) {
-            char_printf(ch, "{:2d}. {:<20} {}\n", i, default_prompts[i][0], default_prompts[i][1]);
+        int i = 0;
+        for (auto prompt : default_prompts) {
+            char_printf(ch, "{:2d}. {:<20} {}\n", i, prompt[0], prompt[1]);
+            ++i;
         }
         char_printf(ch, "Usage: display <number>\n");
         return;
     }
 
-    i = atoi(arg);
+    int i = atoi(arg);
 
     if (i < 0) {
         char_printf(ch, "The number cannot be negative.\n");
         return;
     }
 
-    for (x = 0; default_prompts[x][0]; ++x)
-        ;
-
-    if (i >= x) {
-        char_printf(ch, "The range for the prompt number is 0-{}.\n", x - 1);
+    if (i >= default_prompts.size()) {
+        char_printf(ch, "The range for the prompt number is 0-{}.\n", default_prompts.size() - 1);
         return;
     }
 
     if (GET_PROMPT(ch))
         free(GET_PROMPT(ch));
 
-    GET_PROMPT(ch) = strdup(default_prompts[i][1]);
+    GET_PROMPT(ch) = strdup(default_prompts[i][1].data());
     char_printf(ch, "Set your prompt to the {} preset prompt.\n", default_prompts[i][0]);
 }
 

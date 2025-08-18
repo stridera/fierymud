@@ -182,7 +182,10 @@ void House_boot(void) {
         return;
     }
     while (!feof(fl) && num_of_houses < MAX_HOUSES) {
-        fread(&temp_house, sizeof(HouseControlRec), 1, fl);
+        if (fread(&temp_house, sizeof(HouseControlRec), 1, fl) != 1) {
+            log("SYSERR: Error reading house control record.");
+            break;
+        }
 
         if (feof(fl))
             break;
@@ -304,7 +307,7 @@ void hcontrol_build_house(CharData *ch, char *arg) {
         char_printf(ch, HCONTROL_FORMAT);
         return;
     }
-    if ((exit_num = searchblock(arg1, dirs, false)) < 0) {
+    if ((exit_num = search_block(arg1, dirs, false)) < 0) {
         char_printf(ch, "'{}' is not a valid direction.\n", arg1);
         return;
     }

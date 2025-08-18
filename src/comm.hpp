@@ -25,7 +25,6 @@ using json = nlohmann::json;
 
 #define NUM_RESERVED_DESCS 8
 
-#define HOTBOOT_FILE "hotboot.dat"
 
 // #define CBP_FUNC(name) int(name)(CharData *, int)
 using CBP_FUNC = std::function<int(CharData *, int)>;

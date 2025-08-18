@@ -12,6 +12,7 @@
 
 #include "utils.hpp"
 
+#include "bitflags.hpp"
 #include "casting.hpp"
 #include "comm.hpp"
 #include "composition.hpp"
@@ -311,7 +312,9 @@ int get_line(FILE *fl, char *buf) {
 
     do {
         lines++;
-        fgets(temp, 256, fl);
+        if (!fgets(temp, 256, fl)) {
+            return 0; // Return 0 if fgets fails
+        }
         if (*temp) {
             temp[strlen(temp) - 1] = '\0';
         }
@@ -738,8 +741,7 @@ char *format_apply(int apply, int modifier) {
         else
             sprintf(f, "&3&bInvalid Composition!&0");
     } else if (apply > 0) {
-        sprinttype(apply, apply_types, buf2);
-        sprintf(f, "%+d to %s", modifier, buf2);
+        sprintf(f, "%+d to %s", modifier, sprinttype(apply, apply_types).c_str());
     } else {
         sprintf(f, "None.");
     }

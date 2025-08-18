@@ -12,6 +12,7 @@
  *  CircleMUD is based on DikuMUD, Copyright (C) 1990, 1991.               *
  ***************************************************************************/
 
+#include "bitflags.hpp"
 #include "comm.hpp"
 #include "conf.hpp"
 #include "constants.hpp"
@@ -692,8 +693,9 @@ void sedit_shop_flags_menu(DescriptorData *d) {
     for (i = 0; i < NUM_SHOP_FLAGS; i++) {
         char_printf(d->character, "{}{:2d}{}) {:<20s}   {}", grn, i + 1, nrm, shop_bits[i], !(++count % 2) ? "\n" : "");
     }
-    sprintbit(S_BITVECTOR(OLC_SHOP(d)), shop_bits, buf1);
-    char_printf(d->character, "\nCurrent Shop Flags : {}{}{}\nEnter choice:\n", cyn, buf1, nrm);
+
+    char_printf(d->character, "\nCurrent Shop Flags : {}{}{}\nEnter choice:\n", cyn,
+                sprintbit(S_BITVECTOR(OLC_SHOP(d)), shop_bits), nrm);
     OLC_MODE(d) = SEDIT_SHOP_FLAGS;
 }
 
@@ -710,11 +712,10 @@ void sedit_no_trade_menu(DescriptorData *d) {
         char_printf(d->character, "{}{:2d}{}) {:<20s}   {}", grn, i + 1, nrm, trade_letters[i],
                     !(++count % 2) ? "\n" : "");
     }
-    sprintbit(S_NOTRADE(OLC_SHOP(d)), trade_letters, buf1);
     char_printf(d->character,
                 "\nCurrently won't trade with: {}{}{}\n"
                 "Enter choice:\n",
-                cyn, buf1, nrm);
+                cyn, sprintbit(S_NOTRADE(OLC_SHOP(d)), trade_letters), nrm);
     OLC_MODE(d) = SEDIT_NOTRADE;
 }
 
@@ -745,46 +746,43 @@ void sedit_disp_menu(DescriptorData *d) {
     shop = OLC_SHOP(d);
     get_char_cols(d->character);
 
-    sprintbit(S_NOTRADE(shop), trade_letters, buf1);
-    sprintbit(S_BITVECTOR(shop), shop_bits, buf2);
-    sprintf(buf,
+    char_printf(d->character,
 #if defined(CLEAR_SCREEN)
-            ".[H.[J"
+                ".[H.[J"
 #endif
-            "-- Shop Number : [%s%d%s]\n"
-            "%s0%s) Keeper      : [%s%d%s] %s%s\n"
-            "%s1%s) Open 1      : %s%4d%s          %s2%s) Close 1     : %s%4d\n"
-            "%s3%s) Open 2      : %s%4d%s          %s4%s) Close 2     : %s%4d\n"
-            "%s5%s) Sell rate   : %s%1.2f%s          %s6%s) Buy rate    : %s%1.2f\n"
-            "%s7%s) Keeper no item : %s%s\n"
-            "%s8%s) Player no item : %s%s\n"
-            "%s9%s) Keeper no cash : %s%s\n"
-            "%sA%s) Player no cash : %s%s\n",
-            cyn, OLC_NUM(d), nrm, grn, nrm, cyn, S_KEEPER(shop) == -1 ? -1 : mob_index[S_KEEPER(shop)].vnum, nrm, yel,
-            S_KEEPER(shop) == -1 ? "None" : mob_proto[S_KEEPER(shop)].player.short_descr, grn, nrm, cyn, S_OPEN1(shop),
-            nrm, grn, nrm, cyn, S_CLOSE1(shop), grn, nrm, cyn, S_OPEN2(shop), nrm, grn, nrm, cyn, S_CLOSE2(shop), grn,
-            nrm, cyn, S_BUYPROFIT(shop), nrm, grn, nrm, cyn, S_SELLPROFIT(shop), grn, nrm, yel, S_NOITEM1(shop), grn,
-            nrm, yel, S_NOITEM2(shop), grn, nrm, yel, S_NOCASH1(shop), grn, nrm, yel, S_NOCASH2(shop));
-    char_printf(d->character, buf);
+                "-- Shop Number : [{}{}{}]\n"
+                "{}0{}) Keeper      : [{}{}{}] {}{}\n"
+                "{}1{}) Open 1      : {}{:4d}{}          {}2{}) Close 1     : {}{:4d}\n"
+                "{}3{}) Open 2      : {}{:4d}{}          {}4{}) Close 2     : {}{:4d}\n"
+                "{}5{}) Sell rate   : {}{:1.2f}{}          {}6{}) Buy rate    : {}{:1.2f}\n"
+                "{}7{}) Keeper no item : {}{}\n"
+                "{}8{}) Player no item : {}{}\n"
+                "{}9{}) Keeper no cash : {}{}\n"
+                "{}A{}) Player no cash : {}{}\n",
+                cyn, OLC_NUM(d), nrm, grn, nrm, cyn, S_KEEPER(shop) == -1 ? -1 : mob_index[S_KEEPER(shop)].vnum, nrm,
+                yel, S_KEEPER(shop) == -1 ? "None" : mob_proto[S_KEEPER(shop)].player.short_descr, grn, nrm, cyn,
+                S_OPEN1(shop), nrm, grn, nrm, cyn, S_CLOSE1(shop), grn, nrm, cyn, S_OPEN2(shop), nrm, grn, nrm, cyn,
+                S_CLOSE2(shop), grn, nrm, cyn, S_BUYPROFIT(shop), nrm, grn, nrm, cyn, S_SELLPROFIT(shop), grn, nrm, yel,
+                S_NOITEM1(shop), grn, nrm, yel, S_NOITEM2(shop), grn, nrm, yel, S_NOCASH1(shop), grn, nrm, yel,
+                S_NOCASH2(shop));
 
-    sprintf(buf,
+    char_printf(d->character,
 #if defined(CLEAR_SCREEN)
-            ".[H.[J"
+                ".[H.[J"
 #endif
-            "%sB%s) Keeper no buy  : %s%s\n"
-            "%sC%s) Buy sucess     : %s%s\n"
-            "%sD%s) Sell sucess    : %s%s\n"
-            "%sE%s) No Trade With  : %s%s\n"
-            "%sF%s) Shop flags     : %s%s\n"
-            "%sR%s) Rooms Menu\n"
-            "%sP%s) Products Menu\n"
-            "%sT%s) Accept Types Menu\n"
-            "%sQ%s) Quit\n"
-            "Enter Choice:\n",
-            grn, nrm, yel, S_NOBUY(shop), grn, nrm, yel, S_BUY(shop), grn, nrm, yel, S_SELL(shop), grn, nrm, cyn, buf1,
-            grn, nrm, cyn, buf2, grn, nrm, grn, nrm, grn, nrm, grn, nrm);
-
-    char_printf(d->character, buf);
+                "{}B{}) Keeper no buy  : {}{}\n"
+                "{}C{}) Buy sucess     : {}{}\n"
+                "{}D{}) Sell sucess    : {}{}\n"
+                "{}E{}) No Trade With  : {}{}\n"
+                "{}F{}) Shop flags     : {}{}\n"
+                "{}R{}) Rooms Menu\n"
+                "{}P{}) Products Menu\n"
+                "{}T{}) Accept Types Menu\n"
+                "{}Q{}) Quit\n"
+                "Enter Choice:\n",
+                grn, nrm, yel, S_NOBUY(shop), grn, nrm, yel, S_BUY(shop), grn, nrm, yel, S_SELL(shop), grn, nrm, cyn,
+                sprintbit(S_NOTRADE(shop), trade_letters), grn, nrm, cyn, sprintbit(S_BITVECTOR(shop), shop_bits), grn,
+                nrm, grn, nrm, grn, nrm, grn, nrm);
 
     OLC_MODE(d) = SEDIT_MAIN_MENU;
 }

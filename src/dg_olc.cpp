@@ -12,9 +12,11 @@
 
 #include "dg_olc.hpp"
 
+#include "bitflags.hpp"
 #include "comm.hpp"
 #include "conf.hpp"
 #include "db.hpp"
+#include "dg_scripts.hpp"
 #include "events.hpp"
 #include "interpreter.hpp"
 #include "logging.hpp"
@@ -115,50 +117,49 @@ void trigedit_setup_existing(DescriptorData *d, int rtrg_num) {
 void trigedit_disp_menu(DescriptorData *d) {
     TrigData *trig = OLC_TRIG(d);
     const char *attach_type;
-    char trgtypes[256];
+    std::string_view trgtypes;
 
     get_char_cols(d->character);
 
     if (trig->attach_type == OBJ_TRIGGER) {
         attach_type = "Objects";
-        sprintbit(GET_TRIG_TYPE(trig), otrig_types, trgtypes);
+        trgtypes = sprintbit(GET_TRIG_TYPE(trig), otrig_types);
     } else if (trig->attach_type == WLD_TRIGGER) {
         attach_type = "Rooms";
-        sprintbit(GET_TRIG_TYPE(trig), wtrig_types, trgtypes);
+        trgtypes = sprintbit(GET_TRIG_TYPE(trig), wtrig_types);
     } else {
         attach_type = "Mobiles";
-        sprintbit(GET_TRIG_TYPE(trig), trig_types, trgtypes);
+        trgtypes = sprintbit(GET_TRIG_TYPE(trig), trig_types);
     }
 
-    sprintf(buf,
+    char_printf(d->character,
 #if defined(CLEAR_SCREEN)
-            "[H[J"
+                "[H[J"
 #endif
-            "Trigger Editor [%s%d%s]\n\n"
-            "%s1)%s Name         : %s%s\n"
-            "%s2)%s Intended for : %s%s\n"
-            "%s3)%s Trigger types: %s%s\n"
-            "%s4)%s Numeric Arg  : %s%d\n"
-            "%s5)%s Arguments    : %s%s\n"
-            "%s6)%s Commands:\n%s%s\n"
-            "%sQ)%s Quit\n"
-            "Enter Choice:\n",
-            grn, OLC_NUM(d), nrm,               /* vnum on the title line */
-            grn, nrm, yel, GET_TRIG_NAME(trig), /* name                   */
-            grn, nrm, yel, attach_type,         /* attach type            */
-            grn, nrm, yel, trgtypes,            /* greet/drop/etc         */
-            grn, nrm, yel, trig->narg,          /* numeric arg            */
-            grn, nrm, yel, trig->arglist,       /* strict arg             */
-            grn, nrm, cyn, OLC_STORAGE(d),      /* the command list       */
-            grn, nrm);                          /* quit colors            */
+                "Trigger Editor [{}{}{}]\n\n"
+                "{}1){} Name         : {}{}\n"
+                "{}2){} Intended for : {}{}\n"
+                "{}3){} Trigger types: {}{}\n"
+                "{}4){} Numeric Arg  : {}{}\n"
+                "{}5){} Arguments    : {}{}\n"
+                "{}6){} Commands:\n{}{}\n"
+                "{}Q){} Quit\n"
+                "Enter Choice:\n",
+                grn, OLC_NUM(d), nrm,               /* vnum on the title line */
+                grn, nrm, yel, GET_TRIG_NAME(trig), /* name                   */
+                grn, nrm, yel, attach_type,         /* attach type            */
+                grn, nrm, yel, trgtypes,            /* greet/drop/etc         */
+                grn, nrm, yel, trig->narg,          /* numeric arg            */
+                grn, nrm, yel, trig->arglist,       /* strict arg             */
+                grn, nrm, cyn, OLC_STORAGE(d),      /* the command list       */
+                grn, nrm);                          /* quit colors            */
 
-    char_printf(d->character, buf);
     OLC_MODE(d) = TRIGEDIT_MAIN_MENU;
 }
 
 void trigedit_disp_types(DescriptorData *d) {
-    int i, columns = 0;
-    const char **types;
+    int columns = 0;
+    const std::string_view *types;
 
     switch (OLC_TRIG(d)->attach_type) {
     case WLD_TRIGGER:
@@ -177,13 +178,11 @@ void trigedit_disp_types(DescriptorData *d) {
 #if defined(CLEAR_SCREEN)
     char_printf(d->character, "[H[J");
 #endif
-    for (i = 0; i < NUM_TRIG_TYPE_FLAGS; i++) {
-        sprintf(buf, "%s%2d%s) %-20.20s  %s", grn, i + 1, nrm, types[i], !(++columns % 2) ? "\n" : "");
-        char_printf(d->character, buf);
-    }
-    sprintbit(GET_TRIG_TYPE(OLC_TRIG(d)), types, buf1);
-    sprintf(buf, "\nCurrent types : %s%s%s\nEnter type (0 to quit):\n", cyn, buf1, nrm);
-    char_printf(d->character, buf);
+    for (int i = 0; i < NUM_TRIG_TYPE_FLAGS; i++)
+        char_printf(d->character,
+                    fmt::format("{}{:2d}{}) {:20.20s}  {}", grn, i + 1, nrm, types[i], !(++columns % 2) ? "\n" : ""));
+    char_printf(d->character, fmt::format("\nCurrent types : {}{}{}\nEnter type (0 to quit):\n", cyn,
+                                          sprintbit(GET_TRIG_TYPE(OLC_TRIG(d)), types), nrm));
 }
 
 void trigedit_parse(DescriptorData *d, char *arg) {

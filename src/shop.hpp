@@ -101,8 +101,6 @@ struct StackData {
 #define OPER_NOT 4
 #define MAX_OPER 4
 
-extern const char *operator_str[];
-
 #define SHOP_NUM(i) (shop_index[(i)].vnum)
 #define SHOP_KEEPER(i) (shop_index[(i)].keeper)
 #define SHOP_OPEN1(i) (shop_index[(i)].open1)
@@ -138,9 +136,6 @@ extern const char *operator_str[];
 #define SHOP_KILL_CHARS(i) (IS_SET(SHOP_BITVECTOR(i), WILL_START_FIGHT))
 #define SHOP_USES_BANK(i) (IS_SET(SHOP_BITVECTOR(i), WILL_BANK_MONEY))
 
-extern const char *trade_letters[];
-extern const char *shop_bits[];
-
 #define MIN_OUTSIDE_BANK 5000
 #define MAX_OUTSIDE_BANK 15000
 
@@ -148,3 +143,9 @@ bool give_shopkeeper_reject(CharData *ch, CharData *vict, ObjData *obj);
 
 extern int top_shop;
 extern ShopData *shop_index;
+
+constexpr std::string_view trade_letters[] = {"Good",                            /* First, the alignment based ones */
+                                              "Evil",   "Neutral", "Magic User", /* Then the class based ones */
+                                              "Cleric", "Thief",   "Warrior",    "\n"};
+constexpr std::string_view operator_str[] = {"[({", "])}", "|+", "&*", "^'"};
+constexpr std::string_view shop_bits[] = {"WILL_FIGHT", "USES_BANK", "\n"};

@@ -232,8 +232,8 @@ void perform_quest(TrigData *t, char *argument, CharData *ch, ObjData *obj, Room
     }
     /* Room trigger error string */
     else if (room) {
-        sprintf(error_string, "QUEST ERROR: %s (%d) tried to {} [%s on quest %s in trigger %d]", room->name, room->vnum,
-                GET_NAME(vict), quest_name, GET_TRIG_VNUM(t));
+        sprintf(error_string, "QUEST ERROR: %s (%d) tried to {} [%s on quest %s in trigger %d]", room->name.c_str(),
+                room->vnum, GET_NAME(vict), quest_name, GET_TRIG_VNUM(t));
     }
     /* Other error string */
     else {

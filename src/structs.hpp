@@ -16,12 +16,19 @@
 #include "sysdep.hpp"
 
 #include <list>
+#include <memory>
 #include <string>
+#include <unordered_map>
 #include <vector>
+#include <optional>
 
 typedef int room_num;
 typedef int obj_num;
 typedef int zone_vnum;
+
+// Forward declarations
+using ClanID = unsigned int;
+constexpr ClanID CLAN_ID_NONE = 0;
 
 #define DAMAGE_WILL_KILL(ch, dmg) (GET_HIT(ch) - dmg <= HIT_DEAD)
 
@@ -46,7 +53,7 @@ typedef unsigned short int ush_int;
 typedef unsigned long int flagvector;
 #define FLAGBLOCK_SIZE (flagvector)32
 //((flagvector)8 * sizeof(flagvector)) /* 8 bits = 1 byte */
-#define FLAGVECTOR_SIZE(flags) (((flags)-1) / FLAGBLOCK_SIZE + 1)
+#define FLAGVECTOR_SIZE(flags) (((flags) - 1) / FLAGBLOCK_SIZE + 1)
 
 /* Extra description: used in objects, mobiles, and rooms */
 struct ExtraDescriptionData {
@@ -161,6 +168,7 @@ struct CharAbilityData {
 };
 
 /* Char's points. */
+class Money;
 struct CharPointData {
     int mana;
     int max_mana; /* Max move for PC/NPC                     */
@@ -169,7 +177,7 @@ struct CharPointData {
     int move;
     int max_move; /* Max move for PC/NPC                     */
     int armor;    /* Internal -100..100, external -10..10 AC */
-    int coins[NUM_COIN_TYPES];
+    int money[NUM_COIN_TYPES];
     int bank[NUM_COIN_TYPES];
     long exp; /* The experience of the player            */
 
@@ -237,8 +245,9 @@ struct OLCZoneList {
  * not allocated in memory for NPCs, but it is for PCs.  This structure
  * can be changed freely.
  */
-struct ClanMembership;
-struct ClanSnoop;
+class ClanMembership;
+using ClanMembershipPtr = std::shared_ptr<ClanMembership>;
+
 struct GrantType;
 struct RetainedComms;
 struct TrophyNode;
@@ -266,6 +275,7 @@ struct PlayerSpecialData {
     sbyte conditions[3]; /* Drunk, full, thirsty                   */
     TrophyNode *trophy;
     AliasData *aliases;
+    std::unordered_map<int, int> stored; /* List of stored (banked) items */
 
     flagvector *grant_cache;  /* cache of granted commands              */
     flagvector *revoke_cache; /* cache of revoked commands              */
@@ -277,8 +287,8 @@ struct PlayerSpecialData {
     GrantType *revoke_groups;
 
     ubyte page_length;
-    ClanMembership *clan;
-    ClanSnoop *clan_snoop;
+    ClanID clan_id{CLAN_ID_NONE}; /* Clan ID (0 = no clan) */
+
     OLCZoneList *olc_zones;
     int lastlevel;
     int base_hit;
@@ -510,17 +520,17 @@ struct message_list {
 };
 
 struct stat_bonus_type {
-    sh_int tohit;         /* To Hit (THAC0) Bonus/Penalty        */
-    sh_int todam;         /* Damage Bonus/Penalty                */
-    sh_int defense;       /* Armor Class Bonus/Penalty           */
-    sh_int carry;         /* Maximum weight that can be carrried */
-    sh_int wield;         /* Maximum weight that can be wielded  */
-    sh_int magic;         /* Stat bonus to spells                */
-    sh_int hpgain;        /* Bonus to HP gained at level         */
-    sh_int skill_small;         /* Range -7 to 5 bonus to skills       */
-    sh_int skill_medium;        /* Range -7 to 10 bonus to skills      */
-    sh_int skill_large;         /* Range -7 to 15 bonus to skills      */
-    sh_int rogue_skills;  /* Bonus range for rogue-type skills   */
+    sh_int tohit;        /* To Hit (THAC0) Bonus/Penalty        */
+    sh_int todam;        /* Damage Bonus/Penalty                */
+    sh_int defense;      /* Armor Class Bonus/Penalty           */
+    sh_int carry;        /* Maximum weight that can be carrried */
+    sh_int wield;        /* Maximum weight that can be wielded  */
+    sh_int magic;        /* Stat bonus to spells                */
+    sh_int hpgain;       /* Bonus to HP gained at level         */
+    sh_int skill_small;  /* Range -7 to 5 bonus to skills       */
+    sh_int skill_medium; /* Range -7 to 10 bonus to skills      */
+    sh_int skill_large;  /* Range -7 to 15 bonus to skills      */
+    sh_int rogue_skills; /* Bonus range for rogue-type skills   */
 };
 
 struct weather_data {

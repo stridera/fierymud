@@ -13,6 +13,7 @@
  *  CircleMUD is based on DikuMUD, Copyright (C) 1990, 1991.               *
  ***************************************************************************/
 
+#include "bitflags.hpp"
 #include "board.hpp"
 #include "casting.hpp"
 #include "comm.hpp"
@@ -564,19 +565,18 @@ void oedit_disp_wall_block_dirs(DescriptorData *d) {
  */
 void oedit_disp_container_flags_menu(DescriptorData *d) {
     get_char_cols(d->character);
-    sprintbit(GET_OBJ_VAL(OLC_OBJ(d), VAL_CONTAINER_BITS), container_bits, buf1);
 #if defined(CLEAR_SCREEN)
     char_printf(d->character, "[H[J");
 #endif
-    sprintf(buf,
-            "%s1%s) CLOSEABLE\n"
-            "%s2%s) PICKPROOF\n"
-            "%s3%s) CLOSED\n"
-            "%s4%s) LOCKED\n"
-            "Container flags: %s%s%s\n"
-            "Enter flag, 0 to quit:\n",
-            grn, nrm, grn, nrm, grn, nrm, grn, nrm, cyn, buf1, nrm);
-    char_printf(d->character, buf);
+    char_printf(d->character,
+                "%s1%s) CLOSEABLE\n"
+                "%s2%s) PICKPROOF\n"
+                "%s3%s) CLOSED\n"
+                "%s4%s) LOCKED\n"
+                "Container flags: %s%s%s\n"
+                "Enter flag, 0 to quit:\n",
+                grn, nrm, grn, nrm, grn, nrm, grn, nrm, cyn,
+                sprintbit(GET_OBJ_VAL(OLC_OBJ(d), VAL_CONTAINER_BITS), container_bits), nrm);
 }
 
 /*
@@ -635,22 +635,20 @@ void oedit_disp_aff_flags(DescriptorData *d) {
 #endif
 
     for (i = 0; i <= NUM_EFF_FLAGS / columns; ++i) {
-        *buf = '\0';
+        std::string output;
         for (j = 0; j < columns; ++j) {
             if (FLAG_INDEX >= NUM_EFF_FLAGS)
                 break;
-            sprintf(buf, "%s%s%2d%s) %-20.20s", buf, grn, FLAG_INDEX + 1, nrm, effect_flags[FLAG_INDEX]);
+            output += fmt::format("{}{:2d}{}) {:20.20s}", grn, FLAG_INDEX + 1, nrm, effect_flags[FLAG_INDEX]);
         }
-        char_printf(d->character, strcat(buf, "\n"));
+        output += "\n";
+        char_printf(d->character, output);
     }
 
-    *buf1 = '\0';
-    sprintflag(buf1, GET_OBJ_EFF_FLAGS(OLC_OBJ(d)), NUM_EFF_FLAGS, effect_flags);
-    sprintf(buf,
-            "\nSpell flags: %s%s%s\n"
-            "Enter spell flag, 0 to quit : ",
-            cyn, buf1, nrm);
-    char_printf(d->character, buf);
+    char_printf(d->character,
+                "\nSpell flags: {}{}{}\n"
+                "Enter spell flag, 0 to quit : ",
+                cyn, sprintflag(GET_OBJ_EFF_FLAGS(OLC_OBJ(d)), NUM_EFF_FLAGS, effect_flags), nrm);
 }
 
 #undef FLAG_INDEX
@@ -704,11 +702,12 @@ void oedit_disp_apply_menu(DescriptorData *d) {
 #endif
 
     for (i = 0; i <= NUM_APPLY_TYPES / columns; ++i) {
-        *buf = '\0';
+        std::string output;
         for (j = 0; j < columns; ++j)
             if (TYPE_INDEX < NUM_APPLY_TYPES)
-                sprintf(buf, "%s%s%2d%s) %-20.20s ", buf, grn, TYPE_INDEX, nrm, apply_types[TYPE_INDEX]);
-        char_printf(d->character, strcat(buf, "\n"));
+                output += fmt::format("{}{:2d}{}) {:20.20s} ", grn, TYPE_INDEX + 1, nrm, apply_types[TYPE_INDEX]);
+        output += "\n";
+        char_printf(d->character, output);
     }
 
     char_printf(d->character, "\nEnter apply type (0 is no apply):\n");
@@ -731,12 +730,13 @@ void oedit_disp_weapon_menu(DescriptorData *d) {
 #endif
 
     for (i = 0; i <= NUM_ATTACK_TYPES / columns; ++i) {
-        *buf = '\0';
+        std::string output;
         for (j = 0; j < columns; ++j)
             if (TYPE_INDEX < NUM_ATTACK_TYPES)
-                sprintf(buf, "%s%s%2d%s) %-20.20s ", buf, grn, TYPE_INDEX + 1, nrm,
-                        attack_hit_text[TYPE_INDEX].singular);
-        char_printf(d->character, strcat(buf, "\n"));
+                output += fmt::format("{}{:2d}{}) {:20.20s} ", grn, TYPE_INDEX + 1, nrm,
+                                      attack_hit_text[TYPE_INDEX].singular);
+        output += "\n";
+        char_printf(d->character, output);
     }
 
     char_printf(d->character, "\nEnter weapon type:\n");
@@ -757,21 +757,18 @@ void oedit_disp_spells_menu(DescriptorData *d) {
     /* Fixed to use all spells --gurlaek 7/22/1999 */
     for (counter = 0; counter <= MAX_SPELLS; counter++) {
         if (strcasecmp(skills[counter].name, "!UNUSED!")) {
-            sprintf(buf, "%s%2d%s) %s%-20.20s %s", grn, counter, nrm, yel, skills[counter].name,
-                    !(++columns % 3) ? "\n" : "");
-            char_printf(d->character, buf);
+            char_printf(d->character, "{}{:2d}{}) {}{:20.20s} {}", grn, counter, nrm, yel, skills[counter].name,
+                        !(++columns % 3) ? "\n" : "");
         }
     }
-    sprintf(buf, "\n%sEnter spell choice (0 for none):\n", nrm);
-    char_printf(d->character, buf);
+    char_printf(d->character, "\n{}Enter spell choice (0 for none):\n", nrm);
 }
 
-void oedit_disp_portal_messages_menu(DescriptorData *d, const char *messages[]) {
+void oedit_disp_portal_messages_menu(DescriptorData *d, const std::string_view messages[]) {
     int i = 0;
 
-    while (*messages[i] != '\n') {
-        sprintf(buf, "%s%d%s) %s", grn, i, nrm, messages[i]);
-        char_printf(d->character, buf);
+    while (messages[i].front() != '\n') {
+        char_printf(d->character, "{}{}{}) {}", grn, i, nrm, messages[i]);
         ++i;
     }
 }
@@ -1011,19 +1008,18 @@ void oedit_disp_extra_menu(DescriptorData *d) {
 #endif
 
     for (i = 0; i <= NUM_ITEM_FLAGS / columns; ++i) {
-        *buf = '\0';
+        std::string output;
         for (j = 0; j < columns; ++j)
             if (FLAG_INDEX < NUM_ITEM_FLAGS)
-                sprintf(buf, "%s%s%2d%s) %-20.20s ", buf, grn, FLAG_INDEX + 1, nrm, extra_bits[FLAG_INDEX]);
-        char_printf(d->character, strcat(buf, "\n"));
+                output += fmt::format("{}{:2d}{}) {:20.20s} ", grn, FLAG_INDEX + 1, nrm, extra_bits[FLAG_INDEX]);
+        output += "\n";
+        char_printf(d->character, output);
     }
 
-    sprintflag(buf1, GET_OBJ_FLAGS(OLC_OBJ(d)), NUM_ITEM_FLAGS, extra_bits);
-    sprintf(buf,
-            "\nObject flags: %s%s%s\n"
-            "Enter object extra flag (0 to quit):\n",
-            cyn, buf1, nrm);
-    char_printf(d->character, buf);
+    char_printf(d->character,
+                "\nObject flags: {}{}{}\n"
+                "Enter object extra flag (0 to quit):\n",
+                cyn, sprintflag(GET_OBJ_FLAGS(OLC_OBJ(d)), NUM_ITEM_FLAGS, extra_bits), nrm);
 }
 
 #undef FLAG_INDEX
@@ -1041,19 +1037,18 @@ void oedit_disp_wear_menu(DescriptorData *d) {
     char_printf(d->character, "[H[J");
 #endif
     for (i = 0; i <= NUM_ITEM_WEAR_FLAGS / columns; ++i) {
-        *buf = '\0';
+        std::string output;
         for (j = 0; j < columns; ++j)
             if (FLAG_INDEX < NUM_ITEM_WEAR_FLAGS)
-                sprintf(buf, "%s%s%2d%s) %-20.20s ", buf, grn, FLAG_INDEX + 1, nrm, wear_bits[FLAG_INDEX]);
-        char_printf(d->character, strcat(buf, "\n"));
+                output += fmt::format("{}{:2d}{}) {:20.20s} ", grn, FLAG_INDEX + 1, nrm, wear_bits[FLAG_INDEX]);
+        output += "\n";
+        char_printf(d->character, output);
     }
 
-    sprintbit(GET_OBJ_WEAR(OLC_OBJ(d)), wear_bits, buf1);
-    sprintf(buf,
-            "\nWear flags: %s%s%s\n"
-            "Enter wear flag, 0 to quit:\n",
-            cyn, buf1, nrm);
-    char_printf(d->character, buf);
+    char_printf(d->character,
+                "\nWear flags: {}{}{}\n"
+                "Enter wear flag, 0 to quit:\n",
+                cyn, sprintbit(GET_OBJ_WEAR(OLC_OBJ(d)), wear_bits), nrm);
 }
 
 #undef FLAG_INDEX
@@ -1136,31 +1131,32 @@ void oedit_disp_obj_values(DescriptorData *d) {
                 GET_OBJ_VAL(obj, VAL_MONEY_GOLD), GET_OBJ_VAL(obj, VAL_MONEY_SILVER),
                 GET_OBJ_VAL(obj, VAL_MONEY_COPPER), nrm);
         break;
-    case ITEM_PORTAL:
-        i = real_room(GET_OBJ_VAL(obj, VAL_PORTAL_DESTINATION));
-        sprinttype(GET_OBJ_VAL(obj, VAL_PORTAL_ENTRY_MSG), portal_entry_messages, buf1);
-        sprinttype(GET_OBJ_VAL(obj, VAL_PORTAL_CHAR_MSG), portal_character_messages, buf2);
-        sprinttype(GET_OBJ_VAL(obj, VAL_PORTAL_EXIT_MSG), portal_exit_messages, arg);
-        sprintf(buf,
-                "   Target Room : %s%s (%d)%s\n"
-                " Entry Message : %s%s%s"
-                "  Char Message : %s%s%s"
-                "  Exit Message : %s%s%s\n",
-                cyn, i == NOWHERE ? "Invalid Room" : world[i].name, GET_OBJ_VAL(obj, VAL_PORTAL_DESTINATION), nrm, cyn,
-                buf1, nrm, cyn, buf2, nrm, cyn, arg, nrm);
-        break;
+    case ITEM_PORTAL: {
+        int room = real_room(GET_OBJ_VAL(obj, VAL_PORTAL_DESTINATION));
+
+        auto buffer = fmt::format(
+            "   Target Room : {}{} ({}){}\n"
+            " Entry Message : {}{}{}"
+            "  Char Message : {}{}{}"
+            "  Exit Message : {}{}{}\n",
+            cyn, room == NOWHERE ? "Invalid Room" : world[room].name, GET_OBJ_VAL(obj, VAL_PORTAL_DESTINATION), nrm,
+            cyn, sprinttype(GET_OBJ_VAL(obj, VAL_PORTAL_ENTRY_MSG), portal_entry_messages), nrm, cyn,
+            sprinttype(GET_OBJ_VAL(obj, VAL_PORTAL_CHAR_MSG), portal_character_messages), nrm, cyn,
+            sprinttype(GET_OBJ_VAL(obj, VAL_PORTAL_EXIT_MSG), portal_exit_messages), nrm);
+        strcpy(buf, buffer.c_str());
+    } break;
     case ITEM_SPELLBOOK:
         sprintf(buf, "         Pages : %s%d%s\n", cyn, GET_OBJ_VAL(obj, VAL_SPELLBOOK_PAGES), nrm);
         break;
-    case ITEM_WALL:
-        sprinttype(GET_OBJ_VAL(obj, VAL_WALL_DIRECTION), dirs, buf1);
-        sprintf(buf,
-                "     Direction : %s%s%s\n"
-                "    Dispelable : %s%s%s\n"
-                "     Hitpoints : %s%d%s\n",
-                cyn, buf1, nrm, cyn, YESNO(GET_OBJ_VAL(obj, VAL_WALL_DISPELABLE)), nrm, cyn,
-                GET_OBJ_VAL(obj, VAL_WALL_HITPOINTS), nrm);
-        break;
+    case ITEM_WALL: {
+        auto output = fmt::format(
+            "     Direction : {}{}{}\n"
+            "    Dispelable : {}{}{}\n"
+            "     Hitpoints : {}{}{}\n",
+            cyn, sprinttype(GET_OBJ_VAL(obj, VAL_WALL_DIRECTION), dirs), nrm, cyn,
+            YESNO(GET_OBJ_VAL(obj, VAL_WALL_DISPELABLE)), nrm, cyn, GET_OBJ_VAL(obj, VAL_WALL_HITPOINTS), nrm);
+        strcpy(buf, output.c_str());
+    } break;
     case ITEM_BOARD:
         sprintf(buf, "   Board Title : %s%s%s\n", cyn, board(GET_OBJ_VAL(obj, VAL_BOARD_NUMBER))->title, nrm);
         break;
@@ -1179,64 +1175,58 @@ void oedit_disp_menu(DescriptorData *d) {
     obj = OLC_OBJ(d);
     get_char_cols(d->character);
 
-    /*. Build buffers for first part of menu . */
-    sprintflag(buf2, GET_OBJ_FLAGS(obj), NUM_ITEM_FLAGS, extra_bits);
-
     /*
      * Build first half of menu.
      */
-    sprintf(buf,
+    char_printf(d->character,
 #if defined(CLEAR_SCREEN)
-            ".[H.[J"
+                ".[H.[J"
 #endif
-            "-- Item: '&5%s&0'  vnum: [&2%5d&0]\n"
-            "%s1%s) Namelist : %s%s\n"
-            "%s2%s) S-Desc   : %s%s\n"
-            "%s3%s) L-Desc   :-\n%s%s\n"
-            "%s4%s) A-Desc   :-\n%s%s"
-            "%s5%s) Type        : %s%s\n"
-            "%s6%s) Extra flags : %s%s\n",
-            (obj->short_description && *obj->short_description) ? obj->short_description : "undefined", OLC_NUM(d), grn,
-            nrm, yel, (obj->name && *obj->name) ? obj->name : "undefined", grn, nrm, yel,
-            (obj->short_description && *obj->short_description) ? obj->short_description : "undefined", grn, nrm, yel,
-            (obj->description && *obj->description) ? obj->description : "undefined", grn, nrm, yel,
-            (obj->action_description && *obj->action_description) ? obj->action_description : "<not set>\n", grn, nrm,
-            cyn, OBJ_TYPE_NAME(obj), grn, nrm, cyn, buf2);
+                "-- Item: '&5{}&0'  vnum: [&2{:5d}&0]\n"
+                "{}1{}) Namelist : {}{}\n"
+                "{}2{}) S-Desc   : {}{}\n"
+                "{}3{}) L-Desc   :-\n{}{}\n"
+                "{}4{}) A-Desc   :-\n{}{}"
+                "{}5{}) Type        : {}{}\n"
+                "{}6{}) Extra flags : {}{}\n",
+                (obj->short_description && *obj->short_description) ? obj->short_description : "undefined", OLC_NUM(d),
+                grn, nrm, yel, (obj->name && *obj->name) ? obj->name : "undefined", grn, nrm, yel,
+                (obj->short_description && *obj->short_description) ? obj->short_description : "undefined", grn, nrm,
+                yel, (obj->description && *obj->description) ? obj->description : "undefined", grn, nrm, yel,
+                (obj->action_description && *obj->action_description) ? obj->action_description : "<not set>\n", grn,
+                nrm, cyn, OBJ_TYPE_NAME(obj), grn, nrm, cyn,
+                sprintflag(GET_OBJ_FLAGS(obj), NUM_ITEM_FLAGS, extra_bits));
     /*
      * Send first half.
      */
-    char_printf(d->character, buf);
 
     /*. Build second half of menu . */
-    sprintbit(GET_OBJ_WEAR(obj), wear_bits, buf1);
-    sprintf(buf,
-            "%s7%s) Wear flags  : %s%s\n"
-            "%s8%s) Weight      : %s%.2f\n"
-            "%s9%s) Cost        : %s%d\n"
-            "%sA%s) Timer       : %s%d\n"
-            "%sB%s) Level       : %s%d\n"
-            "%sC%s) Hiddenness  : %s%ld\n"
-            "%sD%s) Values      : %s%d %d %d %d %d %d %d%s\n",
-            grn, nrm, cyn, buf1, grn, nrm, cyn, GET_OBJ_WEIGHT(obj), grn, nrm, cyn, GET_OBJ_COST(obj), grn, nrm, cyn,
-            GET_OBJ_TIMER(obj), grn, nrm, cyn, GET_OBJ_LEVEL(obj), grn, nrm, cyn, GET_OBJ_HIDDENNESS(obj), grn, nrm,
-            cyn, GET_OBJ_VAL(obj, 0), GET_OBJ_VAL(obj, 1), GET_OBJ_VAL(obj, 2), GET_OBJ_VAL(obj, 3),
-            GET_OBJ_VAL(obj, 4), GET_OBJ_VAL(obj, 5), GET_OBJ_VAL(obj, 6), nrm);
 
-    char_printf(d->character, buf);
+    char_printf(d->character,
+                "{}7{}) Wear flags  : {}{}\n"
+                "{}8{}) Weight      : {}{:.2f}\n"
+                "{}9{}) Cost        : {}{}\n"
+                "{}A{}) Timer       : {}{}\n"
+                "{}B{}) Level       : {}{}\n"
+                "{}C{}) Hiddenness  : {}{}\n"
+                "{}D{}) Values      : {}{} {} {} {} {} {} {}{}\n",
+                grn, nrm, cyn, sprintbit(GET_OBJ_WEAR(obj), wear_bits), grn, nrm, cyn, GET_OBJ_WEIGHT(obj), grn, nrm,
+                cyn, GET_OBJ_COST(obj), grn, nrm, cyn, GET_OBJ_TIMER(obj), grn, nrm, cyn, GET_OBJ_LEVEL(obj), grn, nrm,
+                cyn, GET_OBJ_HIDDENNESS(obj), grn, nrm, cyn, GET_OBJ_VAL(obj, 0), GET_OBJ_VAL(obj, 1),
+                GET_OBJ_VAL(obj, 2), GET_OBJ_VAL(obj, 3), GET_OBJ_VAL(obj, 4), GET_OBJ_VAL(obj, 5), GET_OBJ_VAL(obj, 6),
+                nrm);
 
     oedit_disp_obj_values(d);
 
-    *buf1 = '\0';
-    sprintflag(buf1, GET_OBJ_EFF_FLAGS(obj), NUM_EFF_FLAGS, effect_flags);
-    sprintf(buf,
-            "%sE%s) Applies menu\n"
-            "%sF%s) Extra descriptions menu\n"
-            "%sG%s) Spell applies : &6%s&0\n"
-            "%sS%s) Script      : %s%s\n"
-            "%sQ%s) Quit\n"
-            "Enter choice:\n",
-            grn, nrm, grn, nrm, grn, nrm, buf1, grn, nrm, cyn, obj->proto_script ? "Set." : "Not Set.", grn, nrm);
-    char_printf(d->character, buf);
+    char_printf(d->character,
+                "{}E{}) Applies menu\n"
+                "{}F{}) Extra descriptions menu\n"
+                "{}G{}) Spell applies : &6{}&0\n"
+                "{}S{}) Script      : {}{}\n"
+                "{}Q{}) Quit\n"
+                "Enter choice:\n",
+                grn, nrm, grn, nrm, grn, nrm, sprintflag(GET_OBJ_EFF_FLAGS(obj), NUM_EFF_FLAGS, effect_flags), grn, nrm,
+                cyn, obj->proto_script ? "Set." : "Not Set.", grn, nrm);
     OLC_MODE(d) = OEDIT_MAIN_MENU;
 }
 

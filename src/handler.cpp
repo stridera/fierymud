@@ -87,7 +87,7 @@ int isname(const char *str, const char *namelist) {
             if (!*curstr || *curname == ' ')
                 break;
 
-            if (LOWER(*curstr) != LOWER(*curname))
+            if (to_lower(*curstr) != to_lower(*curname))
                 break;
         }
 
@@ -1246,6 +1246,9 @@ void extract_char(CharData *ch) {
     if (ch->guarded_by)
         stop_guarding(ch->guarded_by);
 
+    // Clean up clan snooping
+    remove_all_clan_snoops(ch);
+
     if (ch->cornering) {
         if (ch->cornering->cornered_by == ch)
             ch->cornering->cornered_by = nullptr;
@@ -1283,10 +1286,6 @@ void extract_char(CharData *ch) {
         obj_from_char(obj);
         obj_to_room(obj, ch->in_room);
     }
-
-    /* Remove runtime link to clan */
-    if (GET_CLAN_MEMBERSHIP(ch))
-        GET_CLAN_MEMBERSHIP(ch)->player = nullptr;
 
     /* transfer equipment to room */
     for (i = 0; i < NUM_WEARS; i++)

@@ -13,12 +13,11 @@
 #include "db.hpp"
 #include "dg_scripts.hpp"
 #include "handler.hpp"
+#include "logging.hpp"
 #include "screen.hpp"
 #include "structs.hpp"
 #include "sysdep.hpp"
 #include "utils.hpp"
-#include "logging.hpp"
-
 
 /* same as any_one_arg except that it stops at punctuation */
 char *any_one_name(char *argument, char *first_arg) {
@@ -32,7 +31,7 @@ char *any_one_name(char *argument, char *first_arg) {
     for (arg = first_arg;
          *argument && !isspace(*argument) && (!ispunct(*argument) || *argument == '#' || *argument == '-');
          arg++, argument++)
-        *arg = LOWER(*argument);
+        *arg = to_lower(*argument);
     *arg = '\0';
 
     return argument;

@@ -19,6 +19,7 @@
 #include "text.hpp"
 
 #include <math.h>
+#include <string_view>
 
 /* external declarations and prototypes **********************************/
 
@@ -104,14 +105,22 @@ void drop_core(CharData *ch, const char *desc);
 #define ONOFF(a) ((a) ? "ON" : "OFF")
 
 /* IS_UPPER and IS_LOWER added by dkoepke */
-#define IS_UPPER(c) ((c) >= 'A' && (c) <= 'Z')
-#define IS_LOWER(c) ((c) >= 'a' && (c) <= 'z')
 
-#define LOWER(c) (IS_UPPER(c) ? ((c) + ('a' - 'A')) : (c))
-#define UPPER(c) (IS_LOWER(c) ? ((c) + ('A' - 'a')) : (c))
+constexpr bool is_upper(char c) { return c >= 'A' && c <= 'Z'; }
 
-#define IS_NEWLINE(ch) ((ch) == '\n')
-#define AN(string) (strchr("aeiouAEIOU", *string) ? "an" : "a")
+constexpr bool is_lower(char c) { return c >= 'a' && c <= 'z'; }
+
+constexpr char to_lower(char c) { return is_upper(c) ? (c + ('a' - 'A')) : c; }
+
+constexpr char to_upper(char c) { return is_lower(c) ? (c + ('A' - 'a')) : c; }
+
+constexpr bool is_newline(char ch) { return ch == '\n'; }
+
+constexpr const char *an(const char *str) { return (str && strchr("aeiouAEIOU", str[0])) ? "an" : "a"; }
+
+constexpr const char *an(std::string_view str) {
+    return (!str.empty() && strchr("aeiouAEIOU", str.front())) ? "an" : "a";
+}
 
 /* memory utils **********************************************************/
 
@@ -188,8 +197,8 @@ extern flagvector *ALL_FLAGS;
 #define PRF_FLAGS(ch) ((ch)->player_specials->pref)
 #define PRV_FLAGS(ch) ((ch)->player_specials->privileges)
 #define EFF_FLAGS(ch) ((ch)->char_specials.effects)
-#define ROOM_FLAGS(loc) (world[(loc)].room_flags)
-#define ROOM_EFFECTS(loc) (world[(loc)].room_effects)
+#define ROOM_FLAGS(loc) (world[(loc)].flags)
+#define ROOM_EFFECTS(loc) (world[(loc)].effects)
 
 #define IS_NPC(ch) IS_FLAGGED(MOB_FLAGS(ch), MOB_ISNPC)
 #define IS_MOB(ch) (IS_NPC(ch) && ((ch)->mob_specials.nr > -1))
@@ -265,7 +274,7 @@ extern flagvector *ALL_FLAGS;
 #define GET_MAX_MOVE(ch) ((ch)->points.max_move)
 #define GET_MANA(ch) ((ch)->points.mana)
 #define GET_MAX_MANA(ch) ((ch)->points.max_mana)
-#define GET_COINS(ch) ((ch)->points.coins)
+#define GET_COINS(ch) ((ch)->points.money)
 #define GET_PURSE_COINS(ch, coin) (GET_COINS(ch)[coin])
 #define GET_PLATINUM(ch) (GET_COINS(ch)[PLAT])
 #define GET_GOLD(ch) (GET_COINS(ch)[GOLD])
@@ -438,6 +447,7 @@ extern flagvector *ALL_FLAGS;
 #define GET_REVOKES(ch) ((ch)->player_specials->revokes)
 #define GET_GRANT_GROUPS(ch) ((ch)->player_specials->grant_groups)
 #define GET_REVOKE_GROUPS(ch) ((ch)->player_specials->revoke_groups)
+#define GET_STORED(ch) ((ch)->player_specials->stored)
 
 /* Mob accessors */
 #define GET_EX_HIT(ch) ((ch)->mob_specials.ex_hit)

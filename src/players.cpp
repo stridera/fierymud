@@ -10,6 +10,7 @@
 
 #include "players.hpp"
 
+#include "bitflags.hpp"
 #include "casting.hpp"
 #include "chars.hpp"
 #include "charsize.hpp"
@@ -47,6 +48,7 @@
 /* local functions */
 static void load_effects(FILE *fl, CharData *ch);
 static void load_skills(FILE *fl, CharData *ch);
+static void load_stored(FILE *fl, CharData *ch);
 static void load_spellcasts(FILE *fl, CharData *ch);
 static void scan_slash(const char *line, int *cur, int *max);
 static void write_aliases_ascii(FILE *file, CharData *ch);
@@ -151,7 +153,7 @@ int get_pfilename(const char *name, char *filename, int mode) {
         return 0;
     }
 
-    sprintf(filename, "%s/%c/%c%s%s", prefix, UPPER(*name), UPPER(*name), name + 1, suffix);
+    sprintf(filename, "%s/%c/%c%s%s", prefix, to_upper(*name), to_upper(*name), name + 1, suffix);
     return 1;
 }
 
@@ -226,8 +228,8 @@ int create_player_index_entry(char *name) {
     CREATE(player_table[pos].name, char, strlen(name) + 1);
 
     /* copy lowercase equivalent of name to table field, cap first char */
-    *player_table[pos].name = UPPER(*name);
-    for (i = 1; (player_table[pos].name[i] = LOWER(name[i])); ++i)
+    *player_table[pos].name = to_upper(*name);
+    for (i = 1; (player_table[pos].name[i] = to_lower(name[i])); ++i)
         ;
     player_table[pos].name[i] = '\0';
 
@@ -251,9 +253,8 @@ void save_player_index(void) {
 
     for (i = 0; i <= top_of_p_table; i++)
         if (*player_table[i].name) {
-            sprintascii(bits, player_table[i].flags);
             fprintf(index_file, "%ld %s %d %s %ld\n", player_table[i].id, player_table[i].name, player_table[i].level,
-                    *bits ? bits : "0", (long)player_table[i].last);
+                    sprintascii(player_table[i].flags).c_str(), (long)player_table[i].last);
         }
     fprintf(index_file, "~\n");
 
@@ -334,6 +335,7 @@ int load_player(const char *name, CharData *ch) {
 
     if (!ch->player_specials)
         CREATE(ch->player_specials, PlayerSpecialData, 1);
+    ch->player_specials->stored = std::unordered_map<int, int>();
 
     GET_PFILEPOS(ch) = id;
 
@@ -408,14 +410,14 @@ int load_player(const char *name, CharData *ch) {
                 GET_NATURAL_CON(ch) = num;
             else if (!strcasecmp(tag, "cash"))
                 load_coins(line, GET_COINS(ch));
-            else if (!strcasecmp(tag, "clan"))
-                load_clan(line, ch);
             else if (!strcasecmp(tag, "currenttitle"))
                 GET_TITLE(ch) = strdup(line);
             else if (!strcasecmp(tag, "composition"))
                 BASE_COMPOSITION(ch) = num;
             else if (!strcasecmp(tag, "cooldowns"))
                 load_cooldowns(fl, ch);
+            else if (!strcasecmp(tag, "clan"))
+                ch->player_specials->clan_id = num;
             else
                 goto bad_tag;
             break;
@@ -595,7 +597,9 @@ int load_player(const char *name, CharData *ch) {
                 load_spellcasts(fl, ch);
             else if (!strcasecmp(tag, "strength"))
                 GET_NATURAL_STR(ch) = num;
-            else
+            else if (!strcasecmp(tag, "stored")) {
+                load_stored(fl, ch);
+            } else
                 goto bad_tag;
             break;
 
@@ -843,6 +847,8 @@ void save_player_char(CharData *ch) {
     fprintf(fl, "home: %d\n", GET_HOMEROOM(ch));
     fprintf(fl, "lifeforce: %d\n", GET_LIFEFORCE(ch));
     fprintf(fl, "composition: %d\n", BASE_COMPOSITION(ch));
+    if (ch->player_specials->clan_id > 0)
+        fprintf(fl, "clan: %d\n", ch->player_specials->clan_id);
 
     fprintf(fl, "id: %ld\n", GET_IDNUM(ch));
     fprintf(fl, "birthtime: %ld\n", (long)ch->player.time.birth);
@@ -879,6 +885,11 @@ void save_player_char(CharData *ch) {
     for (i = 0; i < NUM_SAVES; ++i)
         fprintf(fl, " %d", GET_SAVE(ch, i));
     fprintf(fl, "\n");
+
+    fprintf(fl, "stored:\n");
+    for (auto &it : ch->player_specials->stored)
+        fprintf(fl, "%d %d\n", it.first, it.second);
+    fprintf(fl, "0 0\n");
 
     if (GET_WIMP_LEV(ch))
         fprintf(fl, "wimpy: %d\n", GET_WIMP_LEV(ch));
@@ -938,8 +949,6 @@ void save_player_char(CharData *ch) {
     }
     if (GET_PAGE_LENGTH(ch) != DEFAULT_PAGE_LENGTH)
         fprintf(fl, "pagelength: %d\n", GET_PAGE_LENGTH(ch));
-    if (GET_CLAN(ch))
-        fprintf(fl, "clan: %d\n", GET_CLAN(ch)->number);
     if (GET_LOG_VIEW(ch))
         fprintf(fl, "logview: %d\n", GET_LOG_VIEW(ch));
 
@@ -1121,8 +1130,7 @@ void write_ascii_flags(FILE *fl, flagvector flags[], int num_flags) {
     char flagbuf[FLAGBLOCK_SIZE + 1];
 
     for (i = 0; i < FLAGVECTOR_SIZE(num_flags); ++i) {
-        sprintascii(flagbuf, flags[i]);
-        fprintf(fl, "%s%s", i ? " " : "", flagbuf);
+        fprintf(fl, "%s%s", i ? " " : "", sprintascii(flags[i]).c_str());
     }
 }
 
@@ -1148,6 +1156,18 @@ static void load_effects(FILE *fl, CharData *ch) {
             i++;
         }
     } while (num != 0);
+}
+
+static void load_stored(FILE *fl, CharData *ch) {
+    int vnum = 0, amount = 0;
+    char line[MAX_INPUT_LENGTH + 1];
+
+    do {
+        get_line(fl, line);
+        sscanf(line, "%d %d", &vnum, &amount);
+        if (vnum > 0 && amount > 0)
+            GET_STORED(ch)[vnum] = amount;
+    } while (vnum > 0);
 }
 
 static void load_skills(FILE *fl, CharData *ch) {
@@ -1261,7 +1281,8 @@ void load_ascii_flags(flagvector flags[], int num_flags, char *line) {
     while (line && *line) {
         if (FLAGVECTOR_SIZE(num_flags) <= i) {
             if (*line != '0') {
-                log("SYSERR: load_ascii_flags: attempting to read in flags for block {:d}, but only {} blocks allowed "
+                log("SYSERR: load_ascii_flags: attempting to read in flags for block {:d}, but only {} blocks "
+                    "allowed "
                     "for flagvector type",
                     i, FLAGVECTOR_SIZE(num_flags));
             }
@@ -1270,13 +1291,6 @@ void load_ascii_flags(flagvector flags[], int num_flags, char *line) {
         line = strtok(nullptr, " ");
         ++i;
     }
-}
-
-static void load_clan(char *line, CharData *ch) {
-    Clan *clan = find_clan(line);
-    ch->player_specials->clan = find_clan_membership_in_clan(GET_NAME(ch), clan);
-    if (GET_CLAN_MEMBERSHIP(ch))
-        GET_CLAN_MEMBERSHIP(ch)->player = ch;
 }
 
 void add_perm_title(CharData *ch, char *line) {
@@ -1304,8 +1318,11 @@ void init_player(CharData *ch) {
     int i;
 
     /* Make sure the character has a player structure */
-    if (!ch->player_specials)
+    if (!ch->player_specials) {
         CREATE(ch->player_specials, PlayerSpecialData, 1);
+        ch->player_specials->stored = std::unordered_map<int, int>();
+        ch->player_specials->clan_id = CLAN_ID_NONE; /* No clan initially */
+    }
 
     init_retained_comms(ch);
 
@@ -1318,7 +1335,7 @@ void init_player(CharData *ch) {
     }
 
     GET_TITLE(ch) = nullptr;
-    GET_PROMPT(ch) = strdup(default_prompts[DEFAULT_PROMPT][1]);
+    GET_PROMPT(ch) = strdup(default_prompts[DEFAULT_PROMPT][1].data());
     GET_LDESC(ch) = nullptr;
     ch->player.description = nullptr;
     ch->player.time.birth = time(0);
@@ -1419,7 +1436,7 @@ void send_save_description(CharData *ch, CharData *dest, bool entering) {
         room = GET_SAVEROOM(ch);
 
     if (real_room(room) != NOWHERE) {
-        sprintf(buf1, "%s (%d)", world[real_room(room)].name, room);
+        sprintf(buf1, "%s (%d)", world[real_room(room)].name.c_str(), room);
     } else {
         sprintf(buf1, "&1&bNOWHERE&0 (&5&b%d&0)", room);
     }

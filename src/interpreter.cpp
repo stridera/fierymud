@@ -110,6 +110,7 @@ ACMD(do_coredump);
 ACMD(do_corner);
 ACMD(do_credits);
 ACMD(do_ctell);
+ACMD(do_csnoop);
 ACMD(do_date);
 ACMD(do_dc);
 ACMD(do_desc);
@@ -153,7 +154,6 @@ ACMD(do_hcontrol);
 ACMD(do_hide);
 ACMD(do_hit);
 ACMD(do_hitall);
-ACMD(do_hotboot);
 ACMD(do_house);
 ACMD(do_hunt);
 ACMD(do_iedit);
@@ -454,6 +454,7 @@ const CommandInfo cmd_info[] = {
     {"clist", POS_PRONE, STANCE_DEAD, do_csearch, LVL_ATTENDANT, SCMD_VLIST, CMD_ANY},
     {"csearch", POS_PRONE, STANCE_DEAD, do_csearch, LVL_ATTENDANT, SCMD_VSEARCH, CMD_ANY},
     {"ctell", POS_PRONE, STANCE_SLEEPING, do_ctell, 0, 0, CMD_ANY},
+    {"csnoop", POS_PRONE, STANCE_SLEEPING, do_csnoop, LVL_IMMORT, 0, CMD_ANY},
     {"cuddle", POS_PRONE, STANCE_RESTING, do_action, 0, 0, 0},
     {"curse", POS_PRONE, STANCE_RESTING, do_action, 0, 0, 0},
     {"curtsey", POS_STANDING, STANCE_ALERT, do_action, 0, 0, CMD_NOFIGHT},
@@ -574,12 +575,12 @@ const CommandInfo cmd_info[] = {
     {"hitall", POS_STANDING, STANCE_ALERT, do_hitall, 0, SCMD_HITALL, 0},
     {"hold", POS_PRONE, STANCE_RESTING, do_grab, 1, 0, 0},
     {"hop", POS_STANDING, STANCE_ALERT, do_action, 0, 0, CMD_NOFIGHT},
-    {"hotboot", POS_PRONE, STANCE_DEAD, do_hotboot, LVL_REBOOT_MASTER, 0, 0},
     {"house", POS_PRONE, STANCE_RESTING, do_house, -1, 0, 0},
     {"howl", POS_STANDING, STANCE_ALERT, do_roar, 0, SCMD_HOWL, 0},
     {"hunt", POS_STANDING, STANCE_ALERT, do_hunt, -1, 0, CMD_NOFIGHT},
     {"hug", POS_PRONE, STANCE_RESTING, do_action, 0, 0, 0},
     {"hunger", POS_PRONE, STANCE_RESTING, do_action, 0, 0, 0},
+    {"hour", POS_PRONE, STANCE_DEAD, do_inctime, LVL_HEAD_C, 0, CMD_ANY},
 
     {"inventory", POS_PRONE, STANCE_SLEEPING, do_inventory, 0, 0, CMD_ANY},
     {"identify", POS_PRONE, STANCE_RESTING, do_identify, 0, 0, CMD_HIDE | CMD_OLC},
@@ -593,7 +594,7 @@ const CommandInfo cmd_info[] = {
     {"infodump", POS_PRONE, STANCE_DEAD, do_infodump, LVL_HEAD_C, 0, CMD_ANY},
     {"ignore", POS_PRONE, STANCE_DEAD, do_ignore, 0, 0, CMD_ANY},
     {"inctime", POS_PRONE, STANCE_DEAD, do_inctime, LVL_HEAD_C, 0, CMD_ANY},
-    {"hour", POS_PRONE, STANCE_DEAD, do_inctime, LVL_HEAD_C, 0, CMD_ANY},
+    {"items", POS_STANDING, STANCE_ALERT, do_not_here, 1, 0, CMD_NOFIGHT},
     {"info", POS_PRONE, STANCE_DEAD, do_textview, 0, SCMD_INFO, CMD_ANY},
     {"insult", POS_PRONE, STANCE_RESTING, do_insult, 0, 0, 0},
     {"invis", POS_PRONE, STANCE_DEAD, do_invis, LVL_IMMORT, 0, CMD_ANY},
@@ -739,6 +740,7 @@ const CommandInfo cmd_info[] = {
     {"pain", POS_PRONE, STANCE_DEAD, do_pain, LVL_RESTORE, 0, CMD_OLC},
     {"rpain", POS_PRONE, STANCE_DEAD, do_rpain, LVL_RESTORE, 0, CMD_OLC},
     {"retreat", POS_STANDING, STANCE_ALERT, do_retreat, 0, 0, 0},
+    {"retrieve", POS_STANDING, STANCE_ALERT, do_not_here, 1, 0, CMD_NOFIGHT},
     {"return", POS_PRONE, STANCE_DEAD, do_return, -1, 0, CMD_MINOR_PARA | CMD_MAJOR_PARA | CMD_BOUND},
     {"redit", POS_PRONE, STANCE_DEAD, do_olc, LVL_BUILDER, SCMD_OLC_REDIT, 0},
     {"rcopy", POS_PRONE, STANCE_DEAD, do_olc, LVL_BUILDER, SCMD_OLC_RCOPY, 0},
@@ -827,6 +829,7 @@ const CommandInfo cmd_info[] = {
     {"stay", POS_PRONE, STANCE_RESTING, do_move, 0, SCMD_STAY, CMD_HIDE | CMD_OLC},
     {"steal", POS_STANDING, STANCE_ALERT, do_steal, 1, 0, CMD_HIDE | CMD_NOFIGHT},
     {"steam", POS_PRONE, STANCE_RESTING, do_action, 0, 0, 0},
+    {"store", POS_STANDING, STANCE_ALERT, do_not_here, 1, 0, CMD_NOFIGHT},
     {"stow", POS_PRONE, STANCE_RESTING, do_stow, 0, 0, CMD_HIDE},
     {"stomp", POS_STANDING, STANCE_ALERT, do_stomp, 0, 0, 0},
     {"stroke", POS_PRONE, STANCE_RESTING, do_action, 0, 0, 0},
@@ -995,11 +998,9 @@ const CommandInfo cmd_info[] = {
 
     {"\n", 0, 0, 0, 0, 0, CMD_HIDE}}; /* this must be last */
 
-const char *command_flags[] = {"MEDITATE", "MAJOR PARA", "MINOR PARA", "HIDE", "BOUND", "CAST", "OLC", "NOFIGHT", "\n"};
+constexpr std::string_view fill[] = {"in", "from", "with", "the", "on", "at", "to", "\n"};
 
-const char *fill[] = {"in", "from", "with", "the", "on", "at", "to", "\n"};
-
-const char *reserved[] = {"self", "me", "all", "room", "someone", "something", "\n"};
+constexpr std::string_view reserved[] = {"self", "me", "all", "room", "someone", "something", "\n"};
 
 void list_similar_commands(CharData *ch, char *arg) {
     int found = false, cmd;
@@ -1352,63 +1353,6 @@ int perform_alias(DescriptorData *d, char *orig) {
  * Various other parsing utilities                                         *
  **************************************************************************/
 
-/*
- * searches an array of strings for a target string.  "exact" can be
- * 0 or non-0, depending on whether or not the match must be exact for
- * it to be returned.  Returns -1 if not found; 0..n otherwise.  Array
- * must be terminated with a '\n' so it knows to stop searching.
- *
- * searchblock follows a similar naming convention to strcasecmp:
- * searchblock is case-sensitive, search_block is case-insensitive.
- * Often, which one you use only depends on the case of items in your
- * list, because any_one_arg and one_argument always return lower case
- * arguments.
- */
-int searchblock(char *arg, const char **list, bool exact) {
-    int i, l;
-
-    /* Make into lower case, and get length of string */
-    for (l = 0; *(arg + l); l++)
-        *(arg + l) = LOWER(*(arg + l));
-
-    if (exact) {
-        for (i = 0; **(list + i) != '\n'; i++)
-            if (!strcasecmp(arg, *(list + i)))
-                return (i);
-    } else {
-        if (!l)
-            l = 1; /* Avoid "" to match the first available
-                    * string */
-        for (i = 0; **(list + i) != '\n'; i++)
-            if (!strncasecmp(arg, *(list + i), l))
-                return (i);
-    }
-
-    return -1;
-}
-
-int search_block(const char *arg, const char **list, bool exact) {
-    int i, len;
-
-    if (!arg)
-        return -1;
-
-    if (exact) {
-        for (i = 0; **(list + i) != '\n'; i++)
-            if (!strcasecmp(arg, *(list + i)))
-                return (i);
-    } else {
-        len = strlen(arg);
-        if (!len)
-            len = 1; /* Avoid "" to match the first available string */
-        for (i = 0; **(list + i) != '\n'; i++)
-            if (!strncasecmp(arg, *(list + i), (unsigned)len))
-                return (i);
-    }
-
-    return (-1);
-}
-
 /* \s*\d+ */
 bool is_number(const char *str) {
     if (!str || !*str)
@@ -1518,7 +1462,7 @@ char *one_argument(char *argument, char *first_arg) {
 
         first_arg = begin;
         while (*argument && !isspace(*argument)) {
-            *(first_arg++) = LOWER(*argument);
+            *(first_arg++) = to_lower(*argument);
             argument++;
         }
 
@@ -1534,13 +1478,13 @@ char *delimited_arg(char *argument, char *first_arg, char delimiter) {
     if (*argument == delimiter) {
         argument++;
         while (*argument && *argument != delimiter) {
-            *(first_arg++) = LOWER(*argument);
+            *(first_arg++) = to_lower(*argument);
             argument++;
         }
         argument++;
     } else {
         while (*argument && !isspace(*argument)) {
-            *(first_arg++) = LOWER(*argument);
+            *(first_arg++) = to_lower(*argument);
             argument++;
         }
     }
@@ -1579,13 +1523,13 @@ char *delimited_arg_all(char *argument, char *first_arg, char delimiter) {
     if (*argument == delimiter) {
         argument++;
         while (*argument && *argument != delimiter) {
-            *(first_arg++) = LOWER(*argument);
+            *(first_arg++) = to_lower(*argument);
             argument++;
         }
         argument++;
     } else {
         while (*argument) {
-            *(first_arg++) = LOWER(*argument);
+            *(first_arg++) = to_lower(*argument);
             argument++;
         }
     }
@@ -1606,7 +1550,7 @@ char *any_one_arg(char *argument, char *first_arg) {
     skip_spaces(&argument);
 
     while (*argument && !isspace(*argument)) {
-        *(first_arg++) = LOWER(*argument);
+        *(first_arg++) = to_lower(*argument);
         argument++;
     }
 
@@ -1636,7 +1580,7 @@ int is_abbrev(const char *arg1, const char *arg2) {
         return 0;
 
     for (; *arg1 && *arg2; arg1++, arg2++)
-        if (LOWER(*arg1) != LOWER(*arg2))
+        if (to_lower(*arg1) != to_lower(*arg2))
             return 0;
 
     if (!*arg1)
@@ -2012,8 +1956,7 @@ int enter_player_game(DescriptorData *d) {
     GET_QUIT_REASON(d->character) = QUIT_AUTOSAVE;
 
     // A couple of hacks to reconnect things if the player logged out to the menu and then re-entered the game
-    if (GET_CLAN_MEMBERSHIP(d->character))
-        GET_CLAN_MEMBERSHIP(d->character)->player = d->character;
+    clan_repository.load_clan_membership(std::make_shared<CharData>(*d->character));
 
     // restart cooldowns
     for (int i = 0; i < NUM_COOLDOWNS; ++i)
@@ -2555,8 +2498,10 @@ void nanny(DescriptorData *d, char *arg) {
                 string_to_output(d, NEWSUPDATED2);
             }
 
-            if (GET_CLAN(d->character) && GET_CLAN(d->character)->motd)
-                desc_printf(d, "\n{}{} news:\n{}", GET_CLAN(d->character)->name, ANRM, GET_CLAN(d->character)->motd);
+            auto clan = get_clan(d->character);
+            if (clan) {
+                desc_printf(d, "\n{}{} news:\n{}", clan.value()->name(), ANRM, clan.value()->motd());
+            }
 
             // Convert timestamp to string
             auto time = std::chrono::system_clock::from_time_t(d->character->player.time.logon);
@@ -2619,7 +2564,7 @@ void nanny(DescriptorData *d, char *arg) {
 
         break;
 
-    case CON_QSEX: /* query sex of new user         */
+    case CON_QSEX: /* query gender of new user */
         switch (*arg) {
         case 'm':
         case 'M':
@@ -3268,8 +3213,11 @@ void nanny(DescriptorData *d, char *arg) {
                 STATE(d) = CON_CLOSE;
                 return;
             }
-            if (GET_CLAN_MEMBERSHIP(d->character))
-                revoke_clan_membership(GET_CLAN_MEMBERSHIP(d->character));
+
+            auto clan = get_clan(d->character);
+            if (clan) {
+                clan.value()->remove_member_by_name(d->character->player.short_descr);
+            }
 
             if ((player_i = get_ptable_by_name(GET_NAME(d->character))) >= 0) {
                 SET_BIT(player_table[player_i].flags, PINDEX_DELETED);
@@ -3324,7 +3272,7 @@ long max_exp_gain(CharData *ch) {
 int bonus_stat(CharData *ch, char arg) {
     int b;
     int a;
-    arg = LOWER(arg);
+    arg = to_lower(arg);
     switch (arg) {
     case 'w':
         b = random_number(2, 6);

@@ -317,7 +317,7 @@ void effect_update(void) {
                 world[(int)reff->room].light++;
             if (ROOM_EFF_FLAGGED(reff->room, ROOM_EFF_ILLUMINATION))
                 world[(int)reff->room].light--;
-            REMOVE_FLAG(world[(int)reff->room].room_effects, reff->effect);
+            REMOVE_FLAG(world[(int)reff->room].effects, reff->effect);
             REMOVE_FROM_LIST(reff, room_effect_list, next);
             free(reff);
         }

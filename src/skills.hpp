@@ -59,8 +59,9 @@ int level_to_circle(int level);
 int circle_to_level(int circle);
 #define IS_QUEST_SPELL(spellnum) (skills[(spellnum)].quest)
 #define SKILL_LEVEL(ch, skillnum)                                                                                      \
-    ((skills[(skillnum)].min_level[(int)GET_CLASS(ch)] <= skills[(skillnum)].min_race_level[(int)GET_RACE(ch)]) ?      \
-    skills[(skillnum)].min_level[(int)GET_CLASS(ch)] : skills[(skillnum)].min_race_level[(int)GET_RACE(ch)])
+    ((skills[(skillnum)].min_level[(int)GET_CLASS(ch)] <= skills[(skillnum)].min_race_level[(int)GET_RACE(ch)])        \
+         ? skills[(skillnum)].min_level[(int)GET_CLASS(ch)]                                                            \
+         : skills[(skillnum)].min_race_level[(int)GET_RACE(ch)])
 #define SPELL_CIRCLE(ch, spellnum) (level_to_circle(SKILL_LEVEL(ch, spellnum)))
 #define CIRCLE_ABBR(ch, spellnum) (circle_abbrev[SPELL_CIRCLE((ch), (spellnum))])
 #define SKILL_IS_TARGET(skill, tartype)                                                                                \
@@ -86,7 +87,7 @@ void race_skill_assign(int skillnum, int race_code, int level);
 int talent_type(int skill_num);
 bool get_spell_assignment_circle(CharData *ch, int spell, int *circle_assignment, int *level_assignment);
 
-extern const char *talent_types[5];
-extern const char *targets[NUM_TAR_FLAGS + 1];
-extern const char *routines[NUM_ROUTINE_TYPES + 1];
+extern std::string_view talent_types[5];
+extern std::string_view targets[NUM_TAR_FLAGS + 1];
+extern std::string_view routines[NUM_ROUTINE_TYPES + 1];
 extern int skill_sort_info[TOP_SKILL + 1];

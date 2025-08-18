@@ -135,7 +135,7 @@ ACMD(do_put) {
     else {
         generic_find(arg2, FIND_OBJ_EQUIP | FIND_OBJ_INV | FIND_OBJ_ROOM, ch, &tmp_char, &cont);
         if (!cont)
-            char_printf(ch, "You don't see {} {} here.\n", AN(arg2), arg2);
+            char_printf(ch, "You don't see {} {} here.\n", an(arg2), arg2);
         else if (GET_OBJ_TYPE(cont) != ITEM_CONTAINER)
             act("$p is not a container.", false, ch, cont, 0, TO_CHAR);
         else if (IS_SET(GET_OBJ_VAL(cont, VAL_CONTAINER_BITS), CONT_CLOSED))
@@ -143,7 +143,7 @@ ACMD(do_put) {
         else {
             if (obj_dotmode == FIND_INDIV) { /* put <obj> <container> */
                 if (!(obj = find_obj_in_list(ch->carrying, find_vis_by_name(ch, arg1))))
-                    char_printf(ch, "You aren't carrying {} {}.\n", AN(arg1), arg1);
+                    char_printf(ch, "You aren't carrying {} {}.\n", an(arg1), arg1);
                 else if (obj == cont)
                     char_printf(ch, "You attempt to fold it into itself, but fail.\n");
                 else
@@ -200,14 +200,14 @@ ACMD(do_stow) {
         if (*arg2)
             generic_find(arg2, FIND_OBJ_EQUIP | FIND_OBJ_INV | FIND_OBJ_ROOM, ch, &tch, &cont);
         if (*arg2 && !cont)
-            char_printf(ch, "You don't see {} {} here.\n", AN(arg2), arg2);
+            char_printf(ch, "You don't see {} {} here.\n", an(arg2), arg2);
         else if (cont && GET_OBJ_TYPE(cont) != ITEM_CONTAINER)
             act("$p is not a container.", false, ch, cont, 0, TO_CHAR);
         else if (cont && IS_SET(GET_OBJ_VAL(cont, VAL_CONTAINER_BITS), CONT_CLOSED))
             char_printf(ch, "You'd better open it first!\n");
         else {
             if (!(obj = find_obj_in_list(ch->carrying, find_vis_by_name(ch, arg1))))
-                char_printf(ch, "You aren't carrying {} {}.\n", AN(arg1), arg1);
+                char_printf(ch, "You aren't carrying {} {}.\n", an(arg1), arg1);
             else if (obj == cont)
                 char_printf(ch, "You attempt to fold it into itself, but fail.\n");
             else if (!drop_otrigger(obj, ch, cont))
@@ -365,11 +365,12 @@ ACMD(do_drop) {
         }
     }
 
-    if (parse_money(&argument, coins)) {
-        if (!CASH_VALUE(coins)) {
+    if (auto coin_opt = parse_money(std::string_view{argument})) {
+        if (!coin_opt) {
             char_printf(ch, "You drop 0 coins.  Okaaayy...\n");
             return;
         }
+        auto coins = *coin_opt;
         for (type = 0; type < NUM_COIN_TYPES; ++type)
             if (GET_COINS(ch)[type] < coins[type]) {
                 char_printf(ch, "You don't have enough {}!\n", COIN_NAME(type));
@@ -428,7 +429,7 @@ ACMD(do_drop) {
         if (!amount)
             char_printf(ch, "So...you don't want to drop anything?\n");
         else if (!(obj = find_obj_in_list(ch->carrying, context)))
-            char_printf(ch, "You don't seem to have {} {}{}.\n", amount == 1 ? AN(name) : "any", arg,
+            char_printf(ch, "You don't seem to have {} {}{}.\n", amount == 1 ? an(name) : "any", arg,
                         amount == 1 || isplural(name) ? "" : "s");
         else {
             total = amount;
@@ -564,7 +565,7 @@ CharData *give_find_vict(CharData *ch, char *arg) {
         return vict;
 }
 
-void perform_give_money(CharData *ch, CharData *vict, int coins[]) {
+void perform_give_money(CharData *ch, CharData *vict, Money coins) {
     bool afford = true;
     int amount = 0, i;
     ObjData *obj;
@@ -613,16 +614,12 @@ void perform_give_money(CharData *ch, CharData *vict, int coins[]) {
     if (PRF_FLAGGED(ch, PRF_NOREPEAT))
         char_printf(ch, OK);
     else {
-        strcpy(buf, "You give $n ");
-        statemoney(buf + strlen(buf), coins);
-        strcat(buf, ".");
-        act(buf, false, vict, 0, ch, TO_VICT);
+        auto msg = fmt::format("You give $n {} .", statemoney(coins));
+        act(msg, false, vict, 0, ch, TO_VICT);
     }
 
-    strcpy(buf, "$n gives you ");
-    statemoney(buf + strlen(buf), coins);
-    strcat(buf, ".");
-    act(buf, false, ch, 0, vict, TO_VICT);
+    auto msg = fmt::format("$n give you {}.", statemoney(coins));
+    act(msg, false, ch, 0, vict, TO_VICT);
 
     act("$n gives some coins to $N.", true, ch, 0, vict, TO_NOTVICT);
 
@@ -649,11 +646,12 @@ ACMD(do_give) {
     std::unordered_map<ObjData *, int> vnums;
     int vnum;
 
-    if (parse_money(&argument, cash)) {
+    auto cash_opt = parse_money(std::string_view{argument});
+    if (!cash_opt) {
         one_argument(argument, name);
         if (!(vict = give_find_vict(ch, name)))
             return;
-        perform_give_money(ch, vict, cash);
+        perform_give_money(ch, vict, *cash_opt);
         return;
     }
 
@@ -896,7 +894,7 @@ ACMD(do_eat) {
         return;
     }
     if (!(food = find_obj_in_list(ch->carrying, find_vis_by_name(ch, arg)))) {
-        char_printf(ch, "You don't seem to have {} {}.\n", AN(arg), arg);
+        char_printf(ch, "You don't seem to have {} {}.\n", an(arg), arg);
         return;
     }
     if (subcmd == SCMD_TASTE && ((GET_OBJ_TYPE(food) == ITEM_DRINKCON) || (GET_OBJ_TYPE(food) == ITEM_FOUNTAIN))) {
@@ -1021,7 +1019,7 @@ ACMD(do_pour) {
             return;
         }
         if (!(from_obj = find_obj_in_list(world[ch->in_room].contents, find_vis_by_name(ch, arg2)))) {
-            char_printf(ch, "There doesn't seem to be {} {} here.\n", AN(arg2), arg2);
+            char_printf(ch, "There doesn't seem to be {} {} here.\n", an(arg2), arg2);
             return;
         }
         if (GET_OBJ_TYPE(from_obj) != ITEM_FOUNTAIN) {
@@ -1273,7 +1271,7 @@ ACMD(do_wear) {
     /* FIND_INDIV */
     else {
         if (!(obj = find_obj_in_list(ch->carrying, find_vis_by_name(ch, arg1)))) {
-            char_printf(ch, "You don't seem to have {} {}.\n", AN(arg1), arg1);
+            char_printf(ch, "You don't seem to have {} {}.\n", an(arg1), arg1);
             return;
         }
         obj = confused_inventory_switch(ch, obj);
@@ -1301,7 +1299,7 @@ ACMD(do_wield) {
     }
 
     if (!(obj = find_obj_in_list(ch->carrying, find_vis_by_name(ch, arg)))) {
-        char_printf(ch, "You don't seem to have {} {}.\n", AN(arg), arg);
+        char_printf(ch, "You don't seem to have {} {}.\n", an(arg), arg);
         return;
     }
 
@@ -1387,7 +1385,7 @@ ACMD(do_light) {
     if (!(obj = (find_obj_in_eq(ch, nullptr, find_darklights))) &&
         !(obj = find_obj_in_list(ch->carrying, find_vis_by_name(ch, arg))) &&
         !(obj = find_obj_in_list(ch->carrying, find_darklights))) {
-        char_printf(ch, "You don't seem to have {} {}.\n", AN(arg), arg);
+        char_printf(ch, "You don't seem to have {} {}.\n", an(arg), arg);
         return;
     }
 
@@ -1456,7 +1454,7 @@ ACMD(do_grab) {
         char_printf(ch, "Hold what?\n");
     else if (!(obj = find_obj_in_list(ch->carrying, find_vis_by_name(ch, arg))) &&
              !(obj = find_obj_in_list(ch->carrying, find_darklights)))
-        char_printf(ch, "You don't seem to have {} {}.\n", AN(arg), arg);
+        char_printf(ch, "You don't seem to have {} {}.\n", an(arg), arg);
     else {
         obj = confused_inventory_switch(ch, obj);
         if (GET_OBJ_TYPE(obj) == ITEM_LIGHT)
@@ -1545,7 +1543,7 @@ ACMD(do_remove) {
              GET_OBJ_TYPE(obj) == ITEM_BOARD)
         remove_message(ch, board(GET_OBJ_VAL(obj, VAL_BOARD_NUMBER)), atoi(argument), obj);
     else if (!(obj = (find_obj_in_eq(ch, &where, find_vis_by_name(ch, name)))))
-        char_printf(ch, "You don't seem to be using {} {}.\n", AN(name), name);
+        char_printf(ch, "You don't seem to be using {} {}.\n", an(name), name);
     else
         perform_remove(ch, where);
 
@@ -1888,8 +1886,8 @@ ACMD(do_create) {
                 }
 
                 half_chop(arg, buf, buf2);
-                while (*minor_creation_items[i] != '\n') {
-                    if (is_abbrev(arg, minor_creation_items[i])) {
+                while (minor_creation_items[i].front() != '\n') {
+                    if (is_abbrev(arg, minor_creation_items[i].data())) {
                         found = 1;
                         break;
                     } else

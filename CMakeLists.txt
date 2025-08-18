@@ -30,10 +30,13 @@ add_compile_options(-g)
 include_directories(src/)
 FILE(GLOB sources src/*.cpp)
 
+# Create a list of sources without main.cpp for tests
+set(test_sources ${sources})
+list(REMOVE_ITEM test_sources ${CMAKE_CURRENT_SOURCE_DIR}/src/main.cpp)
 
 # Testing using Catch2
-FILE(GLOB test_files test/*.cpp)
-add_executable(tests ${sources} ${test_files})
+FILE(GLOB test_files tests/*.cpp)
+add_executable(tests ${test_sources} ${test_files})
 
 target_link_libraries(tests PRIVATE Catch2::Catch2  version crypt fmt::fmt nlohmann_json::nlohmann_json magic_enum::magic_enum)
 
@@ -54,6 +57,6 @@ set(CMAKE_C_COMPILER gcc)
 
 add_executable(fierymud ${sources})
 
-target_link_libraries(fierymud PRIVATE version crypt fmt::fmt nlohmann_json::nlohmann_json magic_enum::magic_enum)# asio::asio)
+target_link_libraries(fierymud PRIVATE version crypt fmt::fmt nlohmann_json::nlohmann_json magic_enum::magic_enum cxxopts::cxxopts)# asio::asio)
 
 install (TARGETS fierymud DESTINATION bin)

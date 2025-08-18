@@ -30,16 +30,14 @@
 
 SkillDef skills[TOP_SKILL_DEFINE + 1];
 
-const char *talent_types[5] = {
-    "talent", "spell", "skill", "chant", "song",
-};
+std::string_view talent_types[5] = {"talent", "spell", "skill", "chant", "song"};
 
-const char *targets[NUM_TAR_FLAGS + 1] = {"IGNORE",    "CHAR_ROOM", "CHAR_WORLD", "FIGHT_SELF", "FIGHT_VICT",
-                                          "SELF_ONLY", "NOT_SELF",  "OBJ_INV",    "OBJ_ROOM",   "OBJ_WORLD",
-                                          "OBJ_EQUIP", "STRING",    "NIGHT_ONLY", "DAY_ONLY",   "OUTDOORS",
-                                          "GROUND",    "CONTACT",   "DIRECT",     "\n"};
+std::string_view targets[NUM_TAR_FLAGS + 1] = {"IGNORE",    "CHAR_ROOM", "CHAR_WORLD", "FIGHT_SELF", "FIGHT_VICT",
+                                               "SELF_ONLY", "NOT_SELF",  "OBJ_INV",    "OBJ_ROOM",   "OBJ_WORLD",
+                                               "OBJ_EQUIP", "STRING",    "NIGHT_ONLY", "DAY_ONLY",   "OUTDOORS",
+                                               "GROUND",    "CONTACT",   "DIRECT",     "\n"};
 
-const char *routines[NUM_ROUTINE_TYPES + 1] = {
+std::string_view routines[NUM_ROUTINE_TYPES + 1] = {
     "DAMAGE", "AFFECT", "UNAFFECT", "POINT",  "ALTER_OBJ", "GROUP",     "MASS",
     "AREA",   "SUMMON", "CREATION", "MANUAL", "ROOM",      "BULK_OBJS", "\n",
 };

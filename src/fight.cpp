@@ -454,12 +454,22 @@ void load_messages(void) {
         fight_messages[i].msg = 0;
     }
 
-    fgets(chk, 256, fl);
-    while (!feof(fl) && (*chk == '\n' || *chk == '*'))
-        fgets(chk, 256, fl);
+    if (!fgets(chk, 256, fl)) {
+        log("Error reading file: unexpected EOF or read error.");
+        return;
+    }
+    while (!feof(fl) && (*chk == '\n' || *chk == '*')) {
+        if (!fgets(chk, 256, fl)) {
+            log("Error reading file: unexpected EOF or read error.");
+            return;
+        }
+    }
 
     while (*chk == 'M') {
-        fgets(chk, 256, fl);
+        if (!fgets(chk, 256, fl)) {
+            log("Error reading file: unexpected EOF or read error.");
+            return;
+        }
         sscanf(chk, " %d\n", &type);
         for (i = 0; (i < MAX_MESSAGES) && (fight_messages[i].a_type != type) && (fight_messages[i].a_type); i++)
             ;
@@ -489,9 +499,16 @@ void load_messages(void) {
         messages->heal_msg.attacker_msg = fread_message(fl, i);
         messages->heal_msg.victim_msg = fread_message(fl, i);
         messages->heal_msg.room_msg = fread_message(fl, i);
-        fgets(chk, 256, fl);
-        while (!feof(fl) && (*chk == '\n' || *chk == '*'))
-            fgets(chk, 256, fl);
+        if (!fgets(chk, 256, fl)) {
+            log("Error reading file: unexpected EOF or read error.");
+            return;
+        }
+        while (!feof(fl) && (*chk == '\n' || *chk == '*')) {
+            if (!fgets(chk, 256, fl)) {
+                log("Error reading file: unexpected EOF or read error.");
+                return;
+            }
+        }
     }
 
     fclose(fl);
@@ -935,10 +952,13 @@ void die(CharData *ch, CharData *killer) {
             sprintf(buf2, "%s was killed by %s", GET_NAME(ch), GET_NAME(killer));
         else
             sprintf(buf2, "%s died", GET_NAME(ch));
-        clan_notification(GET_CLAN(ch), ch, "%s.", buf2);
+        auto clan = get_clan_membership(ch);
+        if (clan) {
+            auto char_shared = std::shared_ptr<CharData>(ch, [](CharData*){});
+            clan.value()->notify(char_shared, buf2);
+        }
         log(LogSeverity::Stat, LVL_IMMORT, "{} in {} [{:d}]", buf2, world[ch->in_room].name, world[ch->in_room].vnum);
     }
-
     /* Stop the fighting */
     if (FIGHTING(ch))
         stop_fighting(ch);
@@ -2147,12 +2167,12 @@ void hit(CharData *ch, CharData *victim, int type) {
         if (type == SKILL_KICK) {
             act(EVASIONCLR "Your foot passes harmlessly through $N" EVASIONCLR "!&0", false, ch, 0, victim, TO_CHAR);
             act(EVASIONCLR "$n&7&b sends $s foot whistling right through $N" EVASIONCLR ".&0", false, ch, 0, victim,
-            TO_NOTVICT);
+                TO_NOTVICT);
             act(EVASIONCLR "$n" EVASIONCLR " tries to kick you, but $s foot passes through you harmlessly.&0", false,
-            ch, 0, victim, TO_VICT);
+                ch, 0, victim, TO_VICT);
         } else
             damage_evasion_message(ch, victim, weapon, dtype);
-            
+
         set_fighting(victim, ch, true);
 
         /* Process Triggers - added here so they still process even if the attack is evaded */
@@ -2179,9 +2199,9 @@ void hit(CharData *ch, CharData *victim, int type) {
      * Some skills don't get a chance for riposte, parry, and dodge,
      * so short-circuit those function calls here.
      */
-    else if (type == SKILL_BACKSTAB || type == SKILL_2BACK || type == SKILL_BAREHAND || type == SKILL_KICK || no_defense_check ||
-             EFF_FLAGGED(ch, EFF_FIREHANDS) || EFF_FLAGGED(ch, EFF_ICEHANDS) || EFF_FLAGGED(ch, EFF_LIGHTNINGHANDS) ||
-             EFF_FLAGGED(ch, EFF_ACIDHANDS) ||
+    else if (type == SKILL_BACKSTAB || type == SKILL_2BACK || type == SKILL_BAREHAND || type == SKILL_KICK ||
+             no_defense_check || EFF_FLAGGED(ch, EFF_FIREHANDS) || EFF_FLAGGED(ch, EFF_ICEHANDS) ||
+             EFF_FLAGGED(ch, EFF_LIGHTNINGHANDS) || EFF_FLAGGED(ch, EFF_ACIDHANDS) ||
              (!riposte(ch, victim) && !parry(ch, victim) && !dodge(ch, victim) &&
               (!weapon || !weapon_special(weapon, ch)))) {
         /*
@@ -2230,7 +2250,7 @@ void hit(CharData *ch, CharData *victim, int type) {
         } else if (type == SKILL_KICK) {
             dam += (GET_SKILL(ch, SKILL_KICK) / 2);
             dam += stat_bonus[GET_DEX(ch)].todam;
-        
+
         } else if (type == SKILL_BAREHAND || EFF_FLAGGED(ch, EFF_FIREHANDS) || EFF_FLAGGED(ch, EFF_ICEHANDS) ||
                    EFF_FLAGGED(ch, EFF_LIGHTNINGHANDS) || EFF_FLAGGED(ch, EFF_ACIDHANDS))
             dam += GET_SKILL(ch, SKILL_BAREHAND) / 4 + random_number(1, GET_LEVEL(ch) / 3) + (GET_LEVEL(ch) / 2);

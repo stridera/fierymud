@@ -168,75 +168,76 @@ ACMD(do_toggle) {
         for (; *fields[i].cmd != '\n'; ++i)
             if (is_abbrev(arg, fields[i].cmd))
                 if (GET_LEVEL(tch) >= fields[i].level || (i == SCMD_ANON && PRV_FLAGGED(tch, PRV_ANON_TOGGLE)))
-                    if (i != SCMD_NOCLANCOMM || GET_CLAN(tch))
-                        break;
+                    // if (i != SCMD_NOCLANCOMM || GET_CLAN(tch))
+                    //     break;
 
-    if (!*arg || *fields[i].cmd == '\n') {
-        /* Show a player his/her fields. */
+                    if (!*arg || *fields[i].cmd == '\n') {
+                        /* Show a player his/her fields. */
 
-        if (*arg) {
-            if (GET_LEVEL(ch) < LVL_GOD || !(tch = find_char_around_char(ch, find_vis_by_name(ch, arg)))) {
-                char_printf(ch, "Toggle what!?\n");
-                return;
-            }
-            /* Handle switched/shapechanged players. */
-            tch = REAL_CHAR(tch);
-        }
+                        if (*arg) {
+                            if (GET_LEVEL(ch) < LVL_GOD ||
+                                !(tch = find_char_around_char(ch, find_vis_by_name(ch, arg)))) {
+                                char_printf(ch, "Toggle what!?\n");
+                                return;
+                            }
+                            /* Handle switched/shapechanged players. */
+                            tch = REAL_CHAR(tch);
+                        }
 
-        if (IS_NPC(tch)) {
-            act("$N is an NPC.  They don't have toggles!", false, ch, 0, tch, TO_CHAR);
-            return;
-        }
+                        if (IS_NPC(tch)) {
+                            act("$N is an NPC.  They don't have toggles!", false, ch, 0, tch, TO_CHAR);
+                            return;
+                        }
 
-        strcpy(buf,
-               "             FieryMUD TOGGLES!  (See HELP TOGGLE)\n"
-               "===============================================================\n");
-        for (column = i = 0; *fields[i].cmd != '\n'; ++i) {
-            if (i != SCMD_ANON || !PRV_FLAGGED(tch, PRV_ANON_TOGGLE))
-                if (fields[i].level > GET_LEVEL(tch))
-                    continue;
-            if (i == SCMD_NOCLANCOMM && !GET_CLAN(tch))
-                continue;
+                        strcpy(buf,
+                               "             FieryMUD TOGGLES!  (See HELP TOGGLE)\n"
+                               "===============================================================\n");
+                        for (column = i = 0; *fields[i].cmd != '\n'; ++i) {
+                            if (i != SCMD_ANON || !PRV_FLAGGED(tch, PRV_ANON_TOGGLE))
+                                if (fields[i].level > GET_LEVEL(tch))
+                                    continue;
+                            // if (i == SCMD_NOCLANCOMM && !GET_CLAN(tch))
+                            //     continue;
 
-            set = false;
-            switch (i) {
-            case SCMD_WIMPY:
-                if ((set = (1 && GET_WIMP_LEV(tch))))
-                    sprintf(buf2, "%d", GET_WIMP_LEV(tch));
-                else
-                    strcpy(buf2, "NO");
-                break;
-            case SCMD_PAGELENGTH:
-                if (GET_PAGE_LENGTH(tch) == 0)
-                    strcpy(buf2, "NONE");
-                else
-                    sprintf(buf2, "%d", GET_PAGE_LENGTH(tch));
-                set = GET_PAGE_LENGTH(tch);
-                break;
-            case SCMD_AUTOINVIS:
-                if (GET_AUTOINVIS(tch) == -1) {
-                    strcpy(buf2, "NO");
-                } else {
-                    set = true;
-                    sprintf(buf2, "%d", GET_AUTOINVIS(tch));
-                }
-                break;
-            default:
-                set = 1 && PRF_FLAGGED(tch, fields[i].bitvector);
-                strcpy(buf2, YESNO(set));
-                break;
-            }
-            sprintf(buf, "%s %s%11s  %5s&0 %s", buf, set ? QHWHT : QWHT, fields[i].cmd, buf2,
-                    column == 2 ? "\n" : "| ");
-            if (++column >= 3)
-                column = 0;
-        }
-        if (column)
-            strcat(buf, "\n");
-        strcat(buf, "===============================================================\n");
-        char_printf(ch, buf);
-        return;
-    }
+                            set = false;
+                            switch (i) {
+                            case SCMD_WIMPY:
+                                if ((set = (1 && GET_WIMP_LEV(tch))))
+                                    sprintf(buf2, "%d", GET_WIMP_LEV(tch));
+                                else
+                                    strcpy(buf2, "NO");
+                                break;
+                            case SCMD_PAGELENGTH:
+                                if (GET_PAGE_LENGTH(tch) == 0)
+                                    strcpy(buf2, "NONE");
+                                else
+                                    sprintf(buf2, "%d", GET_PAGE_LENGTH(tch));
+                                set = GET_PAGE_LENGTH(tch);
+                                break;
+                            case SCMD_AUTOINVIS:
+                                if (GET_AUTOINVIS(tch) == -1) {
+                                    strcpy(buf2, "NO");
+                                } else {
+                                    set = true;
+                                    sprintf(buf2, "%d", GET_AUTOINVIS(tch));
+                                }
+                                break;
+                            default:
+                                set = 1 && PRF_FLAGGED(tch, fields[i].bitvector);
+                                strcpy(buf2, YESNO(set));
+                                break;
+                            }
+                            sprintf(buf, "%s %s%11s  %5s&0 %s", buf, set ? QHWHT : QWHT, fields[i].cmd, buf2,
+                                    column == 2 ? "\n" : "| ");
+                            if (++column >= 3)
+                                column = 0;
+                        }
+                        if (column)
+                            strcat(buf, "\n");
+                        strcat(buf, "===============================================================\n");
+                        char_printf(ch, buf);
+                        return;
+                    }
 
     if (IS_NPC(tch))
         return;

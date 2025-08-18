@@ -2,6 +2,7 @@
 #include "dg_scripts.hpp"
 
 #include "ai.hpp"
+#include "bitflags.hpp"
 #include "casting.hpp"
 #include "charsize.hpp"
 #include "clan.hpp"
@@ -29,21 +30,6 @@
 #include "utils.hpp"
 
 #define PULSES_PER_MUD_HOUR (SECS_PER_MUD_HOUR * PASSES_PER_SEC)
-
-/* mob trigger types */
-const char *trig_types[] = {"Global",    "Random", "Command", "Speech", "Act",      "Death", "Greet",
-                            "Greet-All", "Entry",  "Receive", "Fight",  "HitPrcnt", "Bribe", "SpeechTo*",
-                            "Load",      "Cast",   "Leave",   "Door",   "Look",     "Time",  "\n"};
-
-/* obj trigger types */
-const char *otrig_types[] = {"Global", "Random", "Command", "Attack", "Defense", "Timer", "Get",
-                             "Drop",   "Give",   "Wear",    "Death",  "Remove",  "Look",  "Use",
-                             "Load",   "Cast",   "Leave",   "UNUSED", "Consume", "Time",  "\n"};
-
-/* wld trigger types */
-const char *wtrig_types[] = {"Global", "Random",    "Command", "Speech", "UNUSED", "Reset",  "Preentry",
-                             "Drop",   "Postentry", "UNUSED",  "UNUSED", "UNUSED", "UNUSED", "UNUSED",
-                             "UNUSED", "Cast",      "Leave",   "Door",   "UNUSED", "Time",   "\n"};
 
 TrigData *trigger_list = nullptr; /* all attached triggers */
 
@@ -277,18 +263,19 @@ void do_stat_trigger(CharData *ch, TrigData *trig) {
     char_printf(ch, "Trigger Name: '{}{}{}',  VNum: [{}{:5d}{}], RNum: [{:5d}]\n", yel, GET_TRIG_NAME(trig), nrm, grn,
                 GET_TRIG_VNUM(trig), nrm, GET_TRIG_RNUM(trig));
 
+    std::string_view types;
     if (trig->attach_type == OBJ_TRIGGER) {
         char_printf(ch, "Trigger Intended Assignment: Objects\n");
-        sprintbit(GET_TRIG_TYPE(trig), otrig_types, buf);
+        types = sprintbit(GET_TRIG_TYPE(trig), otrig_types);
     } else if (trig->attach_type == WLD_TRIGGER) {
         char_printf(ch, "Trigger Intended Assignment: Rooms\n");
-        sprintbit(GET_TRIG_TYPE(trig), wtrig_types, buf);
+        types = sprintbit(GET_TRIG_TYPE(trig), wtrig_types);
     } else {
         char_printf(ch, "Trigger Intended Assignment: Mobiles\n");
-        sprintbit(GET_TRIG_TYPE(trig), trig_types, buf);
+        types = sprintbit(GET_TRIG_TYPE(trig), trig_types);
     }
 
-    sprintf(sb, "Trigger Type: %s, Numeric Arg: %d, Arg list: %s\n", buf, GET_TRIG_NARG(trig),
+    sprintf(sb, "Trigger Type: %s, Numeric Arg: %d, Arg list: %s\n", types.data(), GET_TRIG_NARG(trig),
             ((GET_TRIG_ARG(trig) && *GET_TRIG_ARG(trig)) ? GET_TRIG_ARG(trig) : "None"));
 
     strcat(sb, "Commands:\n\n");
@@ -1053,7 +1040,7 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
                 }
             } else if (!strcasecmp(field, "opposite_dir")) {
                 if ((num = search_block(value, dirs, false)) >= 0)
-                    strcpy(str, dirs[rev_dir[num]]);
+                    strcpy(str, dirs[rev_dir[num]].data());
                 else {
                     /*
                      * If they didn't give a valid direction, then reverse
@@ -1086,13 +1073,13 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
 
             else if (!strcasecmp(field, "tolower")) {
                 do {
-                    *(str++) = LOWER(*(value++));
+                    *(str++) = to_lower(*(value++));
                 } while (*value);
             }
 
             else if (!strcasecmp(field, "toupper")) {
                 do {
-                    *(str++) = UPPER(*(value++));
+                    *(str++) = to_upper(*(value++));
                 } while (*value);
             }
 
@@ -1146,7 +1133,7 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
 
         /* Attributes */
         else if (!strcasecmp(field, "sex") || !strcasecmp(field, "gender"))
-            strcpy(str, genders[(int)GET_SEX(c)]);
+            strcpy(str, genders[(int)GET_SEX(c)].data());
         else if (!strcasecmp(field, "class")) {
             strcpy(str, CLASS_PLAINNAME(c));
             cap_by_color(str);
@@ -1228,12 +1215,12 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
         else if (!strcasecmp(field, "flags")) {
             *str = '\0';
             if (IS_NPC(c)) /* ACT flags */
-                sprintflag(str, MOB_FLAGS(c), NUM_MOB_FLAGS, action_bits);
+                strcpy(str, sprintflag(MOB_FLAGS(c), NUM_MOB_FLAGS, action_bits).c_str());
             else { /* concatenation of PLR and PRF flags */
                 if (HAS_FLAGS(PLR_FLAGS(c), NUM_PLR_FLAGS) || !HAS_FLAGS(PRF_FLAGS(c), NUM_PRF_FLAGS))
-                    sprintflag(str, PLR_FLAGS(c), NUM_PLR_FLAGS, player_bits);
+                    strcpy(str, sprintflag(PLR_FLAGS(c), NUM_PLR_FLAGS, player_bits).c_str());
                 if (HAS_FLAGS(PRF_FLAGS(c), NUM_PRF_FLAGS))
-                    sprintflag(str + strlen(str), PRF_FLAGS(c), NUM_PRF_FLAGS, preference_bits);
+                    strcpy(str + strlen(str), sprintflag(PRF_FLAGS(c), NUM_PRF_FLAGS, preference_bits).c_str());
             }
         } else if (!strcasecmp(field, "flagged")) {
             if (IS_NPC(c)) {
@@ -1256,7 +1243,7 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
                 }
             }
         } else if (!strcasecmp(field, "aff_flags") || !strcasecmp(field, "eff_flags"))
-            sprintflag(str, EFF_FLAGS(c), NUM_EFF_FLAGS, effect_flags);
+            strcpy(str, sprintflag(EFF_FLAGS(c), NUM_EFF_FLAGS, effect_flags).c_str());
 
         else if (!strcasecmp(field, "aff_flagged") || !strcasecmp(field, "eff_flagged")) {
             if ((num = search_block(value, effect_flags, false)) >= 0)
@@ -1427,9 +1414,9 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
         }
 
         else if (!strcasecmp(field, "position")) {
-            strcpy(str, position_types[(int)GET_POS(c)]);
+            strcpy(str, position_types[(int)GET_POS(c)].data());
         } else if (!strcasecmp(field, "stance"))
-            strcpy(str, stance_types[(int)GET_STANCE(c)]);
+            strcpy(str, stance_types[(int)GET_STANCE(c)].data());
 
         else if (!strcasecmp(field, "room")) {
             if (IN_ROOM(c) >= 0 && IN_ROOM(c) <= top_of_world)
@@ -1447,14 +1434,159 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
         }
 
         else if (!strcasecmp(field, "clan")) {
-            if (!IS_NPC(c) && GET_CLAN(c))
-                strcpy(str, GET_CLAN(c)->name);
+            auto clan = get_clan_membership(c);
+            if (!IS_NPC(c) && clan.has_value())
+                strcpy(str, clan.value()->name().data());
             else
                 *str = '\0';
-        } else if (!strcasecmp(field, "clan_rank"))
-            sprintf(str, "%d", IS_NPC(c) ? 0 : GET_CLAN_RANK(c));
+        } else if (!strcasecmp(field, "clan_rank")) {
+            auto rank = get_clan_rank(c);
+            if (!IS_NPC(c) && rank.has_value())
+                strcpy(str, rank.value().title().data());
+            else
+                *str = '\0';
 
-        else if (!strcasecmp(field, "can_be_seen"))
+        } else if (!strcasecmp(field, "clan_id")) {
+            if (!IS_NPC(c)) {
+                sprintf(str, "%u", get_clan_id(c));
+            } else
+                strcpy(str, "0");
+
+        } else if (!strcasecmp(field, "clan_abbr")) {
+            auto clan = get_clan_membership(c);
+            if (!IS_NPC(c) && clan.has_value())
+                strcpy(str, clan.value()->abbreviation().data());
+            else
+                *str = '\0';
+
+        } else if (!strcasecmp(field, "clan_description")) {
+            auto clan = get_clan_membership(c);
+            if (!IS_NPC(c) && clan.has_value())
+                strcpy(str, clan.value()->description().data());
+            else
+                *str = '\0';
+
+        } else if (!strcasecmp(field, "clan_motd")) {
+            auto clan = get_clan_membership(c);
+            if (!IS_NPC(c) && clan.has_value())
+                strcpy(str, clan.value()->motd().data());
+            else
+                *str = '\0';
+
+        } else if (!strcasecmp(field, "clan_dues")) {
+            auto clan = get_clan_membership(c);
+            if (!IS_NPC(c) && clan.has_value())
+                sprintf(str, "%u", clan.value()->dues());
+            else
+                strcpy(str, "0");
+
+        } else if (!strcasecmp(field, "clan_app_fee")) {
+            auto clan = get_clan_membership(c);
+            if (!IS_NPC(c) && clan.has_value())
+                sprintf(str, "%u", clan.value()->app_fee());
+            else
+                strcpy(str, "0");
+
+        } else if (!strcasecmp(field, "clan_min_level")) {
+            auto clan = get_clan_membership(c);
+            if (!IS_NPC(c) && clan.has_value())
+                sprintf(str, "%u", clan.value()->min_application_level());
+            else
+                strcpy(str, "0");
+
+        } else if (!strcasecmp(field, "clan_member_count")) {
+            auto clan = get_clan_membership(c);
+            if (!IS_NPC(c) && clan.has_value())
+                sprintf(str, "%zu", clan.value()->member_count());
+            else
+                strcpy(str, "0");
+
+        } else if (!strcasecmp(field, "clan_treasure_total")) {
+            auto clan = get_clan_membership(c);
+            if (!IS_NPC(c) && clan.has_value()) {
+                auto treasure = clan.value()->treasure();
+                sprintf(str, "%d", treasure.value());
+            } else
+                strcpy(str, "0");
+
+        } else if (!strcasecmp(field, "clan_treasure_platinum")) {
+            auto clan = get_clan_membership(c);
+            if (!IS_NPC(c) && clan.has_value()) {
+                auto treasure = clan.value()->treasure();
+                sprintf(str, "%d", treasure.platinum());
+            } else
+                strcpy(str, "0");
+
+        } else if (!strcasecmp(field, "clan_treasure_gold")) {
+            auto clan = get_clan_membership(c);
+            if (!IS_NPC(c) && clan.has_value()) {
+                auto treasure = clan.value()->treasure();
+                sprintf(str, "%d", treasure.gold());
+            } else
+                strcpy(str, "0");
+
+        } else if (!strcasecmp(field, "clan_treasure_silver")) {
+            auto clan = get_clan_membership(c);
+            if (!IS_NPC(c) && clan.has_value()) {
+                auto treasure = clan.value()->treasure();
+                sprintf(str, "%d", treasure.silver());
+            } else
+                strcpy(str, "0");
+
+        } else if (!strcasecmp(field, "clan_treasure_copper")) {
+            auto clan = get_clan_membership(c);
+            if (!IS_NPC(c) && clan.has_value()) {
+                auto treasure = clan.value()->treasure();
+                sprintf(str, "%d", treasure.copper());
+            } else
+                strcpy(str, "0");
+
+        } else if (!strcasecmp(field, "clan_bank_room")) {
+            auto clan = get_clan_membership(c);
+            if (!IS_NPC(c) && clan.has_value()) {
+                sprintf(str, "%d", clan.value()->bank_room());
+            } else
+                strcpy(str, "-1");
+
+        } else if (!strcasecmp(field, "clan_chest_room")) {
+            auto clan = get_clan_membership(c);
+            if (!IS_NPC(c) && clan.has_value()) {
+                sprintf(str, "%d", clan.value()->chest_room());
+            } else
+                strcpy(str, "-1");
+
+        } else if (!strcasecmp(field, "clan_hall_room")) {
+            auto clan = get_clan_membership(c);
+            if (!IS_NPC(c) && clan.has_value()) {
+                sprintf(str, "%d", clan.value()->hall_room());
+            } else
+                strcpy(str, "-1");
+
+        } else if (!strcasecmp(field, "clan_can_deposit")) {
+            if (!IS_NPC(c) && has_clan_permission(c, ClanPermission::DEPOSIT_FUNDS))
+                strcpy(str, "1");
+            else
+                strcpy(str, "0");
+
+        } else if (!strcasecmp(field, "clan_can_withdraw")) {
+            if (!IS_NPC(c) && has_clan_permission(c, ClanPermission::WITHDRAW_FUNDS))
+                strcpy(str, "1");
+            else
+                strcpy(str, "0");
+
+        } else if (!strcasecmp(field, "clan_can_store")) {
+            if (!IS_NPC(c) && has_clan_permission(c, ClanPermission::STORE_ITEMS))
+                strcpy(str, "1");
+            else
+                strcpy(str, "0");
+
+        } else if (!strcasecmp(field, "clan_can_retrieve")) {
+            if (!IS_NPC(c) && has_clan_permission(c, ClanPermission::RETRIEVE_ITEMS))
+                strcpy(str, "1");
+            else
+                strcpy(str, "0");
+
+        } else if (!strcasecmp(field, "can_be_seen"))
             strcpy(str, type == MOB_TRIGGER && !CAN_SEE(ch, c) ? "0" : "1");
 
         else if (!strcasecmp(field, "trophy")) {
@@ -1533,13 +1665,13 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
             if (!is_positive_integer(value) || (num = atoi(value)) > 5)
                 *str = '\0';
             else
-                sprintf(str, "%+d %s", o->applies[num].modifier, apply_types[(int)o->applies[num].location]);
+                sprintf(str, "%+d %s", o->applies[num].modifier, apply_types[(int)o->applies[num].location].data());
         } else if (!strcasecmp(field, "affect_value") || !strcasecmp(field, "effect_value"))
             sprintf(str, "%d", is_positive_integer(value) && (num = atoi(value) <= 5) ? o->applies[num].modifier : 0);
 
         /* Flags */
         else if (!strcasecmp(field, "flags"))
-            sprintflag(str, GET_OBJ_FLAGS(o), NUM_ITEM_FLAGS, extra_bits);
+            strcpy(str, sprintflag(GET_OBJ_FLAGS(o), NUM_ITEM_FLAGS, extra_bits).c_str());
         else if (!strcasecmp(field, "flagged")) {
             if ((num = search_block(value, extra_bits, false)) >= 0)
                 strcpy(str, OBJ_FLAGGED(o, num) ? "1" : "0");
@@ -1549,7 +1681,7 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
                 script_log(trig, buf2);
             }
         } else if (!strcasecmp(field, "spells"))
-            sprintflag(str, GET_OBJ_EFF_FLAGS(o), NUM_EFF_FLAGS, effect_flags);
+            strcpy(str, sprintflag(GET_OBJ_EFF_FLAGS(o), NUM_EFF_FLAGS, effect_flags).c_str());
 
         else if (!strcasecmp(field, "has_spell")) {
             if ((num = search_block(value, effect_flags, false)) >= 0)
@@ -1574,7 +1706,7 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
             UID_VAR(str, o->worn_by);
         else if (!strcasecmp(field, "worn_on")) {
             if (o->worn_by)
-                sprinttype(o->worn_on, wear_positions, str);
+                strcpy(str, sprinttype(o->worn_on, wear_positions).c_str());
             else
                 *str = '\0';
         } else if (!strcasecmp(field, "contents")) {
@@ -1609,7 +1741,7 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
      */
     else if (r) {
         if (!strcasecmp(field, "name"))
-            strcpy(str, r->name);
+            strcpy(str, r->name.c_str());
 
         else if (!strcasecmp(field, "vnum"))
             sprintf(str, "%d", r->vnum);
@@ -1619,20 +1751,20 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
             strcpy(str, r->light > 0 ? "1" : "0");
 
         else if (!strcasecmp(field, "flags"))
-            sprintflag(str, r->room_flags, NUM_ROOM_FLAGS, room_bits);
+            strcpy(str, sprintflag(r->flags, room_bits).data());
         else if (!strcasecmp(field, "flagged")) {
             if ((num = search_block(value, room_bits, false)) >= 0)
-                strcpy(str, IS_FLAGGED(r->room_flags, num) ? "1" : "0");
+                strcpy(str, IS_FLAGGED(r->flags, num) ? "1" : "0");
             else {
                 strcpy(str, "0");
                 sprintf(buf2, "unrecognized room flag '%s' to %%%s.flagged%%", value, var);
                 script_log(trig, buf2);
             }
         } else if (!strcasecmp(field, "effects") || !strcasecmp(field, "affects"))
-            sprintflag(str, r->room_effects, NUM_ROOM_EFF_FLAGS, room_effects);
+            strcpy(str, sprintflag(r->effects, room_effects).data());
         else if (!strcasecmp(field, "has_effect") || !strcasecmp(field, "has_affect")) {
             if ((num = search_block(value, room_effects, false)) >= 0)
-                strcpy(str, IS_FLAGGED(r->room_effects, num) ? "1" : "0");
+                strcpy(str, IS_FLAGGED(r->effects, num) ? "1" : "0");
             else {
                 strcpy(str, "0");
                 sprintf(buf2, "unrecognized room effect flag '%s' to %%%s.has_effect%%", value, var);
@@ -1696,7 +1828,7 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
             } else if (!strcasecmp(value, "key")) /* %room.DIR[key]% */
                 sprintf(str, "%d", r->exits[num]->key);
             else if (!strcasecmp(value, "bits")) /* %room.DIR[bits]% */
-                sprintbit(r->exits[num]->exit_info, exit_bits, str);
+                strcpy(str, sprintbit(r->exits[num]->exit_info, exit_bits).c_str());
             else
                 *str = '\0';
         }

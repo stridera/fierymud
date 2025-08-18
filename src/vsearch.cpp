@@ -12,6 +12,7 @@
 
 #include "vsearch.hpp"
 
+#include "bitflags.hpp"
 #include "casting.hpp"
 #include "charsize.hpp"
 #include "class.hpp"
@@ -121,7 +122,7 @@ struct VSearchType {
     int type;
     char *name;
     char data;
-    const char **lookup;
+    const std::string_view *lookup;
 };
 
 /*
@@ -213,7 +214,7 @@ static char *lowercase(const char *string) {
     static char lower[50];
     char *p = lower;
     /*
-     * Gotta use tolower() because LOWER() would cause the ++ to go off
+     * Gotta use tolower() because to_lower() would cause the ++ to go off
      * twice...resulting in bad things.  (memory overflow -> game lockup)
      */
     while ((*(p++) = tolower(*(string++))))
@@ -451,10 +452,10 @@ bool parse_vsearch_args(CharData *ch, char *argument, int subcmd, int *mode, con
         argument = delimited_arg(argument, arg, '\'');
         if (!*arg) {
             sprintf(buf, "You can search for the following %s types:", modes[type].name);
-            for (temp = 0; *modes[type].lookup[temp] != '\n'; ++temp) {
+            for (temp = 0; modes[type].lookup[temp].front() != '\n'; ++temp) {
                 if (!(temp % 4))
                     strcat(buf, "\n");
-                sprintf(buf, "%s%-16s", buf, modes[type].lookup[temp]);
+                sprintf(buf, "%s%-16s", buf, modes[type].lookup[temp].data());
             }
             char_printf(ch, "{}\n", buf);
             return false;
@@ -646,10 +647,10 @@ bool parse_vsearch_args(CharData *ch, char *argument, int subcmd, int *mode, con
         delimited_arg(argument, arg, '\'');
         if (!*arg) {
             sprintf(buf, "You can search for the following %s flags:", modes[type].name);
-            for (temp = 0; *modes[type].lookup[temp] != '\n'; ++temp) {
+            for (temp = 0; modes[type].lookup[temp].front() != '\n'; ++temp) {
                 if (!(temp % 4))
                     strcat(buf, "\n");
-                sprintf(buf, "%s%-16s", buf, modes[type].lookup[temp]);
+                sprintf(buf, "%s%-16s", buf, modes[type].lookup[temp].data());
             }
             char_printf(ch, "{}\n", buf);
             return false;
@@ -1422,7 +1423,7 @@ ACMD(do_osearch) {
             std::string vbuf;
             // How many extra spaces do we need to pad the title to OBJ_TITLE_LENGTH?
             std::string short_desc = ellipsis(obj->short_description, OBJ_TITLE_LENGTH);
-            briefmoney(buf, 6, GET_OBJ_COST(obj));
+            std::string money_str = briefmoney(6, GET_OBJ_COST(obj));
             vbuf =
                 fmt::format("{:4d}. [{}{:5d}{}] {:<{}} {}{:<3d}&0  {}{:>4}&0 {:<{}}&0 ", ++found, grn,
                             obj_index[nr].vnum, nrm, short_desc, OBJ_TITLE_LENGTH + count_color_chars(short_desc) * 2,
@@ -1437,8 +1438,8 @@ ACMD(do_osearch) {
                             : GET_OBJ_LEVEL(obj) > 49  ? "&2"
                                                        : "",
                             GET_OBJ_LEVEL(obj), GET_OBJ_EFFECTIVE_WEIGHT(obj) > 9999 ? "&5" : "",
-                            GET_OBJ_EFFECTIVE_WEIGHT(obj) > 9999 ? 9999 : GET_OBJ_EFFECTIVE_WEIGHT(obj), buf,
-                            5 + count_color_chars(buf));
+                            GET_OBJ_EFFECTIVE_WEIGHT(obj) > 9999 ? 9999 : GET_OBJ_EFFECTIVE_WEIGHT(obj), money_str,
+                            5 + count_color_chars(money_str.c_str()));
             switch (subcmd) {
             case SCMD_VWEAR:
                 if ((GET_OBJ_TYPE(obj) == ITEM_ARMOR || GET_OBJ_TYPE(obj) == ITEM_TREASURE) &&
@@ -1446,8 +1447,8 @@ ACMD(do_osearch) {
                     vbuf += fmt::format(" {:d}ac", GET_OBJ_VAL(obj, VAL_ARMOR_AC));
                 for (temp = 0; temp < MAX_OBJ_APPLIES; ++temp)
                     if (obj->applies[temp].modifier) {
-                        sprinttype(obj->applies[temp].location, apply_abbrevs, buf);
-                        vbuf += fmt::format("{}{}", obj->applies[temp].modifier, buf);
+                        vbuf += fmt::format("{}{}", obj->applies[temp].modifier,
+                                            sprinttype(obj->applies[temp].location, apply_abbrevs));
                     }
                 break;
             case SCMD_VLIST:
@@ -1575,19 +1576,23 @@ ACMD(do_vwear) {
         return;
     }
 
-    strcpy(buf,
-           "Usage: vwear <position> [<field> <query>] [[from] <start_vnum> "
-           "[to] [<end_vnum>]]\n"
-           "Possible positions are:");
-    for (i = 0; *wear_bits[i] != '\n'; ++i)
-        sprintf(buf, "%s%s%-15s", buf, !(i % 5) ? "\n" : "", lowercase(wear_bits[i]));
-    char_printf(ch, strcat(buf, "\n"));
+    std::string output =
+        "Usage: vwear <position> [<field> <query>] [[from] <start_vnum> [to] [<end_vnum>]]\n"
+        "Possible positions are:";
+    for (i = 0; wear_bits[i].front() != '\n'; ++i)
+        output += fmt::format("{}{}", !(i % 5) ? "\n" : "", wear_bits[i]);
+    output += "\n";
+    char_printf(ch, output);
 }
 
 const struct VSearchType vsearch_room_modes[] = {
     {1, "name", STRING}, /* must be first */
-    {1, "title", STRING}, {2, "sector", STRING},          {3, "description", STRING},
-    {4, "extra", STRING}, {5, "flags", FLAGS, room_bits}, {6, "triggervnum", INTEGER},
+    {1, "title", STRING},
+    {2, "sector", STRING},
+    {3, "description", STRING},
+    {4, "extra", STRING},
+    {5, "flags", FLAGS, room_bits.data()},
+    {6, "triggervnum", INTEGER},
     {0, nullptr, 0},
 };
 
@@ -1624,14 +1629,14 @@ ACMD(do_rsearch) {
             match = true;
             break;
         case 1:
-            match = string_find(string, world[nr].name, compare);
+            match = string_find(string, world[nr].name.c_str(), compare);
             break;
         case 2:
             /*match = string_find(string, sectors[SECT(nr)].name, *compare); */
             match = string_start(string, sectors[SECT(nr)].name);
             break;
         case 3:
-            match = string_find(string, world[nr].description, compare);
+            match = string_find(string, world[nr].description.c_str(), compare);
             break;
         case 4:
             match = check_extra_descs(world[nr].ex_description, string);
@@ -1723,7 +1728,7 @@ ACMD(do_esearch) {
                 match = (exit->general_description && string_find(string, exit->general_description, compare));
                 break;
             case 3:
-                match = (IS_SET(exit->exit_info, flags[0]) != 0);
+                match = (exit->exit_info & flags[0]) != 0;
                 break;
             case 4:
                 match = numeric_compare(exit->key, value, bound, compare);
@@ -1741,16 +1746,17 @@ ACMD(do_esearch) {
                                   "----- -----    ---------------------------- "
                                   "-----------------------\n");
                 }
-                if (!exit->keyword)
-                    *buf = '\0';
-                else if (exit->key != NOTHING)
-                    sprintf(buf, "%s%s%s (key %d): ", grn, exit->keyword, nrm, exit->key);
-                else
-                    sprintf(buf, "%s%s%s: ", grn, exit->keyword, nrm);
-                sprintbit(exit->exit_info, exit_bits, buf + strlen(buf));
-                buf[strlen(buf) - 1] = '\0'; /* remove trailing space */
+                std::string exit_info;
+                if (exit->keyword) {
+                    if (exit->key != NOTHING) {
+                        exit_info = fmt::format("{}{}{} (key {}): ", grn, exit->keyword, nrm, exit->key);
+                    } else {
+                        exit_info = fmt::format("{}{}{}: ", grn, exit->keyword, nrm);
+                    }
+                }
                 paging_printf(ch, "{:4d}. {}{:<4s}{} at [{}{:5d}{}] {:<20s} [{}]\n", ++found, yel,
-                              capitalize(dirs[dir]), nrm, grn, world[nr].vnum, nrm, world[nr].name, buf);
+                              capitalize_first(dirs[dir]), nrm, grn, world[nr].vnum, nrm, world[nr].name,
+                              sprintbit(exit->exit_info, exit_bits));
             }
         }
     }
@@ -1807,7 +1813,7 @@ ACMD(do_ssearch) {
             for (temp = 0; SHOP_ROOM(nr, temp) != NOWHERE; ++temp) {
                 value = real_room(SHOP_ROOM(nr, temp));
                 if (value != NOWHERE)
-                    if (string_find(string, world[value].name, compare))
+                    if (string_find(string, world[value].name.c_str(), compare))
                         match = true;
             }
             break;
@@ -1886,28 +1892,25 @@ const struct VSearchType vsearch_trigger_modes[] = {
 
 char *t_listdisplay(int nr, int index) {
     static char tbuf[MAX_INPUT_LENGTH];
-    char tbuf2[MAX_INPUT_LENGTH];
+    std::string tbuf2;
     TrigData *trig;
 
     trig = trig_index[nr]->proto;
     switch (trig_index[nr]->proto->attach_type) {
     case OBJ_TRIGGER:
-        strcpy(tbuf2, "OBJ ");
-        sprintbit(GET_TRIG_TYPE(trig), otrig_types, tbuf2 + 4);
+        tbuf2 = "OBJ " + sprintbit(GET_TRIG_TYPE(trig), otrig_types);
         break;
     case WLD_TRIGGER:
-        strcpy(tbuf2, "WLD ");
-        sprintbit(GET_TRIG_TYPE(trig), wtrig_types, tbuf2 + 4);
+        tbuf2 = "WLD " + sprintbit(GET_TRIG_TYPE(trig), wtrig_types);
         break;
     case MOB_TRIGGER:
-        strcpy(tbuf2, "MOB ");
-        sprintbit(GET_TRIG_TYPE(trig), trig_types, tbuf2 + 4);
+        tbuf2 = "MOB " + sprintbit(GET_TRIG_TYPE(trig), trig_types);
         break;
     default:
-        sprintf(tbuf2, "%s???%s ", red, nrm);
+        tbuf2 = fmt::format("{}???{}", red, nrm);
     }
     snprintf(tbuf, MAX_INPUT_LENGTH, "%4d. [%s%5d%s] %-40.40s %s\n", index, grn, trig_index[nr]->vnum, nrm,
-             trig_index[nr]->proto->name, tbuf2);
+             trig_index[nr]->proto->name, tbuf2.c_str());
 
     return tbuf;
 }
@@ -2003,7 +2006,7 @@ ACMD(do_tsearch) {
         char_printf(ch, "No matches found.\n");
 }
 
-const char *zone_reset_modes[] = {"never", "empty", "normal", "\n"};
+const std::string_view zone_reset_modes[] = {"never", "empty", "normal", "\n"};
 
 const struct VSearchType vsearch_zone_modes[] = {
     {1, "name", STRING}, /* must be first */
@@ -2128,9 +2131,9 @@ ACMD(do_zsearch) {
                               "--------\n");
             }
             ++found;
-            sprinttype(zone->reset_mode, zone_reset_modes, buf);
+
             paging_printf(ch, "{:3d} {:<30s} {:3d} {:<6s}  {:3d} {:6d}    {:5d}\n", zone->number, zone->name, zone->age,
-                          buf, zone->lifespan, zone->zone_factor, zone->top);
+                          sprinttype(zone->reset_mode, zone_reset_modes), zone->lifespan, zone->zone_factor, zone->top);
         }
     }
     if (found)
@@ -2143,7 +2146,7 @@ ACMD(do_zsearch) {
 #define DOOR_RESET_CLOSED (1 << 1)
 #define DOOR_RESET_LOCKED (1 << 2)
 #define DOOR_RESET_HIDDEN (1 << 3)
-const char *door_reset_modes[] = {"open", "closed", "locked", "hidden", "\n"};
+const std::string_view door_reset_modes[] = {"open", "closed", "locked", "hidden", "\n"};
 
 const struct VSearchType vsearch_zone_command_modes[] = {{1, "mobile", INTEGER},
                                                          {2, "object", INTEGER},
@@ -2327,7 +2330,7 @@ ACMD(do_csearch) {
                             cmd_mob != NOWHERE && cmd_mob < top_of_mobt ? mob_proto[cmd_mob].player.short_descr
                                                                         : "a mob",
                             grn, cmd_mob != NOWHERE && cmd_mob < top_of_mobt ? mob_index[cmd_mob].vnum : -1, nrm,
-                            equipment_types[com->arg3], com->arg2);
+                            equipment_types[com->arg3].data(), com->arg2);
                     break;
                 case 'P':
                     sprintf(vbuf + vbuflen, "Put %s (%s%d%s) in %s (%s%d%s), Max: %d\n",
@@ -2339,7 +2342,7 @@ ACMD(do_csearch) {
                             grn, obj_index[com->arg2].vnum, nrm);
                     break;
                 case 'D':
-                    sprintf(vbuf + vbuflen, "Set door %s as %s\n", dirs[com->arg2],
+                    sprintf(vbuf + vbuflen, "Set door %s as %s\n", dirs[com->arg2].data(),
                             com->arg3
                                 ? (com->arg3 == 1
                                        ? "closed"
@@ -2516,13 +2519,13 @@ ACMD(do_ksearch) {
                 break;
             }
             if (skill->routines) {
-                sprintbit(skill->routines, routines, buf1);
+                strcpy(buf1, sprintbit(skill->routines, routines).c_str());
                 if (strlen(buf1) > 12)
                     strcpy(buf1 + 9, "...");
             } else
                 strcpy(buf1, "NONE");
             if (skill->targets) {
-                sprintbit(skill->targets, targets, buf2);
+                strcpy(buf2, sprintbit(skill->targets, targets).c_str());
                 if (strlen(buf2) > 12)
                     strcpy(buf2 + 9, "...");
             } else

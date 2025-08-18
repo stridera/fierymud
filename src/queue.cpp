@@ -102,6 +102,9 @@ void *queue_head(Queue *q) {
     void *data;
     int i;
 
+    if (!q)
+        return nullptr;
+
     i = pulse % NUM_EVENT_QUEUES;
 
     if (!q->head[i])
@@ -135,6 +138,9 @@ void queue_free(Queue *q) {
     int i;
     QElement *qe, *next_qe;
     Event *event;
+
+    if (!q)
+        return;
 
     for (i = 0; i < NUM_EVENT_QUEUES; i++)
         for (qe = q->head[i]; qe; qe = next_qe) {

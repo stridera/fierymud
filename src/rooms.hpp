@@ -98,23 +98,30 @@ struct sectordef {
 };
 
 extern const struct sectordef sectors[NUM_SECTORS];
-extern const char *room_bits[NUM_ROOM_FLAGS + 1];
-extern const char *room_effects[NUM_ROOM_EFF_FLAGS + 1];
+
+constexpr std::array<std::string_view, NUM_ROOM_FLAGS> room_bits = {
+    "DARK",      "DEATH",      "!MOB",     "INDOORS",  "PEACEFUL",  "SOUNDPROOF", "!TRACK",
+    "!MAGIC",    "TUNNEL",     "PRIVATE",  "GODROOM",  "HOUSE",     "HCRSH",      "ATRIUM",
+    "OLC",       "*BFS_MARK*", "NOWELL",   "NORECALL", "UNDERDARK", "!SUMMON",    "NOSHIFT",
+    "GUILDHALL", "!SCAN",      "ALT_EXIT", "MAP",      "ALWAYSLIT", "ARENA",      "OBSERVATORY"};
+
+constexpr std::array<std::string_view, NUM_ROOM_EFF_FLAGS> room_effects = {"FOG",    "DARKNESS",    "CONT_LIGHT",
+                                                                           "FOREST", "CIRCLE_FIRE", "ISOLATION"};
 
 struct RoomData {
     room_num vnum;                        /* Room's vnum              */
     int zone;                             /* Room zone (for resetting)          */
     int sector_type;                      /* sector type (move/hide)            */
-    char *name;                           /* Rooms name 'You are ...'           */
-    char *description;                    /* Shown when entered                 */
+    std::string name;                     /* Rooms name 'You are ...'           */
+    std::string description;              /* Shown when entered                 */
     ExtraDescriptionData *ex_description; /* for examine/look              */
     Exit *exits[NUM_OF_DIRS];
 
     /* DEATH,DARK ... etc                 */
-    flagvector room_flags[FLAGVECTOR_SIZE(NUM_ROOM_FLAGS)];
+    flagvector flags[FLAGVECTOR_SIZE(NUM_ROOM_FLAGS)];
 
     /* bitvector for spells/skills */
-    flagvector room_effects[FLAGVECTOR_SIZE(NUM_ROOM_EFF_FLAGS)];
+    flagvector effects[FLAGVECTOR_SIZE(NUM_ROOM_EFF_FLAGS)];
 
     int light; /* Number of light sources in room     */
     SPECIAL(*func);

@@ -12,6 +12,7 @@
 
 #include "act.hpp"
 
+#include "bitflags.hpp"
 #include "board.hpp"
 #include "casting.hpp"
 #include "charsize.hpp"
@@ -767,7 +768,7 @@ static void print_char_infra_to_char(CharData *targ, CharData *ch, int mode) {
                     RIDING(targ) == ch ? "you.@0" : "a ", RIDING(targ) == ch ? "" : SIZE_DESC(RIDING(targ)),
                     RIDING(targ) == ch ? "" : "-sized creature");
     else
-        char_printf(ch, "@rThe red shape of a {:c}{}&0&1 living being{} is here.&0\n", LOWER(*SIZE_DESC(targ)),
+        char_printf(ch, "@rThe red shape of a {:c}{}&0&1 living being{} is here.&0\n", to_lower(*SIZE_DESC(targ)),
                     SIZE_DESC(targ) + 1, EFF_FLAGGED(targ, EFF_INFRAVISION) ? " &bwith glowing red eyes&0&1" : "");
 }
 
@@ -1095,9 +1096,9 @@ void print_room_to_char(room_num room_nr, CharData *ch, bool ignore_brief) {
 
     /* The lighted version */
     if (PRF_FLAGGED(ch, PRF_ROOMFLAGS)) {
-        sprintflag(buf, ROOM_FLAGS(room_nr), NUM_ROOM_FLAGS, room_bits);
-        sprintf(buf1, "%s%s", sectors[SECT(room_nr)].color, sectors[SECT(room_nr)].name);
-        char_printf(ch, "@L[@0{:5}@L]@W {} @L[@0{}@0: {}@L]@0\n", world[room_nr].vnum, world[room_nr].name, buf1, buf);
+        char_printf(ch, "@L[@0{:5}@L]@W {} @L[@0{}{}@0: {}@L]@0\n", world[room_nr].vnum, world[room_nr].name,
+                    sectors[SECT(room_nr)].color, sectors[SECT(room_nr)].name,
+                    sprintflag(ROOM_FLAGS(room_nr), room_bits));
     } else
         char_printf(ch, "{}{}{}\n", CLR(ch, FCYN), world[room_nr].name, CLR(ch, ANRM));
 
@@ -1235,7 +1236,7 @@ void look_in_obj(CharData *ch, char *arg) {
     if (!*arg)
         char_printf(ch, "Look in what?\n");
     else if (!(bits = generic_find(arg, FIND_OBJ_INV | FIND_OBJ_ROOM | FIND_OBJ_EQUIP, ch, &dummy, &obj)))
-        char_printf(ch, "There doesn't seem to be {} {} here.\n", AN(arg), arg);
+        char_printf(ch, "There doesn't seem to be {} {} here.\n", an(arg), arg);
     else if (IS_VIEWABLE_GATE(obj))
         look_at_target(ch, arg);
     else if (GET_OBJ_TYPE(obj) == ITEM_CONTAINER) {
@@ -1461,7 +1462,7 @@ ACMD(do_look) {
         char_printf(ch, "It is too dark to see anything.\n");
     } else if (is_abbrev(arg, "in"))
         look_in_obj(ch, argument);
-    else if ((look_type = searchblock(arg, dirs, false)) >= 0)
+    else if ((look_type = search_block(arg, dirs, false)) >= 0)
         look_in_direction(ch, look_type);
     else if (is_abbrev(arg, "at"))
         look_at_target(ch, argument);
@@ -1513,18 +1514,15 @@ void identify_obj(ObjData *obj, CharData *ch, int location) {
 
     /* Describe any non-wield wearing positions (and not take) */
     if ((i = obj->obj_flags.wear_flags & (~ITEM_WEAR_WIELD & ~ITEM_WEAR_2HWIELD & ~ITEM_WEAR_TAKE))) {
-        sprintbit(i, wear_bits, buf);
-        char_printf(ch, "Item is worn: {}\n", buf);
+        char_printf(ch, "Item is worn: {}\n", sprintbit(i, wear_bits));
     }
 
     /* Describe extra flags (hum, !drop, class/align restrictions, etc.) */
-    sprintflag(buf, GET_OBJ_FLAGS(obj), NUM_ITEM_FLAGS, extra_bits);
-    char_printf(ch, "Item is: {}\n", buf);
+    char_printf(ch, "Item is: {}\n", sprintflag(GET_OBJ_FLAGS(obj), NUM_ITEM_FLAGS, extra_bits));
 
     /* Tell about spell effects here */
     if (HAS_FLAGS(GET_OBJ_EFF_FLAGS(obj), NUM_EFF_FLAGS)) {
-        sprintflag(buf, GET_OBJ_EFF_FLAGS(obj), NUM_EFF_FLAGS, effect_flags);
-        char_printf(ch, "Item provides: {}\n", buf);
+        char_printf(ch, "Item provides: {}\n", sprintflag(GET_OBJ_EFF_FLAGS(obj), NUM_EFF_FLAGS, effect_flags));
     }
 
     char_printf(ch, "Weight: {:.2f}, Effective Weight: {:.2f},  Value: {:d}, Level: {:d}\n", GET_OBJ_WEIGHT(obj),
@@ -1730,7 +1728,7 @@ ACMD(do_weather) {
     strcat(buf2, wind_message(zone_table[IN_ZONE_RNUM(ch)].wind_speed, zone_table[IN_ZONE_RNUM(ch)].wind_speed));
     if (GET_LEVEL(ch) >= LVL_IMMORT && zone_table[IN_ZONE_RNUM(ch)].wind_speed != WIND_NONE)
         /* Cut off the original newline. */
-        sprintf(buf2 + strlen(buf2) - 2, " (%s)\n", dirs[zone_table[IN_ZONE_RNUM(ch)].wind_dir]);
+        sprintf(buf2 + strlen(buf2) - 2, " (%s)\n", dirs[zone_table[IN_ZONE_RNUM(ch)].wind_dir].data());
 
     strcat(buf2, precipitation_message(&zone_table[IN_ZONE_RNUM(ch)], zone_table[IN_ZONE_RNUM(ch)].precipitation));
 
@@ -2288,7 +2286,7 @@ ACMD(do_users) {
                 break;
             case 'i':
                 ipsort = 1;
-                for (i = 0; i <= 300; i++) {
+                for (i = 0; i < 300; i++) {
                     *iplist[i] = '\0';
                     *userlist[i] = '\0';
                     repeats[i] = 0;
@@ -2351,7 +2349,7 @@ ACMD(do_users) {
         if (!d->connected && d->original)
             strcpy(state, "Switched");
         else
-            strcpy(state, connected_types[d->connected]);
+            strcpy(state, connected_types[d->connected].data());
 
         if (d->original && !d->connected)
             sprintf(idletime, "%3d", d->original->char_specials.timer * SECS_PER_MUD_HOUR / SECS_PER_REAL_MIN);
@@ -2683,7 +2681,7 @@ ACMD(do_color) {
         char_printf(ch, "Your current color level is {}.\n", ctypes[COLOR_LEV(ch)]);
         return;
     }
-    if ((tp = searchblock(arg, ctypes, false) == -1)) {
+    if ((tp = search_block(arg, ctypes, false) == -1)) {
         char_printf(ch, "Usage: color { Off | Sparse | Normal | Complete }\n");
         return;
     }
@@ -2861,7 +2859,7 @@ const char *hiddenness_message(int hiddenness) {
         return "godlike";
 }
 
-const char *ability_message(int value) {
+std::string_view ability_message(int value) {
     if (value > 90)
         return rolls_abils_result[0];
     else if (value > 80)
@@ -3343,7 +3341,6 @@ ACMD(do_score) {
         sprintf(buf1, " &9&b{&0%s&9&b}&0", CLASS_STARS(tch));
     buf += fmt::format("Level: @Y{}@0{}  Class: {}", GET_LEVEL(tch), IS_STARSTAR(tch) ? buf1 : "", CLASS_FULL(tch));
 
-    sprinttype(GET_SEX(tch), genders, buf1);
     if (GET_COMPOSITION(tch) != COMP_FLESH || BASE_COMPOSITION(tch) != COMP_FLESH || GET_LIFEFORCE(tch) != LIFE_LIFE) {
         if (GET_COMPOSITION(tch) == BASE_COMPOSITION(tch))
             *buf2 = '\0';
@@ -3356,11 +3353,12 @@ ACMD(do_score) {
             "  Size: &3{}&0  Gender: &3{}&0\n"
             "Race: {}  Life force: {}{}&0  "
             "Composition: {}{}&0{}&0{}{}&0\n",
-            capitalize(SIZE_DESC(tch)), buf1, RACE_ABBR(tch), LIFEFORCE_COLOR(tch), capitalize(LIFEFORCE_NAME(tch)),
-            COMPOSITION_COLOR(tch), capitalize(COMPOSITION_NAME(tch)), *buf2 ? "(" : "", buf2, *buf2 ? ")" : "");
+            capitalize(SIZE_DESC(tch)), sprinttype(GET_SEX(tch), genders), RACE_ABBR(tch), LIFEFORCE_COLOR(tch),
+            capitalize(LIFEFORCE_NAME(tch)), COMPOSITION_COLOR(tch), capitalize(COMPOSITION_NAME(tch)),
+            *buf2 ? "(" : "", buf2, *buf2 ? ")" : "");
     } else
-        buf +=
-            fmt::format("  Race: {}  Size: &3{}&0  Gender: &3{}&0\n", RACE_ABBR(tch), capitalize(SIZE_DESC(tch)), buf1);
+        buf += fmt::format("  Race: {}  Size: &3{}&0  Gender: &3{}&0\n", RACE_ABBR(tch), capitalize(SIZE_DESC(tch)),
+                           sprinttype(GET_SEX(tch), genders));
 
     buf += fmt::format(
         "Age: &3&b{}&0&3 year{}&0, &3&b{}&0&3 month{}&0  "
@@ -3905,7 +3903,7 @@ ACMD(do_scan) {
     }
 
     any_one_arg(argument, arg);
-    if (*arg && (only_dir = searchblock(arg, dirs, false)) == -1) {
+    if (*arg && (only_dir = search_block(arg, dirs, false)) == -1) {
         char_printf(ch, "That is not a direction.\n");
         return;
     }

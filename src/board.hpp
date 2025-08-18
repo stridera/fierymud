@@ -37,7 +37,7 @@
 #define VALID_BOARD_NUM(num) ((num) > 0)
 #define VALID_BOARD_INDEX(idx) ((idx) >= 0 && (idx) < num_boards)
 #define VALID_PRIV_NUM(num) ((num) >= 0 && (num) < NUM_BPRIV)
-#define VALID_ALIAS_CHAR(c) (IS_UPPER(c) || IS_LOWER(c) || isdigit(c) || (c) == '_')
+#define VALID_ALIAS_CHAR(c) (is_upper(c) || is_lower(c) || isdigit(c) || (c) == '_')
 
 /*
  * These structures are private to board.c

@@ -298,7 +298,8 @@ void zedit_new_zone(CharData *ch, int vzone_num) {
      * That quirk has been fixed with the std::max() statement.
      */
 
-    log(LogSeverity::Warn, std::max(LVL_GOD, GET_INVIS_LEV(ch)), "OLC: {} creates new zone #{:d}", GET_NAME(ch), vzone_num);
+    log(LogSeverity::Warn, std::max(LVL_GOD, GET_INVIS_LEV(ch)), "OLC: {} creates new zone #{:d}", GET_NAME(ch),
+        vzone_num);
     char_printf(ch, "Zone created successfully.\n");
 
     return;
@@ -525,7 +526,7 @@ void zedit_save_to_disk(int zone_num) {
             arg2 = ZCMD.arg2;
             arg3 = ZCMD.arg3;
             /*arg4 = ZCMD.arg4; */
-            comment = world[ZCMD.arg1].name;
+            comment = strdup(world[ZCMD.arg1].name.c_str());
             break;
         case 'R':
             arg1 = world[ZCMD.arg1].vnum;
@@ -689,9 +690,9 @@ void delete_command(DescriptorData *d, int pos) {
 
     if ((pos >= subcmd) || (pos < 0))
         return;
-        /*
-         * Ok, let's zap it
-         */
+    /*
+     * Ok, let's zap it
+     */
 #if defined(DEBUG)
     log("delete_command called remove_cmd_from_list.");
 #endif
@@ -788,7 +789,7 @@ void zedit_disp_menu(DescriptorData *d) {
         case 'E':
             sprintf(buf2, "%sEquip with %s [%s%d%s], %s, Max : %d", MYCMD.if_flag ? " then " : "",
                     obj_proto[MYCMD.arg1].short_description, cyn, obj_index[MYCMD.arg1].vnum, yel,
-                    equipment_types[MYCMD.arg3], MYCMD.arg2);
+                    equipment_types[MYCMD.arg3].data(), MYCMD.arg2);
             break;
         case 'P':
             sprintf(buf2, "%sPut %s [%s%d%s] in %s [%s%d%s], Max : %d", MYCMD.if_flag ? " then " : "",
@@ -800,7 +801,7 @@ void zedit_disp_menu(DescriptorData *d) {
                     obj_proto[MYCMD.arg2].short_description, cyn, obj_index[MYCMD.arg2].vnum, yel);
             break;
         case 'D':
-            sprintf(buf2, "%sSet door %s as %s.", MYCMD.if_flag ? " then " : "", dirs[MYCMD.arg2],
+            sprintf(buf2, "%sSet door %s as %s.", MYCMD.if_flag ? " then " : "", dirs[MYCMD.arg2].data(),
                     MYCMD.arg3
                         ? ((MYCMD.arg3 == 1)
                                ? "closed"
@@ -920,9 +921,8 @@ void zedit_disp_arg2(DescriptorData *d) {
         char_printf(d->character, "Input the maximum number that can exist on the mud (max 50):\n");
         break;
     case 'D':
-        while (*dirs[i] != '\n') {
-            sprintf(buf, "%d) Exit %s.\n", i, dirs[i]);
-            char_printf(d->character, buf);
+        while (dirs[i].front() != '\n') {
+            char_printf(d->character, "{}) Exit {}.\n", i, dirs[i]);
             i++;
         }
         char_printf(d->character, "Enter exit number for door:\n");
@@ -958,11 +958,11 @@ void zedit_disp_arg3(DescriptorData *d) {
         zedit_disp_sarg(d);
         break;
     case 'E':
-        while (*equipment_types[i] != '\n') {
-            sprintf(buf, "%2d) %26.26s %2d) %26.26s\n", i, equipment_types[i], i + 1,
-                    (*equipment_types[i + 1] != '\n') ? equipment_types[i + 1] : "");
+        while (equipment_types[i].front() != '\n') {
+            sprintf(buf, "%2d) %26.26s %2d) %26.26s\n", i, equipment_types[i].data(), i + 1,
+                    (equipment_types[i + 1].front() != '\n') ? equipment_types[i + 1].data() : "");
             char_printf(d->character, buf);
-            if (*equipment_types[i + 1] != '\n')
+            if (equipment_types[i + 1].front() != '\n')
                 i += 2;
             else
                 break;
@@ -1040,8 +1040,8 @@ void zedit_parse(DescriptorData *d, char *arg) {
             /*. Save the zone in memory . */
             char_printf(d->character, "Saving zone info in memory.\n");
             zedit_save_internally(d);
-            log(LogSeverity::Debug, std::max(LVL_GOD, GET_INVIS_LEV(d->character)), "OLC: {} edits zone info for room {:d}.",
-                GET_NAME(d->character), OLC_NUM(d));
+            log(LogSeverity::Debug, std::max(LVL_GOD, GET_INVIS_LEV(d->character)),
+                "OLC: {} edits zone info for room {:d}.", GET_NAME(d->character), OLC_NUM(d));
         /* FALL THROUGH */
         case 'n':
         case 'N':
@@ -1330,7 +1330,7 @@ void zedit_parse(DescriptorData *d, char *arg) {
             /*
              * Count directions.
              */
-            while (*dirs[i] != '\n')
+            while (dirs[i].front() != '\n')
                 i++;
             if ((pos < 0) || (pos > i))
                 char_printf(d->character, "Try again:\n");
@@ -1373,7 +1373,7 @@ void zedit_parse(DescriptorData *d, char *arg) {
              * Count number of wear positions.  We could use NUM_WEARS, this is
              * more reliable.
              */
-            while (*equipment_types[i] != '\n')
+            while (equipment_types[i].front() != '\n')
                 i++;
             if ((pos < 0) || (pos > i))
                 char_printf(d->character, "Try again:\n");
@@ -1496,7 +1496,8 @@ void zedit_parse(DescriptorData *d, char *arg) {
         if (OLC_ZNUM(d) == top_of_zone_table)
             OLC_ZONE(d)->top = std::max(OLC_ZNUM(d) * 100, std::min(198999, atoi(arg)));
         else
-            OLC_ZONE(d)->top = std::max(OLC_ZNUM(d) * 100, std::min(zone_table[OLC_ZNUM(d) + 1].number * 100, atoi(arg)));
+            OLC_ZONE(d)->top =
+                std::max(OLC_ZNUM(d) * 100, std::min(zone_table[OLC_ZNUM(d) + 1].number * 100, atoi(arg)));
         zedit_disp_menu(d);
         break;
         /*-------------------------------------------------------------------*/

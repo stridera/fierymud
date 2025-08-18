@@ -114,7 +114,7 @@ void random_mtrigger(CharData *ch) {
  * array for platinum, gold, silver, and copper.  Only one bribe trigger
  * will be executed.
  */
-void bribe_mtrigger(CharData *ch, CharData *actor, int coins[]) {
+void bribe_mtrigger(CharData *ch, CharData *actor, Money coins) {
     TrigData *t;
     char buf[MAX_INPUT_LENGTH];
     int raw_value;
@@ -170,7 +170,7 @@ int greet_mtrigger(CharData *actor, int dir) {
             if (((IS_SET(GET_TRIG_TYPE(t), MTRIG_GREET) && CAN_SEE(ch, actor)) ||
                  IS_SET(GET_TRIG_TYPE(t), MTRIG_GREET_ALL)) &&
                 !GET_TRIG_DEPTH(t) && (random_number(1, 100) <= GET_TRIG_NARG(t))) {
-                add_var(&GET_TRIG_VARS(t), "direction", dirs[rev_dir[dir]]);
+                add_var(&GET_TRIG_VARS(t), "direction", dirs[rev_dir[dir]].data());
                 ADD_UID_VAR(buf, t, actor, "actor");
                 if (!script_driver(&ch, t, MOB_TRIGGER, TRIG_NEW))
                     ret_val = false;
@@ -412,7 +412,6 @@ int receive_mtrigger(CharData *ch, CharData *actor, ObjData *obj) {
 
     sprintf(vnum, "%d", GET_OBJ_VNUM(obj));
 
-
     if (!MOB_PERFORMS_SCRIPTS(ch) || !SCRIPT_CHECK(ch, MTRIG_RECEIVE) || !char_susceptible_to_triggers(actor) ||
         !char_susceptible_to_triggers(ch))
         return ret_val;
@@ -420,15 +419,15 @@ int receive_mtrigger(CharData *ch, CharData *actor, ObjData *obj) {
     for (t = TRIGGERS(SCRIPT(ch)); t; t = t->next) {
         if (IS_SET(GET_TRIG_TYPE(t), MTRIG_RECEIVE)) {
 
-            if ((GET_TRIG_ARG(t) && word_check(vnum, GET_TRIG_ARG(t)) && GET_TRIG_NARG(t)) || 
-              ((GET_TRIG_ARG(t) && !word_check(vnum, GET_TRIG_ARG(t)) && !GET_TRIG_NARG(t))) ||
-              (!GET_TRIG_ARG(t) || !*GET_TRIG_ARG(t))) {
+            if ((GET_TRIG_ARG(t) && word_check(vnum, GET_TRIG_ARG(t)) && GET_TRIG_NARG(t)) ||
+                ((GET_TRIG_ARG(t) && !word_check(vnum, GET_TRIG_ARG(t)) && !GET_TRIG_NARG(t))) ||
+                (!GET_TRIG_ARG(t) || !*GET_TRIG_ARG(t))) {
 
-                  ADD_UID_VAR(buf, t, actor, "actor");
-                  ADD_UID_VAR(buf, t, obj, "object");
-                  ret_val = script_driver(&ch, t, MOB_TRIGGER, TRIG_NEW);
-                  if (!ret_val)
-                      return ret_val;
+                ADD_UID_VAR(buf, t, actor, "actor");
+                ADD_UID_VAR(buf, t, obj, "object");
+                ret_val = script_driver(&ch, t, MOB_TRIGGER, TRIG_NEW);
+                if (!ret_val)
+                    return ret_val;
             }
         }
     }
@@ -508,7 +507,7 @@ int leave_mtrigger(CharData *actor, int dir) {
         for (t = TRIGGERS(SCRIPT(ch)); t; t = t->next) {
             if (TRIGGER_CHECK(t, MTRIG_LEAVE) && CAN_SEE(ch, actor) && random_number(1, 100) <= GET_TRIG_NARG(t)) {
                 if (dir >= 0 && dir < NUM_OF_DIRS)
-                    add_var(&GET_TRIG_VARS(t), "direction", dirs[dir]);
+                    add_var(&GET_TRIG_VARS(t), "direction", dirs[dir].data());
                 else
                     add_var(&GET_TRIG_VARS(t), "direction", "none");
                 ADD_UID_VAR(buf, t, actor, "actor");
@@ -535,7 +534,7 @@ int door_mtrigger(CharData *actor, int subcmd, int dir) {
         for (t = TRIGGERS(SCRIPT(ch)); t; t = t->next) {
             if (TRIGGER_CHECK(t, MTRIG_DOOR) && random_number(1, 100) <= GET_TRIG_NARG(t)) {
                 add_var(&GET_TRIG_VARS(t), "cmd", cmd_door[subcmd]);
-                add_var(&GET_TRIG_VARS(t), "direction", dirs[dir]);
+                add_var(&GET_TRIG_VARS(t), "direction", dirs[dir].data());
                 ADD_UID_VAR(buf, t, actor, "actor");
                 return script_driver(&ch, t, MOB_TRIGGER, TRIG_NEW);
             }
@@ -568,7 +567,8 @@ int look_mtrigger(CharData *ch, CharData *actor, const char *str) {
     char buf[MAX_INPUT_LENGTH];
     int ret_val = 1;
 
-    if (!MOB_PERFORMS_SCRIPTS(ch) || !char_susceptible_to_triggers(actor) || !SCRIPT_CHECK(ch, MTRIG_LOOK) || !char_susceptible_to_triggers(ch))
+    if (!MOB_PERFORMS_SCRIPTS(ch) || !char_susceptible_to_triggers(actor) || !SCRIPT_CHECK(ch, MTRIG_LOOK) ||
+        !char_susceptible_to_triggers(ch))
         return ret_val;
 
     for (t = TRIGGERS(SCRIPT(ch)); t; t = t->next) {
@@ -585,7 +585,6 @@ int look_mtrigger(CharData *ch, CharData *actor, const char *str) {
 
     return ret_val;
 }
-
 
 /*
  *  object triggers
@@ -882,7 +881,7 @@ int leave_otrigger(RoomData *room, CharData *actor, int dir) {
         for (t = TRIGGERS(SCRIPT(obj)); t; t = t->next) {
             if (TRIGGER_CHECK(t, OTRIG_LEAVE) && (random_number(1, 100) <= GET_TRIG_NARG(t))) {
                 if (dir >= 0 && dir < NUM_OF_DIRS)
-                    add_var(&GET_TRIG_VARS(t), "direction", dirs[dir]);
+                    add_var(&GET_TRIG_VARS(t), "direction", dirs[dir].data());
                 else
                     add_var(&GET_TRIG_VARS(t), "direction", "none");
                 ADD_UID_VAR(buf, t, actor, "actor");
@@ -959,7 +958,6 @@ int look_otrigger(ObjData *obj, CharData *actor, char *name, const char *additio
     if (!char_susceptible_to_triggers(actor) || !SCRIPT_CHECK(obj, OTRIG_LOOK))
         return ret_val;
 
-
     if ((pos = strchr(name, '.'))) {
         num = atoi(name);
         name = ++pos;
@@ -968,8 +966,8 @@ int look_otrigger(ObjData *obj, CharData *actor, char *name, const char *additio
         str = name;
 
     for (t = TRIGGERS(SCRIPT(obj)); t; t = t->next) {
-        if (GET_TRIG_ARG(t) && word_check(str, GET_TRIG_ARG(t)) || 
-          (!GET_TRIG_ARG(t) || !*GET_TRIG_ARG(t)) && isname(str, obj->name)) {
+        if (GET_TRIG_ARG(t) && word_check(str, GET_TRIG_ARG(t)) ||
+            (!GET_TRIG_ARG(t) || !*GET_TRIG_ARG(t)) && isname(str, obj->name)) {
             if (TRIGGER_CHECK(t, OTRIG_LOOK) && (random_number(1, 100) <= GET_TRIG_NARG(t))) {
                 if (actor)
                     ADD_UID_VAR(buf, t, actor, "actor");
@@ -978,9 +976,8 @@ int look_otrigger(ObjData *obj, CharData *actor, char *name, const char *additio
 
                 /* Don't allow a look to take place, if the object is purged. */
                 if (!script_driver(&obj, t, OBJ_TRIGGER, TRIG_NEW) && obj)
-                  ret_val = 0;
-
-            }     
+                    ret_val = 0;
+            }
         } else
             continue;
     }
@@ -992,7 +989,6 @@ int use_otrigger(ObjData *obj, ObjData *tobj, CharData *actor, CharData *victim)
     TrigData *t;
     char buf[MAX_INPUT_LENGTH];
     int ret_val = 1;
-
 
     if (!char_susceptible_to_triggers(actor) || !SCRIPT_CHECK(obj, OTRIG_USE))
         return ret_val;
@@ -1046,7 +1042,7 @@ int preentry_wtrigger(RoomData *room, CharData *actor, int dir) {
 
     for (t = TRIGGERS(SCRIPT(room)); t; t = t->next) {
         if (TRIGGER_CHECK(t, WTRIG_PREENTRY) && (random_number(1, 100) <= GET_TRIG_NARG(t))) {
-            add_var(&GET_TRIG_VARS(t), "direction", dirs[rev_dir[dir]]);
+            add_var(&GET_TRIG_VARS(t), "direction", dirs[rev_dir[dir]].data());
             ADD_UID_VAR(buf, t, actor, "actor");
             return script_driver(&room, t, WLD_TRIGGER, TRIG_NEW);
         }
@@ -1066,7 +1062,7 @@ int postentry_wtrigger(CharData *actor, int dir) {
 
     for (t = TRIGGERS(SCRIPT(room)); t; t = t->next) {
         if (TRIGGER_CHECK(t, WTRIG_POSTENTRY) && (random_number(1, 100) <= GET_TRIG_NARG(t))) {
-            add_var(&GET_TRIG_VARS(t), "direction", dirs[rev_dir[dir]]);
+            add_var(&GET_TRIG_VARS(t), "direction", dirs[rev_dir[dir]].data());
             ADD_UID_VAR(buf, t, actor, "actor");
             return script_driver(&room, t, WLD_TRIGGER, TRIG_NEW);
         }
@@ -1209,7 +1205,7 @@ int leave_wtrigger(RoomData *room, CharData *actor, int dir) {
 
     for (t = TRIGGERS(SCRIPT(room)); t; t = t->next) {
         if (TRIGGER_CHECK(t, WTRIG_LEAVE) && (random_number(1, 100) <= GET_TRIG_NARG(t))) {
-            add_var(&GET_TRIG_VARS(t), "direction", dirs[dir]);
+            add_var(&GET_TRIG_VARS(t), "direction", dirs[dir].data());
             ADD_UID_VAR(buf, t, actor, "actor");
             return script_driver(&room, t, WLD_TRIGGER, TRIG_NEW);
         }
@@ -1230,7 +1226,7 @@ int door_wtrigger(CharData *actor, int subcmd, int dir) {
     for (t = TRIGGERS(SCRIPT(room)); t; t = t->next) {
         if (TRIGGER_CHECK(t, WTRIG_DOOR) && (random_number(1, 100) <= GET_TRIG_NARG(t))) {
             add_var(&GET_TRIG_VARS(t), "cmd", cmd_door[subcmd]);
-            add_var(&GET_TRIG_VARS(t), "direction", (char *)dirs[dir]);
+            add_var(&GET_TRIG_VARS(t), "direction", dirs[dir].data());
             ADD_UID_VAR(buf, t, actor, "actor");
             return script_driver(&room, t, WLD_TRIGGER, TRIG_NEW);
         }

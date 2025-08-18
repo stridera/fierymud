@@ -54,7 +54,6 @@
 #include <math.h>
 #include <sys/stat.h>
 
-void init_clans(void);
 char err_buf[MAX_STRING_LENGTH];
 PlayerSpecialData dummy_mob;
 
@@ -416,7 +415,7 @@ int get_copper(int i)
         return 0;
 
     /*copper calculations */
-    copper = (random_number(1, 150)) * mob_proto[i].player.level;
+    copper = (random_number(1, 150))*mob_proto[i].player.level;
     sfactor = (int)((sfactor + cfactor + zfactor) / 3);
 
     copper = (int)((float)((sfactor / 100.0) * copper));
@@ -540,7 +539,7 @@ void boot_world(void) {
 
     /* Must happen after loading the player index */
     log("Booting Clans.");
-    init_clans();
+    clan_repository.init_clans();
 
     log("Booting boards.");
     board_init();
@@ -557,7 +556,7 @@ void boot_db(void) {
 
     log("   Skills.");
     init_skills();
-	
+
     log("Assigning skills and spells to classes.");
     assign_class_skills();
 
@@ -625,8 +624,7 @@ void boot_db(void) {
     log("Booting quests.");
     boot_quests();
 
-    CREATE(boot_time, time_t, 1);
-    *boot_time = time(0);
+    boot_time = time(0);
 
     log("Boot db -- DONE.");
 }
@@ -689,10 +687,6 @@ void destroy_db(void) {
 
     /* Rooms */
     for (cnt = 0; cnt <= top_of_world; cnt++) {
-        if (world[cnt].name)
-            free(world[cnt].name);
-        if (world[cnt].description)
-            free(world[cnt].description);
         free_extra_descriptions(world[cnt].ex_description);
 
         /* free any assigned scripts */
@@ -940,7 +934,10 @@ void index_boot(int mode) {
     }
 
     /* first, count the number of records in the file so we can malloc */
-    fscanf(index, "%s\n", buf1);
+    if (fscanf(index, "%s\n", buf1) != 1) {
+        log("Error reading from index file.");
+        exit(1);
+    }
     while (*buf1 != '$') {
         sprintf(buf2, "%s/%s", prefix, buf1);
         if (!(db_file = fopen(buf2, "r"))) {
@@ -955,7 +952,10 @@ void index_boot(int mode) {
         }
 
         fclose(db_file);
-        fscanf(index, "%s\n", buf1);
+        if (fscanf(index, "%s\n", buf1) != 1) {
+            log("Error reading from index file.");
+            exit(1);
+        }
     }
 
     /* Exit if 0 records, unless this is shops */
@@ -992,7 +992,10 @@ void index_boot(int mode) {
     }
 
     rewind(index);
-    fscanf(index, "%s\n", buf1);
+    if (fscanf(index, "%s\n", buf1) != 1) {
+        log("Error reading from index file.");
+        exit(1);
+    }
     while (*buf1 != '$') {
         sprintf(buf2, "%s/%s", prefix, buf1);
         if (!(db_file = fopen(buf2, "r"))) {
@@ -1018,7 +1021,10 @@ void index_boot(int mode) {
         }
 
         fclose(db_file);
-        fscanf(index, "%s\n", buf1);
+        if (fscanf(index, "%s\n", buf1) != 1) {
+            log("Error reading from index file.");
+            exit(1);
+        }
     }
 
     /* sort the help index */
@@ -1134,8 +1140,8 @@ void parse_room(FILE *fl, int virtual_nr) {
         exit(1);
     }
     /* t[0] is the zone number; ignored with the zone-file system */
-    /* room_flags is a flagvector array */
-    world[room_nr].room_flags[0] = asciiflag_conv(flags);
+    /* flags is a flagvector array */
+    world[room_nr].flags[0] = asciiflag_conv(flags);
     world[room_nr].sector_type = t[2];
 
     world[room_nr].func = nullptr;
@@ -1396,30 +1402,30 @@ void parse_simple_mob(FILE *mob_f, int i, int nr) {
 
     mob_proto[i].player.height = 198;
 
-    mob_proto[i].points.coins[PLATINUM] = 0;
-    mob_proto[i].points.coins[GOLD] = 0;
-    mob_proto[i].points.coins[SILVER] = 0;
-    mob_proto[i].points.coins[COPPER] = 0;
+    mob_proto[i].points.money[PLATINUM] = 0;
+    mob_proto[i].points.money[GOLD] = 0;
+    mob_proto[i].points.money[SILVER] = 0;
+    mob_proto[i].points.money[COPPER] = 0;
 
     /*Money adder */
     k = j = 0;
     k = get_copper(i);
     j = (60 * k) / 100;
-    mob_proto[i].points.coins[PLATINUM] = j / PLATINUM_SCALE;
+    mob_proto[i].points.money[PLATINUM] = j / PLATINUM_SCALE;
     j = ((20 * k) / 100) + (j % PLATINUM_SCALE);
-    mob_proto[i].points.coins[GOLD] = j / GOLD_SCALE;
+    mob_proto[i].points.money[GOLD] = j / GOLD_SCALE;
     j = ((18 * k) / 100) + (j % GOLD_SCALE);
-    mob_proto[i].points.coins[SILVER] = j / SILVER_SCALE;
+    mob_proto[i].points.money[SILVER] = j / SILVER_SCALE;
     if (mob_proto[i].player.level > 20)
         j = (k / 200) + (j % SILVER_SCALE);
     j = ((2 * k) / 100) + (j % SILVER_SCALE);
-    mob_proto[i].points.coins[COPPER] = j / COPPER_SCALE;
+    mob_proto[i].points.money[COPPER] = j / COPPER_SCALE;
 
-    mob_proto[i].points.coins[PLATINUM] =
-        std::max(0, mob_proto[i].points.coins[PLATINUM] + GET_EX_PLATINUM(mob_proto + i));
-    mob_proto[i].points.coins[GOLD] = std::max(0, mob_proto[i].points.coins[GOLD] + GET_EX_GOLD(mob_proto + i));
-    mob_proto[i].points.coins[COPPER] = std::max(0, mob_proto[i].points.coins[COPPER] + GET_EX_COPPER(mob_proto + i));
-    mob_proto[i].points.coins[SILVER] = std::max(0, mob_proto[i].points.coins[SILVER] + GET_EX_SILVER(mob_proto + i));
+    mob_proto[i].points.money[PLATINUM] =
+        std::max(0, mob_proto[i].points.money[PLATINUM] + GET_EX_PLATINUM(mob_proto + i));
+    mob_proto[i].points.money[GOLD] = std::max(0, mob_proto[i].points.money[GOLD] + GET_EX_GOLD(mob_proto + i));
+    mob_proto[i].points.money[COPPER] = std::max(0, mob_proto[i].points.money[COPPER] + GET_EX_COPPER(mob_proto + i));
+    mob_proto[i].points.money[SILVER] = std::max(0, mob_proto[i].points.money[SILVER] + GET_EX_SILVER(mob_proto + i));
 
     if ((mob_proto[i].mob_specials.ex_armor != 100))
         mob_proto[i].points.armor = mob_proto[i].mob_specials.ex_armor +
@@ -1603,7 +1609,7 @@ void parse_mobile(FILE *mob_f, int nr) {
     tmpptr = mob_proto[i].player.short_descr = fread_string(mob_f, buf2);
     if (tmpptr && *tmpptr)
         if (!strcasecmp(fname(tmpptr), "a") || !strcasecmp(fname(tmpptr), "an") || !strcasecmp(fname(tmpptr), "the"))
-            *tmpptr = LOWER(*tmpptr);
+            *tmpptr = to_lower(*tmpptr);
     mob_proto[i].player.long_descr = fread_string(mob_f, buf2);
     mob_proto[i].player.description = fread_string(mob_f, buf2);
     mob_proto[i].player.title = nullptr;
@@ -1766,11 +1772,11 @@ char *parse_object(FILE *obj_f, int nr) {
     tmpptr = obj_proto[i].short_description = fread_string(obj_f, buf2);
     if (*tmpptr)
         if (!strcasecmp(fname(tmpptr), "a") || !strcasecmp(fname(tmpptr), "an") || !strcasecmp(fname(tmpptr), "the"))
-            *tmpptr = LOWER(*tmpptr);
+            *tmpptr = to_lower(*tmpptr);
 
     tmpptr = obj_proto[i].description = fread_string(obj_f, buf2);
     if (tmpptr && *tmpptr)
-        *tmpptr = UPPER(*tmpptr);
+        *tmpptr = to_upper(*tmpptr);
     obj_proto[i].action_description = fread_string(obj_f, buf2);
 
     /* *** numeric data *** */
@@ -2632,10 +2638,6 @@ void free_char(CharData *ch) {
         free_trophy(ch);
         free_aliases(GET_ALIASES(ch));
 
-        /* Remove runtime link to clan */
-        if (GET_CLAN_MEMBERSHIP(ch))
-            GET_CLAN_MEMBERSHIP(ch)->player = nullptr;
-
         if (GET_WIZ_TITLE(ch))
             free(GET_WIZ_TITLE(ch));
         if (GET_PERM_TITLES(ch)) {
@@ -3063,7 +3065,7 @@ bool _parse_name(char *arg, char *name) {
 
     test[0] = 0;
     for (i = 0; (*name = *arg); arg++, i++, name++) {
-        *(test + i) = LOWER(*arg);
+        *(test + i) = to_lower(*arg);
         if ((*arg < 0) || !isalpha(*arg) || (i > 15) || (i && (*(test + i) != *arg)))
             return (true);
     }

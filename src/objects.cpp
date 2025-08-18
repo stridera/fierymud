@@ -79,15 +79,15 @@ static int max_value(ObjData *obj, int val) {
     case ITEM_PORTAL:
         switch (val) {
         case VAL_PORTAL_ENTRY_MSG:
-            for (max = 0; *portal_entry_messages[max] != '\n'; ++max)
+            for (max = 0; portal_entry_messages[max].front() != '\n'; ++max)
                 ;
             break;
         case VAL_PORTAL_CHAR_MSG:
-            for (max = 0; *portal_character_messages[max] != '\n'; ++max)
+            for (max = 0; portal_character_messages[max].front() != '\n'; ++max)
                 ;
             break;
         case VAL_PORTAL_EXIT_MSG:
-            for (max = 0; *portal_exit_messages[max] != '\n'; ++max)
+            for (max = 0; portal_exit_messages[max].front() != '\n'; ++max)
                 ;
             break;
         }
